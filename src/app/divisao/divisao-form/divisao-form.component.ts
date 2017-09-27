@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router'
+
+import { Divisao } from './../divisao.model';
+import { DivisaoService } from './../divisao.service';
 
 @Component({
     selector: 'app-divisao-form',
@@ -6,7 +11,19 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./divisao-form.component.css']
 })
 export class DivisaoFormComponent implements OnInit {
-    constructor() { }
+    form: FormGroup;
+    title: string;
+    divisao: Divisao[];
+
+    constructor(
+        formBuilder: FormBuilder,
+        private router: Router,
+        private route: ActivatedRoute,
+        private divisaoService: DivisaoService
+    ) { }
 
     ngOnInit() { }
+
+
+
 }

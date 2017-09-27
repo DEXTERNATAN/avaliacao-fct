@@ -1,7 +1,7 @@
 {
   "divisao": [
     {
-      "id_divisao": 1,
+      "id": 1,
       "sigla": "CGTI",
       "nome": "Cordenação Geral de TI",
       "descricao": "Cordenação Geral de TI",
@@ -9,7 +9,7 @@
       "especialidade": "Desenvolvimento"
     },
     {
-      "id_divisao": 2,
+      "id": 2,
       "sigla": "CGDB",
       "nome": "Cordenação Geral de Banco de dados",
       "descricao": "Cordenação Geral de Banco de dados",

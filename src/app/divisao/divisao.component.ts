@@ -14,7 +14,7 @@ export class DivisaoComponent implements OnInit {
   constructor(private _divisaoService: DivisaoService) { }
 
   ngOnInit() {
-    this._divisaoService.divisao().subscribe(divisao => this.Divisao = divisao)
+    this._divisaoService.getDivisao().subscribe(divisao => this.Divisao = divisao)
   }
 
   deleteDivisao(divisao){
@@ -22,7 +22,7 @@ export class DivisaoComponent implements OnInit {
       var index = this.Divisao.indexOf(divisao);
       this.Divisao.splice(index, 1);
 
-      this._divisaoService.deleteDivisao(divisao.id_divisao)
+      this._divisaoService.deleteDivisao(divisao.id)
         .subscribe(null,
           err => {
             alert("Could not delete divisão");
