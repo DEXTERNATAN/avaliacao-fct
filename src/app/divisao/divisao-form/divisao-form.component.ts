@@ -16,13 +16,17 @@ export class DivisaoFormComponent implements OnInit {
     divisao: Divisao[];
 
     constructor(
-        formBuilder: FormBuilder,
+        private formBuilder: FormBuilder,
         private router: Router,
         private route: ActivatedRoute,
         private divisaoService: DivisaoService
     ) { }
 
-    ngOnInit() { }
+    ngOnInit() { 
+        // this.form = this.formBuilder.group({
+
+        // })
+    }
 
 
 

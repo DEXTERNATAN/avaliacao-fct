@@ -1,10 +1,10 @@
-# Meat - Angular App Starter
+# Avaliação FCT - Angular Avaliação FCT
 
 ## 1. Passos para começar
 
 ### Clonando o Repositório
 
-`git clone https://github.com/cod3rcursos/meat-app-starter.git`
+`git clone https://github.com/DEXTERNATAN/avaliacao-fct.git`
 
 ### Instalando as Dependências
 
