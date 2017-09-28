@@ -27,10 +27,40 @@
   ],
   "papel": [
     {
-      "id_papel": 1,
+      "id": 1,
       "tipo": "Desenvolvimento",
       "nome": "Front-end",
       "descricao": "Desenvolvimento front-end."
+    }
+  ],
+  "abrangencia": [
+    {
+      "id": 1,
+      "atributo": "a",
+      "classificacao": 1,
+      "tipo": "Desenvolvimento",
+      "nome": "Moderado",
+      "descricao": "- conhece parcialmente o negócio\r\n-Necessita de auxilio proposição de soluções.\r\n-Executa proposições com oportunidades de melhoria."
+    }
+  ],
+  "complexidade": [
+    {
+      "id": 1,
+      "atributo": "a",
+      "classificacao": 1,
+      "tipo": "Desenvolvimento",
+      "nome": "Moderada",
+      "descricao": "- depende de auxílio para tomada de decisão-atua em 1 ou  projeto/perfis diferentes"
+    }
+  ],
+  "impacto": [
+    {
+      "id": 1,
+      "atributo": "a",
+      "classificacao": 1,
+      "tipo": "Desenvolvimento",
+      "nome": "Relevante",
+      "descricao": "-A ausência gera pouco impacto (Não impacta a entrega).\r\n-Atente somente a um tipo de contexto(tecnologia/versão)"
     }
   ]
 }

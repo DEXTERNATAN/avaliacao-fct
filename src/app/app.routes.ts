@@ -1,3 +1,6 @@
+import { ImpactoComponent } from './impacto/impacto.component';
+import { ComplexidadeComponent } from './complexidade/complexidade.component';
+import { AbrangenciaComponent } from './abrangencia/abrangencia.component';
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule }   from '@angular/router';
 
@@ -14,7 +17,10 @@ const appRoutes: Routes = [
     { path: '', component: HomeComponent },
     { path: 'restaurants', component: RestaurantsComponent },
     { path: 'about', component: AboutComponent },
-    { path: 'papel', component: PapelComponent }
+    { path: 'papel', component: PapelComponent },
+    { path: 'abrangencia', component: AbrangenciaComponent },
+    { path: 'complexidade', component: ComplexidadeComponent },
+    { path: 'impacto', component: ImpactoComponent },
 ]
   
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);

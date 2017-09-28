@@ -5,6 +5,14 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+/* Routes */
+import { routing } from './app.routes';
+
+/* Services */
+import { RestaurantsService } from './restaurants/restaurants.service';
+import { DivisaoService } from './divisao/divisao.service';
+import { DetailRestaurantComponent } from './detail-restaurant/detail-restaurant.component';
+
 /* Components */
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -14,14 +22,11 @@ import { RestaurantsComponent } from './restaurants/restaurants.component';
 import { RestaurantComponent } from 'app/restaurants/restaurant/restaurant.component';
 import { LoginComponent } from './login/login.component';
 import { DivisaoComponent } from './divisao/divisao.component';
-
-/* Services */
-import { RestaurantsService } from './restaurants/restaurants.service';
-import { DivisaoService } from './divisao/divisao.service';
-import { DetailRestaurantComponent } from './detail-restaurant/detail-restaurant.component';
-
-import { routing } from './app.routes';
 import { PapelComponent } from './papel/papel.component';
+import { AbrangenciaComponent } from './abrangencia/abrangencia.component';
+import { ImpactoComponent } from './impacto/impacto.component';
+import { ComplexidadeComponent } from './complexidade/complexidade.component';
+
 
 @NgModule({
   declarations: [
@@ -34,7 +39,10 @@ import { PapelComponent } from './papel/papel.component';
     LoginComponent,
     //DivisaoComponent,
     DetailRestaurantComponent,
-    PapelComponent
+    PapelComponent,
+    AbrangenciaComponent,
+    ComplexidadeComponent,
+    ImpactoComponent
   ],
   imports: [
     BrowserModule,
