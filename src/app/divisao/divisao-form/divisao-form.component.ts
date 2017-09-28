@@ -24,7 +24,7 @@ export class DivisaoFormComponent implements OnInit {
     ) {
         this.formDivisao = formBuilder.group({
             
-            sigla: [null, Validators.required],
+            sigla: [null, [Validators.required, Validators.maxLength(5)]],
             nome: [null, Validators.required],
             descricao: [null, Validators.required],
             uf: [null, Validators.required],
@@ -69,6 +69,10 @@ export class DivisaoFormComponent implements OnInit {
         }
 
         result.subscribe(data => this.router.navigate(['divisao']));
+    }
+
+    onCancel(){
+
     }
 
 }
