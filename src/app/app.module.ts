@@ -21,6 +21,7 @@ import { DivisaoService } from './divisao/divisao.service';
 import { DetailRestaurantComponent } from './detail-restaurant/detail-restaurant.component';
 
 import { routing } from './app.routes';
+import { PapelComponent } from './papel/papel.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { routing } from './app.routes';
     RestaurantComponent,
     LoginComponent,
     //DivisaoComponent,
-    DetailRestaurantComponent
+    DetailRestaurantComponent,
+    PapelComponent
   ],
   imports: [
     BrowserModule,
