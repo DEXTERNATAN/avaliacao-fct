@@ -40,7 +40,7 @@
 							</tr>
 							<tr *ngFor="let divisao of Divisao">
 								<!-- | filter:searchText -->
-								<td>{{divisao.id_divisao}}</td>
+								<td>{{divisao.id}}</td>
 								<td>{{divisao.sigla}}</td>
 								<td>{{divisao.nome}}</td>
 								<td>{{divisao.descricao}}</td>
@@ -49,7 +49,7 @@
 								<td>
 									<!-- <button ng-click="editProject(project.id)" type="button" class="btn  btn-xs bg-blue btn-flat" data-toggle="tooltip"
 									title="Edit"><i class="fa fa-pencil"></i></button> -->
-									<a [routerLink]="['/divisao', divisao.id_divisao]" class="btn  btn-xs bg-blue btn-flat">
+									<a [routerLink]="['/divisao', divisao.id]" class="btn  btn-xs bg-blue btn-flat">
 									<i class="fa fa-pencil"></i>
 									</a>
 								</td>
