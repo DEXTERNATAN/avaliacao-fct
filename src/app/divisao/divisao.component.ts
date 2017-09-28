@@ -22,7 +22,7 @@ export class DivisaoComponent implements OnInit {
       var index = this.Divisao.indexOf(divisao);
       this.Divisao.splice(index, 1);
 
-      this._divisaoService.deleteDivisao(divisao.id)
+      this._divisaoService.deleteDivisao(divisao.id_divisao)
         .subscribe(null,
           err => {
             alert("Could not delete divisão");

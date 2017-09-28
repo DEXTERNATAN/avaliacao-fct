@@ -6,12 +6,15 @@ import { AboutComponent } from './about/about.component';
 import { RestaurantsComponent } from './restaurants/restaurants.component';
 import { LoginComponent } from 'app/login/login.component';
 import { DivisaoComponent } from './divisao/divisao.component';
+import { PapelComponent } from './papel/papel.component';
+
     
 const appRoutes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: '', component: HomeComponent },
     { path: 'restaurants', component: RestaurantsComponent },
     { path: 'about', component: AboutComponent },
+    { path: 'papel', component: PapelComponent }
 ]
   
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);

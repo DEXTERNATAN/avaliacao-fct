@@ -10,6 +10,10 @@
 
 `npm install`
 
+### Instalando o angular-cli
+
+`npm install -g @angular/cli`
+
 ### Inicializando o Servidor
 
 `ng serve` ou `npm start`
@@ -20,9 +24,10 @@
 
 `npm install -g json-server`
 
+
 ### Iniciando o serviço (raiz da aplicação)
 
-`json-server db.json`
+`json-server --watch db.json`
 
 ## Goodies
 

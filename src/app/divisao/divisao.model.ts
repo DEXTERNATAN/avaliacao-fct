@@ -1,5 +1,5 @@
 export class Divisao {
-    id: number;
+    id_divisao: number;
     sigla: string;
     nome: string;
     descricao: string;

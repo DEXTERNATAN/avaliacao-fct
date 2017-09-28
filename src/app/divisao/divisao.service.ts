@@ -26,6 +26,7 @@ export class DivisaoService {
 
     getDivisao(): Observable<Divisao[]> {
         return this._http.get(`${MEAT_API}/divisao`)
+            .do(response => console.log(response))
             .map(response => response.json())
         //.catch(ErrorHandler.handleError)
     }
