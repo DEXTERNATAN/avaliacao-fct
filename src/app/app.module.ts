@@ -1,17 +1,22 @@
-import { DivisaoModule } from './divisao/divisao.module';
-import { divisaoRouting } from './divisao/divisao.routes';
+import { AbrangenciaModule } from 'app/abrangencia/abrangencia.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+/* Modules */
+import { DivisaoModule } from './divisao/divisao.module';
+
+
 /* Routes */
 import { routing } from './app.routes';
+import { divisaoRouting } from './divisao/divisao.routes';
+import { abrangenciaRouting } from 'app/abrangencia/abrangencia.routes';
 
 /* Services */
 import { RestaurantsService } from './restaurants/restaurants.service';
 import { DivisaoService } from './divisao/divisao.service';
-import { DetailRestaurantComponent } from './detail-restaurant/detail-restaurant.component';
+import { AbrangenciaService } from 'app/abrangencia/abrangencia.service';
 
 /* Components */
 import { AppComponent } from './app.component';
@@ -26,6 +31,8 @@ import { PapelComponent } from './papel/papel.component';
 import { AbrangenciaComponent } from './abrangencia/abrangencia.component';
 import { ImpactoComponent } from './impacto/impacto.component';
 import { ComplexidadeComponent } from './complexidade/complexidade.component';
+import { DetailRestaurantComponent } from './detail-restaurant/detail-restaurant.component';
+
 
 
 @NgModule({
@@ -37,10 +44,8 @@ import { ComplexidadeComponent } from './complexidade/complexidade.component';
     RestaurantsComponent,
     RestaurantComponent,
     LoginComponent,
-    //DivisaoComponent,
     DetailRestaurantComponent,
     PapelComponent,
-    AbrangenciaComponent,
     ComplexidadeComponent,
     ImpactoComponent
   ],
@@ -51,6 +56,8 @@ import { ComplexidadeComponent } from './complexidade/complexidade.component';
     HttpModule,
     DivisaoModule,
     divisaoRouting,
+    AbrangenciaModule,
+    abrangenciaRouting,
     routing
     //RouterModule.forRoot(routing)
   ],

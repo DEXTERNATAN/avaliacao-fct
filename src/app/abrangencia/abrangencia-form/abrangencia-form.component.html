@@ -1,0 +1,63 @@
+<section class="content-header">
+	<h1>
+		Cadastrar Abrangência
+		<!-- <small>cadastro de novas divisões</small> -->
+	</h1>
+	<ol class="breadcrumb">
+		<li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+		<li><a href="#">Abrangência</a></li>
+		<li class="active">Cadastro Abrangência</li>
+	</ol>
+</section>
+<section class="content">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="box box-primary">
+				<div class="box-header with-border">
+					<h3 class="box-title">Detalhes Abrangência</h3>
+					{{ formAbrangencia.value | json }}
+				</div>
+				<!-- /.box-header -->
+				<!-- form start -->
+				<form role="form" [formGroup]="formAbrangencia" (ngSubmit)="save()">
+					<div class="box-body">
+						<div class="form-group">
+							<label for="atributo">Atributo</label>
+							<input type="text" class="form-control" [(ngModel)]="abrangencia.atributo" formControlName="atributo" id="atributo" placeholder="">
+						</div>
+						<div class="form-group">
+							<label for="nome">Nome</label>
+							<input type="text" class="form-control" id="nome" [(ngModel)]="abrangencia.nome" formControlName="nome" placeholder="">
+						</div>
+						<div class="form-group">
+							<label>Classificação</label>
+							<select class="form-control" [(ngModel)]="abrangencia.classificacao" formControlName="classificacao">
+                                  <option selected>Selecione</option>  
+                                  <option>1</option>
+                                  <option>2</option>
+                              </select>
+						</div>
+						<div class="form-group">
+							<label>Tipo</label>
+							<select class="form-control" [(ngModel)]="abrangencia.tipo" formControlName="tipo">
+                                      <option selected>Selecione</option>  
+                                    <option>Desenvolvimento</option>
+                                    <option>Desing</option>
+                                  </select>
+						</div>
+						<div class="form-group">
+							<label>Descrição</label>
+							<textarea class="form-control" [(ngModel)]="abrangencia.descricao" formControlName="descricao" rows="3" placeholder="descreva um pouco da divisão"></textarea>
+						</div>
+					</div>
+					<!-- /.box-body -->
+
+					<div class="box-footer">
+						<button type="submit" class="btn btn-default" (click)="onCancel()">Cancelar</button>
+						<button type="submit" class="btn btn-info pull-right" [disabled]="!formAbrangencia.valid">Enviar</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</section>
