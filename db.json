@@ -17,12 +17,23 @@
       "especialidade": "Desenvolvimento"
     },
     {
+      "id": 16,
       "sigla": "SDDFE",
       "nome": "Divisão de Desenvolvimento - Soluções de Front-end e Portais",
       "descricao": "Divisão de desenvolvimento de portais e Apis em Angular, Wordpress, joomla.",
       "uf": "DF",
+      "especialidade": "Desenvolvimento"
+    },
+    {
+      "sigla": "SDSBH",
+      "nome": "Divisão de Desenvolvimento - Gerenciamento de conteúdo",
+      "descricao": "Divisão de Desenvolvimento Front-end , CMS e IDG.",
+      "uf": "BH",
       "especialidade": "Desenvolvimento",
-      "id": 16
+      "id": 17
+    },
+    {
+      "id": 18
     }
   ],
   "papel": [
@@ -35,12 +46,28 @@
   ],
   "abrangencia": [
     {
-      "id": 1,
       "atributo": "a",
-      "classificacao": 1,
+      "classificacao": "1",
       "tipo": "Desenvolvimento",
       "nome": "Moderado",
-      "descricao": "Conhece parcialmente o negócio\r\n-Necessita de auxilio proposição de soluções.\r\n-Executa proposições com oportunidades de melhoria."
+      "descricao": "- Conhece parcialmente o negócio; - Necessita de auxilio proposição de soluções; - Executa proposições com oportunidades de melhoria;",
+      "id": 1
+    },
+    {
+      "atributo": "a",
+      "classificacao": "2",
+      "tipo": "Desenvolvimento",
+      "nome": "Significativa",
+      "descricao": "- Conhecimento do negócio; - Velocidade; - Referência para discutir necessidades dos projetos em que atua(Evoluções); - Participa na proposição de soluções técnicas; - Transita entre diferente tecnologias/assuntos; - Conhecimento do negócio;",
+      "id": 2
+    },
+    {
+      "atributo": "a",
+      "classificacao": "3",
+      "tipo": "Desenvolvimento",
+      "nome": "Muito",
+      "descricao": "- Reduzir custo; - Reuso; - Velocidade (está relacionado ao conhecimento do negocio vs tempo resposta); - Cenário novo; - Referências para discutir necessidades de novos projetos; - Facilidade de encontrar soluções; - Transita entre diferente tecnologias/assuntos; - Histórico de sucesso nas proposições; - Visão sistêmica; - Domínio do negócio;",
+      "id": 3
     }
   ],
   "complexidade": [

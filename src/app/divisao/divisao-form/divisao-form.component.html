@@ -26,22 +26,24 @@
                         </div>
                         <div class="form-group">
                             <label for="nome">Nome</label>
-                            <input type="text" class="form-control" id="nome"  [(ngModel)]="divisaos.nome" formControlName="nome" placeholder="">
+                            <input type="text" class="form-control" id="nome" [(ngModel)]="divisaos.nome" formControlName="nome" maxlength="100" placeholder="">
                         </div>
                         <div class="form-group">
                             <label>UF</label>
                             <select class="form-control" [(ngModel)]="divisaos.uf" formControlName="uf">
-                                    <option selected>Selecione</option>  
-                                    <option>DF</option>
-                                    <option>GO</option>
+                                    <option value="" selected>Selecione</option>  
+                                    <option value="BH">BH</option>
+                                    <option value="DF">DF</option>
+                                    <option value="SD">SD</option>
                                 </select>
                         </div>
                         <div class="form-group">
                                 <label>Especialidade</label>
                                 <select class="form-control" [(ngModel)]="divisaos.especialidade" formControlName="especialidade">
-                                        <option selected>Selecione</option>  
-                                      <option>Desenvolvimento</option>
-                                      <option>Desing</option>
+                                      <option value="" selected>Selecione</option>  
+                                      <option value="Desenvolvimento">Desenvolvimento</option>
+                                      <option value="Design">Design</option>
+                                      <option value="Desenvolvimento/Design">Desenvolvimento/Design</option>
                                     </select>
                             </div>                        
                         <div class="form-group">

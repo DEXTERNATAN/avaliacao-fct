@@ -15,45 +15,63 @@
 			<div class="box box-primary">
 				<div class="box-header with-border">
 					<h3 class="box-title">Detalhes Abrangência</h3>
-					{{ formAbrangencia.value | json }}
 				</div>
 				<!-- /.box-header -->
+				<div class="alert alert-success" role="alert">
+				Formulário enviado com sucesso!
+				</div>				
 				<!-- form start -->
 				<form role="form" [formGroup]="formAbrangencia" (ngSubmit)="save()">
 					<div class="box-body">
 						<div class="form-group">
 							<label for="atributo">Atributo</label>
-							<input type="text" class="form-control" [(ngModel)]="abrangencia.atributo" formControlName="atributo" id="atributo" placeholder="">
-						</div>
-						<div class="form-group">
-							<label for="nome">Nome</label>
-							<input type="text" class="form-control" id="nome" [(ngModel)]="abrangencia.nome" formControlName="nome" placeholder="">
+							<select class="form-control" [(ngModel)]="abrangencia.atributo" formControlName="atributo" id="atributo">
+                                  <option selected>Selecione</option>  
+                                  <option value="a">a) Analisar as demandas apresentadas pelas áreas de negócio e propor alternativas de solução técnica e estratégia de desenvolvimento</option>
+                                  <option value="b">b) Elicitar requisitos e criar modelos de uso e de testes de sistemas</option>
+								  <option value="c">c) Elaborar projeto lógico e físico de dados e de sistemas</option>
+								  <option value="d">d) Definir a arquitetura de softwares e de sistemas</option>
+								  <option value="e">e) Especificar unidades de implementação de software</option>
+								  <option value="f">f) Elaborar documentação relativa às etapas de desenvolvimento de sistemas</option>
+								  <option value="g">g) Planejar, elaborar e ministrar treinamentos relativos a sistemas de informação, ferramentas de acesso e manipulação de dados</option>
+								  <option value="h">h) Selecionar, implementar e internalizar novas tecnologias de desenvolvimento</option>
+								  <option value="i">i) Prestar assessoramento técnico no que se refere a prazos, recursos e alternativas de desenvolvimento de sistemas</option>
+								  <option value="j">j) Especificar a manutenção de softwares e de sistemas </option>
+								  <!--<option value="k">k) Manter os sistemas em produção, avaliando seu desempenho e, quando necessário, propondo medidas de correção dos desvios</option>-->
+								  <option value="l">l) Planejar e administrar componentes reusáveis e repositórios </option>
+								  <option value="m">m) Certificar e inspecionar modelos e códigos de sistemas</option>
+								  <option value="n">n) Elaborar e gerenciar projetos de sistemas e software</option>
+                              </select>
 						</div>
 						<div class="form-group">
 							<label>Classificação</label>
-							<select class="form-control" [(ngModel)]="abrangencia.classificacao" formControlName="classificacao">
+							<select class="form-control" [(ngModel)]="abrangencia.classificacao" formControlName="classificacao" (change)="setNomeAbrangencia(abrangencia.classificacao)">
                                   <option selected>Selecione</option>  
-                                  <option>1</option>
-                                  <option>2</option>
+                                  <option value="1">1 - Moderado</option>
+                                  <option value="2">2 - Significativa</option>
+								  <option value="3">3 - Muito</option>
                               </select>
 						</div>
 						<div class="form-group">
 							<label>Tipo</label>
-							<select class="form-control" [(ngModel)]="abrangencia.tipo" formControlName="tipo">
-                                      <option selected>Selecione</option>  
-                                    <option>Desenvolvimento</option>
-                                    <option>Desing</option>
-                                  </select>
+							<select class="form-control" [(ngModel)]="abrangencia.tipo" formControlName="tipo" id="tipo">
+                            	<option selected>Selecione</option>  
+                            	<option value="Desenvolvimento">Desenvolvimento</option>
+                        		<option value="Design">Design</option>
+                            </select>
+						</div>
+						<div class="form-group" *ngIf="abrangencia.nome">
+							<label for="nome">Nome</label>
+							<input type="text" class="form-control" id="nome" [(ngModel)]="abrangencia.nome" formControlName="nome" readonly placeholder="">
 						</div>
 						<div class="form-group">
 							<label>Descrição</label>
-							<textarea class="form-control" [(ngModel)]="abrangencia.descricao" formControlName="descricao" rows="3" placeholder="descreva um pouco da divisão"></textarea>
+							<textarea class="form-control" [(ngModel)]="abrangencia.descricao" formControlName="descricao" rows="3" placeholder="Descreva os detalhes da Abrangência de Conhecimento"></textarea>
 						</div>
 					</div>
 					<!-- /.box-body -->
-
 					<div class="box-footer">
-						<button type="submit" class="btn btn-default" (click)="onCancel()">Cancelar</button>
+						<button type="cancel" class="btn btn-default" (click)="onCancel()">Cancelar</button>
 						<button type="submit" class="btn btn-info pull-right" [disabled]="!formAbrangencia.valid">Enviar</button>
 					</div>
 				</form>
