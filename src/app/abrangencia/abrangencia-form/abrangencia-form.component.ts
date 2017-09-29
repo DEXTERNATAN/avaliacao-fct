@@ -71,7 +71,12 @@ export class AbrangenciaFormComponent implements OnInit {
     }
 
     onCancel() {
+        this.navigateBack();
+    }
 
+
+    private navigateBack() {
+        this.router.navigate(['/abrangencia']);
     }
 
     setNomeAbrangencia(id: string) {
@@ -81,24 +86,24 @@ export class AbrangenciaFormComponent implements OnInit {
             case '1':
                 {
                     this.abrangencia.nome = 'Moderado';
-                     break;
+                    break;
                 }
 
             case '2':
                 {
                     this.abrangencia.nome = 'Significativa';
-                     break;
+                    break;
                 }
 
             case '3': {
                 this.abrangencia.nome = 'Muito';
-                 break;
+                break;
             }
 
             default: {
                 break;
             }
-                
+
         }
 
 
