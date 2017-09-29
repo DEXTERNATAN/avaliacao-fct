@@ -1,12 +1,12 @@
 {
   "divisao": [
     {
-      "id": 1,
-      "sigla": "CGDB",
-      "nome": "Cordenação Geral de Banco de dados",
-      "descricao": "Cordenação Geral de Banco de dados",
-      "uf": "GO",
-      "especialidade": "Banco de dados"
+      "sigla": "SDDEP",
+      "nome": "Divisão de Gestão de Demandas - Experiência do Usuário e Portais",
+      "descricao": "Entrada e tratamento de demandas de Design e Front-end/portais.",
+      "uf": "DF",
+      "especialidade": "Desenvolvimento",
+      "id": 1
     },
     {
       "id": 15,
@@ -17,12 +17,12 @@
       "especialidade": "Desenvolvimento"
     },
     {
-      "id": 16,
-      "sigla": "jdkfs",
-      "nome": "dkjfasdjfakl",
-      "descricao": "dsfasdfasd",
+      "sigla": "SDDFE",
+      "nome": "Divisão de Desenvolvimento - Soluções de Front-end e Portais",
+      "descricao": "Divisão de desenvolvimento de portais e Apis em Angular, Wordpress, joomla.",
       "uf": "DF",
-      "especialidade": "Desing"
+      "especialidade": "Desenvolvimento",
+      "id": 16
     }
   ],
   "papel": [

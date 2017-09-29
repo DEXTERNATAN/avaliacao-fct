@@ -14,20 +14,32 @@
 
 `npm install -g @angular/cli`
 
-### Inicializando o Servidor
-
-`ng serve` ou `npm start`
-
-## 2. Iniciando o Backend
-
 ### Instalando o json-server
 
 `npm install -g json-server`
 
 
-### Iniciando o serviço (raiz da aplicação)
+##----------------------------------------------##
+##-------Comandos principais + utilizados-------##
+##----------------------------------------------##
+### Inicializando o Servidor
+`ng serve` ou `npm start`
 
+## 2. Iniciando o Backend
+### Iniciando o serviço (raiz da aplicação)
 `json-server --watch db.json`
+
+## Atualizar os arquivos compilados no Git
+`git add .`
+`git commit -m " *mensagem* "`
+`git push`
+
+## Parar os Serviços
+`Ctrl+C`
+
+##---------------------------------------------##
+##---------------------------------------------##
+##---------------------------------------------##
 
 ## Goodies
 
