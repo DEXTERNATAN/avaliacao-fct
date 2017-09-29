@@ -22,19 +22,23 @@
 ##----------------------------------------------##
 ##-------Comandos principais + utilizados-------##
 ##----------------------------------------------##
-### Inicializando o Servidor
+## 1.Inicializando o Servidor
 `ng serve` ou `npm start`
 
-## 2. Iniciando o Backend
-### Iniciando o serviço (raiz da aplicação)
+## 2.Iniciando o Backend ##
+## Iniciando o serviço (raiz da aplicação) ##
 `json-server --watch db.json`
 
-## Atualizar os arquivos compilados no Git
+## Baixar a versão mais atual do Git ##
+`git pull origin master`
+`git pull`
+
+## Atualizar os arquivos compilados no Git ##
 `git add .`
 `git commit -m " *mensagem* "`
 `git push`
 
-## Parar os Serviços
+## Parar os Serviços ##
 `Ctrl+C`
 
 ##---------------------------------------------##
