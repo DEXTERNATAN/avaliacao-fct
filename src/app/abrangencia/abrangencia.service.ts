@@ -26,14 +26,14 @@ export class AbrangenciaService {
 
     getAbrangencia(): Observable<Abrangencia[]> {
         return this._http.get(`${MEAT_API}/abrangencia`)
-            .do(response => console.log(response))
+            //.do(response => console.log(response))
             .map(response => response.json())
-        //.catch(ErrorHandler.handleError)
+            //.catch(ErrorHandler.handleError)
     }
 
     getAbrangenciaId(id) {
         return this._http.get(`${MEAT_API}/abrangencia/${id}`)
-        .do(response => console.log(response.json()))
+        //.do(response => console.log(response.json()))
         .map(response => response.json())
         //.catch(ErrorHandler.handleError)
     }

@@ -26,15 +26,15 @@ export class DivisaoService {
 
     getDivisao(): Observable<Divisao[]> {
         return this._http.get(`${MEAT_API}/divisao`)
-            .do(response => console.log(response))
+            //.do(response => console.log(response))
             .map(response => response.json())
         //.catch(ErrorHandler.handleError)
     }
 
     getDivisaoId(id) {
         return this._http.get(`${MEAT_API}/divisao/${id}`)
-        .do(response => console.log(response.json()))
-        .map(response => response.json())
+            //.do(response => console.log(response.json()))
+            .map(response => response.json())
         //.catch(ErrorHandler.handleError)
     }
 
@@ -54,6 +54,6 @@ export class DivisaoService {
         return this._http.put(`${MEAT_API}/divisao/${id}`, JSON.stringify(divisao), this.options)
             .map(response => response.json())
     }
-    
+
 
 }
