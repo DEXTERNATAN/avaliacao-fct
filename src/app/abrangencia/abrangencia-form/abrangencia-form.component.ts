@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, Route, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { Abrangencia } from './../abrangencia.model';
 import { AbrangenciaService } from './../abrangencia.service';
 
@@ -16,7 +16,6 @@ export class AbrangenciaFormComponent implements OnInit {
     abrangencia: Abrangencia = new Abrangencia();
     idResource: any;
 
-
     constructor(
         formBuilder: FormBuilder,
         private router: Router,
@@ -30,6 +29,18 @@ export class AbrangenciaFormComponent implements OnInit {
             nome: [null, Validators.required],
             descricao: [null, Validators.required]
         })
+    }
+
+    hasErrors(): boolean {
+        var hasErrors: boolean = false;
+        for (var controlName in this.formAbrangencia.controls) {
+            var control: AbstractControl = this.formAbrangencia.controls[controlName];
+            if (!control.valid && !control.pristine) {
+                hasErrors = true;
+                break;
+            }
+        }
+        return hasErrors;
     }
 
     ngOnInit() {
@@ -80,33 +91,25 @@ export class AbrangenciaFormComponent implements OnInit {
     }
 
     setNomeAbrangencia(id: string) {
-        //console.log('id: ', id);
-        //debugger
         switch (id) {
             case '1':
                 {
                     this.abrangencia.nome = 'Moderado';
                     break;
                 }
-
             case '2':
                 {
                     this.abrangencia.nome = 'Significativa';
                     break;
                 }
-
             case '3': {
                 this.abrangencia.nome = 'Muito';
                 break;
             }
-
             default: {
                 break;
             }
-
         }
-
-
     }
 
 }

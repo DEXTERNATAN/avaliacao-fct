@@ -1,67 +1,85 @@
 <section class="content-header">
-    <h1>
-        Cadastrar Divisão
-        <!-- <small>cadastro de novas divisões</small> -->
-    </h1>
-    <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
-        <li><a href="#">Divisão</a></li>
-        <li class="active">Cadastro Divisão</li>
-    </ol>
+	<h1>
+		Cadastrar Divisão
+		<!-- <small>cadastro de novas divisões</small> -->
+	</h1>
+	<ol class="breadcrumb">
+		<li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+		<li><a href="#">Divisão</a></li>
+		<li class="active">Cadastro Divisão</li>
+	</ol>
 </section>
 <section class="content">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Detalhes divisão</h3>
-                </div>
-                <!-- /.box-header -->
-                <!-- form start -->
-                <form role="form" [formGroup]="formDivisao" (ngSubmit)="save()">
-                    <div class="box-body">
-                        <div class="form-group">
-                            <label for="sigla">Sigla</label>
-                            <input type="text" class="form-control" [(ngModel)]="divisaos.sigla" formControlName="sigla" maxlength="5" id="sigla" placeholder="">
-                        </div>
-                        <div class="form-group">
-                            <label for="nome">Nome</label>
-                            <input type="text" class="form-control" id="nome" [(ngModel)]="divisaos.nome" formControlName="nome" maxlength="100" placeholder="">
-                        </div>
-                        <div class="form-group">
-                            <label>UF</label>
-                            <select class="form-control" [(ngModel)]="divisaos.uf" formControlName="uf">
-                                    <option value="" selected>Selecione</option>  
-                                    <option value="BH">BH</option>
-                                    <option value="DF">DF</option>
-                                    <option value="SD">SD</option>
-                                </select>
-                        </div>
-                        <div class="form-group">
-                                <label>Especialidade</label>
-                                <select class="form-control" [(ngModel)]="divisaos.especialidade" formControlName="especialidade">
-                                      <option value="" selected>Selecione</option>  
-                                      <option value="Desenvolvimento">Desenvolvimento</option>
-                                      <option value="Design">Design</option>
-                                      <option value="Desenvolvimento/Design">Desenvolvimento/Design</option>
-                                    </select>
-                            </div>                        
-                        <div class="form-group">
-                            <label>Descrição</label>
-                            <textarea class="form-control"  [(ngModel)]="divisaos.descricao" formControlName="descricao" rows="3" placeholder="descreva um pouco da divisão"></textarea>
-                        </div>
-                    </div>
-                    <!-- /.box-body -->
+	<div class="row">
+		<div class="col-md-12">
+			<div class="box box-primary">
+				<div class="box-header with-border">
+					<h3 class="box-title">Detalhes divisão</h3>
+				</div>
+				<!-- /.box-header -->
+				<!-- form start -->
+				<form role="form" [formGroup]="formDivisao" (ngSubmit)="save()">
+					<div class="box-body">
 
-                    <!-- <div class="box-footer">
+						<!-- Validações do formulario -->
+						<!-- <div *ngIf="hasErrors()" class="alert alert-danger">
+							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+							<h4><i class="icon fa fa-ban"></i> Alert!</h4>
+							<ul>
+								<li *ngIf="!formDivisao.controls['sigla'].valid && formDivisao.controls['sigla'].touched">
+									O campo sigla é obrigatório
+								</li>
+							</ul>
+						</div> -->
+						<!-- /.hasErrors -->
+
+						<div class="form-group" [ngClass]="{'has-error': (!formDivisao.controls['sigla'].valid && formDivisao.controls['sigla'].touched) }">
+							<label for="sigla">Sigla</label>
+							<input type="text" class="form-control" [(ngModel)]="divisaos.sigla" formControlName="sigla" maxlength="5" id="sigla" placeholder="">
+							<span *ngIf="!formDivisao.controls['sigla'].valid && formDivisao.controls['sigla'].touched" class="help-block">O campo sigla é obrigatório</span>
+						</div>
+						<div class="form-group" [ngClass]="{'has-error': (!formDivisao.controls['nome'].valid && formDivisao.controls['nome'].touched) }">
+							<label for="nome">Nome</label>
+							<input type="text" class="form-control" id="nome" [(ngModel)]="divisaos.nome" formControlName="nome" maxlength="100" placeholder="">
+							<span *ngIf="!formDivisao.controls['nome'].valid && formDivisao.controls['nome'].touched" class="help-block">O campo Nome é obrigatório</span>
+						</div>
+						<div class="form-group" [ngClass]="{'has-error': (!formDivisao.controls['uf'].valid && formDivisao.controls['uf'].touched) }">
+							<label>UF</label>
+							<select class="form-control" [(ngModel)]="divisaos.uf" formControlName="uf">
+                            	<option value="" [selected]="true">Selecione</option>  
+                                <option value="BH">BH</option>
+                                <option value="DF">DF</option>
+                                <option value="SD">SD</option>
+							</select>
+							<span *ngIf="!formDivisao.controls['uf'].valid && formDivisao.controls['uf'].touched" class="help-block">O campo UF é obrigatório</span>
+						</div>
+						<div class="form-group" [ngClass]="{'has-error': (!formDivisao.controls['especialidade'].valid && formDivisao.controls['especialidade'].touched) }">
+							<label>Especialidade</label>
+							<select class="form-control" [(ngModel)]="divisaos.especialidade" formControlName="especialidade">
+                            	<option value="" [selected]="true">Selecione</option>  
+                                <option value="Desenvolvimento">Desenvolvimento</option>
+                                <option value="Design">Design</option>
+                                <option value="Desenvolvimento/Design">Desenvolvimento/Design</option>
+							</select>
+							<span *ngIf="!formDivisao.controls['especialidade'].valid && formDivisao.controls['especialidade'].touched" class="help-block">O campo Especialidade é obrigatório</span>
+						</div>
+						<div class="form-group" [ngClass]="{'has-error': (!formDivisao.controls['descricao'].valid && formDivisao.controls['descricao'].touched) }">
+							<label>Descrição</label>
+							<textarea class="form-control" [(ngModel)]="divisaos.descricao" formControlName="descricao" rows="3" placeholder="descreva um pouco da divisão"></textarea>
+							<span *ngIf="!formDivisao.controls['especialidade'].valid && formDivisao.controls['especialidade'].touched" class="help-block">O campo Descrição é obrigatório</span>
+						</div>
+					</div>
+					<!-- /.box-body -->
+
+					<!-- <div class="box-footer">
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div> -->
-                    <div class="box-footer">
-                            <button type="submit" class="btn btn-default" (click)="onCancel()">Cancelar</button>
-                            <button type="submit" class="btn btn-info pull-right" [disabled]="!formDivisao.valid">Enviar</button>
-                          </div>
-                </form>
-            </div>
-        </div>
-    </div>
+					<div class="box-footer">
+						<button type="button" class="btn btn-default" (click)="onCancel()">Cancelar</button>
+						<button type="submit" class="btn btn-info pull-right" [disabled]="!formDivisao.valid">Enviar</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 </section>

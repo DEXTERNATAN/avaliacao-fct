@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { Divisao } from './divisao';
@@ -15,7 +15,7 @@ export class DivisaoFormComponent implements OnInit {
     title: string;
     divisaos: Divisao = new Divisao();
     idResource: any;
-    
+
     constructor(
         formBuilder: FormBuilder,
         private router: Router,
@@ -23,34 +23,45 @@ export class DivisaoFormComponent implements OnInit {
         private divisaoService: DivisaoService
     ) {
         this.formDivisao = formBuilder.group({
-            
+
             sigla: [null, [Validators.required, Validators.maxLength(5)]],
             nome: [null, Validators.required],
             descricao: [null, Validators.required],
             uf: [null, Validators.required],
             especialidade: [null, Validators.required]
         })
-        //console.log('instanciacao: ', this.divisaos)
+    }
+
+    hasErrors(): boolean {
+        var hasErrors: boolean = false;
+        for (var controlName in this.formDivisao.controls) {
+            var control: AbstractControl = this.formDivisao.controls[controlName];
+            if (!control.valid && !control.pristine) {
+                hasErrors = true;
+                break;
+            }
+        }
+        return hasErrors;
     }
 
     ngOnInit() {
         console.log('instanciacao: ', this.divisaos)
-        
+
         var id = this.route.params.subscribe(params => {
-            this.idResource= params['id'];
+            this.idResource = params['id'];
             this.title = this.idResource ? 'Editar Divisão' : 'Nova Divisão';
 
-            if(!this.idResource)
+            if (!this.idResource)
                 return;
-            
+
             this.divisaoService.getDivisaoId(this.idResource).subscribe(divisao => {
                 divisao = this.divisaos = divisao
                 console.log(divisao.id),
-                response => {    
-                    if(response.status == 404){
-                        this.router.navigate(['divisao'])
+                    response => {
+                        if (response.status == 404) {
+                            this.router.navigate(['divisao'])
+                        }
                     }
-                }
             })
 
         })
@@ -58,10 +69,10 @@ export class DivisaoFormComponent implements OnInit {
 
     save() {
         var result,
-        userValue = this.formDivisao.value;
+            userValue = this.formDivisao.value;
 
-        
-        if (this.idResource){
+
+        if (this.idResource) {
             debugger
             result = this.divisaoService.updateDivisao(this.idResource, userValue);
         } else {
@@ -71,8 +82,12 @@ export class DivisaoFormComponent implements OnInit {
         result.subscribe(data => this.router.navigate(['divisao']));
     }
 
-    onCancel(){
+    onCancel() {
+        this.navigateBack();
+    }
 
+    private navigateBack() {
+        this.router.navigate(['/divisao']);
     }
 
 }

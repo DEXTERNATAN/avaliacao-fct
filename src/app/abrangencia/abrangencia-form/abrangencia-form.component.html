@@ -16,17 +16,26 @@
 				<div class="box-header with-border">
 					<h3 class="box-title">Detalhes Abrangência</h3>
 				</div>
-				<!-- /.box-header -->
-				<div class="alert alert-success" role="alert">
-				Formulário enviado com sucesso!
-				</div>				
-				<!-- form start -->
+				<div class="alert alert-success" role="alert" *ngIf="sucesso">
+					Formulário enviado com sucesso!
+					{{debug()}}
+				</div>
 				<form role="form" [formGroup]="formAbrangencia" (ngSubmit)="save()">
 					<div class="box-body">
-						<div class="form-group">
+						<!-- <div *ngIf="hasErrors()" class="alert alert-danger">
+							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+							<h4><i class="icon fa fa-ban"></i> Alert!</h4>
+							<ul>
+								<li *ngIf="!formAbrangencia.controls['atributo'].valid 
+											&& !formAbrangencia.controls['atributo'].pristine">
+									Selecione um atributo.
+								</li>
+							</ul>
+						</div> -->
+						<div class="form-group" [ngClass]="{'has-error': (!formAbrangencia.controls['atributo'].valid && formAbrangencia.controls['atributo'].touched) }">
 							<label for="atributo">Atributo</label>
 							<select class="form-control" [(ngModel)]="abrangencia.atributo" formControlName="atributo" id="atributo">
-                                  <option selected>Selecione</option>  
+                                  <option [selected]="true" value="">Selecione</option>  
                                   <option value="a">a) Analisar as demandas apresentadas pelas áreas de negócio e propor alternativas de solução técnica e estratégia de desenvolvimento</option>
                                   <option value="b">b) Elicitar requisitos e criar modelos de uso e de testes de sistemas</option>
 								  <option value="c">c) Elaborar projeto lógico e físico de dados e de sistemas</option>
@@ -41,35 +50,38 @@
 								  <option value="l">l) Planejar e administrar componentes reusáveis e repositórios </option>
 								  <option value="m">m) Certificar e inspecionar modelos e códigos de sistemas</option>
 								  <option value="n">n) Elaborar e gerenciar projetos de sistemas e software</option>
-                              </select>
+							  </select>
+							  <span *ngIf="!formAbrangencia.controls['atributo'].valid && formAbrangencia.controls['atributo'].touched" class="help-block">O campo Atributo é obrigatório</span>
 						</div>
-						<div class="form-group">
+						<div class="form-group" [ngClass]="{'has-error': (!formAbrangencia.controls['classificacao'].valid && formAbrangencia.controls['classificacao'].touched) }">
 							<label>Classificação</label>
 							<select class="form-control" [(ngModel)]="abrangencia.classificacao" formControlName="classificacao" (change)="setNomeAbrangencia(abrangencia.classificacao)">
-                                  <option selected>Selecione</option>  
+									<option [selected]="true" value="">Selecione</option>  
                                   <option value="1">1 - Moderado</option>
                                   <option value="2">2 - Significativa</option>
 								  <option value="3">3 - Muito</option>
-                              </select>
+							  </select>
+							  <span *ngIf="!formAbrangencia.controls['classificacao'].valid && formAbrangencia.controls['classificacao'].touched" class="help-block">O campo Classificação é obrigatório</span>
 						</div>
-						<div class="form-group">
+						<div class="form-group" [ngClass]="{'has-error': (!formAbrangencia.controls['tipo'].valid && formAbrangencia.controls['tipo'].touched) }">
 							<label>Tipo</label>
 							<select class="form-control" [(ngModel)]="abrangencia.tipo" formControlName="tipo" id="tipo">
-                            	<option selected>Selecione</option>  
+									<option [selected]="true" value="">Selecione</option>  
                             	<option value="Desenvolvimento">Desenvolvimento</option>
                         		<option value="Design">Design</option>
-                            </select>
+							</select>
+							<span *ngIf="!formAbrangencia.controls['tipo'].valid && formAbrangencia.controls['tipo'].touched" class="help-block">O campo Tipo é obrigatório</span>
 						</div>
 						<div class="form-group" *ngIf="abrangencia.nome">
 							<label for="nome">Nome</label>
 							<input type="text" class="form-control" id="nome" [(ngModel)]="abrangencia.nome" formControlName="nome" readonly placeholder="">
 						</div>
-						<div class="form-group">
+						<div class="form-group" [ngClass]="{'has-error': (!formAbrangencia.controls['descricao'].valid && formAbrangencia.controls['descricao'].touched) }">
 							<label>Descrição</label>
 							<textarea class="form-control" [(ngModel)]="abrangencia.descricao" formControlName="descricao" rows="3" placeholder="Descreva os detalhes da Abrangência de Conhecimento"></textarea>
+							<span *ngIf="!formAbrangencia.controls['tipo'].valid && formAbrangencia.controls['tipo'].touched" class="help-block">O campo Descrição é obrigatório</span>
 						</div>
 					</div>
-					<!-- /.box-body -->
 					<div class="box-footer">
 						<button type="button" class="btn btn-default" (click)="onCancel()">Cancelar</button>
 						<button type="submit" class="btn btn-info pull-right" [disabled]="!formAbrangencia.valid">Enviar</button>
