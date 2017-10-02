@@ -1,4 +1,5 @@
-import { AbrangenciaModule } from 'app/abrangencia/abrangencia.module';
+import { complexidadeRouting } from './complexidade/complexidade.routes';
+import { ComplexidadeModule } from './complexidade/complexidade.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -6,17 +7,19 @@ import { HttpModule } from '@angular/http';
 
 /* Modules */
 import { DivisaoModule } from './divisao/divisao.module';
-
+import { PapelModule } from './papel/papel.module';
+import { AbrangenciaModule } from 'app/abrangencia/abrangencia.module';
 
 /* Routes */
 import { routing } from './app.routes';
 import { divisaoRouting } from './divisao/divisao.routes';
 import { abrangenciaRouting } from 'app/abrangencia/abrangencia.routes';
+import { papelRouting } from 'app/papel/papel.routes';
 
 /* Services */
 import { RestaurantsService } from './restaurants/restaurants.service';
-import { DivisaoService } from './divisao/divisao.service';
-import { AbrangenciaService } from 'app/abrangencia/abrangencia.service';
+//import { DivisaoService } from './divisao/divisao.service';
+//import { AbrangenciaService } from 'app/abrangencia/abrangencia.service';
 
 /* Components */
 import { AppComponent } from './app.component';
@@ -32,6 +35,7 @@ import { AbrangenciaComponent } from './abrangencia/abrangencia.component';
 import { ImpactoComponent } from './impacto/impacto.component';
 import { ComplexidadeComponent } from './complexidade/complexidade.component';
 import { DetailRestaurantComponent } from './detail-restaurant/detail-restaurant.component';
+//import { ComplexidadeFormComponent } from './complexidade/src/app/complexidade-form/complexidade-form.component';
 
 
 
@@ -45,9 +49,10 @@ import { DetailRestaurantComponent } from './detail-restaurant/detail-restaurant
     RestaurantComponent,
     LoginComponent,
     DetailRestaurantComponent,
-    PapelComponent,
-    ComplexidadeComponent,
+    //PapelComponent,
+    //ComplexidadeComponent,
     ImpactoComponent
+    //ComplexidadeFormComponent
   ],
   imports: [
     BrowserModule,
@@ -58,6 +63,10 @@ import { DetailRestaurantComponent } from './detail-restaurant/detail-restaurant
     divisaoRouting,
     AbrangenciaModule,
     abrangenciaRouting,
+    PapelModule,
+    papelRouting,
+    ComplexidadeModule,
+    complexidadeRouting,
     routing
     //RouterModule.forRoot(routing)
   ],

@@ -8,6 +8,7 @@ import { PapelComponent } from './papel.component';
 import { PapelService } from 'app/papel/papel.service';
 import { PapelFormComponent } from './papel-form/papel-form.component';
 
+
 @NgModule({
   imports: [
     CommonModule,

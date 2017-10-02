@@ -1,0 +1,65 @@
+<section class="content-header">
+    <h1>
+      Cadastrar Complexidade
+      <!-- <small>cadastro de novas divisões</small> -->
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+      <li><a href="#">Complexidade</a></li>
+      <li class="active">Cadastro Complexidade</li>
+    </ol>
+  </section>
+  <section class="content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="box box-primary">
+          <div class="box-header with-border">
+            <h3 class="box-title">Detalhes Complexidade</h3>
+          </div>
+          <!-- /.box-header -->
+          <!-- form start -->
+          <form role="form" [formGroup]="formComplexidade" (ngSubmit)="save()">
+            <div class="box-body">
+              <div class="form-group" [ngClass]="{'has-error': (!formComplexidade.controls['atributo'].valid && formComplexidade.controls['atributo'].touched) }">
+                <label for="atributo">Atributo</label>
+                <input type="text" class="form-control" [(ngModel)]="Complexidade.atributo" formControlName="atributo" maxlength="5" id="atributo" placeholder="">
+                <span *ngIf="!formComplexidade.controls['atributo'].valid && formComplexidade.controls['atributo'].touched" class="help-block">O campo atributo é obrigatório</span>
+              </div>
+              <div class="form-group" [ngClass]="{'has-error': (!formComplexidade.controls['classificacao'].valid && formComplexidade.controls['classificacao'].touched) }">
+                <label for="classificacao">classificacao</label>
+                <input type="text" class="form-control" id="classificacao" [(ngModel)]="Complexidade.classificacao" formControlName="classificacao" maxlength="100" placeholder="">
+                <span *ngIf="!formComplexidade.controls['classificacao'].valid && formComplexidade.controls['classificacao'].touched" class="help-block">O campo classificacao é obrigatório</span>
+              </div>
+             <div class="form-group" [ngClass]="{'has-error': (!formComplexidade.controls['tipo'].valid && formComplexidade.controls['tipo'].touched) }">
+                <label>tipo</label>
+                <select class="form-control" [(ngModel)]="Complexidade.tipo" formControlName="tipo">
+                                <option value="" [selected]="true">Selecione</option>  
+                                  <option value="BH">BH</option>
+                                  <option value="DF">DF</option>
+                                  <option value="SD">SD</option>
+                </select>
+                <span *ngIf="!formComplexidade.controls['tipo'].valid && formComplexidade.controls['tipo'].touched" class="help-block">O campo tipo é obrigatório</span>
+              </div>
+              <div class="form-group" [ngClass]="{'has-error': (!formComplexidade.controls['nome'].valid && formComplexidade.controls['nome'].touched) }">
+                  <label for="nome">nome</label>
+                  <input type="text" class="form-control" id="nome" [(ngModel)]="Complexidade.nome" formControlName="nome" maxlength="100" placeholder="">
+                  <span *ngIf="!formComplexidade.controls['nome'].valid && formComplexidade.controls['nome'].touched" class="help-block">O campo nome é obrigatório</span>
+                </div>
+              <div class="form-group" [ngClass]="{'has-error': (!formComplexidade.controls['descricao'].valid && formComplexidade.controls['descricao'].touched) }">
+                <label>Descrição</label>
+                <textarea class="form-control" [(ngModel)]="Complexidade.descricao" formControlName="descricao" rows="3" placeholder="descreva um pouco da Complexidade"></textarea>
+                <span *ngIf="!formComplexidade.controls['descricao'].valid && formComplexidade.controls['descricao'].touched" class="help-block">O campo Descrição é obrigatório</span>
+              </div> 
+            </div>
+            <!-- /.box-body -->
+  
+
+            <div class="box-footer">
+              <button type="button" class="btn btn-default" (click)="onCancel()">Cancelar</button>
+              <button type="submit" class="btn btn-info pull-right" [disabled]="!formComplexidade.valid">Enviar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>

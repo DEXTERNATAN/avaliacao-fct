@@ -41,14 +41,7 @@
       "id": 18
     }
   ],
-  "papel": [
-    {
-      "id": 1,
-      "tipo": "Desenvolvimento",
-      "nome": "Front-end",
-      "descricao": "Desenvolvimento front-end."
-    }
-  ],
+  "papel": [],
   "abrangencia": [
     {
       "atributo": "a",

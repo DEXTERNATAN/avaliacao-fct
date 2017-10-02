@@ -54,6 +54,4 @@ export class DivisaoService {
         return this._http.put(`${MEAT_API}/divisao/${id}`, JSON.stringify(divisao), this.options)
             .map(response => response.json())
     }
-
-
 }
