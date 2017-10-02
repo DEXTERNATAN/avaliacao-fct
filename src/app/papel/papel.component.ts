@@ -14,6 +14,7 @@ export class PapelComponent implements OnInit {
   constructor(private _papelService: PapelService) { }
 
   ngOnInit() {
+
     this._papelService.getPapel().subscribe(papel => this.Papel = papel)
   }
 
@@ -25,7 +26,8 @@ export class PapelComponent implements OnInit {
       this._papelService.deletePapel(papel.id)
         .subscribe(null,
           err => {
-            alert("Não foi possível Deletar o Papel");
+            alert("Could not delete divisão");
+
             // Revert the view back to its original state
             this.Papel.splice(index, 0, papel);
           });

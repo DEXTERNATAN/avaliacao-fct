@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, Route, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
+
 import { Papel } from './../papel.model';
 import { PapelService } from './../papel.service';
 
 @Component({
-    selector: 'mt-papel-form',
+    selector: 'app-papel-form',
     templateUrl: './papel-form.component.html',
     styleUrls: ['./papel-form.component.css']
 })
 export class PapelFormComponent implements OnInit {
-
     formPapel: FormGroup;
     title: string;
-    papel: Papel = new Papel();
+    papeis: Papel = new Papel();
     idResource: any;
 
     constructor(
@@ -23,7 +23,7 @@ export class PapelFormComponent implements OnInit {
         private papelService: PapelService
     ) {
         this.formPapel = formBuilder.group({
-            tipo: [null, Validators.required],
+            tipo: [null, [Validators.required]],
             nome: [null, Validators.required],
             descricao: [null, Validators.required]
         })
@@ -42,7 +42,7 @@ export class PapelFormComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log('instanciacao: ', this.papel)
+        console.log('instanciacao: ', this.papeis)
 
         var id = this.route.params.subscribe(params => {
             this.idResource = params['id'];
@@ -52,7 +52,8 @@ export class PapelFormComponent implements OnInit {
                 return;
 
             this.papelService.getPapelId(this.idResource).subscribe(papel => {
-                papel = this.papel = papel
+                papel = this.papeis = papel
+
                 console.log(papel.id),
                     response => {
                         if (response.status == 404) {
@@ -70,22 +71,23 @@ export class PapelFormComponent implements OnInit {
 
 
         if (this.idResource) {
-            //debugger
             result = this.papelService.updatePapel(this.idResource, userValue);
+
         } else {
             result = this.papelService.addPapel(userValue);
         }
 
         result.subscribe(data => this.router.navigate(['papel']));
+
     }
 
     onCancel() {
         this.navigateBack();
     }
 
-
     private navigateBack() {
         this.router.navigate(['/papel']);
     }
 
 }
+

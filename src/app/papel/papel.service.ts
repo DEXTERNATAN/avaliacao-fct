@@ -2,11 +2,11 @@ import { Http, Headers, RequestOptions } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { MEAT_API } from './../app.api';
 
+import { Observable } from 'rxjs/Observable';
+
 import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/do'
 import 'rxjs/add/operator/catch'
-
-import { Observable } from 'rxjs/Observable';
 
 import { Papel } from './papel.model';
 
@@ -40,6 +40,8 @@ export class PapelService {
     }
 
     addPapel(papel) {
+        console.log(papel)
+        debugger
         return this._http.post(`${MEAT_API}/papel`, JSON.stringify(papel), this.options)
             .map(res => res.json());
     }
@@ -55,6 +57,4 @@ export class PapelService {
         return this._http.put(`${MEAT_API}/papel/${id}`, JSON.stringify(papel), this.options)
             .map(response => response.json())
     }
-
-
 }
