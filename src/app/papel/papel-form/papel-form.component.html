@@ -1,0 +1,52 @@
+<section class="content-header">
+	<h1>
+		Cadastrar Papel
+	</h1>
+	<ol class="breadcrumb">
+		<li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+		<li><a href="#">Papel</a></li>
+		<li class="active">Cadastro Papel</li>
+	</ol>
+</section>
+<section class="content">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="box box-primary">
+				<div class="box-header with-border">
+					<h3 class="box-title">Detalhes Papel</h3>
+				</div>
+				<div class="alert alert-success" role="alert" *ngIf="sucesso">
+					Formulário enviado com sucesso!
+					{{debug()}}
+				</div>
+				<form role="form" [formGroup]="formPapel" (ngSubmit)="save()">
+					<div class="box-body">
+						<div class="form-group" [ngClass]="{'has-error': (!formPapel.controls['tipo'].valid && formPapel.controls['tipo'].touched) }">
+							<label for="tipo">Tipo</label>
+							<select class="form-control" [(ngModel)]="papel.tipo" formControlName="tipo" id="tipo">
+                                  <option [selected]="true" value="">Selecione</option>  
+                                  <option value="Desenvolvimento">Desenvolvimento</option>
+                                  <option value="Design">Design</option>
+							  </select>
+							  <span *ngIf="!formPapel.controls['tipo'].valid && formPapel.controls['tipo'].touched" class="help-block">O campo Tipo é obrigatório</span>
+						</div>
+						<div class="form-group" *ngIf="papel.nome">
+							<label for="nome">Nome</label>
+							<input type="text" class="form-control" id="nome" [(ngModel)]="papel.nome" formControlName="nome" placeholder="">
+							<span *ngIf="!formPapel.controls['nome'].valid && formPapel.controls['nome'].touched" class="help-block">O campo Nome é obrigatório</span>
+						</div>
+						<div class="form-group" [ngClass]="{'has-error': (!formPapel.controls['descricao'].valid && formPapel.controls['descricao'].touched) }">
+							<label>Descrição</label>
+							<textarea class="form-control" [(ngModel)]="papel.descricao" formControlName="descricao" rows="3" placeholder="Descreva os detalhes do Papel exercido pelo profissional"></textarea>
+							<span *ngIf="!formPapel.controls['descricao'].valid && formPapel.controls['descricao'].touched" class="help-block">O campo Descrição é obrigatório</span>
+						</div>
+					</div>
+					<div class="box-footer">
+						<button type="button" class="btn btn-default" (click)="onCancel()">Cancelar</button>
+						<button type="submit" class="btn btn-info pull-right" [disabled]="!formPapel.valid">Enviar</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</section>

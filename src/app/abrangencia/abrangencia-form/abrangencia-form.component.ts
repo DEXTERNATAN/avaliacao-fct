@@ -48,7 +48,7 @@ export class AbrangenciaFormComponent implements OnInit {
 
         var id = this.route.params.subscribe(params => {
             this.idResource = params['id'];
-            this.title = this.idResource ? 'Editar Divisão' : 'Nova Divisão';
+            this.title = this.idResource ? 'Editar Abrangência' : 'Nova Abrangência';
 
             if (!this.idResource)
                 return;

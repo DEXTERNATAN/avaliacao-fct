@@ -1,6 +1,8 @@
 import { ImpactoComponent } from './impacto/impacto.component';
 import { ComplexidadeComponent } from './complexidade/complexidade.component';
 import { AbrangenciaComponent } from './abrangencia/abrangencia.component';
+import { PapelComponent } from './papel/papel.component';
+
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule }   from '@angular/router';
 
@@ -9,7 +11,6 @@ import { AboutComponent } from './about/about.component';
 import { RestaurantsComponent } from './restaurants/restaurants.component';
 import { LoginComponent } from 'app/login/login.component';
 import { DivisaoComponent } from './divisao/divisao.component';
-import { PapelComponent } from './papel/papel.component';
 
     
 const appRoutes: Routes = [

@@ -36,18 +36,16 @@
                 </tr>
                 <tr *ngFor="let papel of Papel">
                   <td>{{papel.id}}</td>
-                  <td>{{papel.sigla}}</td>
+                  <td>{{papel.tipo}}</td>
                   <td>{{papel.nome}}</td>
                   <td>{{papel.descricao}}</td>
-                  <td>{{papel.uf}}</td>
-                  <td>{{papel.especialidade}}</td>
                   <td>
                     <a [routerLink]="['/papel', papel.id]" class="btn  btn-xs bg-blue btn-flat">
                     <i class="fa fa-pencil"></i>
                     </a>
                   </td>
                   <td>
-                    <button (click)="deletepapel(papel)" type="button" class="btn  btn-xs bg-red btn-flat" ><i class="fa fa-remove"></i></button>
+                    <button (click)="deletePapel(papel)" type="button" class="btn  btn-xs bg-red btn-flat" ><i class="fa fa-remove"></i></button>
                   </td>
                 </tr>
               </tbody>

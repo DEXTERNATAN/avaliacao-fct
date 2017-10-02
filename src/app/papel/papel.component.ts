@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PapelService } from './papel.service';
+import { Papel } from './papel.model';
 
 @Component({
   selector: 'mt-papel',
@@ -7,9 +9,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PapelComponent implements OnInit {
 
-  constructor() { }
+  private Papel: Papel[];
+
+  constructor(private _papelService: PapelService) { }
 
   ngOnInit() {
+    this._papelService.getPapel().subscribe(papel => this.Papel = papel)
+  }
+
+  deletePapel(papel){
+    if (confirm("Você tem certeza que quer Deletar o Papel: " + papel.nome + "?")) {
+      var index = this.Papel.indexOf(papel);
+      this.Papel.splice(index, 1);
+
+      this._papelService.deletePapel(papel.id)
+        .subscribe(null,
+          err => {
+            alert("Não foi possível Deletar o Papel");
+            // Revert the view back to its original state
+            this.Papel.splice(index, 0, papel);
+          });
+    }
+
+    console.log('Papel', papel)
   }
 
 }

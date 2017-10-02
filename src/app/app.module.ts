@@ -1,22 +1,24 @@
-import { AbrangenciaModule } from 'app/abrangencia/abrangencia.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 /* Modules */
+import { AbrangenciaModule } from 'app/abrangencia/abrangencia.module';
 import { DivisaoModule } from './divisao/divisao.module';
-
+import { PapelModule } from 'app/papel/papel.module';
 
 /* Routes */
 import { routing } from './app.routes';
 import { divisaoRouting } from './divisao/divisao.routes';
-import { abrangenciaRouting } from 'app/abrangencia/abrangencia.routes';
+import { abrangenciaRouting } from './abrangencia/abrangencia.routes';
+import { papelRouting } from './papel/papel.routes';
 
 /* Services */
 import { RestaurantsService } from './restaurants/restaurants.service';
 import { DivisaoService } from './divisao/divisao.service';
-import { AbrangenciaService } from 'app/abrangencia/abrangencia.service';
+import { AbrangenciaService } from './abrangencia/abrangencia.service';
+import { PapelService } from './papel/papel.service';
 
 /* Components */
 import { AppComponent } from './app.component';
@@ -58,6 +60,8 @@ import { DetailRestaurantComponent } from './detail-restaurant/detail-restaurant
     divisaoRouting,
     AbrangenciaModule,
     abrangenciaRouting,
+    //PapelModule,
+    //papelRouting,
     routing
     //RouterModule.forRoot(routing)
   ],
