@@ -1,0 +1,52 @@
+<section class="content-header">
+	<h1>
+		Cadastrar Tecnologia
+	</h1>
+	<ol class="breadcrumb">
+		<li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+		<li><a href="#">Tecnologia</a></li>
+		<li class="active">Cadastro Tecnologia</li>
+	</ol>
+</section>
+<section class="content">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="box box-primary">
+				<div class="box-header with-border">
+					<h3 class="box-title">Detalhes Tecnologia</h3>
+				</div>
+				<div class="alert alert-success" role="alert" *ngIf="sucesso">
+					Formulário enviado com sucesso!
+					{{debug()}}
+				</div>
+				<form role="form" [formGroup]="formTecnologia" (ngSubmit)="save()">
+					<div class="box-body">
+						<div class="form-group" [ngClass]="{'has-error': (!formTecnologia.controls['tipo'].valid && formTecnologia.controls['tipo'].touched) }">
+							<label for="tipo">Tipo</label>
+							<select class="form-control" [(ngModel)]="papeis.tipo" formControlName="tipo" id="tipo">
+                                  <option [selected]="true" value="">Selecione</option>  
+                                  <option value="Desenvolvimento">Desenvolvimento</option>
+                                  <option value="Design">Design</option>
+							  </select>
+							  <span *ngIf="!formTecnologia.controls['tipo'].valid && formTecnologia.controls['tipo'].touched" class="help-block">O campo Tipo é obrigatório</span>
+						</div>
+						<div class="form-group">
+							<label for="nome">Nome</label>
+							<input type="text" class="form-control" id="nome" [(ngModel)]="papeis.nome" formControlName="nome" placeholder="">
+							<span *ngIf="!formTecnologia.controls['nome'].valid && formTecnologia.controls['nome'].touched" class="help-block">O campo Nome é obrigatório</span>
+						</div>
+						<div class="form-group" [ngClass]="{'has-error': (!formTecnologia.controls['descricao'].valid && formTecnologia.controls['descricao'].touched) }">
+							<label>Descrição</label>
+							<textarea class="form-control" [(ngModel)]="papeis.descricao" formControlName="descricao" rows="3" placeholder="Descreva os detalhes da Tecnologia"></textarea>
+							<span *ngIf="!formTecnologia.controls['descricao'].valid && formTecnologia.controls['descricao'].touched" class="help-block">O campo Descrição é obrigatório</span>
+						</div>
+					</div>
+					<div class="box-footer">
+						<button type="button" class="btn btn-default" (click)="onCancel()">Cancelar</button>
+						<button type="submit" class="btn btn-info pull-right" [disabled]="!formTecnologia.valid">Enviar</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</section>

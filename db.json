@@ -77,6 +77,20 @@
       "descricao": "- depende de auxílio para tomada de decisão-atua em 1 ou  projeto/perfis diferentes"
     }
   ],
+  "tecnologia": [
+    {
+      "id": 1,
+      "tipo": "Desenvolvimento",
+      "nome": "Java",
+      "descricao": "Linguagem de programação Java"
+    },
+    {
+      "tipo": "Desenvolvimento",
+      "nome": "Joomla",
+      "descricao": "Linguagem de programa JOOMLA",
+      "id": 2
+    }
+  ],
   "impacto": [
     {
       "id": 1,
