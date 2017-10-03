@@ -16,7 +16,7 @@
                 <div class="box-header">
                     <h3 class="box-title">impacto</h3>
                     <div class="box-tools">
-                        <a routerLink="/impacto/novo" class="btn btn-sm pull-left btn-flat bg-purple margin-right-10" ><i class="fa fa-plus"></i> <b>Nova impacto</b></a>
+                        <a routerLink="/impacto/novo" class="btn btn-sm pull-left btn-flat bg-purple margin-right-10" ><i class="fa fa-plus"></i> <b>Novo impacto</b></a>
                         <div class="input-group input-group-sm pull-right" style="width: 150px;">
                             <input type="text" ng-model="searchText" name="table_search" class="form-control pull-right" placeholder="Pesquisar">
                         </div>
@@ -45,19 +45,13 @@
                                 <td>{{impacto.nome}}</td>
                                 <td>{{impacto.descricao}}</td>
                                 <td>
-                                    <!-- <button ng-click="editProject(project.id)" type="button" class="btn  btn-xs bg-blue btn-flat" data-toggle="tooltip"
-                                    title="Edit"><i class="fa fa-pencil"></i></button> -->
                                     <a [routerLink]="['/impacto', impacto.id]" class="btn  btn-xs bg-blue btn-flat">
                                     <i class="fa fa-pencil"></i>
                                     </a>
                                 </td>
                                 <td>
-                                    <button (click)="deleteimpacto(impacto)" type="button" class="btn  btn-xs bg-red btn-flat" ><i class="fa fa-remove"></i></button>
-                                    <!-- <a (click)="deleteabrangencia(abrangencia)" href="" type="button" class="btn  btn-xs bg-red btn-flat">
-                                    <i class="fa fa-remove"></i>
-                                    </a> -->
+                                    <button (click)="deleteImpacto(impacto)" type="button" class="btn  btn-xs bg-red btn-flat" ><i class="fa fa-remove"></i></button>
                                 </td>
-
                             </tr>
                         </tbody>
                     </table>

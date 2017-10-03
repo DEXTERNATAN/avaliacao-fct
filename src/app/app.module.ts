@@ -1,6 +1,3 @@
-import { impactoRouting } from './impacto/impacto.routes';
-import { ImpactoModule } from './impacto/impacto.module';
-
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -12,6 +9,7 @@ import { DivisaoModule } from './divisao/divisao.module';
 import { ComplexidadeModule } from './complexidade/complexidade.module';
 import { PapelModule } from './papel/papel.module';
 import { TecnologiaModule } from './tecnologia/tecnologia.module';
+import { ImpactoModule } from './impacto/impacto.module';
 
 /* Routes */
 import { routing } from './app.routes';
@@ -20,6 +18,7 @@ import { complexidadeRouting } from './complexidade/complexidade.routes';
 import { abrangenciaRouting } from './abrangencia/abrangencia.routes';
 import { papelRouting } from './papel/papel.routes';
 import { tecnologiaRouting } from './tecnologia/tecnologia.routes';
+import { impactoRouting } from './impacto/impacto.routes';
 
 /* Services */
 import { RestaurantsService } from './restaurants/restaurants.service';
@@ -27,6 +26,7 @@ import { DivisaoService } from './divisao/divisao.service';
 import { AbrangenciaService } from './abrangencia/abrangencia.service';
 import { PapelService } from './papel/papel.service';
 import { TecnologiaService } from './tecnologia/tecnologia.service';
+import { ImpactoService } from './impacto/impacto.service';
 
 /* Components */
 import { AppComponent } from './app.component';

@@ -6,7 +6,7 @@ import { HttpModule }  from '@angular/http';
 
 import { ImpactoComponent } from './impacto.component';
 import { ImpactoService } from 'app/impacto/impacto.service';
-//import { ImpactoFormComponent } from './impacto-form/impacto-form.component';
+import { ImpactoFormComponent } from './impacto-form/impacto-form.component';
 
 @NgModule({
   imports: [
@@ -18,8 +18,8 @@ import { ImpactoService } from 'app/impacto/impacto.service';
   ],
   providers: [ ImpactoService ],
   declarations: [
-    ImpactoComponent
-    //ImpactoFormComponent
+    ImpactoComponent,
+    ImpactoFormComponent
   ]
 })
 export class ImpactoModule { }

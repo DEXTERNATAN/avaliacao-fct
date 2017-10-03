@@ -19,14 +19,14 @@ export class ImpactoComponent implements OnInit {
   }
 
   deleteImpacto(impacto){
-    if (confirm("Are you sure you want to delete " + impacto.nome + "?")) {
+    if (confirm("Tem certeza que quer apagar este Impacto, " + impacto.nome + "?")) {
       var index = this.Impacto.indexOf(impacto);
       this.Impacto.splice(index, 1);
 
       this._impactoService.deleteImpacto(impacto.id)
         .subscribe(null,
           err => {
-            alert("Could not delete impacto");
+            alert("O Impacto não foi apagado!");
             // Revert the view back to its original state
             this.Impacto.splice(index, 0, impacto);
           });

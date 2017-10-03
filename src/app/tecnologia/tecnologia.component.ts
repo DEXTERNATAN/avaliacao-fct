@@ -26,7 +26,7 @@ export class TecnologiaComponent implements OnInit {
       this._tecnologiaService.deleteTecnologia(tecnologia.id)
         .subscribe(null,
           err => {
-            alert("Could not delete divisão");
+            alert("A divisão não foi apagada!");
 
             // Revert the view back to its original state
             this.Tecnologia.splice(index, 0, tecnologia);
