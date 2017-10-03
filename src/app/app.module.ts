@@ -1,3 +1,5 @@
+import { impactoRouting } from './impacto/impacto.routes';
+import { ImpactoModule } from './impacto/impacto.module';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -50,11 +52,7 @@ import { DetailRestaurantComponent } from './detail-restaurant/detail-restaurant
     RestaurantsComponent,
     RestaurantComponent,
     LoginComponent,
-    DetailRestaurantComponent,
-    //PapelComponent,
-    //ComplexidadeComponent,
-    ImpactoComponent
-    //ComplexidadeFormComponent
+    DetailRestaurantComponent
   ],
   imports: [
     BrowserModule,
@@ -69,6 +67,8 @@ import { DetailRestaurantComponent } from './detail-restaurant/detail-restaurant
     papelRouting,
     ComplexidadeModule,
     complexidadeRouting,
+    ImpactoModule,
+    impactoRouting,
     routing
     //RouterModule.forRoot(routing)
   ],

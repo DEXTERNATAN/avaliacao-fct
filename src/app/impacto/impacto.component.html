@@ -1,3 +1,71 @@
-<p>
-  impacto works!
-</p>
+<section class="content-header">
+    <h1>
+        Impacto
+        <small>descrever o que é a impacto...</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li>
+            <a href="#"><i class="fa fa-home"></i> Home</a></li>
+        <li class="active">Impacto</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">impacto</h3>
+                    <div class="box-tools">
+                        <a routerLink="/impacto/novo" class="btn btn-sm pull-left btn-flat bg-purple margin-right-10" ><i class="fa fa-plus"></i> <b>Nova impacto</b></a>
+                        <div class="input-group input-group-sm pull-right" style="width: 150px;">
+                            <input type="text" ng-model="searchText" name="table_search" class="form-control pull-right" placeholder="Pesquisar">
+                        </div>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+                    <table class="table table-hover">
+                        <tbody>
+                            <tr>
+                                <th style="width: 10px">#</th>
+                                <th>Atributo</th>
+                                <th>Classificacao</th>
+                                <th>Tipo</th>
+                                <th>Nome</th>
+                                <th>Descrição</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            <tr *ngFor="let impacto of Impacto">
+                                <!-- | filter:searchText -->
+                                <td>{{impacto.id}}</td>
+                                <td>{{impacto.atributo}}</td>
+                                <td>{{impacto.classificacao}}</td>
+                                <td>{{impacto.tipo}}</td>
+                                <td>{{impacto.nome}}</td>
+                                <td>{{impacto.descricao}}</td>
+                                <td>
+                                    <!-- <button ng-click="editProject(project.id)" type="button" class="btn  btn-xs bg-blue btn-flat" data-toggle="tooltip"
+                                    title="Edit"><i class="fa fa-pencil"></i></button> -->
+                                    <a [routerLink]="['/impacto', impacto.id]" class="btn  btn-xs bg-blue btn-flat">
+                                    <i class="fa fa-pencil"></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <button (click)="deleteimpacto(impacto)" type="button" class="btn  btn-xs bg-red btn-flat" ><i class="fa fa-remove"></i></button>
+                                    <!-- <a (click)="deleteabrangencia(abrangencia)" href="" type="button" class="btn  btn-xs bg-red btn-flat">
+                                    <i class="fa fa-remove"></i>
+                                    </a> -->
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+
+    </div>
+</section>
