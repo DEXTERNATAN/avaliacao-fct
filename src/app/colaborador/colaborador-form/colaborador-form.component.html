@@ -1,0 +1,73 @@
+<section class="content-header">
+	<h1>
+		Colaborador
+		<!-- <small>cadastro de novas divisões</small> -->
+	</h1>
+	<ol class="breadcrumb">
+		<li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+		<li><a href="#">Colaborador</a></li>
+		<li class="active">Detalhes do Colaborador</li>
+	</ol>
+</section>
+<section class="content">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="box box-primary">
+				<div class="box-header with-border">
+					<h3 class="box-title">Detalhes do Colaborador</h3>
+				</div>
+				<!-- /.box-header -->
+				<!-- form start -->
+				<form role="form" [formGroup]="formColaborador" (ngSubmit)="save()">
+					<div class="box-body">
+						<div class="form-group" [ngClass]="{'has-error': (!formColaborador.controls['nome'].valid && formColaborador.controls['nome'].touched) }">
+							<label for="nome">Nome</label>
+							<input type="text" class="form-control" [(ngModel)]="colaborador.nome" formControlName="nome" id="nome" maxlength="50" placeholder="">
+							<span *ngIf="!formColaborador.controls['nome'].valid && formColaborador.controls['nome'].touched" class="help-block">O campo Nome é obrigatório!</span>
+						</div>
+						<div class="form-group" [ngClass]="{'has-error': (!formColaborador.controls['matricula'].valid && formColaborador.controls['matricula'].touched) }">
+							<label for="matricula">Matricula</label>
+							<input type="text" class="form-control" id="matricula" [(ngModel)]="colaborador.matricula" formControlName="matricula" maxlength="10" placeholder="">
+							<span *ngIf="!formColaborador.controls['matricula'].valid && formColaborador.controls['matricula'].touched" class="help-block">O campo Matrícula é obrigatório!</span>
+						</div>
+						<div class="form-group" [ngClass]="{'has-error': (!formColaborador.controls['telefone'].valid && formColaborador.controls['telefone'].touched) }">
+							<label for="telefone">Telefone</label>
+							<input type="text" class="form-control" id="telefone" [(ngModel)]="colaborador.telefone" formControlName="telefone" maxlength="11" placeholder="">
+							<span *ngIf="!formColaborador.controls['telefone'].valid && formColaborador.controls['telefone'].touched" class="help-block">O campo Telefone é obrigatório!</span>
+						</div>
+						<div class="form-group" [ngClass]="{'has-error': (!formColaborador.controls['especialidade'].valid && formColaborador.controls['especialidade'].touched) }">
+							<label for="especialidade">Especialização</label>
+							<select class="form-control" [(ngModel)]="colaborador.especialidade" formControlName="especialidade" (change)="setCamposFk(colaborador.especialidade)">
+                            	<option value="" [selected]="true">Selecione</option>  
+                                <option value="Atendimento">Atendimento</option>
+								<option value="Apoio Operacional">Apoio Operacional</option>
+								<option value="Comunicação Social">Comunicação Social</option>
+								<option value="Desenvolvimento de Sistemas">Desenvolvimento de Sistemas</option>
+                                <option value="Programação Visual">Programação Visual</option>
+								<option value="Programação de Computador">Programação de Computador</option>
+                            </select>
+							<span *ngIf="!formColaborador.controls['especialidade'].valid && formColaborador.controls['especialidade'].touched" class="help-block">O campo Especialidade é obrigatório!</span>
+						</div>
+						<div class="form-group" [ngClass]="{'has-error': (!formColaborador.controls['salario'].valid && formColaborador.controls['salario'].touched) }">
+							<label for="salario">Salário</label>
+							<input type="text" class="form-control" [(ngModel)]="colaborador.salario" formControlName="salario" id="salario" maxlength="12" placeholder="">
+							<span *ngIf="!formColaborador.controls['salario'].valid && formColaborador.controls['salario'].touched" class="help-block">O campo Salário é obrigatório!</span>
+						</div>
+						<div class="form-group" [ngClass]="{'has-error': (!formColaborador.controls['percentualSalario'].valid && formColaborador.controls['percentualSalario'].touched) }">
+							<label for="percentualSalario">8,5% do Salário</label>
+							<input type="text" class="form-control" [(ngModel)]="colaborador.percentualSalario" formControlName="percentualSalario" id="percentualSalario" maxlength="12" placeholder="">
+							<span *ngIf="!formColaborador.controls['percentualSalario'].valid && formColaborador.controls['percentualSalario'].touched" class="help-block">O campo 8,5% do Salário é obrigatório!</span>
+						</div>
+					</div>
+					<input type="hidden" id="referenciaFctFk" [(ngModel)]="colaborador.referenciaFctFk" formControlName="referenciaFctFk" value="">
+					<input type="hidden" id="divisaoFk" [(ngModel)]="colaborador.divisaoFk" formControlName="divisaoFk" value="">
+					<!-- /.box-body -->
+					<div class="box-footer">
+						<button type="button" class="btn btn-default" (click)="onCancel()">Cancelar</button>
+						<button type="submit" class="btn btn-info pull-right" [disabled]="!formColaborador.valid">Enviar</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</section>

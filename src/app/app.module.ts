@@ -11,6 +11,7 @@ import { PapelModule } from './papel/papel.module';
 import { TecnologiaModule } from './tecnologia/tecnologia.module';
 import { ImpactoModule } from './impacto/impacto.module';
 import { ReferenciaModule } from './referencia/referencia.module';
+import { ColaboradorModule } from './colaborador/colaborador.module';
 
 /* Routes */
 import { routing } from './app.routes';
@@ -21,6 +22,7 @@ import { papelRouting } from './papel/papel.routes';
 import { tecnologiaRouting } from './tecnologia/tecnologia.routes';
 import { impactoRouting } from './impacto/impacto.routes';
 import { referenciaRouting } from './referencia/referencia.routes';
+import { colaboradorRouting } from './colaborador/colaborador.routes';
 
 /* Services */
 import { RestaurantsService } from './restaurants/restaurants.service';
@@ -30,6 +32,7 @@ import { PapelService } from './papel/papel.service';
 import { TecnologiaService } from './tecnologia/tecnologia.service';
 import { ImpactoService } from './impacto/impacto.service';
 import { ReferenciaService } from './referencia/referencia.service';
+import { ColaboradorService } from './colaborador/colaborador.service';
 
 /* Components */
 import { AppComponent } from './app.component';
@@ -46,6 +49,7 @@ import { ImpactoComponent } from './impacto/impacto.component';
 import { ComplexidadeComponent } from './complexidade/complexidade.component';
 import { TecnologiaComponent } from './tecnologia/tecnologia.component';
 import { ReferenciaComponent } from './referencia/referencia.component';
+import { ColaboradorComponent } from './colaborador/colaborador.component';
 import { DetailRestaurantComponent } from './detail-restaurant/detail-restaurant.component';
 //import { ComplexidadeFormComponent } from './complexidade/src/app/complexidade-form/complexidade-form.component';
 
@@ -81,6 +85,8 @@ import { DetailRestaurantComponent } from './detail-restaurant/detail-restaurant
     referenciaRouting,
     TecnologiaModule,
     tecnologiaRouting,
+    ColaboradorModule,
+    colaboradorRouting,
     routing
     //RouterModule.forRoot(routing)
   ],

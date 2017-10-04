@@ -5,6 +5,7 @@ import { AbrangenciaComponent } from './abrangencia/abrangencia.component';
 import { PapelComponent } from './papel/papel.component';
 import { TecnologiaComponent } from './tecnologia/tecnologia.component';
 import { ReferenciaComponent } from './referencia/referencia.component';
+import { ColaboradorComponent } from './colaborador/colaborador.component';
 
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule }   from '@angular/router';
@@ -26,6 +27,7 @@ const appRoutes: Routes = [
     { path: 'complexidade', component: ComplexidadeComponent },
     { path: 'referencia', component: ReferenciaComponent },
     { path: 'tecnologia', component: TecnologiaComponent },
+    { path: 'colaborador', component: ColaboradorComponent },
     { path: 'impacto', component: ImpactoComponent }
 ]
   

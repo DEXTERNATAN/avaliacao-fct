@@ -174,5 +174,29 @@
       "dtatualizacao": "21/10/2016",
       "id": 4
     }
+  ],
+  "colaborador": [
+    {
+      "nome": "Natanael de Souza Leite",
+      "matricula": "21098719",
+      "telefone": "6120219708",
+      "especialidade": "Desenvolvimento de Sistemas",
+      "salario": "7448.59",
+      "percentualSalario": "654.69",
+      "referenciaFctFk": "1",
+      "divisaoFk": "1",
+      "id": 1
+    },
+    {
+      "nome": "Tiago Antônio Resende de Oliveira",
+      "matricula": "21082871",
+      "telefone": "6120219752",
+      "especialidade": "Desenvolvimento de Sistemas",
+      "salario": "8944.96",
+      "percentualSalario": "856.65",
+      "referenciaFctFk": "1",
+      "divisaoFk": "1",
+      "id": 2
+    }
   ]
 }
