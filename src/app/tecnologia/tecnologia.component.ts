@@ -19,14 +19,14 @@ export class TecnologiaComponent implements OnInit {
   }
 
   deleteTecnologia(tecnologia){
-    if (confirm("Você tem certeza que quer Deletar esta Tecnologia: " + tecnologia.nome + "?")) {
+    if (confirm("Você tem certeza que quer Apagar esta Tecnologia: " + tecnologia.nome + "?")) {
       var index = this.Tecnologia.indexOf(tecnologia);
       this.Tecnologia.splice(index, 1);
 
       this._tecnologiaService.deleteTecnologia(tecnologia.id)
         .subscribe(null,
           err => {
-            alert("A divisão não foi apagada!");
+            alert("A Tecnologia não foi apagada!");
 
             // Revert the view back to its original state
             this.Tecnologia.splice(index, 0, tecnologia);

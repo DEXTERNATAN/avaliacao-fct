@@ -28,12 +28,12 @@
                                   <option value="Desenvolvimento">Desenvolvimento</option>
                                   <option value="Design">Design</option>
 							  </select>
-							  <span *ngIf="!formTecnologia.controls['tipo'].valid && formTecnologia.controls['tipo'].touched" class="help-block">O campo Tipo é obrigatório</span>
+							  <span *ngIf="!formTecnologia.controls['tipo'].valid && formTecnologia.controls['tipo'].touched" class="help-block">O campo Tipo é obrigatório!</span>
 						</div>
-						<div class="form-group">
+						<div class="form-group" [ngClass]="{'has-error': (!formTecnologia.controls['nome'].valid && formTecnologia.controls['nome'].touched) }">
 							<label for="nome">Nome</label>
 							<input type="text" class="form-control" id="nome" [(ngModel)]="papeis.nome" formControlName="nome" placeholder="">
-							<span *ngIf="!formTecnologia.controls['nome'].valid && formTecnologia.controls['nome'].touched" class="help-block">O campo Nome é obrigatório</span>
+							<span *ngIf="!formTecnologia.controls['nome'].valid && formTecnologia.controls['nome'].touched" class="help-block">O campo Nome é obrigatório!</span>
 						</div>
 						<div class="form-group" [ngClass]="{'has-error': (!formTecnologia.controls['descricao'].valid && formTecnologia.controls['descricao'].touched) }">
 							<label>Descrição</label>

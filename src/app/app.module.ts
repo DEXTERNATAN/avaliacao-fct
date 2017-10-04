@@ -4,12 +4,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 /* Modules */
-import { AbrangenciaModule } from 'app/abrangencia/abrangencia.module';
+import { AbrangenciaModule } from './abrangencia/abrangencia.module';
 import { DivisaoModule } from './divisao/divisao.module';
 import { ComplexidadeModule } from './complexidade/complexidade.module';
 import { PapelModule } from './papel/papel.module';
 import { TecnologiaModule } from './tecnologia/tecnologia.module';
 import { ImpactoModule } from './impacto/impacto.module';
+import { ReferenciaModule } from './referencia/referencia.module';
 
 /* Routes */
 import { routing } from './app.routes';
@@ -19,6 +20,7 @@ import { abrangenciaRouting } from './abrangencia/abrangencia.routes';
 import { papelRouting } from './papel/papel.routes';
 import { tecnologiaRouting } from './tecnologia/tecnologia.routes';
 import { impactoRouting } from './impacto/impacto.routes';
+import { referenciaRouting } from './referencia/referencia.routes';
 
 /* Services */
 import { RestaurantsService } from './restaurants/restaurants.service';
@@ -27,6 +29,7 @@ import { AbrangenciaService } from './abrangencia/abrangencia.service';
 import { PapelService } from './papel/papel.service';
 import { TecnologiaService } from './tecnologia/tecnologia.service';
 import { ImpactoService } from './impacto/impacto.service';
+import { ReferenciaService } from './referencia/referencia.service';
 
 /* Components */
 import { AppComponent } from './app.component';
@@ -34,7 +37,7 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { RestaurantsComponent } from './restaurants/restaurants.component';
-import { RestaurantComponent } from 'app/restaurants/restaurant/restaurant.component';
+import { RestaurantComponent } from './restaurants/restaurant/restaurant.component';
 import { LoginComponent } from './login/login.component';
 import { DivisaoComponent } from './divisao/divisao.component';
 import { PapelComponent } from './papel/papel.component';
@@ -42,6 +45,7 @@ import { AbrangenciaComponent } from './abrangencia/abrangencia.component';
 import { ImpactoComponent } from './impacto/impacto.component';
 import { ComplexidadeComponent } from './complexidade/complexidade.component';
 import { TecnologiaComponent } from './tecnologia/tecnologia.component';
+import { ReferenciaComponent } from './referencia/referencia.component';
 import { DetailRestaurantComponent } from './detail-restaurant/detail-restaurant.component';
 //import { ComplexidadeFormComponent } from './complexidade/src/app/complexidade-form/complexidade-form.component';
 
@@ -73,6 +77,8 @@ import { DetailRestaurantComponent } from './detail-restaurant/detail-restaurant
     complexidadeRouting,
     ImpactoModule,
     impactoRouting,
+    ReferenciaModule,
+    referenciaRouting,
     TecnologiaModule,
     tecnologiaRouting,
     routing

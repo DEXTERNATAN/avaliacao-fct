@@ -100,5 +100,14 @@
       "nome": "Relevante",
       "descricao": "-A ausência gera pouco impacto (Não impacta a entrega).\r\n-Atente somente a um tipo de contexto(tecnologia/versão)"
     }
+  ],
+  "referencia": [
+    {
+      "id": 1,
+      "cargo": "Analista",
+      "numReferencia": 1,
+      "valorReferencia": "329.84",
+      "dtAtualizacao": "03/10/2017"
+    }
   ]
 }
