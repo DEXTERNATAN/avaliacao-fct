@@ -13,7 +13,7 @@ export class ImpactoFormComponent implements OnInit {
 
     formImpacto: FormGroup;
     title: string;
-    papeis: Impacto = new Impacto();
+    impacto: Impacto = new Impacto();
     idResource: any;
 
     constructor(
@@ -44,7 +44,7 @@ export class ImpactoFormComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log('instanciacao: ', this.papeis)
+        console.log('instanciacao: ', this.impacto)
 
         var id = this.route.params.subscribe(params => {
             this.idResource = params['id'];
@@ -54,7 +54,7 @@ export class ImpactoFormComponent implements OnInit {
                 return;
 
             this.impactoService.getImpactoId(this.idResource).subscribe(impacto => {
-                impacto = this.papeis = impacto
+                impacto = this.impacto = impacto
                 console.log(impacto.id),
                     response => {
                         if (response.status == 404) {
@@ -94,16 +94,16 @@ export class ImpactoFormComponent implements OnInit {
         switch (id) {
             case '1':
                 {
-                    this.papeis.nome = 'Moderado';
+                    this.impacto.nome = 'Moderado';
                     break;
                 }
             case '2':
                 {
-                    this.papeis.nome = 'Significativa';
+                    this.impacto.nome = 'Significativa';
                     break;
                 }
             case '3': {
-                this.papeis.nome = 'Muito';
+                this.impacto.nome = 'Muito';
                 break;
             }
             default: {

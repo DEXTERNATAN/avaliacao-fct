@@ -14,7 +14,7 @@ export class ComplexidadeFormComponent implements OnInit {
 
     formComplexidade: FormGroup;
     title: string;
-    Complexidade: Complexidade = new Complexidade();
+    complexidade: Complexidade = new Complexidade();
     idResource: any;
 
     constructor(
@@ -46,7 +46,7 @@ export class ComplexidadeFormComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log('instanciacao: ', this.Complexidade)
+        console.log('instanciacao: ', this.complexidade)
 
         var id = this.route.params.subscribe(params => {
             this.idResource = params['id'];
@@ -56,7 +56,7 @@ export class ComplexidadeFormComponent implements OnInit {
                 return;
 
             this.complexidadeService.getComplexidadeId(this.idResource).subscribe(complexidade => {
-                complexidade = this.Complexidade = complexidade
+                complexidade = this.complexidade = complexidade
                 console.log(complexidade.id),
                     response => {
                         if (response.status == 404) {
@@ -74,7 +74,7 @@ export class ComplexidadeFormComponent implements OnInit {
 
 
         if (this.idResource) {
-            debugger
+            //debugger
             result = this.complexidadeService.updateComplexidade(this.idResource, userValue);
         } else {
             result = this.complexidadeService.addComplexidade(userValue);

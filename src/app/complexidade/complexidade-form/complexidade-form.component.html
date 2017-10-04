@@ -22,17 +22,17 @@
             <div class="box-body">
               <div class="form-group" [ngClass]="{'has-error': (!formComplexidade.controls['atributo'].valid && formComplexidade.controls['atributo'].touched) }">
                 <label for="atributo">Atributo</label>
-                <input type="text" class="form-control" [(ngModel)]="Complexidade.atributo" formControlName="atributo" maxlength="5" id="atributo" placeholder="">
+                <input type="text" class="form-control" [(ngModel)]="complexidade.atributo" formControlName="atributo" maxlength="5" id="atributo" placeholder="">
                 <span *ngIf="!formComplexidade.controls['atributo'].valid && formComplexidade.controls['atributo'].touched" class="help-block">O campo atributo é obrigatório</span>
               </div>
               <div class="form-group" [ngClass]="{'has-error': (!formComplexidade.controls['classificacao'].valid && formComplexidade.controls['classificacao'].touched) }">
                 <label for="classificacao">classificacao</label>
-                <input type="text" class="form-control" id="classificacao" [(ngModel)]="Complexidade.classificacao" formControlName="classificacao" maxlength="100" placeholder="">
+                <input type="text" class="form-control" id="classificacao" [(ngModel)]="complexidade.classificacao" formControlName="classificacao" maxlength="100" placeholder="">
                 <span *ngIf="!formComplexidade.controls['classificacao'].valid && formComplexidade.controls['classificacao'].touched" class="help-block">O campo classificacao é obrigatório</span>
               </div>
              <div class="form-group" [ngClass]="{'has-error': (!formComplexidade.controls['tipo'].valid && formComplexidade.controls['tipo'].touched) }">
                 <label>tipo</label>
-                <select class="form-control" [(ngModel)]="Complexidade.tipo" formControlName="tipo">
+                <select class="form-control" [(ngModel)]="complexidade.tipo" formControlName="tipo">
                                 <option value="" [selected]="true">Selecione</option>  
                                   <option value="BH">BH</option>
                                   <option value="DF">DF</option>
@@ -42,12 +42,12 @@
               </div>
               <div class="form-group" [ngClass]="{'has-error': (!formComplexidade.controls['nome'].valid && formComplexidade.controls['nome'].touched) }">
                   <label for="nome">nome</label>
-                  <input type="text" class="form-control" id="nome" [(ngModel)]="Complexidade.nome" formControlName="nome" maxlength="100" placeholder="">
+                  <input type="text" class="form-control" id="nome" [(ngModel)]="complexidade.nome" formControlName="nome" maxlength="100" placeholder="">
                   <span *ngIf="!formComplexidade.controls['nome'].valid && formComplexidade.controls['nome'].touched" class="help-block">O campo nome é obrigatório</span>
                 </div>
               <div class="form-group" [ngClass]="{'has-error': (!formComplexidade.controls['descricao'].valid && formComplexidade.controls['descricao'].touched) }">
                 <label>Descrição</label>
-                <textarea class="form-control" [(ngModel)]="Complexidade.descricao" formControlName="descricao" rows="3" placeholder="descreva um pouco da Complexidade"></textarea>
+                <textarea class="form-control" [(ngModel)]="complexidade.descricao" formControlName="descricao" rows="3" placeholder="descreva um pouco da Complexidade"></textarea>
                 <span *ngIf="!formComplexidade.controls['descricao'].valid && formComplexidade.controls['descricao'].touched" class="help-block">O campo Descrição é obrigatório</span>
               </div> 
             </div>

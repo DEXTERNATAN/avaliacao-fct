@@ -73,7 +73,7 @@ export class DivisaoFormComponent implements OnInit {
 
 
         if (this.idResource) {
-            debugger
+            //debugger
             result = this.divisaoService.updateDivisao(this.idResource, userValue);
         } else {
             result = this.divisaoService.addDivisao(userValue);

@@ -69,12 +69,12 @@
   ],
   "complexidade": [
     {
-      "id": 1,
       "atributo": "a",
       "classificacao": 1,
-      "tipo": "Desenvolvimento",
+      "tipo": "BH",
       "nome": "Moderada",
-      "descricao": "- depende de auxílio para tomada de decisão-atua em 1 ou  projeto/perfis diferentes"
+      "descricao": "- depende de auxílio para tomada de decisão-atua em 1 ou  projeto/perfis diferentes",
+      "id": 1
     }
   ],
   "tecnologia": [
@@ -130,6 +130,13 @@
       "valorreferencia": "125.69",
       "dtatualizacao": "10/05/2015",
       "id": 3
+    },
+    {
+      "cargo": "Analista",
+      "numreferencia": "5",
+      "valorreferencia": "102.65",
+      "dtatualizacao": "21/10/2016",
+      "id": 4
     }
   ]
 }
