@@ -39,6 +39,12 @@
       "nome": "dfgsdfg",
       "descricao": "sdfgsdfsg",
       "id": 1
+    },
+    {
+      "tipo": "Desenvolvimento",
+      "nome": "Especialista",
+      "descricao": "sdfasdfasdf",
+      "id": 2
     }
   ],
   "abrangencia": [
@@ -65,16 +71,32 @@
       "nome": "Muito",
       "descricao": "- Reduzir custo; - Reuso; - Velocidade (está relacionado ao conhecimento do negocio vs tempo resposta); - Cenário novo; - Referências para discutir necessidades de novos projetos; - Facilidade de encontrar soluções; - Transita entre diferente tecnologias/assuntos; - Histórico de sucesso nas proposições; - Visão sistêmica; - Domínio do negócio;",
       "id": 3
+    },
+    {
+      "atributo": "f",
+      "classificacao": "3",
+      "tipo": "Desenvolvimento",
+      "nome": "Muito",
+      "descricao": "testevvvvv",
+      "id": 4
     }
   ],
   "complexidade": [
     {
-      "atributo": "a",
-      "classificacao": 1,
-      "tipo": "BH",
-      "nome": "Moderada",
-      "descricao": "- depende de auxílio para tomada de decisão-atua em 1 ou  projeto/perfis diferentes",
-      "id": 1
+      "atributo": "f",
+      "classificacao": "2",
+      "tipo": "Desenvolvimento",
+      "nome": "Significativa",
+      "descricao": "teste",
+      "id": 2
+    },
+    {
+      "atributo": "e",
+      "classificacao": "1",
+      "tipo": "Desenvolvimento",
+      "nome": "Moderado",
+      "descricao": "teste xxxxx",
+      "id": 3
     }
   ],
   "tecnologia": [
@@ -89,24 +111,38 @@
       "nome": "JavaScript",
       "descricao": "teste",
       "id": 2
+    },
+    {
+      "tipo": "Desenvolvimento",
+      "nome": "sgsdg",
+      "descricao": "gfsgsdgs",
+      "id": 3
     }
   ],
   "impacto": [
     {
       "atributo": "c",
-      "classificacao": "2",
+      "classificacao": "3",
       "tipo": "Desenvolvimento",
-      "nome": "Significativa",
+      "nome": "Muito",
       "descricao": "adasfasdfasf",
       "id": 1
     },
     {
       "atributo": "g",
+      "classificacao": "1",
+      "tipo": "Desenvolvimento",
+      "nome": "Moderado",
+      "descricao": "teste",
+      "id": 2
+    },
+    {
+      "atributo": "b",
       "classificacao": "3",
       "tipo": "Desenvolvimento",
       "nome": "Muito",
-      "descricao": "teste",
-      "id": 2
+      "descricao": "dadas",
+      "id": 3
     }
   ],
   "referencia": [

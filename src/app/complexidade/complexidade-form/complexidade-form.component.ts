@@ -91,4 +91,26 @@ export class ComplexidadeFormComponent implements OnInit {
         this.router.navigate(['/complexidade']);
     }
 
+    setNomeComplexidade(id: string) {
+        switch (id) {
+            case '1':
+                {
+                    this.complexidade.nome = 'Moderado';
+                    break;
+                }
+            case '2':
+                {
+                    this.complexidade.nome = 'Significativa';
+                    break;
+                }
+            case '3': {
+                this.complexidade.nome = 'Muito';
+                break;
+            }
+            default: {
+                break;
+            }
+        }
+    }
+
 }

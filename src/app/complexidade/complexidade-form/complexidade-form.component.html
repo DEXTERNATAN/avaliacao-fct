@@ -1,12 +1,11 @@
 <section class="content-header">
     <h1>
-      Cadastrar Complexidade
-      <!-- <small>cadastro de novas divisões</small> -->
+      Complexidade
     </h1>
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
       <li><a href="#">Complexidade</a></li>
-      <li class="active">Cadastro Complexidade</li>
+      <li class="active">Detalhes da Complexidade</li>
     </ol>
   </section>
   <section class="content">
@@ -14,46 +13,62 @@
       <div class="col-md-12">
         <div class="box box-primary">
           <div class="box-header with-border">
-            <h3 class="box-title">Detalhes Complexidade</h3>
+            <h3 class="box-title">Detalhes da Complexidade</h3>
           </div>
           <!-- /.box-header -->
           <!-- form start -->
           <form role="form" [formGroup]="formComplexidade" (ngSubmit)="save()">
             <div class="box-body">
               <div class="form-group" [ngClass]="{'has-error': (!formComplexidade.controls['atributo'].valid && formComplexidade.controls['atributo'].touched) }">
-                <label for="atributo">Atributo</label>
-                <input type="text" class="form-control" [(ngModel)]="complexidade.atributo" formControlName="atributo" maxlength="5" id="atributo" placeholder="">
-                <span *ngIf="!formComplexidade.controls['atributo'].valid && formComplexidade.controls['atributo'].touched" class="help-block">O campo atributo é obrigatório</span>
-              </div>
-              <div class="form-group" [ngClass]="{'has-error': (!formComplexidade.controls['classificacao'].valid && formComplexidade.controls['classificacao'].touched) }">
-                <label for="classificacao">classificacao</label>
-                <input type="text" class="form-control" id="classificacao" [(ngModel)]="complexidade.classificacao" formControlName="classificacao" maxlength="100" placeholder="">
-                <span *ngIf="!formComplexidade.controls['classificacao'].valid && formComplexidade.controls['classificacao'].touched" class="help-block">O campo classificacao é obrigatório</span>
-              </div>
-             <div class="form-group" [ngClass]="{'has-error': (!formComplexidade.controls['tipo'].valid && formComplexidade.controls['tipo'].touched) }">
-                <label>tipo</label>
-                <select class="form-control" [(ngModel)]="complexidade.tipo" formControlName="tipo">
-                                <option value="" [selected]="true">Selecione</option>  
-                                  <option value="BH">BH</option>
-                                  <option value="DF">DF</option>
-                                  <option value="SD">SD</option>
-                </select>
-                <span *ngIf="!formComplexidade.controls['tipo'].valid && formComplexidade.controls['tipo'].touched" class="help-block">O campo tipo é obrigatório</span>
-              </div>
-              <div class="form-group" [ngClass]="{'has-error': (!formComplexidade.controls['nome'].valid && formComplexidade.controls['nome'].touched) }">
-                  <label for="nome">nome</label>
-                  <input type="text" class="form-control" id="nome" [(ngModel)]="complexidade.nome" formControlName="nome" maxlength="100" placeholder="">
-                  <span *ngIf="!formComplexidade.controls['nome'].valid && formComplexidade.controls['nome'].touched" class="help-block">O campo nome é obrigatório</span>
-                </div>
-              <div class="form-group" [ngClass]="{'has-error': (!formComplexidade.controls['descricao'].valid && formComplexidade.controls['descricao'].touched) }">
-                <label>Descrição</label>
-                <textarea class="form-control" [(ngModel)]="complexidade.descricao" formControlName="descricao" rows="3" placeholder="descreva um pouco da Complexidade"></textarea>
-                <span *ngIf="!formComplexidade.controls['descricao'].valid && formComplexidade.controls['descricao'].touched" class="help-block">O campo Descrição é obrigatório</span>
-              </div> 
-            </div>
+							<label for="atributo">Atributo</label>
+							<select class="form-control" [(ngModel)]="complexidade.atributo" formControlName="atributo" id="atributo">
+                  <option [selected]="true" value="">Selecione</option>  
+                  <option value="a">a) Analisar as demandas apresentadas pelas áreas de negócio e propor alternativas de solução técnica e estratégia de desenvolvimento</option>
+                  <option value="b">b) Elicitar requisitos e criar modelos de uso e de testes de sistemas</option>
+								  <option value="c">c) Elaborar projeto lógico e físico de dados e de sistemas</option>
+								  <option value="d">d) Definir a arquitetura de softwares e de sistemas</option>
+								  <option value="e">e) Especificar unidades de implementação de software</option>
+								  <option value="f">f) Elaborar documentação relativa às etapas de desenvolvimento de sistemas</option>
+								  <option value="g">g) Planejar, elaborar e ministrar treinamentos relativos a sistemas de informação, ferramentas de acesso e manipulação de dados</option>
+								  <option value="h">h) Selecionar, implementar e internalizar novas tecnologias de desenvolvimento</option>
+								  <option value="i">i) Prestar assessoramento técnico no que se refere a prazos, recursos e alternativas de desenvolvimento de sistemas</option>
+								  <option value="j">j) Especificar a manutenção de softwares e de sistemas </option>
+								  <option value="l">l) Planejar e administrar componentes reusáveis e repositórios </option>
+								  <option value="m">m) Certificar e inspecionar modelos e códigos de sistemas</option>
+								  <option value="n">n) Elaborar e gerenciar projetos de sistemas e software</option>
+							  </select>
+							  <span *ngIf="!formComplexidade.controls['atributo'].valid && formComplexidade.controls['atributo'].touched" class="help-block">O campo Atributo é obrigatório!</span>
+						</div>  
+            <div class="form-group" [ngClass]="{'has-error': (!formComplexidade.controls['classificacao'].valid && formComplexidade.controls['classificacao'].touched) }">
+							<label>Classificação</label>
+							<select class="form-control" [(ngModel)]="complexidade.classificacao" formControlName="classificacao" (change)="setNomeComplexidade(complexidade.classificacao)">
+									<option [selected]="true" value="">Selecione</option>  
+                  <option value="1">1 - Moderado</option>
+                  <option value="2">2 - Significativa</option>
+								  <option value="3">3 - Muito</option>
+							  </select>
+							  <span *ngIf="!formComplexidade.controls['classificacao'].valid && formComplexidade.controls['classificacao'].touched" class="help-block">O campo Classificação é obrigatório!</span>
+						</div>
+						<div class="form-group" [ngClass]="{'has-error': (!formComplexidade.controls['tipo'].valid && formComplexidade.controls['tipo'].touched) }">
+							<label>Tipo</label>
+							<select class="form-control" [(ngModel)]="complexidade.tipo" formControlName="tipo" id="tipo">
+									<option [selected]="true" value="">Selecione</option>  
+                 	<option value="Desenvolvimento">Desenvolvimento</option>
+                	<option value="Design">Design</option>
+							</select>
+							<span *ngIf="!formComplexidade.controls['tipo'].valid && formComplexidade.controls['tipo'].touched" class="help-block">O campo Tipo é obrigatório!</span>
+						</div>
+						<div class="form-group" *ngIf="complexidade.nome">
+							<label for="nome">Nome</label>
+							<input type="text" class="form-control" id="nome" [(ngModel)]="complexidade.nome" formControlName="nome" readonly placeholder="">
+						</div>
+						<div class="form-group" [ngClass]="{'has-error': (!formComplexidade.controls['descricao'].valid && formComplexidade.controls['descricao'].touched) }">
+							<label>Descrição</label>
+							<textarea class="form-control" [(ngModel)]="complexidade.descricao" formControlName="descricao" rows="3" placeholder="Descreva os detalhes da Complexidade"></textarea>
+							<span *ngIf="!formComplexidade.controls['tipo'].valid && formComplexidade.controls['tipo'].touched" class="help-block">O campo Descrição é obrigatório!</span>
+						</div>
+           </div>
             <!-- /.box-body -->
-  
-
             <div class="box-footer">
               <button type="button" class="btn btn-default" (click)="onCancel()">Cancelar</button>
               <button type="submit" class="btn btn-info pull-right" [disabled]="!formComplexidade.valid">Enviar</button>

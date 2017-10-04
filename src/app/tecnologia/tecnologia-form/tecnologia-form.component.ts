@@ -13,7 +13,7 @@ import { TecnologiaService } from './../tecnologia.service';
 export class TecnologiaFormComponent implements OnInit {
     formTecnologia: FormGroup;
     title: string;
-    papeis: Tecnologia = new Tecnologia();
+    tecnologia: Tecnologia = new Tecnologia();
     idResource: any;
 
     constructor(
@@ -42,7 +42,7 @@ export class TecnologiaFormComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log('instanciacao: ', this.papeis)
+        console.log('instanciacao: ', this.tecnologia)
 
         var id = this.route.params.subscribe(params => {
             this.idResource = params['id'];
@@ -52,7 +52,7 @@ export class TecnologiaFormComponent implements OnInit {
                 return;
 
             this.tecnologiaService.getTecnologiaId(this.idResource).subscribe(tecnologia => {
-                tecnologia = this.papeis = tecnologia
+                tecnologia = this.tecnologia = tecnologia
 
                 console.log(tecnologia.id),
                     response => {

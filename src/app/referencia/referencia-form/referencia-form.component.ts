@@ -13,7 +13,7 @@ export class ReferenciaFormComponent implements OnInit {
 
     formReferencia: FormGroup;
     title: string;
-    papeis: Referencia = new Referencia();
+    referencia: Referencia = new Referencia();
     idResource: any;
 
     constructor(
@@ -43,7 +43,7 @@ export class ReferenciaFormComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log('instanciacao: ', this.papeis)
+        console.log('instanciacao: ', this.referencia)
         //console.log('Referência: ', this.formReferencia)
 
         var id = this.route.params.subscribe(params => {
@@ -54,7 +54,7 @@ export class ReferenciaFormComponent implements OnInit {
                 return;
 
             this.referenciaService.getReferenciaId(this.idResource).subscribe(referencia => {
-                referencia = this.papeis = referencia
+                referencia = this.referencia = referencia
                 console.log(referencia.id),
                     response => {
                         if (response.status == 404) {

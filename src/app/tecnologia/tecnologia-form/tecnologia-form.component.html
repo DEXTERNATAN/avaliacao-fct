@@ -1,11 +1,11 @@
 <section class="content-header">
 	<h1>
-		Cadastrar Tecnologia
+		Tecnologia
 	</h1>
 	<ol class="breadcrumb">
 		<li><a href="#"><i class="fa fa-home"></i> Home</a></li>
 		<li><a href="#">Tecnologia</a></li>
-		<li class="active">Cadastro Tecnologia</li>
+		<li class="active">Detalhes Tecnologia</li>
 	</ol>
 </section>
 <section class="content">
@@ -13,7 +13,7 @@
 		<div class="col-md-12">
 			<div class="box box-primary">
 				<div class="box-header with-border">
-					<h3 class="box-title">Detalhes Tecnologia</h3>
+					<h3 class="box-title">Detalhes da Tecnologia</h3>
 				</div>
 				<div class="alert alert-success" role="alert" *ngIf="sucesso">
 					Formulário enviado com sucesso!
@@ -23,7 +23,7 @@
 					<div class="box-body">
 						<div class="form-group" [ngClass]="{'has-error': (!formTecnologia.controls['tipo'].valid && formTecnologia.controls['tipo'].touched) }">
 							<label for="tipo">Tipo</label>
-							<select class="form-control" [(ngModel)]="papeis.tipo" formControlName="tipo" id="tipo">
+							<select class="form-control" [(ngModel)]="tecnologia.tipo" formControlName="tipo" id="tipo">
                                   <option [selected]="true" value="">Selecione</option>  
                                   <option value="Desenvolvimento">Desenvolvimento</option>
                                   <option value="Design">Design</option>
@@ -32,12 +32,12 @@
 						</div>
 						<div class="form-group" [ngClass]="{'has-error': (!formTecnologia.controls['nome'].valid && formTecnologia.controls['nome'].touched) }">
 							<label for="nome">Nome</label>
-							<input type="text" class="form-control" id="nome" [(ngModel)]="papeis.nome" formControlName="nome" placeholder="">
+							<input type="text" class="form-control" id="nome" [(ngModel)]="tecnologia.nome" formControlName="nome" placeholder="">
 							<span *ngIf="!formTecnologia.controls['nome'].valid && formTecnologia.controls['nome'].touched" class="help-block">O campo Nome é obrigatório!</span>
 						</div>
 						<div class="form-group" [ngClass]="{'has-error': (!formTecnologia.controls['descricao'].valid && formTecnologia.controls['descricao'].touched) }">
 							<label>Descrição</label>
-							<textarea class="form-control" [(ngModel)]="papeis.descricao" formControlName="descricao" rows="3" placeholder="Descreva os detalhes da Tecnologia"></textarea>
+							<textarea class="form-control" [(ngModel)]="tecnologia.descricao" formControlName="descricao" rows="3" placeholder="Descreva os detalhes da Tecnologia"></textarea>
 							<span *ngIf="!formTecnologia.controls['descricao'].valid && formTecnologia.controls['descricao'].touched" class="help-block">O campo Descrição é obrigatório</span>
 						</div>
 					</div>
