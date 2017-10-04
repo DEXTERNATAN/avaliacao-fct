@@ -93,21 +93,33 @@
   ],
   "impacto": [
     {
-      "id": 1,
-      "atributo": "a",
-      "classificacao": 1,
-      "tipo": "Desenvolvimento",
-      "nome": "Relevante",
-      "descricao": "-A ausência gera pouco impacto (Não impacta a entrega).\r\n-Atente somente a um tipo de contexto(tecnologia/versão)"
+      "tipo": null,
+      "nome": null,
+      "descricao": null,
+      "id": 1
     }
   ],
   "referencia": [
     {
       "id": 1,
       "cargo": "Analista",
-      "numReferencia": 1,
-      "valorReferencia": "329.84",
-      "dtAtualizacao": "03/10/2017"
+      "numreferencia": "1",
+      "valorreferencia": "329.84",
+      "dtatualizacao": "03/10/2017"
+    },
+    {
+      "cargo": "Auxiliar",
+      "numreferencia": "5",
+      "valorreferencia": "230.36",
+      "dtatualizacao": "21/10/2016",
+      "id": 2
+    },
+    {
+      "cargo": "Técnico",
+      "numreferencia": "19",
+      "valorreferencia": "125.69",
+      "dtatualizacao": "10/05/2015",
+      "id": 3
     }
   ]
 }

@@ -24,9 +24,9 @@ export class ReferenciaFormComponent implements OnInit {
     ) {
         this.formReferencia = formBuilder.group({
             cargo: [null, Validators.required],
-            numReferencia: [null, Validators.required],
-            valorReferencia: [null, Validators.required],
-            dtAtualizacao: [null, Validators.required]
+            numreferencia: [null, Validators.required],
+            valorreferencia: [null, Validators.required],
+            dtatualizacao: [null, Validators.required]
         })
     }
 
@@ -44,6 +44,7 @@ export class ReferenciaFormComponent implements OnInit {
 
     ngOnInit() {
         console.log('instanciacao: ', this.papeis)
+        //console.log('Referência: ', this.formReferencia)
 
         var id = this.route.params.subscribe(params => {
             this.idResource = params['id'];

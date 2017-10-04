@@ -23,7 +23,7 @@
 					<div class="box-body">
 						<div class="form-group" [ngClass]="{'has-error': (!formReferencia.controls['cargo'].valid && formReferencia.controls['cargo'].touched) }">
 							<label for="cargo">Cargo</label>
-							<select class="form-control" [(ngModel)]="referencia.cargo" formControlName="cargo" id="cargo">
+							<select class="form-control" [(ngModel)]="papeis.cargo" formControlName="cargo" id="cargo">
                                   <option [selected]="true" value="">Selecione</option>  
                                   <option value="Auxiliar">Auxiliar</option>
                                   <option value="Técnico">Técnico</option>
@@ -31,9 +31,9 @@
 						    </select>
 							<span *ngIf="!formReferencia.controls['cargo'].valid && formReferencia.controls['cargo'].touched" class="help-block">O campo Cargo é obrigatório!</span>
 						</div>
-						<div class="form-group" [ngClass]="{'has-error': (!formReferencia.controls['numReferencia'].valid && formReferencia.controls['numReferencia'].touched) }">
-							<label for="numReferencia">Referência</label>
-							<select class="form-control" [(ngModel)]="referencia.numReferencia" formControlName="numReferencia" id="numReferencia">
+						<div class="form-group" [ngClass]="{'has-error': (!formReferencia.controls['numreferencia'].valid && formReferencia.controls['numreferencia'].touched) }">
+							<label for="numreferencia">Referência</label>
+							<select class="form-control" [(ngModel)]="papeis.numreferencia" formControlName="numreferencia" id="numreferencia">
 								  <option [selected]="true" value="">Selecione</option>  
                                   <option value="1">1</option>
                                   <option value="2">2</option>
@@ -76,17 +76,17 @@
 								  <option value="39">39</option>
 								  <option value="40">40</option>
 							  </select>
-							  <span *ngIf="!formReferencia.controls['numReferencia'].valid && formReferencia.controls['numReferencia'].touched" class="help-block">O campo Referência é obrigatório!</span>
+							  <span *ngIf="!formReferencia.controls['numreferencia'].valid && formReferencia.controls['numreferencia'].touched" class="help-block">O campo Referência é obrigatório!</span>
 						</div>
-						<div class="form-group" [ngClass]="{'has-error': (!formReferencia.controls['valorReferencia'].valid && formReferencia.controls['valorReferencia'].touched) }">
+						<div class="form-group" [ngClass]="{'has-error': (!formReferencia.controls['valorreferencia'].valid && formReferencia.controls['valorreferencia'].touched) }">
 							<label for="valorReferencia">Valor</label>
-							<input type="text" class="form-control" id="valorReferencia" [(ngModel)]="referencia.valorReferencia" formControlName="valorReferencia" placeholder="" maxlength="9">
-							<span *ngIf="!formReferencia.controls['valorReferencia'].valid && formReferencia.controls['valorReferencia'].touched" class="help-block">O campo Valor é obrigatório!</span>
+							<input type="text" class="form-control" id="valorreferencia" [(ngModel)]="papeis.valorreferencia" formControlName="valorreferencia" placeholder="" maxlength="9">
+							<span *ngIf="!formReferencia.controls['valorreferencia'].valid && formReferencia.controls['valorreferencia'].touched" class="help-block">O campo Valor é obrigatório!</span>
 						</div>
-						<div class="form-group" [ngClass]="{'has-error': (!formReferencia.controls['dtReferencia'].valid && formReferencia.controls['dtReferencia'].touched) }">
-							<label for="dtReferencia">Data da Atualização</label>
-							<input type="text" class="form-control" id="dtReferencia" [(ngModel)]="referencia.dtReferencia" formControlName="dtReferencia" placeholder="" maxlength="10">
-							<span *ngIf="!formReferencia.controls['dtReferencia'].valid && formReferencia.controls['dtReferencia'].touched" class="help-block">O campo Data da Atualização é obrigatório!</span>
+						<div class="form-group" [ngClass]="{'has-error': (!formReferencia.controls['dtatualizacao'].valid && formReferencia.controls['dtatualizacao'].touched) }">
+							<label for="dtatualizacao">Data da Atualização</label>
+							<input type="text" class="form-control" id="dtatualizacao" [(ngModel)]="papeis.dtatualizacao" formControlName="dtatualizacao" placeholder="" maxlength="10">
+							<span *ngIf="!formReferencia.controls['dtatualizacao'].valid && formReferencia.controls['dtatualizacao'].touched" class="help-block">O campo Data da Atualização é obrigatório!</span>
 						</div>
 					</div>
 					<div class="box-footer">
