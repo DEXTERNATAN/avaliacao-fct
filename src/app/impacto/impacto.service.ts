@@ -50,7 +50,7 @@ export class ImpactoService {
     }
 
     updateImpacto(id, impacto) {
-        debugger
+        //debugger
         return this._http.put(`${MEAT_API}/impacto/${id}`, JSON.stringify(impacto), this.options)
             .map(response => response.json())
     }

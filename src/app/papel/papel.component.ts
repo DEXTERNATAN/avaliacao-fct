@@ -19,14 +19,14 @@ export class PapelComponent implements OnInit {
   }
 
   deletePapel(papel){
-    if (confirm("Você tem certeza que quer Deletar o Papel: " + papel.nome + "?")) {
+    if (confirm("Tem certeza que quer APAGAR o Papel #" + papel.id + " ?")) {
       var index = this.Papel.indexOf(papel);
       this.Papel.splice(index, 1);
 
       this._papelService.deletePapel(papel.id)
         .subscribe(null,
           err => {
-            alert("Could not delete divisão");
+            alert("O papel não foi apagado!");
 
             // Revert the view back to its original state
             this.Papel.splice(index, 0, papel);

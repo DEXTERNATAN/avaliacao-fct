@@ -18,14 +18,14 @@ export class DivisaoComponent implements OnInit {
   }
 
   deleteDivisao(divisao){
-    if (confirm("Are you sure you want to delete " + divisao.nome + "?")) {
+    if (confirm("Tem certeza que quer APAGAR a Divisão #" + divisao.id + " - " + divisao.nome + "?")) {
       var index = this.Divisao.indexOf(divisao);
       this.Divisao.splice(index, 1);
 
       this._divisaoService.deleteDivisao(divisao.id)
         .subscribe(null,
           err => {
-            alert("Could not delete divisão");
+            alert("Não foi possível apagar a Divisão!");
             // Revert the view back to its original state
             this.Divisao.splice(index, 0, divisao);
           });

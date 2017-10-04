@@ -19,14 +19,14 @@ export class ComplexidadeComponent implements OnInit {
   }
 
   deleteComplexidade(complexidade){
-    if (confirm("Are you sure you want to delete " + complexidade.nome + "?")) {
+    if (confirm("Tem certeza que quer APAGAR a Complexidade #" + complexidade.id + " ?")) {
       var index = this.Complexidade.indexOf(complexidade);
       this.Complexidade.splice(index, 1);
 
       this._complexidadeService.deleteComplexidade(complexidade.id)
         .subscribe(null,
           err => {
-            alert("Could not delete abrangência");
+            alert("A Complexidade não foi apagada!");
             // Revert the view back to its original state
             this.Complexidade.splice(index, 0, complexidade);
           });

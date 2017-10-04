@@ -19,7 +19,7 @@ export class ReferenciaComponent implements OnInit {
   }
 
   deleteReferencia(referencia){
-    if (confirm("Você tem certeza que quer apagar a Referência " + referencia.numreferencia + " - " +  referencia.valorreferencia + "?")) {
+    if (confirm("Você tem certeza que quer APAGAR a Referência #" + referencia.id + " ?")) {
       var index = this.Referencia.indexOf(referencia);
       this.Referencia.splice(index, 1);
 
