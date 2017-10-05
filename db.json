@@ -9,12 +9,12 @@
       "id": 1
     },
     {
-      "id": 15,
-      "sigla": "SDDEP",
+      "sigla": "SDDXX",
       "nome": "Divisão de Gestão de Demandas - Experiencia de usuários e portais",
       "descricao": "Área de definição e entrada de demandasxxx",
       "uf": "DF",
-      "especialidade": "Desenvolvimento"
+      "especialidade": "Desenvolvimento",
+      "id": 15
     },
     {
       "id": 16,
@@ -183,8 +183,8 @@
       "especialidade": "Desenvolvimento de Sistemas",
       "salario": "7448.59",
       "percentualSalario": "654.69",
-      "referenciaFctFk": "1",
-      "divisaoFk": "1",
+      "referencia": "1",
+      "divisao": "1",
       "id": 1
     },
     {
@@ -194,8 +194,8 @@
       "especialidade": "Desenvolvimento de Sistemas",
       "salario": "8944.96",
       "percentualSalario": "856.65",
-      "referenciaFctFk": "1",
-      "divisaoFk": "1",
+      "referencia": "4",
+      "divisao": "15",
       "id": 2
     }
   ]

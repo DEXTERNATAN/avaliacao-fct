@@ -1,3 +1,6 @@
+import { Referencia } from './../referencia/referencia.model';
+import { Divisao } from './../divisao/divisao.model';
+
 export class Colaborador {
     id: number;
     nome: string;
@@ -6,13 +9,6 @@ export class Colaborador {
     especialidade: string;
     salario: string;
     percentualSalario: string;
-    referenciaFctFk: string;
-    divisaoFk: string;
+    referencia: Referencia;
+    divisao: Divisao;
 }
-
-export class User {
-    id: number;
-    name: string;
-    phone: string;
-    email: string;
-  }

@@ -30,8 +30,8 @@ export class ColaboradorFormComponent implements OnInit {
             especialidade: [null, Validators.required],
             salario: [null, Validators.required],
             percentualSalario: [null, Validators.required],
-            referenciaFctFk: [null, Validators.required],
-            divisaoFk: [null, Validators.required]
+            referencia: [null, Validators.required],
+            divisao: [null, Validators.required]
         })
     }
 
@@ -90,12 +90,6 @@ export class ColaboradorFormComponent implements OnInit {
 
     private navigateBack() {
         this.router.navigate(['/colaborador']);
-    }
-
-    setCamposFk(id: string) {
-        this.colaborador.referenciaFctFk = '1';
-        this.colaborador.divisaoFk = '1';
-
     }
 
 }
