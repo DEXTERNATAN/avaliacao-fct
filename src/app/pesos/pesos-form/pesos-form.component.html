@@ -1,0 +1,105 @@
+<section class="content-header">
+	<h1>
+		Pesos da Quantidade de Papeis e Projetos
+		<!-- <small>cadastro de novas divisões</small> -->
+	</h1>
+	<ol class="breadcrumb">
+		<li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+		<li><a href="#">Pesos</a></li>
+		<li class="active">Detalhes do Peso</li>
+	</ol>
+</section>
+<section class="content">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="box box-primary">
+				<div class="box-header with-border">
+					<h3 class="box-title">Detalhes do Peso</h3>
+				</div>
+				<div class="alert alert-success" role="alert" *ngIf="sucesso">
+					Formulário enviado com sucesso!
+					{{debug()}}
+				</div>
+				<form role="form" [formGroup]="formPesos" (ngSubmit)="save()">
+					<div class="box-body">
+						<div class="form-group" [ngClass]="{'has-error': (!formPesos.controls['quantidade'].valid && formPesos.controls['quantidade'].touched) }">
+							<label for="quantidade">Quantidade</label>
+							<select class="form-control" [(ngModel)]="pesos.quantidade" formControlName="quantidade" id="quantidade">
+                                  <option [selected]="true" value="">Selecione</option>  
+                                  <option value="1">1</option>
+                                  <option value="2">2</option>
+								  <option value="3">3</option>
+								  <option value="4">4</option>
+								  <option value="5">5</option>
+								  <option value="6">6</option>
+							  </select>
+							  <span *ngIf="!formPesos.controls['quantidade'].valid && formPesos.controls['quantidade'].touched" class="help-block">O campo Quantidade é obrigatório!</span>
+						</div>
+						<div class="form-group" [ngClass]="{'has-error': (!formPesos.controls['tipo'].valid && formPesos.controls['tipo'].touched) }">
+							<label for="tipo">Tipo</label>
+							<select class="form-control" [(ngModel)]="pesos.tipo" formControlName="tipo">
+								  <option [selected]="true" value="">Selecione</option>  
+                                  <option value="Papel">Papel</option>
+                                  <option value="Projeto">Projeto</option>
+						    </select>
+							<span *ngIf="!formPesos.controls['tipo'].valid && formPesos.controls['tipo'].touched" class="help-block">O campo Classificação é obrigatório!</span>
+						</div>
+						<div class="form-group" [ngClass]="{'has-error': (!formPesos.controls['valor'].valid && formPesos.controls['valor'].touched) }">
+							<label for="valor">Valor</label>
+							<select class="form-control" [(ngModel)]="pesos.valor" formControlName="valor" id="valor">
+								<option [selected]="true" value="">Selecione</option>  
+                            	<option value="1.100">1.100</option>
+                        		<option value="1.125">1.125</option>
+								<option value="1.150">1.150</option>
+								<option value="1.175">1.175</option>
+								<option value="1.200">1.200</option>
+								<option value="1.225">1.225</option>
+								<option value="1.250">1.250</option>
+								<option value="1.275">1.275</option>
+								<option value="1.300">1.300</option>
+								<option value="1.325">1.325</option>
+								<option value="1.350">1.350</option>
+								<option value="1.375">1.375</option>
+								<option value="1.400">1.400</option>
+								<option value="1.425">1.425</option>
+								<option value="1.450">1.450</option>
+								<option value="1.475">1.475</option>
+								<option value="1.500">1.500</option>
+								<option value="1.525">1.525</option>
+								<option value="1.550">1.550</option>
+								<option value="1.575">1.575</option>
+								<option value="1.600">1.600</option>
+								<option value="1.625">1.625</option>
+								<option value="1.650">1.650</option>
+								<option value="1.675">1.675</option>
+								<option value="1.700">1.700</option>
+								<option value="1.725">1.725</option>
+								<option value="1.750">1.750</option>
+								<option value="1.775">1.775</option>
+								<option value="1.800">1.800</option>
+								<option value="1.825">1.825</option>
+								<option value="1.850">1.850</option>
+								<option value="1.875">1.875</option>
+								<option value="1.900">1.900</option>
+							</select>
+							<span *ngIf="!formPesos.controls['valor'].valid && formPesos.controls['valor'].touched" class="help-block">O campo Valor é obrigatório!</span>
+						</div>
+						<div class="form-group" [ngClass]="{'has-error': (!formPesos.controls['descricao'].valid && formPesos.controls['descricao'].touched) }">
+							<label for="descricao">Descrição</label>
+							<textarea class="form-control" [(ngModel)]="pesos.descricao" formControlName="descricao" rows="3" placeholder="Descreva os detalhes do Peso"></textarea>
+							<span *ngIf="!formPesos.controls['descricao'].valid && formPesos.controls['descricao'].touched" class="help-block">O campo Descrição é obrigatório!</span>
+						</div>
+						<div class="form-group">
+							<label for="dtregistro">Data de Registro</label>
+							<input type="text" class="form-control" [(ngModel)]="pesos.dtregistro" readonly name="dtregistro" formControlName="dtregistro" value="06/10/2017">
+						</div>	
+					</div>
+					<div class="box-footer">
+						<button type="button" class="btn btn-default" (click)="onCancel()">Cancelar</button>
+						<button type="submit" class="btn btn-info pull-right" [disabled]="!formPesos.valid">Enviar</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</section>

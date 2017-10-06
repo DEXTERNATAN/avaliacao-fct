@@ -12,6 +12,7 @@ import { TecnologiaModule } from './tecnologia/tecnologia.module';
 import { ImpactoModule } from './impacto/impacto.module';
 import { ReferenciaModule } from './referencia/referencia.module';
 import { ColaboradorModule } from './colaborador/colaborador.module';
+import { PesosModule } from './pesos/pesos.module';
 
 /* Routes */
 import { routing } from './app.routes';
@@ -23,6 +24,7 @@ import { tecnologiaRouting } from './tecnologia/tecnologia.routes';
 import { impactoRouting } from './impacto/impacto.routes';
 import { referenciaRouting } from './referencia/referencia.routes';
 import { colaboradorRouting } from './colaborador/colaborador.routes';
+import { pesosRouting } from './pesos/pesos.routes';
 
 /* Services */
 import { RestaurantsService } from './restaurants/restaurants.service';
@@ -33,6 +35,7 @@ import { TecnologiaService } from './tecnologia/tecnologia.service';
 import { ImpactoService } from './impacto/impacto.service';
 import { ReferenciaService } from './referencia/referencia.service';
 import { ColaboradorService } from './colaborador/colaborador.service';
+import { PesosService } from './pesos/pesos.service';
 
 /* Components */
 import { AppComponent } from './app.component';
@@ -50,6 +53,7 @@ import { ComplexidadeComponent } from './complexidade/complexidade.component';
 import { TecnologiaComponent } from './tecnologia/tecnologia.component';
 import { ReferenciaComponent } from './referencia/referencia.component';
 import { ColaboradorComponent } from './colaborador/colaborador.component';
+import { PesosComponent } from './pesos/pesos.component';
 import { DetailRestaurantComponent } from './detail-restaurant/detail-restaurant.component';
 //import { ComplexidadeFormComponent } from './complexidade/src/app/complexidade-form/complexidade-form.component';
 
@@ -87,6 +91,8 @@ import { DetailRestaurantComponent } from './detail-restaurant/detail-restaurant
     tecnologiaRouting,
     ColaboradorModule,
     colaboradorRouting,
+    PesosModule,
+    pesosRouting,
     routing
     //RouterModule.forRoot(routing)
   ],

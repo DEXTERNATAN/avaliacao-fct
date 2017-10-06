@@ -56,7 +56,6 @@ export class ColaboradorService {
     }
 
     updateColaborador(id, colaborador) {
-        debugger
         return this._http.put(`${MEAT_API}/colaborador/${id}`, JSON.stringify(colaborador), this.options)
             .map(response => response.json())
     }

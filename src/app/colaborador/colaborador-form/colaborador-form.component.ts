@@ -3,7 +3,13 @@ import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/fo
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { Colaborador } from './../colaborador.model';
+import { Referencia } from './../../referencia/referencia.model';
+import { Divisao } from './../../divisao/divisao.model';
+
 import { ColaboradorService } from './../colaborador.service';
+import { ReferenciaService } from './../../referencia/referencia.service';
+import { DivisaoService } from './../../divisao/divisao.service';
+
 
 @Component({
     selector: 'app-colaborador-form',
@@ -15,12 +21,16 @@ export class ColaboradorFormComponent implements OnInit {
     title: string;
     colaborador: Colaborador = new Colaborador();
     idResource: any;
+    Referencia: Referencia[];
+    Divisao: Divisao[];
 
     constructor(
         formBuilder: FormBuilder,
         private router: Router,
         private route: ActivatedRoute,
-        private colaboradorService: ColaboradorService
+        private colaboradorService: ColaboradorService,
+        private _referenciaService: ReferenciaService,
+        private _divisaoService: DivisaoService
     ) {
         this.formColaborador = formBuilder.group({
 
@@ -35,20 +45,11 @@ export class ColaboradorFormComponent implements OnInit {
         })
     }
 
-    hasErrors(): boolean {
-        var hasErrors: boolean = false;
-        for (var controlName in this.formColaborador.controls) {
-            var control: AbstractControl = this.formColaborador.controls[controlName];
-            if (!control.valid && !control.pristine) {
-                hasErrors = true;
-                break;
-            }
-        }
-        return hasErrors;
-    }
-
     ngOnInit() {
-        console.log('instanciacao: ', this.colaborador)
+        console.debug('instanciacao: ', this.colaborador);
+        this.getReferencia();
+        this.getDivisao();
+
 
         var id = this.route.params.subscribe(params => {
             this.idResource = params['id'];
@@ -84,12 +85,39 @@ export class ColaboradorFormComponent implements OnInit {
         result.subscribe(data => this.router.navigate(['colaborador']));
     }
 
+
+    getReferencia(){
+        this._referenciaService.getReferencia().subscribe(referencias => {
+            this.Referencia = referencias
+        })
+    }
+
+    getDivisao(){
+        this._divisaoService.getDivisao().subscribe(divisoes => {
+            this.Divisao = divisoes
+        })
+    }
+
+
     onCancel() {
         this.navigateBack();
     }
 
     private navigateBack() {
         this.router.navigate(['/colaborador']);
+    }
+
+
+    hasErrors(): boolean {
+        var hasErrors: boolean = false;
+        for (var controlName in this.formColaborador.controls) {
+            var control: AbstractControl = this.formColaborador.controls[controlName];
+            if (!control.valid && !control.pristine) {
+                hasErrors = true;
+                break;
+            }
+        }
+        return hasErrors;
     }
 
 }

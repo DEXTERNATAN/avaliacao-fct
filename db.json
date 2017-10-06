@@ -183,8 +183,8 @@
       "especialidade": "Desenvolvimento de Sistemas",
       "salario": "7448.59",
       "percentualSalario": "654.69",
-      "referencia": "1",
-      "divisao": "1",
+      "referencia": "2",
+      "divisao": "15",
       "id": 1
     },
     {
@@ -194,8 +194,26 @@
       "especialidade": "Desenvolvimento de Sistemas",
       "salario": "8944.96",
       "percentualSalario": "856.65",
-      "referencia": "4",
+      "referencia": "1",
       "divisao": "15",
+      "id": 2
+    }
+  ],
+  "pesos": [
+    {
+      "quantidade": "2",
+      "tipo": "Papel",
+      "descricao": "Papel do colaborador",
+      "valor": "1.325",
+      "dtregistro": "06/10/2017",
+      "id": 1
+    },
+    {
+      "quantidade": "3",
+      "tipo": "Papel",
+      "descricao": "gcghf",
+      "valor": "1.200",
+      "dtregistro": null,
       "id": 2
     }
   ]
