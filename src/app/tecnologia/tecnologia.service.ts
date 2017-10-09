@@ -24,36 +24,27 @@ export class TecnologiaService {
         this.options = new RequestOptions({ headers: this.headers });
     }
 
-
     getTecnologia(): Observable<Tecnologia[]> {
         return this._http.get(`${MEAT_API}/tecnologia`)
-            //.do(response => console.log(response))
             .map(response => response.json())
-        //.catch(ErrorHandler.handleError)
     }
 
     getTecnologiaId(id) {
         return this._http.get(`${MEAT_API}/tecnologia/${id}`)
-            //.do(response => console.log(response.json()))
             .map(response => response.json())
-        //.catch(ErrorHandler.handleError)
     }
 
     addTecnologia(tecnologia) {
-        console.log(tecnologia)
-        debugger
         return this._http.post(`${MEAT_API}/tecnologia`, JSON.stringify(tecnologia), this.options)
             .map(res => res.json());
     }
 
     deleteTecnologia(id) {
-        console.log(`${MEAT_API}/tecnologia/${id}`)
         return this._http.delete(`${MEAT_API}/tecnologia/${id}`)
             .map(response => response.json())
     }
 
     updateTecnologia(id, tecnologia) {
-        debugger
         return this._http.put(`${MEAT_API}/tecnologia/${id}`, JSON.stringify(tecnologia), this.options)
             .map(response => response.json())
     }

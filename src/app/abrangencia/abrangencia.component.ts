@@ -31,10 +31,5 @@ export class AbrangenciaComponent implements OnInit {
             this.Abrangencia.splice(index, 0, abrangencia);
           });
     }
-
-    console.log('Abrangencia', abrangencia)
   }
-
-
-
 }

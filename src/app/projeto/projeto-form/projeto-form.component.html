@@ -24,12 +24,12 @@
 					<div class="box-body">
 						<div class="form-group" [ngClass]="{'has-error': (!formProjeto.controls['titulo'].valid && formProjeto.controls['titulo'].touched) }">
 							<label for="titulo">Título</label>
-							<input type="text" class="form-control" id="titulo" [(ngModel)]="projeto.titulo" formControlName="titulo" placeholder="Descreva o Título do projeto com até 30 caracteres" maxlength="30">							
+							<input type="text" class="form-control" id="titulo" [(ngModel)]="projeto.titulo" formControlName="titulo" placeholder="Descreva o Título do projeto" maxlength="30">							
 							<span *ngIf="!formProjeto.controls['titulo'].valid && formProjeto.controls['titulo'].touched" class="help-block">O campo Título é obrigatório!</span>
 						</div>
 						<div class="form-group" [ngClass]="{'has-error': (!formProjeto.controls['codservico'].valid && formProjeto.controls['codservico'].touched) }">
 							<label for="codservico">Código de Serviço</label>
-							<input type="text" class="form-control" id="codservico" [(ngModel)]="projeto.codservico" formControlName="codservico" placeholder="99999" maxlength="5">							
+							<input type="text" class="form-control" id="codservico" [(ngModel)]="projeto.codservico" formControlName="codservico" placeholder="Código de serviço do projeto, no formato: 99999" maxlength="5">							
 							<span *ngIf="!formProjeto.controls['codservico'].valid && formProjeto.controls['codservico'].touched" class="help-block">O campo Código de Serviço é obrigatório!</span>
 						</div>
 						<div class="form-group" [ngClass]="{'has-error': (!formProjeto.controls['descricao'].valid && formProjeto.controls['descricao'].touched) }">
@@ -39,12 +39,12 @@
 						</div>	
 						<div class="form-group" [ngClass]="{'has-error': (!formProjeto.controls['dtinicio'].valid && formProjeto.controls['dtinicio'].touched) }">
 							<label for="dtinicio">Data Início</label>
-							<input type="text" class="form-control" id="dtinicio" [(ngModel)]="projeto.dtinicio" formControlName="dtinicio" placeholder="DD/MM/AAAA" maxlength="10">							
+							<input type="text" class="form-control" id="dtinicio" [(ngModel)]="projeto.dtinicio" formControlName="dtinicio" placeholder="Data início do Projeto, no formato: DD/MM/AAAA" maxlength="10">							
 							<span *ngIf="!formProjeto.controls['dtinicio'].valid && formProjeto.controls['dtinicio'].touched" class="help-block">O campo Data Início é obrigatório!</span>
 						</div>
 						<div class="form-group" [ngClass]="{'has-error': (!formProjeto.controls['dtfim'].valid && formProjeto.controls['dtfim'].touched) }">
 							<label for="dtfim">Data Fim</label>
-							<input type="text" class="form-control" id="dtfim" [(ngModel)]="projeto.dtfim" formControlName="dtfim" placeholder="DD/MM/AAAA" maxlength="10">							
+							<input type="text" class="form-control" id="dtfim" [(ngModel)]="projeto.dtfim" formControlName="dtfim" placeholder="Data fim prevista do Projeto, no formmato: DD/MM/AAAA" maxlength="10">							
 							<span *ngIf="!formProjeto.controls['dtfim'].valid && formProjeto.controls['dtfim'].touched" class="help-block">O campo Data Fim é obrigatório!</span>
 						</div>
 						<div class="form-group" [ngClass]="{'has-error': (!formProjeto.controls['abrangencia'].valid && formProjeto.controls['abrangencia'].touched) }">

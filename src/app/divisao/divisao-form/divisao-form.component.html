@@ -22,12 +22,12 @@
 					<div class="box-body">
 						<div class="form-group" [ngClass]="{'has-error': (!formDivisao.controls['sigla'].valid && formDivisao.controls['sigla'].touched) }">
 							<label for="sigla">Sigla</label>
-							<input type="text" class="form-control" [(ngModel)]="divisaos.sigla" formControlName="sigla" maxlength="5" id="sigla" placeholder="">
+							<input type="text" class="form-control" [(ngModel)]="divisaos.sigla" formControlName="sigla" maxlength="5" id="sigla" placeholder="Preencha com a sigla até 5 caracteres">
 							<span *ngIf="!formDivisao.controls['sigla'].valid && formDivisao.controls['sigla'].touched" class="help-block">O campo Sigla é obrigatório!</span>
 						</div>
 						<div class="form-group" [ngClass]="{'has-error': (!formDivisao.controls['nome'].valid && formDivisao.controls['nome'].touched) }">
 							<label for="nome">Nome</label>
-							<input type="text" class="form-control" id="nome" [(ngModel)]="divisaos.nome" formControlName="nome" maxlength="100" placeholder="">
+							<input type="text" class="form-control" id="nome" [(ngModel)]="divisaos.nome" formControlName="nome" maxlength="100" placeholder="Preencha com o nome completo da Divisão">
 							<span *ngIf="!formDivisao.controls['nome'].valid && formDivisao.controls['nome'].touched" class="help-block">O campo Nome é obrigatório!</span>
 						</div>
 						<div class="form-group" [ngClass]="{'has-error': (!formDivisao.controls['uf'].valid && formDivisao.controls['uf'].touched) }">
@@ -53,7 +53,7 @@
 						<div class="form-group" [ngClass]="{'has-error': (!formDivisao.controls['descricao'].valid && formDivisao.controls['descricao'].touched) }">
 							<label>Descrição</label>
 							<textarea class="form-control" [(ngModel)]="divisaos.descricao" formControlName="descricao" rows="3" placeholder="Descreva as informações de atuação da Divisão"></textarea>
-							<span *ngIf="!formDivisao.controls['especialidade'].valid && formDivisao.controls['especialidade'].touched" class="help-block">O campo Descrição é obrigatório!</span>
+							<span *ngIf="!formDivisao.controls['descricao'].valid && formDivisao.controls['descricao'].touched" class="help-block">O campo Descrição é obrigatório!</span>
 						</div>
 					</div>
 					<!-- /.box-body -->

@@ -65,7 +65,7 @@
 						<div class="form-group" [ngClass]="{'has-error': (!formComplexidade.controls['descricao'].valid && formComplexidade.controls['descricao'].touched) }">
 							<label>Descrição</label>
 							<textarea class="form-control" [(ngModel)]="complexidade.descricao" formControlName="descricao" rows="3" placeholder="Descreva os detalhes da Complexidade"></textarea>
-							<span *ngIf="!formComplexidade.controls['tipo'].valid && formComplexidade.controls['tipo'].touched" class="help-block">O campo Descrição é obrigatório!</span>
+							<span *ngIf="!formComplexidade.controls['descricao'].valid && formComplexidade.controls['descricao'].touched" class="help-block">O campo Descrição é obrigatório!</span>
 						</div>
            </div>
             <!-- /.box-body -->

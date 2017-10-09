@@ -80,12 +80,12 @@
 						</div>
 						<div class="form-group" [ngClass]="{'has-error': (!formReferencia.controls['valorreferencia'].valid && formReferencia.controls['valorreferencia'].touched) }">
 							<label for="valorReferencia">Valor</label>
-							<input type="text" class="form-control" id="valorreferencia" [(ngModel)]="referencia.valorreferencia" formControlName="valorreferencia" placeholder="" maxlength="9">
+							<input type="text" class="form-control" id="valorreferencia" [(ngModel)]="referencia.valorreferencia" formControlName="valorreferencia" placeholder="Informe o valor de referência da FCT" maxlength="9">
 							<span *ngIf="!formReferencia.controls['valorreferencia'].valid && formReferencia.controls['valorreferencia'].touched" class="help-block">O campo Valor é obrigatório!</span>
 						</div>
 						<div class="form-group" [ngClass]="{'has-error': (!formReferencia.controls['dtatualizacao'].valid && formReferencia.controls['dtatualizacao'].touched) }">
 							<label for="dtatualizacao">Data da Atualização</label>
-							<input type="text" class="form-control" id="dtatualizacao" [(ngModel)]="referencia.dtatualizacao" formControlName="dtatualizacao" placeholder="" maxlength="10">
+							<input type="text" class="form-control" id="dtatualizacao" [(ngModel)]="referencia.dtatualizacao" formControlName="dtatualizacao" placeholder="Informe a data de Atualização da FCT no SISTEMA FCT/GFC" maxlength="10">
 							<span *ngIf="!formReferencia.controls['dtatualizacao'].valid && formReferencia.controls['dtatualizacao'].touched" class="help-block">O campo Data da Atualização é obrigatório!</span>
 						</div>
 					</div>

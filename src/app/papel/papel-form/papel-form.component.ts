@@ -42,8 +42,6 @@ export class PapelFormComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log('instanciacao: ', this.papeis)
-
         var id = this.route.params.subscribe(params => {
             this.idResource = params['id'];
             this.title = this.idResource ? 'Editar Papel' : 'Novo Papel';
@@ -53,7 +51,6 @@ export class PapelFormComponent implements OnInit {
 
             this.papelService.getPapelId(this.idResource).subscribe(papel => {
                 papel = this.papeis = papel
-
                 console.log(papel.id),
                     response => {
                         if (response.status == 404) {
@@ -61,7 +58,6 @@ export class PapelFormComponent implements OnInit {
                         }
                     }
             })
-
         })
     }
 
@@ -69,16 +65,13 @@ export class PapelFormComponent implements OnInit {
         var result,
             userValue = this.formPapel.value;
 
-
         if (this.idResource) {
             result = this.papelService.updatePapel(this.idResource, userValue);
 
         } else {
             result = this.papelService.addPapel(userValue);
         }
-
         result.subscribe(data => this.router.navigate(['papel']));
-
     }
 
     onCancel() {
@@ -88,6 +81,4 @@ export class PapelFormComponent implements OnInit {
     private navigateBack() {
         this.router.navigate(['/papel']);
     }
-
 }
-

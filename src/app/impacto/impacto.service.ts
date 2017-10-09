@@ -23,19 +23,14 @@ export class ImpactoService {
         this.options = new RequestOptions({ headers: this.headers });
     }
 
-
     getImpacto(): Observable<Impacto[]> {
         return this._http.get(`${MEAT_API}/impacto`)
-            //.do(response => console.log(response))
             .map(response => response.json())
-        //.catch(ErrorHandler.handleError)
     }
 
     getImpactoId(id) {
         return this._http.get(`${MEAT_API}/impacto/${id}`)
-            //.do(response => console.log(response.json()))
             .map(response => response.json())
-        //.catch(ErrorHandler.handleError)
     }
 
     addImpacto(impacto) {
@@ -44,13 +39,11 @@ export class ImpactoService {
     }
 
     deleteImpacto(id) {
-        console.log(`${MEAT_API}/impacto/${id}`)
         return this._http.delete(`${MEAT_API}/impacto/${id}`)
             .map(response => response.json())
     }
 
     updateImpacto(id, impacto) {
-        //debugger
         return this._http.put(`${MEAT_API}/impacto/${id}`, JSON.stringify(impacto), this.options)
             .map(response => response.json())
     }

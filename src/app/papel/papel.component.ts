@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { PapelService } from './papel.service';
 import { Papel } from './papel.model';
 
@@ -10,7 +11,6 @@ import { Papel } from './papel.model';
 export class PapelComponent implements OnInit {
 
   private Papel: Papel[];
-
   constructor(private _papelService: PapelService) { }
 
   ngOnInit() {
@@ -27,13 +27,9 @@ export class PapelComponent implements OnInit {
         .subscribe(null,
           err => {
             alert("O papel não foi apagado!");
-
             // Revert the view back to its original state
             this.Papel.splice(index, 0, papel);
           });
     }
-
-    console.log('Papel', papel)
   }
-
 }

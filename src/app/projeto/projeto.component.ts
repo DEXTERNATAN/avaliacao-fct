@@ -1,7 +1,7 @@
 import { ProjetoService } from 'app/projeto/projeto.service';
 import { Component, OnInit } from '@angular/core';
-import { Projeto } from './projeto.model';
 
+import { Projeto } from './projeto.model';
 
 @Component({
   selector: 'mt-projeto',
@@ -11,7 +11,6 @@ import { Projeto } from './projeto.model';
 export class ProjetoComponent implements OnInit {
 
   private Projeto: Projeto[];
-
   constructor(private _projetoService: ProjetoService) { }
 
   ngOnInit() {
@@ -31,10 +30,5 @@ export class ProjetoComponent implements OnInit {
             this.Projeto.splice(index, 0, projeto);
           });
     }
-
-    console.log('Projeto', projeto)
   }
-
-
-
 }

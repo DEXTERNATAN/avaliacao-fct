@@ -29,19 +29,14 @@ export class ColaboradorService {
         this.options = new RequestOptions({ headers: this.headers });
     }
 
-
     getColaborador(): Observable<Colaborador[]> {
         return this._http.get(`${MEAT_API}/colaborador`)
-            //.do(response => console.log(response))
             .map(response => response.json())
-        //.catch(ErrorHandler.handleError)
     }
 
     getColaboradorId(id) {
         return this._http.get(`${MEAT_API}/colaborador/${id}`)
-            //.do(response => console.log(response.json()))
             .map(response => response.json())
-        //.catch(ErrorHandler.handleError)
     }
 
     addColaborador(colaborador) {
@@ -50,7 +45,6 @@ export class ColaboradorService {
     }
 
     deleteColaborador(id) {
-        console.log(`${MEAT_API}/colaborador/${id}`)
         return this._http.delete(`${MEAT_API}/colaborador/${id}`)
             .map(response => response.json())
     }

@@ -23,17 +23,14 @@ export class PesosService {
         this.options = new RequestOptions({ headers: this.headers });
     }
 
-
     getPesos(): Observable<Pesos[]> {
         return this._http.get(`${MEAT_API}/pesos`)
             .map(response => response.json())
-        
     }
 
     getPesosId(id) {
         return this._http.get(`${MEAT_API}/pesos/${id}`)
         .map(response => response.json())
-        
     }
 
     addPesos(pesos) {
@@ -42,7 +39,6 @@ export class PesosService {
     }
 
     deletePesos(id) {
-        console.log(`${MEAT_API}/pesos/${id}`)
         return this._http.delete(`${MEAT_API}/pesos/${id}`)
             .map(response => response.json())
     }
@@ -51,6 +47,4 @@ export class PesosService {
         return this._http.put(`${MEAT_API}/pesos/${id}`, JSON.stringify(pesos), this.options)
             .map(response => response.json())
     }
-    
-
 }

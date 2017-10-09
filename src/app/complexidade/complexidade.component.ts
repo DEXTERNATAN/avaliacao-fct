@@ -11,7 +11,6 @@ import { ComplexidadeService } from 'app/complexidade/complexidade.service';
 export class ComplexidadeComponent implements OnInit {
 
   private Complexidade: Complexidade[];
-
   constructor(private _complexidadeService: ComplexidadeService) { }
 
   ngOnInit() {
@@ -31,10 +30,5 @@ export class ComplexidadeComponent implements OnInit {
             this.Complexidade.splice(index, 0, complexidade);
           });
     }
-
-    console.log('Complexidade', complexidade)
   }
-
-
-
 }

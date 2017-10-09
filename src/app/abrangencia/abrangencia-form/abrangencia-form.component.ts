@@ -44,8 +44,7 @@ export class AbrangenciaFormComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log('instanciacao: ', this.abrangencia)
-
+        
         var id = this.route.params.subscribe(params => {
             this.idResource = params['id'];
             this.title = this.idResource ? 'Editar Abrangência' : 'Nova Abrangência';
@@ -72,7 +71,6 @@ export class AbrangenciaFormComponent implements OnInit {
 
 
         if (this.idResource) {
-            //debugger
             result = this.abrangenciaService.updateAbrangencia(this.idResource, userValue);
         } else {
             result = this.abrangenciaService.addAbrangencia(userValue);
@@ -84,7 +82,6 @@ export class AbrangenciaFormComponent implements OnInit {
     onCancel() {
         this.navigateBack();
     }
-
 
     private navigateBack() {
         this.router.navigate(['/abrangencia']);
@@ -111,5 +108,4 @@ export class AbrangenciaFormComponent implements OnInit {
             }
         }
     }
-
 }

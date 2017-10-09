@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, Route, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+
 import { Projeto } from './../projeto.model';
 import { ProjetoService } from './../projeto.service';
 
@@ -45,8 +46,6 @@ export class ProjetoFormComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log('instanciacao: ', this.projeto)
-
         var id = this.route.params.subscribe(params => {
             this.idResource = params['id'];
             this.title = this.idResource ? 'Editar Projeto' : 'Novo Projeto';
@@ -71,14 +70,11 @@ export class ProjetoFormComponent implements OnInit {
         var result,
             userValue = this.formProjeto.value;
 
-
         if (this.idResource) {
-            //debugger
             result = this.projetoService.updateProjeto(this.idResource, userValue);
         } else {
             result = this.projetoService.addProjeto(userValue);
         }
-
         result.subscribe(data => this.router.navigate(['projeto']));
     }
 
@@ -86,9 +82,7 @@ export class ProjetoFormComponent implements OnInit {
         this.navigateBack();
     }
 
-
     private navigateBack() {
         this.router.navigate(['/projeto']);
     }
-
 }

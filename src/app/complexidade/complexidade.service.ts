@@ -23,19 +23,14 @@ export class ComplexidadeService {
         this.options = new RequestOptions({ headers: this.headers });
     }
 
-
     getComplexidade(): Observable<Complexidade[]> {
         return this._http.get(`${MEAT_API}/complexidade`)
-            .do(response => console.log(response))
             .map(response => response.json())
-            //.catch(ErrorHandler.handleError)
     }
 
     getComplexidadeId(id) {
         return this._http.get(`${MEAT_API}/complexidade/${id}`)
-        .do(response => console.log(response.json()))
-        .map(response => response.json())
-        //.catch(ErrorHandler.handleError)
+            .map(response => response.json())
     }
 
     addComplexidade(complexidade) {
@@ -44,7 +39,6 @@ export class ComplexidadeService {
     }
 
     deleteComplexidade(id) {
-        console.log(`${MEAT_API}/complexidade/${id}`)
         return this._http.delete(`${MEAT_API}/complexidade/${id}`)
             .map(response => response.json())
     }
@@ -53,6 +47,4 @@ export class ComplexidadeService {
         return this._http.put(`${MEAT_API}/complexidade/${id}`, JSON.stringify(complexidade), this.options)
             .map(response => response.json())
     }
-    
-
 }

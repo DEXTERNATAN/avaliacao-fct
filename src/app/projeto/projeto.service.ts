@@ -23,19 +23,14 @@ export class ProjetoService {
         this.options = new RequestOptions({ headers: this.headers });
     }
 
-
     getProjeto(): Observable<Projeto[]> {
         return this._http.get(`${MEAT_API}/projeto`)
-            //.do(response => console.log(response))
             .map(response => response.json())
-            //.catch(ErrorHandler.handleError)
     }
 
     getProjetoId(id) {
         return this._http.get(`${MEAT_API}/projeto/${id}`)
-        //.do(response => console.log(response.json()))
         .map(response => response.json())
-        //.catch(ErrorHandler.handleError)
     }
 
     addProjeto(projeto) {
@@ -44,7 +39,6 @@ export class ProjetoService {
     }
 
     deleteProjeto(id) {
-        console.log(`${MEAT_API}/projeto/${id}`)
         return this._http.delete(`${MEAT_API}/projeto/${id}`)
             .map(response => response.json())
     }
@@ -53,5 +47,4 @@ export class ProjetoService {
         return this._http.put(`${MEAT_API}/projeto/${id}`, JSON.stringify(projeto), this.options)
             .map(response => response.json())
     }
-    
 }

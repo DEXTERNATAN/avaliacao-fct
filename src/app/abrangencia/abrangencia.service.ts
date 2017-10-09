@@ -7,7 +7,6 @@ import 'rxjs/add/operator/do'
 import 'rxjs/add/operator/catch'
 
 import { Observable } from 'rxjs/Observable';
-
 import { Abrangencia } from './abrangencia.model';
 
 @Injectable()
@@ -23,19 +22,14 @@ export class AbrangenciaService {
         this.options = new RequestOptions({ headers: this.headers });
     }
 
-
     getAbrangencia(): Observable<Abrangencia[]> {
         return this._http.get(`${MEAT_API}/abrangencia`)
-            //.do(response => console.log(response))
             .map(response => response.json())
-            //.catch(ErrorHandler.handleError)
     }
 
     getAbrangenciaId(id) {
         return this._http.get(`${MEAT_API}/abrangencia/${id}`)
-        //.do(response => console.log(response.json()))
         .map(response => response.json())
-        //.catch(ErrorHandler.handleError)
     }
 
     addAbrangencia(abrangencia) {
@@ -44,7 +38,6 @@ export class AbrangenciaService {
     }
 
     deleteAbrangencia(id) {
-        console.log(`${MEAT_API}/abrangencia/${id}`)
         return this._http.delete(`${MEAT_API}/abrangencia/${id}`)
             .map(response => response.json())
     }
@@ -53,6 +46,4 @@ export class AbrangenciaService {
         return this._http.put(`${MEAT_API}/abrangencia/${id}`, JSON.stringify(abrangencia), this.options)
             .map(response => response.json())
     }
-    
-
 }

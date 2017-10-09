@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, Route, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+
 import { Referencia } from './../referencia.model';
 import { ReferenciaService } from './../referencia.service';
 
@@ -43,9 +44,6 @@ export class ReferenciaFormComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log('instanciacao: ', this.referencia)
-        //console.log('Referência: ', this.formReferencia)
-
         var id = this.route.params.subscribe(params => {
             this.idResource = params['id'];
             this.title = this.idResource ? 'Editar Referência FCT' : 'Nova Referência FCT';
@@ -70,14 +68,11 @@ export class ReferenciaFormComponent implements OnInit {
         var result,
             userValue = this.formReferencia.value;
 
-
         if (this.idResource) {
-            //debugger
             result = this.referenciaService.updateReferencia(this.idResource, userValue);
         } else {
             result = this.referenciaService.addReferencia(userValue);
         }
-
         result.subscribe(data => this.router.navigate(['referencia']));
     }
 
@@ -85,9 +80,7 @@ export class ReferenciaFormComponent implements OnInit {
         this.navigateBack();
     }
 
-
     private navigateBack() {
         this.router.navigate(['/referencia']);
     }
-
 }

@@ -1,13 +1,13 @@
 import { colaboradorRouting } from './colaborador.routes';
 import { FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+
 import { ColaboradorService } from './colaborador.service';
-import { Colaborador } from './colaborador.model';
-
 import { ReferenciaService } from './../referencia/referencia.service';
-import { Referencia } from './../referencia/referencia.model';
-
 import { DivisaoService } from 'app/divisao/divisao.service';
+
+import { Colaborador } from './colaborador.model';
+import { Referencia } from './../referencia/referencia.model';
 import { Divisao } from './../divisao/divisao.model';
 
 @Component({
@@ -65,7 +65,5 @@ export class ColaboradorComponent implements OnInit {
           this.Colaborador.splice(index, 0, colaborador);
         });
     }
-
   }
-
 }

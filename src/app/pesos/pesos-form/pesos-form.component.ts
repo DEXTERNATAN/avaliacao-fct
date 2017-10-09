@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, Route, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+
 import { Pesos } from './../pesos.model';
 import { PesosService } from './../pesos.service';
 
@@ -44,10 +45,6 @@ export class PesosFormComponent implements OnInit {
     }
 
     ngOnInit() {
-         
-        //this.pesos.dtregistro = new Date(); 
-        console.log('instanciacao: ', this.pesos)
-
         var id = this.route.params.subscribe(params => {
             this.idResource = params['id'];
             this.title = this.idResource ? 'Editar Peso' : 'Novo Peso';
@@ -64,7 +61,6 @@ export class PesosFormComponent implements OnInit {
                         }
                     }
             })
-
         })
     }
 
@@ -72,15 +68,11 @@ export class PesosFormComponent implements OnInit {
         var result,
             userValue = this.formPesos.value;
 
-            console.log(this.formPesos);
-
         if (this.idResource) {
-            //debugger
             result = this.pesosService.updatePesos(this.idResource, userValue);
         } else {
             result = this.pesosService.addPesos(userValue);
         }
-
         result.subscribe(data => this.router.navigate(['pesos']));
     }
 
@@ -88,9 +80,7 @@ export class PesosFormComponent implements OnInit {
         this.navigateBack();
     }
 
-
     private navigateBack() {
         this.router.navigate(['/pesos']);
     }
-
 }

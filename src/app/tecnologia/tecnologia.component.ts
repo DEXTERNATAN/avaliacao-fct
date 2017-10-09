@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { TecnologiaService } from './tecnologia.service';
 import { Tecnologia } from './tecnologia.model';
 
@@ -10,7 +11,6 @@ import { Tecnologia } from './tecnologia.model';
 export class TecnologiaComponent implements OnInit {
 
   private Tecnologia: Tecnologia[];
-
   constructor(private _tecnologiaService: TecnologiaService) { }
 
   ngOnInit() {
@@ -32,8 +32,5 @@ export class TecnologiaComponent implements OnInit {
             this.Tecnologia.splice(index, 0, tecnologia);
           });
     }
-
-    console.log('Tecnologia', tecnologia)
   }
-
 }

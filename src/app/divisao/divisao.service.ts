@@ -23,7 +23,6 @@ export class DivisaoService {
         this.options = new RequestOptions({ headers: this.headers });
     }
 
-
     getDivisao(): Observable<Divisao[]> {
         return this._http.get(`${MEAT_API}/divisao`)
             .map(response => response.json())
@@ -31,8 +30,7 @@ export class DivisaoService {
 
     getDivisaoId(id) {
         return this._http.get(`${MEAT_API}/divisao/${id}`)
-               .map(response => response.json())
-        
+            .map(response => response.json())
     }
 
     addDivisao(divisao) {
@@ -41,7 +39,6 @@ export class DivisaoService {
     }
 
     deleteDivisao(id) {
-        console.log(`${MEAT_API}/divisao/${id}`)
         return this._http.delete(`${MEAT_API}/divisao/${id}`)
             .map(response => response.json())
     }

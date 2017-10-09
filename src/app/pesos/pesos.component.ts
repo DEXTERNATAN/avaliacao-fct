@@ -1,5 +1,6 @@
 import { PesosService } from 'app/pesos/pesos.service';
 import { Component, OnInit } from '@angular/core';
+
 import { Pesos } from './pesos.model';
 
 @Component({
@@ -10,7 +11,6 @@ import { Pesos } from './pesos.model';
 export class PesosComponent implements OnInit {
 
   private Pesos: Pesos[];
-
   constructor(private _pesosService: PesosService) { }
 
   ngOnInit() {
@@ -30,10 +30,5 @@ export class PesosComponent implements OnInit {
             this.Pesos.splice(index, 0, pesos);
           });
     }
-
-    console.log('Pesos', pesos)
   }
-
-
-
 }

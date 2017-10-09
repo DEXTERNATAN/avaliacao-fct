@@ -1,7 +1,7 @@
 import { ReferenciaService } from 'app/referencia/referencia.service';
 import { Component, OnInit } from '@angular/core';
-import { Referencia } from './referencia.model';
 
+import { Referencia } from './referencia.model';
 
 @Component({
   selector: 'mt-referencia',
@@ -11,7 +11,6 @@ import { Referencia } from './referencia.model';
 export class ReferenciaComponent implements OnInit {
 
   private Referencia: Referencia[];
-
   constructor(private _referenciaService: ReferenciaService) { }
 
   ngOnInit() {
@@ -31,10 +30,5 @@ export class ReferenciaComponent implements OnInit {
             this.Referencia.splice(index, 0, referencia);
           });
     }
-
-    console.log('Referencia', referencia)
   }
-
-
-
 }

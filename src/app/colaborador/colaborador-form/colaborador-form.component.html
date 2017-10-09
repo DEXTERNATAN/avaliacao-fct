@@ -22,17 +22,17 @@
 					<div class="box-body">
 						<div class="form-group" [ngClass]="{'has-error': (!formColaborador.controls['nome'].valid && formColaborador.controls['nome'].touched) }">
 							<label for="nome">Nome</label>
-							<input type="text" class="form-control" [(ngModel)]="colaborador.nome" formControlName="nome" id="nome" maxlength="50" placeholder="">
+							<input type="text" class="form-control" [(ngModel)]="colaborador.nome" formControlName="nome" id="nome" maxlength="50" placeholder="Escreva o nome completo do colaborador">
 							<span *ngIf="!formColaborador.controls['nome'].valid && formColaborador.controls['nome'].touched" class="help-block">O campo Nome é obrigatório!</span>
 						</div>
 						<div class="form-group" [ngClass]="{'has-error': (!formColaborador.controls['matricula'].valid && formColaborador.controls['matricula'].touched) }">
 							<label for="matricula">Matricula</label>
-							<input type="text" class="form-control" id="matricula" [(ngModel)]="colaborador.matricula" formControlName="matricula" maxlength="10" placeholder="">
+							<input type="text" class="form-control" id="matricula" [(ngModel)]="colaborador.matricula" formControlName="matricula" maxlength="9" placeholder="9999999-9">
 							<span *ngIf="!formColaborador.controls['matricula'].valid && formColaborador.controls['matricula'].touched" class="help-block">O campo Matrícula é obrigatório!</span>
 						</div>
 						<div class="form-group" [ngClass]="{'has-error': (!formColaborador.controls['telefone'].valid && formColaborador.controls['telefone'].touched) }">
 							<label for="telefone">Telefone</label>
-							<input type="text" class="form-control" id="telefone" [(ngModel)]="colaborador.telefone" formControlName="telefone" maxlength="11" placeholder="">
+							<input type="text" class="form-control" id="telefone" [(ngModel)]="colaborador.telefone" formControlName="telefone" maxlength="11" placeholder="Informe o prefixo do estado e depois o número do telefone no formato DD99999999">
 							<span *ngIf="!formColaborador.controls['telefone'].valid && formColaborador.controls['telefone'].touched" class="help-block">O campo Telefone é obrigatório!</span>
 						</div>
 						<div class="form-group" [ngClass]="{'has-error': (!formColaborador.controls['especialidade'].valid && formColaborador.controls['especialidade'].touched) }">
@@ -50,12 +50,12 @@
 						</div>
 						<div class="form-group" [ngClass]="{'has-error': (!formColaborador.controls['salario'].valid && formColaborador.controls['salario'].touched) }">
 							<label for="salario">Salário</label>
-							<input type="text" class="form-control" [(ngModel)]="colaborador.salario" formControlName="salario" id="salario" maxlength="12" placeholder="">
+							<input type="text" class="form-control" [(ngModel)]="colaborador.salario" formControlName="salario" id="salario" maxlength="12" placeholder="Informar o valor do salário">
 							<span *ngIf="!formColaborador.controls['salario'].valid && formColaborador.controls['salario'].touched" class="help-block">O campo Salário é obrigatório!</span>
 						</div>
 						<div class="form-group" [ngClass]="{'has-error': (!formColaborador.controls['percentualSalario'].valid && formColaborador.controls['percentualSalario'].touched) }">
 							<label for="percentualSalario">8,5% do Salário</label>
-							<input type="text" class="form-control" [(ngModel)]="colaborador.percentualSalario" formControlName="percentualSalario" id="percentualSalario" maxlength="12" placeholder="">
+							<input type="text" class="form-control" [(ngModel)]="colaborador.percentualSalario" formControlName="percentualSalario" id="percentualSalario" maxlength="12" placeholder="Informar o valor correspondente a 8,5% do salário">
 							<span *ngIf="!formColaborador.controls['percentualSalario'].valid && formColaborador.controls['percentualSalario'].touched" class="help-block">O campo 8,5% do Salário é obrigatório!</span>
 						</div>
 						<div class="form-group" [ngClass]="{'has-error': (!formColaborador.controls['referencia'].valid && formColaborador.controls['referencia'].touched)}">

@@ -50,7 +50,6 @@ export class ColaboradorFormComponent implements OnInit {
         this.getReferencia();
         this.getDivisao();
 
-
         var id = this.route.params.subscribe(params => {
             this.idResource = params['id'];
             this.title = this.idResource ? 'Editar Colaborador' : 'Novo Colaborador';
@@ -67,7 +66,6 @@ export class ColaboradorFormComponent implements OnInit {
                         }
                     }
             })
-
         })
     }
 
@@ -85,7 +83,6 @@ export class ColaboradorFormComponent implements OnInit {
         result.subscribe(data => this.router.navigate(['colaborador']));
     }
 
-
     getReferencia(){
         this._referenciaService.getReferencia().subscribe(referencias => {
             this.Referencia = referencias
@@ -98,7 +95,6 @@ export class ColaboradorFormComponent implements OnInit {
         })
     }
 
-
     onCancel() {
         this.navigateBack();
     }
@@ -106,7 +102,6 @@ export class ColaboradorFormComponent implements OnInit {
     private navigateBack() {
         this.router.navigate(['/colaborador']);
     }
-
 
     hasErrors(): boolean {
         var hasErrors: boolean = false;
@@ -119,5 +114,4 @@ export class ColaboradorFormComponent implements OnInit {
         }
         return hasErrors;
     }
-
 }

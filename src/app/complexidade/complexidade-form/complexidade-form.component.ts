@@ -46,8 +46,6 @@ export class ComplexidadeFormComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log('instanciacao: ', this.complexidade)
-
         var id = this.route.params.subscribe(params => {
             this.idResource = params['id'];
             this.title = this.idResource ? 'Editar Complexidade' : 'Nova Complexidade';
@@ -71,7 +69,6 @@ export class ComplexidadeFormComponent implements OnInit {
     save() {
         var result,
             userValue = this.formComplexidade.value;
-
 
         if (this.idResource) {
             //debugger
@@ -112,5 +109,4 @@ export class ComplexidadeFormComponent implements OnInit {
             }
         }
     }
-
 }

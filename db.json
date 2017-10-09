@@ -50,9 +50,9 @@
   "abrangencia": [
     {
       "atributo": "a",
-      "classificacao": "1",
+      "classificacao": "2",
       "tipo": "Desenvolvimento",
-      "nome": "Moderado",
+      "nome": "Significativa",
       "descricao": "- Conhece parcialmente o negócio; - Necessita de auxilio proposição de soluções; - Executa proposições com oportunidades de melhoria;",
       "id": 1
     },
@@ -71,14 +71,6 @@
       "nome": "Muito",
       "descricao": "- Reduzir custo; - Reuso; - Velocidade (está relacionado ao conhecimento do negocio vs tempo resposta); - Cenário novo; - Referências para discutir necessidades de novos projetos; - Facilidade de encontrar soluções; - Transita entre diferente tecnologias/assuntos; - Histórico de sucesso nas proposições; - Visão sistêmica; - Domínio do negócio;",
       "id": 3
-    },
-    {
-      "atributo": "f",
-      "classificacao": "3",
-      "tipo": "Desenvolvimento",
-      "nome": "Muito",
-      "descricao": "testevvvvv",
-      "id": 4
     }
   ],
   "complexidade": [
@@ -183,7 +175,7 @@
       "especialidade": "Desenvolvimento de Sistemas",
       "salario": "7448.59",
       "percentualSalario": "654.69",
-      "referencia": "2",
+      "referencia": "1",
       "divisao": "15",
       "id": 1
     },
@@ -194,8 +186,8 @@
       "especialidade": "Desenvolvimento de Sistemas",
       "salario": "8944.96",
       "percentualSalario": "856.65",
-      "referencia": "1",
-      "divisao": "15",
+      "referencia": "4",
+      "divisao": "16",
       "id": 2
     }
   ],

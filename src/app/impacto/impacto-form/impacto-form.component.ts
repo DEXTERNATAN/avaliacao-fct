@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, Route, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+
 import { Impacto } from './../impacto.model';
 import { ImpactoService } from './../impacto.service';
 
@@ -44,8 +45,6 @@ export class ImpactoFormComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log('instanciacao: ', this.impacto)
-
         var id = this.route.params.subscribe(params => {
             this.idResource = params['id'];
             this.title = this.idResource ? 'Editar o Impacto' : 'Novo Impacto';
@@ -62,7 +61,6 @@ export class ImpactoFormComponent implements OnInit {
                         }
                     }
             })
-
         })
     }
 
@@ -70,21 +68,17 @@ export class ImpactoFormComponent implements OnInit {
         var result,
             userValue = this.formImpacto.value;
 
-
         if (this.idResource) {
-            //debugger
             result = this.impactoService.updateImpacto(this.idResource, userValue);
         } else {
             result = this.impactoService.addImpacto(userValue);
         }
-
         result.subscribe(data => this.router.navigate(['impacto']));
     }
 
     onCancel() {
         this.navigateBack();
     }
-
 
     private navigateBack() {
         this.router.navigate(['/impacto']);
@@ -111,5 +105,4 @@ export class ImpactoFormComponent implements OnInit {
             }
         }
     }
-
 }

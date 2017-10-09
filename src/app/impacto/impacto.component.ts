@@ -11,7 +11,6 @@ import { Impacto } from './impacto.model';
 export class ImpactoComponent implements OnInit {
 
   private Impacto: Impacto[];
-
   constructor(private _impactoService: ImpactoService) { }
 
   ngOnInit() {
@@ -31,8 +30,5 @@ export class ImpactoComponent implements OnInit {
             this.Impacto.splice(index, 0, impacto);
           });
     }
-
-    console.log('Impacto', Impacto)
   }
-
 }

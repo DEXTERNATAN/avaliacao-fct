@@ -32,7 +32,7 @@
 						</div>
 						<div class="form-group">
 							<label for="nome">Nome</label>
-							<input type="text" class="form-control" id="nome" [(ngModel)]="papeis.nome" formControlName="nome" placeholder="">
+							<input type="text" class="form-control" id="nome" [(ngModel)]="papeis.nome" formControlName="nome" placeholder="Informe o nome do Papel">
 							<span *ngIf="!formPapel.controls['nome'].valid && formPapel.controls['nome'].touched" class="help-block">O campo Nome é obrigatório</span>
 						</div>
 						<div class="form-group" [ngClass]="{'has-error': (!formPapel.controls['descricao'].valid && formPapel.controls['descricao'].touched) }">

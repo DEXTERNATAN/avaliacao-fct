@@ -22,19 +22,14 @@ export class ReferenciaService {
         this.options = new RequestOptions({ headers: this.headers });
     }
 
-
     getReferencia(): Observable<Referencia[]> {
         return this._http.get(`${MEAT_API}/referencia`)
-            //.do(response => console.log(response))
             .map(response => response.json())
-            //.catch(ErrorHandler.handleError)
     }
 
     getReferenciaId(id) {
         return this._http.get(`${MEAT_API}/referencia/${id}`)
-        //.do(response => console.log(response.json()))
         .map(response => response.json())
-        //.catch(ErrorHandler.handleError)
     }
 
     addReferencia(referencia) {
@@ -43,7 +38,6 @@ export class ReferenciaService {
     }
 
     deleteReferencia(id) {
-        console.log(`${MEAT_API}/referencia/${id}`)
         return this._http.delete(`${MEAT_API}/referencia/${id}`)
             .map(response => response.json())
     }
@@ -52,6 +46,4 @@ export class ReferenciaService {
         return this._http.put(`${MEAT_API}/referencia/${id}`, JSON.stringify(referencia), this.options)
             .map(response => response.json())
     }
-    
-
 }

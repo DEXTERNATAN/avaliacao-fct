@@ -45,8 +45,6 @@ export class DivisaoFormComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log('instanciacao: ', this.divisaos)
-
         var id = this.route.params.subscribe(params => {
             this.idResource = params['id'];
             this.title = this.idResource ? 'Editar Divisão' : 'Nova Divisão';
@@ -71,9 +69,7 @@ export class DivisaoFormComponent implements OnInit {
         var result,
             userValue = this.formDivisao.value;
 
-
         if (this.idResource) {
-            //debugger
             result = this.divisaoService.updateDivisao(this.idResource, userValue);
         } else {
             result = this.divisaoService.addDivisao(userValue);
@@ -89,5 +85,4 @@ export class DivisaoFormComponent implements OnInit {
     private navigateBack() {
         this.router.navigate(['/divisao']);
     }
-
 }

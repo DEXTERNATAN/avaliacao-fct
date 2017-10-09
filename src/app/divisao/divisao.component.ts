@@ -10,7 +10,6 @@ import { Divisao } from './divisao.model';
 export class DivisaoComponent implements OnInit {
 
   private Divisao: Divisao[];
-
   constructor(private _divisaoService: DivisaoService) { }
 
   ngOnInit() {
@@ -30,8 +29,5 @@ export class DivisaoComponent implements OnInit {
             this.Divisao.splice(index, 0, divisao);
           });
     }
-
-    console.log('Divisao', divisao)
   }
-
 }
