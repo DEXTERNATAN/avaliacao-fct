@@ -216,5 +216,25 @@
       "dtregistro": null,
       "id": 2
     }
+  ],
+  "projeto": [
+    {
+      "titulo": "Intercâmbio de Informações",
+      "codservico": "10115",
+      "descricao": "Intercâmbio de Informações da união Européia",
+      "dtinicio": "01/01/2017",
+      "dtfim": "31/07/2017",
+      "abrangencia": "Especialista e Líder de projeto.",
+      "id": 1
+    },
+    {
+      "id": 2,
+      "titulo": "ECAT",
+      "codservico": "10445",
+      "descricao": "ECAT - COMPARTILHAMENTO DE INFORMAÇÕES ENTRE ADMIN...",
+      "dtinicio": "01/01/2017",
+      "dtfim": "31/07/2017",
+      "abrangencia": "Projeto de software"
+    }
   ]
 }
