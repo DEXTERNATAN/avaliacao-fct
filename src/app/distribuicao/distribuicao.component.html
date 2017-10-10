@@ -1,0 +1,67 @@
+<section class="content-header">
+	<h1>
+		Distribuição de Valores para Cálculo da FCT
+	</h1>
+	<ol class="breadcrumb">
+		<li>
+			<a href="#"><i class="fa fa-home"></i> Home</a></li>
+		<li class="active">Distribuição</li>
+	</ol>
+</section>
+<section class="content">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="box">
+				<div class="box-header">
+					<h3 class="box-title">Distrbuições Cadastradas</h3>
+					<div class="box-tools">
+						<a routerLink="/distribuicao/novo" class="btn btn-sm pull-left btn-flat bg-purple margin-right-10" ><i class="fa fa-plus"></i> <b>Nova Distribuição</b></a>
+						<div class="input-group input-group-sm pull-right" style="width: 150px;">
+							<input type="text" ng-model="searchText" name="table_search" class="form-control pull-right" placeholder="Pesquisar">
+						</div>
+					</div>
+				</div>
+				<!-- /.box-header -->
+				<div class="box-body table-responsive no-padding">
+					<table class="table table-hover">
+						<tbody>
+							<tr>
+								<th style="width: 10px">#</th>
+								<th>Valor a ser distribuído em FCT</th>
+								<th>Pontuação Mínima registrada</th>
+								<th>Pontuação Máxima registrada</th>
+								<th>Diferença entre as pontuações</th>
+								<th>Amplitude calculada das faixas</th>
+								<th>Quantidade de faixas definida</th>
+								<th>Data do registro</th>
+								<th></th>
+								<th></th>
+							</tr>
+							<tr *ngFor="let distribuicao of Distribuicao">
+								<!-- | filter:searchText -->
+								<td>{{distribuicao.id}}</td>
+								<td>{{distribuicao.valor}}</td>
+								<td>{{distribuicao.pontuacaominima}}</td>
+								<td>{{distribuicao.pontuacaomaxima}}</td>
+								<td>{{distribuicao.diferenca}}</td>
+								<td>{{distribuicao.amplitudefaixas}}</td>
+								<td>{{distribuicao.qtdefaixas}}</td>
+								<td>{{distribuicao.dtregistro}}</td>
+								<td>
+									<a [routerLink]="['/distribuicao', distribuicao.id]" class="btn  btn-xs bg-blue btn-flat">
+									<i class="fa fa-pencil"></i>
+									</a>
+								</td>
+								<td>
+									<button (click)="deleteDistribuicao(distribuicao)" type="button" class="btn  btn-xs bg-red btn-flat" ><i class="fa fa-remove"></i></button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<!-- /.box-body -->
+			</div>
+			<!-- /.box -->
+		</div>
+	</div>
+</section>

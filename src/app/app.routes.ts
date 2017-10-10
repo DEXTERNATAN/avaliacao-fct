@@ -8,6 +8,7 @@ import { ReferenciaComponent } from './referencia/referencia.component';
 import { ColaboradorComponent } from './colaborador/colaborador.component';
 import { PesosComponent } from './pesos/pesos.component';
 import { ProjetoComponent } from './projeto/projeto.component';
+import { DistribuicaoComponent } from './distribuicao/distribuicao.component';
 
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule }   from '@angular/router';
@@ -32,7 +33,8 @@ const appRoutes: Routes = [
     { path: 'colaborador', component: ColaboradorComponent },
     { path: 'impacto', component: ImpactoComponent },
     { path: 'pesos', component: PesosComponent },
-    { path: 'projeto', component: ProjetoComponent }
+    { path: 'projeto', component: ProjetoComponent },
+    { path: 'distribuicao', component: DistribuicaoComponent }
 ]
   
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);

@@ -228,5 +228,17 @@
       "dtfim": "31/07/2017",
       "abrangencia": "Projeto de software"
     }
+  ],
+  "distribuicao": [
+    {
+     "id": 1,
+     "valor": "52015.85",
+     "pontuacaominima": "45",
+     "pontuacaomaxima": "128",
+     "diferenca": "83",
+     "amplitudefaixas": "20.75",
+     "qtdefaixas": "4",
+     "dtregistro": "10/10/2017"
+    }
   ]
 }

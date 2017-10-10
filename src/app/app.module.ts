@@ -14,6 +14,7 @@ import { ReferenciaModule } from './referencia/referencia.module';
 import { ColaboradorModule } from './colaborador/colaborador.module';
 import { PesosModule } from './pesos/pesos.module';
 import { ProjetoModule } from './projeto/projeto.module';
+import { DistribuicaoModule } from './distribuicao/distribuicao.module';
 
 /* Routes */
 import { routing } from './app.routes';
@@ -27,6 +28,7 @@ import { referenciaRouting } from './referencia/referencia.routes';
 import { colaboradorRouting } from './colaborador/colaborador.routes';
 import { pesosRouting } from './pesos/pesos.routes';
 import { projetoRouting } from './projeto/projeto.routes';
+import { distribuicaoRouting } from './distribuicao/distribuicao.routes';
 
 /* Services */
 import { RestaurantsService } from './restaurants/restaurants.service';
@@ -39,6 +41,7 @@ import { ReferenciaService } from './referencia/referencia.service';
 import { ColaboradorService } from './colaborador/colaborador.service';
 import { PesosService } from './pesos/pesos.service';
 import { ProjetoService } from './projeto/projeto.service';
+import { DistribuicaoService } from './distribuicao/distribuicao.service';
 
 /* Components */
 import { AppComponent } from './app.component';
@@ -58,9 +61,9 @@ import { ReferenciaComponent } from './referencia/referencia.component';
 import { ColaboradorComponent } from './colaborador/colaborador.component';
 import { PesosComponent } from './pesos/pesos.component';
 import { ProjetoComponent } from './projeto/projeto.component';
+import { DistribuicaoComponent } from './distribuicao/distribuicao.component';
 import { DetailRestaurantComponent } from './detail-restaurant/detail-restaurant.component';
 //import { ComplexidadeFormComponent } from './complexidade/src/app/complexidade-form/complexidade-form.component';
-
 
 
 @NgModule({
@@ -99,6 +102,8 @@ import { DetailRestaurantComponent } from './detail-restaurant/detail-restaurant
     pesosRouting,
     ProjetoModule,
     projetoRouting,
+    DistribuicaoModule,
+    distribuicaoRouting,
     routing
     //RouterModule.forRoot(routing)
   ],
