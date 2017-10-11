@@ -1,13 +1,14 @@
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule }  from '@angular/router';
 import { HttpModule }  from '@angular/http';
 
+import { AtributoComponent } from './atributo.component';
+import { AtributoService } from 'app/atributo/atributo.service';
+import { AtributoFormComponent } from './atributo-form/atributo-form.component';
 
-import { AbrangenciaComponent } from './abrangencia.component';
-import { AbrangenciaService } from 'app/abrangencia/abrangencia.service';
-import { AbrangenciaFormComponent } from 'app/abrangencia/abrangencia-form/abrangencia-form.component';
 
 
 @NgModule({
@@ -18,10 +19,10 @@ import { AbrangenciaFormComponent } from 'app/abrangencia/abrangencia-form/abran
     RouterModule,
     HttpModule
   ],
-  providers: [ AbrangenciaService ],
+  providers: [ AtributoService ],
   declarations: [
-    AbrangenciaComponent,
-    AbrangenciaFormComponent
+    AtributoComponent,
+    AtributoFormComponent
   ]
 })
-export class AbrangenciaModule { }
+export class AtributoModule { }

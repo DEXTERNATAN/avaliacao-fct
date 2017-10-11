@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { TextMaskModule } from 'angular2-text-mask';
+
 
 /* Modules */
 import { AbrangenciaModule } from './abrangencia/abrangencia.module';
@@ -15,6 +17,7 @@ import { ColaboradorModule } from './colaborador/colaborador.module';
 import { PesosModule } from './pesos/pesos.module';
 import { ProjetoModule } from './projeto/projeto.module';
 import { DistribuicaoModule } from './distribuicao/distribuicao.module';
+import { AtributoModule } from './atributo/atributo.module';
 
 /* Routes */
 import { routing } from './app.routes';
@@ -29,6 +32,8 @@ import { colaboradorRouting } from './colaborador/colaborador.routes';
 import { pesosRouting } from './pesos/pesos.routes';
 import { projetoRouting } from './projeto/projeto.routes';
 import { distribuicaoRouting } from './distribuicao/distribuicao.routes';
+import { atributoRouting } from './atributo/atributo.routes';
+
 
 /* Services */
 import { RestaurantsService } from './restaurants/restaurants.service';
@@ -42,6 +47,7 @@ import { ColaboradorService } from './colaborador/colaborador.service';
 import { PesosService } from './pesos/pesos.service';
 import { ProjetoService } from './projeto/projeto.service';
 import { DistribuicaoService } from './distribuicao/distribuicao.service';
+import { AtributoService } from './atributo/atributo.service';
 
 /* Components */
 import { AppComponent } from './app.component';
@@ -62,6 +68,7 @@ import { ColaboradorComponent } from './colaborador/colaborador.component';
 import { PesosComponent } from './pesos/pesos.component';
 import { ProjetoComponent } from './projeto/projeto.component';
 import { DistribuicaoComponent } from './distribuicao/distribuicao.component';
+import { AtributoComponent } from './atributo/atributo.component';
 import { DetailRestaurantComponent } from './detail-restaurant/detail-restaurant.component';
 //import { ComplexidadeFormComponent } from './complexidade/src/app/complexidade-form/complexidade-form.component';
 
@@ -82,6 +89,7 @@ import { DetailRestaurantComponent } from './detail-restaurant/detail-restaurant
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
+    TextMaskModule,
     DivisaoModule,
     divisaoRouting,
     AbrangenciaModule,
@@ -104,6 +112,8 @@ import { DetailRestaurantComponent } from './detail-restaurant/detail-restaurant
     projetoRouting,
     DistribuicaoModule,
     distribuicaoRouting,
+    AtributoModule,
+    atributoRouting,
     routing
     //RouterModule.forRoot(routing)
   ],

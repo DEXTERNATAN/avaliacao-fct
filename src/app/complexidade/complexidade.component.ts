@@ -18,11 +18,11 @@ export class ComplexidadeComponent implements OnInit {
   }
 
   deleteComplexidade(complexidade){
-    if (confirm("Tem certeza que quer APAGAR a Complexidade #" + complexidade.id + " ?")) {
+    if (confirm("Tem certeza que quer APAGAR a Complexidade #" + complexidade.id_complexidade + " ?")) {
       var index = this.Complexidade.indexOf(complexidade);
       this.Complexidade.splice(index, 1);
 
-      this._complexidadeService.deleteComplexidade(complexidade.id)
+      this._complexidadeService.deleteComplexidade(complexidade.id_complexidade)
         .subscribe(null,
           err => {
             alert("A Complexidade não foi apagada!");

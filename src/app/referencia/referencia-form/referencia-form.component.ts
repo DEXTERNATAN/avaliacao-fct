@@ -16,6 +16,10 @@ export class ReferenciaFormComponent implements OnInit {
     title: string;
     referencia: Referencia = new Referencia();
     idResource: any;
+    
+    public maskData = [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/];
+    public maskValor = [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, '.', /\d/, /\d/];
+
 
     constructor(
         formBuilder: FormBuilder,
@@ -25,9 +29,9 @@ export class ReferenciaFormComponent implements OnInit {
     ) {
         this.formReferencia = formBuilder.group({
             cargo: [null, Validators.required],
-            numreferencia: [null, Validators.required],
-            valorreferencia: [null, Validators.required],
-            dtatualizacao: [null, Validators.required]
+            num_referencia: [null, Validators.required],
+            valor_referencia: [null, Validators.required],
+            dt_atualizacao: [null, Validators.required]
         })
     }
 
@@ -44,8 +48,8 @@ export class ReferenciaFormComponent implements OnInit {
     }
 
     ngOnInit() {
-        var id = this.route.params.subscribe(params => {
-            this.idResource = params['id'];
+        var id_referencia = this.route.params.subscribe(params => {
+            this.idResource = params['id_referencia'];
             this.title = this.idResource ? 'Editar Referência FCT' : 'Nova Referência FCT';
 
             if (!this.idResource)
@@ -53,7 +57,7 @@ export class ReferenciaFormComponent implements OnInit {
 
             this.referenciaService.getReferenciaId(this.idResource).subscribe(referencia => {
                 referencia = this.referencia = referencia
-                console.log(referencia.id),
+                console.log(referencia.id_referencia),
                     response => {
                         if (response.status == 404) {
                             this.router.navigate(['referencia'])

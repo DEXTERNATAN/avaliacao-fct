@@ -18,11 +18,11 @@ export class ImpactoComponent implements OnInit {
   }
 
   deleteImpacto(impacto){
-    if (confirm("Tem certeza que quer APAGAR o Impacto #" + impacto.id + " ?")) {
+    if (confirm("Tem certeza que quer APAGAR o Impacto #" + impacto.id_impacto + " ?")) {
       var index = this.Impacto.indexOf(impacto);
       this.Impacto.splice(index, 1);
 
-      this._impactoService.deleteImpacto(impacto.id)
+      this._impactoService.deleteImpacto(impacto.id_impacto)
         .subscribe(null,
           err => {
             alert("O Impacto não foi apagado!");

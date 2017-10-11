@@ -45,8 +45,8 @@ export class ImpactoFormComponent implements OnInit {
     }
 
     ngOnInit() {
-        var id = this.route.params.subscribe(params => {
-            this.idResource = params['id'];
+        var id_impacto = this.route.params.subscribe(params => {
+            this.idResource = params['id_impacto'];
             this.title = this.idResource ? 'Editar o Impacto' : 'Novo Impacto';
 
             if (!this.idResource)
@@ -54,7 +54,7 @@ export class ImpactoFormComponent implements OnInit {
 
             this.impactoService.getImpactoId(this.idResource).subscribe(impacto => {
                 impacto = this.impacto = impacto
-                console.log(impacto.id),
+                console.log(impacto.id_impacto),
                     response => {
                         if (response.status == 404) {
                             this.router.navigate(['impacto'])

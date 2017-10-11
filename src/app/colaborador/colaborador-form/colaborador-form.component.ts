@@ -51,7 +51,7 @@ export class ColaboradorFormComponent implements OnInit {
         this.getDivisao();
 
         var id = this.route.params.subscribe(params => {
-            this.idResource = params['id'];
+            this.idResource = params['id_colaborador'];
             this.title = this.idResource ? 'Editar Colaborador' : 'Novo Colaborador';
 
             if (!this.idResource)
@@ -59,7 +59,7 @@ export class ColaboradorFormComponent implements OnInit {
 
             this.colaboradorService.getColaboradorId(this.idResource).subscribe(colaborador => {
                 colaborador = this.colaborador = colaborador
-                console.log(colaborador.id),
+                console.log(colaborador.id_colaborador),
                     response => {
                         if (response.status == 404) {
                             this.router.navigate(['colaborador'])

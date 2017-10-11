@@ -45,16 +45,17 @@ export class AbrangenciaFormComponent implements OnInit {
 
     ngOnInit() {
         
-        var id = this.route.params.subscribe(params => {
-            this.idResource = params['id'];
+        var id_abrangencia = this.route.params.subscribe(params => {
+            this.idResource = params['id_abrangencia'];
             this.title = this.idResource ? 'Editar Abrangência' : 'Nova Abrangência';
+
+            console.log("ID RESOURCE > " + this.idResource);
 
             if (!this.idResource)
                 return;
-
+               
             this.abrangenciaService.getAbrangenciaId(this.idResource).subscribe(abrangencia => {
                 abrangencia = this.abrangencia = abrangencia
-                console.log(abrangencia.id),
                     response => {
                         if (response.status == 404) {
                             this.router.navigate(['abrangencia'])

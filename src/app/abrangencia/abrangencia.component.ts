@@ -19,11 +19,11 @@ export class AbrangenciaComponent implements OnInit {
   }
 
   deleteAbrangencia(abrangencia){
-    if (confirm("Tem certeza que quer APAGAR a Abrangência #" + abrangencia.id + " ?")) {
+    if (confirm("Tem certeza que quer APAGAR a Abrangência #" + abrangencia.id_abrangencia + " ?")) {
       var index = this.Abrangencia.indexOf(abrangencia);
       this.Abrangencia.splice(index, 1);
 
-      this._abrangenciaService.deleteAbrangencia(abrangencia.id)
+      this._abrangenciaService.deleteAbrangencia(abrangencia.id_abrangencia)
         .subscribe(null,
           err => {
             alert("A abrangência não foi apagada!");

@@ -10,10 +10,12 @@ import { Observable } from 'rxjs/Observable';
 
 import { Colaborador } from './colaborador.model';
 import { Divisao } from './../divisao/divisao.model';
-import { DivisaoService } from 'app/divisao/divisao.service';
-import { divisaoRouting } from './../divisao/divisao.routes';
-import { ReferenciaService } from './../referencia/referencia.service';
 import { Referencia } from './../referencia/referencia.model';
+
+import { DivisaoService } from 'app/divisao/divisao.service';
+import { ReferenciaService } from './../referencia/referencia.service';
+
+import { divisaoRouting } from './../divisao/divisao.routes';
 import { referenciaRouting } from './../referencia/referencia.routes';
 
 @Injectable()

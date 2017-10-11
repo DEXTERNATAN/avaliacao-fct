@@ -1,7 +1,7 @@
 export class Referencia {
-    id: number;
+    id_referencia: number;
     cargo: string;
-    numreferencia: string;
-    valorreferencia: string;
-    dtatualizacao: string;
+    num_referencia: string;
+    valor_referencia: string;
+    dt_atualizacao: string;
 }

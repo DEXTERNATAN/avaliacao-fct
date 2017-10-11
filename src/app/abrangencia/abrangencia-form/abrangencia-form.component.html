@@ -21,6 +21,8 @@
 					{{debug()}}
 				</div>
 				<form role="form" [formGroup]="formAbrangencia" (ngSubmit)="save()">
+					{{"ABRANGENCIA ID = " + abrangencia.id_abrangencia}}
+					
 					<div class="box-body">
 						<div class="form-group" [ngClass]="{'has-error': (!formAbrangencia.controls['atributo'].valid && formAbrangencia.controls['atributo'].touched) }">
 							<label for="atributo">Atributo</label>

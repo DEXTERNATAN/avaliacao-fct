@@ -6,7 +6,7 @@ import { ImpactoComponent	 } from './impacto.component';
 const impactoRoutes: Routes = [
 	{ path: 'impacto', component: ImpactoComponent, pathMatch: 'full' },
   { path: 'impacto/novo', component: ImpactoFormComponent },
-	{ path: 'impacto/:id', component: ImpactoFormComponent }
+	{ path: 'impacto/:id_impacto', component: ImpactoFormComponent }
 ];
 
 export const impactoRouting = RouterModule.forChild(impactoRoutes);

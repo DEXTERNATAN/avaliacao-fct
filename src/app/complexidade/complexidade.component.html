@@ -37,14 +37,14 @@
                                 </tr>
                                 <tr *ngFor="let complexidade of Complexidade">
                                     <!-- | filter:searchText -->
-                                    <td>{{complexidade.id}}</td>
+                                    <td>{{complexidade.id_complexidade}}</td>
                                     <td>{{complexidade.atributo}}</td>
                                     <td>{{complexidade.classificacao}}</td>
                                     <td>{{complexidade.tipo}}</td>
                                     <td>{{complexidade.nome}}</td>
                                     <td>{{complexidade.descricao}}</td>
                                     <td>
-                                        <a [routerLink]="['/complexidade', complexidade.id]" class="btn  btn-xs bg-blue btn-flat">
+                                        <a [routerLink]="['/complexidade', complexidade.id_complexidade]" class="btn  btn-xs bg-blue btn-flat">
                                         <i class="fa fa-pencil"></i>
                                         </a>
                                     </td>

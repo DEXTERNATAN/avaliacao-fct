@@ -37,14 +37,14 @@
                             </tr>
                             <tr *ngFor="let impacto of Impacto">
                                 <!-- | filter:searchText -->
-                                <td>{{impacto.id}}</td>
+                                <td>{{impacto.id_impacto}}</td>
                                 <td>{{impacto.atributo}}</td>
                                 <td>{{impacto.classificacao}}</td>
                                 <td>{{impacto.tipo}}</td>
                                 <td>{{impacto.nome}}</td>
                                 <td>{{impacto.descricao}}</td>
                                 <td>
-                                    <a [routerLink]="['/impacto', impacto.id]" class="btn  btn-xs bg-blue btn-flat">
+                                    <a [routerLink]="['/impacto', impacto.id_impacto]" class="btn  btn-xs bg-blue btn-flat">
                                     <i class="fa fa-pencil"></i>
                                     </a>
                                 </td>

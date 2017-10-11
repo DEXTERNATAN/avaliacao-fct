@@ -25,12 +25,12 @@ export class DistribuicaoFormComponent implements OnInit {
     ) {
         this.formDistribuicao = formBuilder.group({
             valor: [null, Validators.required],
-            pontuacaominima: [null, Validators.required],
-            pontuacaomaxima: [null, Validators.required],
-            diferenca: [null, Validators.required],
-            amplitudefaixas: [null, Validators.required],
+            pontuacaominima: [null],
+            pontuacaomaxima: [null],
+            diferenca: [null],
+            amplitudefaixas: [null],
             qtdefaixas: [null, Validators.required],
-            dtregistro: [null, Validators.required]
+            dtregistro: [null]
         })
     }
 

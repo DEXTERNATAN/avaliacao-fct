@@ -1,5 +1,5 @@
 export class Abrangencia {
-    id: number;
+    id_abrangencia: number;
     atributo: string;
     classificacao: number;
     tipo: string;

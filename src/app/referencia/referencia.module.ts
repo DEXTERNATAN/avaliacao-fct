@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule }  from '@angular/router';
 import { HttpModule }  from '@angular/http';
+import { TextMaskModule } from 'angular2-text-mask';
 
 import { ReferenciaComponent } from './referencia.component';
 import { ReferenciaService } from 'app/referencia/referencia.service';
@@ -15,7 +16,8 @@ import { ReferenciaFormComponent } from 'app/referencia/referencia-form/referenc
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    HttpModule
+    HttpModule,
+    TextMaskModule
   ],
   providers: [ ReferenciaService ],
   declarations: [
