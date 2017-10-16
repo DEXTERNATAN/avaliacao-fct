@@ -50,12 +50,16 @@ export class PesosFormComponent implements OnInit {
             this.idResource = params['id'];
             this.title = this.idResource ? 'Editar Peso' : 'Novo Peso';
 
-            if (!this.idResource)
+            if (!this.idResource){
+                this.pesos.dtregistro = this.geraData(null, 'new');
                 return;
+            }
+                
 
             this.pesosService.getPesosId(this.idResource).subscribe(pesos => {
                 pesos = this.pesos = pesos;
-                this.pesos.dtregistro = this.geraData(this.pesos.dtregistro, 'view');
+                this.pesos.dtregistro = this.geraData(this.pesos.dtregistro, 'edit');
+                console.log(this.pesos.dtregistro);
                 response => {
                     if (response.status == 404) {
                         this.router.navigate(['pesos'])
@@ -86,11 +90,13 @@ export class PesosFormComponent implements OnInit {
     }
 
     geraData(data, opcao) {
-        if (data && opcao != 'view') {
-            let newValue = new Date(this.pesos.dtregistro).toISOString();
+       
+        if (data && opcao == 'edit') {
+            let newValue = new Date(this.pesos.dtregistro.toString()).toLocaleDateString();
             console.log(newValue, this.pesos.dtregistro);
             return newValue;
-        } else {
+        }
+        if (!data && opcao == 'new') {
             let DtAtual = new Date().toLocaleDateString();
             console.log(DtAtual);
             return DtAtual;

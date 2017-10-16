@@ -197,7 +197,7 @@
       "tipo": "Papel",
       "descricao": "Papel do colaborador",
       "valor": "1.325",
-      "dtregistro": "06/10/2017",
+      "dtregistro": "10/6/2017",
       "id": 1
     },
     {
@@ -215,6 +215,14 @@
       "valor": "1.450",
       "dtregistro": "14/10/2017",
       "id": 3
+    },
+    {
+      "quantidade": "1",
+      "tipo": "Papel",
+      "descricao": "fgsdfgs",
+      "valor": "1.100",
+      "dtregistro": "16/10/2017",
+      "id": 4
     }
   ],
   "projeto": [
