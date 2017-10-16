@@ -41,6 +41,7 @@ export class PesosFormComponent implements OnInit {
                 break;
             }
         }
+        console.log(hasErrors);
         return hasErrors;
     }
 
@@ -53,13 +54,13 @@ export class PesosFormComponent implements OnInit {
                 return;
 
             this.pesosService.getPesosId(this.idResource).subscribe(pesos => {
-                pesos = this.pesos = pesos
-                console.log(pesos.id),
-                    response => {
-                        if (response.status == 404) {
-                            this.router.navigate(['pesos'])
-                        }
+                pesos = this.pesos = pesos;
+                this.pesos.dtregistro = this.geraData(this.pesos.dtregistro, 'view');
+                response => {
+                    if (response.status == 404) {
+                        this.router.navigate(['pesos'])
                     }
+                }
             })
         })
     }
@@ -67,7 +68,7 @@ export class PesosFormComponent implements OnInit {
     save() {
         var result,
             userValue = this.formPesos.value;
-
+        
         if (this.idResource) {
             result = this.pesosService.updatePesos(this.idResource, userValue);
         } else {
@@ -83,4 +84,18 @@ export class PesosFormComponent implements OnInit {
     private navigateBack() {
         this.router.navigate(['/pesos']);
     }
+
+    geraData(data, opcao) {
+        if (data && opcao != 'view') {
+            let newValue = new Date(this.pesos.dtregistro).toISOString();
+            console.log(newValue, this.pesos.dtregistro);
+            return newValue;
+        } else {
+            let DtAtual = new Date().toLocaleDateString();
+            console.log(DtAtual);
+            return DtAtual;
+        }
+
+    }
+
 }

@@ -205,8 +205,16 @@
       "tipo": "Papel",
       "descricao": "gcghf",
       "valor": "1.200",
-      "dtregistro": null,
+      "dtregistro": "14/10/2017",
       "id": 2
+    },
+    {
+      "quantidade": "1",
+      "tipo": "Papel",
+      "descricao": "fgsfgsdfgs",
+      "valor": "1.450",
+      "dtregistro": "14/10/2017",
+      "id": 3
     }
   ],
   "projeto": [
