@@ -40,13 +40,9 @@
 								<td>{{atributo.id_atributo}}</td>
 								<td>{{atributo.letra}}</td>
 								<td>{{atributo.descricao}}</td>
-								<td>{{atributo.TB_ABRANGENCIA_id_abrangencia}}</td>
-								<td>{{atributo.TB_COMPLEXIDADE_id_complexidade}}</td>
-								<td>{{atributo.TB_IMPACTO_id_impacto}}</td>
-								<!--	 // + " - " + atributo.abrangencia.tipo + " (" + atributo.TB_ABRANGENCIA_id_abrangencia.nome + ")"}}</td>
-								<td>{{atributo.complexidade.id_complexidade //+ " - " + atributo.complexidade.tipo + " (" + atributo.complexidade.nome + ")"}}</td>
-								<td>{{atributo.impacto.id_impacto //+ " - " + atributo.impacto.tipo + " (" + atributo.impacto.nome + ")"}}</td>
-								-->
+								<td>{{atributo.TB_ABRANGENCIA_id_abrangencia.id_abrangencia + " - " + atributo.TB_ABRANGENCIA_id_abrangencia.tipo + " (" + atributo.TB_ABRANGENCIA_id_abrangencia.nome + ")"}}</td>
+								<td>{{atributo.TB_COMPLEXIDADE_id_complexidade.id_complexidade + " - " + atributo.TB_COMPLEXIDADE_id_complexidade.tipo + " (" + atributo.TB_COMPLEXIDADE_id_complexidade.nome + ")"}}</td>
+								<td>{{atributo.TB_IMPACTO_id_impacto.id_impacto + " - " + atributo.TB_IMPACTO_id_impacto.tipo + " (" + atributo.TB_IMPACTO_id_impacto.nome + ")"}}</td>
 								<td>
 									<a [routerLink]="['/atributo', atributo.id_atributo]" class="btn  btn-xs bg-blue btn-flat">
 									<i class="fa fa-pencil"></i>

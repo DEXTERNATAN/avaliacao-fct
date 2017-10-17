@@ -44,7 +44,7 @@ export class AtributoComponent implements OnInit {
   getAbrangenciaAt(atributo: Atributo[]){
     atributo.forEach(atributoAbr => {
       this._abrangenciaService.getAbrangenciaId(atributoAbr.TB_ABRANGENCIA_id_abrangencia).subscribe(resultAbr => {
-      atributoAbr.TB_ABRANGENCIA_id_abrangencia = resultAbr; 
+      atributoAbr.TB_ABRANGENCIA_id_abrangencia = resultAbr;
       })
     })
   }

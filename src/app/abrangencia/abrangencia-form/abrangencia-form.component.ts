@@ -55,7 +55,7 @@ export class AbrangenciaFormComponent implements OnInit {
                 return;
                
             this.abrangenciaService.getAbrangenciaId(this.idResource).subscribe(abrangencia => {
-                debugger
+                //debugger
                 abrangencia = this.abrangencia = abrangencia
 
                 console.log(this.abrangencia['atributo'],'xxxx')

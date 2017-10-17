@@ -41,7 +41,6 @@ export class ColaboradorComponent implements OnInit {
     colaborador.forEach(colabRef => {
       this._referenciaService.getReferenciaId(colabRef.TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe).subscribe(resultRef => {
       colabRef.TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe = resultRef;
-      console.log("REFERENCIA >>> " , colaborador);
       })
     })
   }
