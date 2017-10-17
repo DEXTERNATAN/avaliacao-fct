@@ -1,5 +1,5 @@
 export class Papel {
-    id: number;
+    id_papel: number;
     tipo: string;
     nome: string;
     descricao: string

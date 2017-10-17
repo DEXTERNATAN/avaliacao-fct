@@ -1,10 +1,10 @@
 export class Distribuicao {
-    id: number;
+    id_distribuicao: number;
     valor: string;
-    pontuacaominima: string;
-    pontuacaomaxima: string;
+    pontuacao_minima: string;
+    pontuacao_maxima: string;
     diferenca: string;
-    amplitudefaixas: string;
-    qtdefaixas: string;
-    dtregistro: string; 
+    amplitude_faixas: string;
+    qtde_faixas: string;
+    dt_registro: string; 
 }

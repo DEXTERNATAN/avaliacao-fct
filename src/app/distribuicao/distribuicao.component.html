@@ -39,16 +39,16 @@
 							</tr>
 							<tr *ngFor="let distribuicao of Distribuicao">
 								<!-- | filter:searchText -->
-								<td>{{distribuicao.id}}</td>
+								<td>{{distribuicao.id_distribuicao}}</td>
 								<td>{{distribuicao.valor}}</td>
-								<td>{{distribuicao.pontuacaominima}}</td>
-								<td>{{distribuicao.pontuacaomaxima}}</td>
+								<td>{{distribuicao.pontuacao_minima}}</td>
+								<td>{{distribuicao.pontuacao_maxima}}</td>
 								<td>{{distribuicao.diferenca}}</td>
-								<td>{{distribuicao.amplitudefaixas}}</td>
-								<td>{{distribuicao.qtdefaixas}}</td>
-								<td>{{distribuicao.dtregistro}}</td>
+								<td>{{distribuicao.amplitude_faixas}}</td>
+								<td>{{distribuicao.qtde_faixas}}</td>
+								<td>{{distribuicao.dt_registro}}</td>
 								<td>
-									<a [routerLink]="['/distribuicao', distribuicao.id]" class="btn  btn-xs bg-blue btn-flat">
+									<a [routerLink]="['/distribuicao', distribuicao.id_distribuicao]" class="btn  btn-xs bg-blue btn-flat">
 									<i class="fa fa-pencil"></i>
 									</a>
 								</td>

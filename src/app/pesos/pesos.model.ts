@@ -1,8 +1,8 @@
 export class Pesos {
-    id: number;
+    id_pesos: number;
     quantidade: string;
     tipo: string;
     descricao: string;
     valor: string;
-    dtregistro: string 
+    dt_registro: string 
 }

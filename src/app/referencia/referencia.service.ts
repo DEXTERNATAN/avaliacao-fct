@@ -27,8 +27,8 @@ export class ReferenciaService {
             .map(response => response.json())
     }
 
-    getReferenciaId(id) {
-        return this._http.get(`${MEAT_API}/referencia/${id}`)
+    getReferenciaId(id_referencia_fct_gfe) {
+        return this._http.get(`${MEAT_API}/referencia/${id_referencia_fct_gfe}`)
         .map(response => response.json())
     }
 
@@ -37,13 +37,13 @@ export class ReferenciaService {
             .map(res => res.json());
     }
 
-    deleteReferencia(id) {
-        return this._http.delete(`${MEAT_API}/referencia/${id}`)
+    deleteReferencia(id_referencia_fct_gfe) {
+        return this._http.delete(`${MEAT_API}/referencia/${id_referencia_fct_gfe}`)
             .map(response => response.json())
     }
 
-    updateReferencia(id, referencia) {
-        return this._http.put(`${MEAT_API}/referencia/${id}`, JSON.stringify(referencia), this.options)
+    updateReferencia(id_referencia_fct_gfe, referencia) {
+        return this._http.put(`${MEAT_API}/referencia/${id_referencia_fct_gfe}`, JSON.stringify(referencia), this.options)
             .map(response => response.json())
     }
 }

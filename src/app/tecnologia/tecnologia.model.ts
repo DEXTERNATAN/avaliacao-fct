@@ -1,5 +1,5 @@
 export class Tecnologia {
-    id: number;
+    id_tecnologia: number;
     tipo: string;
     nome: string;
     descricao: string

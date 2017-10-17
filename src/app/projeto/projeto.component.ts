@@ -18,11 +18,11 @@ export class ProjetoComponent implements OnInit {
   }
 
   deleteProjeto(projeto){
-    if (confirm("Tem certeza que quer APAGAR o Projeto #" + projeto.id + " ?")) {
+    if (confirm("Tem certeza que quer APAGAR o Projeto #" + projeto.id_projeto + " ?")) {
       var index = this.Projeto.indexOf(projeto);
       this.Projeto.splice(index, 1);
 
-      this._projetoService.deleteProjeto(projeto.id)
+      this._projetoService.deleteProjeto(projeto.id_projeto)
         .subscribe(null,
           err => {
             alert("O Projeto não foi apagada!");

@@ -19,11 +19,11 @@ export class PapelComponent implements OnInit {
   }
 
   deletePapel(papel){
-    if (confirm("Tem certeza que quer APAGAR o Papel #" + papel.id + " ?")) {
+    if (confirm("Tem certeza que quer APAGAR o Papel #" + papel.id_papel + " ?")) {
       var index = this.Papel.indexOf(papel);
       this.Papel.splice(index, 1);
 
-      this._papelService.deletePapel(papel.id)
+      this._papelService.deletePapel(papel.id_papel)
         .subscribe(null,
           err => {
             alert("O papel não foi apagado!");

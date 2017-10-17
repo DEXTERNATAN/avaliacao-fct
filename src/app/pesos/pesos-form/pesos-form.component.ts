@@ -28,7 +28,7 @@ export class PesosFormComponent implements OnInit {
             tipo: [null, Validators.required],
             descricao: [null, Validators.required],
             valor: [null, Validators.required],
-            dtregistro: [null, Validators.required]
+            dt_registro: [null, Validators.required]
         })
     }
 
@@ -46,20 +46,20 @@ export class PesosFormComponent implements OnInit {
     }
 
     ngOnInit() {
-        var id = this.route.params.subscribe(params => {
-            this.idResource = params['id'];
+        var id_pesos = this.route.params.subscribe(params => {
+            this.idResource = params['id_pesos'];
             this.title = this.idResource ? 'Editar Peso' : 'Novo Peso';
 
             if (!this.idResource){
-                this.pesos.dtregistro = this.geraData(null, 'new');
+                this.pesos.dt_registro = this.geraData(null, 'new');
                 return;
             }
                 
 
             this.pesosService.getPesosId(this.idResource).subscribe(pesos => {
                 pesos = this.pesos = pesos;
-                this.pesos.dtregistro = this.geraData(this.pesos.dtregistro, 'edit');
-                console.log(this.pesos.dtregistro);
+                this.pesos.dt_registro = this.geraData(this.pesos.dt_registro, 'edit');
+                console.log(this.pesos.dt_registro);
                 response => {
                     if (response.status == 404) {
                         this.router.navigate(['pesos'])
@@ -92,8 +92,8 @@ export class PesosFormComponent implements OnInit {
     geraData(data, opcao) {
        
         if (data && opcao == 'edit') {
-            let newValue = new Date(this.pesos.dtregistro.toString()).toLocaleDateString();
-            console.log(newValue, this.pesos.dtregistro);
+            let newValue = new Date(this.pesos.dt_registro.toString()).toLocaleDateString();
+            console.log(newValue, this.pesos.dt_registro);
             return newValue;
         }
         if (!data && opcao == 'new') {

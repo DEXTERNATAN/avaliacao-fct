@@ -48,8 +48,8 @@ export class ReferenciaFormComponent implements OnInit {
     }
 
     ngOnInit() {
-        var id_referencia = this.route.params.subscribe(params => {
-            this.idResource = params['id_referencia'];
+        var id_referencia_fct_gfe = this.route.params.subscribe(params => {
+            this.idResource = params['id_referencia_fct_gfe'];
             this.title = this.idResource ? 'Editar Referência FCT' : 'Nova Referência FCT';
 
             if (!this.idResource)

@@ -27,8 +27,8 @@
 						<tbody>
 							<tr>
 								<th style="width: 10px">#</th>
-								<th>Quantidade</th>
 								<th>Tipo</th>
+								<th>Quantidade</th>								
 								<th>Descricão</th>
 								<th>Valor</th>
 								<th>Data de Registro</th>
@@ -37,14 +37,14 @@
 							</tr>
 							<tr *ngFor="let pesos of Pesos">
 								<!-- | filter:searchText -->
-								<td>{{pesos.id}}</td>
-								<td>{{pesos.quantidade}}</td>
+								<td>{{pesos.id_pesos}}</td>
 								<td>{{pesos.tipo}}</td>
+								<td>{{pesos.quantidade}}</td>
 								<td>{{pesos.descricao}}</td>
 								<td>{{pesos.valor}}</td>
 								<td>{{pesos.dtregistro}}</td>
 								<td>
-									<a [routerLink]="['/pesos', pesos.id]" class="btn  btn-xs bg-blue btn-flat">
+									<a [routerLink]="['/pesos', pesos.id_pesos]" class="btn  btn-xs bg-blue btn-flat">
 									<i class="fa fa-pencil"></i>
 									</a>
 								</td>

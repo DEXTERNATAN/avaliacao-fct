@@ -18,11 +18,11 @@ export class ReferenciaComponent implements OnInit {
   }
 
   deleteReferencia(referencia){
-    if (confirm("Você tem certeza que quer APAGAR a Referência #" + referencia.id_referencia + " ?")) {
+    if (confirm("Você tem certeza que quer APAGAR a Referência #" + referencia.id_referencia_fct_gfe + " ?")) {
       var index = this.Referencia.indexOf(referencia);
       this.Referencia.splice(index, 1);
 
-      this._referenciaService.deleteReferencia(referencia.id_referencia)
+      this._referenciaService.deleteReferencia(referencia.id_referencia_fct_gfe)
         .subscribe(null,
           err => {
             alert("Não foi possível apagar a Referência!");

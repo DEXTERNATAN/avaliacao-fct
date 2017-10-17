@@ -25,10 +25,10 @@ export class ProjetoFormComponent implements OnInit {
     ) {
         this.formProjeto = formBuilder.group({
             titulo: [null, Validators.required],
-            codservico: [null, Validators.required],
+            cod_servico: [null, Validators.required],
             descricao: [null, Validators.required],
-            dtinicio: [null, Validators.required],
-            dtfim: [null, Validators.required],
+            dt_inicio: [null, Validators.required],
+            dt_fim: [null, Validators.required],
             abrangencia: [null, Validators.required]
         })
     }
@@ -46,8 +46,8 @@ export class ProjetoFormComponent implements OnInit {
     }
 
     ngOnInit() {
-        var id = this.route.params.subscribe(params => {
-            this.idResource = params['id'];
+        var id_projeto = this.route.params.subscribe(params => {
+            this.idResource = params['id_projeto'];
             this.title = this.idResource ? 'Editar Projeto' : 'Novo Projeto';
 
             if (!this.idResource)
@@ -55,7 +55,7 @@ export class ProjetoFormComponent implements OnInit {
 
             this.projetoService.getProjetoId(this.idResource).subscribe(projeto => {
                 projeto = this.projeto = projeto
-                console.log(projeto.id),
+                console.log(projeto.id_projeto),
                     response => {
                         if (response.status == 404) {
                             this.router.navigate(['projeto'])

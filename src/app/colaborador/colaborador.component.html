@@ -40,17 +40,17 @@
 							</tr>
 							<tr *ngFor="let colaborador of Colaborador">
 								<!-- | filter:searchText -->
-								<td>{{colaborador.id}}</td>
+								<td>{{colaborador.id_colaborador}}</td>
 								<td>{{colaborador.nome}}</td>
 								<td>{{colaborador.matricula}}</td>
 								<td>{{colaborador.telefone}}</td>
 								<td>{{colaborador.especialidade}}</td>
 								<td>{{colaborador.salario}}</td>
-								<td>{{colaborador.percentualSalario}}</td>
-								<td>{{colaborador.referencia.numreferencia + " (" + colaborador.referencia.valorreferencia + ")"}}</td>
-								<td>{{colaborador.divisao.sigla}}</td>
+								<td>{{colaborador.percentual_salario}}</td>
+								<td>{{colaborador.TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe.num_referencia + " (" + colaborador.TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe.valor_referencia + ")"}}</td>
+								<td>{{colaborador.TB_DIVISAO_id_divisao.sigla}}</td>
 								<td>
-									<a [routerLink]="['/colaborador', colaborador.id]" class="btn  btn-xs bg-blue btn-flat">
+									<a [routerLink]="['/colaborador', colaborador.id_colaborador]" class="btn  btn-xs bg-blue btn-flat">
 									<i class="fa fa-pencil"></i>
 									</a>
 								</td>

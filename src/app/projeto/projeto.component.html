@@ -38,15 +38,15 @@
 							</tr>
 							<tr *ngFor="let projeto of Projeto">
 								<!-- | filter:searchText -->
-								<td>{{projeto.id}}</td>
+								<td>{{projeto.id_projeto}}</td>
 								<td>{{projeto.titulo}}</td>
-								<td>{{projeto.codservico}}</td>
+								<td>{{projeto.cod_servico}}</td>
 								<td>{{projeto.descricao}}</td>
-								<td>{{projeto.dtinicio}}</td>
-								<td>{{projeto.dtfim}}</td>
+								<td>{{projeto.dt_inicio}}</td>
+								<td>{{projeto.dt_fim}}</td>
 								<td>{{projeto.abrangencia}}</td>
 								<td>
-									<a [routerLink]="['/projeto', projeto.id]" class="btn  btn-xs bg-blue btn-flat">
+									<a [routerLink]="['/projeto', projeto.id_projeto]" class="btn  btn-xs bg-blue btn-flat">
 									<i class="fa fa-pencil"></i>
 									</a>
 								</td>

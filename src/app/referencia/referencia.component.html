@@ -36,13 +36,13 @@
 							</tr>
 							<tr *ngFor="let referencia of Referencia">
 								<!-- | filter:searchText -->
-								<td>{{referencia.id_referencia}}</td>
+								<td>{{referencia.id_referencia_fct_gfe}}</td>
 								<td>{{referencia.cargo}}</td>
 								<td>{{referencia.num_referencia}}</td>
 								<td>{{referencia.valor_referencia }}</td>
 								<td>{{referencia.dt_atualizacao}}</td>
 								<td>
-									<a [routerLink]="['/referencia', referencia.id_referencia]" class="btn  btn-xs bg-blue btn-flat">
+									<a [routerLink]="['/referencia', referencia.id_referencia_fct_gfe]" class="btn  btn-xs bg-blue btn-flat">
 									<i class="fa fa-pencil"></i>
 									</a>
 								</td>

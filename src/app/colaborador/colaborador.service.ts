@@ -36,8 +36,8 @@ export class ColaboradorService {
             .map(response => response.json())
     }
 
-    getColaboradorId(id) {
-        return this._http.get(`${MEAT_API}/colaborador/${id}`)
+    getColaboradorId(id_colaborador) {
+        return this._http.get(`${MEAT_API}/colaborador/${id_colaborador}`)
             .map(response => response.json())
     }
 
@@ -46,13 +46,13 @@ export class ColaboradorService {
             .map(res => res.json());
     }
 
-    deleteColaborador(id) {
-        return this._http.delete(`${MEAT_API}/colaborador/${id}`)
+    deleteColaborador(id_colaborador) {
+        return this._http.delete(`${MEAT_API}/colaborador/${id_colaborador}`)
             .map(response => response.json())
     }
 
-    updateColaborador(id, colaborador) {
-        return this._http.put(`${MEAT_API}/colaborador/${id}`, JSON.stringify(colaborador), this.options)
+    updateColaborador(id_colaborador, colaborador) {
+        return this._http.put(`${MEAT_API}/colaborador/${id_colaborador}`, JSON.stringify(colaborador), this.options)
             .map(response => response.json())
     }
 }

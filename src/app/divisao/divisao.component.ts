@@ -17,11 +17,11 @@ export class DivisaoComponent implements OnInit {
   }
 
   deleteDivisao(divisao){
-    if (confirm("Tem certeza que quer APAGAR a Divisão #" + divisao.id + " - " + divisao.sigla + "?")) {
+    if (confirm("Tem certeza que quer APAGAR a Divisão #" + divisao.id_divisao + " - " + divisao.sigla + "?")) {
       var index = this.Divisao.indexOf(divisao);
       this.Divisao.splice(index, 1);
 
-      this._divisaoService.deleteDivisao(divisao.id)
+      this._divisaoService.deleteDivisao(divisao.id_divisao)
         .subscribe(null,
           err => {
             alert("Não foi possível apagar a Divisão!");

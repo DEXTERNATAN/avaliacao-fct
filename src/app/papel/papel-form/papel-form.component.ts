@@ -42,8 +42,8 @@ export class PapelFormComponent implements OnInit {
     }
 
     ngOnInit() {
-        var id = this.route.params.subscribe(params => {
-            this.idResource = params['id'];
+        var id_papel = this.route.params.subscribe(params => {
+            this.idResource = params['id_papel'];
             this.title = this.idResource ? 'Editar Papel' : 'Novo Papel';
 
             if (!this.idResource)
@@ -51,7 +51,7 @@ export class PapelFormComponent implements OnInit {
 
             this.papelService.getPapelId(this.idResource).subscribe(papel => {
                 papel = this.papeis = papel
-                console.log(papel.id),
+                console.log(papel.id_papel),
                     response => {
                         if (response.status == 404) {
                             this.router.navigate(['papel'])

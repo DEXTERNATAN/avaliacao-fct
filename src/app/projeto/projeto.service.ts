@@ -28,8 +28,8 @@ export class ProjetoService {
             .map(response => response.json())
     }
 
-    getProjetoId(id) {
-        return this._http.get(`${MEAT_API}/projeto/${id}`)
+    getProjetoId(id_projeto) {
+        return this._http.get(`${MEAT_API}/projeto/${id_projeto}`)
         .map(response => response.json())
     }
 
@@ -38,13 +38,13 @@ export class ProjetoService {
             .map(res => res.json());
     }
 
-    deleteProjeto(id) {
-        return this._http.delete(`${MEAT_API}/projeto/${id}`)
+    deleteProjeto(id_projeto) {
+        return this._http.delete(`${MEAT_API}/projeto/${id_projeto}`)
             .map(response => response.json())
     }
 
-    updateProjeto(id, projeto) {
-        return this._http.put(`${MEAT_API}/projeto/${id}`, JSON.stringify(projeto), this.options)
+    updateProjeto(id_projeto, projeto) {
+        return this._http.put(`${MEAT_API}/projeto/${id_projeto}`, JSON.stringify(projeto), this.options)
             .map(response => response.json())
     }
 }

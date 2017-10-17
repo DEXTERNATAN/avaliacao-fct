@@ -6,7 +6,7 @@ import { PapelComponent	 } from './papel.component';
 const papelRoutes: Routes = [
 	{ path: 'papel', component: PapelComponent, pathMatch: 'full' },
   	{ path: 'papel/novo', component: PapelFormComponent },
-	{ path: 'papel/:id', component: PapelFormComponent }
+	{ path: 'papel/:id_papel', component: PapelFormComponent }
 ];
 
 export const papelRouting = RouterModule.forChild(papelRoutes);

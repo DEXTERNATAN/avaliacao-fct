@@ -45,8 +45,8 @@ export class DivisaoFormComponent implements OnInit {
     }
 
     ngOnInit() {
-        var id = this.route.params.subscribe(params => {
-            this.idResource = params['id'];
+        var id_divisao = this.route.params.subscribe(params => {
+            this.idResource = params['id_divisao'];
             this.title = this.idResource ? 'Editar Divisão' : 'Nova Divisão';
 
             if (!this.idResource)
@@ -54,7 +54,7 @@ export class DivisaoFormComponent implements OnInit {
 
             this.divisaoService.getDivisaoId(this.idResource).subscribe(divisao => {
                 divisao = this.divisaos = divisao
-                console.log(divisao.id),
+                console.log(divisao.id_divisao),
                     response => {
                         if (response.status == 404) {
                             this.router.navigate(['divisao'])

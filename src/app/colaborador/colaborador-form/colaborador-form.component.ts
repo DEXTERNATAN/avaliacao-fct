@@ -39,9 +39,9 @@ export class ColaboradorFormComponent implements OnInit {
             telefone: [null, Validators.required],
             especialidade: [null, Validators.required],
             salario: [null, Validators.required],
-            percentualSalario: [null, Validators.required],
-            referencia: [null, Validators.required],
-            divisao: [null, Validators.required]
+            percentual_salario: [null, Validators.required],
+            TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe: [null, Validators.required],
+            TB_DIVISAO_id_divisao: [null, Validators.required]
         })
     }
 
@@ -50,7 +50,7 @@ export class ColaboradorFormComponent implements OnInit {
         this.getReferencia();
         this.getDivisao();
 
-        var id = this.route.params.subscribe(params => {
+        var id_colaborador = this.route.params.subscribe(params => {
             this.idResource = params['id_colaborador'];
             this.title = this.idResource ? 'Editar Colaborador' : 'Novo Colaborador';
 

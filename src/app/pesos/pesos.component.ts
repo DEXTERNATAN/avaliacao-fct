@@ -18,11 +18,11 @@ export class PesosComponent implements OnInit {
   }
 
   deletePesos(pesos){
-    if (confirm("Tem certeza que quer APAGAR o Peso #" + pesos.id + " ?")) {
+    if (confirm("Tem certeza que quer APAGAR o Peso #" + pesos.id_pesos + " ?")) {
       var index = this.Pesos.indexOf(pesos);
       this.Pesos.splice(index, 1);
 
-      this._pesosService.deletePesos(pesos.id)
+      this._pesosService.deletePesos(pesos.id_pesos)
         .subscribe(null,
           err => {
             alert("O peso não foi apagado!");

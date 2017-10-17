@@ -25,12 +25,12 @@ export class DistribuicaoFormComponent implements OnInit {
     ) {
         this.formDistribuicao = formBuilder.group({
             valor: [null, Validators.required],
-            pontuacaominima: [null],
-            pontuacaomaxima: [null],
+            pontuacao_minima: [null],
+            pontuacao_maxima: [null],
             diferenca: [null],
-            amplitudefaixas: [null],
-            qtdefaixas: [null, Validators.required],
-            dtregistro: [null]
+            amplitude_faixas: [null],
+            qtde_faixas: [null, Validators.required],
+            dt_registro: [null]
         })
     }
 
@@ -47,8 +47,8 @@ export class DistribuicaoFormComponent implements OnInit {
     }
 
     ngOnInit() {
-        var id = this.route.params.subscribe(params => {
-            this.idResource = params['id'];
+        var id_distribuicao = this.route.params.subscribe(params => {
+            this.idResource = params['id_distribuicao'];
             this.title = this.idResource ? 'Editar Distribuição' : 'Nova Distribuição';
 
             if (!this.idResource)
@@ -56,7 +56,7 @@ export class DistribuicaoFormComponent implements OnInit {
 
             this.distribuicaoService.getDistribuicaoId(this.idResource).subscribe(distribuicao => {
                 distribuicao = this.distribuicao = distribuicao
-                console.log(distribuicao.id),
+                console.log(distribuicao.id_distribuicao),
                     response => {
                         if (response.status == 404) {
                             this.router.navigate(['distribuicao'])

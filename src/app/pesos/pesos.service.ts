@@ -28,8 +28,8 @@ export class PesosService {
             .map(response => response.json())
     }
 
-    getPesosId(id) {
-        return this._http.get(`${MEAT_API}/pesos/${id}`)
+    getPesosId(id_pesos) {
+        return this._http.get(`${MEAT_API}/pesos/${id_pesos}`)
         .map(response => response.json())
     }
 
@@ -38,13 +38,13 @@ export class PesosService {
             .map(res => res.json());
     }
 
-    deletePesos(id) {
-        return this._http.delete(`${MEAT_API}/pesos/${id}`)
+    deletePesos(id_pesos) {
+        return this._http.delete(`${MEAT_API}/pesos/${id_pesos}`)
             .map(response => response.json())
     }
 
-    updatePesos(id, pesos) {
-        return this._http.put(`${MEAT_API}/pesos/${id}`, JSON.stringify(pesos), this.options)
+    updatePesos(id_pesos, pesos) {
+        return this._http.put(`${MEAT_API}/pesos/${id_pesos}`, JSON.stringify(pesos), this.options)
             .map(response => response.json())
     }
 }

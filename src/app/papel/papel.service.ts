@@ -29,8 +29,8 @@ export class PapelService {
             .map(response => response.json())
     }
 
-    getPapelId(id) {
-        return this._http.get(`${MEAT_API}/papel/${id}`)
+    getPapelId(id_papel) {
+        return this._http.get(`${MEAT_API}/papel/${id_papel}`)
             .map(response => response.json())
     }
 
@@ -39,13 +39,13 @@ export class PapelService {
             .map(res => res.json());
     }
 
-    deletePapel(id) {
-        return this._http.delete(`${MEAT_API}/papel/${id}`)
+    deletePapel(id_papel) {
+        return this._http.delete(`${MEAT_API}/papel/${id_papel}`)
             .map(response => response.json())
     }
 
-    updatePapel(id, papel) {
-        return this._http.put(`${MEAT_API}/papel/${id}`, JSON.stringify(papel), this.options)
+    updatePapel(id_papel, papel) {
+        return this._http.put(`${MEAT_API}/papel/${id_papel}`, JSON.stringify(papel), this.options)
             .map(response => response.json())
     }
 }

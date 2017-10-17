@@ -28,8 +28,8 @@ export class DivisaoService {
             .map(response => response.json())
     }
 
-    getDivisaoId(id) {
-        return this._http.get(`${MEAT_API}/divisao/${id}`)
+    getDivisaoId(id_divisao) {
+        return this._http.get(`${MEAT_API}/divisao/${id_divisao}`)
             .map(response => response.json())
     }
 
@@ -38,13 +38,13 @@ export class DivisaoService {
             .map(res => res.json());
     }
 
-    deleteDivisao(id) {
-        return this._http.delete(`${MEAT_API}/divisao/${id}`)
+    deleteDivisao(id_divisao) {
+        return this._http.delete(`${MEAT_API}/divisao/${id_divisao}`)
             .map(response => response.json())
     }
 
-    updateDivisao(id, divisao) {
-        return this._http.put(`${MEAT_API}/divisao/${id}`, JSON.stringify(divisao), this.options)
+    updateDivisao(id_divisao, divisao) {
+        return this._http.put(`${MEAT_API}/divisao/${id_divisao}`, JSON.stringify(divisao), this.options)
             .map(response => response.json())
     }
 }

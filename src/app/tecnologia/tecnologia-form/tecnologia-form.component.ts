@@ -42,8 +42,8 @@ export class TecnologiaFormComponent implements OnInit {
     }
 
     ngOnInit() {
-        var id = this.route.params.subscribe(params => {
-            this.idResource = params['id'];
+        var id_tecnologia = this.route.params.subscribe(params => {
+            this.idResource = params['id_tecnologia'];
             this.title = this.idResource ? 'Editar Tecnologia' : 'Nova Tecnologia';
 
             if (!this.idResource)
@@ -51,7 +51,7 @@ export class TecnologiaFormComponent implements OnInit {
 
             this.tecnologiaService.getTecnologiaId(this.idResource).subscribe(tecnologia => {
                 tecnologia = this.tecnologia = tecnologia
-                console.log(tecnologia.id),
+                console.log(tecnologia.id_tecnologia),
                     response => {
                         if (response.status == 404) {
                             this.router.navigate(['tecnologia'])

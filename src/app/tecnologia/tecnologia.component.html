@@ -34,12 +34,12 @@
                   <th></th>
                 </tr>
                 <tr *ngFor="let tecnologia of Tecnologia">
-                  <td>{{tecnologia.id}}</td>
+                  <td>{{tecnologia.id_tecnologia}}</td>
                   <td>{{tecnologia.tipo}}</td>
                   <td>{{tecnologia.nome}}</td>
                   <td>{{tecnologia.descricao}}</td>
                   <td>
-                    <a [routerLink]="['/tecnologia', tecnologia.id]" class="btn  btn-xs bg-blue btn-flat">
+                    <a [routerLink]="['/tecnologia', tecnologia.id_tecnologia]" class="btn  btn-xs bg-blue btn-flat">
                     <i class="fa fa-pencil"></i>
                     </a>
                   </td>

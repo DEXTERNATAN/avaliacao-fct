@@ -39,26 +39,27 @@ export class ColaboradorComponent implements OnInit {
 
   getReferenciaFk(colaborador: Colaborador[]){
     colaborador.forEach(colabRef => {
-      this._referenciaService.getReferenciaId(colabRef.referencia).subscribe(resultRef => {
-      colabRef.referencia = resultRef; 
+      this._referenciaService.getReferenciaId(colabRef.TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe).subscribe(resultRef => {
+      colabRef.TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe = resultRef;
+      console.log("REFERENCIA >>> " , colaborador);
       })
     })
   }
 
   getDivisaoFk(colaborador: Colaborador[]){
     colaborador.forEach(colab => {
-      this._divisaoService.getDivisaoId(colab.divisao).subscribe(result => {
-      colab.divisao = result;
+      this._divisaoService.getDivisaoId(colab.TB_DIVISAO_id_divisao).subscribe(result => {
+      colab.TB_DIVISAO_id_divisao = result;
       })
     })
   }
 
   deleteColaborador(colaborador) {
-    if (confirm("Tem certeza que quer APAGAR o Colaborador #" + colaborador.id + " - " + colaborador.nome + "?")) {
+    if (confirm("Tem certeza que quer APAGAR o Colaborador #" + colaborador.id_colaborador + " - " + colaborador.nome + "?")) {
       var index = this.Colaborador.indexOf(colaborador);
       this.Colaborador.splice(index, 1);
 
-      this._colaboradorService.deleteColaborador(colaborador.id)
+      this._colaboradorService.deleteColaborador(colaborador.id_colaborador)
         .subscribe(null,
         err => {
           alert("Não foi possível apagar o Colaborador!");

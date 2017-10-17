@@ -28,8 +28,8 @@ export class DistribuicaoService {
             .map(response => response.json())
     }
 
-    getDistribuicaoId(id) {
-        return this._http.get(`${MEAT_API}/distribuicao/${id}`)
+    getDistribuicaoId(id_distribuicao) {
+        return this._http.get(`${MEAT_API}/distribuicao/${id_distribuicao}`)
         .map(response => response.json())
     }
 
@@ -38,13 +38,13 @@ export class DistribuicaoService {
             .map(res => res.json());
     }
 
-    deleteDistribuicao(id) {
-        return this._http.delete(`${MEAT_API}/distribuicao/${id}`)
+    deleteDistribuicao(id_distribuicao) {
+        return this._http.delete(`${MEAT_API}/distribuicao/${id_distribuicao}`)
             .map(response => response.json())
     }
 
-    updateDistribuicao(id, distribuicao) {
-        return this._http.put(`${MEAT_API}/distribuicao/${id}`, JSON.stringify(distribuicao), this.options)
+    updateDistribuicao(id_distribuicao, distribuicao) {
+        return this._http.put(`${MEAT_API}/distribuicao/${id_distribuicao}`, JSON.stringify(distribuicao), this.options)
             .map(response => response.json())
     }
 }

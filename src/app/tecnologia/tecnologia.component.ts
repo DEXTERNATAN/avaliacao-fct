@@ -19,11 +19,11 @@ export class TecnologiaComponent implements OnInit {
   }
 
   deleteTecnologia(tecnologia){
-    if (confirm("Tem certeza que quer APAGAR a Tecnologia #" + tecnologia.id + " ?")) {
+    if (confirm("Tem certeza que quer APAGAR a Tecnologia #" + tecnologia.id_tecnologia + " ?")) {
       var index = this.Tecnologia.indexOf(tecnologia);
       this.Tecnologia.splice(index, 1);
 
-      this._tecnologiaService.deleteTecnologia(tecnologia.id)
+      this._tecnologiaService.deleteTecnologia(tecnologia.id_tecnologia)
         .subscribe(null,
           err => {
             alert("A Tecnologia não foi apagada!");

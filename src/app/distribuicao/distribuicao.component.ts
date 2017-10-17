@@ -18,11 +18,11 @@ export class DistribuicaoComponent implements OnInit {
   }
 
   deleteDistribuicao(distribuicao){
-    if (confirm("Tem certeza que quer APAGAR a Distribuição #" + distribuicao.id + " ?")) {
+    if (confirm("Tem certeza que quer APAGAR a Distribuição #" + distribuicao.id_distribuicao + " ?")) {
       var index = this.Distribuicao.indexOf(distribuicao);
       this.Distribuicao.splice(index, 1);
 
-      this._distribuicaoService.deleteDistribuicao(distribuicao.id)
+      this._distribuicaoService.deleteDistribuicao(distribuicao.id_distribuicao)
         .subscribe(null,
           err => {
             alert("A Distribuição não foi apagada!");

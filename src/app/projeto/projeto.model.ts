@@ -1,9 +1,9 @@
 export class Projeto {
-    id: number;
+    id_projeto: number;
     titulo: string;
-    codservico: number;
+    cod_servico: number;
     descricao: string;
-    dtinicio: string;
-    dtfim: string;
+    dt_inicio: string;
+    dt_fim: string;
     abrangencia: string
 }

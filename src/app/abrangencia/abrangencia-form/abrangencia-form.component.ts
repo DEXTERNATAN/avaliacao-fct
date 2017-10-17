@@ -55,7 +55,10 @@ export class AbrangenciaFormComponent implements OnInit {
                 return;
                
             this.abrangenciaService.getAbrangenciaId(this.idResource).subscribe(abrangencia => {
+                debugger
                 abrangencia = this.abrangencia = abrangencia
+
+                console.log(this.abrangencia['atributo'],'xxxx')
                     response => {
                         if (response.status == 404) {
                             this.router.navigate(['abrangencia'])

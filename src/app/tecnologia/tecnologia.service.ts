@@ -29,8 +29,8 @@ export class TecnologiaService {
             .map(response => response.json())
     }
 
-    getTecnologiaId(id) {
-        return this._http.get(`${MEAT_API}/tecnologia/${id}`)
+    getTecnologiaId(id_tecnologia) {
+        return this._http.get(`${MEAT_API}/tecnologia/${id_tecnologia}`)
             .map(response => response.json())
     }
 
@@ -39,13 +39,13 @@ export class TecnologiaService {
             .map(res => res.json());
     }
 
-    deleteTecnologia(id) {
-        return this._http.delete(`${MEAT_API}/tecnologia/${id}`)
+    deleteTecnologia(id_tecnologia) {
+        return this._http.delete(`${MEAT_API}/tecnologia/${id_tecnologia}`)
             .map(response => response.json())
     }
 
-    updateTecnologia(id, tecnologia) {
-        return this._http.put(`${MEAT_API}/tecnologia/${id}`, JSON.stringify(tecnologia), this.options)
+    updateTecnologia(id_tecnologia, tecnologia) {
+        return this._http.put(`${MEAT_API}/tecnologia/${id_tecnologia}`, JSON.stringify(tecnologia), this.options)
             .map(response => response.json())
     }
 }
