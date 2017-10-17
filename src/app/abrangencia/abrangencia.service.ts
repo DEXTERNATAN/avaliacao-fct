@@ -23,6 +23,7 @@ export class AbrangenciaService {
     }
 
     getAbrangencia(): Observable<Abrangencia[]> {
+        debugger
         return this._http.get(`${MEAT_API}/abrangencia`)
             .map(response => response.json())
     }

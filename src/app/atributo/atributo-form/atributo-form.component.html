@@ -17,7 +17,6 @@
 				</div>
 				<!-- /.box-header -->
 				<!-- form start -->
-				{{atributo | json}}
 				<form role="form" [formGroup]="formAtributo" (ngSubmit)="save()">
 					<div class="box-body">
 						<div class="form-group" [ngClass]="{'has-error': (!formAtributo.controls['letra'].valid && formAtributo.controls['letra'].touched) }">
@@ -40,15 +39,15 @@
                             </select>
 							<span *ngIf="!formAtributo.controls['letra'].valid && formAtributo.controls['letra'].touched" class="help-block">O campo Descrição é obrigatório!</span>
 						</div>
-						<div class="form-group" [ngClass]="{'has-error': (!formAtributo.controls['abrangencia'].valid && formAtributo.controls['abrangencia'].touched)}">
+						<div class="form-group" [ngClass]="{'has-error': (!formAtributo.controls['TB_ABRANGENCIA_id_abrangencia'].valid && formAtributo.controls['TB_ABRANGENCIA_id_abrangencia'].touched)}">
 							<label for="TB_ABRANGENCIA_id_abrangencia">Abrangêcia</label>
-							<select name="TB_ABRANGENCIA_id_abrangencia" id="TB_ABRANGENCIA_id_abrangencia" [(ngModel)]="atributo.TB_ABRANGENCIA_id_abrangencia" class="form-control" formControlName="TB_ABRANGENCIA_id_abrangencia">
+							<select id="TB_ABRANGENCIA_id_abrangencia" [(ngModel)]="atributo.TB_ABRANGENCIA_id_abrangencia" class="form-control" formControlName="TB_ABRANGENCIA_id_abrangencia">
 								<option value="">Selecione</option>
 								<option *ngFor="let abrangencia of Abrangencia; let i = index" value="{{abrangencia.id_abrangencia}}">{{abrangencia.id_abrangencia + " - " + abrangencia.tipo + " (" + abrangencia.nome + ")"}}</option>
 							</select>
 							<span *ngIf="!formAtributo.controls['TB_ABRANGENCIA_id_abrangencia'].valid && formAtributo.controls['TB_ABRANGENCIA_id_abrangencia'].touched" class="help-block">A Abrangência é obrigatória!</span>
 						</div>
-						<div class="form-group" [ngClass]="{'has-error': (!formAtributo.controls['TB_COMPLEXIDADE_id_complexidade'].valid && formAtributo.controls['complexidade'].touched)}">
+						<div class="form-group" [ngClass]="{'has-error': (!formAtributo.controls['TB_COMPLEXIDADE_id_complexidade'].valid && formAtributo.controls['TB_COMPLEXIDADE_id_complexidade'].touched)}">
 							<label for="TB_COMPLEXIDADE_id_complexidade">Complexidade</label>
 							<select name="TB_COMPLEXIDADE_id_complexidade" id="TB_COMPLEXIDADE_id_complexidade" [(ngModel)]="atributo.TB_COMPLEXIDADE_id_complexidade" class="form-control" formControlName="TB_COMPLEXIDADE_id_complexidade">
 								<option value="">Selecione</option>

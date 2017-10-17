@@ -35,8 +35,8 @@
 								<th></th>
 								<th></th>
 							</tr>
-							<tr *ngFor="let abrangencia of Abrangencia">
-								<!-- | filter:searchText -->
+							{{ Abrangencia | json }}
+							<!-- <tr *ngFor="let abrangencia of Abrangencia">
 								<td>{{abrangencia.id_abrangencia}}</td>
 								<td>{{abrangencia.atributo}}</td>
 								<td>{{abrangencia.classificacao}}</td>
@@ -51,7 +51,7 @@
 								<td>
 									<button (click)="deleteAbrangencia(abrangencia)" type="button" class="btn  btn-xs bg-red btn-flat" ><i class="fa fa-remove"></i></button>
 								</td>
-							</tr>
+							</tr> -->
 						</tbody>
 					</table>
 				</div>
