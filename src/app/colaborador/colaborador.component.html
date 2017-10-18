@@ -47,8 +47,8 @@
 								<td>{{colaborador.especialidade}}</td>
 								<td>{{colaborador.salario}}</td>
 								<td>{{colaborador.percentual_salario}}</td>
-								<td>{{colaborador.referencia.num_referencia + " (" + colaborador.referencia.valor_referencia + ")"}}</td>
-								<td>{{colaborador.divisao.sigla}}</td>
+								<td>{{colaborador.TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe.num_referencia + " (" + colaborador.TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe.valor_referencia + ")"}}</td>
+								<td>{{colaborador.TB_DIVISAO_id_divisao.sigla}}</td>
 								<td>
 									<a [routerLink]="['/colaborador', colaborador.id_colaborador]" class="btn  btn-xs bg-blue btn-flat">
 									<i class="fa fa-pencil"></i>

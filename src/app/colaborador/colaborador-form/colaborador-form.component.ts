@@ -59,7 +59,6 @@ export class ColaboradorFormComponent implements OnInit {
 
             this.colaboradorService.getColaboradorId(this.idResource).subscribe(colaborador => {
                 colaborador = this.colaborador = colaborador
-                console.log(colaborador.id_colaborador),
                     response => {
                         if (response.status == 404) {
                             this.router.navigate(['colaborador'])
@@ -74,7 +73,6 @@ export class ColaboradorFormComponent implements OnInit {
             userValue = this.formColaborador.value;
 
         if (this.idResource) {
-            //debugger
             result = this.colaboradorService.updateColaborador(this.idResource, userValue);
         } else {
             result = this.colaboradorService.addColaborador(userValue);

@@ -30,7 +30,6 @@ export class DivisaoService {
 
     getDivisaoId(id_divisao) {
         return this._http.get(`${MEAT_API}/divisao/${id_divisao}`)
-            .do(response => console.log('xx', response))
             .map(res => res.json())
     }
 

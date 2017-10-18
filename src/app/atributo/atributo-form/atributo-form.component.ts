@@ -61,7 +61,7 @@ export class AtributoFormComponent implements OnInit {
 
 			this._atributoService.getAtributoId(this.idResource).subscribe(atributo => {
 				atributo = this.atributo = atributo
-				console.log("ID ATRIBUTO: ", this.atributo),
+				
 					response => {
 						if (response.status == 404) {
 							this.router.navigate(['atributo'])

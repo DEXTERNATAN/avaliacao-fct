@@ -49,16 +49,12 @@ export class AbrangenciaFormComponent implements OnInit {
             this.idResource = params['id_abrangencia'];
             this.title = this.idResource ? 'Editar Abrangência' : 'Nova Abrangência';
 
-            console.log("ID RESOURCE > " + this.idResource);
-
             if (!this.idResource)
                 return;
                
             this.abrangenciaService.getAbrangenciaId(this.idResource).subscribe(abrangencia => {
-                //debugger
                 abrangencia = this.abrangencia = abrangencia
 
-                console.log(this.abrangencia['atributo'],'xxxx')
                     response => {
                         if (response.status == 404) {
                             this.router.navigate(['abrangencia'])
