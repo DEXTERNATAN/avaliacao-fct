@@ -21,7 +21,6 @@ import { abrangenciaRouting } from './../abrangencia/abrangencia.routes';
 import { complexidadeRouting } from './../complexidade/complexidade.routes';
 import { impactoRouting } from './../impacto/impacto.routes';
 
-
 @Injectable()
 export class AtributoService {
     headers: Headers;
