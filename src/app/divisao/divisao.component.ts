@@ -29,6 +29,7 @@ export class DivisaoComponent implements OnInit {
     };
     
     
+    
     this._divisaoService.getDivisao()
     .subscribe(divisao =>{ 
       this.Divisao = divisao
