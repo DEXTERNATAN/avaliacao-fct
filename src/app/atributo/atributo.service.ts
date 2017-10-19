@@ -1,22 +1,18 @@
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { MEAT_API } from './../app.api';
-
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/do'
 import 'rxjs/add/operator/catch'
-
-import { Observable } from 'rxjs/Observable';
 
 import { atributo } from './atributo.model';
 import { Abrangencia } from './../abrangencia/abrangencia.model';
 import { Complexidade } from './../complexidade/complexidade.model';
 import { Impacto } from './../impacto/impacto.model';
-
 import { AbrangenciaService } from './../abrangencia/abrangencia.service';
 import { ComplexidadeService } from './../complexidade/complexidade.service';
 import { ImpactoService } from './../impacto/impacto.service';
-
 import { abrangenciaRouting } from './../abrangencia/abrangencia.routes';
 import { complexidadeRouting } from './../complexidade/complexidade.routes';
 import { impactoRouting } from './../impacto/impacto.routes';
@@ -26,6 +22,7 @@ import { impactoRouting } from './../impacto/impacto.routes';
 export class AtributoService {
     headers: Headers;
     options: RequestOptions;
+    Atributo: any;
 
     constructor(private _http: Http) {
         this.headers = new Headers({
@@ -36,8 +33,18 @@ export class AtributoService {
     }
 
     getAtributo(): Observable<atributo[]> {
-        return this._http.get(`${MEAT_API}/atributo`)
+        if(this.Atributo != null){
+            return Observable.of(this.Atributo);
+        }else{
+            return this._http.get(`${MEAT_API}/atributo`, {})
             .map(response => response.json())
+            .do(response => {
+                this.Atributo = response
+                console.log(atributo)
+            })
+            .publishReplay(1)
+                .refCount();
+        }
     }
 
     getAtributoId(id) {
