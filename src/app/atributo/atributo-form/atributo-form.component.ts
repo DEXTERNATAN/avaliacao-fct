@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { atributo } from './../atributo.model';
+import { Atributo } from './../atributo.model';
 import { Abrangencia } from './../../abrangencia/abrangencia.model';
 import { Complexidade } from './../../complexidade/complexidade.model';
 import { Impacto } from './../../impacto/impacto.model';
@@ -22,7 +22,7 @@ import { ImpactoService } from './../../impacto/impacto.service';
 export class AtributoFormComponent implements OnInit {
 	formAtributo: FormGroup;
 	title: string;
-	atributo: atributo = new atributo();
+	atributo: Atributo = new Atributo();
 	idResource: any;
 
 	Abrangencia: Abrangencia[];

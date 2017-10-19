@@ -2,7 +2,7 @@ import { Abrangencia } from './../abrangencia/abrangencia.model';
 import { Complexidade } from './../complexidade/complexidade.model';
 import { Impacto } from './../impacto/impacto.model';
 
-export class atributo {
+export class Atributo {
     id_atributo: number;
     letra: string;
     descricao: string;
