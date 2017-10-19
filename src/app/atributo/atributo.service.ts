@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/do'
 import 'rxjs/add/operator/catch'
 
-import { atributo } from './atributo.model';
+import { Atributo } from './atributo.model';
 import { Abrangencia } from './../abrangencia/abrangencia.model';
 import { Complexidade } from './../complexidade/complexidade.model';
 import { Impacto } from './../impacto/impacto.model';
@@ -32,16 +32,13 @@ export class AtributoService {
         this.options = new RequestOptions({ headers: this.headers });
     }
 
-    getAtributo(): Observable<atributo[]> {
+    getAtributo(): Observable<Atributo[]> {
         if(this.Atributo != null){
             return Observable.of(this.Atributo);
         }else{
             return this._http.get(`${MEAT_API}/atributo`, {})
             .map(response => response.json())
-            .do(response => {
-                this.Atributo = response
-                console.log(atributo)
-            })
+            .do(atributo => this.Atributo = atributo)
             .publishReplay(1)
                 .refCount();
         }

@@ -27,17 +27,17 @@
 						</div>
 						<div class="form-group" [ngClass]="{'has-error': (!formColaborador.controls['matricula'].valid && formColaborador.controls['matricula'].touched) }">
 							<label for="matricula">Matricula</label>
-							<input type="text" class="form-control" id="matricula" [(ngModel)]="colaborador.matricula" formControlName="matricula" maxlength="9" placeholder="9999999-9">
+							<input type="text" class="form-control" id="matricula" [(ngModel)]="colaborador.matricula" formControlName="matricula" maxlength="8" placeholder="99999999">
 							<span *ngIf="!formColaborador.controls['matricula'].valid && formColaborador.controls['matricula'].touched" class="help-block">O campo Matrícula é obrigatório!</span>
 						</div>
 						<div class="form-group" [ngClass]="{'has-error': (!formColaborador.controls['telefone'].valid && formColaborador.controls['telefone'].touched) }">
 							<label for="telefone">Telefone</label>
-							<input type="text" class="form-control" id="telefone" [(ngModel)]="colaborador.telefone" formControlName="telefone" maxlength="11" placeholder="Informe o prefixo do estado e depois o número do telefone no formato DD99999999">
+							<input type="text" class="form-control" id="telefone" [(ngModel)]="colaborador.telefone" formControlName="telefone" maxlength="10" placeholder="Informe o prefixo do estado e depois o número do telefone no formato DD99999999">
 							<span *ngIf="!formColaborador.controls['telefone'].valid && formColaborador.controls['telefone'].touched" class="help-block">O campo Telefone é obrigatório!</span>
 						</div>
 						<div class="form-group" [ngClass]="{'has-error': (!formColaborador.controls['especialidade'].valid && formColaborador.controls['especialidade'].touched) }">
 							<label for="especialidade">Especialização</label>
-							<select class="form-control" [(ngModel)]="colaborador.especialidade" formControlName="especialidade" (change)="setCamposFk(colaborador.especialidade)">
+							<select class="form-control" [(ngModel)]="colaborador.especialidade" formControlName="especialidade">
                             	<option value="" [selected]="true">Selecione</option>  
                                 <option value="Atendimento">Atendimento</option>
 								<option value="Apoio Operacional">Apoio Operacional</option>
@@ -62,7 +62,7 @@
 							<label for="TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe">Referência FCT</label>
 							<select name="TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe" id="TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe" [(ngModel)]="colaborador.TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe" class="form-control" formControlName="TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe">
 								<option value="">Selecione</option>
-								<option *ngFor="let TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe of Referencia; let i = index" value="{{TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe.id_referencia}}">{{TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe.num_referencia + " (" + TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe.valor_referencia + ")"}}</option>
+								<option *ngFor="let TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe of Referencia; let i = index" value="{{TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe.id_referencia_fct_gfe}}">{{TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe.num_referencia + " - " + TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe.cargo + " (" + TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe.valor_referencia + ")"}}</option>
 							</select>
 							<span *ngIf="!formColaborador.controls['TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe'].valid && formColaborador.controls['TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe'].touched" class="help-block">A Referência FCT é obrigatório!</span>
 						</div>
