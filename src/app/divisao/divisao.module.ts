@@ -5,6 +5,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule }  from '@angular/router';
 import { HttpModule }  from '@angular/http';
 
+import { DataTablesModule } from 'angular-datatables';
+
 import { DivisaoComponent } from './divisao.component';
 import { DivisaoService } from 'app/divisao/divisao.service';
 import { DivisaoFormComponent } from './divisao-form/divisao-form.component';
@@ -17,7 +19,8 @@ import { DivisaoFormComponent } from './divisao-form/divisao-form.component';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    HttpModule
+    HttpModule,
+    DataTablesModule
   ],
   providers: [ DivisaoService ],
   declarations: [

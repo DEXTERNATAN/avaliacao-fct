@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { TextMaskModule } from 'angular2-text-mask';
-
+import { DataTablesModule } from 'angular-datatables';
 
 /* Modules */
 import { AbrangenciaModule } from './abrangencia/abrangencia.module';
@@ -86,6 +86,7 @@ import { DetailRestaurantComponent } from './detail-restaurant/detail-restaurant
   ],
   imports: [
     BrowserModule,
+    DataTablesModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
