@@ -46,7 +46,7 @@ export class ColaboradorFormComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.debug('instanciacao: ', this.colaborador);
+        //console.debug('instanciacao: ', this.colaborador);
         this.getReferencia();
         this.getDivisao();
 
