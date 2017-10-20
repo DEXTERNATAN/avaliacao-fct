@@ -1,7 +1,10 @@
-import { AbrangenciaService } from 'app/abrangencia/abrangencia.service';
+import { FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { Abrangencia } from './abrangencia.model';
 
+import { Subject } from 'rxjs/Rx';
+
+import { AbrangenciaService } from 'app/abrangencia/abrangencia.service';
+import { Abrangencia } from './abrangencia.model';
 
 @Component({
   selector: 'mt-abrangencia',
@@ -10,12 +13,30 @@ import { Abrangencia } from './abrangencia.model';
 })
 export class AbrangenciaComponent implements OnInit {
 
-  private Abrangencia: Abrangencia[];
+  private Abrangencia: Abrangencia[] = [];
+  private abrangenciaCarregada: boolean = true;
+  dtOptions: DataTables.Settings = {};
+
+  // We use this trigger because fetching the list of persons can be quite long,
+  // thus we ensure the data is fetched before rendering
+  dtTrigger: Subject<Abrangencia> = new Subject();
 
   constructor(private _abrangenciaService: AbrangenciaService) { }
 
   ngOnInit() {
-    this._abrangenciaService.getAbrangencia().subscribe(abrangencia => this.Abrangencia = abrangencia )
+
+    this.dtOptions = {
+      //pagingType: 'full_numbers'
+      //searching: true
+    };
+
+    this._abrangenciaService.getAbrangencia()
+    .subscribe(abrangencia => {
+      this.Abrangencia = abrangencia
+      this.abrangenciaCarregada = false;
+       // Calling the DT trigger to manually render the table
+      this.dtTrigger.next();
+    });
   }
 
   deleteAbrangencia(abrangencia){

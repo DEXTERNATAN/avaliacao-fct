@@ -1,6 +1,9 @@
-import { DistribuicaoService } from 'app/distribuicao/distribuicao.service';
+import { FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
+import { Subject } from 'rxjs/Rx';
+
+import { DistribuicaoService } from 'app/distribuicao/distribuicao.service';
 import { Distribuicao } from './distribuicao.model';
 
 @Component({
@@ -10,11 +13,33 @@ import { Distribuicao } from './distribuicao.model';
 })
 export class DistribuicaoComponent implements OnInit {
 
-  private Distribuicao: Distribuicao[];
+  private Distribuicao: Distribuicao[] = [];
+  private distribuicaoCarregada: boolean = true;
+  dtOptions: DataTables.Settings = {};
+
+  // We use this trigger because fetching the list of persons can be quite long,
+  // thus we ensure the data is fetched before rendering
+  dtTrigger: Subject<Distribuicao> = new Subject();
+
   constructor(private _distribuicaoService: DistribuicaoService) { }
 
   ngOnInit() {
-    this._distribuicaoService.getDistribuicao().subscribe(distribuicao => this.Distribuicao = distribuicao )
+
+   this.dtOptions = {
+      //pagingType: 'full_numbers'
+      searching: false,
+      paging: false,
+      info: false,
+      ordering: false
+    };
+
+    this._distribuicaoService.getDistribuicao()
+    .subscribe(distribuicao =>{
+      this.Distribuicao = distribuicao
+      this.distribuicaoCarregada = false;
+      // Calling the DT trigger to manually render the table
+      this.dtTrigger.next();
+   });
   }
 
   deleteDistribuicao(distribuicao){

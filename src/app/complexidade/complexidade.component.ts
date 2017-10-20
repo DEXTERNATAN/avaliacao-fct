@@ -1,7 +1,10 @@
+import { FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { Complexidade } from './complexidade.model';
+
+import { Subject } from 'rxjs/Rx';
 
 import { ComplexidadeService } from 'app/complexidade/complexidade.service';
+import { Complexidade } from './complexidade.model';
 
 @Component({
   selector: 'mt-complexidade',
@@ -10,11 +13,31 @@ import { ComplexidadeService } from 'app/complexidade/complexidade.service';
 })
 export class ComplexidadeComponent implements OnInit {
 
-  private Complexidade: Complexidade[];
+  private Complexidade: Complexidade[] = [];
+  private complexidadeCarregada: boolean = true;
+  dtOptions: DataTables.Settings = {};
+
+  // We use this trigger because fetching the list of persons can be quite long,
+  // thus we ensure the data is fetched before rendering
+  dtTrigger: Subject<Complexidade> = new Subject();
+
   constructor(private _complexidadeService: ComplexidadeService) { }
 
   ngOnInit() {
-    this._complexidadeService.getComplexidade().subscribe(complexidade => this.Complexidade = complexidade )
+
+  this.dtOptions = {
+      //pagingType: 'full_numbers'
+      //searching: true
+    };
+
+
+    this._complexidadeService.getComplexidade()
+    .subscribe(complexidade =>{
+      this.Complexidade = complexidade
+      this.complexidadeCarregada = false;
+      // Calling the DT trigger to manually render the table
+      this.dtTrigger.next();
+    });
   }
 
   deleteComplexidade(complexidade){

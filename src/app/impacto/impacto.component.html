@@ -1,3 +1,7 @@
+<div class="text-center" *ngIf="atributoCarregada" style="margin-top: 10px;">
+	<i class="fa fa-refresh fa-spin fa-6"></i>
+	<br>Carregando... Aguarde...
+</div>
 <section class="content-header">
     <h1>
         Impacto
@@ -23,8 +27,8 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body table-responsive no-padding">
-                    <table class="table table-hover">
-                        <tbody>
+                    <table datatable [dtOptions]="dtOptions"  [dtTrigger]="dtTrigger" class="table table-hover">
+						<thead>
                             <tr>
                                 <th style="width: 10px">#</th>
                                 <th>Atributo</th>
@@ -35,6 +39,8 @@
                                 <th></th>
                                 <th></th>
                             </tr>
+                        </thead>
+                        <tbody>    
                             <tr *ngFor="let impacto of Impacto">
                                 <!-- | filter:searchText -->
                                 <td>{{impacto.id_impacto}}</td>
@@ -59,6 +65,5 @@
             </div>
             <!-- /.box -->
         </div>
-
     </div>
 </section>

@@ -41,9 +41,12 @@ export class AtributoFormComponent implements OnInit {
 		this.formAtributo = formBuilder.group({
 			letra: [null, [Validators.required]],
 			descricao: [null, Validators.required],
-			TB_ABRANGENCIA_id_abrangencia: [null, Validators.required],
-			TB_COMPLEXIDADE_id_complexidade: [null, Validators.required],
-			TB_IMPACTO_id_impacto: [null, Validators.required]
+			abrangenciaNome: [null, Validators.required],
+			complexidadeNome: [null, Validators.required],
+			impactoNome: [null, Validators.required],
+			idAbrangencia: [null],
+			idComplexidade: [null],
+			idImpacto: [null]	
 		})
 	}
 
@@ -52,8 +55,8 @@ export class AtributoFormComponent implements OnInit {
 		this.getComplexidade();
 		this.getImpacto();
 
-		var id_atributo = this.route.params.subscribe(params => {
-			this.idResource = params['id_atributo'];
+		var idAtributo = this.route.params.subscribe(params => {
+			this.idResource = params['idAtributo'];
 			this.title = this.idResource ? 'Editar Atributo' : 'Novo Atributo';
 
 			if (!this.idResource)

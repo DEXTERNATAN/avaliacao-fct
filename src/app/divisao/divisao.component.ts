@@ -1,5 +1,7 @@
-import { Subject } from 'rxjs/Rx';
+import { FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+
+import { Subject } from 'rxjs/Rx';
 
 import { DivisaoService } from './divisao.service';
 import { Divisao } from './divisao.model';
@@ -25,9 +27,8 @@ export class DivisaoComponent implements OnInit {
 
     this.dtOptions = {
       //pagingType: 'full_numbers'
-      searching: true
+      //searching: true
     };
-    
     
     
     this._divisaoService.getDivisao()
@@ -37,7 +38,6 @@ export class DivisaoComponent implements OnInit {
       // Calling the DT trigger to manually render the table
       this.dtTrigger.next();
     });
-
   }
 
   deleteDivisao(divisao){

@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule }  from '@angular/router';
 import { HttpModule }  from '@angular/http';
 
+import { DataTablesModule } from 'angular-datatables';
 
 import { AbrangenciaComponent } from './abrangencia.component';
 import { AbrangenciaService } from 'app/abrangencia/abrangencia.service';
@@ -16,7 +17,8 @@ import { AbrangenciaFormComponent } from 'app/abrangencia/abrangencia-form/abran
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    HttpModule
+    HttpModule,
+    DataTablesModule
   ],
   providers: [ AbrangenciaService ],
   declarations: [

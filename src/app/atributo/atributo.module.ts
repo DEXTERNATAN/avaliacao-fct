@@ -11,15 +11,14 @@ import { AtributoService } from 'app/atributo/atributo.service';
 import { AtributoFormComponent } from './atributo-form/atributo-form.component';
 
 
-
 @NgModule({
   imports: [
     CommonModule,
-    DataTablesModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    HttpModule
+    HttpModule,
+    DataTablesModule
   ],
   providers: [ AtributoService ],
   declarations: [

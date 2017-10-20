@@ -1,10 +1,9 @@
-import { DataTablesModule } from 'angular-datatables';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { TextMaskModule } from 'angular2-text-mask';
-
+import { DataTablesModule } from 'angular-datatables';
 
 /* Modules */
 import { AbrangenciaModule } from './abrangencia/abrangencia.module';

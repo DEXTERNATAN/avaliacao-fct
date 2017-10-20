@@ -4,6 +4,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule }  from '@angular/router';
 import { HttpModule }  from '@angular/http';
 
+import { DataTablesModule } from 'angular-datatables';
+
 import { ComplexidadeComponent } from './complexidade.component';
 import { ComplexidadeFormComponent } from 'app/complexidade/complexidade-form/complexidade-form.component';
 import { ComplexidadeService } from 'app/complexidade/complexidade.service';
@@ -14,7 +16,8 @@ import { ComplexidadeService } from 'app/complexidade/complexidade.service';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    HttpModule
+    HttpModule,
+    DataTablesModule
   ],
   providers: [ ComplexidadeService ],
   declarations: [

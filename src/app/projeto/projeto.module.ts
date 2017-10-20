@@ -4,6 +4,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule }  from '@angular/router';
 import { HttpModule }  from '@angular/http';
 
+import { DataTablesModule } from 'angular-datatables';
+
 import { ProjetoComponent } from './projeto.component';
 import { ProjetoService } from 'app/projeto/projeto.service';
 import { ProjetoFormComponent } from 'app/projeto/projeto-form/projeto-form.component';
@@ -15,7 +17,8 @@ import { ProjetoFormComponent } from 'app/projeto/projeto-form/projeto-form.comp
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    HttpModule
+    HttpModule,
+    DataTablesModule
   ],
   providers: [ ProjetoService ],
   declarations: [

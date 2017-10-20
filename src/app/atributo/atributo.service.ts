@@ -7,15 +7,6 @@ import 'rxjs/add/operator/do'
 import 'rxjs/add/operator/catch'
 
 import { Atributo } from './atributo.model';
-import { Abrangencia } from './../abrangencia/abrangencia.model';
-import { Complexidade } from './../complexidade/complexidade.model';
-import { Impacto } from './../impacto/impacto.model';
-import { AbrangenciaService } from './../abrangencia/abrangencia.service';
-import { ComplexidadeService } from './../complexidade/complexidade.service';
-import { ImpactoService } from './../impacto/impacto.service';
-import { abrangenciaRouting } from './../abrangencia/abrangencia.routes';
-import { complexidadeRouting } from './../complexidade/complexidade.routes';
-import { impactoRouting } from './../impacto/impacto.routes';
 
 @Injectable()
 export class AtributoService {
@@ -32,15 +23,15 @@ export class AtributoService {
     }
 
     getAtributo(): Observable<Atributo[]> {
-        if(this.Atributo != null){
-            return Observable.of(this.Atributo);
-        }else{
+        // if(this.Atributo != null){
+        //     return Observable.of(this.Atributo);
+        // }else{
             return this._http.get(`${MEAT_API}/atributo`, {})
             .map(response => response.json())
-            .do(atributo => this.Atributo = atributo)
-            .publishReplay(1)
-                .refCount();
-        }
+            // .do(atributo => this.Atributo = atributo)
+            // .publishReplay(1)
+            //     .refCount();
+        //}
     }
 
     getAtributoId(id) {

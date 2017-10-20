@@ -4,6 +4,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule }  from '@angular/router';
 import { HttpModule }  from '@angular/http';
 
+import { DataTablesModule } from 'angular-datatables';
+
 import { DistribuicaoComponent } from './distribuicao.component';
 import { DistribuicaoService } from 'app/distribuicao/distribuicao.service';
 import { DistribuicaoFormComponent } from 'app/distribuicao/distribuicao-form/distribuicao-form.component';
@@ -15,7 +17,8 @@ import { DistribuicaoFormComponent } from 'app/distribuicao/distribuicao-form/di
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    HttpModule
+    HttpModule,
+    DataTablesModule
   ],
   providers: [ DistribuicaoService ],
   declarations: [

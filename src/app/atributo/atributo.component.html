@@ -2,7 +2,7 @@
 	<i class="fa fa-refresh fa-spin fa-6"></i>
 	<br>Carregando... Aguarde...
 </div>
-<div *ngIf="!atributoCarregada">
+
 	<section class="content-header">
 		<h1>Atributo</h1>
 		<ol class="breadcrumb">
@@ -30,7 +30,8 @@
 					</div>
 					<!-- /.box-header -->
 					<div class="box-body table-responsive no-padding">
-						<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover">
+						<!--<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover">-->
+							<table datatable [dtOptions]="dtOptions"  [dtTrigger]="dtTrigger" class="table table-hover">
 							<thead>
 								<tr>
 									<th style="width: 10px">#</th>
@@ -45,15 +46,12 @@
 							</thead>
 							<tbody>
 								<tr *ngFor="let atributo of Atributo">
-									<td>{{atributo.id_atributo}}</td>
+									<td>{{atributo.idAtributo}}</td>
 									<td>{{atributo.letra}}</td>
 									<td>{{atributo.descricao}}</td>
-									<td>{{atributo.TB_ABRANGENCIA_id_abrangencia.classificacao + " - " + atributo.TB_ABRANGENCIA_id_abrangencia.tipo + "
-										(" + atributo.TB_ABRANGENCIA_id_abrangencia.nome + ")"}}</td>
-									<td>{{atributo.TB_COMPLEXIDADE_id_complexidade.classificacao + " - " + atributo.TB_COMPLEXIDADE_id_complexidade.tipo
-										+ " (" + atributo.TB_COMPLEXIDADE_id_complexidade.nome + ")"}}</td>
-									<td>{{atributo.TB_IMPACTO_id_impacto.classificacao + " - " + atributo.TB_IMPACTO_id_impacto.tipo + " (" + atributo.TB_IMPACTO_id_impacto.nome
-										+ ")"}}</td>
+									<td>{{atributo.abrangenciaNome}}</td>
+									<td>{{atributo.complexidadeNome}}</td>
+									<td>{{atributo.impactoNome}}</td>
 									<td>
 										<a [routerLink]="['/atributo', atributo.id_atributo]" class="btn  btn-xs bg-blue btn-flat">
 											<i class="fa fa-pencil"></i>
@@ -74,4 +72,3 @@
 			</div>
 		</div>
 	</section>
-</div>

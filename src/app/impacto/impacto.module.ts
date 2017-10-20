@@ -4,6 +4,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule }  from '@angular/router';
 import { HttpModule }  from '@angular/http';
 
+import { DataTablesModule } from 'angular-datatables';
+
 import { ImpactoComponent } from './impacto.component';
 import { ImpactoService } from 'app/impacto/impacto.service';
 import { ImpactoFormComponent } from './impacto-form/impacto-form.component';
@@ -14,7 +16,8 @@ import { ImpactoFormComponent } from './impacto-form/impacto-form.component';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    HttpModule
+    HttpModule,
+    DataTablesModule
   ],
   providers: [ ImpactoService ],
   declarations: [
