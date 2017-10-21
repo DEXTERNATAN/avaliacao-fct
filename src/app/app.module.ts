@@ -1,9 +1,17 @@
+import { TelPipe } from './shared/custom-pipes.pipes';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { TextMaskModule } from 'angular2-text-mask';
 import { DataTablesModule } from 'angular-datatables';
+import { LOCALE_ID } from '@angular/core';
+
+import { CurrencyPipe } from '@angular/common';
+import { DatePipe } from '@angular/common';
+import { CurrencyMaskModule } from "ng2-currency-mask";
+import { CurrencyMaskConfig, CURRENCY_MASK_CONFIG } from "ng2-currency-mask/src/currency-mask.config";
+
 
 /* Modules */
 import { AbrangenciaModule } from './abrangencia/abrangencia.module';
@@ -70,8 +78,17 @@ import { ProjetoComponent } from './projeto/projeto.component';
 import { DistribuicaoComponent } from './distribuicao/distribuicao.component';
 import { AtributoComponent } from './atributo/atributo.component';
 import { DetailRestaurantComponent } from './detail-restaurant/detail-restaurant.component';
-//import { ComplexidadeFormComponent } from './complexidade/src/app/complexidade-form/complexidade-form.component';
 
+export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
+  align: "right",
+  allowNegative: true,
+  allowZero: true,
+  decimal: ",",
+  precision: 2,
+  prefix: "R$ ",
+  suffix: "",
+  thousands: "."
+};
 
 @NgModule({
   declarations: [
@@ -91,6 +108,7 @@ import { DetailRestaurantComponent } from './detail-restaurant/detail-restaurant
     ReactiveFormsModule,
     HttpModule,
     TextMaskModule,
+    CurrencyMaskModule,
     DivisaoModule,
     divisaoRouting,
     AbrangenciaModule,
@@ -118,7 +136,12 @@ import { DetailRestaurantComponent } from './detail-restaurant/detail-restaurant
     routing
     //RouterModule.forRoot(routing)
   ],
-  providers: [ RestaurantsService ],
+  providers: 
+  [ 
+      RestaurantsService, 
+      {provide: LOCALE_ID, useValue: 'pt-BR'}, 
+      { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig } 
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

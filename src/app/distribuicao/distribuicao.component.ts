@@ -1,6 +1,5 @@
 import { FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-
 import { Subject } from 'rxjs/Rx';
 
 import { DistribuicaoService } from 'app/distribuicao/distribuicao.service';

@@ -48,8 +48,8 @@
 								<td>{{projeto.titulo}}</td>
 								<td>{{projeto.cod_servico}}</td>
 								<td>{{projeto.descricao}}</td>
-								<td>{{projeto.dt_inicio}}</td>
-								<td>{{projeto.dt_fim}}</td>
+								<td>{{projeto.dt_inicio | date:'shortDate'}}</td>
+								<td>{{projeto.dt_fim | date:'shortDate'}}</td>
 								<td>{{projeto.abrangencia}}</td>
 								<td>
 									<a [routerLink]="['/projeto', projeto.id_projeto]" class="btn  btn-xs bg-blue btn-flat">

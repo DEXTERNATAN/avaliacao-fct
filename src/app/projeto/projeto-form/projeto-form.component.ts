@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, Route, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 
+import { TextMaskModule } from 'angular2-text-mask';
+
 import { Projeto } from './../projeto.model';
 import { ProjetoService } from './../projeto.service';
 
@@ -13,9 +15,11 @@ import { ProjetoService } from './../projeto.service';
 export class ProjetoFormComponent implements OnInit {
 
     formProjeto: FormGroup;
-    title: string;
     projeto: Projeto = new Projeto();
     idResource: any;
+    title: string;
+    public maskDate = [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/];
+
 
     constructor(
         formBuilder: FormBuilder,
@@ -55,12 +59,15 @@ export class ProjetoFormComponent implements OnInit {
 
             this.projetoService.getProjetoId(this.idResource).subscribe(projeto => {
                 projeto = this.projeto = projeto
-                console.log(projeto.id_projeto),
-                    response => {
-                        if (response.status == 404) {
-                            this.router.navigate(['projeto'])
-                        }
+
+                this.projeto.dt_inicio = this.formataData(this.projeto.dt_inicio, true);
+                this.projeto.dt_fim = this.formataData(this.projeto.dt_fim, true);
+
+                response => {
+                    if (response.status == 404) {
+                        this.router.navigate(['projeto'])
                     }
+                }
             })
 
         })
@@ -80,6 +87,16 @@ export class ProjetoFormComponent implements OnInit {
 
     onCancel() {
         this.navigateBack();
+    }
+
+    formataData(data, formatoMysql: boolean){
+        if(formatoMysql){
+            let dtFormat = new Date(data);
+            console.log(dtFormat.toLocaleDateString());
+            return dtFormat.toLocaleDateString();
+        }else{
+            return data;
+        }
     }
 
     private navigateBack() {

@@ -1,15 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-
 import { Colaborador } from './../colaborador.model';
 import { Referencia } from './../../referencia/referencia.model';
 import { Divisao } from './../../divisao/divisao.model';
-
 import { ColaboradorService } from './../colaborador.service';
 import { ReferenciaService } from './../../referencia/referencia.service';
 import { DivisaoService } from './../../divisao/divisao.service';
-
 
 @Component({
     selector: 'app-colaborador-form',
@@ -23,6 +20,8 @@ export class ColaboradorFormComponent implements OnInit {
     idResource: any;
     Referencia: Referencia[];
     Divisao: Divisao[];
+    public MaskTel =  ['(', /[1-9]/, /\d/, ')', ' ', /\d/ , /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
+    
 
     constructor(
         formBuilder: FormBuilder,

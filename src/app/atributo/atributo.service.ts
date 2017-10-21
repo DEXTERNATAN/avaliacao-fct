@@ -28,7 +28,7 @@ export class AtributoService {
         // }else{
             return this._http.get(`${MEAT_API}/atributo`, {})
             .map(response => response.json())
-            // .do(atributo => this.Atributo = atributo)
+            .do(atributo => this.Atributo = atributo)
             // .publishReplay(1)
             //     .refCount();
         //}

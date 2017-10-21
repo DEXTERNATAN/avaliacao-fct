@@ -3,9 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule }  from '@angular/router';
 import { HttpModule }  from '@angular/http';
-
+import { TextMaskModule } from 'angular2-text-mask';
 import { DataTablesModule } from 'angular-datatables';
-
 import { ProjetoComponent } from './projeto.component';
 import { ProjetoService } from 'app/projeto/projeto.service';
 import { ProjetoFormComponent } from 'app/projeto/projeto-form/projeto-form.component';
@@ -18,7 +17,8 @@ import { ProjetoFormComponent } from 'app/projeto/projeto-form/projeto-form.comp
     ReactiveFormsModule,
     RouterModule,
     HttpModule,
-    DataTablesModule
+    DataTablesModule,
+    TextMaskModule
   ],
   providers: [ ProjetoService ],
   declarations: [

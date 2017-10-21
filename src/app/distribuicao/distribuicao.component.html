@@ -44,15 +44,14 @@
 						</thead>
 						<tbody>	
 							<tr *ngFor="let distribuicao of Distribuicao">
-								<!-- | filter:searchText -->
 								<td>{{distribuicao.id_distribuicao}}</td>
-								<td>{{distribuicao.valor}}</td>
+								<td>{{distribuicao.valor | currency:'BRL':true}}</td>
 								<td>{{distribuicao.pontuacao_minima}}</td>
 								<td>{{distribuicao.pontuacao_maxima}}</td>
 								<td>{{distribuicao.diferenca}}</td>
 								<td>{{distribuicao.amplitude_faixas}}</td>
 								<td>{{distribuicao.qtde_faixas}}</td>
-								<td>{{distribuicao.dt_registro}}</td>
+								<td>{{distribuicao.dt_registro | date:'shortDate'}}</td>
 								<td>
 									<a [routerLink]="['/distribuicao', distribuicao.id_distribuicao]" class="btn  btn-xs bg-blue btn-flat">
 									<i class="fa fa-pencil"></i>

@@ -39,8 +39,8 @@
 								<td>{{referencia.id_referencia_fct_gfe}}</td>
 								<td>{{referencia.cargo}}</td>
 								<td>{{referencia.num_referencia}}</td>
-								<td>{{referencia.valor_referencia }}</td>
-								<td>{{referencia.dt_atualizacao}}</td>
+								<td>{{referencia.valor_referencia | currency:'BRL':true}}</td>  
+								<td>{{referencia.dt_atualizacao | date:'shortDate'}}</td>
 								<td>
 									<a [routerLink]="['/referencia', referencia.id_referencia_fct_gfe]" class="btn  btn-xs bg-blue btn-flat">
 									<i class="fa fa-pencil"></i>

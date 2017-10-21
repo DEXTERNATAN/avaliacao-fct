@@ -11,8 +11,6 @@ import { DivisaoComponent } from './divisao.component';
 import { DivisaoService } from 'app/divisao/divisao.service';
 import { DivisaoFormComponent } from './divisao-form/divisao-form.component';
 
-
-
 @NgModule({
   imports: [
     CommonModule,
