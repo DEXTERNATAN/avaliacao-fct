@@ -11,11 +11,11 @@ import { DistribuicaoService } from './../distribuicao.service';
     styleUrls: ['./distribuicao-form.component.css']
 })
 export class DistribuicaoFormComponent implements OnInit {
-
     formDistribuicao: FormGroup;
     title: string;
     distribuicao: Distribuicao = new Distribuicao();
     idResource: any;
+    public maskDate = [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/];
 
     constructor(
         formBuilder: FormBuilder,
@@ -32,18 +32,6 @@ export class DistribuicaoFormComponent implements OnInit {
             qtde_faixas: [null, Validators.required],
             dt_registro: [null]
         })
-    }
-
-    hasErrors(): boolean {
-        var hasErrors: boolean = false;
-        for (var controlName in this.formDistribuicao.controls) {
-            var control: AbstractControl = this.formDistribuicao.controls[controlName];
-            if (!control.valid && !control.pristine) {
-                hasErrors = true;
-                break;
-            }
-        }
-        return hasErrors;
     }
 
     ngOnInit() {
@@ -84,5 +72,17 @@ export class DistribuicaoFormComponent implements OnInit {
 
     private navigateBack() {
         this.router.navigate(['/distribuicao']);
+    }
+
+    hasErrors(): boolean {
+        var hasErrors: boolean = false;
+        for (var controlName in this.formDistribuicao.controls) {
+            var control: AbstractControl = this.formDistribuicao.controls[controlName];
+            if (!control.valid && !control.pristine) {
+                hasErrors = true;
+                break;
+            }
+        }
+        return hasErrors;
     }
 }

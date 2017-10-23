@@ -80,14 +80,14 @@ import { AtributoComponent } from './atributo/atributo.component';
 import { DetailRestaurantComponent } from './detail-restaurant/detail-restaurant.component';
 
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
-  align: "right",
+  align: "left",
   allowNegative: true,
   allowZero: true,
-  decimal: ",",
+  decimal: ".",
   precision: 2,
   prefix: "R$ ",
   suffix: "",
-  thousands: "."
+  thousands: ""
 };
 
 @NgModule({

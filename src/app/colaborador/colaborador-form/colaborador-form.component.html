@@ -55,24 +55,24 @@
 						</div>
 						<div class="form-group" [ngClass]="{'has-error': (!formColaborador.controls['percentual_salario'].valid && formColaborador.controls['percentual_salario'].touched) }">
 							<label for="percentual_salario">8,5% do Salário</label>
-							<input type="text" class="form-control" [(ngModel)]="colaborador.percentual_salario" formControlName="percentual_salario" id="percentual_salario" maxlength="12" placeholder="Informar o valor correspondente a 8,5% do salário">
+							<input type="text" class="form-control" [(ngModel)]="colaborador.percentual_salario" formControlName="percentual_salario" id="percentual_salario" maxlength="12" placeholder="Informar o valor correspondente a 8,5% do salário" currencyMask>
 							<span *ngIf="!formColaborador.controls['percentual_salario'].valid && formColaborador.controls['percentual_salario'].touched" class="help-block">O campo 8,5% do Salário é obrigatório!</span>
 						</div>
-						<div class="form-group" [ngClass]="{'has-error': (!formColaborador.controls['TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe'].valid && formColaborador.controls['TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe'].touched)}">
-							<label for="TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe">Referência FCT</label>
-							<select name="TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe" id="TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe" [(ngModel)]="colaborador.TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe" class="form-control" formControlName="TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe">
+						<div class="form-group" [ngClass]="{'has-error': (!formColaborador.controls['referenciaFct'].valid && formColaborador.controls['referenciaFct'].touched)}">
+							<label for="referenciaFct">Referência FCT</label>
+							<select name="referenciaFct" id="referenciaFct" [(ngModel)]="colaborador.referenciaFct" class="form-control" formControlName="referenciaFct">
 								<option value="">Selecione</option>
-								<option *ngFor="let TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe of Referencia; let i = index" value="{{TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe.id_referencia_fct_gfe}}">{{TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe.num_referencia + " - " + TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe.cargo + " (" + TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe.valor_referencia + ")"}}</option>
+								<option *ngFor="let referencia of Referencia; let i = index" value="{{referencia.id_referencia_fct_gfe}}">{{referencia.num_referencia + " - " + referencia.cargo + " (R$ " + referencia.valor_referencia + ")"}}</option>
 							</select>
-							<span *ngIf="!formColaborador.controls['TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe'].valid && formColaborador.controls['TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe'].touched" class="help-block">A Referência FCT é obrigatório!</span>
+							<span *ngIf="!formColaborador.controls['referenciaFct'].valid && formColaborador.controls['referenciaFct'].touched" class="help-block">A Referência FCT é obrigatório!</span>
 						</div>
-						<div class="form-group" [ngClass]="{'has-error': (!formColaborador.controls['TB_DIVISAO_id_divisao'].valid && formColaborador.controls['TB_DIVISAO_id_divisao'].touched)}">
-							<label for="TB_DIVISAO_id_divisao">Divisão</label>
-							<select name="TB_DIVISAO_id_divisao" id="TB_DIVISAO_id_divisao" [(ngModel)]="colaborador.TB_DIVISAO_id_divisao" class="form-control" formControlName="TB_DIVISAO_id_divisao">
+						<div class="form-group" [ngClass]="{'has-error': (!formColaborador.controls['sigla'].valid && formColaborador.controls['sigla'].touched)}">
+							<label for="sigla">Divisão</label>
+							<select name="sigla" id="sigla" [(ngModel)]="colaborador.sigla" class="form-control" formControlName="sigla">
 							    <option value="">Selecione</option>
-								<option *ngFor="let TB_DIVISAO_id_divisao of Divisao; let i = index" value="{{TB_DIVISAO_id_divisao.id_divisao}}">{{TB_DIVISAO_id_divisao.sigla}}</option>  
+								<option *ngFor="let divisao of Divisao; let i = index" value="{{divisao.sigla}}">{{divisao.sigla}}</option>  
                             </select>
-							<span *ngIf="!formColaborador.controls['TB_DIVISAO_id_divisao'].valid && formColaborador.controls['TB_DIVISAO_id_divisao'].touched" class="help-block">A Divisão é obrigatória!</span>	  
+							<span *ngIf="!formColaborador.controls['sigla'].valid && formColaborador.controls['sigla'].touched" class="help-block">A Divisão é obrigatória!</span>	  
 						</div>
 					<!-- /.box-body -->
 					<div class="box-footer">
