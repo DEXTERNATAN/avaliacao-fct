@@ -57,6 +57,12 @@ export class AbrangenciaComponent implements OnInit, AfterViewInit {
         // Destroy the table first
         dtInstance.destroy();
 
+        this.dtOptions = {
+          //pagingType: 'full_numbers'
+          //searching: true
+        };
+        
+
         // Call the dtTrigger to rerender again
         this.dtTrigger.next();
 
