@@ -41,7 +41,8 @@ export class ColaboradorFormComponent implements OnInit {
             salario: [null, Validators.required],
             percentual_salario: [null, Validators.required],
             referenciaFct: [null, Validators.required],
-            sigla: [null, Validators.required]
+            sigla: [null, Validators.required],
+            idAcesso: [null, Validators.required]
         })
     }
 
@@ -50,8 +51,8 @@ export class ColaboradorFormComponent implements OnInit {
         this.getReferencia();
         this.getDivisao();
 
-        var id_colaborador = this.route.params.subscribe(params => {
-            this.idResource = params['id_colaborador'];
+        var idColaborador = this.route.params.subscribe(params => {
+            this.idResource = params['idColaborador'];
             this.title = this.idResource ? 'Editar Colaborador' : 'Novo Colaborador';
 
             if (!this.idResource)

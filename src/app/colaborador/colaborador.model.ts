@@ -1,5 +1,5 @@
 export class Colaborador {
-    id_colaborador: number;
+    idColaborador: number;
     nome: string;
     matricula: string;
     telefone: string;
@@ -8,4 +8,5 @@ export class Colaborador {
     percentual_salario: string;
     referenciaFct: string;
     sigla: string;
+    idAcesso: string;
 }

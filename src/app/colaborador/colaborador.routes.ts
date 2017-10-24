@@ -6,7 +6,7 @@ import { ColaboradorComponent } from './colaborador.component';
 const colaboradorRoutes: Routes = [
  { path: 'colaborador', component: ColaboradorComponent, pathMatch: 'full' },
   { path: 'colaborador/novo', component: ColaboradorFormComponent},
-  { path: 'colaborador/:id_colaborador', component: ColaboradorFormComponent}
+  { path: 'colaborador/:idColaborador', component: ColaboradorFormComponent}
 ];
 
 export const colaboradorRouting = RouterModule.forChild(colaboradorRoutes);

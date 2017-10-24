@@ -4,5 +4,5 @@ export class Abrangencia {
     classificacao: number;
     tipo: string;
     nome: string;
-    descricao: string
+    descricao: string;
 }
