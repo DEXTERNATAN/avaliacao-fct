@@ -1,5 +1,6 @@
+import { DataTableDirective } from 'angular-datatables';
 import { FormBuilder } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 
 import { Subject } from 'rxjs/Rx';
 
@@ -16,18 +17,23 @@ export class DivisaoComponent implements OnInit {
   private Divisao: Divisao[] = [];
   private divisaoCarregada: boolean = true;
   dtOptions: DataTables.Settings = {};
+  @ViewChild(DataTableDirective)
+  dtElement: DataTableDirective;
+  
 
   // We use this trigger because fetching the list of persons can be quite long,
   // thus we ensure the data is fetched before rendering
   dtTrigger: Subject<Divisao> = new Subject();
+  lang: string = 'Portuguese-Brasil';
 
   constructor(private _divisaoService: DivisaoService) { }
 
   ngOnInit() {
 
     this.dtOptions = {
-      //pagingType: 'full_numbers'
-      //searching: true
+      language: {
+        url: `assets/language/datatables/${this.lang}.json`
+      }
     };
     
     
@@ -44,6 +50,14 @@ export class DivisaoComponent implements OnInit {
     if (confirm("Tem certeza que quer APAGAR a Divisão #" + divisao.id_divisao + " - " + divisao.sigla + "?")) {
       var index = this.Divisao.indexOf(divisao);
       this.Divisao.splice(index, 1);
+
+      this.dtElement.dtInstance.then((dtInstance: DataTables.Api)=>{  
+        // Destroy the table first
+        dtInstance.destroy();
+        
+        // Call the dtTrigger to rerender again
+        this.dtTrigger.next();
+      })
 
       this._divisaoService.deleteDivisao(divisao.id_divisao)
         .subscribe(null,

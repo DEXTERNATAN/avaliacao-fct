@@ -49,6 +49,14 @@ export class AtributoComponent implements OnInit {
       var index = this.Atributo.indexOf(atributo);
       this.Atributo.splice(index, 1);
 
+      this.dtElement.dtInstance.then((dtInstance: DataTables.Api)=>{  
+        // Destroy the table first
+        dtInstance.destroy();
+        
+        // Call the dtTrigger to rerender again
+        this.dtTrigger.next();
+      })
+
       this._atributoService.deleteAtributo(atributo.idAtributo)
         .subscribe(null,
         err => {
