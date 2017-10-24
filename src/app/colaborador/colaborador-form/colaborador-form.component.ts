@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+
 import { Colaborador } from './../colaborador.model';
 import { Referencia } from './../../referencia/referencia.model';
 import { Divisao } from './../../divisao/divisao.model';
+
 import { ColaboradorService } from './../colaborador.service';
 import { ReferenciaService } from './../../referencia/referencia.service';
 import { DivisaoService } from './../../divisao/divisao.service';
@@ -22,7 +24,6 @@ export class ColaboradorFormComponent implements OnInit {
     Divisao: Divisao[];
     public MaskTel =  ['(', /[1-9]/, /\d/, ')', ' ', /\d/ , /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
     
-
     constructor(
         formBuilder: FormBuilder,
         private router: Router,
@@ -39,8 +40,8 @@ export class ColaboradorFormComponent implements OnInit {
             especialidade: [null, Validators.required],
             salario: [null, Validators.required],
             percentual_salario: [null, Validators.required],
-            TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe: [null, Validators.required],
-            TB_DIVISAO_id_divisao: [null, Validators.required]
+            referenciaFct: [null, Validators.required],
+            sigla: [null, Validators.required]
         })
     }
 
