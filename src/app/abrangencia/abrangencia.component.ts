@@ -24,7 +24,7 @@ export class AbrangenciaComponent implements OnInit, AfterViewInit {
   // We use this trigger because fetching the list of persons can be quite long,
   // thus we ensure the data is fetched before rendering
   dtTrigger: Subject<Abrangencia> = new Subject();
-
+  lang: string = 'Portuguese-Brasil';
 
   constructor(private _abrangenciaService: AbrangenciaService) { }
 
@@ -33,6 +33,9 @@ export class AbrangenciaComponent implements OnInit, AfterViewInit {
     this.dtOptions = {
       //pagingType: 'full_numbers'
       //searching: true
+      language: {
+        url: `assets/language/datatables/${this.lang}.json`
+      }
     };
     
     this._abrangenciaService.getAbrangencia()
@@ -56,16 +59,9 @@ export class AbrangenciaComponent implements OnInit, AfterViewInit {
       this.dtElement.dtInstance.then((dtInstance: DataTables.Api)=>{  
         // Destroy the table first
         dtInstance.destroy();
-
-        this.dtOptions = {
-          //pagingType: 'full_numbers'
-          //searching: true
-        };
         
-
         // Call the dtTrigger to rerender again
         this.dtTrigger.next();
-
       })
 
       this._abrangenciaService.deleteAbrangencia(abrangencia.id_abrangencia)
