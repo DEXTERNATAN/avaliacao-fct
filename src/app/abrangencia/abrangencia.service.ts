@@ -2,9 +2,11 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { MEAT_API } from './../app.api';
 
+import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/do'
 import 'rxjs/add/operator/catch'
+import { ErrorHandler } from './../app.error-handler';
 
 import { Observable } from 'rxjs/Observable';
 import { Abrangencia } from './abrangencia.model';
@@ -40,10 +42,13 @@ export class AbrangenciaService {
     deleteAbrangencia(id) {
         return this._http.delete(`${MEAT_API}/abrangencia/${id}`)
             .map(response => response.json())
+            .do(data => console.log('server data:', data))  // debug
+            .catch(ErrorHandler.handleError);
     }
 
     updateAbrangencia(id, abrangencia) {
         return this._http.put(`${MEAT_API}/abrangencia/${id}`, JSON.stringify(abrangencia), this.options)
             .map(response => response.json())
     }
+
 }

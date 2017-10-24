@@ -1,3 +1,4 @@
+import { ErrorHandler } from 'app/app.error-handler';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { MEAT_API } from './../app.api';
@@ -42,6 +43,8 @@ export class PapelService {
     deletePapel(id_papel) {
         return this._http.delete(`${MEAT_API}/papel/${id_papel}`)
             .map(response => response.json())
+            .do(data => console.log('server data:', data))  // debug
+            .catch(ErrorHandler.handleError);
     }
 
     updatePapel(id_papel, papel) {
