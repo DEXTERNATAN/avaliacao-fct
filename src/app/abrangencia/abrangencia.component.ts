@@ -31,8 +31,6 @@ export class AbrangenciaComponent implements OnInit, AfterViewInit {
   ngOnInit() {
 
     this.dtOptions = {
-      //pagingType: 'full_numbers'
-      //searching: true
       language: {
         url: `assets/language/datatables/${this.lang}.json`
       }

@@ -62,7 +62,7 @@
 							<label for="referenciaFct">Referência FCT</label>
 							<select name="referenciaFct" id="referenciaFct" [(ngModel)]="colaborador.referenciaFct" class="form-control" formControlName="referenciaFct">
 								<option value="">Selecione</option>
-								<option *ngFor="let referencia of Referencia; let i = index" value="{{referencia.id_referencia_fct_gfe}}">{{referencia.num_referencia + " - " + referencia.cargo + " (R$ " + referencia.valor_referencia + ")"}}</option>
+								<option *ngFor="let referencia of Referencia; let i = index" value="{{referencia.id_referencia_fct_gfe}}">{{referencia.num_referencia + " - " + referencia.cargo + " (" + referencia.valor_referencia + ")"}}</option>
 							</select>
 							<span *ngIf="!formColaborador.controls['referenciaFct'].valid && formColaborador.controls['referenciaFct'].touched" class="help-block">A Referência FCT é obrigatório!</span>
 						</div>
@@ -77,12 +77,10 @@
 						<div class="form-group" [ngClass]="{'has-error': (!formColaborador.controls['idAcesso'].valid && formColaborador.controls['idAcesso'].touched)}">
 							<label for="idAcesso">Perfil de Acesso</label>
 							<select class="form-control" [(ngModel)]="colaborador.idAcesso" formControlName="idAcesso">
-                            	<option value="">Selecione</option>  
-                                <option value="1">ADMINISTRADOR</option>
+                            	<option value="1">ADMINISTRADOR</option>
 								<option value="2">LÍDER</option>
 								<option value="3" [selected]="true">COLABORADOR</option>
 							</select>
-							<span *ngIf="!formColaborador.controls['idAcesso'].valid && formColaborador.controls['idAcesso'].touched" class="help-block">O perfil do colaborador é obrigatório!</span>	  
 						</div>
 					<!-- /.box-body -->
 					<div class="box-footer">

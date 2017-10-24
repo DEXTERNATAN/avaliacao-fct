@@ -20,8 +20,8 @@ export class ColaboradorFormComponent implements OnInit {
     title: string;
     colaborador: Colaborador = new Colaborador();
     idResource: any;
-    Referencia: Referencia[];
-    Divisao: Divisao[];
+    Referencia: Referencia[] = [];
+    Divisao: Divisao[] = [];
     public MaskTel =  ['(', /[1-9]/, /\d/, ')', ' ', /\d/ , /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
     
     constructor(
@@ -42,7 +42,7 @@ export class ColaboradorFormComponent implements OnInit {
             percentual_salario: [null, Validators.required],
             referenciaFct: [null, Validators.required],
             sigla: [null, Validators.required],
-            idAcesso: [null, Validators.required]
+            idAcesso: [null]
         })
     }
 

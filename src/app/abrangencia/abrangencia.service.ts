@@ -29,8 +29,8 @@ export class AbrangenciaService {
             .map(response => response.json())
     }
 
-    getAbrangenciaId(id) {
-        return this._http.get(`${MEAT_API}/abrangencia/${id}`)
+    getAbrangenciaId(id_abrangencia) {
+        return this._http.get(`${MEAT_API}/abrangencia/${id_abrangencia}`)
         .map(response => response.json())
     }
 
