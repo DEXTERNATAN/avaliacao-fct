@@ -1,3 +1,4 @@
+import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -6,6 +7,7 @@ import { HttpModule }  from '@angular/http';
 import { TextMaskModule } from 'angular2-text-mask';
 
 import { DataTablesModule } from 'angular-datatables';
+
 
 import { ReferenciaComponent } from './referencia.component';
 import { ReferenciaService } from 'app/referencia/referencia.service';
@@ -20,7 +22,8 @@ import { ReferenciaFormComponent } from 'app/referencia/referencia-form/referenc
     RouterModule,
     HttpModule,
     TextMaskModule,
-    DataTablesModule
+    DataTablesModule,
+    CurrencyMaskModule
   ],
   providers: [ ReferenciaService ],
   declarations: [

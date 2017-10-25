@@ -80,7 +80,7 @@
 						</div>
 						<div class="form-group" [ngClass]="{'has-error': (!formReferencia.controls['valor_referencia'].valid && formReferencia.controls['valor_referencia'].touched) }">
 							<label for="valor_referencia">Valor</label>
-							<input type="text" class="form-control" id="valor_referencia" [(ngModel)]="referencia.valor_referencia" formControlName="valor_referencia" placeholder="Informe o valor de referência da FCT" maxlength="" [textMask]="{mask: maskValor}">
+							<input type="text" class="form-control" id="valor_referencia" [(ngModel)]="referencia.valor_referencia" formControlName="valor_referencia" placeholder="Informe o valor de referência da FCT" currencyMask >
 							<span *ngIf="!formReferencia.controls['valor_referencia'].valid && formReferencia.controls['valor_referencia'].touched" class="help-block">O campo Valor é obrigatório!</span>
 						</div>
 						<div class="form-group" [ngClass]="{'has-error': (!formReferencia.controls['dt_atualizacao'].valid && formReferencia.controls['dt_atualizacao'].touched) }">

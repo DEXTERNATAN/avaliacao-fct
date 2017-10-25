@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, Route, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 
+import { CurrencyMaskModule } from "ng2-currency-mask";
+
 import { Referencia } from './../referencia.model';
 import { ReferenciaService } from './../referencia.service';
 
