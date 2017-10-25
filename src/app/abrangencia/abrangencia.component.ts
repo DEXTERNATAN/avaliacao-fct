@@ -20,7 +20,6 @@ export class AbrangenciaComponent implements OnInit, AfterViewInit {
   @ViewChild(DataTableDirective)
   dtElement: DataTableDirective;
   
-
   // We use this trigger because fetching the list of persons can be quite long,
   // thus we ensure the data is fetched before rendering
   dtTrigger: Subject<Abrangencia> = new Subject();
@@ -40,7 +39,7 @@ export class AbrangenciaComponent implements OnInit, AfterViewInit {
     .subscribe(abrangencia => {
       this.Abrangencia = abrangencia
       this.abrangenciaCarregada = false;
-       // Calling the DT trigger to manually render the table
+      // Calling the DT trigger to manually render the table
       this.dtTrigger.next();
     });
   }
@@ -53,7 +52,7 @@ export class AbrangenciaComponent implements OnInit, AfterViewInit {
     if (confirm("Tem certeza que quer APAGAR a Abrangência #" + abrangencia.id_abrangencia + " ?")) {
       var index = this.Abrangencia.indexOf(abrangencia);
       this.Abrangencia.splice(index, 1);
-      //debugger
+      
       this.dtElement.dtInstance.then((dtInstance: DataTables.Api)=>{  
         // Destroy the table first
         dtInstance.destroy();

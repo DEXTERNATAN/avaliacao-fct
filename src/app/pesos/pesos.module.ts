@@ -4,6 +4,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule }  from '@angular/router';
 import { HttpModule }  from '@angular/http';
 
+import { DataTablesModule } from 'angular-datatables';
+
 import { PesosComponent } from './pesos.component';
 import { PesosService } from 'app/pesos/pesos.service';
 import { PesosFormComponent } from 'app/pesos/pesos-form/pesos-form.component';
@@ -15,7 +17,8 @@ import { PesosFormComponent } from 'app/pesos/pesos-form/pesos-form.component';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    HttpModule
+    HttpModule,
+    DataTablesModule
   ],
   providers: [ PesosService ],
   declarations: [

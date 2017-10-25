@@ -4,6 +4,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule }  from '@angular/router';
 import { HttpModule }  from '@angular/http';
 
+import { DataTablesModule } from 'angular-datatables';
+
 import { TecnologiaComponent } from './tecnologia.component';
 import { TecnologiaService } from 'app/tecnologia/tecnologia.service';
 import { TecnologiaFormComponent } from './tecnologia-form/tecnologia-form.component';
@@ -14,7 +16,8 @@ import { TecnologiaFormComponent } from './tecnologia-form/tecnologia-form.compo
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    HttpModule
+    HttpModule,
+    DataTablesModule
   ],
   providers: [ TecnologiaService ],
   declarations: [

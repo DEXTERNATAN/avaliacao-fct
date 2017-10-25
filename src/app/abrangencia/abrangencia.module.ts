@@ -10,7 +10,6 @@ import { AbrangenciaComponent } from './abrangencia.component';
 import { AbrangenciaService } from 'app/abrangencia/abrangencia.service';
 import { AbrangenciaFormComponent } from 'app/abrangencia/abrangencia-form/abrangencia-form.component';
 
-
 @NgModule({
   imports: [
     CommonModule,

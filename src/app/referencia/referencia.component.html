@@ -16,15 +16,15 @@
 					<h3 class="box-title">Referências Cadastradas</h3>
 					<div class="box-tools">
 						<a routerLink="/referencia/novo" class="btn btn-sm pull-left btn-flat bg-purple margin-right-10" ><i class="fa fa-plus"></i> <b>Nova Referência</b></a>
-						<div class="input-group input-group-sm pull-right" style="width: 150px;">
+						<!--<div class="input-group input-group-sm pull-right" style="width: 150px;">
 							<input type="text" ng-model="searchText" name="table_search" class="form-control pull-right" placeholder="Pesquisar">
-						</div>
+						</div>-->
 					</div>
 				</div>
 				<!-- /.box-header -->
 				<div class="box-body table-responsive no-padding">
-					<table class="table table-hover">
-						<tbody>
+					<table id="example" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover">
+						<thead>
 							<tr>
 								<th style="width: 10px">#</th>
 								<th>Cargo</th>
@@ -34,12 +34,14 @@
 								<th></th>
 								<th></th>
 							</tr>
+						</thead>
+						<tbody>	
 							<tr *ngFor="let referencia of Referencia">
 								<!-- | filter:searchText -->
 								<td>{{referencia.id_referencia_fct_gfe}}</td>
 								<td>{{referencia.cargo}}</td>
 								<td>{{referencia.num_referencia}}</td>
-								<td>{{referencia.valor_referencia | currency:'BRL':true}}</td>  
+								<td>{{referencia.valor_referencia}}</td>  
 								<td>{{referencia.dt_atualizacao | date:'shortDate'}}</td>
 								<td>
 									<a [routerLink]="['/referencia', referencia.id_referencia_fct_gfe]" class="btn  btn-xs bg-blue btn-flat">

@@ -16,15 +16,15 @@
             <h3 class="box-title">Papeis Cadastrados</h3>
             <div class="box-tools">
               <a routerLink="/papel/novo" class="btn btn-sm pull-left btn-flat bg-purple margin-right-10" ><i class="fa fa-plus"></i> <b>Novo Papel</b></a>
-              <div class="input-group input-group-sm pull-right" style="width: 150px;">
+              <!--<div class="input-group input-group-sm pull-right" style="width: 150px;">
                 <input type="text" ng-model="searchText" name="table_search" class="form-control pull-right" placeholder="Pesquisar">
-              </div>
+              </div>-->
             </div>
           </div>
           <!-- /.box-header -->
           <div class="box-body table-responsive no-padding">
-            <table class="table table-hover">
-              <tbody>
+            <table id="example" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover">
+              <thead>
                 <tr>
                   <th style="width: 10px">#</th>
                   <th>Tipo</th>
@@ -33,6 +33,8 @@
                   <th></th>
                   <th></th>
                 </tr>
+              </thead>
+              <tbody>
                 <tr *ngFor="let papel of Papel">
                   <td>{{papel.id_papel}}</td>
                   <td>{{papel.tipo}}</td>

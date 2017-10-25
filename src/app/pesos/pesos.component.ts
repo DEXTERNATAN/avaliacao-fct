@@ -1,6 +1,10 @@
-import { PesosService } from 'app/pesos/pesos.service';
-import { Component, OnInit } from '@angular/core';
+import { DataTableDirective } from 'angular-datatables';
+import { FormBuilder } from '@angular/forms';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 
+import { Subject } from 'rxjs/Rx';
+
+import { PesosService } from 'app/pesos/pesos.service';
 import { Pesos } from './pesos.model';
 
 @Component({
@@ -11,10 +15,37 @@ import { Pesos } from './pesos.model';
 export class PesosComponent implements OnInit {
 
   private Pesos: Pesos[];
+  private pesoCarregado: boolean = true;
+  dtOptions: DataTables.Settings = {};
+  @ViewChild(DataTableDirective)
+  dtElement: DataTableDirective;
+  
+  // We use this trigger because fetching the list of persons can be quite long,
+  // thus we ensure the data is fetched before rendering
+  dtTrigger: Subject<Pesos> = new Subject();
+  lang: string = 'Portuguese-Brasil';
+
   constructor(private _pesosService: PesosService) { }
 
   ngOnInit() {
-    this._pesosService.getPesos().subscribe(pesos => this.Pesos = pesos )
+
+    this.dtOptions = {
+      language: {
+        url: `assets/language/datatables/${this.lang}.json`
+      }
+    };  
+
+    this._pesosService.getPesos()
+    .subscribe(pesos => {
+      this.Pesos = pesos 
+      this.pesoCarregado = false;
+      // Calling the DT trigger to manually render the table
+      this.dtTrigger.next();
+    });
+  }
+
+  ngAfterViewInit(): void {
+    //this.dtTrigger.next();
   }
 
   deletePesos(pesos){
@@ -22,12 +53,21 @@ export class PesosComponent implements OnInit {
       var index = this.Pesos.indexOf(pesos);
       this.Pesos.splice(index, 1);
 
+      this.dtElement.dtInstance.then((dtInstance: DataTables.Api)=>{  
+        // Destroy the table first
+        dtInstance.destroy();
+        
+        // Call the dtTrigger to rerender again
+        this.dtTrigger.next();
+      })
+
       this._pesosService.deletePesos(pesos.id_pesos)
         .subscribe(null,
           err => {
             alert("O peso não foi apagado!");
             // Revert the view back to its original state
             this.Pesos.splice(index, 0, pesos);
+            throw err;
           });
     }
   }

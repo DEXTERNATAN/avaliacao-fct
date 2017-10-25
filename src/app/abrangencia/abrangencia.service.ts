@@ -39,15 +39,15 @@ export class AbrangenciaService {
             .map(res => res.json());
     }
 
-    deleteAbrangencia(id) {
-        return this._http.delete(`${MEAT_API}/abrangencia/${id}`)
+    deleteAbrangencia(id_abrangencia) {
+        return this._http.delete(`${MEAT_API}/abrangencia/${id_abrangencia}`)
             .map(response => response.json())
             .do(data => console.log('server data:', data))  // debug
             .catch(ErrorHandler.handleError);
     }
 
-    updateAbrangencia(id, abrangencia) {
-        return this._http.put(`${MEAT_API}/abrangencia/${id}`, JSON.stringify(abrangencia), this.options)
+    updateAbrangencia(id_abrangencia, abrangencia) {
+        return this._http.put(`${MEAT_API}/abrangencia/${id_abrangencia}`, JSON.stringify(abrangencia), this.options)
             .map(response => response.json())
     }
 

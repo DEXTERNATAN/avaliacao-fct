@@ -1,11 +1,12 @@
-import { ErrorHandler } from 'app/app.error-handler';
-import { Http, Headers, RequestOptions } from '@angular/http';
+import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { MEAT_API } from './../app.api';
 
+import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/do'
 import 'rxjs/add/operator/catch'
+import { ErrorHandler } from './../app.error-handler';
 
 import { Observable } from 'rxjs/Observable';
 import { Referencia } from './referencia.model';

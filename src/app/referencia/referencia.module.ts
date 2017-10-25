@@ -5,6 +5,8 @@ import { RouterModule }  from '@angular/router';
 import { HttpModule }  from '@angular/http';
 import { TextMaskModule } from 'angular2-text-mask';
 
+import { DataTablesModule } from 'angular-datatables';
+
 import { ReferenciaComponent } from './referencia.component';
 import { ReferenciaService } from 'app/referencia/referencia.service';
 import { ReferenciaFormComponent } from 'app/referencia/referencia-form/referencia-form.component';
@@ -17,7 +19,8 @@ import { ReferenciaFormComponent } from 'app/referencia/referencia-form/referenc
     ReactiveFormsModule,
     RouterModule,
     HttpModule,
-    TextMaskModule
+    TextMaskModule,
+    DataTablesModule
   ],
   providers: [ ReferenciaService ],
   declarations: [
