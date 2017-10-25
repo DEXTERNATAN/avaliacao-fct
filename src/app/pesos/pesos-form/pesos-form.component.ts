@@ -27,9 +27,10 @@ export class PesosFormComponent implements OnInit {
             quantidade: [null, Validators.required],
             tipo: [null, Validators.required],
             descricao: [null, Validators.required],
-            valor: [null, Validators.required],
-            dt_registro: [null, Validators.required]
+            valor: [null, Validators.required]
         })
+
+        console.log(this.formPesos);
     }
 
     hasErrors(): boolean {
@@ -50,16 +51,8 @@ export class PesosFormComponent implements OnInit {
             this.idResource = params['id_pesos'];
             this.title = this.idResource ? 'Editar Peso' : 'Novo Peso';
 
-            if (!this.idResource){
-                this.pesos.dt_registro = this.geraData(null, 'new');
-                return;
-            }
-                
-
             this.pesosService.getPesosId(this.idResource).subscribe(pesos => {
                 pesos = this.pesos = pesos;
-                this.pesos.dt_registro = this.geraData(this.pesos.dt_registro, 'edit');
-                console.log(this.pesos.dt_registro);
                 response => {
                     if (response.status == 404) {
                         this.router.navigate(['pesos'])
@@ -87,21 +80,6 @@ export class PesosFormComponent implements OnInit {
 
     private navigateBack() {
         this.router.navigate(['/pesos']);
-    }
-
-    geraData(data, opcao) {
-       
-        if (data && opcao == 'edit') {
-            let newValue = new Date(this.pesos.dt_registro.toString()).toLocaleDateString();
-            console.log(newValue, this.pesos.dt_registro);
-            return newValue;
-        }
-        if (!data && opcao == 'new') {
-            let DtAtual = new Date().toLocaleDateString();
-            console.log(DtAtual);
-            return DtAtual;
-        }
-
     }
 
 }

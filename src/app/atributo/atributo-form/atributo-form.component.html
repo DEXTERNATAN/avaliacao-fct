@@ -17,6 +17,7 @@
 				</div>
 				<!-- /.box-header -->
 				<!-- form start -->
+				{{"Atributo: " + atributo.letra}}
 				<form role="form" [formGroup]="formAtributo" (ngSubmit)="save()">
 					<div class="box-body">
 						<div class="form-group" [ngClass]="{'has-error': (!formAtributo.controls['letra'].valid && formAtributo.controls['letra'].touched) }">

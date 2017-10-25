@@ -25,9 +25,9 @@ export class AtributoFormComponent implements OnInit {
 	atributo: Atributo = new Atributo();
 	idResource: any;
 
-	Abrangencia: Abrangencia[];
-	Complexidade: Complexidade[];
-	Impacto: Impacto[];
+	public Abrangencia: Abrangencia[] = [];
+	public Complexidade: Complexidade[] = [];
+	public Impacto: Impacto[] = [];
 
 	constructor(
 		formBuilder: FormBuilder,

@@ -48,7 +48,7 @@ export class ColaboradorComponent implements OnInit {
   }
 
   deleteColaborador(colaborador) {
-    if (confirm("Tem certeza que quer APAGAR o Colaborador #" + colaborador.id_colaborador + " - " + colaborador.nome + "?")) {
+    if (confirm("Tem certeza que quer APAGAR o Colaborador #" + colaborador.idColaborador + " - " + colaborador.nome + "?")) {
       var index = this.Colaborador.indexOf(colaborador);
       this.Colaborador.splice(index, 1);
 
