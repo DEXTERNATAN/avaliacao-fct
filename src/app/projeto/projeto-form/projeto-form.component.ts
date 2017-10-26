@@ -6,6 +6,7 @@ import { TextMaskModule } from 'angular2-text-mask';
 
 import { Projeto } from './../projeto.model';
 import { ProjetoService } from './../projeto.service';
+import { FuncoesGlobais } from 'app/shared/app.funcoes-globais';
 
 @Component({
     selector: 'mt-projeto-form',
@@ -60,8 +61,8 @@ export class ProjetoFormComponent implements OnInit {
             this.projetoService.getProjetoId(this.idResource).subscribe(projeto => {
                 projeto = this.projeto = projeto
 
-                this.projeto.dt_inicio = this.formataData(this.projeto.dt_inicio, true);
-                this.projeto.dt_fim = this.formataData(this.projeto.dt_fim, true);
+                this.projeto.dt_inicio = FuncoesGlobais.dataFormatadaView(this.projeto.dt_inicio);
+                this.projeto.dt_fim = FuncoesGlobais.dataFormatadaView(this.projeto.dt_fim);
 
                 response => {
                     if (response.status == 404) {
@@ -74,13 +75,17 @@ export class ProjetoFormComponent implements OnInit {
     }
 
     save() {
-        var result,
-            userValue = this.formProjeto.value;
+
+        // Setando a nova data para salvar no banco
+        this.formProjeto.get('dt_inicio').setValue(FuncoesGlobais.dataFormatadaCad(this.formProjeto.value.dt_inicio));
+        this.formProjeto.get('dt_fim').setValue(FuncoesGlobais.dataFormatadaCad(this.formProjeto.value.dt_fim));
+        
+        var result, projetoValue = this.formProjeto.value;
 
         if (this.idResource) {
-            result = this.projetoService.updateProjeto(this.idResource, userValue);
+            result = this.projetoService.updateProjeto(this.idResource, projetoValue);
         } else {
-            result = this.projetoService.addProjeto(userValue);
+            result = this.projetoService.addProjeto(projetoValue);
         }
         result.subscribe(data => this.router.navigate(['projeto']));
     }
