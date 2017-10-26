@@ -32,8 +32,8 @@ export class ReferenciaFormComponent implements OnInit {
         this.formReferencia = formBuilder.group({
             cargo: [null, Validators.required],
             num_referencia: [null, Validators.required],
-            valor_referencia: [null, Validators.required],
-            dt_atualizacao: [null, Validators.required]
+            valor_referencia: [null, Validators.required]
+            //dt_atualizacao: [null]
         })
     }
 
@@ -58,8 +58,9 @@ export class ReferenciaFormComponent implements OnInit {
                 return;
 
             this.referenciaService.getReferenciaId(this.idResource).subscribe(referencia => {
-                referencia = this.referencia = referencia
-                console.log(referencia.id_referencia),
+
+                referencia = this.referencia = referencia;
+                    this.referencia.dt_atualizacao = this.dataFormatada(this.referencia.dt_atualizacao);
                     response => {
                         if (response.status == 404) {
                             this.router.navigate(['referencia'])
@@ -80,6 +81,11 @@ export class ReferenciaFormComponent implements OnInit {
             result = this.referenciaService.addReferencia(userValue);
         }
         result.subscribe(data => this.router.navigate(['referencia']));
+    }
+
+    dataFormatada(data){
+        let dtFormatada = new Date(data);
+        return dtFormatada.toLocaleDateString();
     }
 
     onCancel() {

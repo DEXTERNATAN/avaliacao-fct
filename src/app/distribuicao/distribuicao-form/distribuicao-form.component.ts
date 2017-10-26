@@ -44,7 +44,7 @@ export class DistribuicaoFormComponent implements OnInit {
 
             this.distribuicaoService.getDistribuicaoId(this.idResource).subscribe(distribuicao => {
                 distribuicao = this.distribuicao = distribuicao
-                console.log(distribuicao.id_distribuicao),
+                this.distribuicao.dt_registro = this.dataFormatada(this.distribuicao.dt_registro);
                     response => {
                         if (response.status == 404) {
                             this.router.navigate(['distribuicao'])
@@ -57,7 +57,6 @@ export class DistribuicaoFormComponent implements OnInit {
     save() {
         var result,
             userValue = this.formDistribuicao.value;
-
         if (this.idResource) {
             result = this.distribuicaoService.updateDistribuicao(this.idResource, userValue);
         } else {
@@ -68,6 +67,11 @@ export class DistribuicaoFormComponent implements OnInit {
 
     onCancel() {
         this.navigateBack();
+    }
+
+    dataFormatada(data){
+        let dtFormatada = new Date(data);
+        return dtFormatada.toLocaleDateString();
     }
 
     private navigateBack() {
