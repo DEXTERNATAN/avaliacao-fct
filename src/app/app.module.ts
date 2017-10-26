@@ -26,6 +26,7 @@ import { PesosModule } from './pesos/pesos.module';
 import { ProjetoModule } from './projeto/projeto.module';
 import { DistribuicaoModule } from './distribuicao/distribuicao.module';
 import { AtributoModule } from './atributo/atributo.module';
+import { AvaliacaoModule } from './avaliacao/avaliacao.module';
 
 /* Routes */
 import { routing } from './app.routes';
@@ -41,6 +42,7 @@ import { pesosRouting } from './pesos/pesos.routes';
 import { projetoRouting } from './projeto/projeto.routes';
 import { distribuicaoRouting } from './distribuicao/distribuicao.routes';
 import { atributoRouting } from './atributo/atributo.routes';
+import { avaliacaoRouting } from './avaliacao/avaliacao.routes';
 
 
 /* Services */
@@ -56,6 +58,7 @@ import { PesosService } from './pesos/pesos.service';
 import { ProjetoService } from './projeto/projeto.service';
 import { DistribuicaoService } from './distribuicao/distribuicao.service';
 import { AtributoService } from './atributo/atributo.service';
+import { AvaliacaoService } from './avaliacao/avaliacao.service';
 
 /* Components */
 import { AppComponent } from './app.component';
@@ -78,6 +81,7 @@ import { ProjetoComponent } from './projeto/projeto.component';
 import { DistribuicaoComponent } from './distribuicao/distribuicao.component';
 import { AtributoComponent } from './atributo/atributo.component';
 import { DetailRestaurantComponent } from './detail-restaurant/detail-restaurant.component';
+import { AvaliacaoComponent } from './avaliacao/avaliacao.component';
 
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   align: "left",
@@ -133,8 +137,9 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     distribuicaoRouting,
     AtributoModule,
     atributoRouting,
+    AvaliacaoModule,
+    avaliacaoRouting,
     routing
-    //RouterModule.forRoot(routing)
   ],
   providers: 
   [ 
