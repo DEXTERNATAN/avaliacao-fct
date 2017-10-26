@@ -27,16 +27,22 @@ export class ReferenciaService {
     getReferencia(): Observable<Referencia[]> {
         return this._http.get(`${MEAT_API}/referencia`)
             .map(response => response.json())
+            .do(data => console.log('server data:', data))  // debug
+            .catch(ErrorHandler.handleError);
     }
 
     getReferenciaId(id_referencia_fct_gfe) {
         return this._http.get(`${MEAT_API}/referencia/${id_referencia_fct_gfe}`)
         .map(response => response.json())
+        .do(data => console.log('server data:', data))  // debug
+        .catch(ErrorHandler.handleError);
     }
 
     addReferencia(referencia) {
         return this._http.post(`${MEAT_API}/referencia`, JSON.stringify(referencia), this.options)
-            .map(res => res.json());
+            .map(res => res.json())
+            .do(data => console.log('server data:', data))  // debug
+            .catch(ErrorHandler.handleError);
     }
 
     deleteReferencia(id_referencia_fct_gfe) {
@@ -49,5 +55,7 @@ export class ReferenciaService {
     updateReferencia(id_referencia_fct_gfe, referencia) {
         return this._http.put(`${MEAT_API}/referencia/${id_referencia_fct_gfe}`, JSON.stringify(referencia), this.options)
             .map(response => response.json())
+            .do(data => console.log('server data:', data))  // debug
+            .catch(ErrorHandler.handleError);
     }
 }

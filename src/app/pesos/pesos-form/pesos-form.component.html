@@ -88,10 +88,6 @@
 							<textarea class="form-control" [(ngModel)]="pesos.descricao" formControlName="descricao" rows="3" placeholder="Descreva os detalhes do Peso"></textarea>
 							<span *ngIf="!formPesos.controls['descricao'].valid && formPesos.controls['descricao'].touched" class="help-block">O campo Descrição é obrigatório!</span>
 						</div>
-						<!--<div class="form-group">
-							<label for="dt_registro">Data de Registro</label>
-							<input type="text" class="form-control" [(ngModel)]="pesos.dt_registro" readonly name="dt_registro" formControlName="dt_registro" value="">
-						</div>	-->
 					</div>
 					<div class="box-footer">
 						<button type="button" class="btn btn-default" (click)="onCancel()">Cancelar</button>
