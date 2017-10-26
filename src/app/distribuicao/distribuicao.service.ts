@@ -27,16 +27,22 @@ export class DistribuicaoService {
     getDistribuicao(): Observable<Distribuicao[]> {
         return this._http.get(`${MEAT_API}/distribuicao`)
             .map(response => response.json())
+            .do(data => console.log('server data:', data))  // debug
+            .catch(ErrorHandler.handleError);
     }
 
     getDistribuicaoId(id_distribuicao) {
         return this._http.get(`${MEAT_API}/distribuicao/${id_distribuicao}`)
         .map(response => response.json())
+        .do(data => console.log('server data:', data))  // debug
+        .catch(ErrorHandler.handleError);
     }
 
     addDistribuicao(distribuicao) {
         return this._http.post(`${MEAT_API}/distribuicao`, JSON.stringify(distribuicao), this.options)
-            .map(res => res.json());
+            .map(res => res.json())
+            .do(data => console.log('server data:', data))  // debug
+            .catch(ErrorHandler.handleError);
     }
 
     deleteDistribuicao(id_distribuicao) {
@@ -49,5 +55,7 @@ export class DistribuicaoService {
     updateDistribuicao(id_distribuicao, distribuicao) {
         return this._http.put(`${MEAT_API}/distribuicao/${id_distribuicao}`, JSON.stringify(distribuicao), this.options)
             .map(response => response.json())
+            .do(data => console.log('server data:', data))  // debug
+            .catch(ErrorHandler.handleError);
     }
 }

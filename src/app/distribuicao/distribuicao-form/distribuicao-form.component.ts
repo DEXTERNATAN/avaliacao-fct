@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/fo
 
 import { Distribuicao } from './../distribuicao.model';
 import { DistribuicaoService } from './../distribuicao.service';
+import { FuncoesGlobais } from 'app/shared/app.funcoes-globais';
+
 
 @Component({
     selector: 'mt-distribuicao-form',
@@ -44,7 +46,7 @@ export class DistribuicaoFormComponent implements OnInit {
 
             this.distribuicaoService.getDistribuicaoId(this.idResource).subscribe(distribuicao => {
                 distribuicao = this.distribuicao = distribuicao
-                this.distribuicao.dt_registro = this.dataFormatada(this.distribuicao.dt_registro);
+                this.distribuicao.dt_registro = FuncoesGlobais.dataFormatadaView(this.distribuicao.dt_registro);
                     response => {
                         if (response.status == 404) {
                             this.router.navigate(['distribuicao'])
@@ -55,8 +57,12 @@ export class DistribuicaoFormComponent implements OnInit {
     }
 
     save() {
-        var result,
-            userValue = this.formDistribuicao.value;
+
+        // Setando a nova data para salvar no banco
+        this.formDistribuicao.get('dt_registro').setValue(FuncoesGlobais.dataFormatadaCad(this.distribuicao.dt_registro));
+        
+        // Chamanda para edicao e cadastro no banco
+        var result, userValue = this.formDistribuicao.value;
         if (this.idResource) {
             result = this.distribuicaoService.updateDistribuicao(this.idResource, userValue);
         } else {
@@ -67,11 +73,6 @@ export class DistribuicaoFormComponent implements OnInit {
 
     onCancel() {
         this.navigateBack();
-    }
-
-    dataFormatada(data){
-        let dtFormatada = new Date(data);
-        return dtFormatada.toLocaleDateString();
     }
 
     private navigateBack() {
