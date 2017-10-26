@@ -80,14 +80,9 @@
 						</div>
 						<div class="form-group" [ngClass]="{'has-error': (!formReferencia.controls['valor_referencia'].valid && formReferencia.controls['valor_referencia'].touched) }">
 							<label for="valor_referencia">Valor</label>
-							<input type="text" class="form-control" id="valor_referencia" [(ngModel)]="referencia.valor_referencia" formControlName="valor_referencia" placeholder="Informe o valor de referência da FCT" currencyMask >
+							<input type="text" class="form-control" id="valor_referencia" [(ngModel)]="referencia.valor_referencia" formControlName="valor_referencia" placeholder="Informe o valor de referência da FCT" currencyMask maxlength="12">
 							<span *ngIf="!formReferencia.controls['valor_referencia'].valid && formReferencia.controls['valor_referencia'].touched" class="help-block">O campo Valor é obrigatório!</span>
 						</div>
-						<!-- <div class="form-group" [ngClass]="{'has-error': (!formReferencia.controls['dt_atualizacao'].valid && formReferencia.controls['dt_atualizacao'].touched) }">
-							<label for="dt_atualizacao">Data da Atualização</label>
-							<input type="text" class="form-control" id="dt_atualizacao" [(ngModel)]="referencia.dt_atualizacao" formControlName="dt_atualizacao" placeholder="Informe a data de Atualização da FCT no SISTEMA FCT/GFC no formato DD/MM/AAAA" [textMask]="{mask: maskData}">
-							<span *ngIf="!formReferencia.controls['dt_atualizacao'].valid && formReferencia.controls['dt_atualizacao'].touched" class="help-block">O campo Data da Atualização é obrigatório!</span>
-						</div> -->
 					</div>
 					<div class="box-footer">
 						<button type="button" class="btn btn-default" (click)="onCancel()">Cancelar</button>
