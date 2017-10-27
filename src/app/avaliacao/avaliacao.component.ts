@@ -36,12 +36,12 @@ export class AvaliacaoComponent implements OnInit, AfterViewInit {
     };
     
     this._avaliacaoService.getAvaliacao()
-    /* .subscribe(avaliacao => {
+     .subscribe(avaliacao => {
       this.Avaliacao = avaliacao
       this.avaliacaoCarregada = false;
       // Calling the DT trigger to manually render the table
       this.dtTrigger.next();
-    }); */
+    }); 
   }
 
   ngAfterViewInit(): void {

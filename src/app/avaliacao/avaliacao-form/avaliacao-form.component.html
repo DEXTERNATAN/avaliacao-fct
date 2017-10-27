@@ -18,39 +18,362 @@
 				<div class="alert alert-success" role="alert" *ngIf="sucesso">
 					Formulário enviado com sucesso!
 				</div>
-				<form role="form" [formGroup]="formAvaliacao" (ngSubmit)="save()">
+				<form role="form">
 					<div class="box-body">
 						<div class="form-group">
 							<label for="divisao">Divisão</label>
-							<select class="form-control" [(ngModel)]="" formControlName="" id="">
+							<select class="form-control" id="">
                                   <option [selected]="true" value="">Selecione</option>  
-                            </select>
-							&nbsp;
+								  <option  value="SDDEF">SDDEF</option>
+								  <option  value="SDDEP">SDDEP</option>
+								  <option  value="SDEXP">SDEXP</option>
+								  <option  value="SDCBH">SDCBH</option>
+								  <option  value="SDCSD">SDCSD</option>
+							</select>
+						</div>
+						<div class="form-group">
 							<label for="Colaborador">Colaborador</label>
-							<select class="form-control" [(ngModel)]="" formControlName="" id="">
+							<select class="form-control" id="">
                                   <option [selected]="true" value="">Selecione</option>  
+								  <option  value="1">Natanael de Souza Leite</option>
+								  <option  value="2">Francisco Jose Joaquim de Souza</option>
+								  <option  value="3">Roberto da Silveira Souza Paranhos</option>
+							</select>
+						</div>				
+						<div class="form-group">
+							<label for="papel1">Papel</label>
+							<select multiple class="form-control" id="">
+                                  <option  value="1">Front-end</option>
+								  <option  value="2">Arquiteto</option>
+								  <option  value="3">Testes</option>
+								  <option  value="4">Requisitos</option>
+								  <option  value="5">Back-end</option>
+								  <option  value="6">Banco</option>
+								  <option  value="7">Front-end</option>  
                             </select>
 						</div>
 						<div class="form-group">
-							<label for="papel1">Papel 1</label>
-							<select class="form-control" [(ngModel)]="" formControlName="" id="">
+							<label for="papel1">Atributo A:&nbsp;&nbsp;</label>
+							<label for="papel1">Abrangência</label>
+							<select id="">
+                                  <option  value="1">1-Moderado</option>
+								  <option  value="2">2-Significativa</option>
+								  <option  value="3">3-Muito</option>
+							</select>						
+							<label for="papel1">&nbsp;&nbsp;Complexidade</label>
+							<select id="">
+                            	  <option  value="1">1-Moderado</option>
+								  <option  value="2">2-Alta</option>
+								  <option  value="3">3-Altíssima</option>
+							</select>
+							<label for="papel1">&nbsp;&nbsp;Impacto</label>
+							<select id="">
+                            	  <option  value="1">1-Relevante</option>
+								  <option  value="2">2-Muito</option>
+								  <option  value="3">3-Altamente</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="papel1">Atributo B:&nbsp;&nbsp;</label>
+							<label for="papel1">Abrangência</label>
+							<select id="">
+                                  <option  value="1">1-Moderado</option>
+								  <option  value="2">2-Significativa</option>
+								  <option  value="3">3-Muito</option>
+							</select>						
+							<label for="papel1">&nbsp;&nbsp;Complexidade</label>
+							<select id="">
+                            	  <option  value="1">1-Moderado</option>
+								  <option  value="2">2-Alta</option>
+								  <option  value="3">3-Altíssima</option>
+							</select>
+							<label for="papel1">&nbsp;&nbsp;Impacto</label>
+							<select id="">
+                            	  <option  value="1">1-Relevante</option>
+								  <option  value="2">2-Muito</option>
+								  <option  value="3">3-Altamente</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="papel1">Atributo C:&nbsp;&nbsp;</label>
+							<label for="papel1">Abrangência</label>
+							<select id="">
+                                  <option  value="1">1-Moderado</option>
+								  <option  value="2">2-Significativa</option>
+								  <option  value="3">3-Muito</option>
+							</select>						
+							<label for="papel1">&nbsp;&nbsp;Complexidade</label>
+							<select id="">
+                            	  <option  value="1">1-Moderado</option>
+								  <option  value="2">2-Alta</option>
+								  <option  value="3">3-Altíssima</option>
+							</select>
+							<label for="papel1">&nbsp;&nbsp;Impacto</label>
+							<select id="">
+                            	  <option  value="1">1-Relevante</option>
+								  <option  value="2">2-Muito</option>
+								  <option  value="3">3-Altamente</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="papel1">Atributo D:&nbsp;&nbsp;</label>
+							<label for="papel1">Abrangência</label>
+							<select id="">
+                                  <option  value="1">1-Moderado</option>
+								  <option  value="2">2-Significativa</option>
+								  <option  value="3">3-Muito</option>
+							</select>						
+							<label for="papel1">&nbsp;&nbsp;Complexidade</label>
+							<select id="">
+                            	  <option  value="1">1-Moderado</option>
+								  <option  value="2">2-Alta</option>
+								  <option  value="3">3-Altíssima</option>
+							</select>
+							<label for="papel1">&nbsp;&nbsp;Impacto</label>
+							<select id="">
+                            	  <option  value="1">1-Relevante</option>
+								  <option  value="2">2-Muito</option>
+								  <option  value="3">3-Altamente</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="papel1">Atributo E:&nbsp;&nbsp;</label>
+							<label for="papel1">Abrangência</label>
+							<select id="">
+                                  <option  value="1">1-Moderado</option>
+								  <option  value="2">2-Significativa</option>
+								  <option  value="3">3-Muito</option>
+							</select>						
+							<label for="papel1">&nbsp;&nbsp;Complexidade</label>
+							<select id="">
+                            	  <option  value="1">1-Moderado</option>
+								  <option  value="2">2-Alta</option>
+								  <option  value="3">3-Altíssima</option>
+							</select>
+							<label for="papel1">&nbsp;&nbsp;Impacto</label>
+							<select id="">
+                            	  <option  value="1">1-Relevante</option>
+								  <option  value="2">2-Muito</option>
+								  <option  value="3">3-Altamente</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="papel1">Atributo F:&nbsp;&nbsp;</label>
+							<label for="papel1">Abrangência</label>
+							<select id="">
+                                  <option  value="1">1-Moderado</option>
+								  <option  value="2">2-Significativa</option>
+								  <option  value="3">3-Muito</option>
+							</select>						
+							<label for="papel1">&nbsp;&nbsp;Complexidade</label>
+							<select id="">
+                            	  <option  value="1">1-Moderado</option>
+								  <option  value="2">2-Alta</option>
+								  <option  value="3">3-Altíssima</option>
+							</select>
+							<label for="papel1">&nbsp;&nbsp;Impacto</label>
+							<select id="">
+                            	  <option  value="1">1-Relevante</option>
+								  <option  value="2">2-Muito</option>
+								  <option  value="3">3-Altamente</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="papel1">Atributo G:&nbsp;&nbsp;</label>
+							<label for="papel1">Abrangência</label>
+							<select id="">
+                                  <option  value="1">1-Moderado</option>
+								  <option  value="2">2-Significativa</option>
+								  <option  value="3">3-Muito</option>
+							</select>						
+							<label for="papel1">&nbsp;&nbsp;Complexidade</label>
+							<select id="">
+                            	  <option  value="1">1-Moderado</option>
+								  <option  value="2">2-Alta</option>
+								  <option  value="3">3-Altíssima</option>
+							</select>
+							<label for="papel1">&nbsp;&nbsp;Impacto</label>
+							<select id="">
+                            	  <option  value="1">1-Relevante</option>
+								  <option  value="2">2-Muito</option>
+								  <option  value="3">3-Altamente</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="papel1">Atributo H:&nbsp;&nbsp;</label>
+							<label for="papel1">Abrangência</label>
+							<select id="">
+                                  <option  value="1">1-Moderado</option>
+								  <option  value="2">2-Significativa</option>
+								  <option  value="3">3-Muito</option>
+							</select>						
+							<label for="papel1">&nbsp;&nbsp;Complexidade</label>
+							<select id="">
+                            	  <option  value="1">1-Moderado</option>
+								  <option  value="2">2-Alta</option>
+								  <option  value="3">3-Altíssima</option>
+							</select>
+							<label for="papel1">&nbsp;&nbsp;Impacto</label>
+							<select id="">
+                            	  <option  value="1">1-Relevante</option>
+								  <option  value="2">2-Muito</option>
+								  <option  value="3">3-Altamente</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="papel1">Atributo I:&nbsp;&nbsp;</label>
+							<label for="papel1">Abrangência</label>
+							<select id="">
+                                  <option  value="1">1-Moderado</option>
+								  <option  value="2">2-Significativa</option>
+								  <option  value="3">3-Muito</option>
+							</select>						
+							<label for="papel1">&nbsp;&nbsp;Complexidade</label>
+							<select id="">
+                            	  <option  value="1">1-Moderado</option>
+								  <option  value="2">2-Alta</option>
+								  <option  value="3">3-Altíssima</option>
+							</select>
+							<label for="papel1">&nbsp;&nbsp;Impacto</label>
+							<select id="">
+                            	  <option  value="1">1-Relevante</option>
+								  <option  value="2">2-Muito</option>
+								  <option  value="3">3-Altamente</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="papel1">Atributo J:&nbsp;&nbsp;</label>
+							<label for="papel1">Abrangência</label>
+							<select id="">
+                                  <option  value="1">1-Moderado</option>
+								  <option  value="2">2-Significativa</option>
+								  <option  value="3">3-Muito</option>
+							</select>						
+							<label for="papel1">&nbsp;&nbsp;Complexidade</label>
+							<select id="">
+                            	  <option  value="1">1-Moderado</option>
+								  <option  value="2">2-Alta</option>
+								  <option  value="3">3-Altíssima</option>
+							</select>
+							<label for="papel1">&nbsp;&nbsp;Impacto</label>
+							<select id="">
+                            	  <option  value="1">1-Relevante</option>
+								  <option  value="2">2-Muito</option>
+								  <option  value="3">3-Altamente</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="papel1">Atributo K:&nbsp;&nbsp;</label>
+							<label for="papel1">Abrangência</label>
+							<select id="">
+                                  <option  value="1">1-Moderado</option>
+								  <option  value="2">2-Significativa</option>
+								  <option  value="3">3-Muito</option>
+							</select>						
+							<label for="papel1">&nbsp;&nbsp;Complexidade</label>
+							<select id="">
+                            	  <option  value="1">1-Moderado</option>
+								  <option  value="2">2-Alta</option>
+								  <option  value="3">3-Altíssima</option>
+							</select>
+							<label for="papel1">&nbsp;&nbsp;Impacto</label>
+							<select id="">
+                            	  <option  value="1">1-Relevante</option>
+								  <option  value="2">2-Muito</option>
+								  <option  value="3">3-Altamente</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="">Quantidade de Projetos</label>
+							<select class="form-control" id="">
                                   <option [selected]="true" value="">Selecione</option>  
-                            </select>
-							&nbsp;
-							<label for="papel2">Papel 2</label>
-							<select class="form-control" [(ngModel)]="" formControlName="" id="">
+								  <option  value="1">1</option>
+								  <option  value="2">2</option>
+								  <option  value="3">3</option>
+								  <option  value="4">4</option>
+								  <option  value="5">5</option>
+								  <option  value="6">6</option>
+								  <option  value="7">7</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="">Projeto 1</label>
+							<select class="form-control" id="">
                                   <option [selected]="true" value="">Selecione</option>  
-                            </select>
-							&nbsp;
-							<label for="papel3">Papel 3</label>
-							<select class="form-control" [(ngModel)]="" formControlName="" id="">
+								  <option  value="1"></option>
+								  <option  value="2"></option>
+								  <option  value="3"></option>
+								  <option  value="4"></option>
+								  <option  value="5"></option>
+								  <option  value="6"></option>
+								  <option  value="7"></option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="papel1">Abrangência</label>
+							<select id="">
+                                  <option  value="1">1-Moderado</option>
+								  <option  value="2">2-Significativa</option>
+								  <option  value="3">3-Muito</option>
+							</select>						
+							<label for="papel1">&nbsp;&nbsp;Complexidade</label>
+							<select id="">
+                            	  <option  value="1">1-Moderado</option>
+								  <option  value="2">2-Alta</option>
+								  <option  value="3">3-Altíssima</option>
+							</select>
+							<label for="papel1">&nbsp;&nbsp;Impacto</label>
+							<select id="">
+                            	  <option  value="1">1-Relevante</option>
+								  <option  value="2">2-Muito</option>
+								  <option  value="3">3-Altamente</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="">Projeto 2</label>
+							<select class="form-control" id="">
                                   <option [selected]="true" value="">Selecione</option>  
-                            </select>
+								  <option  value="1"></option>
+								  <option  value="2"></option>
+								  <option  value="3"></option>
+								  <option  value="4"></option>
+								  <option  value="5"></option>
+								  <option  value="6"></option>
+								  <option  value="7"></option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="papel1">Abrangência</label>
+							<select id="">
+                                  <option  value="1">1-Moderado</option>
+								  <option  value="2">2-Significativa</option>
+								  <option  value="3">3-Muito</option>
+							</select>						
+							<label for="papel1">&nbsp;&nbsp;Complexidade</label>
+							<select id="">
+                            	  <option  value="1">1-Moderado</option>
+								  <option  value="2">2-Alta</option>
+								  <option  value="3">3-Altíssima</option>
+							</select>
+							<label for="papel1">&nbsp;&nbsp;Impacto</label>
+							<select id="">
+                            	  <option  value="1">1-Relevante</option>
+								  <option  value="2">2-Muito</option>
+								  <option  value="3">3-Altamente</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="">Referência FCT</label>
+							<input type="text" class="form-control" id="" readonly placeholder="" value="11 - Técnico (R$ 395.77)">
+						</div>	
+						<div class="form-group">
+							<label for="">Pontuação Total</label>
+							<input type="text" class="form-control" id="" readonly placeholder="" value="87.98">
 						</div>
 					</div>
 					<div class="box-footer">
 						<button type="button" class="btn btn-default" (click)="onCancel()">Cancelar</button>
-						<button type="submit" class="btn btn-info pull-right" [disabled]="!formAvaliacao.valid">Enviar</button>
+						<button type="submit" class="btn btn-info pull-right">Registrar</button>
 					</div>
 				</form>
 			</div>

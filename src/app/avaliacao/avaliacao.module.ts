@@ -21,8 +21,8 @@ import { AvaliacaoFormComponent } from 'app/avaliacao/avaliacao-form/avaliacao-f
   ],
   providers: [ AvaliacaoService ],
   declarations: [
-    AvaliacaoComponent
-    //AvaliacaoFormComponent
+    AvaliacaoComponent,
+    AvaliacaoFormComponent
   ]
 })
 export class AvaliacaoModule { }

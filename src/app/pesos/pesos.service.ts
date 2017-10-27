@@ -26,17 +26,23 @@ export class PesosService {
 
     getPesos(): Observable<Pesos[]> {
         return this._http.get(`${MEAT_API}/pesos`)
-            .map(response => response.json())
+        .map(response => response.json())
+        .do(data => console.log('server data:', data))  // debug
+        .catch(ErrorHandler.handleError);
     }
 
     getPesosId(id_pesos) {
         return this._http.get(`${MEAT_API}/pesos/${id_pesos}`)
         .map(response => response.json())
+        .do(data => console.log('server data:', data))  // debug
+        .catch(ErrorHandler.handleError);
     }
 
     addPesos(pesos) {
         return this._http.post(`${MEAT_API}/pesos`, JSON.stringify(pesos), this.options)
-            .map(res => res.json());
+            .map(res => res.json())
+            .do(data => console.log('server data:', data))  // debug
+            .catch(ErrorHandler.handleError);
     }
 
     deletePesos(id_pesos) {
@@ -48,6 +54,8 @@ export class PesosService {
 
     updatePesos(id_pesos, pesos) {
         return this._http.put(`${MEAT_API}/pesos/${id_pesos}`, JSON.stringify(pesos), this.options)
-            .map(response => response.json())
+        .map(response => response.json())
+        .do(data => console.log('server data:', data))  // debug
+        .catch(ErrorHandler.handleError);
     }
 }

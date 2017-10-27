@@ -15,12 +15,7 @@ export class FuncoesGlobais {
 
     static dataFormatadaCad(data) {
         moment.locale('pt-BR');
-        this.dtFormatada = moment(data, 'DD-MM-YYYY').format('YYYY-MM-DD HH:mm:ss');
-        if (this.dtFormatada == "Invalid date") {
-            this.dtFormatada = moment(new Date(), 'DD-MM-YYYY').format('YYYY-MM-DD HH:mm:ss');
-        }else{
-            this.dtFormatada = moment(data, 'DD-MM-YYYY').format('YYYY-MM-DD HH:mm:ss');
-        }
+        this.dtFormatada = moment(new Date(), 'DD-MM-YYYY').format('YYYY-MM-DD HH:mm:ss');
         return this.dtFormatada;
     }
 }
