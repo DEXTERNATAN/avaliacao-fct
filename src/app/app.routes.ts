@@ -12,6 +12,7 @@ import { DistribuicaoComponent } from './distribuicao/distribuicao.component';
 import { AtributoComponent } from './atributo/atributo.component';
 import { AvaliacaoComponent } from './avaliacao/avaliacao.component';
 import { FaixaComponent } from './faixa/faixa.component';
+import { ConsultaavaliacaoComponent } from './consultaavaliacao/consultaavaliacao.component';
 
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule }   from '@angular/router';
@@ -40,7 +41,8 @@ const appRoutes: Routes = [
     { path: 'distribuicao', component: DistribuicaoComponent },
     { path: 'atributo', component: AtributoComponent },
     { path: 'avaliacao', component: AvaliacaoComponent },
-    { path: 'faixa', component: FaixaComponent }
+    { path: 'faixa', component: FaixaComponent },
+    { path: 'consultaavaliacao', component: ConsultaavaliacaoComponent }
 ]
   
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);

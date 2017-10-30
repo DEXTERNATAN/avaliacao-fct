@@ -27,6 +27,7 @@ import { DistribuicaoModule } from './distribuicao/distribuicao.module';
 import { AtributoModule } from './atributo/atributo.module';
 import { AvaliacaoModule } from './avaliacao/avaliacao.module';
 import { FaixaModule } from './faixa/faixa.module';
+import { ConsultaavaliacaoModule } from './consultaavaliacao/consultaavaliacao.module';
 
 /* Routes */
 import { routing } from './app.routes';
@@ -44,6 +45,7 @@ import { distribuicaoRouting } from './distribuicao/distribuicao.routes';
 import { atributoRouting } from './atributo/atributo.routes';
 import { avaliacaoRouting } from './avaliacao/avaliacao.routes';
 import { faixaRouting } from './faixa/faixa.routes';
+import { consultaavaliacaoRouting } from './consultaavaliacao/consultaavaliacao.routes';
 
 
 /* Services */
@@ -61,6 +63,7 @@ import { DistribuicaoService } from './distribuicao/distribuicao.service';
 import { AtributoService } from './atributo/atributo.service';
 import { AvaliacaoService } from './avaliacao/avaliacao.service';
 import { FaixaService } from './faixa/faixa.service';
+import { ConsultaavaliacaoService } from './consultaavaliacao/consultaavaliacao.service';
 
 /* Components */
 import { AppComponent } from './app.component';
@@ -85,6 +88,7 @@ import { AtributoComponent } from './atributo/atributo.component';
 import { DetailRestaurantComponent } from './detail-restaurant/detail-restaurant.component';
 import { AvaliacaoComponent } from './avaliacao/avaliacao.component';
 import { FaixaComponent } from './faixa/faixa.component';
+import { ConsultaavaliacaoComponent } from './consultaavaliacao/consultaavaliacao.component';
 
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   align: "left",
@@ -144,6 +148,8 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     avaliacaoRouting,
     FaixaModule,
     faixaRouting,
+    ConsultaavaliacaoModule,
+    consultaavaliacaoRouting,
     routing
   ],
   providers: 
