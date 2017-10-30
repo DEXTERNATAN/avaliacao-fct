@@ -21,47 +21,65 @@
 				<form role="form">
 					<div class="box-body">
 						<div class="form-group">
-							<label for="divisao">Divisão</label>
-							<select class="form-control" id="">
-                                  <option [selected]="true" value="">Selecione</option>  
-								  <option  value="SDDEF">SDDEF</option>
-								  <option  value="SDDEP">SDDEP</option>
-								  <option  value="SDEXP">SDEXP</option>
-								  <option  value="SDCBH">SDCBH</option>
-								  <option  value="SDCSD">SDCSD</option>
-							</select>
-						</div>
-						<div class="form-group">
-							<label for="Colaborador">Colaborador</label>
-							<select class="form-control" id="">
-                                  <option [selected]="true" value="">Selecione</option>  
-								  <option  value="1">Natanael de Souza Leite</option>
-								  <option  value="2">Francisco Jose Joaquim de Souza</option>
-								  <option  value="3">Roberto da Silveira Souza Paranhos</option>
-							</select>
-						</div>				
-						<div class="form-group">
-							<label for="papel1">Papel (Selecione no máximo 3 papeis)</label>
-							<select multiple class="form-control" id="">
-                                  <option  value="1">Front-end</option>
-								  <option  value="2">Arquiteto</option>
-								  <option  value="3">Testes</option>
-								  <option  value="4">Requisitos</option>
-								  <option  value="5">Back-end</option>
-								  <option  value="6">Banco</option>
-								  <option  value="7">Front-end</option>  
-                            </select>
-						</div>
-						<div class="form-group">
-							<table class="table table-bordered">
+							<table class="table table-condensed">
 								<tr>
-									<th><span class="badge bg-red">Atributos</span></th>
+									<th style="width: 33%">Divisão</th>
+									<th style="width: 33%">Colaborador</th>
+								</tr>
+								<tr>
+									<td>
+										<select class="form-control" id="">
+											<option [selected]="true" value="">Selecione</option>  
+											<option  value="SDDEF">SDDEF</option>
+											<option  value="SDDEP">SDDEP</option>
+											<option  value="SDEXP">SDEXP</option>
+											<option  value="SDCBH">SDCBH</option>
+											<option  value="SDCSD">SDCSD</option>
+										</select>
+									</td>
+									<td>
+										<select class="form-control" id="">
+											<option [selected]="true" value="">Selecione</option>  
+											<option  value="1">Natanael de Souza Leite</option>
+											<option  value="2">Francisco Jose Joaquim de Souza</option>
+											<option  value="3">Roberto da Silveira Souza Paranhos</option>
+										</select>	
+									</td>
+								</tr>
+							</table>			
+						</div>
+						<div class="form-group">
+							<table class="table table-condensed">
+								<tr>
+									<th style="width: 50%">Papel (Selecione no máximo 3 papeis)</th>
+									<th style="width: 50%">&nbsp;</th>
+								</tr>
+								<tr>
+									<td>
+										<select class="form-control select2" multiple="multiple" data-placeholder="Select a State" style="width: 100%;">
+											<option  value="1">Front-end</option>
+											<option  value="2">Arquiteto</option>
+											<option  value="3">Testes</option>
+											<option  value="4">Requisitos</option>
+											<option  value="5">Back-end</option>
+											<option  value="6">Banco</option>
+											<option  value="7">Front-end</option>
+										</select>			
+									</td>
+									<td>&nbsp;</td>
+								</tr>
+							</table>			
+						</div>
+						<div class="form-group">
+							<table class="table table-striped">
+								<tr>
+									<th style="width: 600px">Atributos</th>
 									<th><span class="badge bg-yellow">Abrangência</span></th>
 									<th><span class="badge bg-light-blue">Complexidade</span></th>
 									<th><span class="badge bg-green">Impacto</span></th>	
 								</tr>
 								<tr>
-									<td width="650px"><label>a) Analisar as demandas apresentadas pelas áreas de negócio e propor alternativas de solução técnica e estratégia de desenvolvimento</label>
+									<td><label>a) Analisar as demandas apresentadas pelas áreas de negócio e propor alternativas de solução técnica e estratégia de desenvolvimento</label>
 									</td>
 									<td>		
 										<div class="radio">
@@ -84,17 +102,17 @@
 									<td>	
 										<div class="radio">
 											<label>
-												<input type="radio" id="" name="complexidadeA" value="1" checked>
+												<input type="radio" id="" name="complexidadea" value="1" checked>
 												<span data-toggle="tooltip" title="Atua em 2 projetos em paralelo/perfis diferentes; Complexidade dos projetos pode influenciar; Prever problemas; Projetos grandes;" class="badge bg-light-blue">1-Moderado</span>  	
 											</label>
 											<br>
 											<label>
-												<input type="radio" id="" name="complexidadeA" value="2">
+												<input type="radio" id="" name="complexidadea" value="2">
 												<span data-toggle="tooltip" title="Pleno em um dos perfis." class="badge bg-light-blue">2-Alta</span>
 											</label>
 											<br>
 											<label>
-												<input type="radio" id="" name="complexidadeA" value="3">
+												<input type="radio" id="" name="complexidadea" value="3">
 												<span data-toggle="tooltip" title="Prever problemas; Visão sistêmica; Atuar em paralelo em diferentes linguagens/assuntos/projetos; Projetos grandes x prazos curtos; Atuar sob pressão; Autonomia (independência na tomada de decisão); Atua em 3 ou mais projetos/perfis diferentes;" class="badge bg-light-blue">3-Altíssima</span>
 											</label>	
 										</div>
@@ -123,17 +141,17 @@
 									<td>		
 										<div class="radio">
 											<label>
-												<input type="radio" id="" name="abrangenciaA" value="1" checked>
+												<input type="radio" id="" name="abrangenciab" value="1" checked>
 												<span class="badge bg-yellow">1-Moderado</span>  	
 											</label>
 											<br>
 											<label>
-												<input type="radio" id="" name="abrangenciaA" value="2">
+												<input type="radio" id="" name="abrangenciab" value="2">
 												<span class="badge bg-yellow">2-Significativa</span>
 											</label>
 											<br>
 											<label>
-												<input type="radio" id="" name="abrangenciaA" value="3">
+												<input type="radio" id="" name="abrangenciab" value="3">
 												<span class="badge bg-yellow">3-Muito</span>
 											</label>
 										</div>
@@ -141,17 +159,17 @@
 									<td>	
 										<div class="radio">
 											<label>
-												<input type="radio" id="" name="complexidadeA" value="1" checked>
+												<input type="radio" id="" name="complexidadeb" value="1" checked>
 												<span class="badge bg-light-blue">1-Moderado</span>  	
 											</label>
 											<br>
 											<label>
-												<input type="radio" id="" name="complexidadeA" value="2">
+												<input type="radio" id="" name="complexidadeb" value="2">
 												<span class="badge bg-light-blue">2-Alta</span>
 											</label>
 											<br>
 											<label>
-												<input type="radio" id="" name="complexidadeA" value="3">
+												<input type="radio" id="" name="complexidadeb" value="3">
 												<span class="badge bg-light-blue">3-Altíssima</span>
 											</label>	
 										</div>
@@ -159,17 +177,17 @@
 									<td>	
 										<div class="radio">
 											<label>
-												<input type="radio" id="" name="impactoA" value="1" checked>
+												<input type="radio" id="" name="impactob" value="1" checked>
 												<span class="badge bg-green">1-Relevante</span>  	
 											</label>
 											<br>
 											<label>
-												<input type="radio" id="" name="impactoA" value="2">
+												<input type="radio" id="" name="impactob" value="2">
 												<span class="badge bg-green">2-Muito</span>
 											</label>
 											<br>
 											<label>
-												<input type="radio" id="" name="impactoA" value="3">
+												<input type="radio" id="" name="impactob" value="3">
 												<span class="badge bg-green">3-Altamente</span>
 											</label>	
 										</div>
@@ -180,17 +198,17 @@
 									<td>		
 										<div class="radio">
 											<label>
-												<input type="radio" id="" name="abrangenciaA" value="1" checked>
+												<input type="radio" id="" name="abrangenciac" value="1" checked>
 												<span class="badge bg-yellow">1-Moderado</span>  	
 											</label>
 											<br>
 											<label>
-												<input type="radio" id="" name="abrangenciaA" value="2">
+												<input type="radio" id="" name="abrangenciac" value="2">
 												<span class="badge bg-yellow">2-Significativa</span>
 											</label>
 											<br>
 											<label>
-												<input type="radio" id="" name="abrangenciaA" value="3">
+												<input type="radio" id="" name="abrangenciac" value="3">
 												<span class="badge bg-yellow">3-Muito</span>
 											</label>
 										</div>
@@ -198,17 +216,17 @@
 									<td>	
 										<div class="radio">
 											<label>
-												<input type="radio" id="" name="complexidadeA" value="1" checked>
+												<input type="radio" id="" name="complexidadec" value="1" checked>
 												<span class="badge bg-light-blue">1-Moderado</span>  	
 											</label>
 											<br>
 											<label>
-												<input type="radio" id="" name="complexidadeA" value="2">
+												<input type="radio" id="" name="complexidadec" value="2">
 												<span class="badge bg-light-blue">2-Alta</span>
 											</label>
 											<br>
 											<label>
-												<input type="radio" id="" name="complexidadeA" value="3">
+												<input type="radio" id="" name="complexidadec" value="3">
 												<span class="badge bg-light-blue">3-Altíssima</span>
 											</label>	
 										</div>
@@ -216,17 +234,17 @@
 									<td>	
 										<div class="radio">
 											<label>
-												<input type="radio" id="" name="impactoA" value="1" checked>
+												<input type="radio" id="" name="impactoc" value="1" checked>
 												<span class="badge bg-green">1-Relevante</span>  	
 											</label>
 											<br>
 											<label>
-												<input type="radio" id="" name="impactoA" value="2">
+												<input type="radio" id="" name="impactoc" value="2">
 												<span class="badge bg-green">2-Muito</span>
 											</label>
 											<br>
 											<label>
-												<input type="radio" id="" name="impactoA" value="3">
+												<input type="radio" id="" name="impactoc" value="3">
 												<span class="badge bg-green">3-Altamente</span>
 											</label>	
 										</div>
@@ -237,17 +255,17 @@
 									<td>		
 										<div class="radio">
 											<label>
-												<input type="radio" id="" name="abrangenciaA" value="1" checked>
+												<input type="radio" id="" name="abrangenciad" value="1" checked>
 												<span class="badge bg-yellow">1-Moderado</span>  	
 											</label>
 											<br>
 											<label>
-												<input type="radio" id="" name="abrangenciaA" value="2">
+												<input type="radio" id="" name="abrangenciad" value="2">
 												<span class="badge bg-yellow">2-Significativa</span>
 											</label>
 											<br>
 											<label>
-												<input type="radio" id="" name="abrangenciaA" value="3">
+												<input type="radio" id="" name="abrangenciad" value="3">
 												<span class="badge bg-yellow">3-Muito</span>
 											</label>
 										</div>
@@ -255,17 +273,17 @@
 									<td>	
 										<div class="radio">
 											<label>
-												<input type="radio" id="" name="complexidadeA" value="1" checked>
+												<input type="radio" id="" name="complexidaded" value="1" checked>
 												<span class="badge bg-light-blue">1-Moderado</span>  	
 											</label>
 											<br>
 											<label>
-												<input type="radio" id="" name="complexidadeA" value="2">
+												<input type="radio" id="" name="complexidaded" value="2">
 												<span class="badge bg-light-blue">2-Alta</span>
 											</label>
 											<br>
 											<label>
-												<input type="radio" id="" name="complexidadeA" value="3">
+												<input type="radio" id="" name="complexidaded" value="3">
 												<span class="badge bg-light-blue">3-Altíssima</span>
 											</label>	
 										</div>
@@ -273,17 +291,17 @@
 									<td>	
 										<div class="radio">
 											<label>
-												<input type="radio" id="" name="impactoA" value="1" checked>
+												<input type="radio" id="" name="impactod" value="1" checked>
 												<span class="badge bg-green">1-Relevante</span>  	
 											</label>
 											<br>
 											<label>
-												<input type="radio" id="" name="impactoA" value="2">
+												<input type="radio" id="" name="impactod" value="2">
 												<span class="badge bg-green">2-Muito</span>
 											</label>
 											<br>
 											<label>
-												<input type="radio" id="" name="impactoA" value="3">
+												<input type="radio" id="" name="impactod" value="3">
 												<span class="badge bg-green">3-Altamente</span>
 											</label>	
 										</div>
@@ -294,17 +312,17 @@
 									<td>		
 										<div class="radio">
 											<label>
-												<input type="radio" id="" name="abrangenciaA" value="1" checked>
+												<input type="radio" id="" name="abrangenciae" value="1" checked>
 												<span class="badge bg-yellow">1-Moderado</span>  	
 											</label>
 											<br>
 											<label>
-												<input type="radio" id="" name="abrangenciaA" value="2">
+												<input type="radio" id="" name="abrangenciae" value="2">
 												<span class="badge bg-yellow">2-Significativa</span>
 											</label>
 											<br>
 											<label>
-												<input type="radio" id="" name="abrangenciaA" value="3">
+												<input type="radio" id="" name="abrangenciae" value="3">
 												<span class="badge bg-yellow">3-Muito</span>
 											</label>
 										</div>
@@ -312,17 +330,17 @@
 									<td>	
 										<div class="radio">
 											<label>
-												<input type="radio" id="" name="complexidadeA" value="1" checked>
+												<input type="radio" id="" name="complexidadee" value="1" checked>
 												<span class="badge bg-light-blue">1-Moderado</span>  	
 											</label>
 											<br>
 											<label>
-												<input type="radio" id="" name="complexidadeA" value="2">
+												<input type="radio" id="" name="complexidadee" value="2">
 												<span class="badge bg-light-blue">2-Alta</span>
 											</label>
 											<br>
 											<label>
-												<input type="radio" id="" name="complexidadeA" value="3">
+												<input type="radio" id="" name="complexidadee" value="3">
 												<span class="badge bg-light-blue">3-Altíssima</span>
 											</label>	
 										</div>
@@ -330,17 +348,17 @@
 									<td>	
 										<div class="radio">
 											<label>
-												<input type="radio" id="" name="impactoA" value="1" checked>
+												<input type="radio" id="" name="impactoe" value="1" checked>
 												<span class="badge bg-green">1-Relevante</span>  	
 											</label>
 											<br>
 											<label>
-												<input type="radio" id="" name="impactoA" value="2">
+												<input type="radio" id="" name="impactoe" value="2">
 												<span class="badge bg-green">2-Muito</span>
 											</label>
 											<br>
 											<label>
-												<input type="radio" id="" name="impactoA" value="3">
+												<input type="radio" id="" name="impactoe" value="3">
 												<span class="badge bg-green">3-Altamente</span>
 											</label>	
 										</div>
@@ -349,27 +367,48 @@
 							</table>
 						</div>	
 						<div class="form-group">
-							<label for="">Quantidade de Projetos</label>
-							<select class="form-control" id="">
-                                  <option  value="1" selected>1</option>
-								  <option  value="2">2</option>
-								  <option  value="3">3</option>
-								  <option  value="4">4</option>
-								  <option  value="5">5</option>
-								  <option  value="6">6</option>
-							</select>
+							<table class="table table-condensed">
+								<tr>
+									<th style="width: 20%">
+										<label>Quantidade de Projetos</label>
+									</th>
+									<th>&nbsp;</th>	
+									<th>&nbsp;</th>
+									<th>&nbsp;</th>
+									<th>&nbsp;</th>
+								</tr>
+								<tr>
+									<td>
+										<select class="form-control" id="">
+											<option  value="1" selected>1</option>
+											<option  value="2">2</option>
+											<option  value="3">3</option>
+											<option  value="4">4</option>
+											<option  value="5">5</option>
+											<option  value="6">6</option>
+										</select>	
+									</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+								</tr>
+							</table>
 						</div>
 						<div class="form-group">
-							<table class="table table-bordered">
+							<table class="table table-striped">
 								<tr>
-									<th><span class="badge bg-red">Projetos</span></th>
+									<th>#</th>
+									<th style="width: 570px">Projeto</th>
 									<th><span class="badge bg-yellow">Abrangência</span></th>
 									<th><span class="badge bg-light-blue">Complexidade</span></th>
 									<th><span class="badge bg-green">Impacto</span></th>	
 								</tr>
 								<tr>	
-									<td width="650px">
-										<label for="">Projeto 1</label>
+									<td>
+										<label for="">1</label>
+									</td>
+									<td>
 										<select class="form-control" id="">
 											<option [selected]="true" value="">Selecione</option>  
 											<option  value="1">10115 - Intercâmbio de Informações</option>
@@ -380,17 +419,17 @@
 									<td>		
 										<div class="radio">
 											<label>
-												<input type="radio" id="" name="abrangenciaA" value="1" checked>
+												<input type="radio" id="" name="abrangenciaP1" value="1" checked>
 												<span class="badge bg-yellow">1-Moderado</span>  	
 											</label>
 											<br>
 											<label>
-												<input type="radio" id="" name="abrangenciaA" value="2">
+												<input type="radio" id="" name="abrangenciaP1" value="2">
 												<span class="badge bg-yellow">2-Significativa</span>
 											</label>
 											<br>
 											<label>
-												<input type="radio" id="" name="abrangenciaA" value="3">
+												<input type="radio" id="" name="abrangenciaP1" value="3">
 												<span class="badge bg-yellow">3-Muito</span>
 											</label>
 										</div>
@@ -398,17 +437,17 @@
 									<td>	
 										<div class="radio">
 											<label>
-												<input type="radio" id="" name="complexidadeA" value="1" checked>
+												<input type="radio" id="" name="complexidadeP1" value="1" checked>
 												<span class="badge bg-light-blue">1-Moderado</span>  	
 											</label>
 											<br>
 											<label>
-												<input type="radio" id="" name="complexidadeA" value="2">
+												<input type="radio" id="" name="complexidadeP1" value="2">
 												<span class="badge bg-light-blue">2-Alta</span>
 											</label>
 											<br>
 											<label>
-												<input type="radio" id="" name="complexidadeA" value="3">
+												<input type="radio" id="" name="complexidadeP1" value="3">
 												<span class="badge bg-light-blue">3-Altíssima</span>
 											</label>	
 										</div>
@@ -416,25 +455,27 @@
 									<td>	
 										<div class="radio">
 											<label>
-												<input type="radio" id="" name="impactoA" value="1" checked>
+												<input type="radio" id="" name="impactoP1" value="1" checked>
 												<span class="badge bg-green">1-Relevante</span>  	
 											</label>
 											<br>
 											<label>
-												<input type="radio" id="" name="impactoA" value="2">
+												<input type="radio" id="" name="impactoP1" value="2">
 												<span class="badge bg-green">2-Muito</span>
 											</label>
 											<br>
 											<label>
-												<input type="radio" id="" name="impactoA" value="3">
+												<input type="radio" id="" name="impactoP1" value="3">
 												<span class="badge bg-green">3-Altamente</span>
 											</label>	
 										</div>
 									</td>
 								</tr>
 								<tr>	
-									<td width="600px">
-										<label for="">Projeto 2</label>
+									<td>
+										<label for="">2</label>
+									</td>
+									<td>
 										<select class="form-control" id="">
 											<option [selected]="true" value="">Selecione</option>  
 											<option  value="1">37185 - ENAT</option>
@@ -446,17 +487,17 @@
 									<td>		
 										<div class="radio">
 											<label>
-												<input type="radio" id="" name="abrangenciaA" value="1" checked>
+												<input type="radio" id="" name="abrangenciaP2" value="1" checked>
 												<span class="badge bg-yellow">1-Moderado</span>  	
 											</label>
 											<br>
 											<label>
-												<input type="radio" id="" name="abrangenciaA" value="2">
+												<input type="radio" id="" name="abrangenciaP2" value="2">
 												<span class="badge bg-yellow">2-Significativa</span>
 											</label>
 											<br>
 											<label>
-												<input type="radio" id="" name="abrangenciaA" value="3">
+												<input type="radio" id="" name="abrangenciaP2" value="3">
 												<span class="badge bg-yellow">3-Muito</span>
 											</label>
 										</div>
@@ -464,17 +505,17 @@
 									<td>	
 										<div class="radio">
 											<label>
-												<input type="radio" id="" name="complexidadeA" value="1" checked>
+												<input type="radio" id="" name="complexidadeP2" value="1" checked>
 												<span class="badge bg-light-blue">1-Moderado</span>  	
 											</label>
 											<br>
 											<label>
-												<input type="radio" id="" name="complexidadeA" value="2">
+												<input type="radio" id="" name="complexidadeP2" value="2">
 												<span class="badge bg-light-blue">2-Alta</span>
 											</label>
 											<br>
 											<label>
-												<input type="radio" id="" name="complexidadeA" value="3">
+												<input type="radio" id="" name="complexidadeP2" value="3">
 												<span class="badge bg-light-blue">3-Altíssima</span>
 											</label>	
 										</div>
@@ -482,17 +523,17 @@
 									<td>	
 										<div class="radio">
 											<label>
-												<input type="radio" id="" name="impactoA" value="1" checked>
+												<input type="radio" id="" name="impactoP2" value="1" checked>
 												<span class="badge bg-green">1-Relevante</span>  	
 											</label>
 											<br>
 											<label>
-												<input type="radio" id="" name="impactoA" value="2">
+												<input type="radio" id="" name="impactoP2" value="2">
 												<span class="badge bg-green">2-Muito</span>
 											</label>
 											<br>
 											<label>
-												<input type="radio" id="" name="impactoA" value="3">
+												<input type="radio" id="" name="impactoP2" value="3">
 												<span class="badge bg-green">3-Altamente</span>
 											</label>	
 										</div>
@@ -501,16 +542,24 @@
 							</table>	
 						</div>
 						<div class="form-group">
-							<label for="">Referência FCT Atual</label>
-							<input type="text" class="form-control" id="" readonly placeholder="" value="11 - Técnico (R$ 395.77)">
-						</div>
-						<div class="form-group">
-							<label for="">Pontuação Total</label>
-							<input type="text" class="form-control" id="" readonly placeholder="" value="87.98">
-						</div>	
-						<div class="form-group">
-							<label for="">Referência FCT pela pontuação</label>
-							<input type="text" class="form-control" id="" readonly placeholder="" value="13 - Técnico (R$ 678.19)">
+							<table class="table table-condensed">
+								<tr>
+									<th>Pontuação Total</th>
+									<th>Referência FCT Atual</th>
+									<th>Referência FCT pela pontuação</th>
+								</tr>
+								<tr>
+									<td>
+										<input type="text" class="form-control" id="" readonly placeholder="" value="87.98">
+									</td>
+									<td>
+										<input type="text" class="form-control" id="" readonly placeholder="" value="11 - Técnico (R$ 395.77)">
+									</td>
+									<td>
+										<input type="text" class="form-control" id="" readonly placeholder="" value="13 - Técnico (R$ 678.19)">
+									</td>
+								</tr>	
+							</table>	
 						</div>
 					</div>
 					<div class="box-footer">

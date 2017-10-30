@@ -12,7 +12,6 @@ import { DatePipe } from '@angular/common';
 import { CurrencyMaskModule } from "ng2-currency-mask";
 import { CurrencyMaskConfig, CURRENCY_MASK_CONFIG } from "ng2-currency-mask/src/currency-mask.config";
 
-
 /* Modules */
 import { AbrangenciaModule } from './abrangencia/abrangencia.module';
 import { DivisaoModule } from './divisao/divisao.module';
@@ -27,6 +26,7 @@ import { ProjetoModule } from './projeto/projeto.module';
 import { DistribuicaoModule } from './distribuicao/distribuicao.module';
 import { AtributoModule } from './atributo/atributo.module';
 import { AvaliacaoModule } from './avaliacao/avaliacao.module';
+import { FaixaModule } from './faixa/faixa.module';
 
 /* Routes */
 import { routing } from './app.routes';
@@ -43,6 +43,7 @@ import { projetoRouting } from './projeto/projeto.routes';
 import { distribuicaoRouting } from './distribuicao/distribuicao.routes';
 import { atributoRouting } from './atributo/atributo.routes';
 import { avaliacaoRouting } from './avaliacao/avaliacao.routes';
+import { faixaRouting } from './faixa/faixa.routes';
 
 
 /* Services */
@@ -59,6 +60,7 @@ import { ProjetoService } from './projeto/projeto.service';
 import { DistribuicaoService } from './distribuicao/distribuicao.service';
 import { AtributoService } from './atributo/atributo.service';
 import { AvaliacaoService } from './avaliacao/avaliacao.service';
+import { FaixaService } from './faixa/faixa.service';
 
 /* Components */
 import { AppComponent } from './app.component';
@@ -82,6 +84,7 @@ import { DistribuicaoComponent } from './distribuicao/distribuicao.component';
 import { AtributoComponent } from './atributo/atributo.component';
 import { DetailRestaurantComponent } from './detail-restaurant/detail-restaurant.component';
 import { AvaliacaoComponent } from './avaliacao/avaliacao.component';
+import { FaixaComponent } from './faixa/faixa.component';
 
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   align: "left",
@@ -139,6 +142,8 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     atributoRouting,
     AvaliacaoModule,
     avaliacaoRouting,
+    FaixaModule,
+    faixaRouting,
     routing
   ],
   providers: 

@@ -1,0 +1,85 @@
+<div class="text-center" *ngIf="atributoCarregada" style="margin-top: 10px;">
+	<i class="fa fa-refresh fa-spin fa-6"></i>
+	<br>Carregando... Aguarde...
+</div>
+<section class="content-header">
+	<h1>
+		Faixas de Distribuição
+	</h1>
+	<ol class="breadcrumb">
+		<li>
+			<a href="#"><i class="fa fa-home"></i> Home</a></li>
+		<li class="active">Faixas</li>
+	</ol>
+</section>
+<section class="content">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="box">
+				<div class="box-header">
+					<h3 class="box-title">Faixas Cadastradas</h3>
+				</div>
+				<!-- /.box-header -->
+				<div class="box-body table-responsive no-padding">
+					<table id="example" datatable [dtOptions]="dtOptions"  [dtTrigger]="dtTrigger" class="table table-hover">
+						<thead>
+							<tr>
+								<th style="width: 10px">#</th>
+								<th>Limite Inferior</th>
+								<th>Limite Superior</th>
+								<th>Pontuação de Referência</th>
+								<th>Quantidade de Pessoas</th>
+								<th>Valor do rateio por Pessoa</th>
+								<th>Percentual da Distribuição</th>
+								<th></th>
+								<th></th>
+							</tr>
+						</thead>	
+						<tbody>		
+							<!--<tr *ngFor "let faixa of Faixa">-->
+							<tr>	
+								<td>1</td>
+								<td>49.58</td>
+								<td>74.79</td>
+								<td>74.79</td>
+								<td>4</td>
+								<td>R$ 253,83</td>
+								<td>30.00</td>
+								<td>
+									<!--<a [routerLink]="['/faixa', faixa.id_faixa]" class="btn  btn-xs bg-blue btn-flat">-->
+									<a class="btn  btn-xs bg-blue btn-flat">
+									<i class="fa fa-pencil"></i>
+									</a>
+								</td>
+								<td>
+									<button type="button" class="btn  btn-xs bg-red btn-flat" ><i class="fa fa-remove"></i></button>
+								</td>
+							</tr>
+							
+							<tr>	
+								<td>2</td>
+								<td>74.79</td>
+								<td>100.00</td>
+								<td>87.84</td>
+								<td>22</td>
+								<td>R$ 377.12</td>
+								<td>40.00</td>
+								<td>
+									<!--<a [routerLink]="['/faixa', faixa.id_faixa]" class="btn  btn-xs bg-blue btn-flat">-->
+									<a class="btn  btn-xs bg-blue btn-flat">
+									<i class="fa fa-pencil"></i>
+									</a>
+								</td>
+								<td>
+									<button type="button" class="btn  btn-xs bg-red btn-flat" ><i class="fa fa-remove"></i></button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<!-- /.box-body -->
+			</div>
+			<!-- /.box -->
+		</div>
+	</div>
+</section>
