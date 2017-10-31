@@ -5,10 +5,12 @@ import { RouterModule }  from '@angular/router';
 import { HttpModule }  from '@angular/http';
 import { TextMaskModule } from 'angular2-text-mask';
 import { DataTablesModule } from 'angular-datatables';
+
+import {CalendarModule} from 'primeng/primeng';
+
 import { ProjetoComponent } from './projeto.component';
 import { ProjetoService } from 'app/projeto/projeto.service';
 import { ProjetoFormComponent } from 'app/projeto/projeto-form/projeto-form.component';
-
 
 @NgModule({
   imports: [
@@ -18,7 +20,8 @@ import { ProjetoFormComponent } from 'app/projeto/projeto-form/projeto-form.comp
     RouterModule,
     HttpModule,
     DataTablesModule,
-    TextMaskModule
+    TextMaskModule,
+    CalendarModule
   ],
   providers: [ ProjetoService ],
   declarations: [

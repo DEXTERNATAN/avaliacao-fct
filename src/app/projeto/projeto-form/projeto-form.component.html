@@ -39,12 +39,16 @@
 						</div>	
 						<div class="form-group" [ngClass]="{'has-error': (!formProjeto.controls['dt_inicio'].valid && formProjeto.controls['dt_inicio'].touched) }">
 							<label for="dt_inicio">Data Início</label>
-							<input type="text" class="form-control" id="dt_inicio" [(ngModel)]="projeto.dt_inicio" formControlName="dt_inicio" placeholder="Data início do Projeto, no formato: DD/MM/AAAA" maxlength="12" [textMask]="{mask: maskDate}">							
+							<br>
+							<p-calendar  dateFormat="dd/mm/yy"  [locale]="pt" formControlName="dt_inicio"></p-calendar>
+							<!-- <input type="text" class="form-control" id="dt_inicio" [(ngModel)]="projeto.dt_inicio" formControlName="dt_inicio" placeholder="Data início do Projeto, no formato: DD/MM/AAAA" maxlength="12" [textMask]="{mask: maskDate}">							 -->
 							<span *ngIf="!formProjeto.controls['dt_inicio'].valid && formProjeto.controls['dt_inicio'].touched" class="help-block">O campo Data Início é obrigatório!</span>
 						</div>
 						<div class="form-group" [ngClass]="{'has-error': (!formProjeto.controls['dt_fim'].valid && formProjeto.controls['dt_fim'].touched) }">
 							<label for="dt_fim">Data Fim</label>
-							<input type="text" class="form-control" id="dt_fim" [(ngModel)]="projeto.dt_fim" formControlName="dt_fim" placeholder="Data fim prevista do Projeto, no formmato: DD/MM/AAAA" maxlength="12" [textMask]="{mask: maskDate}">							
+							<!-- <input type="text" class="form-control" id="dt_fim" [(ngModel)]="projeto.dt_fim" formControlName="dt_fim" placeholder="Data fim prevista do Projeto, no formmato: DD/MM/AAAA" maxlength="12" [textMask]="{mask: maskDate}">							 -->
+							<br>
+							<p-calendar  dateFormat="dd/mm/yy"  [locale]="pt" formControlName="dt_fim"></p-calendar>
 							<span *ngIf="!formProjeto.controls['dt_fim'].valid && formProjeto.controls['dt_fim'].touched" class="help-block">O campo Data Fim é obrigatório!</span>
 						</div>
 						<div class="form-group" [ngClass]="{'has-error': (!formProjeto.controls['abrangencia'].valid && formProjeto.controls['abrangencia'].touched) }">

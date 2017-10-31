@@ -1,8 +1,8 @@
 import { DataTableDirective } from 'angular-datatables';
 import { FormBuilder } from '@angular/forms';
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
-
 import { Subject } from 'rxjs/Rx';
+
 
 import { ProjetoService } from 'app/projeto/projeto.service';
 import { Projeto } from './projeto.model';

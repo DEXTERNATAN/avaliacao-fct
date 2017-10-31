@@ -1,5 +1,6 @@
 import { TelPipe } from './shared/custom-pipes.pipes';
 import { BrowserModule } from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -11,6 +12,8 @@ import { CurrencyPipe } from '@angular/common';
 import { DatePipe } from '@angular/common';
 import { CurrencyMaskModule } from "ng2-currency-mask";
 import { CurrencyMaskConfig, CURRENCY_MASK_CONFIG } from "ng2-currency-mask/src/currency-mask.config";
+
+import {CalendarModule} from 'primeng/primeng';
 
 /* Modules */
 import { AbrangenciaModule } from './abrangencia/abrangencia.module';
@@ -114,6 +117,7 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     DataTablesModule,
     FormsModule,
     ReactiveFormsModule,

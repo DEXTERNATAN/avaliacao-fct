@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, Route, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
-
 import { TextMaskModule } from 'angular2-text-mask';
+
+import {CalendarModule} from 'primeng/primeng';
 
 import { Projeto } from './../projeto.model';
 import { ProjetoService } from './../projeto.service';
@@ -14,6 +15,7 @@ import { FuncoesGlobais } from 'app/shared/app.funcoes-globais';
     styleUrls: ['./projeto-form.component.css']
 })
 export class ProjetoFormComponent implements OnInit {
+    pt: { firstDayOfWeek: number; dayNames: string[]; dayNamesShort: string[]; dayNamesMin: string[]; monthNames: string[]; monthNamesShort: string[]; today: string; clear: string; };
 
     formProjeto: FormGroup;
     projeto: Projeto = new Projeto();
@@ -21,6 +23,8 @@ export class ProjetoFormComponent implements OnInit {
     title: string;
     public maskDate = [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/];
 
+
+    value: Date;
 
     constructor(
         formBuilder: FormBuilder,
@@ -51,6 +55,20 @@ export class ProjetoFormComponent implements OnInit {
     }
 
     ngOnInit() {
+        
+        this.pt = {
+            firstDayOfWeek: 0,
+            dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'],
+            dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'],
+            dayNamesMin: ['D','S','T','Q','Q','S','S'],
+            monthNames: [ 'Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro' ],
+            monthNamesShort: [ 'Jan','Fev','Mar','Abr','Mai','Jun', 'Jul','Ago','Set','Out','Nov','Dez' ],
+            today: 'Hoje',
+            clear: 'Limpar'
+        };
+        
+    
+    
         var id_projeto = this.route.params.subscribe(params => {
             this.idResource = params['id_projeto'];
             this.title = this.idResource ? 'Editar Projeto' : 'Novo Projeto';
