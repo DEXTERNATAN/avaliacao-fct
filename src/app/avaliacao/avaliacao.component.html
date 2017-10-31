@@ -14,75 +14,334 @@
 </section>
 <section class="content">
 	<div class="row">
-		<div class="col-xs-12">
-			<div class="box">
-				<div class="box-header">
-					<h3 class="box-title">Avaliações Registradas</h3>
-					<!--<div class="box-tools">
-						<a routerLink="/avaliacao/novo" class="btn btn-sm pull-left btn-flat bg-purple margin-right-10" ><i class="fa fa-plus"></i> <b>Nova Abrangência</b></a>
-					</div>-->
-				</div>
-				<!-- /.box-header -->
-				<div class="box-body table-responsive no-padding">
-					<table id="example" datatable [dtOptions]="dtOptions"  [dtTrigger]="dtTrigger" class="table table-hover">
-						<thead>
+		<div class="box-body">
+			<div class="col-xs-12">
+				<div class="box">
+					<div class="box-header">
+						<h3 class="box-title">Avaliações Registradas</h3>
+							<!--<div class="box-tools">
+							<a routerLink="/avaliacao/novo" class="btn btn-sm pull-left btn-flat bg-purple margin-right-10" ><i class="fa fa-plus"></i> <b>Nova Abrangência</b></a>
+							</div>-->
+					</div>
+					<!-- /.box-header -->
+					<div class="box-body">
+						<table class="table table-condensed">
 							<tr>
-								<th style="width: 10px">#</th>
-								<th>Tipo</th>
-								<th>Divisão</th>
-								<th>Colaborador</th>
-								<th>Pontuação</th>
-								<th>Ajuste</th>
-								<th>Data da Avaliação</th>
-								<th></th>
-								<th></th>
+								<td>
+									<div class="box-header with-border">
+										<h3 class="box-title">&nbsp;&nbsp;#&nbsp;Divisão&nbsp;&nbsp;Colaborador</h3>
+									</div>	
+								</td>	
 							</tr>
-						</thead>	
-						<tbody>		
-							<!--<tr *ngFor "let avaliacao of Avaliacao">-->
-							<tr>	
-								<td>1</td>
-								<td>Desenvolvimento</td>
-								<td>SDDEP</td>
-								<td>Francisco Jose Joaquim de Souza</td>
-								<td>98.36</td>
-								<td>12.03</td>
-								<td>25/10/2017</td>
+							<tr>			
 								<td>
-									<!--<a [routerLink]="['/avaliacao', avaliacao.id_resultado]" class="btn  btn-xs bg-blue btn-flat">-->
-									<a class="btn  btn-xs bg-blue btn-flat">
-									<i class="fa fa-pencil"></i>
-									</a>
-								</td>
-								<td>
-									<button type="button" class="btn  btn-xs bg-red btn-flat" ><i class="fa fa-remove"></i></button>
+									<div class="box-body table-responsive no-padding">
+										<div class="box">
+											<div class="box-header with-border">
+												<label>
+													&nbsp;&nbsp;
+													1
+													&nbsp;
+													SDDEP
+													&nbsp;&nbsp;&nbsp;&nbsp;
+													Francisco Jose Joaquim de Souza
+												</label>
+												<div class="box-tools pull-right">
+													<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip">
+													<i class="fa fa-minus"></i></button>
+												</div>
+											</div>
+											<div class="box-body">
+												<table id="" class="table table-striped">
+													<tr>
+														<th>Data da Avaliação</th>
+														<th>Pontuação</th>
+														<th>Ajuste</th>
+														<th>Diferença</th>
+														<th></th>
+														<th></th>
+														<th></th>
+													</tr>
+													<tr>	
+														<td>25/10/2017</td>
+														<td>98.36</td>
+														<td>12.03</td>
+														<td>
+															<div class="progress progress-xs">
+																<div class="progress-bar progress-bar-danger" style="width: 12%"></div>
+															</div>
+														</td>
+														<td>	
+															<span class="badge bg-red">12%</span>
+														</td>
+														<td>
+															<!--<a [routerLink]="['/avaliacao', avaliacao.id_resultado]" class="btn  btn-xs bg-blue btn-flat">-->
+															<a class="btn  btn-xs bg-blue btn-flat">
+																<i class="fa fa-pencil"></i>
+															</a>
+														</td>
+														<td>
+															<button type="button" class="btn  btn-xs bg-red btn-flat" ><i class="fa fa-remove"></i></button>
+														</td>
+													</tr>
+													<tr>	
+														<td>22/10/2017</td>
+														<td>75.66</td>
+														<td>24.18</td>
+														<td>
+															<div class="progress progress-xs">
+																<div class="progress-bar progress-bar-danger" style="width: 32%"></div>
+															</div>
+														</td>
+														<td>	
+															<span class="badge bg-red">32%</span>
+														</td>
+														<td>
+															<!--<a [routerLink]="['/avaliacao', avaliacao.id_resultado]" class="btn  btn-xs bg-blue btn-flat">-->
+															<a class="btn  btn-xs bg-blue btn-flat">
+																<i class="fa fa-pencil"></i>
+															</a>
+														</td>
+														<td>
+															<button type="button" class="btn  btn-xs bg-red btn-flat" ><i class="fa fa-remove"></i></button>
+														</td>
+													</tr>
+													<tr>	
+														<td>22/10/2017</td>
+														<td>98.31</td>
+														<td>45.22</td>
+														<td>
+															<div class="progress progress-xs">
+																<div class="progress-bar progress-bar-danger" style="width: 46%"></div>
+															</div>
+														</td>
+														<td>	
+															<span class="badge bg-red">46%</span>
+														</td>
+														<td>
+															<!--<a [routerLink]="['/avaliacao', avaliacao.id_resultado]" class="btn  btn-xs bg-blue btn-flat">-->
+															<a class="btn  btn-xs bg-blue btn-flat">
+															<i class="fa fa-pencil"></i>
+															</a>
+														</td>
+														<td>
+															<button type="button" class="btn  btn-xs bg-red btn-flat" ><i class="fa fa-remove"></i></button>
+														</td>
+													</tr>
+												</table>
+											</div>
+										</div>	
+									</div>
+								</td>	
+							</tr>
+							<tr>
+								<td>				
+									<div class="box-body table-responsive no-padding">
+										<div class="box">
+											<div class="box-header with-border">
+												<label>
+													&nbsp;&nbsp;
+													2
+													&nbsp;
+													SDDEP
+													&nbsp;&nbsp;&nbsp;&nbsp;
+													Mindalva Jurema Siqueira Souza
+												</label>
+												<div class="box-tools pull-right">
+													<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip">
+													<i class="fa fa-minus"></i></button>
+												</div>
+											</div>
+											<div class="box-body">
+												<table id="" class="table table-striped">
+													<tr>
+														<th>Data da Avaliação</th>
+														<th>Pontuação</th>
+														<th>Ajuste</th>
+														<th>Diferença</th>
+														<th></th>
+														<th></th>
+														<th></th>
+													</tr>
+													<tr>	
+														<td>25/10/2017</td>
+														<td>98.36</td>
+														<td>12.03</td>
+														<td>
+															<div class="progress progress-xs">
+																<div class="progress-bar progress-bar-danger" style="width: 12%"></div>
+															</div>
+														</td>
+														<td>	
+															<span class="badge bg-red">12%</span>
+														</td>
+														<td>
+															<!--<a [routerLink]="['/avaliacao', avaliacao.id_resultado]" class="btn  btn-xs bg-blue btn-flat">-->
+															<a class="btn  btn-xs bg-blue btn-flat">
+															<i class="fa fa-pencil"></i>
+															</a>
+														</td>
+														<td>
+															<button type="button" class="btn  btn-xs bg-red btn-flat" ><i class="fa fa-remove"></i></button>
+														</td>
+													</tr>
+													<tr>	
+														<td>22/10/2017</td>
+														<td>75.66</td>
+														<td>24.18</td>
+														<td>
+															<div class="progress progress-xs">
+																<div class="progress-bar progress-bar-danger" style="width: 32%"></div>
+															</div>
+														</td>
+														<td>	
+															<span class="badge bg-red">32%</span>
+														</td>
+														<td>
+															<!--<a [routerLink]="['/avaliacao', avaliacao.id_resultado]" class="btn  btn-xs bg-blue btn-flat">-->
+															<a class="btn  btn-xs bg-blue btn-flat">
+															<i class="fa fa-pencil"></i>
+															</a>
+														</td>
+														<td>
+															<button type="button" class="btn  btn-xs bg-red btn-flat" ><i class="fa fa-remove"></i></button>
+														</td>
+													</tr>
+													<tr>	
+														<td>22/10/2017</td>
+														<td>98.31</td>
+														<td>45.22</td>
+														<td>
+															<div class="progress progress-xs">
+																<div class="progress-bar progress-bar-danger" style="width: 46%"></div>
+															</div>
+														</td>
+														<td>	
+															<span class="badge bg-red">46%</span>
+														</td>
+														<td>
+															<!--<a [routerLink]="['/avaliacao', avaliacao.id_resultado]" class="btn  btn-xs bg-blue btn-flat">-->
+															<a class="btn  btn-xs bg-blue btn-flat">
+															<i class="fa fa-pencil"></i>
+															</a>
+														</td>
+														<td>
+															<button type="button" class="btn  btn-xs bg-red btn-flat" ><i class="fa fa-remove"></i></button>
+														</td>
+													</tr>
+												</table>
+											</div>
+										</div>
+									</div>
 								</td>
 							</tr>
-							
-							<tr>	
-								<td>2</td>
-								<td>Design</td>
-								<td>SDDEP</td>
-								<td>Roberto da Silveira Souza Paranhos</td>
-								<td>75.66</td>
-								<td>09.18</td>
-								<td>22/10/2017</td>
-								<td>
-									<!--<a [routerLink]="['/avaliacao', avaliacao.id_resultado]" class="btn  btn-xs bg-blue btn-flat">-->
-									<a class="btn  btn-xs bg-blue btn-flat">
-									<i class="fa fa-pencil"></i>
-									</a>
-								</td>
-								<td>
-									<button type="button" class="btn  btn-xs bg-red btn-flat" ><i class="fa fa-remove"></i></button>
+							<tr>
+								<td>				
+									<div class="box-body table-responsive no-padding">
+										<div class="box">
+											<div class="box-header with-border">
+												<label>
+													&nbsp;&nbsp;
+													3
+													&nbsp;
+													SDDFE
+													&nbsp;&nbsp;&nbsp;&nbsp;
+													Jurema Lobato Silva da Cunha
+												</label>
+												<div class="box-tools pull-right">
+													<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip">
+													<i class="fa fa-minus"></i></button>
+												</div>
+											</div>
+											<div class="box-body">
+												<table id="" class="table table-striped">
+													<tr>
+														<th>Data da Avaliação</th>
+														<th>Pontuação</th>
+														<th>Ajuste</th>
+														<th>Diferença</th>
+														<th></th>
+														<th></th>
+														<th></th>
+													</tr>
+													<tr>	
+														<td>25/10/2017</td>
+														<td>98.36</td>
+														<td>12.03</td>
+														<td>
+															<div class="progress progress-xs">
+																<div class="progress-bar progress-bar-danger" style="width: 12%"></div>
+															</div>
+														</td>
+														<td>	
+															<span class="badge bg-red">12%</span>
+														</td>
+														<td>
+															<!--<a [routerLink]="['/avaliacao', avaliacao.id_resultado]" class="btn  btn-xs bg-blue btn-flat">-->
+															<a class="btn  btn-xs bg-blue btn-flat">
+															<i class="fa fa-pencil"></i>
+															</a>
+														</td>
+														<td>
+															<button type="button" class="btn  btn-xs bg-red btn-flat" ><i class="fa fa-remove"></i></button>
+														</td>
+													</tr>
+													<tr>	
+														<td>22/10/2017</td>
+														<td>75.66</td>
+														<td>24.18</td>
+														<td>
+															<div class="progress progress-xs">
+																<div class="progress-bar progress-bar-danger" style="width: 32%"></div>
+															</div>
+														</td>
+														<td>	
+															<span class="badge bg-red">32%</span>
+														</td>
+														<td>
+															<!--<a [routerLink]="['/avaliacao', avaliacao.id_resultado]" class="btn  btn-xs bg-blue btn-flat">-->
+															<a class="btn  btn-xs bg-blue btn-flat">
+															<i class="fa fa-pencil"></i>
+															</a>
+														</td>
+														<td>
+															<button type="button" class="btn  btn-xs bg-red btn-flat" ><i class="fa fa-remove"></i></button>
+														</td>
+													</tr>
+													<tr>	
+														<td>22/10/2017</td>
+														<td>98.31</td>
+														<td>45.22</td>
+														<td>
+															<div class="progress progress-xs">
+																<div class="progress-bar progress-bar-danger" style="width: 46%"></div>
+															</div>
+														</td>
+														<td>	
+															<span class="badge bg-red">46%</span>
+														</td>
+														<td>
+															<!--<a [routerLink]="['/avaliacao', avaliacao.id_resultado]" class="btn  btn-xs bg-blue btn-flat">-->
+															<a class="btn  btn-xs bg-blue btn-flat">
+															<i class="fa fa-pencil"></i>
+															</a>
+														</td>
+														<td>
+															<button type="button" class="btn  btn-xs bg-red btn-flat" ><i class="fa fa-remove"></i></button>
+														</td>
+													</tr>
+												</table>
+											</div>
+										</div>
+									</div>
 								</td>
 							</tr>
-						</tbody>
-					</table>
-				</div>
-				<!-- /.box-body -->
+						</table>						
+					</div>
+				</div>			
 			</div>
-			<!-- /.box -->
+		<!-- /.box-body -->
 		</div>
+	<!-- /.box -->
 	</div>
 </section>
