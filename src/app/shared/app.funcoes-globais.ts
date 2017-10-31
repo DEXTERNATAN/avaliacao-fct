@@ -6,7 +6,7 @@ export class FuncoesGlobais {
 
     static dataFormatadaView(data) {
         moment.locale('pt-BR');
-        this.dtFormatada = moment(data).format('DD/MM/YYYY');
+        this.dtFormatada = moment(new Date(data)).format('DD/MM/YYYY');
         if (this.dtFormatada == "Invalid date") {
             this.dtFormatada = moment(new Date(), 'DD/MM/YYYY').format('DD/MM/YYYY');
         }
@@ -15,7 +15,8 @@ export class FuncoesGlobais {
 
     static dataFormatadaCad(data) {
         moment.locale('pt-BR');
-        this.dtFormatada = moment(new Date(), 'DD-MM-YYYY').format('YYYY-MM-DD HH:mm:ss');
-        return this.dtFormatada;
+        let StrDate: Date  = moment(data, 'DD-MM-YYYY').toDate();
+        //let isoDate: string  = JSON.parse(JSON.stringify(StrDate));
+        return StrDate;
     }
 }

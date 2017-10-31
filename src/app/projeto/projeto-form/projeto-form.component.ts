@@ -66,8 +66,6 @@ export class ProjetoFormComponent implements OnInit {
             today: 'Hoje',
             clear: 'Limpar'
         };
-        
-    
     
         var id_projeto = this.route.params.subscribe(params => {
             this.idResource = params['id_projeto'];
@@ -78,7 +76,7 @@ export class ProjetoFormComponent implements OnInit {
 
             this.projetoService.getProjetoId(this.idResource).subscribe(projeto => {
                 projeto = this.projeto = projeto
-
+                // debugger
                 this.projeto.dt_inicio = FuncoesGlobais.dataFormatadaView(this.projeto.dt_inicio);
                 this.projeto.dt_fim = FuncoesGlobais.dataFormatadaView(this.projeto.dt_fim);
 
@@ -93,7 +91,7 @@ export class ProjetoFormComponent implements OnInit {
     }
 
     save() {
-
+        
         // Setando a nova data para salvar no banco
         this.formProjeto.get('dt_inicio').setValue(FuncoesGlobais.dataFormatadaCad(this.formProjeto.value.dt_inicio));
         this.formProjeto.get('dt_fim').setValue(FuncoesGlobais.dataFormatadaCad(this.formProjeto.value.dt_fim));
