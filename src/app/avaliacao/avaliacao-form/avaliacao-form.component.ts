@@ -1,8 +1,10 @@
+import { Papel } from './../../papel/papel.model';
 import { Component, OnInit } from '@angular/core';
 import { Router, Route, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { Avaliacao } from './../avaliacao.model';
 import { AvaliacaoService } from './../avaliacao.service';
+import { PapelService } from 'app/papel/papel.service';
 
 @Component({
     selector: 'mt-avaliacao-form',
@@ -16,11 +18,15 @@ export class AvaliacaoFormComponent implements OnInit {
     avaliacao: Avaliacao = new Avaliacao();
     idResource: any;
 
+    texts: string[];
+    public results: string[]=[];
+
     constructor(
         formBuilder: FormBuilder,
         private router: Router,
         private route: ActivatedRoute,
-        private avaliacaoService: AvaliacaoService
+        private avaliacaoService: AvaliacaoService,
+        private papelService: PapelService
     ) {
         this.formAvaliacao = formBuilder.group({
             tipo: [null, Validators.required],
@@ -78,6 +84,16 @@ export class AvaliacaoFormComponent implements OnInit {
         }
 
         result.subscribe(data => this.router.navigate(['avaliacao']));
+    }
+
+    search(event) {
+        this.papelService.getPapel().subscribe(papel => {
+            let papeis: string[]=[];
+            papel.forEach(element => {
+                 papeis.push(element.nome);    
+            });
+            this.results = papeis;
+        });
     }
 
     onCancel() {
