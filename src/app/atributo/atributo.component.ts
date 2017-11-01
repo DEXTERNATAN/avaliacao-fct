@@ -1,7 +1,7 @@
+import { LoaderService } from 'app/shared/services/loader.service';
 import { DataTableDirective } from 'angular-datatables';
 import { FormBuilder } from '@angular/forms';
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
-
 import { Subject } from 'rxjs/Rx';
 
 import { AtributoService } from './atributo.service';
@@ -25,23 +25,29 @@ export class AtributoComponent implements OnInit {
   dtTrigger: Subject<Atributo> = new Subject();
   lang: string = 'Portuguese-Brasil';
 
-  constructor( private _atributoService: AtributoService) { }
+  constructor(
+    private _atributoService: AtributoService,
+    private loaderService: LoaderService
+  ) { }
 
   ngOnInit() {
+    
+    this.loaderService.setMsgLoading("Carregando...");
+
     // Configurações do datatable
-     this.dtOptions = {
+    this.dtOptions = {
       language: {
         url: `assets/language/datatables/${this.lang}.json`
       }
     };
 
-      this._atributoService.getAtributo()
+    this._atributoService.getAtributo()
       .subscribe(atributo => {
         this.Atributo = atributo
         this.atributoCarregada = false;
         // Calling the DT trigger to manually render the table
         this.dtTrigger.next();
-    });
+      });
   }
 
   deleteAtributo(atributo) {
@@ -49,10 +55,10 @@ export class AtributoComponent implements OnInit {
       var index = this.Atributo.indexOf(atributo);
       this.Atributo.splice(index, 1);
 
-      this.dtElement.dtInstance.then((dtInstance: DataTables.Api)=>{  
+      this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
         // Destroy the table first
         dtInstance.destroy();
-        
+
         // Call the dtTrigger to rerender again
         this.dtTrigger.next();
       })

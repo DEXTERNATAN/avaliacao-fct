@@ -1,18 +1,24 @@
-import { TelPipe } from './shared/custom-pipes.pipes';
+import { MensagensHandler } from './shared/services/mensagens-handler.service';
+import { RequestOptions } from '@angular/http';
+import { XHRBackend } from '@angular/http';
+import { Http } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+
+import { LoaderService } from 'app/shared/services/loader.service';
+import { LoaderComponent } from './shared/components/loader.component';
+import { httpFactory } from 'app/shared/services/http.factory';
+
 import { TextMaskModule } from 'angular2-text-mask';
 import { DataTablesModule } from 'angular-datatables';
 import { LOCALE_ID } from '@angular/core';
-
 import { CurrencyPipe } from '@angular/common';
 import { DatePipe } from '@angular/common';
 import { CurrencyMaskModule } from "ng2-currency-mask";
 import { CurrencyMaskConfig, CURRENCY_MASK_CONFIG } from "ng2-currency-mask/src/currency-mask.config";
-
 import {CalendarModule} from 'primeng/primeng';
 
 /* Modules */
@@ -52,7 +58,6 @@ import { consultaavaliacaoRouting } from './consultaavaliacao/consultaavaliacao.
 
 
 /* Services */
-import { RestaurantsService } from './restaurants/restaurants.service';
 import { DivisaoService } from './divisao/divisao.service';
 import { AbrangenciaService } from './abrangencia/abrangencia.service';
 import { PapelService } from './papel/papel.service';
@@ -73,8 +78,6 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
-import { RestaurantsComponent } from './restaurants/restaurants.component';
-import { RestaurantComponent } from './restaurants/restaurant/restaurant.component';
 import { LoginComponent } from './login/login.component';
 import { DivisaoComponent } from './divisao/divisao.component';
 import { PapelComponent } from './papel/papel.component';
@@ -88,10 +91,10 @@ import { PesosComponent } from './pesos/pesos.component';
 import { ProjetoComponent } from './projeto/projeto.component';
 import { DistribuicaoComponent } from './distribuicao/distribuicao.component';
 import { AtributoComponent } from './atributo/atributo.component';
-import { DetailRestaurantComponent } from './detail-restaurant/detail-restaurant.component';
 import { AvaliacaoComponent } from './avaliacao/avaliacao.component';
 import { FaixaComponent } from './faixa/faixa.component';
 import { ConsultaavaliacaoComponent } from './consultaavaliacao/consultaavaliacao.component';
+import { TelPipe } from 'app/shared/pipes/custom-pipes.pipes';
 
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   align: "left",
@@ -110,10 +113,8 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     HeaderComponent,
     HomeComponent,
     AboutComponent,
-    RestaurantsComponent,
-    RestaurantComponent,
     LoginComponent,
-    DetailRestaurantComponent
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -158,9 +159,9 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   ],
   providers: 
   [ 
-      RestaurantsService, 
-      {provide: LOCALE_ID, useValue: 'pt-BR'}, 
-      { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig } 
+      { provide: LOCALE_ID, useValue: 'pt-BR' }, 
+      { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig },
+      { provide: Http, useFactory: httpFactory, deps: [XHRBackend, RequestOptions, LoaderService, MensagensHandler]}
   ],
   bootstrap: [AppComponent]
 })

@@ -1,3 +1,5 @@
+import { MensagensHandler } from 'app/shared/services/mensagens-handler.service';
+import { LoaderService } from 'app/shared/services/loader.service';
 import { DataTableDirective } from 'angular-datatables';
 import { FormBuilder } from '@angular/forms';
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
@@ -25,9 +27,15 @@ export class AbrangenciaComponent implements OnInit, AfterViewInit {
   dtTrigger: Subject<Abrangencia> = new Subject();
   lang: string = 'Portuguese-Brasil';
 
-  constructor(private _abrangenciaService: AbrangenciaService) { }
+  constructor(
+    private _abrangenciaService: AbrangenciaService, 
+    private loaderService: LoaderService,
+    private mensagensHandler: MensagensHandler
+  ) { }
 
   ngOnInit() {
+
+    this.loaderService.setMsgLoading("Carregando abrangencias...");
 
     this.dtOptions = {
       language: {

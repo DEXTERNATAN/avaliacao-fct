@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -9,6 +10,8 @@ import { DataTablesModule } from 'angular-datatables';
 import { AbrangenciaComponent } from './abrangencia.component';
 import { AbrangenciaService } from 'app/abrangencia/abrangencia.service';
 import { AbrangenciaFormComponent } from 'app/abrangencia/abrangencia-form/abrangencia-form.component';
+import { LoaderService } from 'app/shared/services/loader.service';
+import { MensagensHandler } from 'app/shared/services/mensagens-handler.service';
 
 @NgModule({
   imports: [
@@ -19,7 +22,7 @@ import { AbrangenciaFormComponent } from 'app/abrangencia/abrangencia-form/abran
     HttpModule,
     DataTablesModule
   ],
-  providers: [ AbrangenciaService ],
+  providers: [ AbrangenciaService, LoaderService, MensagensHandler ],
   declarations: [
     AbrangenciaComponent,
     AbrangenciaFormComponent

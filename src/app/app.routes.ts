@@ -15,11 +15,10 @@ import { FaixaComponent } from './faixa/faixa.component';
 import { ConsultaavaliacaoComponent } from './consultaavaliacao/consultaavaliacao.component';
 
 import { ModuleWithProviders } from '@angular/core';
-import { Routes, RouterModule }   from '@angular/router';
+    import { Routes, RouterModule }   from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
-import { RestaurantsComponent } from './restaurants/restaurants.component';
 //import { LoginComponent } from 'app/login/login.component';
 import { LoginComponent } from './login/login.component';
 
@@ -27,7 +26,6 @@ import { LoginComponent } from './login/login.component';
 const appRoutes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: '', component: HomeComponent },
-    { path: 'restaurants', component: RestaurantsComponent },
     { path: 'about', component: AboutComponent },
     { path: 'papel', component: PapelComponent },
     { path: 'abrangencia', component: AbrangenciaComponent },

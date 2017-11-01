@@ -10,7 +10,9 @@ export class LoaderService {
     loaderState = this.loaderSubject.asObservable();
     private msgLoading: string = MSG_AGUARDE;
 
-    constructor() { }
+    constructor() { 
+        console.debug('LoaderService');
+    }
     show() {
         this.loaderSubject.next(<LoaderState>{ show: true, msg: this.msgLoading});
     }

@@ -50,7 +50,7 @@
 										</select>	
 									</td>
 									<td>
-										<p-autoComplete [(ngModel)]="texts" class="select2" [suggestions]="results" (completeMethod)="search($event)" [multiple]="true"></p-autoComplete>
+										<p-autoComplete [(ngModel)]="texts" [suggestions]="results" (completeMethod)="search($event)" [multiple]="true"></p-autoComplete>
 										 <!-- <select class="form-control select2" multiple="multiple" data-placeholder="Selecione o Papel" style="width: 100%;" maxselect="3">
 											<option  value="1">Front-end</option>
 											<option  value="2">Arquiteto</option>

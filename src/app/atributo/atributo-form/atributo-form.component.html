@@ -22,7 +22,7 @@
 					<div class="box-body">
 						<div class="form-group" [ngClass]="{'has-error': (!formAtributo.controls['letra'].valid && formAtributo.controls['letra'].touched) }">
 							<label for="letra">Descrição</label>
-							<select class="form-control" [(ngModel)]="atributo.letra" formControlName="letra" id="letra" name="letra" (change)="setCamposDesc(atributo.letra)">
+							<select class="form-control" [(ngModel)]="atributo.letra" formControlName="letra" id="letra" (change)="setCamposDesc(atributo.letra)">
                             	<option value="" [selected]="true">Selecione</option>  
                                 <option value="a">a) Analisar as demandas apresentadas pelas áreas de negócio e propor alternativas de solução técnica e estratégia de desenvolvimento</option>
                                 <option value="b">b) Elicitar requisitos e criar modelos de uso e de testes de sistemas</option>
@@ -69,6 +69,7 @@
 						<input type="hidden" [(ngModel)]="atributo.descricao" formControlName="descricao" id="descricao" value="">
 						<button type="button" class="btn btn-default" (click)="onCancel()">Cancelar</button>
 						<button type="submit" class="btn btn-info pull-right" [disabled]="!formAtributo.valid">Enviar</button>
+						
 					</div>
 					</div>
 				</form>

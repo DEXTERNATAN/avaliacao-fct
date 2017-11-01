@@ -1,4 +1,4 @@
-import { TelPipe } from './../shared/custom-pipes.pipes';
+import { TelPipe } from './../shared/pipes/custom-pipes.pipes';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';

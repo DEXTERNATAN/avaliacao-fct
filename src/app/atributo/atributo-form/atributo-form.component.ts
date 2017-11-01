@@ -12,6 +12,7 @@ import { AtributoService } from './../atributo.service';
 import { AbrangenciaService } from './../../abrangencia/abrangencia.service';
 import { ComplexidadeService } from './../../complexidade/complexidade.service';
 import { ImpactoService } from './../../impacto/impacto.service';
+import { LoaderService } from 'app/shared/services/loader.service';
 
 
 @Component({
@@ -20,6 +21,7 @@ import { ImpactoService } from './../../impacto/impacto.service';
 	styleUrls: ['./atributo-form.component.css']
 })
 export class AtributoFormComponent implements OnInit {
+	
 	formAtributo: FormGroup;
 	title: string;
 	atributo: Atributo = new Atributo();
@@ -36,14 +38,13 @@ export class AtributoFormComponent implements OnInit {
 		private _atributoService: AtributoService,
 		private _abrangenciaService: AbrangenciaService,
 		private _complexidadeService: ComplexidadeService,
-		private _impactoService: ImpactoService
+		private _impactoService: ImpactoService,
+		private loaderService: LoaderService
+
 	) {
 		this.formAtributo = formBuilder.group({
 			letra: [null, [Validators.required]],
 			descricao: [null, Validators.required],
-			abrangenciaNome: [null, Validators.required],
-			complexidadeNome: [null, Validators.required],
-			impactoNome: [null, Validators.required],
 			idAbrangencia: [null],
 			idComplexidade: [null],
 			idImpacto: [null]	
@@ -51,6 +52,9 @@ export class AtributoFormComponent implements OnInit {
 	}
 
 	ngOnInit() {
+		
+		this.loaderService.setMsgLoading("Carregando ...");
+		
 		this.getAbrangencia();
 		this.getComplexidade();
 		this.getImpacto();
@@ -75,9 +79,10 @@ export class AtributoFormComponent implements OnInit {
 	}
 
 	save() {
+		console.debug('Aqui')
 		var result,
 			userValue = this.formAtributo.value;
-
+		
 		if (this.idResource) {
 			result = this._atributoService.updateAtributo(this.idResource, userValue);
 		} else {
@@ -87,9 +92,14 @@ export class AtributoFormComponent implements OnInit {
 	}
 
 	getAbrangencia() {
-		this._abrangenciaService.getAbrangencia().subscribe(abrangencia => {
-			this.Abrangencia = abrangencia
-		})
+		this._abrangenciaService.getAbrangencia().subscribe(
+			abrangencia => {
+				this.Abrangencia = abrangencia
+			},
+			error => {
+				console.log('Error', error);
+			}
+		)
 	}
 
 	getComplexidade() {

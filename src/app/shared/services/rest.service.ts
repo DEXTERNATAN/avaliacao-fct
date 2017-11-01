@@ -3,12 +3,13 @@ import { Observable } from 'rxjs/Observable';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw'
-import { LoaderService } from 'app/shared/loader.service';
-//import { MensagensHandler } from './mensagens-handler.service';
+import { LoaderService } from 'app/shared/services/loader.service';
+import { MensagensHandler } from 'app/shared/services/mensagens-handler.service';
+import { MEAT_API } from 'app/app.api';
 
 export abstract class RestService<T> {
 
-    private urlBase: string = '/';
+    private urlBase: string = `${MEAT_API}`;
     protected headers: Headers;
 
     constructor(protected http: Http) {
@@ -23,7 +24,7 @@ export abstract class RestService<T> {
 
     public abstract getUrl(): string;
 
-    public abstract mapIdentificador(objeto: T): string;
+    public abstract mapIdentificador(objeto: T): number;
 
     getDefaultRequestOptions(): RequestOptions {
         return <RequestOptions>{

@@ -1,12 +1,12 @@
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { MEAT_API } from './../app.api';
-
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/do'
 import 'rxjs/add/operator/catch'
 import { ErrorHandler } from './../app.error-handler';
+import { LoaderService } from 'app/shared/services/loader.service';
 
 import { Observable } from 'rxjs/Observable';
 import { Abrangencia } from './abrangencia.model';
