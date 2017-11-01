@@ -18,7 +18,10 @@
 				<div class="alert alert-success" role="alert" *ngIf="sucesso">
 					Avaliação Registrada com sucesso!
 				</div>
-				<form role="form">
+				<!-- x <p-autoComplete [(ngModel)]="texts" [suggestions]="results" (completeMethod)="search($event)" [multiple]="true"></p-autoComplete>x -->
+				
+				<!-- <form role="form"> -->
+						
 					<div class="box-body">
 						<div class="form-group">
 							<table class="table table-condensed">
@@ -47,7 +50,8 @@
 										</select>	
 									</td>
 									<td>
-										<select class="form-control select2" multiple="multiple" data-placeholder="Selecione o Papel" style="width: 100%;" maxselect="3">
+										<p-autoComplete [(ngModel)]="texts" class="select2" [suggestions]="results" (completeMethod)="search($event)" [multiple]="true"></p-autoComplete>
+										 <!-- <select class="form-control select2" multiple="multiple" data-placeholder="Selecione o Papel" style="width: 100%;" maxselect="3">
 											<option  value="1">Front-end</option>
 											<option  value="2">Arquiteto</option>
 											<option  value="3">Testes</option>
@@ -55,7 +59,8 @@
 											<option  value="5">Back-end</option>
 											<option  value="6">Banco</option>
 											<option  value="7">Front-end</option>
-										</select>	
+										 </select> -->
+
 									</td>	
 								</tr>
 							</table>			
@@ -598,7 +603,7 @@
 						<button type="button" class="btn btn-default" (click)="onCancel()">Cancelar</button>
 						<button type="submit" class="btn btn-info pull-right">Registrar</button>
 					</div>
-				</form>
+				<!-- </form> -->
 			</div>
 		</div>
 	</div>

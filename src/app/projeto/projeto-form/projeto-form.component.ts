@@ -3,8 +3,6 @@ import { Router, Route, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { TextMaskModule } from 'angular2-text-mask';
 
-import {CalendarModule} from 'primeng/primeng';
-
 import { Projeto } from './../projeto.model';
 import { ProjetoService } from './../projeto.service';
 import { FuncoesGlobais } from 'app/shared/app.funcoes-globais';
@@ -21,10 +19,6 @@ export class ProjetoFormComponent implements OnInit {
     projeto: Projeto = new Projeto();
     idResource: any;
     title: string;
-    public maskDate = [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/];
-
-
-    value: Date;
 
     constructor(
         formBuilder: FormBuilder,
@@ -91,7 +85,7 @@ export class ProjetoFormComponent implements OnInit {
     }
 
     save() {
-        
+
         // Setando a nova data para salvar no banco
         this.formProjeto.get('dt_inicio').setValue(FuncoesGlobais.dataFormatadaCad(this.formProjeto.value.dt_inicio));
         this.formProjeto.get('dt_fim').setValue(FuncoesGlobais.dataFormatadaCad(this.formProjeto.value.dt_fim));
