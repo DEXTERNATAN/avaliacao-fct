@@ -91,16 +91,16 @@ export class ComplexidadeFormComponent implements OnInit {
         switch (id) {
             case '1':
                 {
-                    this.complexidade.nome = 'Moderado';
+                    this.complexidade.nome = 'Moderada';
                     break;
                 }
             case '2':
                 {
-                    this.complexidade.nome = 'Significativa';
+                    this.complexidade.nome = 'Alta';
                     break;
                 }
             case '3': {
-                this.complexidade.nome = 'Muito';
+                this.complexidade.nome = 'Altíssima';
                 break;
             }
             default: {

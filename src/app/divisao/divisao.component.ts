@@ -47,7 +47,7 @@ export class DivisaoComponent implements OnInit {
   }
 
   deleteDivisao(divisao){
-    if (confirm("Tem certeza que quer APAGAR a Divisão #" + divisao.id_divisao + " - " + divisao.sigla + "?")) {
+    if (confirm("Tem certeza que quer APAGAR a Divisão #" + divisao.id_divisao + " (" + divisao.nome + ")?")) {
       var index = this.Divisao.indexOf(divisao);
       this.Divisao.splice(index, 1);
 

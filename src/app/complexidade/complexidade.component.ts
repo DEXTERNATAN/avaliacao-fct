@@ -47,7 +47,7 @@ export class ComplexidadeComponent implements OnInit {
   }
 
   deleteComplexidade(complexidade){
-    if (confirm("Tem certeza que quer APAGAR a Complexidade #" + complexidade.id_complexidade + " ?")) {
+    if (confirm("Tem certeza que quer APAGAR a Complexidade #" + complexidade.id_complexidade + " (" + complexidade.atributo + " " + complexidade.classificacao + " " + complexidade.nome + ")?")) {
       var index = this.Complexidade.indexOf(complexidade);
       this.Complexidade.splice(index, 1);
 

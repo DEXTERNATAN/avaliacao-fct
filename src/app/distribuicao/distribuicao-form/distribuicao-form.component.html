@@ -27,6 +27,11 @@
 							<input type="text" class="form-control" [(ngModel)]="distribuicao.valor" formControlName="valor" id="valor" maxlength="13" placeholder="Informar o valor total a ser utilizado para distribuição da FCT no departamento" currencyMask>
 							<span *ngIf="!formDistribuicao.controls['valor'].valid && formDistribuicao.controls['valor'].touched" class="help-block">O campo Valor é obrigatório!</span>
 						</div>
+						<div class="form-group" [ngClass]="{'has-error': (!formDistribuicao.controls['qtde_faixas'].valid && formDistribuicao.controls['qtde_faixas'].touched) }">
+							<label for="qtde_faixas">Quantidade de Faixas</label>
+							<input type="text" class="form-control" [(ngModel)]="distribuicao.qtde_faixas" formControlName="qtde_faixas" id="qtde_faixas" maxlength="1" placeholder="Informe a quantidade de faixas a serem distribuídos os valores da FCT">
+							<span *ngIf="!formDistribuicao.controls['qtde_faixas'].valid && formDistribuicao.controls['qtde_faixas'].touched" class="help-block">O campo Quantidade de Faixas é obrigatório!</span>
+						</div>
 						<div class="form-group" [ngClass]="{'has-error': (!formDistribuicao.controls['pontuacao_minima'].valid && formDistribuicao.controls['pontuacao_minima'].touched) }">
 							<label for="pontuacao_minima">Pontuação Mínima</label>
 							<input type="text" class="form-control" [(ngModel)]="distribuicao.pontuacao_minima" formControlName="pontuacao_minima" id="pontuacao_minima" maxlength="8" readonly placeholder="Pontuação mínima a ser calculada após a inclusão de avaliações">
@@ -42,11 +47,6 @@
 						<div class="form-group" [ngClass]="{'has-error': (!formDistribuicao.controls['amplitude_faixas'].valid && formDistribuicao.controls['amplitude_faixas'].touched) }">
 							<label for="amplitude_faixas">Amplitude das Faixas</label>
 							<input type="text" class="form-control" [(ngModel)]="distribuicao.amplitude_faixas" formControlName="amplitude_faixas" id="amplitude_faixas" maxlength="8" readonly placeholder="Amplitude da Faixas a ser calculada após a definição das pontuações e da Quantidade de Faixas">
-						</div>
-						<div class="form-group" [ngClass]="{'has-error': (!formDistribuicao.controls['qtde_faixas'].valid && formDistribuicao.controls['qtde_faixas'].touched) }">
-							<label for="qtde_faixas">Quantidade de Faixas</label>
-							<input type="text" class="form-control" [(ngModel)]="distribuicao.qtde_faixas" formControlName="qtde_faixas" id="qtde_faixas" maxlength="1" placeholder="Informe a quantidade de faixas a serem distribuídos os valores da FCT">
-							<span *ngIf="!formDistribuicao.controls['qtde_faixas'].valid && formDistribuicao.controls['qtde_faixas'].touched" class="help-block">O campo Quantidade de Faixas é obrigatório!</span>
 						</div>
 						<div class="form-group" [ngClass]="{'has-error': (!formDistribuicao.controls['dt_registro'].valid && formDistribuicao.controls['dt_registro'].touched) }">
 							<label for="dt_registro">Data do Registro</label>

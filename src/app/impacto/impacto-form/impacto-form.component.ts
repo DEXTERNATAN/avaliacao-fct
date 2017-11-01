@@ -88,16 +88,16 @@ export class ImpactoFormComponent implements OnInit {
         switch (id) {
             case '1':
                 {
-                    this.impacto.nome = 'Moderado';
+                    this.impacto.nome = 'Relevante';
                     break;
                 }
             case '2':
                 {
-                    this.impacto.nome = 'Significativa';
+                    this.impacto.nome = 'Muito';
                     break;
                 }
             case '3': {
-                this.impacto.nome = 'Muito';
+                this.impacto.nome = 'Altamente';
                 break;
             }
             default: {

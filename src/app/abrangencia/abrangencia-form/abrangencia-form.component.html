@@ -53,6 +53,10 @@
 							  </select>
 							  <span *ngIf="!formAbrangencia.controls['classificacao'].valid && formAbrangencia.controls['classificacao'].touched" class="help-block">O campo Classificação é obrigatório!</span>
 						</div>
+						<div class="form-group" *ngIf="abrangencia.classificacao">
+							<label for="nome">Nome</label>
+							<input type="text" class="form-control" id="nome" [(ngModel)]="abrangencia.nome" formControlName="nome" readonly placeholder="">
+						</div>
 						<div class="form-group" [ngClass]="{'has-error': (!formAbrangencia.controls['tipo'].valid && formAbrangencia.controls['tipo'].touched) }">
 							<label>Tipo</label>
 							<select class="form-control" [(ngModel)]="abrangencia.tipo" formControlName="tipo" id="tipo">
@@ -61,10 +65,6 @@
                         		<option value="Design">Design</option>
 							</select>
 							<span *ngIf="!formAbrangencia.controls['tipo'].valid && formAbrangencia.controls['tipo'].touched" class="help-block">O campo Tipo é obrigatório!</span>
-						</div>
-						<div class="form-group" *ngIf="abrangencia.classificacao">
-							<label for="nome">Nome</label>
-							<input type="text" class="form-control" id="nome" [(ngModel)]="abrangencia.nome" formControlName="nome" readonly placeholder="">
 						</div>
 						<div class="form-group" [ngClass]="{'has-error': (!formAbrangencia.controls['descricao'].valid && formAbrangencia.controls['descricao'].touched) }">
 							<label>Descrição</label>

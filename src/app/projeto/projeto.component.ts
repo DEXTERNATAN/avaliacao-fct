@@ -49,7 +49,7 @@ export class ProjetoComponent implements OnInit {
   }
 
   deleteProjeto(projeto){
-    if (confirm("Tem certeza que quer APAGAR o Projeto #" + projeto.id_projeto + " ?")) {
+    if (confirm("Tem certeza que quer APAGAR o Projeto #" + projeto.id_projeto + " (" + projeto.cod_servico + " - " + projeto.titulo + ")?")) {
       var index = this.Projeto.indexOf(projeto);
       this.Projeto.splice(index, 1);
 

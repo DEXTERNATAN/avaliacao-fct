@@ -49,7 +49,7 @@ export class PapelComponent implements OnInit {
   }
 
   deletePapel(papel){
-    if (confirm("Tem certeza que quer APAGAR o Papel #" + papel.id_papel + " ?")) {
+    if (confirm("Tem certeza que quer APAGAR o Papel #" + papel.id_papel + " (" + papel.nome + ")?")) {
       var index = this.Papel.indexOf(papel);
       this.Papel.splice(index, 1);
 

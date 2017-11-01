@@ -47,7 +47,7 @@ export class ImpactoComponent implements OnInit {
   }
 
   deleteImpacto(impacto){
-    if (confirm("Tem certeza que quer APAGAR o Impacto #" + impacto.id_impacto + " ?")) {
+    if (confirm("Tem certeza que quer APAGAR o Impacto #" + impacto.id_impacto + " (" + impacto.atributo + " " + impacto.classificacao + " " + impacto.nome + ")?")) {
       var index = this.Impacto.indexOf(impacto);
       this.Impacto.splice(index, 1);
 

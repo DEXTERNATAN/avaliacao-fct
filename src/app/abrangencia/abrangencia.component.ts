@@ -57,7 +57,7 @@ export class AbrangenciaComponent implements OnInit, AfterViewInit {
   }
 
   deleteAbrangencia(abrangencia){
-    if (confirm("Tem certeza que quer APAGAR a Abrangência #" + abrangencia.id_abrangencia + " ?")) {
+    if (confirm("Tem certeza que quer APAGAR a Abrangência #" + abrangencia.id_abrangencia + " (" + abrangencia.atributo + " " + abrangencia.classificacao + " " + abrangencia.nome + ")?")) {
       var index = this.Abrangencia.indexOf(abrangencia);
       this.Abrangencia.splice(index, 1);
       
