@@ -49,7 +49,7 @@ export class DistribuicaoFormComponent implements OnInit {
                 this.distribuicao.dt_registro = FuncoesGlobais.dataFormatadaView(this.distribuicao.dt_registro);
                     response => {
                         if (response.status == 404) {
-                            this.router.navigate(['distribuicao'])
+                            //this.router.navigate(['distribuicao'])
                         }
                     }
             })
@@ -59,16 +59,17 @@ export class DistribuicaoFormComponent implements OnInit {
     save() {
 
         // Setando a nova data para salvar no banco
-        this.formDistribuicao.get('dt_registro').setValue(FuncoesGlobais.dataFormatadaCad(this.distribuicao.dt_registro));
+        //this.formDistribuicao.get('dt_registro').setValue(FuncoesGlobais.dataFormatadaCad(this.distribuicao.dt_registro));
         
         // Chamanda para edicao e cadastro no banco
         var result, userValue = this.formDistribuicao.value;
         if (this.idResource) {
+            debugger
             result = this.distribuicaoService.updateDistribuicao(this.idResource, userValue);
         } else {
             result = this.distribuicaoService.addDistribuicao(userValue);
         }
-        result.subscribe(data => this.router.navigate(['distribuicao']));
+        //result.subscribe(data => this.router.navigate(['distribuicao']));
     }
 
     onCancel() {

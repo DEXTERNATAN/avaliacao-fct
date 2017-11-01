@@ -45,11 +45,15 @@
 							<label>Classificação</label>
 							<select class="form-control" [(ngModel)]="impacto.classificacao" formControlName="classificacao" (change)="setNomeImpacto(impacto.classificacao)">
 									<option [selected]="true" value="">Selecione</option>  
-                                  <option value="1">1 - Moderado</option>
-                                  <option value="2">2 - Significativa</option>
-								  <option value="3">3 - Muito</option>
+                                  <option value="1">1 - Relevante</option>
+                                  <option value="2">2 - Muito</option>
+								  <option value="3">3 - Altamente</option>
 							  </select>
 							  <span *ngIf="!formImpacto.controls['classificacao'].valid && formImpacto.controls['classificacao'].touched" class="help-block">O campo Classificação é obrigatório</span>
+						</div>
+						<div class="form-group" *ngIf="impacto.classificacao">
+							<label for="nome">Nome</label>
+							<input type="text" class="form-control" id="nome" [(ngModel)]="impacto.nome" formControlName="nome" readonly placeholder="">
 						</div>
 						<div class="form-group" [ngClass]="{'has-error': (!formImpacto.controls['tipo'].valid && formImpacto.controls['tipo'].touched) }">
 							<label for="tipo">Tipo</label>
@@ -59,10 +63,6 @@
                                   <option value="Design">Design</option>
 							  </select>
 							  <span *ngIf="!formImpacto.controls['tipo'].valid && formImpacto.controls['tipo'].touched" class="help-block">O campo Tipo é obrigatório</span>
-						</div>
-						<div class="form-group" *ngIf="impacto.classificacao">
-							<label for="nome">Nome</label>
-							<input type="text" class="form-control" id="nome" [(ngModel)]="impacto.nome" formControlName="nome" readonly placeholder="">
 						</div>
 						<div class="form-group" [ngClass]="{'has-error': (!formImpacto.controls['descricao'].valid && formImpacto.controls['descricao'].touched) }">
 							<label>Descrição</label>

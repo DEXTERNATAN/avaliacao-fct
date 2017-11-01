@@ -49,7 +49,7 @@ export class TecnologiaComponent implements OnInit {
   }
 
   deleteTecnologia(tecnologia){
-    if (confirm("Tem certeza que quer APAGAR a Tecnologia #" + tecnologia.id_tecnologia + " ?")) {
+    if (confirm("Tem certeza que quer APAGAR a Tecnologia #" + tecnologia.id_tecnologia + " (" + tecnologia.tipo + "  " + tecnologia.nome + ")?")) {
       var index = this.Tecnologia.indexOf(tecnologia);
       this.Tecnologia.splice(index, 1);
 

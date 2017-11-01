@@ -43,11 +43,15 @@
 							<label>Classificação</label>
 							<select class="form-control" [(ngModel)]="complexidade.classificacao" formControlName="classificacao" (change)="setNomeComplexidade(complexidade.classificacao)">
 									<option [selected]="true" value="">Selecione</option>  
-                  <option value="1">1 - Moderado</option>
-                  <option value="2">2 - Significativa</option>
-								  <option value="3">3 - Muito</option>
+                  <option value="1">1 - Moderada</option>
+                  <option value="2">2 - Alta</option>
+								  <option value="3">3 - Altíssima</option>
 							  </select>
 							  <span *ngIf="!formComplexidade.controls['classificacao'].valid && formComplexidade.controls['classificacao'].touched" class="help-block">O campo Classificação é obrigatório!</span>
+						</div>
+						<div class="form-group" *ngIf="complexidade.nome">
+							<label for="nome">Nome</label>
+							<input type="text" class="form-control" id="nome" [(ngModel)]="complexidade.nome" formControlName="nome" readonly placeholder="">
 						</div>
 						<div class="form-group" [ngClass]="{'has-error': (!formComplexidade.controls['tipo'].valid && formComplexidade.controls['tipo'].touched) }">
 							<label>Tipo</label>
@@ -57,10 +61,6 @@
                 	<option value="Design">Design</option>
 							</select>
 							<span *ngIf="!formComplexidade.controls['tipo'].valid && formComplexidade.controls['tipo'].touched" class="help-block">O campo Tipo é obrigatório!</span>
-						</div>
-						<div class="form-group" *ngIf="complexidade.nome">
-							<label for="nome">Nome</label>
-							<input type="text" class="form-control" id="nome" [(ngModel)]="complexidade.nome" formControlName="nome" readonly placeholder="">
 						</div>
 						<div class="form-group" [ngClass]="{'has-error': (!formComplexidade.controls['descricao'].valid && formComplexidade.controls['descricao'].touched) }">
 							<label>Descrição</label>

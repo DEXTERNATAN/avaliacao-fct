@@ -49,7 +49,7 @@ export class ReferenciaComponent implements OnInit {
   }
 
   deleteReferencia(referencia){
-    if (confirm("Você tem certeza que quer APAGAR a Referência #" + referencia.id_referencia_fct_gfe + " ?")) {
+    if (confirm("Você tem certeza que quer APAGAR a Referência #" + referencia.id_referencia_fct_gfe + " (" + referencia.cargo + " " + referencia.num_referencia + "  " + referencia.valor_referencia + ")?")) {
       var index = this.Referencia.indexOf(referencia);
       this.Referencia.splice(index, 1);
 

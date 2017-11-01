@@ -45,7 +45,7 @@ export class AtributoComponent implements OnInit {
   }
 
   deleteAtributo(atributo) {
-    if (confirm("Tem certeza que quer APAGAR o Atributo #" + atributo.idAtributo + "?")) {
+    if (confirm("Tem certeza que quer APAGAR o Atributo #" + atributo.idAtributo + " (" + atributo.letra + ")?")) {
       var index = this.Atributo.indexOf(atributo);
       this.Atributo.splice(index, 1);
 

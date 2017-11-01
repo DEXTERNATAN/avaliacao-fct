@@ -49,7 +49,7 @@ export class PesosComponent implements OnInit {
   }
 
   deletePesos(pesos){
-    if (confirm("Tem certeza que quer APAGAR o Peso #" + pesos.id_pesos + " ?")) {
+    if (confirm("Tem certeza que quer APAGAR o Peso #" + pesos.id_pesos + " (" + pesos.tipo + " " + pesos.quantidade + ")?")) {
       var index = this.Pesos.indexOf(pesos);
       this.Pesos.splice(index, 1);
 
