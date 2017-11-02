@@ -13,6 +13,7 @@ import { AbrangenciaService } from './../../abrangencia/abrangencia.service';
 import { ComplexidadeService } from './../../complexidade/complexidade.service';
 import { ImpactoService } from './../../impacto/impacto.service';
 import { LoaderService } from 'app/shared/services/loader.service';
+import { FilterPipe } from 'app/shared/pipes/filter';
 
 
 @Component({
@@ -26,6 +27,8 @@ export class AtributoFormComponent implements OnInit {
 	title: string;
 	atributo: Atributo = new Atributo();
 	idResource: any;
+	selectedData: any[]=[];
+	count: number = 0;
 
 	public Abrangencia: Abrangencia[] = [];
 	public Complexidade: Complexidade[] = [];
@@ -48,7 +51,8 @@ export class AtributoFormComponent implements OnInit {
 			idAbrangencia: [null],
 			idComplexidade: [null],
 			idImpacto: [null]	
-		})
+		});
+
 	}
 
 	ngOnInit() {
@@ -60,15 +64,15 @@ export class AtributoFormComponent implements OnInit {
 		this.getImpacto();
 
 		var idAtributo = this.route.params.subscribe(params => {
-			this.idResource = params['idAtributo'];
+			this.idResource = params['id_atributo'];
 			this.title = this.idResource ? 'Editar Atributo' : 'Novo Atributo';
-
+			
 			if (!this.idResource)
 				return;
 
 			this._atributoService.getAtributoId(this.idResource).subscribe(atributo => {
 				atributo = this.atributo = atributo
-				
+					
 					response => {
 						if (response.status == 404) {
 							this.router.navigate(['atributo'])
@@ -76,25 +80,27 @@ export class AtributoFormComponent implements OnInit {
 					}
 			})
 		})
+
 	}
 
 	save() {
-		console.debug('Aqui')
-		var result,
-			userValue = this.formAtributo.value;
+
+		var result, userValue = this.formAtributo.value;
 		
 		if (this.idResource) {
 			result = this._atributoService.updateAtributo(this.idResource, userValue);
 		} else {
 			result = this._atributoService.addAtributo(userValue);
 		}
+		
 		result.subscribe(data => this.router.navigate(['atributo']));
+
 	}
 
 	getAbrangencia() {
 		this._abrangenciaService.getAbrangencia().subscribe(
 			abrangencia => {
-				this.Abrangencia = abrangencia
+				this.Abrangencia = abrangencia;
 			},
 			error => {
 				console.log('Error', error);
@@ -132,6 +138,11 @@ export class AtributoFormComponent implements OnInit {
 			}
 		}
 		return hasErrors;
+	}
+
+	compareOptions(op1: any, op2: any): boolean {
+		
+		return op1 && op2 ? op1.TB_ABRANGENCIA_id_abrangencia === op2.id_abrangencia : op1 === op2;
 	}
 
 	setCamposDesc(letra: string) {

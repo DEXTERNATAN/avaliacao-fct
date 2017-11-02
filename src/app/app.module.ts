@@ -94,7 +94,6 @@ import { AtributoComponent } from './atributo/atributo.component';
 import { AvaliacaoComponent } from './avaliacao/avaliacao.component';
 import { FaixaComponent } from './faixa/faixa.component';
 import { ConsultaavaliacaoComponent } from './consultaavaliacao/consultaavaliacao.component';
-import { TelPipe } from 'app/shared/pipes/custom-pipes.pipes';
 
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   align: "left",

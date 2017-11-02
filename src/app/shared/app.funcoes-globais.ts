@@ -19,4 +19,5 @@ export class FuncoesGlobais {
         //let isoDate: string  = JSON.parse(JSON.stringify(StrDate));
         return StrDate;
     }
+    
 }

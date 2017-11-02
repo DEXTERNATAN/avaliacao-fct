@@ -4,12 +4,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule }  from '@angular/router';
 import { HttpModule }  from '@angular/http';
 
+import { FilterPipe } from './../shared/pipes/filter';
+
 import { DataTablesModule } from 'angular-datatables';
 import { AtributoComponent } from './atributo.component';
 import { AtributoService } from 'app/atributo/atributo.service';
 import { AtributoFormComponent } from './atributo-form/atributo-form.component';
 import { LoaderService } from 'app/shared/services/loader.service';
 import { MensagensHandler } from 'app/shared/services/mensagens-handler.service';
+
 
 @NgModule({
   imports: [
@@ -23,7 +26,8 @@ import { MensagensHandler } from 'app/shared/services/mensagens-handler.service'
   providers: [ AtributoService, LoaderService, MensagensHandler ],
   declarations: [
     AtributoComponent,
-    AtributoFormComponent
+    AtributoFormComponent,
+    FilterPipe
   ]
 })
 export class AtributoModule { }

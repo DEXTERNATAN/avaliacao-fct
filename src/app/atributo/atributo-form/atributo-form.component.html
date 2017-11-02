@@ -17,7 +17,7 @@
 				</div>
 				<!-- /.box-header -->
 				<!-- form start -->
-				{{"Atributo: " + atributo.letra}}
+				<!-- {{atributo | json }} -->
 				<form role="form" [formGroup]="formAtributo" (ngSubmit)="save()">
 					<div class="box-body">
 						<div class="form-group" [ngClass]="{'has-error': (!formAtributo.controls['letra'].valid && formAtributo.controls['letra'].touched) }">
@@ -42,9 +42,10 @@
 						</div>
 						<div class="form-group" [ngClass]="{'has-error': (!formAtributo.controls['idAbrangencia'].valid && formAtributo.controls['idAbrangencia'].touched)}">
 							<label for="idAbrangencia">Abrangêcia</label>
+							<!-- {{Abrangencia | json }} -->
 							<select id="idAbrangencia" [(ngModel)]="atributo.idAbrangencia" class="form-control" formControlName="idAbrangencia">
 								<option value="">Selecione</option>
-								<option *ngFor="let abrangencia of Abrangencia; let i = index" value="{{abrangencia.id_abrangencia}}">{{abrangencia.atributo + " > " + abrangencia.classificacao + " - " + abrangencia.tipo + " (" + abrangencia.nome + ")"}}</option>
+								<option *ngFor="let abrangencia of Abrangencia | filter: atributo.letra; let i = index" [selected]="abrangencia.id_abrangencia === atributo.TB_ABRANGENCIA_id_abrangencia" value="{{abrangencia.id_abrangencia}}">{{abrangencia.atributo + " > " + abrangencia.classificacao + " - " + abrangencia.tipo + " (" + abrangencia.nome + ")"}}</option>
 							</select>
 							<span *ngIf="!formAtributo.controls['idAbrangencia'].valid && formAtributo.controls['idAbrangencia'].touched" class="help-block">A Abrangência é obrigatória!</span>
 						</div>
@@ -52,7 +53,7 @@
 							<label for="idComplexidade">Complexidade</label>
 							<select name="idComplexidade" id="idComplexidade" [(ngModel)]="atributo.idComplexidade" class="form-control" formControlName="idComplexidade">
 								<option value="">Selecione</option>
-								<option *ngFor="let complexidade of Complexidade; let i = index" value="{{complexidade.id_complexidade}}">{{complexidade.atributo + " > " + complexidade.classificacao + " - " + complexidade.tipo + " (" + complexidade.nome + ")"}}</option>
+								<option *ngFor="let complexidade of Complexidade | filter: atributo.letra; let i = index"  [selected]="complexidade.id_complexidade === atributo.TB_COMPLEXIDADE_id_complexidade"  value="{{complexidade.id_complexidade}}">{{complexidade.atributo + " > " + complexidade.classificacao + " - " + complexidade.tipo + " (" + complexidade.nome + ")"}}</option>
 							</select>
 							<span *ngIf="!formAtributo.controls['idComplexidade'].valid && formAtributo.controls['idComplexidade'].touched" class="help-block">A Complexidade é obrigatória!</span>
 						</div>
@@ -60,7 +61,7 @@
 							<label for="idImpacto">Impacto</label>
 							<select name="idImpacto" id="idImpacto" [(ngModel)]="atributo.idImpacto" class="form-control" formControlName="idImpacto">
 								<option value="">Selecione</option>
-								<option *ngFor="let impacto of Impacto; let i = index" value="{{impacto.id_impacto}}">{{impacto.atributo + " > " + impacto.classificacao + " - " + impacto.tipo + " (" + impacto.nome + ")"}}</option>
+								<option *ngFor="let impacto of Impacto | filter: atributo.letra; let i = index" [selected]="impacto.id_impacto === atributo.TB_IMPACTO_id_impacto" value="{{impacto.id_impacto}}">{{impacto.atributo + " > " + impacto.classificacao + " - " + impacto.tipo + " (" + impacto.nome + ")"}}</option>
 							</select>
 							<span *ngIf="!formAtributo.controls['idImpacto'].valid && formAtributo.controls['idImpacto'].touched" class="help-block">O Impacto é obrigatório!</span>
 						</div>
