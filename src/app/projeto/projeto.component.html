@@ -34,9 +34,9 @@
 								<th>Código de serviço</th>
 								<th>Título</th>
 								<th>Descrição</th>
+								<th>Abrangência</th>
 								<th>Data Início</th>
 								<th>Data Fim</th>
-								<th>Abrangência</th>
 								<th></th>
 								<th></th>
 							</tr>
@@ -48,9 +48,9 @@
 								<td>{{projeto.cod_servico}}</td>
 								<td>{{projeto.titulo}}</td>
 								<td>{{projeto.descricao}}</td>
+								<td>{{projeto.abrangencia}}</td>
 								<td>{{projeto.dt_inicio | date:'shortDate'}}</td>
 								<td>{{projeto.dt_fim | date:'shortDate'}}</td>
-								<td>{{projeto.abrangencia}}</td>
 								<td>
 									<a [routerLink]="['/projeto', projeto.id_projeto]" class="btn  btn-xs bg-blue btn-flat">
 									<i class="fa fa-pencil"></i>

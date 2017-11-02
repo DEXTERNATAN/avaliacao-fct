@@ -22,44 +22,50 @@
 				</div>
 				<form role="form" [formGroup]="formProjeto" (ngSubmit)="save()">
 					<div class="box-body">
-						<div class="form-group" [ngClass]="{'has-error': (!formProjeto.controls['titulo'].valid && formProjeto.controls['titulo'].touched) }">
-							<label for="titulo">Título</label>
-							<input type="text" class="form-control" id="titulo" [(ngModel)]="projeto.titulo" formControlName="titulo" placeholder="Descreva o Título do projeto" maxlength="30">							
-							<span *ngIf="!formProjeto.controls['titulo'].valid && formProjeto.controls['titulo'].touched" class="help-block">O campo Título é obrigatório!</span>
-						</div>
 						<div class="form-group" [ngClass]="{'has-error': (!formProjeto.controls['cod_servico'].valid && formProjeto.controls['cod_servico'].touched) }">
 							<label for="cod_servico">Código de Serviço</label>
 							<input type="text" class="form-control" id="cod_servico" [(ngModel)]="projeto.cod_servico" formControlName="cod_servico" placeholder="Código de serviço do projeto, no formato: 99999" maxlength="5">							
 							<span *ngIf="!formProjeto.controls['cod_servico'].valid && formProjeto.controls['cod_servico'].touched" class="help-block">O campo Código de Serviço é obrigatório!</span>
+						</div>
+						<div class="form-group" [ngClass]="{'has-error': (!formProjeto.controls['titulo'].valid && formProjeto.controls['titulo'].touched) }">
+							<label for="titulo">Título</label>
+							<input type="text" class="form-control" id="titulo" [(ngModel)]="projeto.titulo" formControlName="titulo" placeholder="Descreva o Título do projeto" maxlength="30">							
+							<span *ngIf="!formProjeto.controls['titulo'].valid && formProjeto.controls['titulo'].touched" class="help-block">O campo Título é obrigatório!</span>
 						</div>
 						<div class="form-group" [ngClass]="{'has-error': (!formProjeto.controls['descricao'].valid && formProjeto.controls['descricao'].touched) }">
 							<label>Descrição</label>
 							<textarea class="form-control" [(ngModel)]="projeto.descricao" formControlName="descricao" rows="3" placeholder="Descreva os detalhes do Projeto"></textarea>
 							<span *ngIf="!formProjeto.controls['descricao'].valid && formProjeto.controls['descricao'].touched" class="help-block">O campo Descrição é obrigatório!</span>
 						</div>	
-						<div class="form-group" [ngClass]="{'has-error': (!formProjeto.controls['dt_inicio'].valid && formProjeto.controls['dt_inicio'].touched) }">
-							
-							
-							<label for="dt_inicio">Data Início</label>
-							<!-- {{projeto.dt_inicio}} -->
-							<br>
-							<p-calendar [(ngModel)]="projeto.dt_inicio" dateFormat="dd/mm/yy"  [locale]="pt" formControlName="dt_inicio" placeholder="Data início do Projeto, no formato: DD/MM/AAAA"></p-calendar>
-							<!-- <input type="text" class="form-control" id="dt_inicio" [(ngModel)]="projeto.dt_inicio" formControlName="dt_inicio" placeholder="Data início do Projeto, no formato: DD/MM/AAAA" maxlength="12" [textMask]="{mask: maskDate}">							 -->
-							<span *ngIf="!formProjeto.controls['dt_inicio'].valid && formProjeto.controls['dt_inicio'].touched" class="help-block">O campo Data Início é obrigatório!</span>
-						</div>
-						<div class="form-group" [ngClass]="{'has-error': (!formProjeto.controls['dt_fim'].valid && formProjeto.controls['dt_fim'].touched) }">
-							<label for="dt_fim">Data Fim</label>
-							<!-- {{projeto.dt_fim}} -->
-							<!-- <input type="text" class="form-control" id="dt_fim" [(ngModel)]="projeto.dt_fim" formControlName="dt_fim" placeholder="Data fim prevista do Projeto, no formmato: DD/MM/AAAA" maxlength="12" [textMask]="{mask: maskDate}">							 -->
-							<br>
-							<p-calendar [(ngModel)]="projeto.dt_fim" dateFormat="dd/mm/yy"  [locale]="pt" formControlName="dt_fim" placeholder="Data fim prevista do Projeto, no formmato: DD/MM/AAAA"></p-calendar>
-							<span *ngIf="!formProjeto.controls['dt_fim'].valid && formProjeto.controls['dt_fim'].touched" class="help-block">O campo Data Fim é obrigatório!</span>
-						</div>
 						<div class="form-group" [ngClass]="{'has-error': (!formProjeto.controls['abrangencia'].valid && formProjeto.controls['abrangencia'].touched) }">
 							<label for="abrangencia">Abrangência</label>
 							<input type="text" class="form-control" id="abrangencia" [(ngModel)]="projeto.abrangencia" formControlName="abrangencia" placeholder="Projeto de Software, Liderança de projeto, Especialista, etc..." maxlength="50">							
 							<span *ngIf="!formProjeto.controls['abrangencia'].valid && formProjeto.controls['abrangencia'].touched" class="help-block">O campo Abrangência é obrigatório!</span>
 						</div>
+						<table class="table table-condensed">
+							<tr>
+								<td>
+									<div class="form-group" [ngClass]="{'has-error': (!formProjeto.controls['dt_inicio'].valid && formProjeto.controls['dt_inicio'].touched) }">
+										<label for="dt_inicio">Data Início</label>
+										<!-- {{projeto.dt_inicio}} -->
+										<br>
+										<p-calendar [(ngModel)]="projeto.dt_inicio" dateFormat="dd/mm/yy"  [locale]="pt" formControlName="dt_inicio" placeholder="Data início do Projeto, no formato: DD/MM/AAAA"></p-calendar>
+										<!-- <input type="text" class="form-control" id="dt_inicio" [(ngModel)]="projeto.dt_inicio" formControlName="dt_inicio" placeholder="Data início do Projeto, no formato: DD/MM/AAAA" maxlength="12" [textMask]="{mask: maskDate}">							 -->
+										<span *ngIf="!formProjeto.controls['dt_inicio'].valid && formProjeto.controls['dt_inicio'].touched" class="help-block">O campo Data Início é obrigatório!</span>
+									</div>
+								</td>
+								<td>	
+									<div class="form-group" [ngClass]="{'has-error': (!formProjeto.controls['dt_fim'].valid && formProjeto.controls['dt_fim'].touched) }">
+										<label for="dt_fim">Data Fim</label>
+										<!-- {{projeto.dt_fim}} -->
+										<!-- <input type="text" class="form-control" id="dt_fim" [(ngModel)]="projeto.dt_fim" formControlName="dt_fim" placeholder="Data fim prevista do Projeto, no formmato: DD/MM/AAAA" maxlength="12" [textMask]="{mask: maskDate}">							 -->
+										<br>
+										<p-calendar [(ngModel)]="projeto.dt_fim" dateFormat="dd/mm/yy"  [locale]="pt" formControlName="dt_fim" placeholder="Data fim prevista do Projeto, no formmato: DD/MM/AAAA"></p-calendar>
+										<span *ngIf="!formProjeto.controls['dt_fim'].valid && formProjeto.controls['dt_fim'].touched" class="help-block">O campo Data Fim é obrigatório!</span>
+									</div>
+								</td>
+							</tr>		
+						</table>
 					</div>
 					<div class="box-footer">
 						<button type="button" class="btn btn-default" (click)="onCancel()">Cancelar</button>
