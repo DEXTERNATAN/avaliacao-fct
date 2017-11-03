@@ -37,6 +37,7 @@
 									<th style="width: 10px">#</th>
 									<th>Letra</th>
 									<th>Descrição</th>
+									<th>Tipo</th>
 									<th>Abrangência</th>
 									<th>Complexidade</th>
 									<th>Impacto</th>
@@ -49,9 +50,16 @@
 									<td>{{atributo.idAtributo}}</td>
 									<td>{{atributo.letra}}</td>
 									<td>{{atributo.descricao}}</td>
-									<td>{{atributo.abrangenciaNome}}</td>
-									<td>{{atributo.complexidadeNome}}</td>
-									<td>{{atributo.impactoNome}}</td>
+									<td>{{atributo.tipo}}</td>
+									<td>
+										<span class="badge bg-yellow">{{atributo.abrangenciaNome}}</span>
+									</td>
+									<td>
+										<span class="badge bg-light-blue">{{atributo.complexidadeNome}}</span>
+									</td>
+									<td>
+										<span class="badge bg-green">{{atributo.impactoNome}}</span>
+									</td>
 									<td>
 										<a [routerLink]="['/atributo', atributo.idAtributo]" class="btn  btn-xs bg-blue btn-flat">
 											<i class="fa fa-pencil"></i>

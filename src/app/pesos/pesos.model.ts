@@ -3,6 +3,6 @@ export class Pesos {
     quantidade: string;
     tipo: string;
     descricao: string;
-    valor: string;
+    valor: number;
     dt_registro: string 
 }
