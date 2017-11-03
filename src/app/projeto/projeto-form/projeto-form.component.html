@@ -50,7 +50,6 @@
 										<!-- {{projeto.dt_inicio}} -->
 										<br>
 										<p-calendar [(ngModel)]="projeto.dt_inicio" dateFormat="dd/mm/yy"  [locale]="pt" formControlName="dt_inicio" placeholder="Data início do Projeto, no formato: DD/MM/AAAA"></p-calendar>
-										<!-- <input type="text" class="form-control" id="dt_inicio" [(ngModel)]="projeto.dt_inicio" formControlName="dt_inicio" placeholder="Data início do Projeto, no formato: DD/MM/AAAA" maxlength="12" [textMask]="{mask: maskDate}">							 -->
 										<span *ngIf="!formProjeto.controls['dt_inicio'].valid && formProjeto.controls['dt_inicio'].touched" class="help-block">O campo Data Início é obrigatório!</span>
 									</div>
 								</td>
