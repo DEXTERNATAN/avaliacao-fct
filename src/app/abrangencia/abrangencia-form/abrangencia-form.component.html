@@ -47,9 +47,9 @@
 							<label>Classificação</label>
 							<select class="form-control" [(ngModel)]="abrangencia.classificacao" formControlName="classificacao" (change)="setNomeAbrangencia(abrangencia.classificacao)">
 									<option [selected]="true" value="">Selecione</option>  
-                                  <option value="1">1 - Moderado</option>
-                                  <option value="2">2 - Significativa</option>
-								  <option value="3">3 - Muito</option>
+                                  <option value="1">1-Moderado</option>
+                                  <option value="2">2-Significativa</option>
+								  <option value="3">3-Muito</option>
 							  </select>
 							  <span *ngIf="!formAbrangencia.controls['classificacao'].valid && formAbrangencia.controls['classificacao'].touched" class="help-block">O campo Classificação é obrigatório!</span>
 						</div>

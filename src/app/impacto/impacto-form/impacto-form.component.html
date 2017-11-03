@@ -45,9 +45,9 @@
 							<label>Classificação</label>
 							<select class="form-control" [(ngModel)]="impacto.classificacao" formControlName="classificacao" (change)="setNomeImpacto(impacto.classificacao)">
 									<option [selected]="true" value="">Selecione</option>  
-                                  <option value="1">1 - Relevante</option>
-                                  <option value="2">2 - Muito</option>
-								  <option value="3">3 - Altamente</option>
+                                  <option value="1">1-Relevante</option>
+                                  <option value="2">2-Muito</option>
+								  <option value="3">3-Altamente</option>
 							  </select>
 							  <span *ngIf="!formImpacto.controls['classificacao'].valid && formImpacto.controls['classificacao'].touched" class="help-block">O campo Classificação é obrigatório</span>
 						</div>
