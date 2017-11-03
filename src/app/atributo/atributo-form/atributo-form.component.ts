@@ -47,6 +47,7 @@ export class AtributoFormComponent implements OnInit {
 		this.formAtributo = formBuilder.group({
 			letra: [null, [Validators.required]],
 			descricao: [null, Validators.required],
+			tipo: [null, Validators.required],
 			idAbrangencia: [null],
 			idComplexidade: [null],
 			idImpacto: [null]

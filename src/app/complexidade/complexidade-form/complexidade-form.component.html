@@ -43,9 +43,9 @@
 							<label>Classificação</label>
 							<select class="form-control" [(ngModel)]="complexidade.classificacao" formControlName="classificacao" (change)="setNomeComplexidade(complexidade.classificacao)">
 									<option [selected]="true" value="">Selecione</option>  
-                  <option value="1">1 - Moderada</option>
-                  <option value="2">2 - Alta</option>
-								  <option value="3">3 - Altíssima</option>
+                  <option value="1">1-Moderada</option>
+                  <option value="2">2-Alta</option>
+								  <option value="3">3-Altíssima</option>
 							  </select>
 							  <span *ngIf="!formComplexidade.controls['classificacao'].valid && formComplexidade.controls['classificacao'].touched" class="help-block">O campo Classificação é obrigatório!</span>
 						</div>

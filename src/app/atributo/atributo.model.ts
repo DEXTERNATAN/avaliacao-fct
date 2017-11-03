@@ -2,6 +2,7 @@ export class Atributo {
     idAtributo: number;
     letra: string;
     descricao: string;
+    tipo:string;
     abrangenciaNome: string;
     complexidadeNome: string;
     impactoNome: string;
