@@ -1,3 +1,4 @@
+import { MensagensHandler } from 'app/shared/services/mensagens-handler.service';
 import { LoaderService } from 'app/shared/services/loader.service';
 import { DataTableDirective } from 'angular-datatables';
 import { FormBuilder } from '@angular/forms';
@@ -27,7 +28,8 @@ export class AtributoComponent implements OnInit {
 
   constructor(
     private _atributoService: AtributoService,
-    private loaderService: LoaderService
+    private loaderService: LoaderService,
+    private mensagensHandler: MensagensHandler
   ) { }
 
   ngOnInit() {
@@ -66,7 +68,9 @@ export class AtributoComponent implements OnInit {
       this._atributoService.deleteAtributo(atributo.idAtributo)
         .subscribe(null,
         err => {
+
           alert("Não foi possível apagar o Atributo!");
+          
           this.Atributo.splice(index, 0, atributo);
         });
     }

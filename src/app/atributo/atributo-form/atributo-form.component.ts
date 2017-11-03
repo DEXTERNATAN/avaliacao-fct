@@ -1,3 +1,4 @@
+import { MensagensHandler } from 'app/shared/services/mensagens-handler.service';
 import { atributoRouting } from './../atributo.routes';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
@@ -7,7 +8,6 @@ import { Atributo } from './../atributo.model';
 import { Abrangencia } from './../../abrangencia/abrangencia.model';
 import { Complexidade } from './../../complexidade/complexidade.model';
 import { Impacto } from './../../impacto/impacto.model';
-
 import { AtributoService } from './../atributo.service';
 import { AbrangenciaService } from './../../abrangencia/abrangencia.service';
 import { ComplexidadeService } from './../../complexidade/complexidade.service';
@@ -15,19 +15,18 @@ import { ImpactoService } from './../../impacto/impacto.service';
 import { LoaderService } from 'app/shared/services/loader.service';
 import { FilterPipe } from 'app/shared/pipes/filter';
 
-
 @Component({
 	selector: 'app-atributo-form',
 	templateUrl: './atributo-form.component.html',
 	styleUrls: ['./atributo-form.component.css']
 })
 export class AtributoFormComponent implements OnInit {
-	
+
 	formAtributo: FormGroup;
 	title: string;
 	atributo: Atributo = new Atributo();
 	idResource: any;
-	selectedData: any[]=[];
+	selectedData: any[] = [];
 	count: number = 0;
 
 	public Abrangencia: Abrangencia[] = [];
@@ -42,23 +41,23 @@ export class AtributoFormComponent implements OnInit {
 		private _abrangenciaService: AbrangenciaService,
 		private _complexidadeService: ComplexidadeService,
 		private _impactoService: ImpactoService,
-		private loaderService: LoaderService
-
+		private loaderService: LoaderService,
+		private mensagensHandler: MensagensHandler
 	) {
 		this.formAtributo = formBuilder.group({
 			letra: [null, [Validators.required]],
 			descricao: [null, Validators.required],
 			idAbrangencia: [null],
 			idComplexidade: [null],
-			idImpacto: [null]	
+			idImpacto: [null]
 		});
 
 	}
 
 	ngOnInit() {
-		
+
 		this.loaderService.setMsgLoading("Carregando ...");
-		
+		this.mensagensHandler.handleClearMessages();
 		this.getAbrangencia();
 		this.getComplexidade();
 		this.getImpacto();
@@ -66,18 +65,18 @@ export class AtributoFormComponent implements OnInit {
 		var idAtributo = this.route.params.subscribe(params => {
 			this.idResource = params['id_atributo'];
 			this.title = this.idResource ? 'Editar Atributo' : 'Novo Atributo';
-			
+
 			if (!this.idResource)
 				return;
 
 			this._atributoService.getAtributoId(this.idResource).subscribe(atributo => {
 				atributo = this.atributo = atributo
-					
-					response => {
-						if (response.status == 404) {
-							this.router.navigate(['atributo'])
-						}
+
+				response => {
+					if (response.status == 404) {
+						this.router.navigate(['atributo'])
 					}
+				}
 			})
 		})
 
@@ -85,15 +84,29 @@ export class AtributoFormComponent implements OnInit {
 
 	save() {
 
-		var result, userValue = this.formAtributo.value;
-		
+		let result, userValue = this.formAtributo.value;
+		let atualizar: boolean;
+
 		if (this.idResource) {
+			atualizar = true;
+			this.loaderService.setMsgLoading("Atualizando atributo ...");
 			result = this._atributoService.updateAtributo(this.idResource, userValue);
 		} else {
+			atualizar = false;
+			this.loaderService.setMsgLoading("Salvando atributo ...");
 			result = this._atributoService.addAtributo(userValue);
 		}
-		
-		result.subscribe(data => this.router.navigate(['atributo']));
+
+		result.subscribe(data => {
+			if (atualizar) {
+				debugger
+				this.mensagensHandler.handleSuccess("Atributo atualizado com sucesso!");
+			} else {
+				this.mensagensHandler.handleSuccess("Atributo salvo com sucesso!");
+			}
+			this.router.navigate(['atributo']);
+		}
+		);
 
 	}
 
@@ -141,7 +154,7 @@ export class AtributoFormComponent implements OnInit {
 	}
 
 	compareOptions(op1: any, op2: any): boolean {
-		
+
 		return op1 && op2 ? op1.TB_ABRANGENCIA_id_abrangencia === op2.id_abrangencia : op1 === op2;
 	}
 

@@ -1,4 +1,3 @@
-import { MensagensHandler } from './shared/services/mensagens-handler.service';
 import { RequestOptions } from '@angular/http';
 import { XHRBackend } from '@angular/http';
 import { Http } from '@angular/http';
@@ -11,7 +10,7 @@ import { HttpModule } from '@angular/http';
 import { LoaderService } from 'app/shared/services/loader.service';
 import { LoaderComponent } from './shared/components/loader.component';
 import { httpFactory } from 'app/shared/services/http.factory';
-
+import { MensagensHandler } from './shared/services/mensagens-handler.service';
 import { TextMaskModule } from 'angular2-text-mask';
 import { DataTablesModule } from 'angular-datatables';
 import { LOCALE_ID } from '@angular/core';
@@ -94,6 +93,7 @@ import { AtributoComponent } from './atributo/atributo.component';
 import { AvaliacaoComponent } from './avaliacao/avaliacao.component';
 import { FaixaComponent } from './faixa/faixa.component';
 import { ConsultaavaliacaoComponent } from './consultaavaliacao/consultaavaliacao.component';
+import { MensagensComponent } from 'app/shared/components/mensagens.component';
 
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   align: "left",
@@ -113,7 +113,9 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     HomeComponent,
     AboutComponent,
     LoginComponent,
-    LoaderComponent
+    LoaderComponent,
+    MensagensComponent
+
   ],
   imports: [
     BrowserModule,
