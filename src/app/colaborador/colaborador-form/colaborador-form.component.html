@@ -60,17 +60,18 @@
 						</div>
 						<div class="form-group" [ngClass]="{'has-error': (!formColaborador.controls['referenciaFct'].valid && formColaborador.controls['referenciaFct'].touched)}">
 							<label for="referenciaFct">Referência FCT</label>
-							<select name="referenciaFct" id="referenciaFct" [(ngModel)]="colaborador.referenciaFct" class="form-control" formControlName="referenciaFct">
+							<select name="referenciaFct" id="referenciaFct" [(ngModel)]="colaborador.TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe" class="form-control" formControlName="referenciaFct">
 								<option value="">Selecione</option>
-								<option *ngFor="let referencia of Referencia; let i = index" value="{{referencia.id_referencia_fct_gfe}}">{{referencia.num_referencia + " - " + referencia.cargo + " (" + referencia.valor_referencia + ")"}}</option>
+								<option *ngFor="let referencia of Referencia; let i = index"  value="{{referencia.id_referencia_fct_gfe}}">{{referencia.num_referencia + " - " + referencia.cargo + " (" + referencia.valor_referencia + ")"}}</option>
 							</select>
 							<span *ngIf="!formColaborador.controls['referenciaFct'].valid && formColaborador.controls['referenciaFct'].touched" class="help-block">A Referência FCT é obrigatório!</span>
 						</div>
+						
 						<div class="form-group" [ngClass]="{'has-error': (!formColaborador.controls['sigla'].valid && formColaborador.controls['sigla'].touched)}">
 							<label for="sigla">Divisão</label>
-							<select name="sigla" id="sigla" [(ngModel)]="colaborador.sigla" class="form-control" formControlName="sigla">
+							<select id="sigla" [(ngModel)]="colaborador.TB_DIVISAO_id_divisao" class="form-control" formControlName="sigla">
 							    <option value="">Selecione</option>
-								<option *ngFor="let divisao of Divisao; let i = index" value="{{divisao.sigla}}">{{divisao.sigla}}</option>  
+								<option *ngFor="let divisao of Divisao; let i = index" value="{{divisao.id_divisao}}">{{divisao.sigla}}</option>  
                             </select>
 							<span *ngIf="!formColaborador.controls['sigla'].valid && formColaborador.controls['sigla'].touched" class="help-block">A Divisão é obrigatória!</span>	  
 						</div>
