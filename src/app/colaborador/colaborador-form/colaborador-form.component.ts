@@ -40,8 +40,8 @@ export class ColaboradorFormComponent implements OnInit {
             especialidade: [null, Validators.required],
             salario: [null, Validators.required],
             percentual_salario: [null, Validators.required],
-            referenciaFct: [null, Validators.required],
-            sigla: [null, Validators.required],
+            TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe: [null, Validators.required],
+            TB_DIVISAO_id_divisao: [null, Validators.required],
             TB_ACESSO_id_acesso: [null]
         })
     }

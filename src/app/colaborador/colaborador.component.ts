@@ -60,7 +60,7 @@ export class ColaboradorComponent implements OnInit {
         this.dtTrigger.next();
       })
 
-      this._colaboradorService.deleteColaborador(colaborador.id_colaborador)
+      this._colaboradorService.deleteColaborador(colaborador.idColaborador)
         .subscribe(null,
         err => {
           alert("Não foi possível apagar o Colaborador!");
