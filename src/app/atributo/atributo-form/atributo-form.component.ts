@@ -106,12 +106,12 @@ export class AtributoFormComponent implements OnInit {
 			this.router.navigate(['atributo']);
 		}
 		);
-
 	}
 
 	getAbrangencia() {
 		this._abrangenciaService.getAbrangencia().subscribe(
 			abrangencia => {
+				console.log("ABRANGENCIA >>> ",abrangencia);
 				this.Abrangencia = abrangencia;
 			},
 			error => {
