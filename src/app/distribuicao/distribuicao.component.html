@@ -19,7 +19,10 @@
 				<div class="box-header">
 					<h3 class="box-title">Distribuição Cadastrada</h3>
 					<div class="box-tools">
-						<a routerLink="/distribuicao/novo" class="btn btn-sm pull-left btn-flat bg-purple margin-right-10" ><i class="fa fa-plus"></i> <b>Nova Distribuição</b></a>
+						<div *ngIf="!Distribuicao.length">
+							<a routerLink="/distribuicao/novo" class="btn btn-sm pull-left btn-flat bg-purple margin-right-10" ><i class="fa fa-plus"></i> <b>Nova Distribuição</b></a>
+						</div>
+						
 						<!--<div class="input-group input-group-sm pull-right" style="width: 150px;">
 							<input type="text" ng-model="searchText" name="table_search" class="form-control pull-right" placeholder="Pesquisar">
 						</div-->

@@ -14,6 +14,7 @@ export class FuncoesGlobais {
     }
 
     static dataFormatadaCad(data) {
+        debugger
         moment.locale('pt-BR');
         let StrDate: Date  = moment(data, 'DD-MM-YYYY').toDate();
         //let isoDate: string  = JSON.parse(JSON.stringify(StrDate));
