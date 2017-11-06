@@ -40,30 +40,29 @@
                             </select>
 							<span *ngIf="!formAtributo.controls['letra'].valid && formAtributo.controls['letra'].touched" class="help-block">O campo Descrição é obrigatório!</span>
 						</div>
-						<div class="form-group" [ngClass]="{'has-error': (!formAtributo.controls['idAbrangencia'].valid && formAtributo.controls['idAbrangencia'].touched)}">
-							<label for="idAbrangencia">Abrangêcia</label>
-							<!-- {{Abrangencia | json }} -->
-							<select id="idAbrangencia" [(ngModel)]="atributo.idAbrangencia" class="form-control" formControlName="idAbrangencia">
+						<div class="form-group" [ngClass]="{'has-error': (!formAtributo.controls['TB_ABRANGENCIA_id_abrangencia'].valid && formAtributo.controls['TB_ABRANGENCIA_id_abrangencia'].touched)}">
+							<label for="TB_ABRANGENCIA_id_abrangencia">Abrangêcia</label>
+							<select id="TB_ABRANGENCIA_id_abrangencia" [(ngModel)]="atributo.TB_ABRANGENCIA_id_abrangencia" class="form-control" formControlName="TB_ABRANGENCIA_id_abrangencia">
 								<option value="">Selecione</option>
-								<option *ngFor="let abrangencia of Abrangencia | filter: atributo.letra; let i = index" [selected]="abrangencia.id_abrangencia === atributo.TB_ABRANGENCIA_id_abrangencia" value="{{abrangencia.id_abrangencia}}">{{abrangencia.classificacao + "-" + abrangencia.nome}}</option>
+								<option *ngFor="let abrangencia of Abrangencia | filter: atributo.letra; let i = index" [selected]="abrangencia.id_abrangencia === atributo.TB_ABRANGENCIA_id_abrangencia" value="{{abrangencia.TB_ABRANGENCIA_id_abrangencia}}">{{abrangencia.classificacao + "-" + abrangencia.nome}}</option>
 							</select>
-							<span *ngIf="!formAtributo.controls['idAbrangencia'].valid && formAtributo.controls['idAbrangencia'].touched" class="help-block">A Abrangência é obrigatória!</span>
+							<span *ngIf="!formAtributo.controls['TB_ABRANGENCIA_id_abrangencia'].valid && formAtributo.controls['TB_ABRANGENCIA_id_abrangencia'].touched" class="help-block">A Abrangência é obrigatória!</span>
 						</div>
-						<div class="form-group" [ngClass]="{'has-error': (!formAtributo.controls['idComplexidade'].valid && formAtributo.controls['idComplexidade'].touched)}">
-							<label for="idComplexidade">Complexidade</label>
-							<select name="idComplexidade" id="idComplexidade" [(ngModel)]="atributo.idComplexidade" class="form-control" formControlName="idComplexidade">
+						<div class="form-group" [ngClass]="{'has-error': (!formAtributo.controls['TB_COMPLEXIDADE_id_complexidade'].valid && formAtributo.controls['TB_COMPLEXIDADE_id_complexidade'].touched)}">
+							<label for="TB_COMPLEXIDADE_id_complexidade">Complexidade</label>
+							<select id="TB_COMPLEXIDADE_id_complexidade" [(ngModel)]="atributo.TB_COMPLEXIDADE_id_complexidade" class="form-control" formControlName="TB_COMPLEXIDADE_id_complexidade">
 								<option value="">Selecione</option>
-								<option *ngFor="let complexidade of Complexidade | filter: atributo.letra; let i = index"  [selected]="complexidade.id_complexidade === atributo.TB_COMPLEXIDADE_id_complexidade"  value="{{complexidade.id_complexidade}}">{{complexidade.classificacao + "-" + complexidade.nome}}</option>
+								<option *ngFor="let complexidade of Complexidade | filter: atributo.letra; let i = index"  [selected]="complexidade.id_complexidade === atributo.TB_COMPLEXIDADE_id_complexidade"  value="{{complexidade.TB_COMPLEXIDADE_id_complexidade}}">{{complexidade.classificacao + "-" + complexidade.nome}}</option>
 							</select>
-							<span *ngIf="!formAtributo.controls['idComplexidade'].valid && formAtributo.controls['idComplexidade'].touched" class="help-block">A Complexidade é obrigatória!</span>
+							<span *ngIf="!formAtributo.controls['TB_COMPLEXIDADE_id_complexidade'].valid && formAtributo.controls['TB_COMPLEXIDADE_id_complexidade'].touched" class="help-block">A Complexidade é obrigatória!</span>
 						</div>
-						<div class="form-group" [ngClass]="{'has-error': (!formAtributo.controls['idImpacto'].valid && formAtributo.controls['idImpacto'].touched)}">
-							<label for="idImpacto">Impacto</label>
-							<select name="idImpacto" id="idImpacto" [(ngModel)]="atributo.idImpacto" class="form-control" formControlName="idImpacto">
+						<div class="form-group" [ngClass]="{'has-error': (!formAtributo.controls['TB_IMPACTO_id_impacto'].valid && formAtributo.controls['TB_IMPACTO_id_impacto'].touched)}">
+							<label for="TB_IMPACTO_id_impacto">Impacto</label>
+							<select id="TB_IMPACTO_id_impacto" [(ngModel)]="atributo.TB_IMPACTO_id_impacto" class="form-control" formControlName="TB_IMPACTO_id_impacto">
 								<option value="">Selecione</option>
-								<option *ngFor="let impacto of Impacto | filter: atributo.letra; let i = index" [selected]="impacto.id_impacto === atributo.TB_IMPACTO_id_impacto" value="{{impacto.id_impacto}}">{{impacto.classificacao + "-" + impacto.nome}}</option>
+								<option *ngFor="let impacto of Impacto | filter: atributo.letra; let i = index" [selected]="impacto.id_impacto === atributo.TB_IMPACTO_id_impacto" value="{{impacto.TB_IMPACTO_id_impacto}}">{{impacto.classificacao + "-" + impacto.nome}}</option>
 							</select>
-							<span *ngIf="!formAtributo.controls['idImpacto'].valid && formAtributo.controls['idImpacto'].touched" class="help-block">O Impacto é obrigatório!</span>
+							<span *ngIf="!formAtributo.controls['TB_IMPACTO_id_impacto'].valid && formAtributo.controls['TB_IMPACTO_id_impacto'].touched" class="help-block">O Impacto é obrigatório!</span>
 						</div>
 					<!-- /.box-body -->
 					<div class="box-footer">

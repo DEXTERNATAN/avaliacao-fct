@@ -47,10 +47,9 @@ export class AtributoFormComponent implements OnInit {
 		this.formAtributo = formBuilder.group({
 			letra: [null, [Validators.required]],
 			descricao: [null, Validators.required],
-			tipo: [null, Validators.required],
-			idAbrangencia: [null],
-			idComplexidade: [null],
-			idImpacto: [null]
+			TB_ABRANGENCIA_id_abrangencia: [null],
+			TB_COMPLEXIDADE_id_complexidade: [null],
+			TB_IMPACTO_id_impacto: [null]
 		});
 
 	}
@@ -100,7 +99,6 @@ export class AtributoFormComponent implements OnInit {
 
 		result.subscribe(data => {
 			if (atualizar) {
-				debugger
 				this.mensagensHandler.handleSuccess("Atributo atualizado com sucesso!");
 			} else {
 				this.mensagensHandler.handleSuccess("Atributo salvo com sucesso!");

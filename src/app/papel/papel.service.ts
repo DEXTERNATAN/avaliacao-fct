@@ -1,53 +1,47 @@
-import { Http, Headers, RequestOptions, Response } from '@angular/http';
+import { Observable } from 'rxjs/Rx';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { MEAT_API } from './../app.api';
+import { RestService } from 'app/shared/services/rest.service';
+import { LoaderService } from 'app/shared/services/loader.service';
+import { ErrorHandler } from 'app/app.error-handler';
+import { ApplicationErrorMessage } from 'app/shared/models/ApplicationErrorMessage';
+import { MensagensHandler } from 'app/shared/services/mensagens-handler.service';
 
-import 'rxjs/add/observable/throw';
-import 'rxjs/add/operator/map'
-import 'rxjs/add/operator/do'
-import 'rxjs/add/operator/catch'
-import { ErrorHandler } from './../app.error-handler';
-
-import { Observable } from 'rxjs/Observable';
 import { Papel } from './papel.model';
 
 @Injectable()
-export class PapelService {
-    headers: Headers;
-    options: RequestOptions;
+export class PapelService extends RestService<Papel>{
 
-    constructor(private _http: Http) {
-        this.headers = new Headers({
-            'Content-Type': 'application/json',
-            'Accept': 'q=0.8;application/json;q=0.9'
-        });
-        this.options = new RequestOptions({ headers: this.headers });
+    constructor(protected http: Http){
+        super(http);
+    }
+
+    public getUrl(): string {
+        return 'papel';
+    }
+
+    public mapIdentificador(objeto: Papel): number {
+        return objeto.id_papel;
     }
 
     getPapel(): Observable<Papel[]> {
-        return this._http.get(`${MEAT_API}/papel`)
-            .map(response => response.json())
+        return super.obterTodos();
     }
 
-    getPapelId(id_papel) {
-        return this._http.get(`${MEAT_API}/papel/${id_papel}`)
-            .map(response => response.json())
+    getPapelId(id): Observable<Papel> {
+        return super.obterPorId(id);
     }
 
-    addPapel(papel) {
-        return this._http.post(`${MEAT_API}/papel`, JSON.stringify(papel), this.options)
-            .map(res => res.json());
+    addPapel(papel: Papel) {
+        return super.adicionar(papel);
     }
 
-    deletePapel(id_papel) {
-        return this._http.delete(`${MEAT_API}/papel/${id_papel}`)
-            .map(response => response.json())
-            .do(data => console.log('server data:', data))  // debug
-            .catch(ErrorHandler.handleError);
+    deletePapel(id: number) {
+        return super.removerPorId(id);
     }
 
-    updatePapel(id_papel, papel) {
-        return this._http.put(`${MEAT_API}/papel/${id_papel}`, JSON.stringify(papel), this.options)
-            .map(response => response.json())
+    updatePapel(id, papel) {
+        return super.atualizarPorId(papel, id);
     }
 }

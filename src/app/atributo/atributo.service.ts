@@ -24,41 +24,24 @@ export class AtributoService extends RestService<Atributo>{
     public mapIdentificador(objeto: Atributo): number {
         return objeto.idAtributo;
     }
-    
-    
-    getAtributo(): Observable<Atributo[]> {
         
-        // return this._http.get(`${MEAT_API}/atributo`, {})
-        //     .map(response => response.json())
-        //     .do(atributo => this.Atributo = atributo)
+    getAtributo(): Observable<Atributo[]> {
         return super.obterTodos();
-
     }
 
     getAtributoId(id): Observable<Atributo> {
-        // return this._http.get(`${MEAT_API}/atributo/${id}`)
-        //     .map(response => response.json())
         return super.obterPorId(id);
     }
 
     addAtributo(atributo: Atributo) {
-        // return this._http.post(`${MEAT_API}/atributo`, JSON.stringify(atributo), this.options)
-        //     .map(res => res.json());
         return super.adicionar(atributo);
     }
 
     deleteAtributo(id: number) {
-        // return this._http.delete(`${MEAT_API}/atributo/${id}`)
-        //     .map(response => response.json())
-        //     .do(data => console.log('server data:', data))  // debug
-        //     .catch(ErrorHandler.handleError);
         return super.removerPorId(id);
     }
 
     updateAtributo(id, atributo) {
-        // return this._http.put(`${MEAT_API}/atributo/${id}`, JSON.stringify(atributo), this.options)
-        //     .map(response => response.json())
-        return super.atualizar(atributo);
+        return super.atualizarPorId(atributo, id);
     }
-
 }
