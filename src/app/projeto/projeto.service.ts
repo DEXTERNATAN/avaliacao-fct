@@ -1,53 +1,47 @@
-import { ErrorHandler } from 'app/app.error-handler';
-import { Http, Headers, RequestOptions } from '@angular/http';
+import { Observable } from 'rxjs/Rx';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { MEAT_API } from './../app.api';
-
-import 'rxjs/add/operator/map'
-import 'rxjs/add/operator/do'
-import 'rxjs/add/operator/catch'
-
-import { Observable } from 'rxjs/Observable';
+import { RestService } from 'app/shared/services/rest.service';
+import { LoaderService } from 'app/shared/services/loader.service';
+import { ErrorHandler } from 'app/app.error-handler';
+import { ApplicationErrorMessage } from 'app/shared/models/ApplicationErrorMessage';
+import { MensagensHandler } from 'app/shared/services/mensagens-handler.service';
 
 import { Projeto } from './projeto.model';
 
 @Injectable()
-export class ProjetoService {
-    headers: Headers;
-    options: RequestOptions;
+export class ProjetoService extends RestService<Projeto>{
 
-    constructor(private _http: Http) {
-        this.headers = new Headers({
-            'Content-Type': 'application/json',
-            'Accept': 'q=0.8;application/json;q=0.9'
-        });
-        this.options = new RequestOptions({ headers: this.headers });
+    constructor(protected http: Http){
+        super(http);
+    }
+
+    public getUrl(): string {
+        return 'projeto';
+    }
+
+    public mapIdentificador(objeto: Projeto): number {
+        return objeto.id_projeto;
     }
 
     getProjeto(): Observable<Projeto[]> {
-        return this._http.get(`${MEAT_API}/projeto`)
-            .map(response => response.json())
+        return super.obterTodos();
     }
 
-    getProjetoId(id_projeto) {
-        return this._http.get(`${MEAT_API}/projeto/${id_projeto}`)
-        .map(response => response.json())
+    getProjetoId(id): Observable<Projeto> {
+        return super.obterPorId(id);
     }
 
-    addProjeto(projeto) {
-        return this._http.post(`${MEAT_API}/projeto`, JSON.stringify(projeto), this.options)
-            .map(res => res.json());
+    addProjeto(projeto: Projeto) {
+        return super.adicionar(projeto);
     }
 
-    deleteProjeto(id_projeto) {
-        return this._http.delete(`${MEAT_API}/projeto/${id_projeto}`)
-            .map(response => response.json())
-            .do(data => console.log('server data:', data))  // debug
-            .catch(ErrorHandler.handleError);
+    deleteProjeto(id: number) {
+        return super.removerPorId(id);
     }
 
-    updateProjeto(id_projeto, projeto) {
-        return this._http.put(`${MEAT_API}/projeto/${id_projeto}`, JSON.stringify(projeto), this.options)
-            .map(response => response.json())
+    updateProjeto(id, projeto) {
+        return super.atualizarPorId(projeto, id);
     }
 }
