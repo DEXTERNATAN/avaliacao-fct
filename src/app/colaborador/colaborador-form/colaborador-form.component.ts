@@ -42,7 +42,7 @@ export class ColaboradorFormComponent implements OnInit {
             percentual_salario: [null, Validators.required],
             referenciaFct: [null, Validators.required],
             sigla: [null, Validators.required],
-            idAcesso: [null]
+            TB_ACESSO_id_acesso: [null]
         })
     }
 

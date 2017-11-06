@@ -2,11 +2,7 @@ export class Atributo {
     idAtributo: number;
     letra: string;
     descricao: string;
-    tipo:string;
-    abrangenciaNome: string;
-    complexidadeNome: string;
-    impactoNome: string;
-    idAbrangencia: string;
-    idComplexidade: string;
-    idImpacto: string;
+    TB_ABRANGENCIA_id_abrangencia: string;
+    TB_COMPLEXIDADE_id_complexidade: string;
+    TB_IMPACTO_id_impacto: string;
 }

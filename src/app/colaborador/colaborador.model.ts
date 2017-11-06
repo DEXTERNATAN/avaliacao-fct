@@ -8,5 +8,5 @@ export class Colaborador {
     percentual_salario: string;
     referenciaFct: string;
     sigla: string;
-    idAcesso: string;
+    TB_ACESSO_id_acesso: string;
 }

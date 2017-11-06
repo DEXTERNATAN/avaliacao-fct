@@ -75,9 +75,9 @@
                             </select>
 							<span *ngIf="!formColaborador.controls['sigla'].valid && formColaborador.controls['sigla'].touched" class="help-block">A Divisão é obrigatória!</span>	  
 						</div>
-						<div class="form-group" [ngClass]="{'has-error': (!formColaborador.controls['idAcesso'].valid && formColaborador.controls['idAcesso'].touched)}">
-							<label for="idAcesso">Perfil de Acesso</label>
-							<select class="form-control" [(ngModel)]="colaborador.idAcesso" formControlName="idAcesso">
+						<div class="form-group" [ngClass]="{'has-error': (!formColaborador.controls['TB_ACESSO_id_acesso'].valid && formColaborador.controls['TB_ACESSO_id_acesso'].touched)}">
+							<label for="TB_ACESSO_id_acesso">Perfil de Acesso</label>
+							<select class="form-control" [(ngModel)]="colaborador.idAcesso" formControlName="TB_ACESSO_id_acesso">
                             	<option value="1">ADMINISTRADOR</option>
 								<option value="2">LÍDER</option>
 								<option value="3" [selected]="true">COLABORADOR</option>
