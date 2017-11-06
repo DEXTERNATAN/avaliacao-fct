@@ -1,54 +1,47 @@
-import { ErrorHandler } from 'app/app.error-handler';
-import { Http, Headers, RequestOptions } from '@angular/http';
+import { Observable } from 'rxjs/Rx';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { MEAT_API } from './../app.api';
-
-import 'rxjs/add/operator/map'
-import 'rxjs/add/operator/do'
-import 'rxjs/add/operator/catch'
-
-import { Observable } from 'rxjs/Observable';
+import { RestService } from 'app/shared/services/rest.service';
+import { LoaderService } from 'app/shared/services/loader.service';
+import { ErrorHandler } from 'app/app.error-handler';
+import { ApplicationErrorMessage } from 'app/shared/models/ApplicationErrorMessage';
+import { MensagensHandler } from 'app/shared/services/mensagens-handler.service';
 
 import { Complexidade } from './complexidade.model';
 
 @Injectable()
-export class ComplexidadeService {
-    headers: Headers;
-    options: RequestOptions;
+export class ComplexidadeService extends RestService<Complexidade>{
 
-    constructor(private _http: Http) {
-        this.headers = new Headers({
-            'Content-Type': 'application/json',
-            'Accept': 'q=0.8;application/json;q=0.9'
-        });
-        this.options = new RequestOptions({ headers: this.headers });
+    constructor(protected http: Http){
+        super(http);
+    }
+
+    public getUrl(): string {
+        return 'complexidade';
+    }
+
+    public mapIdentificador(objeto: Complexidade): number {
+        return objeto.id_complexidade;
     }
 
     getComplexidade(): Observable<Complexidade[]> {
-        return this._http.get(`${MEAT_API}/complexidade`)
-            .map(response => response.json())
+        return super.obterTodos();
     }
 
-    getComplexidadeId(id) {
-        return this._http.get(`${MEAT_API}/complexidade/${id}`)
-            .map(response => response.json())
+    getComplexidadeId(id): Observable<Complexidade> {
+        return super.obterPorId(id);
     }
 
-    addComplexidade(complexidade) {
-        return this._http.post(`${MEAT_API}/complexidade`, JSON.stringify(complexidade), this.options)
-            .map(res => res.json());
+    addComplexidade(complexidade: Complexidade) {
+        return super.adicionar(complexidade);
     }
 
-    deleteComplexidade(id) {
-        return this._http.delete(`${MEAT_API}/complexidade/${id}`)
-            .map(response => response.json())
-            .do(data => console.log('server data:', data))  // debug
-            .catch(ErrorHandler.handleError);
-            
+    deleteComplexidade(id: number) {
+        return super.removerPorId(id);
     }
 
     updateComplexidade(id, complexidade) {
-        return this._http.put(`${MEAT_API}/complexidade/${id}`, JSON.stringify(complexidade), this.options)
-            .map(response => response.json())
+        return super.atualizarPorId(complexidade, id);
     }
 }

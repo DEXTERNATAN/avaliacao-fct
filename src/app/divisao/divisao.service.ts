@@ -1,52 +1,47 @@
-import { ErrorHandler } from 'app/app.error-handler';
-import { Http, Headers, RequestOptions } from '@angular/http';
+import { Observable } from 'rxjs/Rx';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { MEAT_API } from './../app.api';
+import { RestService } from 'app/shared/services/rest.service';
+import { LoaderService } from 'app/shared/services/loader.service';
+import { ErrorHandler } from 'app/app.error-handler';
+import { ApplicationErrorMessage } from 'app/shared/models/ApplicationErrorMessage';
+import { MensagensHandler } from 'app/shared/services/mensagens-handler.service';
 
-import 'rxjs/add/operator/map'
-import 'rxjs/add/operator/do'
-import 'rxjs/add/operator/catch'
-
-import { Observable } from 'rxjs/Observable';
 import { Divisao } from './divisao.model';
 
 @Injectable()
-export class DivisaoService {
-    headers: Headers;
-    options: RequestOptions;
+export class DivisaoService extends RestService<Divisao>{
 
-    constructor(private _http: Http) {
-        this.headers = new Headers({
-            'Content-Type': 'application/json',
-            'Accept': 'q=0.8;application/json;q=0.9'
-        });
-        this.options = new RequestOptions({ headers: this.headers });
+    constructor(protected http: Http){
+        super(http);
+    }
+
+    public getUrl(): string {
+        return 'divisao';
+    }
+
+    public mapIdentificador(objeto: Divisao): number {
+        return objeto.id_divisao;
     }
 
     getDivisao(): Observable<Divisao[]> {
-        return this._http.get(`${MEAT_API}/divisao`)
-            .map(response => response.json())
+        return super.obterTodos();
     }
 
-    getDivisaoId(id_divisao) {
-        return this._http.get(`${MEAT_API}/divisao/${id_divisao}`)
-            .map(res => res.json())
+    getDivisaoId(id): Observable<Divisao> {
+        return super.obterPorId(id);
     }
 
-    addDivisao(divisao) {
-        return this._http.post(`${MEAT_API}/divisao`, JSON.stringify(divisao), this.options)
-            .map(res => res.json());
+    addDivisao(divisao: Divisao) {
+        return super.adicionar(divisao);
     }
 
-    deleteDivisao(id_divisao) {
-        return this._http.delete(`${MEAT_API}/divisao/${id_divisao}`)
-            .map(response => response.json())
-            .do(data => console.log('server data:', data))  // debug
-            .catch(ErrorHandler.handleError);
+    deleteDivisao(id: number) {
+        return super.removerPorId(id);
     }
 
-    updateDivisao(id_divisao, divisao) {
-        return this._http.put(`${MEAT_API}/divisao/${id_divisao}`, JSON.stringify(divisao), this.options)
-            .map(response => response.json())
+    updateDivisao(id, divisao) {
+        return super.atualizarPorId(divisao, id);
     }
 }

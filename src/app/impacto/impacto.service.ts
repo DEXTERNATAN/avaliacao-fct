@@ -1,53 +1,47 @@
-import { ErrorHandler } from 'app/app.error-handler';
-import { Http, Headers, RequestOptions } from '@angular/http';
+import { Observable } from 'rxjs/Rx';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { MEAT_API } from './../app.api';
-
-import 'rxjs/add/operator/map'
-import 'rxjs/add/operator/do'
-import 'rxjs/add/operator/catch'
-
-import { Observable } from 'rxjs/Observable';
+import { RestService } from 'app/shared/services/rest.service';
+import { LoaderService } from 'app/shared/services/loader.service';
+import { ErrorHandler } from 'app/app.error-handler';
+import { ApplicationErrorMessage } from 'app/shared/models/ApplicationErrorMessage';
+import { MensagensHandler } from 'app/shared/services/mensagens-handler.service';
 
 import { Impacto } from './impacto.model';
 
 @Injectable()
-export class ImpactoService {
-    headers: Headers;
-    options: RequestOptions;
+export class ImpactoService extends RestService<Impacto>{
 
-    constructor(private _http: Http) {
-        this.headers = new Headers({
-            'Content-Type': 'application/json',
-            'Accept': 'q=0.8;application/json;q=0.9'
-        });
-        this.options = new RequestOptions({ headers: this.headers });
+    constructor(protected http: Http){
+        super(http);
+    }
+
+    public getUrl(): string {
+        return 'impacto';
+    }
+
+    public mapIdentificador(objeto: Impacto): number {
+        return objeto.id_impacto;
     }
 
     getImpacto(): Observable<Impacto[]> {
-        return this._http.get(`${MEAT_API}/impacto`)
-            .map(response => response.json())
+        return super.obterTodos();
     }
 
-    getImpactoId(id) {
-        return this._http.get(`${MEAT_API}/impacto/${id}`)
-            .map(response => response.json())
+    getImpactoId(id): Observable<Impacto> {
+        return super.obterPorId(id);
     }
 
-    addImpacto(impacto) {
-        return this._http.post(`${MEAT_API}/impacto`, JSON.stringify(impacto), this.options)
-            .map(res => res.json());
+    addImpacto(impacto: Impacto) {
+        return super.adicionar(impacto);
     }
 
-    deleteImpacto(id) {
-        return this._http.delete(`${MEAT_API}/impacto/${id}`)
-            .map(response => response.json())
-            .do(data => console.log('server data:', data))  // debug
-            .catch(ErrorHandler.handleError);
+    deleteImpacto(id: number) {
+        return super.removerPorId(id);
     }
 
     updateImpacto(id, impacto) {
-        return this._http.put(`${MEAT_API}/impacto/${id}`, JSON.stringify(impacto), this.options)
-            .map(response => response.json())
+        return super.atualizarPorId(impacto, id);
     }
 }
