@@ -64,7 +64,7 @@ export class DistribuicaoFormComponent implements OnInit {
         // Chamanda para edicao e cadastro no banco
         var result, userValue = this.formDistribuicao.value;
         if (this.idResource) {
-            debugger
+            //debugger
             result = this.distribuicaoService.updateDistribuicao(this.idResource, userValue);
         } else {
             result = this.distribuicaoService.addDistribuicao(userValue);
