@@ -48,7 +48,7 @@ export class ColaboradorFormComponent implements OnInit {
     }
 
     ngOnInit() {
-        debugger
+        //debugger
         //console.debug('instanciacao: ', this.colaborador);
         this.getReferencia();
         this.getDivisao();
@@ -73,7 +73,7 @@ export class ColaboradorFormComponent implements OnInit {
 
     save() {
         
-        debugger
+        //debugger
         this.formColaborador.get('telefone').setValue(this.retiraCaracteres(this.formColaborador.get('telefone').value, "telefone"));
         console.log(this.formColaborador.get('telefone').value);
 
@@ -103,7 +103,7 @@ export class ColaboradorFormComponent implements OnInit {
     }
 
     retiraCaracteres(valor: string, campoForm: string): string {
-        debugger
+        //debugger
         let campoFormatado: string = valor.toString().replace(/[`\\s+~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
         //campoFormatado.replace(/[`\\s+~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
         console.log(campoFormatado);
