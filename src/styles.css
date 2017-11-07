@@ -261,3 +261,11 @@ body {
 .has-error-block {
   color: #dd4b39;
 }
+
+
+/* Ajustes nos componentes do primefaces */
+.ui-calendar.ui-calendar-w-btn input {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  width: 77vh !important;
+}

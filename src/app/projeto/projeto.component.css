@@ -1,0 +1,5 @@
+.ui-calendar.ui-calendar-w-btn input {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    width: 410px !important;
+}

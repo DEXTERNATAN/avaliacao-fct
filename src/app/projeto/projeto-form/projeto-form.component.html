@@ -49,7 +49,7 @@
 										<label for="dt_inicio">Data Início</label>
 										<!-- {{projeto.dt_inicio}} -->
 										<br>
-										<p-calendar [(ngModel)]="projeto.dt_inicio" dateFormat="dd/mm/yy"  [locale]="pt" formControlName="dt_inicio" placeholder="Data início do Projeto, no formato: DD/MM/AAAA"></p-calendar>
+										<p-calendar [(ngModel)]="projeto.dt_inicio" dateFormat="dd/mm/yy"  [locale]="pt" formControlName="dt_inicio" placeholder="Data início do Projeto, no formato: DD/MM/AAAA" [showIcon]="true"></p-calendar>
 										<span *ngIf="!formProjeto.controls['dt_inicio'].valid && formProjeto.controls['dt_inicio'].touched" class="help-block">O campo Data Início é obrigatório!</span>
 									</div>
 								</td>
@@ -59,7 +59,7 @@
 										<!-- {{projeto.dt_fim}} -->
 										<!-- <input type="text" class="form-control" id="dt_fim" [(ngModel)]="projeto.dt_fim" formControlName="dt_fim" placeholder="Data fim prevista do Projeto, no formmato: DD/MM/AAAA" maxlength="12" [textMask]="{mask: maskDate}">							 -->
 										<br>
-										<p-calendar [(ngModel)]="projeto.dt_fim" dateFormat="dd/mm/yy"  [locale]="pt" formControlName="dt_fim" placeholder="Data fim prevista do Projeto, no formmato: DD/MM/AAAA"></p-calendar>
+										<p-calendar [(ngModel)]="projeto.dt_fim" dateFormat="dd/mm/yy"  [locale]="pt" formControlName="dt_fim" placeholder="Data fim prevista do Projeto, no formmato: DD/MM/AAAA" [showIcon]="true"></p-calendar>
 										<span *ngIf="!formProjeto.controls['dt_fim'].valid && formProjeto.controls['dt_fim'].touched" class="help-block">O campo Data Fim é obrigatório!</span>
 									</div>
 								</td>
