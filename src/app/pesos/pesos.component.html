@@ -43,7 +43,7 @@
 								<td>{{pesos.tipo}}</td>
 								<td>{{pesos.quantidade}}</td>
 								<td>{{pesos.descricao}}</td>
-								<td>{{pesos.valor}}</td>
+								<td>{{ ajustaPesos(pesos.valor) }}</td>
 								<td>{{pesos.dt_registro | date:'shortDate'}}</td>
 								<td>
 									<a [routerLink]="['/pesos', pesos.id_pesos]" class="btn  btn-xs bg-blue btn-flat">

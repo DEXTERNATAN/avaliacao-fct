@@ -15,6 +15,7 @@ export class PesosFormComponent implements OnInit {
     formPesos: FormGroup;
     title: string;
     pesos: Pesos = new Pesos();
+    allPesos: any[]; 
     idResource: any;
 
     constructor(
@@ -50,6 +51,11 @@ export class PesosFormComponent implements OnInit {
         var id_pesos = this.route.params.subscribe(params => {
             this.idResource = params['id_pesos'];
             this.title = this.idResource ? 'Editar Peso' : 'Novo Peso';
+
+            this.pesosService.getPesos().subscribe(pesos => {
+                this.allPesos = pesos;
+            })
+
 
             this.pesosService.getPesosId(this.idResource).subscribe(pesos => {
                 pesos = this.pesos = pesos;

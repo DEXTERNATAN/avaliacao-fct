@@ -19,7 +19,7 @@ export class PesosComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   @ViewChild(DataTableDirective)
   dtElement: DataTableDirective;
-  
+
   // We use this trigger because fetching the list of persons can be quite long,
   // thus we ensure the data is fetched before rendering
   dtTrigger: Subject<Pesos> = new Subject();
@@ -33,42 +33,57 @@ export class PesosComponent implements OnInit {
       language: {
         url: `assets/language/datatables/${this.lang}.json`
       }
-    };  
+    };
 
     this._pesosService.getPesos()
-    .subscribe(pesos => {
-      this.Pesos = pesos 
-      this.pesoCarregado = false;
-      // Calling the DT trigger to manually render the table
-      this.dtTrigger.next();
-    });
+      .subscribe(pesos => {
+        this.Pesos = pesos
+        this.pesoCarregado = false;
+        // Calling the DT trigger to manually render the table
+        this.dtTrigger.next();
+      });
   }
 
   ngAfterViewInit(): void {
     //this.dtTrigger.next();
   }
 
-  deletePesos(pesos){
+  deletePesos(pesos) {
     if (confirm("Tem certeza que quer APAGAR o Peso #" + pesos.id_pesos + " (" + pesos.tipo + " " + pesos.quantidade + ")?")) {
       var index = this.Pesos.indexOf(pesos);
       this.Pesos.splice(index, 1);
 
-      this.dtElement.dtInstance.then((dtInstance: DataTables.Api)=>{  
+      this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
         // Destroy the table first
         dtInstance.destroy();
-        
+
         // Call the dtTrigger to rerender again
         this.dtTrigger.next();
       })
 
       this._pesosService.deletePesos(pesos.id_pesos)
         .subscribe(null,
-          err => {
-            alert("O peso não foi apagado!");
-            // Revert the view back to its original state
-            this.Pesos.splice(index, 0, pesos);
-            throw err;
-          });
+        err => {
+          alert("O peso não foi apagado!");
+          // Revert the view back to its original state
+          this.Pesos.splice(index, 0, pesos);
+          throw err;
+        });
     }
   }
+
+  ajustaPesos(valor: string): string {
+    let vlrPeso = valor.toString();
+    console.log('tamanho do campo: ', vlrPeso.length)
+    if (vlrPeso.length == 3) {
+      valor = valor + "00";
+    }
+
+    if (vlrPeso.length == 4) {
+      valor = valor + "0";
+    }
+
+    return valor;
+  }
+
 }

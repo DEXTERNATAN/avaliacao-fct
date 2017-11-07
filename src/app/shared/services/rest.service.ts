@@ -37,7 +37,7 @@ export abstract class RestService<T> {
     obterTodos(): Observable<T[]> {
         return this.http.get(`${this.getUrlBase()}/${this.getUrl()}`, this.getDefaultRequestOptions())
             .map(response => response.json())
-            .do(data => console.log('server data:', data))  // debug
+            .do(data => console.log('server data:', data.valor))  // debug
             .catch(ErrorHandler.handleError);
     }
 
