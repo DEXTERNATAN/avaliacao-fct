@@ -13,6 +13,7 @@ import { FuncoesGlobais } from 'app/shared/app.funcoes-globais';
     styleUrls: ['./projeto-form.component.css']
 })
 export class ProjetoFormComponent implements OnInit {
+    errorData: boolean = true;
     pt: { firstDayOfWeek: number; dayNames: string[]; dayNamesShort: string[]; dayNamesMin: string[]; monthNames: string[]; monthNamesShort: string[]; today: string; clear: string; };
 
     formProjeto: FormGroup;
@@ -49,18 +50,18 @@ export class ProjetoFormComponent implements OnInit {
     }
 
     ngOnInit() {
-        
+
         this.pt = {
             firstDayOfWeek: 0,
-            dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'],
-            dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'],
-            dayNamesMin: ['D','S','T','Q','Q','S','S'],
-            monthNames: [ 'Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro' ],
-            monthNamesShort: [ 'Jan','Fev','Mar','Abr','Mai','Jun', 'Jul','Ago','Set','Out','Nov','Dez' ],
+            dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+            dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+            dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
+            monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+            monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
             today: 'Hoje',
             clear: 'Limpar'
         };
-    
+
         var id_projeto = this.route.params.subscribe(params => {
             this.idResource = params['id_projeto'];
             this.title = this.idResource ? 'Editar Projeto' : 'Novo Projeto';
@@ -86,30 +87,37 @@ export class ProjetoFormComponent implements OnInit {
 
     save() {
 
-        // Setando a nova data para salvar no banco
-        this.formProjeto.get('dt_inicio').setValue(FuncoesGlobais.dataFormatadaCad(this.formProjeto.value.dt_inicio));
-        this.formProjeto.get('dt_fim').setValue(FuncoesGlobais.dataFormatadaCad(this.formProjeto.value.dt_fim));
-        
-        var result, projetoValue = this.formProjeto.value;
-
-        if (this.idResource) {
-            result = this.projetoService.updateProjeto(this.idResource, projetoValue);
+        console.log(this.formProjeto.get('dt_inicio').value > this.formProjeto.get('dt_fim').value);
+        if (this.formProjeto.get('dt_inicio').value > this.formProjeto.get('dt_fim').value) {
+            console.log('A data inicial não pode ser maior que a final!');
+            this.errorData = false;
         } else {
-            result = this.projetoService.addProjeto(projetoValue);
+
+            // Setando a nova data para salvar no banco
+            this.formProjeto.get('dt_inicio').setValue(FuncoesGlobais.dataFormatadaCad(this.formProjeto.value.dt_inicio));
+            this.formProjeto.get('dt_fim').setValue(FuncoesGlobais.dataFormatadaCad(this.formProjeto.value.dt_fim));
+
+            var result, projetoValue = this.formProjeto.value;
+
+            if (this.idResource) {
+                result = this.projetoService.updateProjeto(this.idResource, projetoValue);
+            } else {
+                result = this.projetoService.addProjeto(projetoValue);
+            }
+            result.subscribe(data => this.router.navigate(['projeto']));
         }
-        result.subscribe(data => this.router.navigate(['projeto']));
     }
 
     onCancel() {
         this.navigateBack();
     }
 
-    formataData(data, formatoMysql: boolean){
-        if(formatoMysql){
+    formataData(data, formatoMysql: boolean) {
+        if (formatoMysql) {
             let dtFormat = new Date(data);
             console.log(dtFormat.toLocaleDateString());
             return dtFormat.toLocaleDateString();
-        }else{
+        } else {
             return data;
         }
     }

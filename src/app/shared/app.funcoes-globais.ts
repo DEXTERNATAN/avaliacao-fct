@@ -15,7 +15,7 @@ export class FuncoesGlobais {
     }
 
     static dataFormatadaCad(data) {
-        debugger
+        //debugger
         moment.locale('pt-BR');
         let StrDate: Date  = moment(data, 'DD-MM-YYYY').toDate();
         //let isoDate: string  = JSON.parse(JSON.stringify(StrDate));
@@ -23,7 +23,7 @@ export class FuncoesGlobais {
     }
 
     static retiraCaracteres(valor: string){
-        debugger
+        //debugger
         let strValor: string = "(61) 3333-9999";
 
         strValor.replace("(", '');

@@ -72,7 +72,7 @@ export abstract class RestService<T> {
     }
 
     atualizarPorId(objeto: T, id): Observable<T> {
-        debugger
+        //debugger
         return this.http.put(`${this.getUrlBase()}/${this.getUrl()}` + '/' + id + this.mapIdentificador(objeto), objeto, this.getDefaultRequestOptions())
             .map(response => response.json())
             .do(data => console.log('server data:', data))  // debug
