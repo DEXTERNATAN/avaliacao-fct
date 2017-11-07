@@ -47,9 +47,9 @@ export class AtributoFormComponent implements OnInit {
 		this.formAtributo = formBuilder.group({
 			letra: [null, [Validators.required]],
 			descricao: [null, Validators.required],
-			TB_ABRANGENCIA_id_abrangencia: [null],
-			TB_COMPLEXIDADE_id_complexidade: [null],
-			TB_IMPACTO_id_impacto: [null]
+			TB_ABRANGENCIA_id_abrangencia: [{value: 'null', disabled: true}],
+			TB_COMPLEXIDADE_id_complexidade: [{value: 'null', disabled: true}],
+			TB_IMPACTO_id_impacto: [{value: 'null', disabled: true}]
 		});
 
 	}
@@ -158,6 +158,11 @@ export class AtributoFormComponent implements OnInit {
 	}
 
 	setCamposDesc(letra: string) {
+		// Habilitando os campos de select
+		this.formAtributo.get('TB_ABRANGENCIA_id_abrangencia').enable();
+		this.formAtributo.get('TB_COMPLEXIDADE_id_complexidade').enable();
+		this.formAtributo.get('TB_IMPACTO_id_impacto').enable();
+
 		switch (letra) {
 			case 'a':
 				{

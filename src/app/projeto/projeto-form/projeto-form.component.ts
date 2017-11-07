@@ -95,7 +95,7 @@ export class ProjetoFormComponent implements OnInit {
             console.log('A data inicial não pode ser maior que a final!');
             this.errorData = false;
         } else {
-
+            this.errorData = true;
             // Setando a nova data para salvar no banco
             this.formProjeto.get('dt_inicio').setValue(FuncoesGlobais.dataFormatadaCad(this.formProjeto.value.dt_inicio));
             this.formProjeto.get('dt_fim').setValue(FuncoesGlobais.dataFormatadaCad(this.formProjeto.value.dt_fim));
