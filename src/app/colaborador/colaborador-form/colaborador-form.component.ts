@@ -9,6 +9,7 @@ import { Divisao } from './../../divisao/divisao.model';
 import { ColaboradorService } from './../colaborador.service';
 import { ReferenciaService } from './../../referencia/referencia.service';
 import { DivisaoService } from './../../divisao/divisao.service';
+import { FuncoesGlobais } from 'app/shared/app.funcoes-globais';
 
 @Component({
     selector: 'app-colaborador-form',
@@ -47,6 +48,7 @@ export class ColaboradorFormComponent implements OnInit {
     }
 
     ngOnInit() {
+        debugger
         //console.debug('instanciacao: ', this.colaborador);
         this.getReferencia();
         this.getDivisao();
@@ -70,10 +72,16 @@ export class ColaboradorFormComponent implements OnInit {
     }
 
     save() {
+        
+        debugger
+        this.formColaborador.get('telefone').setValue(this.retiraCaracteres(this.formColaborador.get('telefone').value, "telefone"));
+        console.log(this.formColaborador.get('telefone').value);
+
         var result,
             userValue = this.formColaborador.value;
-
+            
         if (this.idResource) {
+            
             result = this.colaboradorService.updateColaborador(this.idResource, userValue);
         } else {
             result = this.colaboradorService.addColaborador(userValue);
@@ -92,6 +100,14 @@ export class ColaboradorFormComponent implements OnInit {
         this._divisaoService.getDivisao().subscribe(divisoes => {
             this.Divisao = divisoes
         })
+    }
+
+    retiraCaracteres(valor: string, campoForm: string): string {
+        debugger
+        let campoFormatado: string = valor.toString().replace(/[`\\s+~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
+        //campoFormatado.replace(/[`\\s+~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
+        console.log(campoFormatado);
+        return campoFormatado.replace(" ", "");
     }
 
     onCancel() {

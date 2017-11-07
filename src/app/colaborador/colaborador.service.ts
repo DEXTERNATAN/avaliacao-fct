@@ -34,6 +34,7 @@ export class ColaboradorService extends RestService<Colaborador>{
     }
 
     addColaborador(colaborador: Colaborador) {
+        debugger
         return super.adicionar(colaborador);
     }
 
@@ -42,6 +43,7 @@ export class ColaboradorService extends RestService<Colaborador>{
     }
 
     updateColaborador(id, colaborador) {
+        debugger
         return super.atualizarPorId(colaborador, id);
     }
 }

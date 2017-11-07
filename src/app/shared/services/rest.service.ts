@@ -37,7 +37,7 @@ export abstract class RestService<T> {
     obterTodos(): Observable<T[]> {
         return this.http.get(`${this.getUrlBase()}/${this.getUrl()}`, this.getDefaultRequestOptions())
             .map(response => response.json())
-            .do(data => console.log('server data:', data.valor))  // debug
+            .do(data => console.log('server data:', data))  // debug
             .catch(ErrorHandler.handleError);
     }
 
@@ -72,6 +72,7 @@ export abstract class RestService<T> {
     }
 
     atualizarPorId(objeto: T, id): Observable<T> {
+        debugger
         return this.http.put(`${this.getUrlBase()}/${this.getUrl()}` + '/' + id + this.mapIdentificador(objeto), objeto, this.getDefaultRequestOptions())
             .map(response => response.json())
             .do(data => console.log('server data:', data))  // debug
