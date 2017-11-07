@@ -87,8 +87,11 @@ export class ProjetoFormComponent implements OnInit {
 
     save() {
 
-        console.log(this.formProjeto.get('dt_inicio').value > this.formProjeto.get('dt_fim').value);
-        if (this.formProjeto.get('dt_inicio').value > this.formProjeto.get('dt_fim').value) {
+        console.log(this.formProjeto.get('dt_inicio').value, this.formProjeto.get('dt_fim').value, this.formProjeto.get('dt_inicio').value > this.formProjeto.get('dt_fim').value);
+        
+        if(FuncoesGlobais.comparaDatas(this.formProjeto.get('dt_inicio').value, this.formProjeto.get('dt_fim').value)){
+
+        //if (this.formProjeto.get('dt_inicio').value > this.formProjeto.get('dt_fim').value) {
             console.log('A data inicial não pode ser maior que a final!');
             this.errorData = false;
         } else {

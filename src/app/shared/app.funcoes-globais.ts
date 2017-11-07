@@ -31,5 +31,19 @@ export class FuncoesGlobais {
         
         return valor;
     }
+
+    static comparaDatas(dataInicio: string, dataFim: string): boolean{
+        //debugger
+        moment.locale('pt-BR');
+        let StrDateInicio: Date  = moment(dataInicio, 'DD-MM-YYYY').toDate();
+        let StrDateFim: Date  = moment(dataFim, 'DD-MM-YYYY').toDate();
+        console.log(StrDateInicio, StrDateFim, StrDateInicio > StrDateFim);
+        if(StrDateInicio > StrDateFim){
+            return true;
+        }else{
+            return false;
+        }
+        
+    }
     
 }
