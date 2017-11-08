@@ -52,7 +52,7 @@
 						</div>
 						<div class="form-group" [ngClass]="{'has-error': (!formDistribuicao.controls['diferenca'].valid && formDistribuicao.controls['diferenca'].touched) }">
 							<label for="diferenca">Diferença entre as Pontuações Máxima e Mínima</label>
-							<input type="text" class="form-control" [(ngModel)]="distribuicao.diferenca" formControlName="diferenca" id="diferenca" maxlength="8" readonly placeholder="Diferença a ser calculada entre a Pontuação máxima e mínima">
+							<input type="text" class="form-control" formControlName="diferenca" id="diferenca" maxlength="8" readonly placeholder="Diferença a ser calculada entre a Pontuação máxima e mínima">
 						</div>
 						<div class="form-group" [ngClass]="{'has-error': (!formDistribuicao.controls['amplitude_faixas'].valid && formDistribuicao.controls['amplitude_faixas'].touched) }">
 							<label for="amplitude_faixas">Amplitude das Faixas</label>

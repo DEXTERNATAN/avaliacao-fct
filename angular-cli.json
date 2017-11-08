@@ -29,6 +29,7 @@
         "../node_modules/datatables.net-dt/css/jquery.dataTables.css",
         "../node_modules/primeng/resources/primeng.min.css",
         "../node_modules/primeng/resources/themes/omega/theme.css",
+        "../node_modules/ng2-spinning-preloader/dist/ng-spinning-preloader.css",
         "styles.css"
       ],
       "scripts": [
