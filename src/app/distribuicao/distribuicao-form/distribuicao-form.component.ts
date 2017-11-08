@@ -112,7 +112,7 @@ export class DistribuicaoFormComponent implements OnInit {
         let qtdefaixas: number = parseFloat(this.distribuicao.qtde_faixas);
         let Amplitude: number = (diferenca / qtdefaixas);
 
-        this.formDistribuicao.get('qtde_faixas').setValue(Amplitude);
+        this.formDistribuicao.get('amplitude_faixas').setValue(Amplitude);
     }
 
     onCancel() {
