@@ -1,6 +1,8 @@
+import { MensagensHandler } from 'app/shared/services/mensagens-handler.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { LoaderService } from 'app/shared/services/loader.service';
 
 import { Papel } from './../papel.model';
 import { PapelService } from './../papel.service';
@@ -20,7 +22,9 @@ export class PapelFormComponent implements OnInit {
         formBuilder: FormBuilder,
         private router: Router,
         private route: ActivatedRoute,
-        private papelService: PapelService
+        private papelService: PapelService,
+        private loaderService: LoaderService,
+		private mensagensHandler: MensagensHandler
     ) {
         this.formPapel = formBuilder.group({
             tipo: [null, [Validators.required]],
@@ -42,6 +46,10 @@ export class PapelFormComponent implements OnInit {
     }
 
     ngOnInit() {
+        
+        this.loaderService.setMsgLoading("Carregando ...");
+		this.mensagensHandler.handleClearMessages();
+
         var id_papel = this.route.params.subscribe(params => {
             this.idResource = params['id_papel'];
             this.title = this.idResource ? 'Editar Papel' : 'Novo Papel';
@@ -62,16 +70,27 @@ export class PapelFormComponent implements OnInit {
     }
 
     save() {
-        var result,
-            userValue = this.formPapel.value;
+        let result, userValue = this.formPapel.value;
+        let atualizar: boolean;
 
         if (this.idResource) {
+            atualizar = true;
+            this.loaderService.setMsgLoading("Atualizando papel ...");
             result = this.papelService.updatePapel(this.idResource, userValue);
-
         } else {
+            atualizar = false;
+			this.loaderService.setMsgLoading("Salvando papel ...");
             result = this.papelService.addPapel(userValue);
         }
-        result.subscribe(data => this.router.navigate(['papel']));
+        result.subscribe(data => {
+			if (atualizar) {
+				this.mensagensHandler.handleSuccess("Papel atualizado com sucesso!");
+			} else {
+                this.mensagensHandler.handleSuccess("Papel salvo com sucesso!");
+			}
+			this.router.navigate(['papel']);
+		}
+		);
     }
 
     onCancel() {

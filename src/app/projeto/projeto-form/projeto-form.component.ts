@@ -1,7 +1,9 @@
+import { MensagensHandler } from 'app/shared/services/mensagens-handler.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, Route, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { TextMaskModule } from 'angular2-text-mask';
+import { LoaderService } from 'app/shared/services/loader.service';
 
 import { Projeto } from './../projeto.model';
 import { ProjetoService } from './../projeto.service';
@@ -25,7 +27,9 @@ export class ProjetoFormComponent implements OnInit {
         formBuilder: FormBuilder,
         private router: Router,
         private route: ActivatedRoute,
-        private projetoService: ProjetoService
+        private projetoService: ProjetoService,
+        private loaderService: LoaderService,
+		private mensagensHandler: MensagensHandler
     ) {
         this.formProjeto = formBuilder.group({
             titulo: [null, Validators.required],
@@ -51,6 +55,9 @@ export class ProjetoFormComponent implements OnInit {
 
     ngOnInit() {
 
+        this.loaderService.setMsgLoading("Carregando ...");
+		this.mensagensHandler.handleClearMessages();
+
         this.pt = {
             firstDayOfWeek: 0,
             dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
@@ -71,7 +78,6 @@ export class ProjetoFormComponent implements OnInit {
 
             this.projetoService.getProjetoId(this.idResource).subscribe(projeto => {
                 projeto = this.projeto = projeto
-                // debugger
                 this.projeto.dt_inicio = FuncoesGlobais.dataFormatadaView(this.projeto.dt_inicio);
                 this.projeto.dt_fim = FuncoesGlobais.dataFormatadaView(this.projeto.dt_fim);
 
@@ -90,8 +96,6 @@ export class ProjetoFormComponent implements OnInit {
         console.log(this.formProjeto.get('dt_inicio').value, this.formProjeto.get('dt_fim').value, this.formProjeto.get('dt_inicio').value > this.formProjeto.get('dt_fim').value);
         
         if(FuncoesGlobais.comparaDatas(this.formProjeto.get('dt_inicio').value, this.formProjeto.get('dt_fim').value)){
-
-        //if (this.formProjeto.get('dt_inicio').value > this.formProjeto.get('dt_fim').value) {
             console.log('A data inicial não pode ser maior que a final!');
             this.errorData = false;
         } else {
@@ -99,15 +103,29 @@ export class ProjetoFormComponent implements OnInit {
             // Setando a nova data para salvar no banco
             this.formProjeto.get('dt_inicio').setValue(FuncoesGlobais.dataFormatadaCad(this.formProjeto.value.dt_inicio));
             this.formProjeto.get('dt_fim').setValue(FuncoesGlobais.dataFormatadaCad(this.formProjeto.value.dt_fim));
-
-            var result, projetoValue = this.formProjeto.value;
+     
+            let result, projetoValue = this.formProjeto.value;
+            let atualizar: boolean;
 
             if (this.idResource) {
+                atualizar = true;
+                this.loaderService.setMsgLoading("Atualizando projeto ...");
                 result = this.projetoService.updateProjeto(this.idResource, projetoValue);
             } else {
+                atualizar = false;
+			    this.loaderService.setMsgLoading("Salvando projeto ...");
                 result = this.projetoService.addProjeto(projetoValue);
             }
-            result.subscribe(data => this.router.navigate(['projeto']));
+            
+            result.subscribe(data => {
+			if (atualizar) {
+				this.mensagensHandler.handleSuccess("Projeto atualizado com sucesso!");
+			} else {
+                this.mensagensHandler.handleSuccess("Projeto salvo com sucesso!");
+			}
+			this.router.navigate(['projeto']);
+		}
+		);
         }
     }
 

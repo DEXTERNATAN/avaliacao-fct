@@ -51,16 +51,6 @@
 									</td>
 									<td>
 										<p-autoComplete [(ngModel)]="texts" [suggestions]="results" (completeMethod)="search($event)" [multiple]="true"></p-autoComplete>
-										 <!-- <select class="form-control select2" multiple="multiple" data-placeholder="Selecione o Papel" style="width: 100%;" maxselect="3">
-											<option  value="1">Front-end</option>
-											<option  value="2">Arquiteto</option>
-											<option  value="3">Testes</option>
-											<option  value="4">Requisitos</option>
-											<option  value="5">Back-end</option>
-											<option  value="6">Banco</option>
-											<option  value="7">Front-end</option>
-										 </select> -->
-
 									</td>	
 								</tr>
 							</table>			
@@ -555,25 +545,55 @@
 						<div class="form-group">
 							<table class="table table-condensed">
 								<tr>
-									<th>Pontuação Total</th>
-									<th>Pontuação Ideal</th>
-									<th>Ajuste</th>
+									<th>
+										<label style="width: 20%">% de Ociosidade</label>
+									</th>
+								</tr>
+								<tr>
+									<td>
+										<label style="width: 20%">
+											<input type="text" class="form-control" id="" placeholder="Informe o % de Ociosidade" maxlength="6" value="0.00">
+										</label>	
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div class="form-group">
+							<table class="table table-condensed">
+								<tr>
+									<th style="width: 24%">Pontuação Total</th>
+									<th style="width: 24%">Pontuação FCT Atual</th>
+									<th style="width: 24%">Ajuste</th>
+									<th></th>
+									<th style="width: 10%"></th>	
 								</tr>
 								<tr>
 									<td>
 										<label style="width: 100%">
-											<input type="text" class="form-control" id="" readonly placeholder="" value="87.98">
+											<input type="text" class="form-control" id="" readonly placeholder="" value="97.54">
 										</label>
 									</td>
 									<td>
 										<label style="width: 100%">
-											<input type="text" class="form-control" id="" readonly placeholder="" value="97.54">
+											<input type="text" class="form-control" id="" readonly placeholder="" value="87.98">
 										</label>	
 									</td>
 									<td>
 										<label style="width: 100%">
-											<input type="text" class="form-control" id="" readonly placeholder="" value="9.56">
+											<input type="text" class="form-control" id="" readonly placeholder="" value="-9.56">
 										</label>	
+									</td>
+									<td>
+										<div class="progress progress-xs progress-striped active">
+                      						<div class="progress-bar progress-bar-success" style="width: 10%"></div>
+                    					</div>
+										<!--<div class="progress progress-xs progress-striped active">
+											<div class="progress-bar progress-bar-danger" style="width: 55%"></div>
+										</div>-->
+									</td>
+									<td>	
+										<span class="badge bg-green">-10%</span>
+										<!--<span class="badge bg-red">55%</span>-->
 									</td>
 								</tr>	
 							</table>	
@@ -581,19 +601,33 @@
 						<div class="form-group">
 							<table class="table table-condensed">
 								<tr>
-									<th>Referência FCT Atual</th>
-									<th>Referência FCT pela pontuação</th>
+									<th style="width: 36%">Referência FCT pela Pontuação Total</th>
+									<th style="width: 36%">Referência FCT Atual</th>
+									<th></th>
+									<th style="width: 10%"></th>
 								</tr>
 								<tr>
+									<td>
+										<label style="width: 100%">
+											<input type="text" class="form-control" id="" readonly placeholder="" value="13 - Técnico (R$ 678.19)">
+										</label>	
+									</td>
 									<td>
 										<label style="width: 100%">
 											<input type="text" class="form-control" id="" readonly placeholder="" value="11 - Técnico (R$ 395.77)">
 										</label>	
 									</td>
 									<td>
-										<label style="width: 100%">
-											<input type="text" class="form-control" id="" readonly placeholder="" value="13 - Técnico (R$ 678.19)">
-										</label>	
+										<div class="progress progress-xs progress-striped active">
+                      						<div class="progress-bar progress-bar-success" style="width: 58%"></div>
+                    					</div>
+										<!--<div class="progress progress-xs progress-striped active">
+											<div class="progress-bar progress-bar-danger" style="width: 55%"></div>
+										</div>-->
+									</td>
+									<td>	
+										<span class="badge bg-green">-58%</span>
+										<!--<span class="badge bg-red">55%</span>-->
 									</td>
 								</tr>	
 							</table>	

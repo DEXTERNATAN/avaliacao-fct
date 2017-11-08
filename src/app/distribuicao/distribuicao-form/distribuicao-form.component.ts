@@ -1,6 +1,8 @@
+import { MensagensHandler } from 'app/shared/services/mensagens-handler.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, Route, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { LoaderService } from 'app/shared/services/loader.service';
 
 import { Distribuicao } from './../distribuicao.model';
 import { DistribuicaoService } from './../distribuicao.service';
@@ -23,7 +25,9 @@ export class DistribuicaoFormComponent implements OnInit {
         formBuilder: FormBuilder,
         private router: Router,
         private route: ActivatedRoute,
-        private distribuicaoService: DistribuicaoService
+        private distribuicaoService: DistribuicaoService,
+        private loaderService: LoaderService,
+        private mensagensHandler: MensagensHandler
     ) {
         this.formDistribuicao = formBuilder.group({
             valor: [null, Validators.required],
@@ -38,6 +42,9 @@ export class DistribuicaoFormComponent implements OnInit {
 
     ngOnInit() {
 
+        this.loaderService.setMsgLoading("Carregando ...");
+        this.mensagensHandler.handleClearMessages();
+
         var id_distribuicao = this.route.params.subscribe(params => {
             this.idResource = params['id_distribuicao'];
             this.title = this.idResource ? 'Editar Distribuição' : 'Nova Distribuição';
@@ -48,10 +55,10 @@ export class DistribuicaoFormComponent implements OnInit {
             this.distribuicaoService.getDistribuicaoId(this.idResource).subscribe(distribuicao => {
                 distribuicao = this.distribuicao = distribuicao
                 this.distribuicao.dt_registro = FuncoesGlobais.dataFormatadaView(this.distribuicao.dt_registro);
-                
+
                 this.calcularDiferencaPontuacao();
-                this.calcularAmplitude();        
-                
+                this.calcularAmplitude();
+
                 response => {
                     if (response.status == 404) {
                         this.router.navigate(['distribuicao'])
@@ -59,7 +66,6 @@ export class DistribuicaoFormComponent implements OnInit {
                 }
             })
         })
-
     }
 
     save() {
@@ -68,18 +74,30 @@ export class DistribuicaoFormComponent implements OnInit {
         this.formDistribuicao.get('dt_registro').setValue(null);
 
         // Chamanda para edicao e cadastro no banco
-        var result, userValue = this.formDistribuicao.value;
+        let result, userValue = this.formDistribuicao.value;
+        let atualizar: boolean;
+
         if (this.idResource) {
-            //debugger
+            atualizar = true;
+            this.loaderService.setMsgLoading("Atualizando a distribuição ...");
             result = this.distribuicaoService.updateDistribuicao(this.idResource, userValue);
         } else {
+            atualizar = false;
+            this.loaderService.setMsgLoading("Salvando a distribuição ...");
             result = this.distribuicaoService.addDistribuicao(userValue);
         }
-        result.subscribe(data => this.router.navigate(['distribuicao']));
+        result.subscribe(data => {
+            if (atualizar) {
+                this.mensagensHandler.handleSuccess("Distribuição atualizada com sucesso!");
+            } else {
+                this.mensagensHandler.handleSuccess("Distribuição salva com sucesso!");
+            }
+            this.router.navigate(['distribuicao']);
+        }
+        );
     }
 
     calcularDiferencaPontuacao(): void {
-        debugger
         let minima: number = parseFloat(this.distribuicao.pontuacao_minima);
         let maxima: number = parseFloat(this.distribuicao.pontuacao_maxima);
         let calculoDiferenca: any = (maxima - minima);
@@ -96,8 +114,6 @@ export class DistribuicaoFormComponent implements OnInit {
 
         this.formDistribuicao.get('qtde_faixas').setValue(Amplitude);
     }
-
-
 
     onCancel() {
         this.navigateBack();

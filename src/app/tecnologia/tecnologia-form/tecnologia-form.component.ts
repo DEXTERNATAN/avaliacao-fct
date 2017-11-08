@@ -1,6 +1,8 @@
+import { MensagensHandler } from 'app/shared/services/mensagens-handler.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { LoaderService } from 'app/shared/services/loader.service';
 
 import { Tecnologia } from './../tecnologia.model';
 import { TecnologiaService } from './../tecnologia.service';
@@ -20,7 +22,9 @@ export class TecnologiaFormComponent implements OnInit {
         formBuilder: FormBuilder,
         private router: Router,
         private route: ActivatedRoute,
-        private tecnologiaService: TecnologiaService
+        private tecnologiaService: TecnologiaService,
+        private loaderService: LoaderService,
+		private mensagensHandler: MensagensHandler
     ) {
         this.formTecnologia = formBuilder.group({
             tipo: [null, [Validators.required]],
@@ -42,6 +46,10 @@ export class TecnologiaFormComponent implements OnInit {
     }
 
     ngOnInit() {
+        
+        this.loaderService.setMsgLoading("Carregando ...");
+		this.mensagensHandler.handleClearMessages();
+		
         var id_tecnologia = this.route.params.subscribe(params => {
             this.idResource = params['id_tecnologia'];
             this.title = this.idResource ? 'Editar Tecnologia' : 'Nova Tecnologia';
@@ -63,16 +71,28 @@ export class TecnologiaFormComponent implements OnInit {
     }
 
     save() {
-        var result,
-            userValue = this.formTecnologia.value;
+        let result, userValue = this.formTecnologia.value;
+        let atualizar: boolean;
 
         if (this.idResource) {
+            atualizar = true;
+            this.loaderService.setMsgLoading("Atualizando tecnologia ...");
             result = this.tecnologiaService.updateTecnologia(this.idResource, userValue);
 
         } else {
+            atualizar = false;
+			this.loaderService.setMsgLoading("Salvando tecnologia ...");
             result = this.tecnologiaService.addTecnologia(userValue);
         }
-        result.subscribe(data => this.router.navigate(['tecnologia']));
+        result.subscribe(data => {
+			if (atualizar) {
+				this.mensagensHandler.handleSuccess("Tecnologia atualizada com sucesso!");
+			} else {
+                this.mensagensHandler.handleSuccess("Tecnologia salva com sucesso!");
+			}
+			this.router.navigate(['tecnologia']);
+		}
+		);
     }
 
     onCancel() {
