@@ -37,6 +37,10 @@ export class DistribuicaoFormComponent implements OnInit {
     }
 
     ngOnInit() {
+
+        this.calcularDiferencaPontuacao();
+        this.calcularAmplitude();
+
         var id_distribuicao = this.route.params.subscribe(params => {
             this.idResource = params['id_distribuicao'];
             this.title = this.idResource ? 'Editar Distribuição' : 'Nova Distribuição';
@@ -71,6 +75,27 @@ export class DistribuicaoFormComponent implements OnInit {
         }
         result.subscribe(data => this.router.navigate(['distribuicao']));
     }
+
+    calcularDiferencaPontuacao(): void {
+        
+        let minima: number = this.formDistribuicao.get('pontuacao_minima').value;
+        let maxima: number = this.formDistribuicao.get('pontuacao_maxima').value;
+        let calculoDiferenca: any = (minima - maxima);
+
+        this.formDistribuicao.get('diferenca').setValue(calculoDiferenca);
+
+    }
+
+    calcularAmplitude(): void {
+        
+        let diferenca: number = this.formDistribuicao.get('diferenca').value;
+        let qtdefaixas: number = this.formDistribuicao.get('qtde_faixas').value;
+        let Amplitude: number = (diferenca/qtdefaixas);
+        
+        this.formDistribuicao.get('qtde_faixas').setValue(Amplitude);
+    }
+
+
 
     onCancel() {
         this.navigateBack();
