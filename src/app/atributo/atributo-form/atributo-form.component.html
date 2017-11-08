@@ -3,8 +3,13 @@
 		Atributo
 	</h1>
 	<ol class="breadcrumb">
-		<li><a href="#"><i class="fa fa-home"></i> Home</a></li>
-		<li><a href="#">Atributo</a></li>
+		<li>
+			<a href="#">
+				<i class="fa fa-home"></i> Home</a>
+		</li>
+		<li>
+			<a href="#">Atributo</a>
+		</li>
 		<li class="active">Detalhes do Atributo</li>
 	</ol>
 </section>
@@ -16,62 +21,68 @@
 					<h3 class="box-title">Detalhes do Atributo</h3>
 				</div>
 				<!-- /.box-header -->
-				<!-- form start -->
-				<!-- {{atributo | json }} -->
 				<form role="form" [formGroup]="formAtributo" (ngSubmit)="save()">
 					<div class="box-body">
 						<div class="form-group" [ngClass]="{'has-error': (!formAtributo.controls['letra'].valid && formAtributo.controls['letra'].touched) }">
 							<label for="letra">Descrição</label>
-							x{{ atributo.letra }}x
 							<select class="form-control" [(ngModel)]="atributo.letra" formControlName="letra" id="letra" (change)="setCamposDesc(atributo.letra)">
-                            	<option value="" [selected]="true">Selecione</option>  
-                                <option value="a">a) Analisar as demandas apresentadas pelas áreas de negócio e propor alternativas de solução técnica e estratégia de desenvolvimento</option>
-                                <option value="b">b) Elicitar requisitos e criar modelos de uso e de testes de sistemas</option>
+								<option value="" [selected]="true">Selecione</option>
+								<option value="a">a) Analisar as demandas apresentadas pelas áreas de negócio e propor alternativas de solução técnica e estratégia
+									de desenvolvimento</option>
+								<option value="b">b) Elicitar requisitos e criar modelos de uso e de testes de sistemas</option>
 								<option value="c">c) Elaborar projeto lógico e físico de dados e de sistemas</option>
 								<option value="d">d) Definir a arquitetura de softwares e de sistemas</option>
 								<option value="e">e) Especificar unidades de implementação de software</option>
 								<option value="f">f) Elaborar documentação relativa às etapas de desenvolvimento de sistemas</option>
-								<option value="g">g) Planejar, elaborar e ministrar treinamentos relativos a sistemas de informação, ferramentas de acesso e manipulação de dados</option>
+								<option value="g">g) Planejar, elaborar e ministrar treinamentos relativos a sistemas de informação, ferramentas de acesso e manipulação
+									de dados</option>
 								<option value="h">h) Selecionar, implementar e internalizar novas tecnologias de desenvolvimento</option>
 								<option value="i">i) Prestar assessoramento técnico no que se refere a prazos, recursos e alternativas de desenvolvimento de sistemas</option>
 								<option value="j">j) Especificar a manutenção de softwares e de sistemas </option>
 								<option value="l">l) Planejar e administrar componentes reusáveis e repositórios </option>
 								<option value="m">m) Certificar e inspecionar modelos e códigos de sistemas</option>
 								<option value="n">n) Elaborar e gerenciar projetos de sistemas e software</option>
-                            </select>
+							</select>
 							<span *ngIf="!formAtributo.controls['letra'].valid && formAtributo.controls['letra'].touched" class="help-block">O campo Descrição é obrigatório!</span>
 						</div>
 						<div class="form-group" [ngClass]="{'has-error': (!formAtributo.controls['TB_ABRANGENCIA_id_abrangencia'].valid && formAtributo.controls['TB_ABRANGENCIA_id_abrangencia'].touched)}">
 							<label for="TB_ABRANGENCIA_id_abrangencia">Abrangêcia</label>
 							<select id="TB_ABRANGENCIA_id_abrangencia" [(ngModel)]="atributo.TB_ABRANGENCIA_id_abrangencia" class="form-control" formControlName="TB_ABRANGENCIA_id_abrangencia">
 								<option value="">Selecione</option>
-								<option *ngFor="let abrangencia of Abrangencia | filter: atributo.letra; let i = index" [selected]="abrangencia.id_abrangencia === atributo.TB_ABRANGENCIA_id_abrangencia" value="{{abrangencia.id_abrangencia}}">{{abrangencia.classificacao + "-" + abrangencia.nome}}</option>
+								<option *ngFor="let abrangencia of Abrangencia | filter: atributo.letra; let i = index" [selected]="abrangencia.id_abrangencia === atributo.TB_ABRANGENCIA_id_abrangencia"
+								 value="{{abrangencia.id_abrangencia}}">{{abrangencia.classificacao + "-" + abrangencia.nome}}</option>
 							</select>
-							<span *ngIf="!formAtributo.controls['TB_ABRANGENCIA_id_abrangencia'].valid && formAtributo.controls['TB_ABRANGENCIA_id_abrangencia'].touched" class="help-block">A Abrangência é obrigatória!</span>
+							<span *ngIf="!formAtributo.controls['TB_ABRANGENCIA_id_abrangencia'].valid && formAtributo.controls['TB_ABRANGENCIA_id_abrangencia'].touched"
+							 class="help-block">A Abrangência é obrigatória!</span>
 						</div>
 						<div class="form-group" [ngClass]="{'has-error': (!formAtributo.controls['TB_COMPLEXIDADE_id_complexidade'].valid && formAtributo.controls['TB_COMPLEXIDADE_id_complexidade'].touched)}">
 							<label for="TB_COMPLEXIDADE_id_complexidade">Complexidade</label>
-							<select id="TB_COMPLEXIDADE_id_complexidade" [(ngModel)]="atributo.TB_COMPLEXIDADE_id_complexidade" class="form-control" formControlName="TB_COMPLEXIDADE_id_complexidade">
+							<select id="TB_COMPLEXIDADE_id_complexidade" [(ngModel)]="atributo.TB_COMPLEXIDADE_id_complexidade" class="form-control"
+							 formControlName="TB_COMPLEXIDADE_id_complexidade">
 								<option value="">Selecione</option>
-								<option *ngFor="let complexidade of Complexidade | filter: atributo.letra; let i = index"  [selected]="complexidade.id_complexidade === atributo.TB_COMPLEXIDADE_id_complexidade"  value="{{complexidade.id_complexidade}}">{{complexidade.classificacao + "-" + complexidade.nome}}</option>
+								<option *ngFor="let complexidade of Complexidade | filter: atributo.letra; let i = index" [selected]="complexidade.id_complexidade === atributo.TB_COMPLEXIDADE_id_complexidade"
+								 value="{{complexidade.id_complexidade}}">{{complexidade.classificacao + "-" + complexidade.nome}}</option>
 							</select>
-							<span *ngIf="!formAtributo.controls['TB_COMPLEXIDADE_id_complexidade'].valid && formAtributo.controls['TB_COMPLEXIDADE_id_complexidade'].touched" class="help-block">A Complexidade é obrigatória!</span>
+							<span *ngIf="!formAtributo.controls['TB_COMPLEXIDADE_id_complexidade'].valid && formAtributo.controls['TB_COMPLEXIDADE_id_complexidade'].touched"
+							 class="help-block">A Complexidade é obrigatória!</span>
 						</div>
 						<div class="form-group" [ngClass]="{'has-error': (!formAtributo.controls['TB_IMPACTO_id_impacto'].valid && formAtributo.controls['TB_IMPACTO_id_impacto'].touched)}">
 							<label for="TB_IMPACTO_id_impacto">Impacto</label>
 							<select id="TB_IMPACTO_id_impacto" [(ngModel)]="atributo.TB_IMPACTO_id_impacto" class="form-control" formControlName="TB_IMPACTO_id_impacto">
 								<option value="">Selecione</option>
-								<option *ngFor="let impacto of Impacto | filter: atributo.letra; let i = index" [selected]="impacto.id_impacto === atributo.TB_IMPACTO_id_impacto" value="{{impacto.id_impacto}}">{{impacto.classificacao + "-" + impacto.nome}}</option>
+								<option *ngFor="let impacto of Impacto | filter: atributo.letra; let i = index" [selected]="impacto.id_impacto === atributo.TB_IMPACTO_id_impacto"
+								 value="{{impacto.id_impacto}}">{{impacto.classificacao + "-" + impacto.nome}}</option>
 							</select>
-							<span *ngIf="!formAtributo.controls['TB_IMPACTO_id_impacto'].valid && formAtributo.controls['TB_IMPACTO_id_impacto'].touched" class="help-block">O Impacto é obrigatório!</span>
+							<span *ngIf="!formAtributo.controls['TB_IMPACTO_id_impacto'].valid && formAtributo.controls['TB_IMPACTO_id_impacto'].touched"
+							 class="help-block">O Impacto é obrigatório!</span>
 						</div>
-					<!-- /.box-body -->
-					<div class="box-footer">
-						<input type="hidden" [(ngModel)]="atributo.descricao" formControlName="descricao" id="descricao" value="">
-						<button type="button" class="btn btn-default" (click)="onCancel()">Cancelar</button>
-						<button type="submit" class="btn btn-info pull-right" [disabled]="!formAtributo.valid">Enviar</button>
-						
-					</div>
+						<!-- /.box-body -->
+						<div class="box-footer">
+							<input type="hidden" [(ngModel)]="atributo.descricao" formControlName="descricao" id="descricao" value="">
+							<button type="button" class="btn btn-default" (click)="onCancel()">Cancelar</button>
+							<button type="submit" class="btn btn-info pull-right" [disabled]="!formAtributo.valid">Enviar</button>
+
+						</div>
 					</div>
 				</form>
 			</div>

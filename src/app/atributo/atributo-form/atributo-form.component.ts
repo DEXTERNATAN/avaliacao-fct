@@ -71,6 +71,8 @@ export class AtributoFormComponent implements OnInit {
 
 			this._atributoService.getAtributoId(this.idResource).subscribe(atributo => {
 				atributo = this.atributo = atributo
+				
+				this.habilitaCampos();
 
 				response => {
 					if (response.status == 404) {
@@ -157,12 +159,35 @@ export class AtributoFormComponent implements OnInit {
 		return op1 && op2 ? op1.TB_ABRANGENCIA_id_abrangencia === op2.id_abrangencia : op1 === op2;
 	}
 
-	setCamposDesc(letra: string) {
+	habilitaCampos(){
 		// Habilitando os campos de select
 		this.formAtributo.get('TB_ABRANGENCIA_id_abrangencia').enable();
 		this.formAtributo.get('TB_COMPLEXIDADE_id_complexidade').enable();
 		this.formAtributo.get('TB_IMPACTO_id_impacto').enable();
 
+	}
+
+	desabilitaCampos(){
+		// Habilitando os campos de select
+		this.formAtributo.get('TB_ABRANGENCIA_id_abrangencia').disable();
+		this.formAtributo.get('TB_COMPLEXIDADE_id_complexidade').disable();
+		this.formAtributo.get('TB_IMPACTO_id_impacto').disable();
+		// zerar o valor dos campos
+		// this.formAtributo.get('TB_ABRANGENCIA_id_abrangencia').setValue("");
+		// this.formAtributo.get('TB_COMPLEXIDADE_id_complexidade').setValue("");
+		// this.formAtributo.get('TB_IMPACTO_id_impacto').setValue("");
+	}
+
+	setCamposDesc(letra: string) {
+		
+		// habilitando os campos
+		if(letra){
+			this.habilitaCampos();
+		}else{
+			this.desabilitaCampos();
+		}
+		
+		
 		switch (letra) {
 			case 'a':
 				{
