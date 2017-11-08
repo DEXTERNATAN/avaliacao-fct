@@ -38,9 +38,6 @@ export class DistribuicaoFormComponent implements OnInit {
 
     ngOnInit() {
 
-        this.calcularDiferencaPontuacao();
-        this.calcularAmplitude();
-
         var id_distribuicao = this.route.params.subscribe(params => {
             this.idResource = params['id_distribuicao'];
             this.title = this.idResource ? 'Editar Distribuição' : 'Nova Distribuição';
@@ -58,6 +55,8 @@ export class DistribuicaoFormComponent implements OnInit {
                     }
             })
         })
+        this.calcularDiferencaPontuacao();
+        this.calcularAmplitude();
     }
 
     save() {
