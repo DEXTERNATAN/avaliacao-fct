@@ -179,14 +179,12 @@ export class AtributoFormComponent implements OnInit {
 	}
 
 	setCamposDesc(letra: string) {
-		
 		// habilitando os campos
 		if(letra){
 			this.habilitaCampos();
 		}else{
 			this.desabilitaCampos();
 		}
-		
 		
 		switch (letra) {
 			case 'a':

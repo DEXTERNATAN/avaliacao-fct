@@ -6,6 +6,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { NgSpinningPreloader } from 'ng2-spinning-preloader';
 
 import { LoaderService } from 'app/shared/services/loader.service';
 import { LoaderComponent } from './shared/components/loader.component';
@@ -162,7 +163,8 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   [ 
       { provide: LOCALE_ID, useValue: 'pt-BR' }, 
       { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig },
-      { provide: Http, useFactory: httpFactory, deps: [XHRBackend, RequestOptions, LoaderService, MensagensHandler]}
+      { provide: Http, useFactory: httpFactory, deps: [XHRBackend, RequestOptions, LoaderService, MensagensHandler]},
+      NgSpinningPreloader
   ],
   bootstrap: [AppComponent]
 })

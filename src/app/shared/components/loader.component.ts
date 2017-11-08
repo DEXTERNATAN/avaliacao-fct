@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { LoaderState } from 'app/shared/models/loader-state';
 import { LoaderService } from 'app/shared/services/loader.service';
 
+
 @Component({
     selector: 'avaliacao-loader',
     templateUrl: './loader.component.html',
