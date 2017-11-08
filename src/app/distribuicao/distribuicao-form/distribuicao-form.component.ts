@@ -20,7 +20,7 @@ export class DistribuicaoFormComponent implements OnInit {
     distribuicao: Distribuicao = new Distribuicao();
     idResource: any;
     public maskDate = [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/];
-
+    
     constructor(
         formBuilder: FormBuilder,
         private router: Router,
@@ -57,7 +57,7 @@ export class DistribuicaoFormComponent implements OnInit {
                 this.distribuicao.dt_registro = FuncoesGlobais.dataFormatadaView(this.distribuicao.dt_registro);
 
                 this.calcularDiferencaPontuacao();
-                this.calcularAmplitude();
+                this.calcularAmplitude(true);
 
                 response => {
                     if (response.status == 404) {
@@ -65,7 +65,16 @@ export class DistribuicaoFormComponent implements OnInit {
                     }
                 }
             })
-        })
+        });
+
+        // se inscreve para verificar alterações no valor das faixas
+        this.formDistribuicao.get('qtde_faixas').valueChanges.subscribe( /* <- does work */
+            changes => {
+                console.log('title has changed:', changes);
+                this.calcularAmplitude(false);
+            }
+          );
+
     }
 
     save() {
@@ -106,10 +115,10 @@ export class DistribuicaoFormComponent implements OnInit {
 
     }
 
-    calcularAmplitude(): void {
-
+    calcularAmplitude(opcao: boolean): void {
+        
         let diferenca: number = this.formDistribuicao.get('diferenca').value;
-        let qtdefaixas: number = parseFloat(this.distribuicao.qtde_faixas);
+        let qtdefaixas: number = (opcao? parseFloat(this.distribuicao.qtde_faixas): this.formDistribuicao.get('qtde_faixas').value);
         let Amplitude: number = (diferenca / qtdefaixas);
 
         this.formDistribuicao.get('amplitude_faixas').setValue(Amplitude);
