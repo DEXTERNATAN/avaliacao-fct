@@ -77,10 +77,10 @@ export class DistribuicaoFormComponent implements OnInit {
     }
 
     calcularDiferencaPontuacao(): void {
-        
+        debugger
         let minima: number = this.formDistribuicao.get('pontuacao_minima').value;
         let maxima: number = this.formDistribuicao.get('pontuacao_maxima').value;
-        let calculoDiferenca: any = (minima - maxima);
+        let calculoDiferenca: any = (maxima - minima);
 
         this.formDistribuicao.get('diferenca').setValue(calculoDiferenca);
 
@@ -92,7 +92,7 @@ export class DistribuicaoFormComponent implements OnInit {
         let qtdefaixas: number = this.formDistribuicao.get('qtde_faixas').value;
         let Amplitude: number = (diferenca/qtdefaixas);
         
-        this.formDistribuicao.get('qtde_faixas').setValue(Amplitude);
+        this.formDistribuicao.get('amplitude_faixas').setValue(Amplitude);
     }
 
 

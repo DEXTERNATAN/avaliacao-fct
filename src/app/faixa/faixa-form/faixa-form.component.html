@@ -182,6 +182,7 @@
 							<table class="table table-condensed">
 								<tr>
 									<th>Valor Total da Distribuição</th>
+									<th>Referência FCT para pontuação mínima</th>
 									<th>&nbsp;</th>
 								</tr>
 								<tr>	
@@ -190,11 +191,42 @@
 											<input type="text" class="form-control" id="" readonly placeholder="" value="R$ 25000.00">
 										</label>
 									</td>
+									<td>
+										<label style="width: 60%">
+											<select class="form-control" id="">
+												<option  value="1">1</option>
+												<option  value="2">2</option>
+												<option  value="3">3</option>
+												<option  value="4">4</option>
+												<option  value="5">5</option>
+												<option  value="6">6</option>
+												<option  value="7">7</option>
+												<option  value="8">8</option>
+												<option  value="9">9</option>
+												<option  value="10">10</option>
+												<option  value="11">11</option>
+												<option  value="12">12</option>
+												<option  value="13">13</option>
+												<option  value="14" [selected]="true">14</option>
+												<option  value="15">15</option>
+												<option  value="16">16</option>
+												<option  value="17">17</option>
+												<option  value="18">18</option>
+												<option  value="19">19</option>
+												<option  value="20">20</option>
+												<option  value="21">21</option>
+												<option  value="22">22</option>
+												<option  value="23">23</option>
+												<option  value="24">24</option>
+												<option  value="25">25</option>
+											</select>
+										</label>
+									</td>
 									<td>		
 										<div class="checkbox">
 											<label>
-											<input type="checkbox">
-											Assumir o Percentual Calculado
+												<input type="checkbox">
+												Assumir o Percentual(%) Calculado
 											</label>
 										</div>
 									</td>
@@ -214,12 +246,13 @@
 									<table class="table table-striped">
 										<tr>
 											<th>Faixa</th>
-											<th style="width:180px">Percentual Fixo</th>
+											<th style="width:180px">Percentual(%) Fixo</th>
 											<th style="width:180px">Valor Total Fixo</th>
 											<th style="width:180px">Valor Rateio por Pessoa Fixo</th>
 											<th style="width:180px">Percentual Calculado</th>
 											<th style="width:180px">Valor Total Calculado</th>
 											<th style="width:180px">Valor Rateio por Pessoa Calculado</th>
+											<th style="width:180px">Valor Rateio Somado por Faixa</th>
 										</tr>
 										<tr>	
 											<td>
@@ -227,7 +260,7 @@
 											</td>
 											<td>		
 												<label for="">
-													<input type="text" class="form-control" id="" placeholder="" value="30.00%">
+													<input type="text" class="form-control" id="" maxlength="5" placeholder="" value="30.00">
 												</label>
 											</td>
 											<td>		
@@ -255,6 +288,8 @@
 													<span class="badge bg-light-blue">R$ 65.75</span>
 												</label>
 											</td>
+											<td>
+											</td>
 										</tr>
 										<tr>	
 											<td>
@@ -262,7 +297,7 @@
 											</td>
 											<td>		
 												<label for="">
-													<input type="text" class="form-control" id="" placeholder="" value="40.00%">
+													<input type="text" class="form-control" id="" maxlength="5" placeholder="" value="40.00">
 												</label>
 											</td>
 											<td>		
@@ -290,6 +325,11 @@
 													<span class="badge bg-light-blue">R$ 402.93</span>
 												</label>
 											</td>
+											<td>		
+												<label for="">
+													<span class="badge bg-light-blue">R$ 468.68</span>
+												</label>
+											</td>
 										</tr>
 										<tr>	
 											<td>
@@ -297,7 +337,7 @@
 											</td>
 											<td>		
 												<label for="">
-													<input type="text" class="form-control" id="" placeholder="" value="25.00%">
+													<input type="text" class="form-control" id="" maxlength="5" placeholder="" value="25.00">
 												</label>
 											</td>
 											<td>		
@@ -325,6 +365,11 @@
 													<span class="badge bg-light-blue">R$ 443.79</span>
 												</label>
 											</td>
+											<td>		
+												<label for="">
+													<span class="badge bg-light-blue">R$ 912.47</span>
+												</label>
+											</td>
 										</tr>
 										<tr>	
 											<td>
@@ -332,7 +377,7 @@
 											</td>
 											<td>		
 												<label for="">
-													<input type="text" class="form-control" id="" placeholder="" value="5.00%">
+													<input type="text" class="form-control" id="" maxlength="5" placeholder="" value="5.00">
 												</label>
 											</td>
 											<td>		
@@ -358,6 +403,11 @@
 											<td>		
 												<label for="">
 													<span class="badge bg-light-blue">R$ 641.03</span>
+												</label>
+											</td>
+											<td>		
+												<label for="">
+													<span class="badge bg-light-blue">R$ 1553.50</span>
 												</label>
 											</td>
 										</tr>
