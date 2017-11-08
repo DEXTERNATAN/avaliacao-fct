@@ -38,9 +38,6 @@ export class DistribuicaoFormComponent implements OnInit {
 
     ngOnInit() {
 
-        this.calcularDiferencaPontuacao();
-        this.calcularAmplitude();
-
         var id_distribuicao = this.route.params.subscribe(params => {
             this.idResource = params['id_distribuicao'];
             this.title = this.idResource ? 'Editar Distribuição' : 'Nova Distribuição';
@@ -51,20 +48,25 @@ export class DistribuicaoFormComponent implements OnInit {
             this.distribuicaoService.getDistribuicaoId(this.idResource).subscribe(distribuicao => {
                 distribuicao = this.distribuicao = distribuicao
                 this.distribuicao.dt_registro = FuncoesGlobais.dataFormatadaView(this.distribuicao.dt_registro);
-                    response => {
-                        if (response.status == 404) {
-                            //this.router.navigate(['distribuicao'])
-                        }
+                
+                this.calcularDiferencaPontuacao();
+                this.calcularAmplitude();        
+                
+                response => {
+                    if (response.status == 404) {
+                        this.router.navigate(['distribuicao'])
                     }
+                }
             })
         })
+
     }
 
     save() {
 
         // Setando a nova data para salvar no banco
         this.formDistribuicao.get('dt_registro').setValue(null);
-        
+
         // Chamanda para edicao e cadastro no banco
         var result, userValue = this.formDistribuicao.value;
         if (this.idResource) {
@@ -77,21 +79,21 @@ export class DistribuicaoFormComponent implements OnInit {
     }
 
     calcularDiferencaPontuacao(): void {
-        
-        let minima: number = this.formDistribuicao.get('pontuacao_minima').value;
-        let maxima: number = this.formDistribuicao.get('pontuacao_maxima').value;
-        let calculoDiferenca: any = (minima - maxima);
+        debugger
+        let minima: number = parseFloat(this.distribuicao.pontuacao_minima);
+        let maxima: number = parseFloat(this.distribuicao.pontuacao_maxima);
+        let calculoDiferenca: any = (maxima - minima);
 
         this.formDistribuicao.get('diferenca').setValue(calculoDiferenca);
 
     }
 
     calcularAmplitude(): void {
-        
+
         let diferenca: number = this.formDistribuicao.get('diferenca').value;
-        let qtdefaixas: number = this.formDistribuicao.get('qtde_faixas').value;
-        let Amplitude: number = (diferenca/qtdefaixas);
-        
+        let qtdefaixas: number = parseFloat(this.distribuicao.qtde_faixas);
+        let Amplitude: number = (diferenca / qtdefaixas);
+
         this.formDistribuicao.get('qtde_faixas').setValue(Amplitude);
     }
 
