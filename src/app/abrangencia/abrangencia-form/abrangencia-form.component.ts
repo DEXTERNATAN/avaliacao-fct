@@ -1,6 +1,9 @@
+import { MensagensHandler } from 'app/shared/services/mensagens-handler.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, Route, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { LoaderService } from 'app/shared/services/loader.service';
+
 import { Abrangencia } from './../abrangencia.model';
 import { AbrangenciaService } from './../abrangencia.service';
 
@@ -20,7 +23,9 @@ export class AbrangenciaFormComponent implements OnInit {
         formBuilder: FormBuilder,
         private router: Router,
         private route: ActivatedRoute,
-        private abrangenciaService: AbrangenciaService
+        private abrangenciaService: AbrangenciaService,
+        private loaderService: LoaderService,
+		private mensagensHandler: MensagensHandler
     ) {
         this.formAbrangencia = formBuilder.group({
             atributo: [null, Validators.required],
@@ -45,6 +50,9 @@ export class AbrangenciaFormComponent implements OnInit {
 
     ngOnInit() {
         
+        this.loaderService.setMsgLoading("Carregando ...");
+		this.mensagensHandler.handleClearMessages();
+		
         var id_abrangencia = this.route.params.subscribe(params => {
             this.idResource = params['id_abrangencia'];
             this.title = this.idResource ? 'Editar Abrangência' : 'Nova Abrangência';
@@ -66,17 +74,28 @@ export class AbrangenciaFormComponent implements OnInit {
     }
 
     save() {
-        var result,
-            userValue = this.formAbrangencia.value;
-
+        let result, userValue = this.formAbrangencia.value;
+        let atualizar: boolean;
 
         if (this.idResource) {
+            atualizar = true;
+            this.loaderService.setMsgLoading("Atualizando abrangência ...");
             result = this.abrangenciaService.updateAbrangencia(this.idResource, userValue);
         } else {
+            atualizar = false;
+			this.loaderService.setMsgLoading("Salvando abrangência ...");
             result = this.abrangenciaService.addAbrangencia(userValue);
         }
 
-        result.subscribe(data => this.router.navigate(['abrangencia']));
+        result.subscribe(data => {
+			if (atualizar) {
+				this.mensagensHandler.handleSuccess("Abrangência atualizada com sucesso!");
+			} else {
+                this.mensagensHandler.handleSuccess("Abrangência salva com sucesso!");
+			}
+			this.router.navigate(['abrangencia']);
+		}
+		);
     }
 
     onCancel() {

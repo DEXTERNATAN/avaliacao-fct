@@ -1,6 +1,8 @@
+import { MensagensHandler } from 'app/shared/services/mensagens-handler.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, Route, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { LoaderService } from 'app/shared/services/loader.service';
 
 import { Pesos } from './../pesos.model';
 import { PesosService } from './../pesos.service';
@@ -22,7 +24,9 @@ export class PesosFormComponent implements OnInit {
         formBuilder: FormBuilder,
         private router: Router,
         private route: ActivatedRoute,
-        private pesosService: PesosService
+        private pesosService: PesosService,
+        private loaderService: LoaderService,
+		private mensagensHandler: MensagensHandler
     ) {
         this.formPesos = formBuilder.group({
             quantidade: [null, Validators.required],
@@ -48,6 +52,10 @@ export class PesosFormComponent implements OnInit {
     }
 
     ngOnInit() {
+        
+        this.loaderService.setMsgLoading("Carregando ...");
+		this.mensagensHandler.handleClearMessages();
+		        
         var id_pesos = this.route.params.subscribe(params => {
             this.idResource = params['id_pesos'];
             this.title = this.idResource ? 'Editar Peso' : 'Novo Peso';
@@ -55,7 +63,6 @@ export class PesosFormComponent implements OnInit {
             this.pesosService.getPesos().subscribe(pesos => {
                 this.allPesos = pesos;
             })
-
 
             this.pesosService.getPesosId(this.idResource).subscribe(pesos => {
                 pesos = this.pesos = pesos;
@@ -69,15 +76,28 @@ export class PesosFormComponent implements OnInit {
     }
 
     save() {
-        var result,
-            userValue = this.formPesos.value;
+        let result, userValue = this.formPesos.value;
+        let atualizar: boolean;
         
         if (this.idResource) {
+            atualizar = true;
+            this.loaderService.setMsgLoading("Atualizando pesos ...");
             result = this.pesosService.updatePesos(this.idResource, userValue);
         } else {
+            atualizar = false;
+			this.loaderService.setMsgLoading("Salvando pesos ...");
             result = this.pesosService.addPesos(userValue);
         }
-        result.subscribe(data => this.router.navigate(['pesos']));
+        
+        result.subscribe(data => {
+			if (atualizar) {
+				this.mensagensHandler.handleSuccess("Peso atualizado com sucesso!");
+			} else {
+                this.mensagensHandler.handleSuccess("Peso salvo com sucesso!");
+			}
+			this.router.navigate(['pesos']);
+		}
+		);
     }
 
     onCancel() {

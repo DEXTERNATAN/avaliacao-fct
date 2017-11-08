@@ -1,3 +1,4 @@
+import { MensagensHandler } from 'app/shared/services/mensagens-handler.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -10,6 +11,7 @@ import { ColaboradorService } from './../colaborador.service';
 import { ReferenciaService } from './../../referencia/referencia.service';
 import { DivisaoService } from './../../divisao/divisao.service';
 import { FuncoesGlobais } from 'app/shared/app.funcoes-globais';
+import { LoaderService } from 'app/shared/services/loader.service';
 
 @Component({
     selector: 'app-colaborador-form',
@@ -31,7 +33,9 @@ export class ColaboradorFormComponent implements OnInit {
         private route: ActivatedRoute,
         private colaboradorService: ColaboradorService,
         private _referenciaService: ReferenciaService,
-        private _divisaoService: DivisaoService
+        private _divisaoService: DivisaoService,
+        private loaderService: LoaderService,
+		private mensagensHandler: MensagensHandler
     ) {
         this.formColaborador = formBuilder.group({
 
@@ -48,9 +52,10 @@ export class ColaboradorFormComponent implements OnInit {
     }
 
     ngOnInit() {
-        //debugger
-        //console.debug('instanciacao: ', this.colaborador);
-        this.getReferencia();
+        
+        this.loaderService.setMsgLoading("Carregando ...");
+		this.mensagensHandler.handleClearMessages();
+		this.getReferencia();
         this.getDivisao();
 
         var idColaborador = this.route.params.subscribe(params => {
@@ -73,21 +78,31 @@ export class ColaboradorFormComponent implements OnInit {
 
     save() {
         
-        //debugger
         this.formColaborador.get('telefone').setValue(this.retiraCaracteres(this.formColaborador.get('telefone').value, "telefone"));
         console.log(this.formColaborador.get('telefone').value);
 
-        var result,
-            userValue = this.formColaborador.value;
+        let result, userValue = this.formColaborador.value;
+        let atualizar: boolean;
             
         if (this.idResource) {
-            
+            atualizar = true;
+            this.loaderService.setMsgLoading("Atualizando colaborador ...");
             result = this.colaboradorService.updateColaborador(this.idResource, userValue);
         } else {
+            atualizar = false;
+			this.loaderService.setMsgLoading("Salvando colaborador ...");
             result = this.colaboradorService.addColaborador(userValue);
         }
 
-        result.subscribe(data => this.router.navigate(['colaborador']));
+        result.subscribe(data => {
+			if (atualizar) {
+				this.mensagensHandler.handleSuccess("Colaborador atualizado com sucesso!");
+			} else {
+				this.mensagensHandler.handleSuccess("Colaborador salvo com sucesso!");
+			}
+			this.router.navigate(['colaborador']);
+		}
+		);
     }
 
     getReferencia(){

@@ -1,8 +1,9 @@
+import { MensagensHandler } from 'app/shared/services/mensagens-handler.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, Route, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
-
 import { CurrencyMaskModule } from "ng2-currency-mask";
+import { LoaderService } from 'app/shared/services/loader.service';
 
 import { Referencia } from './../referencia.model';
 import { ReferenciaService } from './../referencia.service';
@@ -27,7 +28,9 @@ export class ReferenciaFormComponent implements OnInit {
         formBuilder: FormBuilder,
         private router: Router,
         private route: ActivatedRoute,
-        private referenciaService: ReferenciaService
+        private referenciaService: ReferenciaService,
+        private loaderService: LoaderService,
+		private mensagensHandler: MensagensHandler
     ) {
         this.formReferencia = formBuilder.group({
             cargo: [null, Validators.required],
@@ -50,6 +53,10 @@ export class ReferenciaFormComponent implements OnInit {
     }
 
     ngOnInit() {
+        
+        this.loaderService.setMsgLoading("Carregando ...");
+		this.mensagensHandler.handleClearMessages();
+		        
         var id_referencia_fct_gfe = this.route.params.subscribe(params => {
             this.idResource = params['id_referencia_fct_gfe'];
             this.title = this.idResource ? 'Editar Referência FCT' : 'Nova Referência FCT';
@@ -72,15 +79,27 @@ export class ReferenciaFormComponent implements OnInit {
     }
 
     save() {
-        var result,
-            userValue = this.formReferencia.value;
+        let result, userValue = this.formReferencia.value;
+        let atualizar: boolean;
 
         if (this.idResource) {
+            atualizar = true;
+            this.loaderService.setMsgLoading("Atualizando referência FCT ...");
             result = this.referenciaService.updateReferencia(this.idResource, userValue);
         } else {
+            atualizar = false;
+			this.loaderService.setMsgLoading("Salvando referência FCT ...");
             result = this.referenciaService.addReferencia(userValue);
         }
-        result.subscribe(data => this.router.navigate(['referencia']));
+        result.subscribe(data => {
+			if (atualizar) {
+				this.mensagensHandler.handleSuccess("Referência atualizada com sucesso!");
+			} else {
+                this.mensagensHandler.handleSuccess("Referência salva com sucesso!");
+			}
+			this.router.navigate(['referencia']);
+		}
+		);
     }
 
     dataFormatada(data){

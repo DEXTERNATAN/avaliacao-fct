@@ -1,6 +1,8 @@
+import { MensagensHandler } from 'app/shared/services/mensagens-handler.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { LoaderService } from 'app/shared/services/loader.service';
 
 import { Divisao } from './divisao';
 import { DivisaoService } from './../divisao.service';
@@ -20,7 +22,9 @@ export class DivisaoFormComponent implements OnInit {
         formBuilder: FormBuilder,
         private router: Router,
         private route: ActivatedRoute,
-        private divisaoService: DivisaoService
+        private divisaoService: DivisaoService,
+        private loaderService: LoaderService,
+		private mensagensHandler: MensagensHandler
     ) {
         this.formDivisao = formBuilder.group({
 
@@ -46,6 +50,9 @@ export class DivisaoFormComponent implements OnInit {
 
     ngOnInit() {
         
+        this.loaderService.setMsgLoading("Carregando ...");
+		this.mensagensHandler.handleClearMessages();
+
         var id_divisao = this.route.params.subscribe(params => {
             
             this.idResource = params['id_divisao'];
@@ -69,16 +76,28 @@ export class DivisaoFormComponent implements OnInit {
 
     save() {
         
-        var result,
-            userValue = this.formDivisao.value;
+        let result, userValue = this.formDivisao.value;
+        let atualizar: boolean;
 
         if (this.idResource) {
+            atualizar = true;
+            this.loaderService.setMsgLoading("Atualizando divisão ...");
             result = this.divisaoService.updateDivisao(this.idResource, userValue);
         } else {
+            atualizar = false;
+			this.loaderService.setMsgLoading("Salvando divisão ...");
             result = this.divisaoService.addDivisao(userValue);
         }
 
-        result.subscribe(data => this.router.navigate(['divisao']));
+        result.subscribe(data => {
+			if (atualizar) {
+				this.mensagensHandler.handleSuccess("Divisão atualizada com sucesso!");
+			} else {
+				this.mensagensHandler.handleSuccess("Divisão salva com sucesso!");
+			}
+			this.router.navigate(['divisao']);
+		}
+		);
     }
 
     onCancel() {

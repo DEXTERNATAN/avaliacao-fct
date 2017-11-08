@@ -1,6 +1,8 @@
+import { MensagensHandler } from 'app/shared/services/mensagens-handler.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { LoaderService } from 'app/shared/services/loader.service';
 
 import { Complexidade } from './../complexidade.model';
 import { ComplexidadeService } from './../complexidade.service';
@@ -21,7 +23,9 @@ export class ComplexidadeFormComponent implements OnInit {
         formBuilder: FormBuilder,
         private router: Router,
         private route: ActivatedRoute,
-        private complexidadeService: ComplexidadeService
+        private complexidadeService: ComplexidadeService,
+        private loaderService: LoaderService,
+		private mensagensHandler: MensagensHandler
     ) {
         this.formComplexidade = formBuilder.group({
 
@@ -46,6 +50,10 @@ export class ComplexidadeFormComponent implements OnInit {
     }
 
     ngOnInit() {
+        
+        this.loaderService.setMsgLoading("Carregando ...");
+		this.mensagensHandler.handleClearMessages();
+        
         var id_complexidade = this.route.params.subscribe(params => {
             this.idResource = params['id_complexidade'];
             this.title = this.idResource ? 'Editar Complexidade' : 'Nova Complexidade';
@@ -67,16 +75,28 @@ export class ComplexidadeFormComponent implements OnInit {
     }
 
     save() {
-        var result,
-            userValue = this.formComplexidade.value;
+        let result, userValue = this.formComplexidade.value;
+        let atualizar: boolean;
 
         if (this.idResource) {
-            //debugger
+            atualizar = true;
+            this.loaderService.setMsgLoading("Atualizando complexidade ...");
             result = this.complexidadeService.updateComplexidade(this.idResource, userValue);
         } else {
+            atualizar = false;
+			this.loaderService.setMsgLoading("Salvando complexidade ...");
             result = this.complexidadeService.addComplexidade(userValue);
         }
-        result.subscribe(data => this.router.navigate(['complexidade']));
+
+        result.subscribe(data => {
+			if (atualizar) {
+				this.mensagensHandler.handleSuccess("Complexidade atualizada com sucesso!");
+			} else {
+				this.mensagensHandler.handleSuccess("Complexidade salva com sucesso!");
+			}
+			this.router.navigate(['complexidade']);
+		}
+		);
     }
 
     onCancel() {
