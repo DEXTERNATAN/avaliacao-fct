@@ -4,9 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule }  from '@angular/router';
 import { HttpModule }  from '@angular/http';
 import { DataTablesModule } from 'angular-datatables';
+//import { select2 } from 'select2';
 
 import {AutoCompleteModule} from 'primeng/components/autocomplete/autocomplete';
-
 
 import { AvaliacaoComponent } from './avaliacao.component';
 import { AvaliacaoService } from 'app/avaliacao/avaliacao.service';
@@ -20,6 +20,7 @@ import { AvaliacaoFormComponent } from 'app/avaliacao/avaliacao-form/avaliacao-f
     RouterModule,
     HttpModule,
     DataTablesModule,
+    //select2,
     AutoCompleteModule
   ],
   providers: [ AvaliacaoService ],

@@ -1,10 +1,19 @@
-import { Papel } from './../../papel/papel.model';
 import { Component, OnInit } from '@angular/core';
 import { Router, Route, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+//import { select2 } from 'select2';
+
 import { Avaliacao } from './../avaliacao.model';
+import { Colaborador } from './../../colaborador/colaborador.model';
+import { Divisao } from './../../divisao/divisao.model';
+import { Papel } from './../../papel/papel.model';
+import { Tecnologia } from './../../tecnologia/tecnologia.model';
+
 import { AvaliacaoService } from './../avaliacao.service';
-import { PapelService } from 'app/papel/papel.service';
+import { ColaboradorService } from './../../colaborador/colaborador.service';
+import { DivisaoService } from './../../divisao/divisao.service';
+import { PapelService } from './../../papel/papel.service';
+import { TecnologiaService } from './../../tecnologia/tecnologia.service';
 
 @Component({
     selector: 'mt-avaliacao-form',
@@ -18,23 +27,29 @@ export class AvaliacaoFormComponent implements OnInit {
     avaliacao: Avaliacao = new Avaliacao();
     idResource: any;
 
-    texts: string[];
-    public results: string[]=[];
+    Divisao: Divisao[] = [];
+    Colaborador: Colaborador[] = [];
+    Papel: Papel[] = [];
+    Tecnologia: Tecnologia[] = [];
+    
+    private papeisResultado: string[]=[];
+    private tecnologiaResultado: string[]=[];
 
     constructor(
         formBuilder: FormBuilder,
         private router: Router,
         private route: ActivatedRoute,
+        private colaboradorService: ColaboradorService,
         private avaliacaoService: AvaliacaoService,
-        private papelService: PapelService
+        private papelService: PapelService,
+        private tecnologiaService: TecnologiaService,
+        private divisaoService: DivisaoService
     ) {
         this.formAvaliacao = formBuilder.group({
-            tipo: [null, Validators.required],
-            pontuacao: [null, Validators.required],
-            ajuste: [null, Validators.required],
-            idColaborador: [null, Validators.required],
-            idReferencia: [null, Validators.required],
-            idDivisao: [null, Validators.required],
+            sigla: [null, Validators.required],
+            nome: [null, Validators.required],
+            papeisResultado: [null, Validators.required],
+            tecnologiaResultado: [null, Validators.required]
         })
     }
 
@@ -86,13 +101,23 @@ export class AvaliacaoFormComponent implements OnInit {
         result.subscribe(data => this.router.navigate(['avaliacao']));
     }
 
-    search(event) {
+    searchPapeis(event) {
         this.papelService.getPapel().subscribe(papel => {
             let papeis: string[]=[];
             papel.forEach(element => {
                  papeis.push(element.nome);    
             });
-            this.results = papeis;
+            this.papeisResultado = papeis;
+        });
+    }
+
+    searchTecnologia(event) {
+        this.tecnologiaService.getTecnologia().subscribe(tecnologia => {
+            let tecnologias: string[]=[];
+            tecnologia.forEach(element => {
+                 tecnologias.push(element.tipo + " - " + element.nome);    
+            });
+            this.tecnologiaResultado = tecnologias;
         });
     }
 

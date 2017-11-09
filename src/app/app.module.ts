@@ -13,6 +13,7 @@ import { LoaderComponent } from './shared/components/loader.component';
 import { httpFactory } from 'app/shared/services/http.factory';
 import { MensagensHandler } from './shared/services/mensagens-handler.service';
 import { TextMaskModule } from 'angular2-text-mask';
+//import { select2 } from 'select2';
 import { DataTablesModule } from 'angular-datatables';
 import { LOCALE_ID } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
@@ -126,6 +127,7 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     ReactiveFormsModule,
     HttpModule,
     TextMaskModule,
+    //select2,
     CurrencyMaskModule,
     DivisaoModule,
     divisaoRouting,

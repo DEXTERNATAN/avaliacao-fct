@@ -27,7 +27,8 @@
 								  <option [selected]="true" value="">Selecione</option>  
                                   <option value="Papel">Papel</option>
                                   <option value="Projeto">Projeto</option>
-						    </select>
+								  <option value="Tecnologia">Tecnologia</option>
+							</select>
 							<span *ngIf="!formPesos.controls['tipo'].valid && formPesos.controls['tipo'].touched" class="help-block">O campo Classificação é obrigatório!</span>
 						</div>
 						<div class="form-group" [ngClass]="{'has-error': (!formPesos.controls['quantidade'].valid && formPesos.controls['quantidade'].touched) }">

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TextMaskModule } from 'angular2-text-mask';
+//import { select2 } from 'select2';
 import {Component, OnInit} from "@angular/core"
 
 
@@ -23,6 +24,7 @@ export class AppComponent implements OnInit {
   imports: [
     FormsModule,
     TextMaskModule
+    //select2
   ],
   declarations: []
 })

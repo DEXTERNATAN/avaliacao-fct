@@ -118,9 +118,7 @@ export class ColaboradorFormComponent implements OnInit {
     }
 
     retiraCaracteres(valor: string, campoForm: string): string {
-        //debugger
         let campoFormatado: string = valor.toString().replace(/[`\\s+~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
-        //campoFormatado.replace(/[`\\s+~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
         console.log(campoFormatado);
         return campoFormatado.replace(" ", "");
     }

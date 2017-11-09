@@ -1,7 +1,7 @@
 export class Avaliacao {
     id_resultado: number;
-    tipo: string;
-    pontuacao: number;
+    siglatipo: string;
+    nome: number;
     dt_resultado: string;
     ajuste: string;
     idColaborador: string;
