@@ -29,8 +29,8 @@
 								</tr>
 								<tr>
 									<td>
-										<div class="form-group">
-											<!--<select class="form-control select2" multiple="multiple" data-placeholder="Select a State" style="width: 100%;">
+										<!--<div class="form-group">
+											<select class="form-control select2" multiple="multiple" data-placeholder="Select a State" style="width: 100%;">
 												<option>Alabama</option>
 												<option>Alaska</option>
 												<option>California</option>
@@ -38,24 +38,24 @@
 												<option>Tennessee</option>
 												<option>Texas</option>
 												<option>Washington</option>
-											</select>-->
+											</select>
 											
 											<select class="form-control" id="sigla">
 												<option value="">Selecione</option>
 												<option *ngFor="let divisao of Divisao; let i = index" value="{{divisao.id_divisao}}">{{divisao.sigla}}</option>  
 											</select>
-										</div>
+										</div>-->
 										
 										
 										
-										<!--<select class="form-control" id="">
+										<select class="form-control" id="">
 											<option [selected]="true" value="">Selecione</option>  
 											<option  value="SDDEF">SDDEF</option>
 											<option  value="SDDEP">SDDEP</option>
 											<option  value="SDEXP">SDEXP</option>
 											<option  value="SDCBH">SDCBH</option>
 											<option  value="SDCSD">SDCSD</option>
-										</select>-->
+										</select>
 									</td>
 									<td>
 										<select class="form-control" id="">
@@ -88,12 +88,12 @@
 							</table>
 						</div>
 						<div class="form-group">
-							<div class="box">
+							<div class="box box-default collapsed-box">
         						<div class="box-header with-border">
           							<h3 class="box-title">Atributos</h3>
           								<div class="box-tools pull-right">
             								<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip">
-              								<i class="fa fa-minus"></i></button>
+              								<i class="fa fa-plus"></i></button>
             							</div>
         						</div>
         						<div class="box-body">
@@ -418,12 +418,12 @@
 							</table>
 						</div>
 						<div class="form-group">
-							<div class="box">
+							<div class="box box-default collapsed-box">
         						<div class="box-header with-border">
           							<h3 class="box-title">Projetos</h3>
           							<div class="box-tools pull-right">
             							<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip">
-              							<i class="fa fa-minus"></i></button>
+              							<i class="fa fa-plus"></i></button>
             						</div>
         						</div>
         						<div class="box-body">
