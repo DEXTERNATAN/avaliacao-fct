@@ -29,33 +29,22 @@
 								</tr>
 								<tr>
 									<td>
-										<!--<div class="form-group">
-											<select class="form-control select2" multiple="multiple" data-placeholder="Select a State" style="width: 100%;">
-												<option>Alabama</option>
-												<option>Alaska</option>
-												<option>California</option>
-												<option>Delaware</option>
-												<option>Tennessee</option>
-												<option>Texas</option>
-												<option>Washington</option>
-											</select>
-											
+										<div class="form-group">
 											<select class="form-control" id="sigla">
 												<option value="">Selecione</option>
 												<option *ngFor="let divisao of Divisao; let i = index" value="{{divisao.id_divisao}}">{{divisao.sigla}}</option>  
 											</select>
-										</div>-->
+										</div>
+																				
 										
-										
-										
-										<select class="form-control" id="">
+										<!--<select class="form-control" id="">
 											<option [selected]="true" value="">Selecione</option>  
 											<option  value="SDDEF">SDDEF</option>
 											<option  value="SDDEP">SDDEP</option>
 											<option  value="SDEXP">SDEXP</option>
 											<option  value="SDCBH">SDCBH</option>
 											<option  value="SDCSD">SDCSD</option>
-										</select>
+										</select>-->
 									</td>
 									<td>
 										<select class="form-control" id="">
@@ -66,7 +55,18 @@
 										</select>	
 									</td>
 									<td>
-										<p-autoComplete id="papeisResultado" [(ngModel)]="avaliacao.papeisResultado" [suggestions]="papeisResultado" (completeMethod)="searchPapeis($event)" [multiple]="true" [dropdown]="true" placeholder="Digite uma letra..."></p-autoComplete>
+										<!--<p-autoComplete id="papeisResultado" [(ngModel)]="avaliacao.papeisResultado" [suggestions]="papeisResultado" (completeMethod)="searchPapeis($event)" [multiple]="true" [dropdown]="true" placeholder="Digite uma letra..."></p-autoComplete>-->
+
+										<!--<select class="form-control select2" multiple="multiple" data-placeholder="Select a State" style="width: 100%;">
+												<option>Alabama</option>
+												<option>Alaska</option>
+												<option>California</option>
+												<option>Delaware</option>
+												<option>Tennessee</option>
+												<option>Texas</option>
+												<option>Washington</option>
+										</select>-->
+										<select2 [data]="exampleData"></select2>
 									</td>	
 								</tr>
 							</table>			

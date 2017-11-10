@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, Route, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
-//import { select2 } from 'select2';
+import { Select2Module,Select2OptionData } from 'ng2-select2';
 
 import { Avaliacao } from './../avaliacao.model';
 import { Colaborador } from './../../colaborador/colaborador.model';
@@ -26,6 +26,8 @@ export class AvaliacaoFormComponent implements OnInit {
     title: string;
     avaliacao: Avaliacao = new Avaliacao();
     idResource: any;
+
+    public exampleData: Array<Select2OptionData>;
 
     Divisao: Divisao[] = [];
     Colaborador: Colaborador[] = [];
@@ -67,6 +69,26 @@ export class AvaliacaoFormComponent implements OnInit {
 
     ngOnInit() {
         
+        this.exampleData = [
+            {
+                id: 'basic1',
+                text: 'Basic 1'
+            },
+            {
+                id: 'basic2',
+                disabled: true,
+                text: 'Basic 2'
+            },
+            {
+                id: 'basic3',
+                text: 'Basic 3'
+            },
+            {
+                id: 'basic4',
+                text: 'Basic 4'
+            }
+        ];
+
         var id_resultado = this.route.params.subscribe(params => {
             this.idResource = params['id_resultado'];
             this.title = this.idResource ? 'Editar Avaliação' : 'Nova Avaliação';
