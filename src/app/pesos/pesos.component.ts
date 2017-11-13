@@ -74,7 +74,6 @@ export class PesosComponent implements OnInit {
 
   ajustaPesos(valor: string): string {
     let vlrPeso = valor.toString();
-    console.log('tamanho do campo: ', vlrPeso.length)
     if (vlrPeso.length == 3) {
       valor = valor + "00";
     }

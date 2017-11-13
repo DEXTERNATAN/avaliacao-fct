@@ -1,3 +1,4 @@
+import { FilterPipe } from './shared/pipes/filter';
 import { RequestOptions } from '@angular/http';
 import { XHRBackend } from '@angular/http';
 import { Http } from '@angular/http';
@@ -7,6 +8,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { NgSpinningPreloader } from 'ng2-spinning-preloader';
+
+import {Ng2SelectizeModule} from 'ng2-selectize';
 
 import { LoaderService } from 'app/shared/services/loader.service';
 import { LoaderComponent } from './shared/components/loader.component';
@@ -97,6 +100,7 @@ import { FaixaComponent } from './faixa/faixa.component';
 import { ConsultaavaliacaoComponent } from './consultaavaliacao/consultaavaliacao.component';
 import { MensagensComponent } from 'app/shared/components/mensagens.component';
 
+
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   align: "left",
   allowNegative: true,
@@ -129,6 +133,7 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     TextMaskModule,
     Select2Module,
     CurrencyMaskModule,
+    Ng2SelectizeModule,
     DivisaoModule,
     divisaoRouting,
     AbrangenciaModule,
