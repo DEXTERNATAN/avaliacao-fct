@@ -23,7 +23,7 @@
 				<div class="alert alert-success" role="alert" *ngIf="sucesso">
 					Avaliação Registrada com sucesso!
 				</div>
-				{{ formAvaliacao.value.colaborador | json }}
+				<!-- {{ formAvaliacao.value.divisao | json }} -->
 				<form role="form" [formGroup]="formAvaliacao" (ngSubmit)="save()">
 					<div class="box-body">
 						<div class="form-group">
@@ -36,7 +36,7 @@
 								<tr>
 									<td>
 										<div class="form-group">
-											<select class="form-control" id="sigla" formControlName="divisao" >
+											<select class="form-control" id="sigla" formControlName="divisao">
 												<option [selected]="true" value="0">Selecione</option>
 												<option *ngFor="let divisao of Divisao; let i = index" value="{{divisao.sigla}}">{{divisao.sigla}}</option>
 											</select>

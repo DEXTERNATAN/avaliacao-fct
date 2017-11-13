@@ -95,9 +95,18 @@ export class AvaliacaoFormComponent implements OnInit {
         // se inscreve para verificar alterações no valor das faixas
         this.formAvaliacao.get('divisao').valueChanges.subscribe( /* <- does work */
             divisao => {
-                console.log('title has changed:', divisao);
-                this.getColaborador();                
-                this.searchColaborador(divisao, this.Colaborador);
+                
+                let colabFilter: any[];
+                this.colaboradorService.getColaborador().subscribe(colaborador => {
+                    
+                    colabFilter = colaborador.filter(function(el){
+                        return el['sigla'] == divisao;
+                    });
+                
+                    this.Colaborador = colabFilter;
+                });
+
+                console.log(colabFilter, this.Colaborador);
             }
         );
 
@@ -144,15 +153,12 @@ export class AvaliacaoFormComponent implements OnInit {
     }
 
     searchColaborador(divisao, colaborador){
-        colaborador.forEach(element => {
-            if(divisao == element.sigla){
-                this.Colaborador = [];
-                this.Colaborador.push(element);
-                console.log('É igual: ', this.Colaborador);
-                //this.Colaborador.push(element);
-                //this.formAvaliacao.get('divisao').setValue(element);
+        console.log(colaborador.filter(x => {
+            //console.log(x.sigla, divisao, x.sigla === divisao);
+            
+            x.sigla === divisao
             }
-        });
+        ));
     }
     // searchPapeis(event) {
     //     this.papelService.getPapel().subscribe(papel => {

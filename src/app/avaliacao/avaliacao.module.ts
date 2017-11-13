@@ -10,7 +10,8 @@ import {AutoCompleteModule} from 'primeng/components/autocomplete/autocomplete';
 import { AvaliacaoComponent } from './avaliacao.component';
 import { AvaliacaoService } from 'app/avaliacao/avaliacao.service';
 import { AvaliacaoFormComponent } from 'app/avaliacao/avaliacao-form/avaliacao-form.component';
-//import { FilterPipe } from './../shared/pipes/filter';
+import { FilterSearchPipe } from 'app/shared/pipes/filterSearch.pipes';
+
 
 @NgModule({
   imports: [
@@ -26,8 +27,8 @@ import { AvaliacaoFormComponent } from 'app/avaliacao/avaliacao-form/avaliacao-f
   providers: [ AvaliacaoService ],
   declarations: [
     AvaliacaoComponent,
-    AvaliacaoFormComponent
-    //FilterPipe
+    AvaliacaoFormComponent,
+    FilterSearchPipe
   ]
 })
 export class AvaliacaoModule { }
