@@ -62,7 +62,7 @@ export class ImpactoFormComponent implements OnInit {
 
             this.impactoService.getImpactoId(this.idResource).subscribe(impacto => {
                 impacto = this.impacto = impacto
-                console.log(impacto.id_impacto),
+                //console.log(impacto.id_impacto),
                     response => {
                         if (response.status == 404) {
                             this.router.navigate(['impacto'])

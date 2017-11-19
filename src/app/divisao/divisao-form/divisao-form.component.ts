@@ -63,7 +63,7 @@ export class DivisaoFormComponent implements OnInit {
 
             this.divisaoService.getDivisaoId(this.idResource).subscribe(divisao => {
                 divisao = this.divisaos = divisao
-                console.log(divisao.id_divisao),
+                //console.log(divisao.id_divisao),
                     response => {
                         if (response.status == 404) {
                             this.router.navigate(['divisao'])

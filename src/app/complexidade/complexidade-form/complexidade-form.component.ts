@@ -63,7 +63,7 @@ export class ComplexidadeFormComponent implements OnInit {
 
             this.complexidadeService.getComplexidadeId(this.idResource).subscribe(complexidade => {
                 complexidade = this.complexidade = complexidade
-                console.log(complexidade.id_complexidade),
+                //console.log(complexidade.id_complexidade),
                     response => {
                         if (response.status == 404) {
                             this.router.navigate(['complexidade'])

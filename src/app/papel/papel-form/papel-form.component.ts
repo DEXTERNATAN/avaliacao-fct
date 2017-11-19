@@ -59,7 +59,7 @@ export class PapelFormComponent implements OnInit {
 
             this.papelService.getPapelId(this.idResource).subscribe(papel => {
                 papel = this.papeis = papel
-                console.log(papel.id_papel),
+                //console.log(papel.id_papel),
                     response => {
                         if (response.status == 404) {
                             this.router.navigate(['papel'])

@@ -23,12 +23,8 @@ export class FuncoesGlobais {
     }
 
     static retiraCaracteres(valor: string){
-        //debugger
         let strValor: string = "(61) 3333-9999";
-
         strValor.replace("(", '');
-        console.log(strValor);
-        
         return valor;
     }
 
@@ -37,7 +33,7 @@ export class FuncoesGlobais {
         moment.locale('pt-BR');
         let StrDateInicio: Date  = moment(dataInicio, 'DD-MM-YYYY').toDate();
         let StrDateFim: Date  = moment(dataFim, 'DD-MM-YYYY').toDate();
-        console.log(StrDateInicio, StrDateFim, StrDateInicio > StrDateFim);
+        
         if(StrDateInicio > StrDateFim){
             return true;
         }else{

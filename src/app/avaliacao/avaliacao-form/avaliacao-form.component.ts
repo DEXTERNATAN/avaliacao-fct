@@ -1,7 +1,7 @@
-import { element } from 'protractor';
 import { Component, OnInit } from '@angular/core';
-import { Router, Route, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, AbstractControl } from '@angular/forms';
+import 'rxjs/Rx';
 
 import { Avaliacao } from './../avaliacao.model';
 import { Colaborador } from './../../colaborador/colaborador.model';
@@ -13,7 +13,6 @@ import { ColaboradorService } from './../../colaborador/colaborador.service';
 import { DivisaoService } from './../../divisao/divisao.service';
 import { PapelService } from './../../papel/papel.service';
 import { TecnologiaService } from './../../tecnologia/tecnologia.service';
-import { FilterPipe } from './../../shared/pipes/filter';
 
 @Component({
     selector: 'mt-avaliacao-form',
@@ -22,6 +21,9 @@ import { FilterPipe } from './../../shared/pipes/filter';
 })
 export class AvaliacaoFormComponent implements OnInit {
 
+    PapelAtributo: any[] = [];
+    private doctors = [];
+
     formAvaliacao: FormGroup;
     title: string;
     avaliacao: Avaliacao = new Avaliacao();
@@ -29,11 +31,27 @@ export class AvaliacaoFormComponent implements OnInit {
     idResource: any;
     placeholder: string = 'Placeholder...';
     value: string[];
-    current: string;
+    current: any[];
     Divisao: Divisao[] = [];
     Colaborador: Colaborador[] = [];
     Papel: Papel[] = [];
     Tecnologia: Tecnologia[] = [];
+
+    public PapelAtributo2: any[] = [];
+    public valorCopy: any[];
+
+    /* Selectize */
+    configPapel = {
+        create: true,
+        valueField: 'id_papel',
+        labelField: 'nome',
+        searchField: ['nome'],
+        delimiter: ',',
+        plugins: ['dropdown_direction', 'remove_button'],
+        dropdownDirection: 'down',
+        maxItems: 3,
+        onChange: this.getChangeData.bind(this)
+    };
 
     constructor(
         formBuilder: FormBuilder,
@@ -46,7 +64,8 @@ export class AvaliacaoFormComponent implements OnInit {
         private divisaoService: DivisaoService
     ) {
         this.formAvaliacao = formBuilder.group({
-            divisao: [0]
+            divisao: [0],
+            papel: [0]
             // sigla: [null, Validators.required],
             // nome: [null, Validators.required],
             // papeisResultado: [null, Validators.required],
@@ -55,9 +74,9 @@ export class AvaliacaoFormComponent implements OnInit {
     }
 
     hasErrors(): boolean {
-        var hasErrors: boolean = false;
-        for (var controlName in this.formAvaliacao.controls) {
-            var control: AbstractControl = this.formAvaliacao.controls[controlName];
+        let hasErrors: boolean = false;
+        for (let controlName in this.formAvaliacao.controls) {
+            let control: AbstractControl = this.formAvaliacao.controls[controlName];
             if (!control.valid && !control.pristine) {
                 hasErrors = true;
                 break;
@@ -68,20 +87,18 @@ export class AvaliacaoFormComponent implements OnInit {
 
     ngOnInit() {
 
-        var id_resultado = this.route.params.subscribe(params => {
+        let id_resultado = this.route.params.subscribe(params => {
             this.idResource = params['id_resultado'];
             this.title = this.idResource ? 'Editar Avaliação' : 'Nova Avaliação';
 
-            if (!this.idResource)
+            if (!this.idResource) {
                 return;
+            }
 
-            this.avaliacaoService.getAvaliacaoId(this.idResource).subscribe(avaliacao => {
-                avaliacao = this.avaliacao = avaliacao
-
-                response => {
-                    if (response.status == 404) {
-                        this.router.navigate(['avaliacao'])
-                    }
+            this.avaliacaoService.getAvaliacaoId(this.idResource).subscribe(response => {
+                response = this.avaliacao = response;
+                if (response.status === 404) {
+                    this.router.navigate(['avaliacao'])
                 }
             });
         });
@@ -95,29 +112,21 @@ export class AvaliacaoFormComponent implements OnInit {
         // se inscreve para verificar alterações no valor das faixas
         this.formAvaliacao.get('divisao').valueChanges.subscribe( /* <- does work */
             divisao => {
-                
                 let colabFilter: any[];
                 this.colaboradorService.getColaborador().subscribe(colaborador => {
-                    
-                    colabFilter = colaborador.filter(function(el){
-                        return el['sigla'] == divisao;
+                    colabFilter = colaborador.filter(function (el) {
+                        return el['sigla'] === divisao;
                     });
-                
                     this.Colaborador = colabFilter;
                 });
-
-                console.log(colabFilter, this.Colaborador);
             }
         );
 
     }
 
-    changed(data: { value: string[] }) {
-        this.current = data.value.join(' | ');
-    }
 
     save() {
-        var result, userValue = this.formAvaliacao.value;
+        let result, userValue = this.formAvaliacao.value;
 
         if (this.idResource) {
             result = this.avaliacaoService.updateAvaliacao(this.idResource, userValue);
@@ -130,7 +139,7 @@ export class AvaliacaoFormComponent implements OnInit {
 
     getPapeis() {
         this.papelService.getPapel().subscribe(papel => {
-            this.papel = papel
+            this.papel = papel;
         });
     }
 
@@ -152,33 +161,19 @@ export class AvaliacaoFormComponent implements OnInit {
         });
     }
 
-    searchColaborador(divisao, colaborador){
-        console.log(colaborador.filter(x => {
-            //console.log(x.sigla, divisao, x.sigla === divisao);
-            
-            x.sigla === divisao
-            }
-        ));
+    getPapelAtributo(idPapel) {
+        console.log(idPapel);
+        // idPapel.forEach(element => {
+        //     console.log('Elemento: ', element);
+        //     this.avaliacaoService.getPapelAtributo(idPapel).subscribe(papelAtributo => {
+        //         console.log('Papel: ', papelAtributo);
+        //         this.PapelAtributo2.push(papelAtributo)
+        //         // this.PapelAtributo = papelAtributo
+        //     });
+        // });
+        // console.log(this.PapelAtributo2);
     }
-    // searchPapeis(event) {
-    //     this.papelService.getPapel().subscribe(papel => {
-    //         let papeis: string[] = [];
-    //         papel.forEach(element => {
-    //             papeis.push(element.nome);
-    //         });
-    //         this.papeisResultado = papeis;
-    //     });
-    // }
 
-    // searchTecnologia(event) {
-    //     this.tecnologiaService.getTecnologia().subscribe(tecnologia => {
-    //         let tecnologias: string[] = [];
-    //         tecnologia.forEach(element => {
-    //             tecnologias.push(element.tipo + " - " + element.nome);
-    //         });
-    //         this.tecnologiaResultado = tecnologias;
-    //     });
-    // }
 
     onCancel() {
         this.navigateBack();
@@ -188,42 +183,19 @@ export class AvaliacaoFormComponent implements OnInit {
         this.router.navigate(['/avaliacao']);
     }
 
-    /* Selectize */
-    configPapel = {
-        labelField: 'nome',
-        valueField: 'id_papel',
-        highlight: false,
-        create: false,
-        persist: true,
-        searchField: ['nome'],
-        plugins: ['dropdown_direction', 'remove_button'],
-        dropdownDirection: 'down',
-        maxItems: 3
-    };
-
-    configDivisao = {
-        labelField: 'sigla',
-        valueField: 'id_divisao',
-        highlight: false,
-        create: false,
-        persist: true,
-        searchField: ['sigla'],
-        dropdownDirection: 'down'
-    };
-
-    configColaborador = {
-        labelField: 'nome',
-        valueField: 'id_colaborador',
-        highlight: false,
-        create: false,
-        persist: true,
-        searchField: ['sigla'],
-        dropdownDirection: 'down'
-    };
-
-    onValueChange($event) {
-        console.log("Option changed: ", $event);
+    getChangeData(valor) {
+        let vlrArray: Array<string>[] = [];
+        valor.forEach(element => {
+            this.avaliacaoService.getPapelAtributo(element).subscribe((data) => {
+                if (data !== []) {
+                    data.forEach(arrayPush => {
+                        vlrArray.push(arrayPush);
+                        this.PapelAtributo = vlrArray;
+                    });
+                }
+            });
+        });
+        // console.log(this.PapelAtributo);
     }
-
 
 }

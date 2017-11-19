@@ -29,6 +29,12 @@ export class AvaliacaoService {
             .map(response => response.json())
     }
 
+    getPapelAtributo(id_papel) {
+        return this._http.get(`${MEAT_API}/PapelAtributo/${id_papel}`)
+        .do(response => console.log('resultado: ', response.json()))
+        .map(response => response.json())
+    }
+
     getAvaliacaoId(id_avaliacao) {
         return this._http.get(`${MEAT_API}/avaliacao/${id_avaliacao}`)
         .map(response => response.json())

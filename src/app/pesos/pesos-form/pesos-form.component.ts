@@ -35,7 +35,7 @@ export class PesosFormComponent implements OnInit {
             valor: [null, Validators.required]
         })
 
-        console.log(this.formPesos);
+        //console.log(this.formPesos);
     }
 
     hasErrors(): boolean {
@@ -47,7 +47,7 @@ export class PesosFormComponent implements OnInit {
                 break;
             }
         }
-        console.log(hasErrors);
+        //console.log(hasErrors);
         return hasErrors;
     }
 

@@ -59,7 +59,6 @@ export class TecnologiaFormComponent implements OnInit {
 
             this.tecnologiaService.getTecnologiaId(this.idResource).subscribe(tecnologia => {
                 tecnologia = this.tecnologia = tecnologia
-                console.log(tecnologia.id_tecnologia),
                     response => {
                         if (response.status == 404) {
                             this.router.navigate(['tecnologia'])

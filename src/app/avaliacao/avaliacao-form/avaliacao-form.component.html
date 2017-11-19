@@ -1,88 +1,169 @@
 <section class="content-header">
-	<h1>
-		Avaliação do Colaborador
-	</h1>
-	<ol class="breadcrumb">
-		<li>
-			<a href="#">
-				<i class="fa fa-home"></i> Home</a>
-		</li>
-		<li>
-			<a href="#">Avaliação</a>
-		</li>
-		<li class="active">Detalhes da Avaliação</li>
-	</ol>
+  <h1>
+    Avaliação do Colaborador
+  </h1>
+  <ol class="breadcrumb">
+    <li>
+      <a href="#">
+        <i class="fa fa-home"></i> Home</a>
+    </li>
+    <li>
+      <a href="#">Avaliação</a>
+    </li>
+    <li class="active">Detalhes da Avaliação</li>
+  </ol>
 </section>
 <section class="content">
-	<div class="row">
-		<div class="col-md-12">
-			<div class="box box-primary">
-				<div class="box-header with-border">
-					<h3 class="box-title">Detalhes da Avaliação</h3>
-				</div>
-				<div class="alert alert-success" role="alert" *ngIf="sucesso">
-					Avaliação Registrada com sucesso!
-				</div>
-				<!-- {{ formAvaliacao.value.divisao | json }} -->
-				<form role="form" [formGroup]="formAvaliacao" (ngSubmit)="save()">
-					<div class="box-body">
-						<div class="form-group">
-							<table class="table table-condensed">
-								<tr>
-									<th style="width: 20%">Divisão</th>
-									<th style="width: 30%">Colaborador</th>
-									<th>Papel(Selecione no máximo 3)</th>
-								</tr>
-								<tr>
-									<td>
-										<div class="form-group">
-											<select class="form-control" id="sigla" formControlName="divisao">
-												<option [selected]="true" value="0">Selecione</option>
-												<option *ngFor="let divisao of Divisao; let i = index" value="{{divisao.sigla}}">{{divisao.sigla}}</option>
-											</select>
-										</div>
-									</td>
-									<td>
-										<select class="form-control" id="">
-											<option [selected]="true" value="">Selecione</option>
-											<option *ngFor="let colaborador of Colaborador; let i = index" value="{{colaborador.id_colaborador}}">{{colaborador.nome}}</option>
-										</select>
-									</td>
-									<td>
-										<ng2-selectize [config]="configPapel" [options]="papel"></ng2-selectize>
-									</td>
-								</tr>
-							</table>
-						</div>
-						<div class="form-group">
-							<table class="table table-condensed">
-								<tr>
-									<th>
-										<label>Conhecimento em Tecnologias</label>
-									</th>
-								</tr>
-								<tr>
-									<td>
-										<select class="form-control" id="">
-											<option [selected]="true" value="">Selecione</option>
-											<option *ngFor="let tec of Tecnologia; let i = index" value="{{tec.id_tecnologia}}">{{tec.nome}}</option>
-										</select>
-									</td>
-								</tr>
-							</table>
-						</div>
-						<div class="form-group">
-							<div class="box box-default collapsed-box">
-								<div class="box-header with-border">
-									<h3 class="box-title">Atributos</h3>
-									<div class="box-tools pull-right">
-										<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip">
-											<i class="fa fa-plus"></i>
-										</button>
-									</div>
-								</div>
-								<div class="box-body">
-									<table class="table table-striped">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">Detalhes da Avaliação</h3>
+        </div>
+        <div class="alert alert-success" role="alert" *ngIf="sucesso">
+          Avaliação Registrada com sucesso!
+        </div>
+        <!-- {{ formAvaliacao.value.divisao | json }} -->
+        <form role="form" [formGroup]="formAvaliacao" (ngSubmit)="save()">
+          <div class="box-body">
+            <div class="form-group">
+              <table class="table table-condensed">
+                <tr>
+                  <th style="width: 20%">Divisão</th>
+                  <th style="width: 30%">Colaborador</th>
+                  <th>Papel(Selecione no máximo 3)</th>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="form-group">
+                      <select class="form-control" id="sigla" formControlName="divisao">
+                        <option [selected]="true" value="0">Selecione</option>
+                        <option *ngFor="let divisao of Divisao; let i = index" value="{{divisao.sigla}}">{{divisao.sigla}}</option>
+                      </select>
+                    </div>
+                  </td>
+                  <td>
+                    <select class="form-control" id="">
+                      <option [selected]="true" value="">Selecione</option>
+                      <option *ngFor="let colaborador of Colaborador; let i = index" value="{{colaborador.id_colaborador}}">{{colaborador.nome}}</option>
+                    </select>
+                  </td>
+                  <td>
+                    <ng2-selectize [config]="configPapel" [options]="papel" [(ngModel)]="value" formControlName="papel"></ng2-selectize>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class="form-group">
+              <table class="table table-condensed">
+                <tr>
+                  <th>
+                    <label>Conhecimento em Tecnologias</label>
+                  </th>
+                </tr>
+                <tr>
+                  <td>
+                    <select class="form-control" id="">
+                      <option [selected]="true" value="">Selecione</option>
+                      <option *ngFor="let tec of Tecnologia; let i = index" value="{{tec.id_tecnologia}}">{{tec.nome}}</option>
+                    </select>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class="form-group">
+              <div class="box box-default collapsed-box">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Atributos</h3>
+                  <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip">
+                      <i class="fa fa-plus"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="box-body">
+
+                  <table class="table table-striped">
+                    <tr>
+                      <th style="width: 600px">Descrição</th>
+                      <th>
+                        <span class="badge bg-yellow">Abrangência</span>
+                      </th>
+                      <th>
+                        <span class="badge bg-light-blue">Complexidade</span>
+                      </th>
+                      <th>
+                        <span class="badge bg-green">Impacto</span>
+                      </th>
+                    </tr>
+                    <tr *ngFor="let item of PapelAtributo">
+                      <td>({{ item.letra }}) - {{ item.descricao}}</td>
+                      <td>
+                        <div class="radio">
+                          <label>
+                            <input type="radio" id="" name="abrangenciaA" value="1" checked>
+                            <span data-toggle="tooltip" title="Conhece parcialmente o negócio; Necessita de auxilio proposição de soluções; Executa proposições com oportunidades de melhoria;"
+                              class="badge bg-yellow">1-Moderado</span>
+                          </label>
+                          <br>
+                          <label>
+                            <input type="radio" id="" name="abrangenciaA" value="2">
+                            <span data-toggle="tooltip" title="Conhecimento do negócio; Velocidade; Referência para discutir necessidades dos projetos em que atua(Evoluções); Participa na proposição de soluções técnicas; Transita entre diferente tecnologias/assuntos;"
+                              class="badge bg-yellow">2-Significativa</span>
+                          </label>
+                          <br>
+                          <label>
+                            <input type="radio" id="" name="abrangenciaA" value="3">
+                            <span data-toggle="tooltip" title="Reduzir custo; Reuso; Velocidade(está relacionado ao conhecimento do negocio X tempo resposta); Cenário novo; Referências para discutir necessidades de novos projetos; Facilidade de encontrar soluções; Transita entre diferente tecnologias/assuntos; -Histórico de sucesso nas proposições; -Visão sistêmica; -Domínio do negócio;"
+                              class="badge bg-yellow">3-Muito</span>
+                          </label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="radio">
+                          <label>
+                            <input type="radio" id="" name="complexidadea" value="1" checked>
+                            <span data-toggle="tooltip" title="Atua em 2 projetos em paralelo/perfis diferentes; Complexidade dos projetos pode influenciar; Prever problemas; Projetos grandes;"
+                              class="badge bg-light-blue">1-Moderado</span>
+                          </label>
+                          <br>
+                          <label>
+                            <input type="radio" id="" name="complexidadea" value="2">
+                            <span data-toggle="tooltip" title="Pleno em um dos perfis." class="badge bg-light-blue">2-Alta</span>
+                          </label>
+                          <br>
+                          <label>
+                            <input type="radio" id="" name="complexidadea" value="3">
+                            <span data-toggle="tooltip" title="Prever problemas; Visão sistêmica; Atuar em paralelo em diferentes linguagens/assuntos/projetos; Projetos grandes x prazos curtos; Atuar sob pressão; Autonomia (independência na tomada de decisão); Atua em 3 ou mais projetos/perfis diferentes;"
+                              class="badge bg-light-blue">3-Altíssima</span>
+                          </label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="radio">
+                          <label>
+                            <input type="radio" id="" name="impactoA" value="1" checked>
+                            <span class="badge bg-green">1-Relevante</span>
+                          </label>
+                          <br>
+                          <label>
+                            <input type="radio" id="" name="impactoA" value="2">
+                            <span class="badge bg-green">2-Muito</span>
+                          </label>
+                          <br>
+                          <label>
+                            <input type="radio" id="" name="impactoA" value="3">
+                            <span class="badge bg-green">3-Altamente</span>
+                          </label>
+                        </div>
+                      </td>
+
+                    </tr>
+
+                  </table>
+
+
+                  <!-- <table class="table table-striped">
 										<tr>
 											<th style="width: 600px">Descrição</th>
 											<th>
@@ -396,295 +477,295 @@
 												</div>
 											</td>
 										</tr>
-									</table>
-								</div>
-							</div>
-						</div>
-						<div class="form-group">
-							<table class="table table-condensed">
-								<tr>
-									<th>
-										<label style="width: 20%">Quantidade de Projetos</label>
-									</th>
-								</tr>
-								<tr>
-									<td>
-										<label style="width: 20%">
-											<select class="form-control" id="">
-												<option value="1" selected>1</option>
-												<option value="2">2</option>
-												<option value="3">3</option>
-												<option value="4">4</option>
-												<option value="5">5</option>
-												<option value="6">6</option>
-											</select>
-										</label>
-									</td>
-								</tr>
-							</table>
-						</div>
-						<div class="form-group">
-							<div class="box box-default collapsed-box">
-								<div class="box-header with-border">
-									<h3 class="box-title">Projetos</h3>
-									<div class="box-tools pull-right">
-										<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip">
-											<i class="fa fa-plus"></i>
-										</button>
-									</div>
-								</div>
-								<div class="box-body">
-									<table class="table table-striped">
-										<tr>
-											<th>#</th>
-											<th style="width: 570px">Descrição</th>
-											<th>
-												<span class="badge bg-yellow">Abrangência</span>
-											</th>
-											<th>
-												<span class="badge bg-light-blue">Complexidade</span>
-											</th>
-											<th>
-												<span class="badge bg-green">Impacto</span>
-											</th>
-										</tr>
-										<tr>
-											<td>
-												<label for="">1</label>
-											</td>
-											<td>
-												<select class="form-control" id="">
-													<option [selected]="true" value="">Selecione</option>
-													<option value="1">10115 - Intercâmbio de Informações</option>
-													<option value="2">10445 - ECAT</option>
-													<option value="3">10166 - Portal Tesouro Direto</option>
-												</select>
-											</td>
-											<td>
-												<div class="radio">
-													<label>
-														<input type="radio" id="" name="abrangenciaP1" value="1" checked>
-														<span class="badge bg-yellow">1-Moderado</span>
-													</label>
-													<br>
-													<label>
-														<input type="radio" id="" name="abrangenciaP1" value="2">
-														<span class="badge bg-yellow">2-Significativa</span>
-													</label>
-													<br>
-													<label>
-														<input type="radio" id="" name="abrangenciaP1" value="3">
-														<span class="badge bg-yellow">3-Muito</span>
-													</label>
-												</div>
-											</td>
-											<td>
-												<div class="radio">
-													<label>
-														<input type="radio" id="" name="complexidadeP1" value="1" checked>
-														<span class="badge bg-light-blue">1-Moderado</span>
-													</label>
-													<br>
-													<label>
-														<input type="radio" id="" name="complexidadeP1" value="2">
-														<span class="badge bg-light-blue">2-Alta</span>
-													</label>
-													<br>
-													<label>
-														<input type="radio" id="" name="complexidadeP1" value="3">
-														<span class="badge bg-light-blue">3-Altíssima</span>
-													</label>
-												</div>
-											</td>
-											<td>
-												<div class="radio">
-													<label>
-														<input type="radio" id="" name="impactoP1" value="1" checked>
-														<span class="badge bg-green">1-Relevante</span>
-													</label>
-													<br>
-													<label>
-														<input type="radio" id="" name="impactoP1" value="2">
-														<span class="badge bg-green">2-Muito</span>
-													</label>
-													<br>
-													<label>
-														<input type="radio" id="" name="impactoP1" value="3">
-														<span class="badge bg-green">3-Altamente</span>
-													</label>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label for="">2</label>
-											</td>
-											<td>
-												<select class="form-control" id="">
-													<option [selected]="true" value="">Selecione</option>
-													<option value="1">37185 - ENAT</option>
-													<option value="2">10261 - Novo Portal SERPRO</option>
-													<option value="3">8275 - PUCOMEX</option>
-													<option value="4">7302 - VICOMEX</option>
-												</select>
-											</td>
-											<td>
-												<div class="radio">
-													<label>
-														<input type="radio" id="" name="abrangenciaP2" value="1" checked>
-														<span class="badge bg-yellow">1-Moderado</span>
-													</label>
-													<br>
-													<label>
-														<input type="radio" id="" name="abrangenciaP2" value="2">
-														<span class="badge bg-yellow">2-Significativa</span>
-													</label>
-													<br>
-													<label>
-														<input type="radio" id="" name="abrangenciaP2" value="3">
-														<span class="badge bg-yellow">3-Muito</span>
-													</label>
-												</div>
-											</td>
-											<td>
-												<div class="radio">
-													<label>
-														<input type="radio" id="" name="complexidadeP2" value="1" checked>
-														<span class="badge bg-light-blue">1-Moderado</span>
-													</label>
-													<br>
-													<label>
-														<input type="radio" id="" name="complexidadeP2" value="2">
-														<span class="badge bg-light-blue">2-Alta</span>
-													</label>
-													<br>
-													<label>
-														<input type="radio" id="" name="complexidadeP2" value="3">
-														<span class="badge bg-light-blue">3-Altíssima</span>
-													</label>
-												</div>
-											</td>
-											<td>
-												<div class="radio">
-													<label>
-														<input type="radio" id="" name="impactoP2" value="1" checked>
-														<span class="badge bg-green">1-Relevante</span>
-													</label>
-													<br>
-													<label>
-														<input type="radio" id="" name="impactoP2" value="2">
-														<span class="badge bg-green">2-Muito</span>
-													</label>
-													<br>
-													<label>
-														<input type="radio" id="" name="impactoP2" value="3">
-														<span class="badge bg-green">3-Altamente</span>
-													</label>
-												</div>
-											</td>
-										</tr>
-									</table>
-								</div>
-							</div>
-						</div>
-						<div class="form-group">
-							<table class="table table-condensed">
-								<tr>
-									<th>
-										<label style="width: 20%">% de Ociosidade</label>
-									</th>
-								</tr>
-								<tr>
-									<td>
-										<label style="width: 20%">
-											<input type="text" class="form-control" id="" placeholder="Informe o % de Ociosidade" maxlength="6" value="0.00">
-										</label>
-									</td>
-								</tr>
-							</table>
-						</div>
-						<div class="form-group">
-							<table class="table table-condensed">
-								<tr>
-									<th style="width: 24%">Pontuação Total</th>
-									<th style="width: 24%">Pontuação FCT Atual</th>
-									<th style="width: 24%">Ajuste</th>
-									<th></th>
-									<th style="width: 10%"></th>
-								</tr>
-								<tr>
-									<td>
-										<label style="width: 100%">
-											<input type="text" class="form-control" id="" readonly placeholder="" value="97.54">
-										</label>
-									</td>
-									<td>
-										<label style="width: 100%">
-											<input type="text" class="form-control" id="" readonly placeholder="" value="87.98">
-										</label>
-									</td>
-									<td>
-										<label style="width: 100%">
-											<input type="text" class="form-control" id="" readonly placeholder="" value="-9.56">
-										</label>
-									</td>
-									<td>
-										<div class="progress progress-sm progress-striped active">
-											<div class="progress-bar progress-bar-success" style="width: 10%"></div>
-										</div>
-										<!--<div class="progress progress-sm progress-striped active">
+									</table> -->
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <table class="table table-condensed">
+                <tr>
+                  <th>
+                    <label style="width: 20%">Quantidade de Projetos</label>
+                  </th>
+                </tr>
+                <tr>
+                  <td>
+                    <label style="width: 20%">
+                      <select class="form-control" id="">
+                        <option value="1" selected>1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                      </select>
+                    </label>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class="form-group">
+              <div class="box box-default collapsed-box">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Projetos</h3>
+                  <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip">
+                      <i class="fa fa-plus"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="box-body">
+                  <table class="table table-striped">
+                    <tr>
+                      <th>#</th>
+                      <th style="width: 570px">Descrição</th>
+                      <th>
+                        <span class="badge bg-yellow">Abrangência</span>
+                      </th>
+                      <th>
+                        <span class="badge bg-light-blue">Complexidade</span>
+                      </th>
+                      <th>
+                        <span class="badge bg-green">Impacto</span>
+                      </th>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label for="">1</label>
+                      </td>
+                      <td>
+                        <select class="form-control" id="">
+                          <option [selected]="true" value="">Selecione</option>
+                          <option value="1">10115 - Intercâmbio de Informações</option>
+                          <option value="2">10445 - ECAT</option>
+                          <option value="3">10166 - Portal Tesouro Direto</option>
+                        </select>
+                      </td>
+                      <td>
+                        <div class="radio">
+                          <label>
+                            <input type="radio" id="" name="abrangenciaP1" value="1" checked>
+                            <span class="badge bg-yellow">1-Moderado</span>
+                          </label>
+                          <br>
+                          <label>
+                            <input type="radio" id="" name="abrangenciaP1" value="2">
+                            <span class="badge bg-yellow">2-Significativa</span>
+                          </label>
+                          <br>
+                          <label>
+                            <input type="radio" id="" name="abrangenciaP1" value="3">
+                            <span class="badge bg-yellow">3-Muito</span>
+                          </label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="radio">
+                          <label>
+                            <input type="radio" id="" name="complexidadeP1" value="1" checked>
+                            <span class="badge bg-light-blue">1-Moderado</span>
+                          </label>
+                          <br>
+                          <label>
+                            <input type="radio" id="" name="complexidadeP1" value="2">
+                            <span class="badge bg-light-blue">2-Alta</span>
+                          </label>
+                          <br>
+                          <label>
+                            <input type="radio" id="" name="complexidadeP1" value="3">
+                            <span class="badge bg-light-blue">3-Altíssima</span>
+                          </label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="radio">
+                          <label>
+                            <input type="radio" id="" name="impactoP1" value="1" checked>
+                            <span class="badge bg-green">1-Relevante</span>
+                          </label>
+                          <br>
+                          <label>
+                            <input type="radio" id="" name="impactoP1" value="2">
+                            <span class="badge bg-green">2-Muito</span>
+                          </label>
+                          <br>
+                          <label>
+                            <input type="radio" id="" name="impactoP1" value="3">
+                            <span class="badge bg-green">3-Altamente</span>
+                          </label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label for="">2</label>
+                      </td>
+                      <td>
+                        <select class="form-control" id="">
+                          <option [selected]="true" value="">Selecione</option>
+                          <option value="1">37185 - ENAT</option>
+                          <option value="2">10261 - Novo Portal SERPRO</option>
+                          <option value="3">8275 - PUCOMEX</option>
+                          <option value="4">7302 - VICOMEX</option>
+                        </select>
+                      </td>
+                      <td>
+                        <div class="radio">
+                          <label>
+                            <input type="radio" id="" name="abrangenciaP2" value="1" checked>
+                            <span class="badge bg-yellow">1-Moderado</span>
+                          </label>
+                          <br>
+                          <label>
+                            <input type="radio" id="" name="abrangenciaP2" value="2">
+                            <span class="badge bg-yellow">2-Significativa</span>
+                          </label>
+                          <br>
+                          <label>
+                            <input type="radio" id="" name="abrangenciaP2" value="3">
+                            <span class="badge bg-yellow">3-Muito</span>
+                          </label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="radio">
+                          <label>
+                            <input type="radio" id="" name="complexidadeP2" value="1" checked>
+                            <span class="badge bg-light-blue">1-Moderado</span>
+                          </label>
+                          <br>
+                          <label>
+                            <input type="radio" id="" name="complexidadeP2" value="2">
+                            <span class="badge bg-light-blue">2-Alta</span>
+                          </label>
+                          <br>
+                          <label>
+                            <input type="radio" id="" name="complexidadeP2" value="3">
+                            <span class="badge bg-light-blue">3-Altíssima</span>
+                          </label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="radio">
+                          <label>
+                            <input type="radio" id="" name="impactoP2" value="1" checked>
+                            <span class="badge bg-green">1-Relevante</span>
+                          </label>
+                          <br>
+                          <label>
+                            <input type="radio" id="" name="impactoP2" value="2">
+                            <span class="badge bg-green">2-Muito</span>
+                          </label>
+                          <br>
+                          <label>
+                            <input type="radio" id="" name="impactoP2" value="3">
+                            <span class="badge bg-green">3-Altamente</span>
+                          </label>
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <table class="table table-condensed">
+                <tr>
+                  <th>
+                    <label style="width: 20%">% de Ociosidade</label>
+                  </th>
+                </tr>
+                <tr>
+                  <td>
+                    <label style="width: 20%">
+                      <input type="text" class="form-control" id="" placeholder="Informe o % de Ociosidade" maxlength="6" value="0.00">
+                    </label>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class="form-group">
+              <table class="table table-condensed">
+                <tr>
+                  <th style="width: 24%">Pontuação Total</th>
+                  <th style="width: 24%">Pontuação FCT Atual</th>
+                  <th style="width: 24%">Ajuste</th>
+                  <th></th>
+                  <th style="width: 10%"></th>
+                </tr>
+                <tr>
+                  <td>
+                    <label style="width: 100%">
+                      <input type="text" class="form-control" id="" readonly placeholder="" value="97.54">
+                    </label>
+                  </td>
+                  <td>
+                    <label style="width: 100%">
+                      <input type="text" class="form-control" id="" readonly placeholder="" value="87.98">
+                    </label>
+                  </td>
+                  <td>
+                    <label style="width: 100%">
+                      <input type="text" class="form-control" id="" readonly placeholder="" value="-9.56">
+                    </label>
+                  </td>
+                  <td>
+                    <div class="progress progress-sm progress-striped active">
+                      <div class="progress-bar progress-bar-success" style="width: 10%"></div>
+                    </div>
+                    <!--<div class="progress progress-sm progress-striped active">
 											<div class="progress-bar progress-bar-danger" style="width: 55%"></div>
 										</div>-->
-									</td>
-									<td>
-										<span class="badge bg-green">-10%</span>
-										<!--<span class="badge bg-red">55%</span>-->
-									</td>
-								</tr>
-							</table>
-						</div>
-						<div class="form-group">
-							<table class="table table-condensed">
-								<tr>
-									<th style="width: 36%">Referência FCT pela Pontuação Total</th>
-									<th style="width: 36%">Referência FCT Atual</th>
-									<th></th>
-									<th style="width: 10%"></th>
-								</tr>
-								<tr>
-									<td>
-										<label style="width: 100%">
-											<input type="text" class="form-control" id="" readonly placeholder="" value="13 - Técnico (R$ 678.19)">
-										</label>
-									</td>
-									<td>
-										<label style="width: 100%">
-											<input type="text" class="form-control" id="" readonly placeholder="" value="11 - Técnico (R$ 395.77)">
-										</label>
-									</td>
-									<td>
-										<div class="progress progress-sm progress-striped active">
-											<div class="progress-bar progress-bar-success" style="width: 58%"></div>
-										</div>
-										<!--<div class="progress progress-sm progress-striped active">
+                  </td>
+                  <td>
+                    <span class="badge bg-green">-10%</span>
+                    <!--<span class="badge bg-red">55%</span>-->
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class="form-group">
+              <table class="table table-condensed">
+                <tr>
+                  <th style="width: 36%">Referência FCT pela Pontuação Total</th>
+                  <th style="width: 36%">Referência FCT Atual</th>
+                  <th></th>
+                  <th style="width: 10%"></th>
+                </tr>
+                <tr>
+                  <td>
+                    <label style="width: 100%">
+                      <input type="text" class="form-control" id="" readonly placeholder="" value="13 - Técnico (R$ 678.19)">
+                    </label>
+                  </td>
+                  <td>
+                    <label style="width: 100%">
+                      <input type="text" class="form-control" id="" readonly placeholder="" value="11 - Técnico (R$ 395.77)">
+                    </label>
+                  </td>
+                  <td>
+                    <div class="progress progress-sm progress-striped active">
+                      <div class="progress-bar progress-bar-success" style="width: 58%"></div>
+                    </div>
+                    <!--<div class="progress progress-sm progress-striped active">
 											<div class="progress-bar progress-bar-danger" style="width: 55%"></div>
 										</div>-->
-									</td>
-									<td>
-										<span class="badge bg-green">-58%</span>
-										<!--<span class="badge bg-red">55%</span>-->
-									</td>
-								</tr>
-							</table>
-						</div>
-					</div>
+                  </td>
+                  <td>
+                    <span class="badge bg-green">-58%</span>
+                    <!--<span class="badge bg-red">55%</span>-->
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
 
-					<div class="box-footer">
-						<button type="button" class="btn btn-default" (click)="onCancel()">Cancelar</button>
-						<button type="submit" class="btn btn-info pull-right">Registrar</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
+          <div class="box-footer">
+            <button type="button" class="btn btn-default" (click)="onCancel()">Cancelar</button>
+            <button type="submit" class="btn btn-info pull-right">Registrar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </section>

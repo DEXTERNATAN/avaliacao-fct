@@ -70,7 +70,7 @@ export class DistribuicaoFormComponent implements OnInit {
         // se inscreve para verificar alterações no valor das faixas
         this.formDistribuicao.get('qtde_faixas').valueChanges.subscribe( /* <- does work */
             changes => {
-                console.log('title has changed:', changes);
+                //console.log('title has changed:', changes);
                 this.calcularAmplitude(false);
             }
           );

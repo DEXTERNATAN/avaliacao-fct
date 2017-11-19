@@ -79,7 +79,7 @@ export class ColaboradorFormComponent implements OnInit {
     save() {
         
         this.formColaborador.get('telefone').setValue(this.retiraCaracteres(this.formColaborador.get('telefone').value, "telefone"));
-        console.log(this.formColaborador.get('telefone').value);
+        //console.log(this.formColaborador.get('telefone').value);
 
         let result, userValue = this.formColaborador.value;
         let atualizar: boolean;
@@ -119,7 +119,7 @@ export class ColaboradorFormComponent implements OnInit {
 
     retiraCaracteres(valor: string, campoForm: string): string {
         let campoFormatado: string = valor.toString().replace(/[`\\s+~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
-        console.log(campoFormatado);
+        //console.log(campoFormatado);
         return campoFormatado.replace(" ", "");
     }
 
