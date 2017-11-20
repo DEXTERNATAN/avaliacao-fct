@@ -8,37 +8,41 @@ import { Colaborador } from './../../colaborador/colaborador.model';
 import { Divisao } from './../../divisao/divisao.model';
 import { Papel } from './../../papel/papel.model';
 import { Tecnologia } from './../../tecnologia/tecnologia.model';
+import { Projeto } from './../../projeto/projeto.model';
+
 import { AvaliacaoService } from './../avaliacao.service';
 import { ColaboradorService } from './../../colaborador/colaborador.service';
 import { DivisaoService } from './../../divisao/divisao.service';
 import { PapelService } from './../../papel/papel.service';
 import { TecnologiaService } from './../../tecnologia/tecnologia.service';
+import { ProjetoService } from 'app/projeto/projeto.service';
+
 
 @Component({
     selector: 'mt-avaliacao-form',
     templateUrl: './avaliacao-form.component.html',
     styleUrls: ['./avaliacao-form.component.css']
 })
+
 export class AvaliacaoFormComponent implements OnInit {
 
-    PapelAtributo: any[] = [];
-    private doctors = [];
-
     formAvaliacao: FormGroup;
-    title: string;
     avaliacao: Avaliacao = new Avaliacao();
-    papel: Papel[] = [];
-    idResource: any;
-    placeholder: string = 'Placeholder...';
-    value: string[];
-    current: any[];
     Divisao: Divisao[] = [];
     Colaborador: Colaborador[] = [];
     Papel: Papel[] = [];
+    Projeto: Projeto[];
     Tecnologia: Tecnologia[] = [];
+    papel: Papel[] = [];
+    PapelAtributo2: any[] = [];
+    valorCopy: any[];
+    PapelAtributo: any[] = [];
+    projetosList: number[] = [1];
+    value: string[];
+    current: any[];
+    title: string;
+    idResource: any;
 
-    public PapelAtributo2: any[] = [];
-    public valorCopy: any[];
 
     /* Selectize */
     configPapel = {
@@ -61,15 +65,14 @@ export class AvaliacaoFormComponent implements OnInit {
         private avaliacaoService: AvaliacaoService,
         private papelService: PapelService,
         private tecnologiaService: TecnologiaService,
-        private divisaoService: DivisaoService
+        private divisaoService: DivisaoService,
+        private projetoService: ProjetoService
     ) {
         this.formAvaliacao = formBuilder.group({
             divisao: [0],
-            papel: [0]
-            // sigla: [null, Validators.required],
-            // nome: [null, Validators.required],
-            // papeisResultado: [null, Validators.required],
-            // tecnologiaResultado: [null, Validators.required]
+            colaborador: [0],
+            papel: [0],
+            tecnologia: [null]
         })
     }
 
@@ -87,7 +90,9 @@ export class AvaliacaoFormComponent implements OnInit {
 
     ngOnInit() {
 
-        let id_resultado = this.route.params.subscribe(params => {
+        console.log(this.formAvaliacao.value);
+
+        this.route.params.subscribe(params => {
             this.idResource = params['id_resultado'];
             this.title = this.idResource ? 'Editar Avaliação' : 'Nova Avaliação';
 
@@ -108,6 +113,7 @@ export class AvaliacaoFormComponent implements OnInit {
         this.getDivisao();
         this.getColaborador();
         this.getTecnologia();
+        this.getProjeto();
 
         // se inscreve para verificar alterações no valor das faixas
         this.formAvaliacao.get('divisao').valueChanges.subscribe( /* <- does work */
@@ -161,19 +167,14 @@ export class AvaliacaoFormComponent implements OnInit {
         });
     }
 
-    getPapelAtributo(idPapel) {
-        console.log(idPapel);
-        // idPapel.forEach(element => {
-        //     console.log('Elemento: ', element);
-        //     this.avaliacaoService.getPapelAtributo(idPapel).subscribe(papelAtributo => {
-        //         console.log('Papel: ', papelAtributo);
-        //         this.PapelAtributo2.push(papelAtributo)
-        //         // this.PapelAtributo = papelAtributo
-        //     });
-        // });
-        // console.log(this.PapelAtributo2);
+    getProjeto() {
+        this.projetoService.getProjeto().subscribe(data => this.Projeto = data);
     }
 
+    addProjeto(value: number) {
+        this.projetosList.push(value);
+        console.log(this.projetosList);
+    }
 
     onCancel() {
         this.navigateBack();
@@ -195,7 +196,6 @@ export class AvaliacaoFormComponent implements OnInit {
                 }
             });
         });
-        // console.log(this.PapelAtributo);
     }
 
 }

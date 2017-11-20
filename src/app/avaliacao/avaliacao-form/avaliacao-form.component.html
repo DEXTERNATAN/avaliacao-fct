@@ -23,7 +23,7 @@
         <div class="alert alert-success" role="alert" *ngIf="sucesso">
           Avaliação Registrada com sucesso!
         </div>
-        <!-- {{ formAvaliacao.value.divisao | json }} -->
+        {{ formAvaliacao.value | json }}
         <form role="form" [formGroup]="formAvaliacao" (ngSubmit)="save()">
           <div class="box-body">
             <div class="form-group">
@@ -38,14 +38,14 @@
                     <div class="form-group">
                       <select class="form-control" id="sigla" formControlName="divisao">
                         <option [selected]="true" value="0">Selecione</option>
-                        <option *ngFor="let divisao of Divisao; let i = index" value="{{divisao.sigla}}">{{divisao.sigla}}</option>
+                        <option *ngFor="let divisao of Divisao; let i = index" [value]="divisao.sigla">{{divisao.sigla}}</option>
                       </select>
                     </div>
                   </td>
                   <td>
-                    <select class="form-control" id="">
+                    <select class="form-control" id="" formControlName="colaborador">
                       <option [selected]="true" value="">Selecione</option>
-                      <option *ngFor="let colaborador of Colaborador; let i = index" value="{{colaborador.id_colaborador}}">{{colaborador.nome}}</option>
+                      <option *ngFor="let colaborador of Colaborador; let i = index" [value]="colaborador.idColaborador">{{ colaborador.nome }}</option>
                     </select>
                   </td>
                   <td>
@@ -63,9 +63,9 @@
                 </tr>
                 <tr>
                   <td>
-                    <select class="form-control" id="">
+                    <select class="form-control" formControlName="tecnologia">
                       <option [selected]="true" value="">Selecione</option>
-                      <option *ngFor="let tec of Tecnologia; let i = index" value="{{tec.id_tecnologia}}">{{tec.nome}}</option>
+                      <option *ngFor="let tec of Tecnologia; let i = index" [valu]e="tec.id_tecnologia">{{tec.nome}}</option>
                     </select>
                   </td>
                 </tr>
@@ -157,327 +157,8 @@
                           </label>
                         </div>
                       </td>
-
                     </tr>
-
                   </table>
-
-
-                  <!-- <table class="table table-striped">
-										<tr>
-											<th style="width: 600px">Descrição</th>
-											<th>
-												<span class="badge bg-yellow">Abrangência</span>
-											</th>
-											<th>
-												<span class="badge bg-light-blue">Complexidade</span>
-											</th>
-											<th>
-												<span class="badge bg-green">Impacto</span>
-											</th>
-										</tr>
-										<tr>
-											<td>
-												<label>a) Analisar as demandas apresentadas pelas áreas de negócio e propor alternativas de solução técnica e estratégia
-													de desenvolvimento</label>
-											</td>
-											<td>
-												<div class="radio">
-													<label>
-														<input type="radio" id="" name="abrangenciaA" value="1" checked>
-														<span data-toggle="tooltip" title="Conhece parcialmente o negócio; Necessita de auxilio proposição de soluções; Executa proposições com oportunidades de melhoria;"
-														 class="badge bg-yellow">1-Moderado</span>
-													</label>
-													<br>
-													<label>
-														<input type="radio" id="" name="abrangenciaA" value="2">
-														<span data-toggle="tooltip" title="Conhecimento do negócio; Velocidade; Referência para discutir necessidades dos projetos em que atua(Evoluções); Participa na proposição de soluções técnicas; Transita entre diferente tecnologias/assuntos;"
-														 class="badge bg-yellow">2-Significativa</span>
-													</label>
-													<br>
-													<label>
-														<input type="radio" id="" name="abrangenciaA" value="3">
-														<span data-toggle="tooltip" title="Reduzir custo; Reuso; Velocidade(está relacionado ao conhecimento do negocio X tempo resposta); Cenário novo; Referências para discutir necessidades de novos projetos; Facilidade de encontrar soluções; Transita entre diferente tecnologias/assuntos; -Histórico de sucesso nas proposições; -Visão sistêmica; -Domínio do negócio;"
-														 class="badge bg-yellow">3-Muito</span>
-													</label>
-												</div>
-											</td>
-											<td>
-												<div class="radio">
-													<label>
-														<input type="radio" id="" name="complexidadea" value="1" checked>
-														<span data-toggle="tooltip" title="Atua em 2 projetos em paralelo/perfis diferentes; Complexidade dos projetos pode influenciar; Prever problemas; Projetos grandes;"
-														 class="badge bg-light-blue">1-Moderado</span>
-													</label>
-													<br>
-													<label>
-														<input type="radio" id="" name="complexidadea" value="2">
-														<span data-toggle="tooltip" title="Pleno em um dos perfis." class="badge bg-light-blue">2-Alta</span>
-													</label>
-													<br>
-													<label>
-														<input type="radio" id="" name="complexidadea" value="3">
-														<span data-toggle="tooltip" title="Prever problemas; Visão sistêmica; Atuar em paralelo em diferentes linguagens/assuntos/projetos; Projetos grandes x prazos curtos; Atuar sob pressão; Autonomia (independência na tomada de decisão); Atua em 3 ou mais projetos/perfis diferentes;"
-														 class="badge bg-light-blue">3-Altíssima</span>
-													</label>
-												</div>
-											</td>
-											<td>
-												<div class="radio">
-													<label>
-														<input type="radio" id="" name="impactoA" value="1" checked>
-														<span class="badge bg-green">1-Relevante</span>
-													</label>
-													<br>
-													<label>
-														<input type="radio" id="" name="impactoA" value="2">
-														<span class="badge bg-green">2-Muito</span>
-													</label>
-													<br>
-													<label>
-														<input type="radio" id="" name="impactoA" value="3">
-														<span class="badge bg-green">3-Altamente</span>
-													</label>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label>b) Elicitar requisitos e criar modelos de uso e de testes de sistemas</label>
-											</td>
-											<td>
-												<div class="radio">
-													<label>
-														<input type="radio" id="" name="abrangenciab" value="1" checked>
-														<span class="badge bg-yellow">1-Moderado</span>
-													</label>
-													<br>
-													<label>
-														<input type="radio" id="" name="abrangenciab" value="2">
-														<span class="badge bg-yellow">2-Significativa</span>
-													</label>
-													<br>
-													<label>
-														<input type="radio" id="" name="abrangenciab" value="3">
-														<span class="badge bg-yellow">3-Muito</span>
-													</label>
-												</div>
-											</td>
-											<td>
-												<div class="radio">
-													<label>
-														<input type="radio" id="" name="complexidadeb" value="1" checked>
-														<span class="badge bg-light-blue">1-Moderado</span>
-													</label>
-													<br>
-													<label>
-														<input type="radio" id="" name="complexidadeb" value="2">
-														<span class="badge bg-light-blue">2-Alta</span>
-													</label>
-													<br>
-													<label>
-														<input type="radio" id="" name="complexidadeb" value="3">
-														<span class="badge bg-light-blue">3-Altíssima</span>
-													</label>
-												</div>
-											</td>
-											<td>
-												<div class="radio">
-													<label>
-														<input type="radio" id="" name="impactob" value="1" checked>
-														<span class="badge bg-green">1-Relevante</span>
-													</label>
-													<br>
-													<label>
-														<input type="radio" id="" name="impactob" value="2">
-														<span class="badge bg-green">2-Muito</span>
-													</label>
-													<br>
-													<label>
-														<input type="radio" id="" name="impactob" value="3">
-														<span class="badge bg-green">3-Altamente</span>
-													</label>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label>c) Elaborar projeto lógico e físico de dados e de sistemas</label>
-											</td>
-											<td>
-												<div class="radio">
-													<label>
-														<input type="radio" id="" name="abrangenciac" value="1" checked>
-														<span class="badge bg-yellow">1-Moderado</span>
-													</label>
-													<br>
-													<label>
-														<input type="radio" id="" name="abrangenciac" value="2">
-														<span class="badge bg-yellow">2-Significativa</span>
-													</label>
-													<br>
-													<label>
-														<input type="radio" id="" name="abrangenciac" value="3">
-														<span class="badge bg-yellow">3-Muito</span>
-													</label>
-												</div>
-											</td>
-											<td>
-												<div class="radio">
-													<label>
-														<input type="radio" id="" name="complexidadec" value="1" checked>
-														<span class="badge bg-light-blue">1-Moderado</span>
-													</label>
-													<br>
-													<label>
-														<input type="radio" id="" name="complexidadec" value="2">
-														<span class="badge bg-light-blue">2-Alta</span>
-													</label>
-													<br>
-													<label>
-														<input type="radio" id="" name="complexidadec" value="3">
-														<span class="badge bg-light-blue">3-Altíssima</span>
-													</label>
-												</div>
-											</td>
-											<td>
-												<div class="radio">
-													<label>
-														<input type="radio" id="" name="impactoc" value="1" checked>
-														<span class="badge bg-green">1-Relevante</span>
-													</label>
-													<br>
-													<label>
-														<input type="radio" id="" name="impactoc" value="2">
-														<span class="badge bg-green">2-Muito</span>
-													</label>
-													<br>
-													<label>
-														<input type="radio" id="" name="impactoc" value="3">
-														<span class="badge bg-green">3-Altamente</span>
-													</label>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label>d) Definir a arquitetura de softwares e de sistemas</label>
-											</td>
-											<td>
-												<div class="radio">
-													<label>
-														<input type="radio" id="" name="abrangenciad" value="1" checked>
-														<span class="badge bg-yellow">1-Moderado</span>
-													</label>
-													<br>
-													<label>
-														<input type="radio" id="" name="abrangenciad" value="2">
-														<span class="badge bg-yellow">2-Significativa</span>
-													</label>
-													<br>
-													<label>
-														<input type="radio" id="" name="abrangenciad" value="3">
-														<span class="badge bg-yellow">3-Muito</span>
-													</label>
-												</div>
-											</td>
-											<td>
-												<div class="radio">
-													<label>
-														<input type="radio" id="" name="complexidaded" value="1" checked>
-														<span class="badge bg-light-blue">1-Moderado</span>
-													</label>
-													<br>
-													<label>
-														<input type="radio" id="" name="complexidaded" value="2">
-														<span class="badge bg-light-blue">2-Alta</span>
-													</label>
-													<br>
-													<label>
-														<input type="radio" id="" name="complexidaded" value="3">
-														<span class="badge bg-light-blue">3-Altíssima</span>
-													</label>
-												</div>
-											</td>
-											<td>
-												<div class="radio">
-													<label>
-														<input type="radio" id="" name="impactod" value="1" checked>
-														<span class="badge bg-green">1-Relevante</span>
-													</label>
-													<br>
-													<label>
-														<input type="radio" id="" name="impactod" value="2">
-														<span class="badge bg-green">2-Muito</span>
-													</label>
-													<br>
-													<label>
-														<input type="radio" id="" name="impactod" value="3">
-														<span class="badge bg-green">3-Altamente</span>
-													</label>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label>e) Especificar unidades de implementação de software</label>
-											</td>
-											<td>
-												<div class="radio">
-													<label>
-														<input type="radio" id="" name="abrangenciae" value="1" checked>
-														<span class="badge bg-yellow">1-Moderado</span>
-													</label>
-													<br>
-													<label>
-														<input type="radio" id="" name="abrangenciae" value="2">
-														<span class="badge bg-yellow">2-Significativa</span>
-													</label>
-													<br>
-													<label>
-														<input type="radio" id="" name="abrangenciae" value="3">
-														<span class="badge bg-yellow">3-Muito</span>
-													</label>
-												</div>
-											</td>
-											<td>
-												<div class="radio">
-													<label>
-														<input type="radio" id="" name="complexidadee" value="1" checked>
-														<span class="badge bg-light-blue">1-Moderado</span>
-													</label>
-													<br>
-													<label>
-														<input type="radio" id="" name="complexidadee" value="2">
-														<span class="badge bg-light-blue">2-Alta</span>
-													</label>
-													<br>
-													<label>
-														<input type="radio" id="" name="complexidadee" value="3">
-														<span class="badge bg-light-blue">3-Altíssima</span>
-													</label>
-												</div>
-											</td>
-											<td>
-												<div class="radio">
-													<label>
-														<input type="radio" id="" name="impactoe" value="1" checked>
-														<span class="badge bg-green">1-Relevante</span>
-													</label>
-													<br>
-													<label>
-														<input type="radio" id="" name="impactoe" value="2">
-														<span class="badge bg-green">2-Muito</span>
-													</label>
-													<br>
-													<label>
-														<input type="radio" id="" name="impactoe" value="3">
-														<span class="badge bg-green">3-Altamente</span>
-													</label>
-												</div>
-											</td>
-										</tr>
-									</table> -->
                 </div>
               </div>
             </div>
@@ -491,7 +172,7 @@
                 <tr>
                   <td>
                     <label style="width: 20%">
-                      <select class="form-control" id="">
+                      <select class="form-control" (change)="addProjeto($event.target.value)">
                         <option value="1" selected>1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -515,156 +196,92 @@
                   </div>
                 </div>
                 <div class="box-body">
-                  <table class="table table-striped">
-                    <tr>
-                      <th>#</th>
-                      <th style="width: 570px">Descrição</th>
-                      <th>
-                        <span class="badge bg-yellow">Abrangência</span>
-                      </th>
-                      <th>
-                        <span class="badge bg-light-blue">Complexidade</span>
-                      </th>
-                      <th>
-                        <span class="badge bg-green">Impacto</span>
-                      </th>
-                    </tr>
-                    <tr>
-                      <td>
-                        <label for="">1</label>
-                      </td>
-                      <td>
-                        <select class="form-control" id="">
-                          <option [selected]="true" value="">Selecione</option>
-                          <option value="1">10115 - Intercâmbio de Informações</option>
-                          <option value="2">10445 - ECAT</option>
-                          <option value="3">10166 - Portal Tesouro Direto</option>
-                        </select>
-                      </td>
-                      <td>
-                        <div class="radio">
-                          <label>
-                            <input type="radio" id="" name="abrangenciaP1" value="1" checked>
-                            <span class="badge bg-yellow">1-Moderado</span>
-                          </label>
-                          <br>
-                          <label>
-                            <input type="radio" id="" name="abrangenciaP1" value="2">
-                            <span class="badge bg-yellow">2-Significativa</span>
-                          </label>
-                          <br>
-                          <label>
-                            <input type="radio" id="" name="abrangenciaP1" value="3">
-                            <span class="badge bg-yellow">3-Muito</span>
-                          </label>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="radio">
-                          <label>
-                            <input type="radio" id="" name="complexidadeP1" value="1" checked>
-                            <span class="badge bg-light-blue">1-Moderado</span>
-                          </label>
-                          <br>
-                          <label>
-                            <input type="radio" id="" name="complexidadeP1" value="2">
-                            <span class="badge bg-light-blue">2-Alta</span>
-                          </label>
-                          <br>
-                          <label>
-                            <input type="radio" id="" name="complexidadeP1" value="3">
-                            <span class="badge bg-light-blue">3-Altíssima</span>
-                          </label>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="radio">
-                          <label>
-                            <input type="radio" id="" name="impactoP1" value="1" checked>
-                            <span class="badge bg-green">1-Relevante</span>
-                          </label>
-                          <br>
-                          <label>
-                            <input type="radio" id="" name="impactoP1" value="2">
-                            <span class="badge bg-green">2-Muito</span>
-                          </label>
-                          <br>
-                          <label>
-                            <input type="radio" id="" name="impactoP1" value="3">
-                            <span class="badge bg-green">3-Altamente</span>
-                          </label>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <label for="">2</label>
-                      </td>
-                      <td>
-                        <select class="form-control" id="">
-                          <option [selected]="true" value="">Selecione</option>
-                          <option value="1">37185 - ENAT</option>
-                          <option value="2">10261 - Novo Portal SERPRO</option>
-                          <option value="3">8275 - PUCOMEX</option>
-                          <option value="4">7302 - VICOMEX</option>
-                        </select>
-                      </td>
-                      <td>
-                        <div class="radio">
-                          <label>
-                            <input type="radio" id="" name="abrangenciaP2" value="1" checked>
-                            <span class="badge bg-yellow">1-Moderado</span>
-                          </label>
-                          <br>
-                          <label>
-                            <input type="radio" id="" name="abrangenciaP2" value="2">
-                            <span class="badge bg-yellow">2-Significativa</span>
-                          </label>
-                          <br>
-                          <label>
-                            <input type="radio" id="" name="abrangenciaP2" value="3">
-                            <span class="badge bg-yellow">3-Muito</span>
-                          </label>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="radio">
-                          <label>
-                            <input type="radio" id="" name="complexidadeP2" value="1" checked>
-                            <span class="badge bg-light-blue">1-Moderado</span>
-                          </label>
-                          <br>
-                          <label>
-                            <input type="radio" id="" name="complexidadeP2" value="2">
-                            <span class="badge bg-light-blue">2-Alta</span>
-                          </label>
-                          <br>
-                          <label>
-                            <input type="radio" id="" name="complexidadeP2" value="3">
-                            <span class="badge bg-light-blue">3-Altíssima</span>
-                          </label>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="radio">
-                          <label>
-                            <input type="radio" id="" name="impactoP2" value="1" checked>
-                            <span class="badge bg-green">1-Relevante</span>
-                          </label>
-                          <br>
-                          <label>
-                            <input type="radio" id="" name="impactoP2" value="2">
-                            <span class="badge bg-green">2-Muito</span>
-                          </label>
-                          <br>
-                          <label>
-                            <input type="radio" id="" name="impactoP2" value="3">
-                            <span class="badge bg-green">3-Altamente</span>
-                          </label>
-                        </div>
-                      </td>
-                    </tr>
-                  </table>
+
+                  <div *ngFor='let value of projetosList; trackBy: index;'>
+                    {{ value }}
+                    <br />
+
+                    <table class="table table-striped">
+                      <tr>
+                        <th>#</th>
+                        <th style="width: 570px">Descrição</th>
+                        <th>
+                          <span class="badge bg-yellow">Abrangência</span>
+                        </th>
+                        <th>
+                          <span class="badge bg-light-blue">Complexidade</span>
+                        </th>
+                        <th>
+                          <span class="badge bg-green">Impacto</span>
+                        </th>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label for="">1</label>
+                        </td>
+                        <td>
+                          <select class="form-control">
+                            <option [selected]="true" value="">Selecione</option>
+                            <option *ngFor="let item of Projeto" value="">{{ item.cod_servico }} - {{ item.descricao }}</option>
+                          </select>
+                        </td>
+                        <td>
+                          <div class="radio">
+                            <label>
+                              <input type="radio" id="" name="abrangenciaP1" value="1" checked>
+                              <span class="badge bg-yellow">1-Moderado</span>
+                            </label>
+                            <br>
+                            <label>
+                              <input type="radio" id="" name="abrangenciaP1" value="2">
+                              <span class="badge bg-yellow">2-Significativa</span>
+                            </label>
+                            <br>
+                            <label>
+                              <input type="radio" id="" name="abrangenciaP1" value="3">
+                              <span class="badge bg-yellow">3-Muito</span>
+                            </label>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="radio">
+                            <label>
+                              <input type="radio" id="" name="complexidadeP1" value="1" checked>
+                              <span class="badge bg-light-blue">1-Moderado</span>
+                            </label>
+                            <br>
+                            <label>
+                              <input type="radio" id="" name="complexidadeP1" value="2">
+                              <span class="badge bg-light-blue">2-Alta</span>
+                            </label>
+                            <br>
+                            <label>
+                              <input type="radio" id="" name="complexidadeP1" value="3">
+                              <span class="badge bg-light-blue">3-Altíssima</span>
+                            </label>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="radio">
+                            <label>
+                              <input type="radio" id="" name="impactoP1" value="1" checked>
+                              <span class="badge bg-green">1-Relevante</span>
+                            </label>
+                            <br>
+                            <label>
+                              <input type="radio" id="" name="impactoP1" value="2">
+                              <span class="badge bg-green">2-Muito</span>
+                            </label>
+                            <br>
+                            <label>
+                              <input type="radio" id="" name="impactoP1" value="3">
+                              <span class="badge bg-green">3-Altamente</span>
+                            </label>
+                          </div>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
                 </div>
               </div>
             </div>
@@ -713,13 +330,9 @@
                     <div class="progress progress-sm progress-striped active">
                       <div class="progress-bar progress-bar-success" style="width: 10%"></div>
                     </div>
-                    <!--<div class="progress progress-sm progress-striped active">
-											<div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-										</div>-->
                   </td>
                   <td>
                     <span class="badge bg-green">-10%</span>
-                    <!--<span class="badge bg-red">55%</span>-->
                   </td>
                 </tr>
               </table>
@@ -747,19 +360,14 @@
                     <div class="progress progress-sm progress-striped active">
                       <div class="progress-bar progress-bar-success" style="width: 58%"></div>
                     </div>
-                    <!--<div class="progress progress-sm progress-striped active">
-											<div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-										</div>-->
                   </td>
                   <td>
                     <span class="badge bg-green">-58%</span>
-                    <!--<span class="badge bg-red">55%</span>-->
                   </td>
                 </tr>
               </table>
             </div>
           </div>
-
           <div class="box-footer">
             <button type="button" class="btn btn-default" (click)="onCancel()">Cancelar</button>
             <button type="submit" class="btn btn-info pull-right">Registrar</button>
