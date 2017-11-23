@@ -65,7 +65,7 @@
                   <td>
                     <select class="form-control" formControlName="tecnologia">
                       <option [selected]="true" value="">Selecione</option>
-                      <option *ngFor="let tec of Tecnologia; let i = index" [valu]e="tec.id_tecnologia">{{tec.nome}}</option>
+                      <option *ngFor="let tec of Tecnologia; let i = index" [value]="tec.id_tecnologia">{{tec.nome}}</option>
                     </select>
                   </td>
                 </tr>
@@ -172,7 +172,7 @@
                 <tr>
                   <td>
                     <label style="width: 20%">
-                      <select class="form-control" (change)="addProjeto($event.target.value)">
+                      <select class="form-control"  formControlName="qtdProjetos" (change)="addProjeto($event.target.value)">
                         <option value="1" selected>1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -196,7 +196,7 @@
                   </div>
                 </div>
                 <div class="box-body">
-
+                  {{ projetoList }}
                   <div *ngFor='let value of projetosList; trackBy: index;'>
                     {{ value }}
                     <br />

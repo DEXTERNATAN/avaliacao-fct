@@ -72,7 +72,8 @@ export class AvaliacaoFormComponent implements OnInit {
             divisao: [0],
             colaborador: [0],
             papel: [0],
-            tecnologia: [null]
+            tecnologia: [null],
+            qtdProjetos: [1]
         })
     }
 
@@ -172,8 +173,21 @@ export class AvaliacaoFormComponent implements OnInit {
     }
 
     addProjeto(value: number) {
-        this.projetosList.push(value);
+
+        var numbers = [value];
+        var tamanho = value;
+        var i = 0;
+        this.projetosList = [];
+        console.log('tamanho: ', tamanho);
+
+        for (i; i < tamanho; i++) {
+            console.log('valores: ', i);
+            this.projetosList.push(value);
+            console.log("FOR >>> ", this.projetosList);
+        }
+        
         console.log(this.projetosList);
+       
     }
 
     onCancel() {
