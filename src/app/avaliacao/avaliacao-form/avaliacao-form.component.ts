@@ -17,7 +17,6 @@ import { PapelService } from './../../papel/papel.service';
 import { TecnologiaService } from './../../tecnologia/tecnologia.service';
 import { ProjetoService } from './../../projeto/projeto.service';
 
-
 @Component({
 	selector: 'mt-avaliacao-form',
 	templateUrl: './avaliacao-form.component.html',
@@ -197,10 +196,8 @@ export class AvaliacaoFormComponent implements OnInit {
 		var tamanho = value;
 		var i = 0;
 		this.projetosList = [];
-		//console.log('tamanho: ', tamanho);
-
+		
 		for (i; i < tamanho; i++) {
-			//console.log('valores: ', i);
 			this.projetosList.push(value);
 		}
 	}
@@ -214,8 +211,6 @@ export class AvaliacaoFormComponent implements OnInit {
 	}
 
 	getChangeData(valor) {
-		
-		console.log("VALOR CHANGEDATA >>> ", valor);
 		
 		let vlrArray: Array<string>[] = [];
 		valor.forEach(element => {
@@ -231,11 +226,7 @@ export class AvaliacaoFormComponent implements OnInit {
 	}
 
 	getResetarAtributo(valor) {
-		
-		console.log("VALOR CHANGEDATA >>> ", valor);
 		this.PapelAtributo = [];
-		console.log("Papel ATRIBUTO >>> ", this.PapelAtributo);
-		
 	}
 
 	getSomarTecnologia(valor, item) {
