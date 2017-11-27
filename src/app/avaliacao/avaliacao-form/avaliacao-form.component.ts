@@ -187,7 +187,18 @@ export class AvaliacaoFormComponent implements OnInit {
 	}
 
 	getProjeto() {
-		this.projetoService.getProjeto().subscribe(data => this.Projeto = data);
+		this.projetoService.getProjeto().subscribe(data => {
+			this.Projeto = data;
+			this.Projeto.sort(function(a,b){
+				if(a.cod_servico < b.cod_servico){
+					return -1;
+				}else if(a.cod_servico > b.cod_servico){
+					return 1;
+				}else{
+					return 0;
+				}
+			})
+		});
 	}
 
 	addProjeto(value: number) {
