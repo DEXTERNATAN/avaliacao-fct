@@ -219,6 +219,15 @@ export class AvaliacaoFormComponent implements OnInit {
 					data.forEach(arrayPush => {
 						vlrArray.push(arrayPush);
 						this.PapelAtributo = vlrArray;
+						this.PapelAtributo.sort(function(a,b){
+							if(a.letra < b.letra){
+								return -1;
+							}else if(a.letra > b.letra){
+								return 1;
+							}else{
+								return 0;
+							}
+						})
 					});
 				}		
 			});
