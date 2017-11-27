@@ -222,7 +222,6 @@ export class AvaliacaoFormComponent implements OnInit {
 	}
 
 	getChangeData(valor) {
-		
 		let vlrArray: Array<string>[] = [];
 		valor.forEach(element => {
 			this.avaliacaoService.getPapelAtributo(element).subscribe((data) => {
