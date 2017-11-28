@@ -2,8 +2,8 @@ import { MensagensHandler } from 'app/shared/services/mensagens-handler.service'
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { LoaderService } from 'app/shared/services/loader.service';
 
+import { LoaderService } from 'app/shared/services/loader.service';
 import { Papel } from './../papel.model';
 import { PapelService } from './../papel.service';
 
@@ -24,7 +24,7 @@ export class PapelFormComponent implements OnInit {
         private route: ActivatedRoute,
         private papelService: PapelService,
         private loaderService: LoaderService,
-		private mensagensHandler: MensagensHandler
+        private mensagensHandler: MensagensHandler
     ) {
         this.formPapel = formBuilder.group({
             tipo: [null, [Validators.required]],
@@ -46,27 +46,27 @@ export class PapelFormComponent implements OnInit {
     }
 
     ngOnInit() {
-        
-        this.loaderService.setMsgLoading("Carregando ...");
-		this.mensagensHandler.handleClearMessages();
 
-        var id_papel = this.route.params.subscribe(params => {
+        this.loaderService.setMsgLoading('Carregando ...');
+        this.mensagensHandler.handleClearMessages();
+
+        this.route.params.subscribe(params => {
             this.idResource = params['id_papel'];
             this.title = this.idResource ? 'Editar Papel' : 'Novo Papel';
 
-            if (!this.idResource)
+            if ( !this.idResource ) {
                 return;
+            };
 
             this.papelService.getPapelId(this.idResource).subscribe(papel => {
-                papel = this.papeis = papel
-                //console.log(papel.id_papel),
-                    response => {
-                        if (response.status == 404) {
-                            this.router.navigate(['papel'])
-                        }
+                papel = this.papeis = papel;
+                response => {
+                    if (response.status == 404) {
+                        this.router.navigate(['papel'])
                     }
-            })
-        })
+                }
+            });
+        });
     }
 
     save() {
@@ -75,22 +75,22 @@ export class PapelFormComponent implements OnInit {
 
         if (this.idResource) {
             atualizar = true;
-            this.loaderService.setMsgLoading("Atualizando papel ...");
+            this.loaderService.setMsgLoading('Atualizando papel ...');
             result = this.papelService.updatePapel(this.idResource, userValue);
         } else {
             atualizar = false;
-			this.loaderService.setMsgLoading("Salvando papel ...");
+            this.loaderService.setMsgLoading('Salvando papel ...');
             result = this.papelService.addPapel(userValue);
         }
         result.subscribe(data => {
-			if (atualizar) {
-				this.mensagensHandler.handleSuccess("Papel atualizado com sucesso!");
-			} else {
-                this.mensagensHandler.handleSuccess("Papel salvo com sucesso!");
-			}
-			this.router.navigate(['papel']);
-		}
-		);
+            if (atualizar) {
+                this.mensagensHandler.handleSuccess('Papel atualizado com sucesso!');
+            } else {
+                this.mensagensHandler.handleSuccess('Papel salvo com sucesso!');
+            }
+            this.router.navigate(['papel']);
+        }
+        );
     }
 
     onCancel() {

@@ -18,241 +18,237 @@ import { TecnologiaService } from './../../tecnologia/tecnologia.service';
 import { ProjetoService } from './../../projeto/projeto.service';
 
 @Component({
-	selector: 'mt-avaliacao-form',
-	templateUrl: './avaliacao-form.component.html',
-	styleUrls: ['./avaliacao-form.component.css']
+    selector: 'mt-avaliacao-form',
+    templateUrl: './avaliacao-form.component.html',
+    styleUrls: ['./avaliacao-form.component.css']
 })
 
 export class AvaliacaoFormComponent implements OnInit {
 
-	formAvaliacao: FormGroup;
-	avaliacao: Avaliacao = new Avaliacao();
-	Divisao: Divisao[] = [];
-	Colaborador: Colaborador[] = [];
-	Papel: Papel[] = [];
-	Projeto: Projeto[];
-	Tecnologia: Tecnologia[] = [];
-	papel: Papel[] = [];
-	PapelAtributo2: any[] = [];
-	valorCopy: any[];
-	PapelAtributo: any[] = [];
-	projetosList: number[] = [1];
-	value: string[];
-	valueTec: string[];
-	current: any[];
-	title: string;
-	idResource: any;
-	vlrTecnologia: number = 0;
+    formAvaliacao: FormGroup;
+    avaliacao: Avaliacao = new Avaliacao();
+    Divisao: Divisao[] = [];
+    Colaborador: Colaborador[] = [];
+    Papel: Papel[] = [];
+    Projeto: Projeto[];
+    Tecnologia: Tecnologia[] = [];
+    papel: Papel[] = [];
+    PapelAtributo2: any[] = [];
+    valorCopy: any[];
+    PapelAtributo: any[] = [];
+    projetosList: number[] = [1];
+    value: string[];
+    valueTec: string[];
+    current: any[];
+    title: string;
+    idResource: any;
+    vlrTecnologia: number = 0;
 
+    /* Selectize */
+    configPapel = {
+        create: true,
+        valueField: 'id_papel',
+        labelField: 'nome',
+        searchField: ['nome'],
+        delimiter: ',',
+        plugins: ['dropdown_direction', 'remove_button'],
+        dropdownDirection: 'down',
+        maxItems: 3,
+        onItemRemove: this.getResetarAtributo.bind(this),
+        onChange: this.getChangeData.bind(this)
+    };
 
-	/* Selectize */
-	configPapel = {
-		create: true,
-		valueField: 'id_papel',
-		labelField: 'nome',
-		searchField: ['nome'],
-		delimiter: ',',
-		plugins: ['dropdown_direction', 'remove_button'],
-		dropdownDirection: 'down',
-		maxItems: 3,
-		onItemRemove: this.getResetarAtributo.bind(this),
-		onChange: this.getChangeData.bind(this)
-		
-	};
+    configTecnologia = {
+        create: true,
+        valueField: 'id_tecnologia',
+        labelField: 'nome',
+        searchField: ['nome'],
+        delimiter: ',',
+        plugins: ['dropdown_direction', 'remove_button'],
+        dropdownDirection: 'down',
+        maxItems: 5,
+        onItemAdd: this.getSomarTecnologia.bind(this, this),
+        onItemRemove: this.getApagarTecnologia.bind(this)
+    };
 
-	configTecnologia = {
-		create: true,
-		valueField: 'id_tecnologia',
-		labelField: 'nome',
-		searchField: ['nome'],
-		delimiter: ',',
-		plugins: ['dropdown_direction', 'remove_button'],
-		dropdownDirection: 'down',
-		maxItems: 5,
-		onItemAdd: this.getSomarTecnologia.bind(this, this),
-		onItemRemove: this.getApagarTecnologia.bind(this)
-		//onChange: this.getSomarTecnologia.bind(this)
+    constructor(
+        formBuilder: FormBuilder,
+        private router: Router,
+        private route: ActivatedRoute,
+        private colaboradorService: ColaboradorService,
+        private avaliacaoService: AvaliacaoService,
+        private papelService: PapelService,
+        private tecnologiaService: TecnologiaService,
+        private divisaoService: DivisaoService,
+        private projetoService: ProjetoService
+    ) {
+        this.formAvaliacao = formBuilder.group({
+            divisao: [0],
+            colaborador: [0],
+            papel: [0],
+            tecnologia: [null],
+            qtdProjetos: [1],
+            abrangencia: [],
+            complexidade: [null],
+            impacto: [null]
+        });
+    }
 
-	};
+    hasErrors(): boolean {
+        let hasErrors: boolean = false;
+        for (let controlName in this.formAvaliacao.controls) {
+            let control: AbstractControl = this.formAvaliacao.controls[controlName];
+            if (!control.valid && !control.pristine) {
+                hasErrors = true;
+                break;
+            }
+        }
+        return hasErrors;
+    }
 
-	constructor(
-		formBuilder: FormBuilder,
-		private router: Router,
-		private route: ActivatedRoute,
-		private colaboradorService: ColaboradorService,
-		private avaliacaoService: AvaliacaoService,
-		private papelService: PapelService,
-		private tecnologiaService: TecnologiaService,
-		private divisaoService: DivisaoService,
-		private projetoService: ProjetoService
-	) {
-		this.formAvaliacao = formBuilder.group({
-			divisao: [0],
-			colaborador: [0],
-			papel: [0],
-			tecnologia: [null],
-			qtdProjetos: [1]
-		})
-	}
+    ngOnInit() {
 
-	hasErrors(): boolean {
-		let hasErrors: boolean = false;
-		for (let controlName in this.formAvaliacao.controls) {
-			let control: AbstractControl = this.formAvaliacao.controls[controlName];
-			if (!control.valid && !control.pristine) {
-				hasErrors = true;
-				break;
-			}
-		}
-		return hasErrors;
-	}
+        this.route.params.subscribe(params => {
+            this.idResource = params['id_resultado'];
+            this.title = this.idResource ? 'Editar Avaliação' : 'Nova Avaliação';
 
-	ngOnInit() {
+            if (!this.idResource) {
+                return;
+            }
 
-		console.log(this.formAvaliacao.value);
+            this.avaliacaoService.getAvaliacaoId(this.idResource).subscribe(response => {
+                response = this.avaliacao = response;
+                if (response.status === 404) {
+                    this.router.navigate(['avaliacao'])
+                }
+            });
+        });
 
-		this.route.params.subscribe(params => {
-			this.idResource = params['id_resultado'];
-			this.title = this.idResource ? 'Editar Avaliação' : 'Nova Avaliação';
+        // Carga dos dados complementares
+        this.getPapeis();
+        this.getDivisao();
+        this.getColaborador();
+        this.getTecnologia();
+        this.getProjeto();
 
-			if (!this.idResource) {
-				return;
-			}
+        // se inscreve para verificar alterações no valor das faixas
+        this.formAvaliacao.get('divisao').valueChanges.subscribe( /* <- does work */
+            divisao => {
+                let colabFilter: any[];
+                this.colaboradorService.getColaborador().subscribe(colaborador => {
+                    colabFilter = colaborador.filter(function (el) {
+                        return el['sigla'] === divisao;
+                    });
+                    this.Colaborador = colabFilter;
+                });
+            }
+        );
+    }
 
-			this.avaliacaoService.getAvaliacaoId(this.idResource).subscribe(response => {
-				response = this.avaliacao = response;
-				if (response.status === 404) {
-					this.router.navigate(['avaliacao'])
-				}
-			});
-		});
+    save() {
+        let result, userValue = this.formAvaliacao.value;
 
-		// Carga dos dados complementares
-		this.getPapeis();
-		this.getDivisao();
-		this.getColaborador();
-		this.getTecnologia();
-		this.getProjeto();
+        if (this.idResource) {
+            result = this.avaliacaoService.updateAvaliacao(this.idResource, userValue);
+        } else {
+            result = this.avaliacaoService.addAvaliacao(userValue);
+        }
 
-		// se inscreve para verificar alterações no valor das faixas
-		this.formAvaliacao.get('divisao').valueChanges.subscribe( /* <- does work */
-			divisao => {
-				let colabFilter: any[];
-				this.colaboradorService.getColaborador().subscribe(colaborador => {
-					colabFilter = colaborador.filter(function (el) {
-						return el['sigla'] === divisao;
-					});
-					this.Colaborador = colabFilter;
-				});
-			}
-		);
+        result.subscribe(data => this.router.navigate(['avaliacao']));
+    }
 
-	}
+    getPapeis() {
+        this.papelService.getPapel().subscribe(papel => {
+            this.papel = papel;
+            console.log(papel);
+        });
+    }
 
+    getDivisao() {
+        this.divisaoService.getDivisao().subscribe(divisao => {
+            this.Divisao = divisao;
+        });
+    }
 
-	save() {
-		let result, userValue = this.formAvaliacao.value;
+    getColaborador() {
+        this.colaboradorService.getColaborador().subscribe(colaborador => {
+            this.Colaborador = colaborador;
+        });
+    }
 
-		if (this.idResource) {
-			result = this.avaliacaoService.updateAvaliacao(this.idResource, userValue);
-		} else {
-			result = this.avaliacaoService.addAvaliacao(userValue);
-		}
+    getTecnologia() {
+        this.tecnologiaService.getTecnologia().subscribe(tecnologia => {
+            this.Tecnologia = tecnologia;
+        });
+    }
 
-		result.subscribe(data => this.router.navigate(['avaliacao']));
-	}
+    getProjeto() {
+        this.projetoService.getProjeto().subscribe(data => {
+            this.Projeto = data;
+            this.Projeto.sort(function (a, b) {
+                if (a.cod_servico < b.cod_servico) {
+                    return -1;
+                } else if (a.cod_servico > b.cod_servico) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            })
+        });
+    }
 
-	getPapeis() {
-		this.papelService.getPapel().subscribe(papel => {
-			this.papel = papel;
-		});
-	}
+    addProjeto(value: number) {
 
-	getDivisao() {
-		this.divisaoService.getDivisao().subscribe(divisao => {
-			this.Divisao = divisao;
-		});
-	}
+        let tamanho = value;
+        let i = 0;
+        this.projetosList = [];
 
-	getColaborador() {
-		this.colaboradorService.getColaborador().subscribe(colaborador => {
-			this.Colaborador = colaborador;
-		});
-	}
+        for (i; i < tamanho; i++) {
+            this.projetosList.push(value);
+        }
+    }
 
-	getTecnologia() {
-		this.tecnologiaService.getTecnologia().subscribe(tecnologia => {
-			this.Tecnologia = tecnologia;
-		});
-	}
+    onCancel() {
+        this.navigateBack();
+    }
 
-	getProjeto() {
-		this.projetoService.getProjeto().subscribe(data => {
-			this.Projeto = data;
-			this.Projeto.sort(function(a,b){
-				if(a.cod_servico < b.cod_servico){
-					return -1;
-				}else if(a.cod_servico > b.cod_servico){
-					return 1;
-				}else{
-					return 0;
-				}
-			})
-		});
-	}
+    private navigateBack() {
+        this.router.navigate(['/avaliacao']);
+    }
 
-	addProjeto(value: number) {
+    getChangeData(valor) {
+        let vlrArray: Array<string>[] = [];
+        valor.forEach(element => {
+            this.avaliacaoService.getPapelAtributo(element).subscribe((data) => {
+                if (data !== []) {
+                    data.forEach(arrayPush => {
+                        vlrArray.push(arrayPush);
+                        this.PapelAtributo = vlrArray;
+                        this.PapelAtributo.sort(function (a, b) {
+                            if (a.letra < b.letra) {
+                                return -1;
+                            } else if (a.letra > b.letra) {
+                                return 1;
+                            } else {
+                                return 0;
+                            }
+                        })
+                    });
+                }
+            });
+        });
+    }
 
-		var numbers = [value];
-		var tamanho = value;
-		var i = 0;
-		this.projetosList = [];
-		
-		for (i; i < tamanho; i++) {
-			this.projetosList.push(value);
-		}
-	}
+    getResetarAtributo(valor) {
+        this.PapelAtributo = [];
+    }
 
-	onCancel() {
-		this.navigateBack();
-	}
+    getSomarTecnologia(valor, item) {
+        this.vlrTecnologia = this.vlrTecnologia + 1;
+    }
 
-	private navigateBack() {
-		this.router.navigate(['/avaliacao']);
-	}
+    getApagarTecnologia(valor) {
+        this.vlrTecnologia = this.vlrTecnologia - 1;
+    }
 
-	getChangeData(valor) {
-		let vlrArray: Array<string>[] = [];
-		valor.forEach(element => {
-			this.avaliacaoService.getPapelAtributo(element).subscribe((data) => {
-				if (data !== []) {
-					data.forEach(arrayPush => {
-						vlrArray.push(arrayPush);
-						this.PapelAtributo = vlrArray;
-						this.PapelAtributo.sort(function(a,b){
-							if(a.letra < b.letra){
-								return -1;
-							}else if(a.letra > b.letra){
-								return 1;
-							}else{
-								return 0;
-							}
-						})
-					});
-				}		
-			});
-		});
-	}
-
-	getResetarAtributo(valor) {
-		this.PapelAtributo = [];
-	}
-
-	getSomarTecnologia(valor, item) {
-		this.vlrTecnologia = this.vlrTecnologia + 1;
-	}
-
-	getApagarTecnologia(valor) {
-		this.vlrTecnologia = this.vlrTecnologia - 1;
-	}
 }

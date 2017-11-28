@@ -1,4 +1,3 @@
-import { DivisaoComponent } from './divisao/divisao.component';
 import { ImpactoComponent } from './impacto/impacto.component';
 import { ComplexidadeComponent } from './complexidade/complexidade.component';
 import { AbrangenciaComponent } from './abrangencia/abrangencia.component';
@@ -18,10 +17,9 @@ import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule }   from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
-//import { LoginComponent } from 'app/login/login.component';
 import { LoginComponent } from './login/login.component';
+// import { LoginComponent } from 'app/login/login.component';
 
-    
 const appRoutes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: '', component: HomeComponent },
@@ -40,6 +38,6 @@ const appRoutes: Routes = [
     { path: 'avaliacao', component: AvaliacaoComponent },
     { path: 'faixa', component: FaixaComponent },
     { path: 'consultaavaliacao', component: ConsultaavaliacaoComponent }
-]
-  
+];
+
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);

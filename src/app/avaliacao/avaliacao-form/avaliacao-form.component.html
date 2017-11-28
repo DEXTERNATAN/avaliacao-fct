@@ -92,24 +92,25 @@
                         <span class="badge bg-green">Impacto</span>
                       </th>
                     </tr>
-                    <tr *ngFor="let item of PapelAtributo">
+                    x***{{ abrangencia | json }}***x
+                    <tr *ngFor="let item of PapelAtributo; let j = index ;">
                       <td>
                         <label>{{ item.letra }}) {{ item.descricao}}</label>
                       </td>
                       <td>
                         <div class="radio">
                           <label>
-                            <input type="radio" id="abrangencia{{item.letra}}" name="abrangencia{{item.letra}}" value="1" checked>
+                            <input type="radio" id="abrangencia{{j}}" formControlName="abrangencia" value="1" checked>
                             <span data-toggle="tooltip" title="{{item.descricaoAbrangencia1}}" class="badge bg-yellow">1-Moderado</span>
                           </label>
                           <br>
                           <label>
-                            <input type="radio" id="abrangencia{{item.letra}}" name="abrangencia{{item.letra}}" value="2">
+                            <input type="radio" id="abrangencia{{j}}"  formControlName="abrangencia"  value="2">
                             <span data-toggle="tooltip" title="{{item.descricaoAbrangencia2}}" class="badge bg-yellow">2-Significativa</span>
                           </label>
                           <br>
                           <label>
-                            <input type="radio" id="abrangencia{{item.letra}}" name="abrangencia{{item.letra}}" value="3">
+                            <input type="radio" id="abrangencia{{j}}"  formControlName="abrangencia"  value="3">
                             <span data-toggle="tooltip" title="{{item.descricaoAbrangencia3}}" class="badge bg-yellow">3-Muito</span>
                           </label>
                         </div>
@@ -117,17 +118,17 @@
                       <td>
                         <div class="radio">
                           <label>
-                            <input type="radio" id="complexidade{{item.letra}}" name="complexidade{{item.letra}}" value="1" checked>
+                            <input type="radio" id="complexidade{{j}}" formControlName="complexidade" value="1" checked>
                             <span data-toggle="tooltip" title="{{item.descricaoComplexidade1}}" class="badge bg-light-blue">1-Moderada</span>
                           </label>
                           <br>
                           <label>
-                            <input type="radio" id="complexidade{{item.letra}}" name="complexidade{{item.letra}}" value="2">
+                            <input type="radio" id="complexidade{{j}}" formControlName="complexidade" value="2">
                             <span data-toggle="tooltip" title="{{item.descricaoComplexidade2}}" class="badge bg-light-blue">2-Alta</span>
                           </label>
                           <br>
                           <label>
-                            <input type="radio" id="complexidade{{item.letra}}" name="complexidade{{item.letra}}" value="3">
+                            <input type="radio" id="complexidade{{j}}" formControlName="complexidade" value="3">
                             <span data-toggle="tooltip" title="{{item.descricaoComplexidade3}}" class="badge bg-light-blue">3-Altíssima</span>
                           </label>
                         </div>
@@ -135,17 +136,17 @@
                       <td>
                         <div class="radio">
                           <label>
-                            <input type="radio" id="impacto{{item.letra}}" name="impacto{{item.letra}}" value="1" checked>
+                            <input type="radio" id="impacto{{j}}" formControlName="impacto" value="1" checked>
                             <span data-toggle="tooltip" title="{{item.descricaoImpacto1}}" class="badge bg-green">1-Relevante</span>
                           </label>
                           <br>
                           <label>
-                            <input type="radio" id="impacto{{item.letra}}" name="impacto{{item.letra}}" value="2">
+                            <input type="radio" id="impacto{{j}}" formControlName="impacto" value="2">
                             <span data-toggle="tooltip" title="{{item.descricaoImpacto2}}" class="badge bg-green">2-Muito</span>
                           </label>
                           <br>
                           <label>
-                            <input type="radio" id="impacto{{item.letra}}" name="impacto{{item.letra}}" value="3">
+                            <input type="radio" id="impacto{{j}}" formControlName="impacto" value="3">
                             <span data-toggle="tooltip" title="{{item.descricaoImpacto3}}" class="badge bg-green">3-Altamente</span>
                           </label>
                         </div>
