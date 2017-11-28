@@ -43,6 +43,7 @@ export class AvaliacaoFormComponent implements OnInit {
 	title: string;
 	idResource: any;
 	vlrTecnologia: number = 0;
+	vlrTotal: number = 0;
 
 
 	/* Selectize */
@@ -68,7 +69,7 @@ export class AvaliacaoFormComponent implements OnInit {
 		delimiter: ',',
 		plugins: ['dropdown_direction', 'remove_button'],
 		dropdownDirection: 'down',
-		maxItems: 5,
+		maxItems: 7,
 		onItemAdd: this.getSomarTecnologia.bind(this, this),
 		onItemRemove: this.getApagarTecnologia.bind(this)
 		//onChange: this.getSomarTecnologia.bind(this)
@@ -90,6 +91,48 @@ export class AvaliacaoFormComponent implements OnInit {
 			divisao: [0],
 			colaborador: [0],
 			papel: [0],
+			abrangenciaa: [1],
+			abrangenciab: [1],
+			abrangenciac: [1],
+			abrangenciad: [1],
+			abrangenciae: [1],
+			abrangenciaf: [1],
+			abrangenciag: [1],
+			abrangenciah: [1],
+			abrangenciai: [1],
+			abrangenciaj: [1],
+			abrangenciak: [1],
+			abrangencial: [1],
+			abrangenciam: [1],
+			abrangencian: [1],
+			complexidadea: [1],
+			complexidadeb: [1],
+			complexidadec: [1],
+			complexidaded: [1],
+			complexidadee: [1],
+			complexidadeg: [1],
+			complexidadeh: [1],
+			complexidadei: [1],
+			complexidadej: [1],
+			complexidadek: [1],
+			complexidadel: [1],
+			complexidadem: [1],
+			complexidaden: [1],
+			complexidadef: [1],
+			impactoa: [1],
+			impactob: [1],
+			impactoc: [1],
+			impactod: [1],
+			impactoe: [1],
+			impactof: [1],
+			impactog: [1],
+			impactoh: [1],
+			impactoi: [1],
+			impactoj: [1],
+			impactok: [1],
+			impactol: [1],
+			impactom: [1],
+			impacton: [1],
 			tecnologia: [null],
 			qtdProjetos: [1]
 		})
@@ -133,6 +176,7 @@ export class AvaliacaoFormComponent implements OnInit {
 		this.getColaborador();
 		this.getTecnologia();
 		this.getProjeto();
+		//this.somaValores();
 
 		// se inscreve para verificar alterações no valor das faixas
 		this.formAvaliacao.get('divisao').valueChanges.subscribe( /* <- does work */
@@ -147,6 +191,7 @@ export class AvaliacaoFormComponent implements OnInit {
 			}
 		);
 
+			
 	}
 
 
@@ -237,7 +282,8 @@ export class AvaliacaoFormComponent implements OnInit {
 							}else{
 								return 0;
 							}
-						})
+						});
+						this.somaValores();
 					});
 				}		
 			});
@@ -254,5 +300,64 @@ export class AvaliacaoFormComponent implements OnInit {
 
 	getApagarTecnologia(valor) {
 		this.vlrTecnologia = this.vlrTecnologia - 1;
+	}
+
+	private somaValores(){
+		
+		this.vlrTotal = 0;
+
+		//Valor dos papeis
+		//Buscar o valor na tabela de pesos para QtdPapeis
+		var QtdPapeis = 0;
+		QtdPapeis = this.papel.length; //Buscar na Tabela de Pesos o %
+
+		this.vlrTotal = (this.vlrTotal * QtdPapeis); 
+				
+		
+		//Valor das Tecnologias
+		//Buscar o valor na tabela de pesos para Quantidade de tecnologias
+		var QtdTecnologias = 0;
+		QtdTecnologias = this.vlrTecnologia; //Buscar na tabela de pesos o %
+
+		this.vlrTotal = (this.vlrTotal * QtdTecnologias);
+		console.log("Valor Total tecnologias = ", this.vlrTotal);
+
+		//Valor dos Atributos
+		var i = 0;
+		var valorAtributo = 0;
+		var letra = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n'];
+		var tamanho = letra.length;
+
+		for (i; i < tamanho; i++) {
+			valorAtributo = this.formAvaliacao.get('abrangencia' + letra[i]).value;
+			//console.log("LETRA >>> ", letra[i]);	
+			//console.log("VALOR ATRIBUTO >>> ", valorAtributo);
+			//console.log("PAPEL >> ", this.formAvaliacao.get("papel").);
+			
+			//if(this.formAvaliacao.get('abrangencia' + letra[i]).status != null){
+				this.vlrTotal = this.vlrTotal + valorAtributo;
+				console.log("VALOR TOTAL >>> ", this.vlrTotal);
+			//}
+			//console.log(" valor total for =  ", this.vlrTotal);
+
+		}
+		
+		
+
+		//Valor dos Projetos
+
+		//Percentual de ociosidade
+
+		//Pontuação Total
+		
+		//Pontuação FCT Atual
+
+		//Ajuste | %
+
+		//Referencia FCT pela Pontuação Total
+
+		//Referencia FCT Atual | %
+
+		
 	}
 }
