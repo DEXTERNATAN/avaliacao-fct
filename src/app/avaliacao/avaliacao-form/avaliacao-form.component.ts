@@ -283,11 +283,11 @@ export class AvaliacaoFormComponent implements OnInit {
 								return 0;
 							}
 						});
-						this.somaValores();
 					});
 				}		
 			});
 		});
+		this.somaValores();
 	}
 
 	getResetarAtributo(valor) {
@@ -304,14 +304,14 @@ export class AvaliacaoFormComponent implements OnInit {
 
 	private somaValores(){
 		
-		this.vlrTotal = 0;
+		//this.vlrTotal = 0;
 
 		//Valor dos papeis
 		//Buscar o valor na tabela de pesos para QtdPapeis
 		var QtdPapeis = 0;
 		QtdPapeis = this.papel.length; //Buscar na Tabela de Pesos o %
 
-		this.vlrTotal = (this.vlrTotal * QtdPapeis); 
+		//this.vlrTotal = (this.vlrTotal * QtdPapeis); 
 				
 		
 		//Valor das Tecnologias
@@ -319,30 +319,34 @@ export class AvaliacaoFormComponent implements OnInit {
 		var QtdTecnologias = 0;
 		QtdTecnologias = this.vlrTecnologia; //Buscar na tabela de pesos o %
 
-		this.vlrTotal = (this.vlrTotal * QtdTecnologias);
-		console.log("Valor Total tecnologias = ", this.vlrTotal);
+		//this.vlrTotal = (this.vlrTotal * QtdTecnologias);
+		//console.log("Valor Total tecnologias = ", this.vlrTotal);
 
 		//Valor dos Atributos
 		var i = 0;
+		var j = 0;
 		var valorAtributo = 0;
 		var letra = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n'];
-		var tamanho = letra.length;
+		var tamanhoLetra = letra.length;
+		var tamanho = this.PapelAtributo.length;
 
 		for (i; i < tamanho; i++) {
-			valorAtributo = this.formAvaliacao.get('abrangencia' + letra[i]).value;
-			//console.log("LETRA >>> ", letra[i]);	
-			//console.log("VALOR ATRIBUTO >>> ", valorAtributo);
-			//console.log("PAPEL >> ", this.formAvaliacao.get("papel").);
-			
-			//if(this.formAvaliacao.get('abrangencia' + letra[i]).status != null){
-				this.vlrTotal = this.vlrTotal + valorAtributo;
-				console.log("VALOR TOTAL >>> ", this.vlrTotal);
-			//}
-			//console.log(" valor total for =  ", this.vlrTotal);
+			for (j; j < tamanhoLetra; j++) {
+				if(this.PapelAtributo[i].letra == letra[j]){
+					console.log("Letra no IF >>> ", letra[j]);
+					console.log("Abrangencia >>> ", this.formAvaliacao.get('abrangencia' + letra[j]).value);
+					console.log("Complexidade >>> ", this.formAvaliacao.get('complexidade' + letra[j]).value);
+					console.log("Impacto >>> ", this.formAvaliacao.get('impacto' + letra[j]).value);
 
+					valorAtributo = parseFloat(this.formAvaliacao.get('abrangencia' + letra[j]).value);
+					valorAtributo = valorAtributo + parseFloat(this.formAvaliacao.get('complexidade' + letra[j]).value);
+					valorAtributo = valorAtributo + parseFloat(this.formAvaliacao.get('impacto' + letra[j]).value);
+					this.vlrTotal = this.vlrTotal + valorAtributo;
+				}
+			}	
 		}
 		
-		
+		console.log("VALOR TOTAL >>> ", this.vlrTotal);
 
 		//Valor dos Projetos
 
