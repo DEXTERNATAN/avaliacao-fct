@@ -45,7 +45,7 @@ export class AvaliacaoFormComponent implements OnInit {
     vlrTecnologia: number = 0;
     vlrTotal: number = 0;
     valorAtributo: number = 0;
-    valorProjetos: number= 0;
+    valorProjetos: number = 0;
 
     /* Selectize */
     configPapel = {
