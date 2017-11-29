@@ -49,7 +49,7 @@
                     </select>
                   </td>
                   <td>
-                    <ng2-selectize [config]="configPapel" [options]="papel" [(ngModel)]="value" formControlName="papel"></ng2-selectize>
+                    <ng2-selectize [config]="configPapel" (change)="somaValores()" [options]="papel" [(ngModel)]="value" formControlName="papel"></ng2-selectize>
                   </td>
                 </tr>
               </table>
@@ -92,25 +92,41 @@
                         <span class="badge bg-green">Impacto</span>
                       </th>
                     </tr>
+<<<<<<< HEAD
                     x***{{ abrangencia | json }}***x
                     <tr *ngFor="let item of PapelAtributo; let j = index ;">
+=======
+                    <tr *ngFor="let item of PapelAtributo; let j = index;">
+>>>>>>> 92a393e8f46a8ef8db37d3f5334193f910cd9f5f
                       <td>
                         <label>{{ item.letra }}) {{ item.descricao}}</label>
                       </td>
                       <td>
                         <div class="radio">
                           <label>
+<<<<<<< HEAD
                             <input type="radio" id="abrangencia{{j}}" formControlName="abrangencia" value="1" checked>
+=======
+                            <input type="radio" id="abrangencia{{item.letra}}" (change)="somaValores()" formControlName="abrangencia{{item.letra}}" value="1" [checked]="true">
+>>>>>>> 92a393e8f46a8ef8db37d3f5334193f910cd9f5f
                             <span data-toggle="tooltip" title="{{item.descricaoAbrangencia1}}" class="badge bg-yellow">1-Moderado</span>
                           </label>
                           <br>
                           <label>
+<<<<<<< HEAD
                             <input type="radio" id="abrangencia{{j}}"  formControlName="abrangencia"  value="2">
+=======
+                            <input type="radio" id="abrangencia{{item.letra}}" (change)="somaValores()" formControlName="abrangencia{{item.letra}}" value="2">
+>>>>>>> 92a393e8f46a8ef8db37d3f5334193f910cd9f5f
                             <span data-toggle="tooltip" title="{{item.descricaoAbrangencia2}}" class="badge bg-yellow">2-Significativa</span>
                           </label>
                           <br>
                           <label>
+<<<<<<< HEAD
                             <input type="radio" id="abrangencia{{j}}"  formControlName="abrangencia"  value="3">
+=======
+                            <input type="radio" id="abrangencia{{item.letra}}" (change)="somaValores()" formControlName="abrangencia{{item.letra}}" value="3">
+>>>>>>> 92a393e8f46a8ef8db37d3f5334193f910cd9f5f
                             <span data-toggle="tooltip" title="{{item.descricaoAbrangencia3}}" class="badge bg-yellow">3-Muito</span>
                           </label>
                         </div>
@@ -118,17 +134,29 @@
                       <td>
                         <div class="radio">
                           <label>
+<<<<<<< HEAD
                             <input type="radio" id="complexidade{{j}}" formControlName="complexidade" value="1" checked>
+=======
+                            <input type="radio" id="complexidade{{item.letra}}" (change)="somaValores()" formControlName="complexidade{{item.letra}}" value="1" [checked]="true">
+>>>>>>> 92a393e8f46a8ef8db37d3f5334193f910cd9f5f
                             <span data-toggle="tooltip" title="{{item.descricaoComplexidade1}}" class="badge bg-light-blue">1-Moderada</span>
                           </label>
                           <br>
                           <label>
+<<<<<<< HEAD
                             <input type="radio" id="complexidade{{j}}" formControlName="complexidade" value="2">
+=======
+                            <input type="radio" id="complexidade{{item.letra}}" (change)="somaValores()" formControlName="complexidade{{item.letra}}" value="2">
+>>>>>>> 92a393e8f46a8ef8db37d3f5334193f910cd9f5f
                             <span data-toggle="tooltip" title="{{item.descricaoComplexidade2}}" class="badge bg-light-blue">2-Alta</span>
                           </label>
                           <br>
                           <label>
+<<<<<<< HEAD
                             <input type="radio" id="complexidade{{j}}" formControlName="complexidade" value="3">
+=======
+                            <input type="radio" id="complexidade{{item.letra}}" (change)="somaValores()" formControlName="complexidade{{item.letra}}" value="3">
+>>>>>>> 92a393e8f46a8ef8db37d3f5334193f910cd9f5f
                             <span data-toggle="tooltip" title="{{item.descricaoComplexidade3}}" class="badge bg-light-blue">3-Altíssima</span>
                           </label>
                         </div>
@@ -136,17 +164,29 @@
                       <td>
                         <div class="radio">
                           <label>
+<<<<<<< HEAD
                             <input type="radio" id="impacto{{j}}" formControlName="impacto" value="1" checked>
+=======
+                            <input type="radio" id="impacto{{item.letra}}" (change)="somaValores()" formControlName="impacto{{item.letra}}" value="1" [checked]="true">
+>>>>>>> 92a393e8f46a8ef8db37d3f5334193f910cd9f5f
                             <span data-toggle="tooltip" title="{{item.descricaoImpacto1}}" class="badge bg-green">1-Relevante</span>
                           </label>
                           <br>
                           <label>
+<<<<<<< HEAD
                             <input type="radio" id="impacto{{j}}" formControlName="impacto" value="2">
+=======
+                            <input type="radio" id="impacto{{item.letra}}" (change)="somaValores()" formControlName="impacto{{item.letra}}" value="2">
+>>>>>>> 92a393e8f46a8ef8db37d3f5334193f910cd9f5f
                             <span data-toggle="tooltip" title="{{item.descricaoImpacto2}}" class="badge bg-green">2-Muito</span>
                           </label>
                           <br>
                           <label>
+<<<<<<< HEAD
                             <input type="radio" id="impacto{{j}}" formControlName="impacto" value="3">
+=======
+                            <input type="radio" id="impacto{{item.letra}}" (change)="somaValores()" formControlName="impacto{{item.letra}}" value="3">
+>>>>>>> 92a393e8f46a8ef8db37d3f5334193f910cd9f5f
                             <span data-toggle="tooltip" title="{{item.descricaoImpacto3}}" class="badge bg-green">3-Altamente</span>
                           </label>
                         </div>
@@ -190,87 +230,87 @@
                   </div>
                 </div>
                 <div class="box-body">
-					<table class="table table-striped">
-						<tr>
-							<th>#</th>
-							<th style="width: 570px">Código Serviço - Descrição</th>
-							<th>
-								<span class="badge bg-yellow">Abrangência</span>
-							</th>
-							<th>
-								<span class="badge bg-light-blue">Complexidade</span>
-							</th>
-							<th>
-								<span class="badge bg-green">Impacto</span>
-							</th>
-						</tr>
-						<tr *ngFor='let value of projetosList; let i = index ; trackBy: index;' [attr.data-index]="i">
-							<td>
-								<label>{{i+1}}</label>
-							</td>
-							<td>
-								<select class="form-control">
-									<option [selected]="true" value="">Selecione</option>
-									<option *ngFor="let item of Projeto" value="{{item.id_projeto}}">{{ item.cod_servico }} - {{ item.descricao }}</option>
-								</select>
-							</td>
-							<td>
-								<div class="radio">
-									<label>
-										<input type="radio" id="abrangenciaP{{i+1}}" name="abrangenciaP{{i+1}}" value="1" checked>
-										<span class="badge bg-yellow">1-Moderado</span>
-									</label>
-									<br>
-									<label>
-										<input type="radio" id="abrangenciaP{{i+1}}" name="abrangenciaP{{i+1}}" value="2">
-										<span class="badge bg-yellow">2-Significativa</span>
-									</label>
-									<br>
-									<label>
-										<input type="radio" id="abrangenciaP{{i+1}}" name="abrangenciaP{{i+1}}" value="3">
-										<span class="badge bg-yellow">3-Muito</span>
-									</label>
-								</div>	
-							</td>
-							<td>
-								<div class="radio">
-									<label>
-										<input type="radio" id="complexidadeP{{i+1}}" name="complexidadeP{{i+1}}" value="1" checked>
-										<span class="badge bg-light-blue">1-Moderada</span>
-									</label>
-									<br>
-									<label>
-										<input type="radio" id="complexidadeP{{i+1}}" name="complexidadeP{{i+1}}" value="2">
-										<span class="badge bg-light-blue">2-Alta</span>
-									</label>
-									<br>
-									<label>
-										<input type="radio" id="complexidadeP{{i+1}}" name="complexidadeP{{i+1}}" value="3">
-										<span class="badge bg-light-blue">3-Altíssima</span>
-									</label>
-								</div>
-							</td>
-							<td>
-								<div class="radio">
-									<label>
-										<input type="radio" id="impactoP{{i+1}}" name="impactoP{{i+1}}" value="1" checked>
-										<span class="badge bg-green">1-Relevante</span>
-									</label>
-									<br>
-									<label>
-										<input type="radio" id="impactoP{{i+1}}" name="impactoP{{i+1}}" value="2">
-										<span class="badge bg-green">2-Muito</span>
-									</label>
-									<br>
-									<label>
-										<input type="radio" id="impactoP{{i+1}}" name="impactoP{{i+1}}" value="3">
-										<span class="badge bg-green">3-Altamente</span>
-									</label>
-								</div>						  			 
-							</td>
-						</tr>	  
-					</table>
-                  </div>
+                  <table class="table table-striped">
+                    <tr>
+                      <th>#</th>
+                      <th style="width: 570px">Código Serviço - Descrição</th>
+                      <th>
+                        <span class="badge bg-yellow">Abrangência</span>
+                      </th>
+                      <th>
+                        <span class="badge bg-light-blue">Complexidade</span>
+                      </th>
+                      <th>
+                        <span class="badge bg-green">Impacto</span>
+                      </th>
+                    </tr>
+                    <tr *ngFor='let value of projetosList; let i = index ; trackBy: index;' [attr.data-index]="i">
+                      <td>
+                        <label>{{i+1}}</label>
+                      </td>
+                      <td>
+                        <select class="form-control">
+                          <option [selected]="true" value="">Selecione</option>
+                          <option *ngFor="let item of Projeto" value="{{item.id_projeto}}">{{ item.cod_servico }} - {{ item.titulo }}</option>
+                        </select>
+                      </td>
+                      <td>
+                        <div class="radio">
+                          <label>
+                            <input type="radio" id="abrangenciaP{{i+1}}" name="abrangenciaP{{i+1}}" value="1" checked>
+                            <span class="badge bg-yellow">1-Moderado</span>
+                          </label>
+                          <br>
+                          <label>
+                            <input type="radio" id="abrangenciaP{{i+1}}" name="abrangenciaP{{i+1}}" value="2">
+                            <span class="badge bg-yellow">2-Significativa</span>
+                          </label>
+                          <br>
+                          <label>
+                            <input type="radio" id="abrangenciaP{{i+1}}" name="abrangenciaP{{i+1}}" value="3">
+                            <span class="badge bg-yellow">3-Muito</span>
+                          </label>
+                        </div>	
+                      </td>
+                      <td>
+                        <div class="radio">
+                          <label>
+                            <input type="radio" id="complexidadeP{{i+1}}" name="complexidadeP{{i+1}}" value="1" checked>
+                            <span class="badge bg-light-blue">1-Moderada</span>
+                          </label>
+                          <br>
+                          <label>
+                            <input type="radio" id="complexidadeP{{i+1}}" name="complexidadeP{{i+1}}" value="2">
+                            <span class="badge bg-light-blue">2-Alta</span>
+                          </label>
+                          <br>
+                          <label>
+                            <input type="radio" id="complexidadeP{{i+1}}" name="complexidadeP{{i+1}}" value="3">
+                            <span class="badge bg-light-blue">3-Altíssima</span>
+                          </label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="radio">
+                          <label>
+                            <input type="radio" id="impactoP{{i+1}}" name="impactoP{{i+1}}" value="1" checked>
+                            <span class="badge bg-green">1-Relevante</span>
+                          </label>
+                          <br>
+                          <label>
+                            <input type="radio" id="impactoP{{i+1}}" name="impactoP{{i+1}}" value="2">
+                            <span class="badge bg-green">2-Muito</span>
+                          </label>
+                          <br>
+                          <label>
+                            <input type="radio" id="impactoP{{i+1}}" name="impactoP{{i+1}}" value="3">
+                            <span class="badge bg-green">3-Altamente</span>
+                          </label>
+                        </div>						  			 
+                      </td>
+                    </tr>	  
+                  </table>
+                </div>
               </div>
             </div>
             <div class="form-group">
