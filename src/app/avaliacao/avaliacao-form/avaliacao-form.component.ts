@@ -134,7 +134,8 @@ export class AvaliacaoFormComponent implements OnInit {
 			impactom: [1],
 			impacton: [1],
 			tecnologia: [null],
-			qtdProjetos: [1]
+			qtdProjetos: [1],
+			pontuacaoTotal: [0]
 		})
 	}
 
@@ -322,7 +323,7 @@ export class AvaliacaoFormComponent implements OnInit {
 		//this.vlrTotal = (this.vlrTotal * QtdTecnologias);
 		//console.log("Valor Total tecnologias = ", this.vlrTotal);
 
-		//Valor dos Atributos
+		//Somar o valor dos Atributos que estão sendo exibidos
 		var i = 0;
 		var j = 0;
 		var valorAtributo = 0;
@@ -347,18 +348,25 @@ export class AvaliacaoFormComponent implements OnInit {
 		}
 		
 		console.log("VALOR TOTAL >>> ", this.vlrTotal);
+		//this.formAvaliacao.setValue('pontuacaoTotal') = this.vlrTotal;
 
 		//Valor dos Projetos
+		//Buscar o valor do pesos da quantidade de projetos na tabela TB_PESOS
 
 		//Percentual de ociosidade
+		//Diminuir percentual de ociosidade do Total Parcial 
 
 		//Pontuação Total
-		
+		//colocar o valor da pontuação do campo Pontuação Total
+
 		//Pontuação FCT Atual
+		//Buscar o valor mais próximo da FCT que corresponde a pontuação
 
 		//Ajuste | %
+		//Diferença entre os valores
 
 		//Referencia FCT pela Pontuação Total
+		//Mostrar a referencia de FCT de acordo com a Pontuação Total
 
 		//Referencia FCT Atual | %
 
