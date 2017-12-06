@@ -23,9 +23,9 @@
         <div class="alert alert-success" role="alert" *ngIf="sucesso">
           Avaliação Registrada com sucesso!
         </div>
-        
-        {{ formAvaliacao.value | json }}
 
+        {{ formAvaliacao.value | json }}
+        
         <form role="form" [formGroup]="formAvaliacao" (ngSubmit)="save()">
           <div class="box-body">
             <div class="form-group">
@@ -94,7 +94,7 @@
                         <span class="badge bg-green">Impacto</span>
                       </th>
                     </tr>
-                    
+
                     <tr *ngFor="let item of PapelAtributo; let j = index;">
                       <td>
                         <label>{{ item.letra }}) {{ item.descricao}}</label>
@@ -102,7 +102,7 @@
                       <td>
                         <div class="radio">
                           <label>
-                            <input type="radio" id="abrangencia{{item.letra}}" (change)="somaValores()" formControlName="abrangencia{{item.letra}}" value="1" >
+                            <input type="radio" id="abrangencia{{item.letra}}" (change)="somaValores()" formControlName="abrangencia{{item.letra}}" value="1">
                             <span data-toggle="tooltip" title="{{item.descricaoAbrangencia1}}" class="badge bg-yellow">1-Moderado</span>
                           </label>
                           <br>
@@ -120,18 +120,21 @@
                       <td>
                         <div class="radio">
                           <label>
-                            <input type="radio" id="complexidade{{item.letra}}" (change)="somaValores()" formControlName="complexidade{{item.letra}}" value="1" >
+                            <input type="radio" id="complexidade{{item.letra}}" (change)="somaValores()" formControlName="complexidade{{item.letra}}"
+                              value="1">
                             <span data-toggle="tooltip" title="{{item.descricaoComplexidade1}}" class="badge bg-light-blue">1-Moderada</span>
                           </label>
                           <br>
                           <label>
-                            <input type="radio" id="complexidade{{item.letra}}" (change)="somaValores()" formControlName="complexidade{{item.letra}}" value="2">
+                            <input type="radio" id="complexidade{{item.letra}}" (change)="somaValores()" formControlName="complexidade{{item.letra}}"
+                              value="2">
 
                             <span data-toggle="tooltip" title="{{item.descricaoComplexidade2}}" class="badge bg-light-blue">2-Alta</span>
                           </label>
                           <br>
                           <label>
-                            <input type="radio" id="complexidade{{item.letra}}" (change)="somaValores()" formControlName="complexidade{{item.letra}}" value="3">
+                            <input type="radio" id="complexidade{{item.letra}}" (change)="somaValores()" formControlName="complexidade{{item.letra}}"
+                              value="3">
                             <span data-toggle="tooltip" title="{{item.descricaoComplexidade3}}" class="badge bg-light-blue">3-Altíssima</span>
                           </label>
                         </div>
@@ -139,7 +142,7 @@
                       <td>
                         <div class="radio">
                           <label>
-                            <input type="radio" id="impacto{{item.letra}}" (change)="somaValores()" formControlName="impacto{{item.letra}}" value="1" >
+                            <input type="radio" id="impacto{{item.letra}}" (change)="somaValores()" formControlName="impacto{{item.letra}}" value="1">
 
                             <span data-toggle="tooltip" title="{{item.descricaoImpacto1}}" class="badge bg-green">1-Relevante</span>
                           </label>
@@ -166,13 +169,14 @@
               <table class="table table-condensed">
                 <tr>
                   <th>
-                    <label style="width: 20%">Quantidade de Projetos</label>
+                    <label style="width: 20%">Projetos</label>
                   </th>
                 </tr>
                 <tr>
                   <td>
-                    <label style="width: 20%">
-                      <select class="form-control"  formControlName="qtdProjetos" (change)="addProjeto($event.target.value)">
+                      <button type="button" class="btn btn-default" (click)="addProjeto()">Adicionar projeto</button>
+                    <!-- <label style="width: 20%">
+                      <select class="form-control" formControlName="qtdProjetos" (change)="addProjeto($event.target.value)">
                         <option value="1" selected>1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -180,7 +184,7 @@
                         <option value="5">5</option>
                         <option value="6">6</option>
                       </select>
-                    </label>
+                    </label> -->
                   </td>
                 </tr>
               </table>
@@ -210,72 +214,72 @@
                         <span class="badge bg-green">Impacto</span>
                       </th>
                     </tr>
-                    
-                    <tr *ngFor='let value of projetosList; let i = index ; trackBy: index;' [attr.data-index]="i">
+
+                    <tr formArrayName="items" *ngFor="let item of formAvaliacao.get('items').controls; let i = index;" [attr.data-index]="i">
                       <td>
                         <label>{{i}}</label>
                       </td>
-                      <td>
-                        <select class="form-control">
-                          <option [selected]="true" value="">Selecione</option>
-                          <option *ngFor="let item of Projeto" value="{{item.id_projeto}}">{{ item.cod_servico }} - {{ item.titulo }}</option>
+                      <td [formGroupName]="i">
+                        <select class="form-control" formControlName="Projetos">
+                          <option value="0">Selecione</option>
+                          <option *ngFor="let item of Projeto" [value]="item.cod_servico">{{ item.cod_servico }} - {{ item.titulo }}</option>
                         </select>
                       </td>
-                      <td>
+                      <td [formGroupName]="i">
                         <div class="radio">
                           <label>
-                            <input type="radio" id="abrangenciaProj{{i+1}}" (change)="addProjeto(projetosList.length)" formControlName="abrangenciaProj{{i}}" value="1">
+                            <input type="radio" formControlName="Abrangencia" (change)="somaProjetos()" value="1">
                             <span class="badge bg-yellow">1-Moderado</span>
                           </label>
                           <br>
                           <label>
-                            <input type="radio" id="abrangenciaProj{{i+1}}"  (change)="addProjeto(projetosList.length)"  formControlName="abrangenciaProj{{i}}" value="2">
+                            <input type="radio" formControlName="Abrangencia"  (change)="somaProjetos()" value="2">
                             <span class="badge bg-yellow">2-Significativa</span>
                           </label>
                           <br>
                           <label>
-                            <input type="radio" id="abrangenciaProj{{i}}"   (change)="addProjeto(projetosList.length)"  formControlName="abrangenciaProj{{i}}" value="3">
+                            <input type="radio" formControlName="Abrangencia"  (change)="somaProjetos()" value="3">
                             <span class="badge bg-yellow">3-Muito</span>
                           </label>
-                        </div>	
+                        </div>
                       </td>
-                      <td>
+                      <td [formGroupName]="i">
                         <div class="radio">
                           <label>
-                            <input type="radio" id="complexidadeProj{{i}}"  (change)="addProjeto(projetosList.length)"  formControlName="complexidadeProj{{i}}" value="1" >
+                            <input type="radio" formControlName="Complexidade" (change)="somaProjetos()" value="1">
                             <span class="badge bg-light-blue">1-Moderada</span>
                           </label>
                           <br>
                           <label>
-                            <input type="radio" id="complexidadeProj{{i}}"  (change)="addProjeto(projetosList.length)"  formControlName="complexidadeProj{{i}}" value="2">
+                            <input type="radio" formControlName="Complexidade" (change)="somaProjetos()" value="2">
                             <span class="badge bg-light-blue">2-Alta</span>
                           </label>
                           <br>
                           <label>
-                            <input type="radio" id="complexidadeProj{{i}}"  (change)="addProjeto(projetosList.length)"  formControlName="complexidadeProj{{i}}" value="3">
+                            <input type="radio" formControlName="Complexidade" (change)="somaProjetos()" value="3">
                             <span class="badge bg-light-blue">3-Altíssima</span>
                           </label>
                         </div>
                       </td>
-                      <td>
+                      <td [formGroupName]="i">
                         <div class="radio">
                           <label>
-                            <input type="radio" id="impactoProj{{i}}"  (change)="addProjeto(projetosList.length)" formControlName="impactoProj{{i}}" value="1">
+                            <input type="radio" formControlName="Impacto" (change)="somaProjetos()" value="1">
                             <span class="badge bg-green">1-Relevante</span>
                           </label>
                           <br>
                           <label>
-                            <input type="radio" id="impactoProj{{i}}"  (change)="addProjeto(projetosList.length)" formControlName="impactoProj{{i}}" value="2">
+                            <input type="radio" formControlName="Impacto" (change)="somaProjetos()" value="2">
                             <span class="badge bg-green">2-Muito</span>
                           </label>
                           <br>
                           <label>
-                            <input type="radio" id="impactoProj{{i}}"  (change)="addProjeto(projetosList.length)" formControlName="impactoProj{{i}}" value="3">
+                            <input type="radio" id="Impacto" formControlName="Impacto" (change)="somaProjetos()" value="3">
                             <span class="badge bg-green">3-Altamente</span>
                           </label>
-                        </div>						  			 
+                        </div>
                       </td>
-                    </tr>	  
+                    </tr>
                   </table>
                 </div>
               </div>

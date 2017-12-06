@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, AbstractControl } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import 'rxjs/Rx';
 
 import { Avaliacao } from './../avaliacao.model';
@@ -9,7 +9,6 @@ import { Divisao } from './../../divisao/divisao.model';
 import { Papel } from './../../papel/papel.model';
 import { Tecnologia } from './../../tecnologia/tecnologia.model';
 import { Projeto } from './../../projeto/projeto.model';
-
 import { AvaliacaoService } from './../avaliacao.service';
 import { ColaboradorService } from './../../colaborador/colaborador.service';
 import { DivisaoService } from './../../divisao/divisao.service';
@@ -42,10 +41,11 @@ export class AvaliacaoFormComponent implements OnInit {
     current: any[];
     title: string;
     idResource: any;
-    vlrTecnologia: number = 0;
-    vlrTotal: number = 0;
-    valorAtributo: number = 0;
-    valorProjetos: number = 0;
+    vlrTecnologia = 0;
+    vlrTotal = 0;
+    valorAtributo = 0;
+    valorProjetos = 0;
+    items: FormArray;
 
     /* Selectize */
     configPapel = {
@@ -76,7 +76,7 @@ export class AvaliacaoFormComponent implements OnInit {
     };
 
     constructor(
-        formBuilder: FormBuilder,
+        private formBuilder: FormBuilder,
         private router: Router,
         private route: ActivatedRoute,
         private colaboradorService: ColaboradorService,
@@ -85,11 +85,28 @@ export class AvaliacaoFormComponent implements OnInit {
         private tecnologiaService: TecnologiaService,
         private divisaoService: DivisaoService,
         private projetoService: ProjetoService
-    ) {
-        this.formAvaliacao = formBuilder.group({
+    ) {}
+
+    // hasErrors(): boolean {
+    //     let hasErrors: boolean = false;
+    //     for (let controlName in this.formAvaliacao.controls) {
+    //         let control: AbstractControl = this.formAvaliacao.controls[controlName];
+    //         if (!control.valid && !control.pristine) {
+    //             hasErrors = true;
+    //             break;
+    //         }
+    //     }
+    //     return hasErrors;
+    // }
+
+    ngOnInit() {
+
+        this.formAvaliacao = this.formBuilder.group({
             divisao: [0],
             colaborador: [0],
             papel: [0],
+            Projeto: [0],
+            items: this.formBuilder.array([ this.createItem() ]),
             abrangenciaa: [0],
             abrangenciab: [0],
             abrangenciac: [0],
@@ -133,41 +150,10 @@ export class AvaliacaoFormComponent implements OnInit {
             impactom: [0],
             impacton: [0],
             tecnologia: [null],
-            qtdProjetos: [1],
-            abrangenciaProj0: [0],
-            abrangenciaProj1: [0],
-            abrangenciaProj2: [0],
-            abrangenciaProj3: [0],
-            abrangenciaProj4: [0],
-            abrangenciaProj5: [0],
-            complexidadeProj0: [0],
-            complexidadeProj1: [0],
-            complexidadeProj2: [0],
-            complexidadeProj3: [0],
-            complexidadeProj4: [0],
-            complexidadeProj5: [0],
-            impactoProj0: [0],
-            impactoProj1: [0],
-            impactoProj2: [0],
-            impactoProj3: [0],
-            impactoProj4: [0],
-            impactoProj5: [0]
-        })
-    }
+            qtdProjetos: [1]
+        });
 
-    hasErrors(): boolean {
-        let hasErrors: boolean = false;
-        for (let controlName in this.formAvaliacao.controls) {
-            let control: AbstractControl = this.formAvaliacao.controls[controlName];
-            if (!control.valid && !control.pristine) {
-                hasErrors = true;
-                break;
-            }
-        }
-        return hasErrors;
-    }
 
-    ngOnInit() {
 
         this.route.params.subscribe(params => {
             this.idResource = params['id_resultado'];
@@ -206,17 +192,16 @@ export class AvaliacaoFormComponent implements OnInit {
         );
     }
 
-
     save() {
         let result, userValue = this.formAvaliacao.value;
+        this.somaValores();
+        // if (this.idResource) {
+        //     result = this.avaliacaoService.updateAvaliacao(this.idResource, userValue);
+        // } else {
+        //     result = this.avaliacaoService.addAvaliacao(userValue);
+        // }
 
-        if (this.idResource) {
-            result = this.avaliacaoService.updateAvaliacao(this.idResource, userValue);
-        } else {
-            result = this.avaliacaoService.addAvaliacao(userValue);
-        }
-
-        result.subscribe(data => this.router.navigate(['avaliacao']));
+        // result.subscribe(data => this.router.navigate(['avaliacao']));
     }
 
     getPapeis() {
@@ -254,29 +239,26 @@ export class AvaliacaoFormComponent implements OnInit {
                 } else {
                     return 0;
                 }
-            })
+            });
         });
     }
 
+    addItem(): void {
+        this.items = this.formAvaliacao.get('items') as FormArray;
+        this.items.push(this.createItem());
+      }
+
+    createItem(): FormGroup {
+        return this.formBuilder.group({
+          Abrangencia: [0],
+          Complexidade: [0],
+          Impacto: [0],
+          Projetos: [0]
+        });
+      }
+
     addProjeto(value: number) {
-        console.log(value);
-        let tamanho = value;
-        let i = 0;
-        this.projetosList = [];
-        let vlrSoma: number = 0;
-        let vlrAbrangecia: number = 0;
-        let vlrComplexidade: number = 0;
-        let vlrImpacto: number = 0;
-
-        for (i; i < tamanho; i++) {
-            this.projetosList.push(value);
-            vlrAbrangecia = parseFloat(this.formAvaliacao.get('abrangenciaProj' + i).value);
-            vlrComplexidade = parseFloat(this.formAvaliacao.get('complexidadeProj' + i).value);
-            vlrImpacto = parseFloat(this.formAvaliacao.get('impactoProj' + i).value);
-            vlrSoma = vlrAbrangecia + vlrComplexidade + vlrImpacto;
-
-            console.log(vlrSoma, vlrAbrangecia, vlrComplexidade, vlrImpacto);
-        }
+        this.addItem();
     }
 
     onCancel() {
@@ -290,7 +272,6 @@ export class AvaliacaoFormComponent implements OnInit {
     getChangeData(idAtributo) {
         let vlrArray: Array<string>[] = [];
         this.valorAtributo = 0;
-        console.log(idAtributo);
         idAtributo.forEach(element => {
             this.avaliacaoService.getPapelAtributo(element).subscribe((data) => {
                 if (data !== []) {
@@ -332,25 +313,39 @@ export class AvaliacaoFormComponent implements OnInit {
         this.vlrTecnologia = this.vlrTecnologia - 1;
     }
 
-    private somaValores() {
+    somaProjetos() {
 
+        this.valorProjetos = 0;
+        let vlrAbrangencia, vlrComplexidade, vlrImpacto: number;
+        let projetos = this.formAvaliacao.get('items').value;
+
+        projetos.forEach(element => {
+
+            vlrAbrangencia = parseInt(element.Abrangencia, 10);
+            vlrComplexidade = parseInt(element.Complexidade, 10);
+            vlrImpacto = parseInt(element.Impacto, 10);
+
+            this.valorProjetos = this.valorProjetos +  ( vlrAbrangencia + vlrComplexidade + vlrImpacto);
+           console.log(this.valorProjetos);
+        });
+    }
+
+    somaValores() {
+
+        // Tratamento de papeis
         let QtdPapeis = 0;
-        QtdPapeis = this.papel.length; //Buscar na Tabela de Pesos o %
+        QtdPapeis = this.papel.length; // Buscar na Tabela de Pesos o %
+        this.vlrTotal = (this.vlrTotal * QtdPapeis);
 
-
-
-        //this.vlrTotal = (this.vlrTotal * QtdPapeis); 
-
-
-        //Valor das Tecnologias
-        //Buscar o valor na tabela de pesos para Quantidade de tecnologias
+        // Valor das Tecnologias
+        // Buscar o valor na tabela de pesos para Quantidade de tecnologias
+         // Buscar na tabela de pesos o %
         let QtdTecnologias = 0;
-        QtdTecnologias = this.vlrTecnologia; //Buscar na tabela de pesos o %
+        QtdTecnologias = this.vlrTecnologia;
+        this.vlrTotal = (this.vlrTotal * QtdTecnologias);
+        console.log('Valor Total tecnologias = ', this.vlrTotal);
 
-        //this.vlrTotal = (this.vlrTotal * QtdTecnologias);
-        //console.log("Valor Total tecnologias = ", this.vlrTotal);
-
-        // //Valor dos Atributos
+        // Valor dos Atributos
         this.vlrTotal = this.vlrTotal + this.valorAtributo;
         console.log(this.vlrTotal, this.formAvaliacao.get('papel').value);
         this.getChangeData(this.formAvaliacao.get('papel').value);
@@ -381,6 +376,13 @@ export class AvaliacaoFormComponent implements OnInit {
         console.log("VALOR TOTAL >>> ", this.vlrTotal);
 
         //Valor dos Projetos
+
+        let QtdProjetos = 0;
+        QtdProjetos = this.valorProjetos;
+        this.vlrTotal = (this.vlrTotal * QtdProjetos);
+        console.log('Valor Total Projetos SOMA= ', this.vlrTotal);
+        console.log('Valor Total Projetos = ', this.valorProjetos);
+        
 
         //Percentual de ociosidade
 
