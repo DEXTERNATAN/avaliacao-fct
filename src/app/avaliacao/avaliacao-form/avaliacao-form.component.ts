@@ -226,9 +226,9 @@ export class AvaliacaoFormComponent implements OnInit {
 
     createItem(): FormGroup {
         return this.formBuilder.group({
-            Abrangencia: [0],
-            Complexidade: [0],
-            Impacto: [0],
+            Abrangencia: 1,
+            Complexidade: 1,
+            Impacto: 1,
             Projetos: [0]
         });
     }
