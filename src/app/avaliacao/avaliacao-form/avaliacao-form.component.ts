@@ -9,12 +9,15 @@ import { Divisao } from './../../divisao/divisao.model';
 import { Papel } from './../../papel/papel.model';
 import { Tecnologia } from './../../tecnologia/tecnologia.model';
 import { Projeto } from './../../projeto/projeto.model';
+import { Pesos } from './../../pesos/pesos.model';
 import { AvaliacaoService } from './../avaliacao.service';
 import { ColaboradorService } from './../../colaborador/colaborador.service';
 import { DivisaoService } from './../../divisao/divisao.service';
 import { PapelService } from './../../papel/papel.service';
 import { TecnologiaService } from './../../tecnologia/tecnologia.service';
 import { ProjetoService } from './../../projeto/projeto.service';
+import { PesosService } from './../../pesos/pesos.service';
+
 
 @Component({
     selector: 'mt-avaliacao-form',
@@ -31,24 +34,25 @@ export class AvaliacaoFormComponent implements OnInit {
     Papel: Papel[] = [];
     Projeto: Projeto[];
     Tecnologia: Tecnologia[] = [];
+    Pesos: Pesos[];
     papel: Papel[] = [];
     PapelAtributo2: any[] = [];
     valorCopy: any[];
     PapelAtributo: any[] = [];
     projetosList: number[] = [1];
-    value: string[];
+    valuePapel: string[];
     valueTec: string[];
     current: any[];
     title: string;
     idResource: any;
     vlrTecnologia = 0;
     vlrTotal = 0;
-    valorAtributo = 0;
-    valorProjetos = 0;
+    vlrAtributo = 0;
+    vlrProjetos = 0;
     items: FormArray;
     itemsAtributo: FormArray;
 
-    /* Selectize */
+    /* Selectize Papel */
     configPapel = {
         create: true,
         valueField: 'id_papel',
@@ -63,6 +67,7 @@ export class AvaliacaoFormComponent implements OnInit {
 
     };
 
+    /* Selectize Tecnologia */
     configTecnologia = {
         create: true,
         valueField: 'id_tecnologia',
@@ -85,7 +90,8 @@ export class AvaliacaoFormComponent implements OnInit {
         private papelService: PapelService,
         private tecnologiaService: TecnologiaService,
         private divisaoService: DivisaoService,
-        private projetoService: ProjetoService
+        private projetoService: ProjetoService,
+        private pesosService: PesosService
     ) { }
 
     // hasErrors(): boolean {
@@ -107,55 +113,12 @@ export class AvaliacaoFormComponent implements OnInit {
             colaborador: [0],
             papel: [0],
             Projeto: [0],
-            items: this.formBuilder.array([this.createItem()]),
+            items: this.formBuilder.array([]), // this.createItem()
             itemsAtributo: this.formBuilder.array([]),
-            // abrangenciaa: [0],
-            // abrangenciab: [0],
-            // abrangenciac: [0],
-            // abrangenciad: [0],
-            // abrangenciae: [0],
-            // abrangenciaf: [0],
-            // abrangenciag: [0],
-            // abrangenciah: [0],
-            // abrangenciai: [0],
-            // abrangenciaj: [0],
-            // abrangenciak: [0],
-            // abrangencial: [0],
-            // abrangenciam: [0],
-            // abrangencian: [0],
-            // complexidadea: [0],
-            // complexidadeb: [0],
-            // complexidadec: [0],
-            // complexidaded: [0],
-            // complexidadee: [0],
-            // complexidadeg: [0],
-            // complexidadeh: [0],
-            // complexidadei: [0],
-            // complexidadej: [0],
-            // complexidadek: [0],
-            // complexidadel: [0],
-            // complexidadem: [0],
-            // complexidaden: [0],
-            // complexidadef: [0],
-            // impactoa: [0],
-            // impactob: [0],
-            // impactoc: [0],
-            // impactod: [0],
-            // impactoe: [0],
-            // impactof: [0],
-            // impactog: [0],
-            // impactoh: [0],
-            // impactoi: [0],
-            // impactoj: [0],
-            // impactok: [0],
-            // impactol: [0],
-            // impactom: [0],
-            // impacton: [0],
             tecnologia: [null],
-            qtdProjetos: [1]
+            qtdProjetos: [0],
+            vlrPtTotal: 0.00
         });
-
-
 
         this.route.params.subscribe(params => {
             this.idResource = params['id_resultado'];
@@ -179,6 +142,9 @@ export class AvaliacaoFormComponent implements OnInit {
         this.getColaborador();
         this.getTecnologia();
         this.getProjeto();
+        this.getPesos();
+
+        this.formAvaliacao.get('vlrPtTotal').setValue('0.00');
 
         // se inscreve para verificar alterações no valor das faixas
         this.formAvaliacao.get('divisao').valueChanges.subscribe( /* <- does work */
@@ -230,6 +196,12 @@ export class AvaliacaoFormComponent implements OnInit {
         });
     }
 
+    getPesos() {
+        this.pesosService.getPesos().subscribe(pesos => {
+            this.Pesos = pesos;
+        });
+    }
+
     getProjeto() {
         this.projetoService.getProjeto().subscribe(data => {
             this.Projeto = data;
@@ -248,6 +220,8 @@ export class AvaliacaoFormComponent implements OnInit {
     addItem(): void {
         this.items = this.formAvaliacao.get('items') as FormArray;
         this.items.push(this.createItem());
+        console.log(this.items.length);
+        this.formAvaliacao.get('qtdProjetos').setValue(this.items.length);
     }
 
     createItem(): FormGroup {
@@ -266,11 +240,11 @@ export class AvaliacaoFormComponent implements OnInit {
 
     createItemAtributo(letra, descricao): FormGroup {
         return this.formBuilder.group({
-            Abrangencia: [0],
-            Complexidade: [0],
-            Impacto: [0],
-            letra: [letra],
-            descricao: [descricao]
+            Abrangencia: 1,
+            Complexidade: 1,
+            Impacto: 1,
+            letra: letra,
+            descricao: descricao
         });
     }
 
@@ -292,7 +266,7 @@ export class AvaliacaoFormComponent implements OnInit {
 
     getChangeData(idAtributo) {
         let vlrArray: any[] = [];
-        this.valorAtributo = 0;
+        this.vlrAtributo = 0;
 
         idAtributo.forEach(element => {
             this.avaliacaoService.getPapelAtributo(element).subscribe((data) => {
@@ -314,15 +288,9 @@ export class AvaliacaoFormComponent implements OnInit {
                                 }
                             });
                             this.addItemAtributo(arrayPush.letra, arrayPush.descricao);
-
+                            this.somaAtributos();
+                            this.formAvaliacao.get('vlrPtTotal').setValue(this.vlrAtributo.toFixed(2));
                         }
-
-                        // Somando os atributos
-                        // this.valorAtributo = this.valorAtributo + parseFloat(this.formAvaliacao.get('Abrangencia' + arrayPush.letra).value);
-                        // this.valorAtributo = this.valorAtributo + parseFloat(this.formAvaliacao.get('Complexidade' + arrayPush.letra).value);
-                        // this.valorAtributo = this.valorAtributo + parseFloat(this.formAvaliacao.get('Impacto' + arrayPush.letra).value);
-                        //console.log("LETRA >>> ", arrayPush.letra, "SOMA >>> ", this.valorAtributo);
-
                     });
                 }
             });
@@ -330,7 +298,8 @@ export class AvaliacaoFormComponent implements OnInit {
     }
 
     getResetarAtributo(valor) {
-        this.PapelAtributo = [];
+        //this.PapelAtributo = [];
+        this.clearArray();
     }
 
     getSomarTecnologia(valor, item) {
@@ -343,87 +312,100 @@ export class AvaliacaoFormComponent implements OnInit {
 
     somaProjetos() {
 
-        this.valorProjetos = 0;
+        this.vlrProjetos = 0;
         let vlrAbrangencia, vlrComplexidade, vlrImpacto: number;
         let projetos = this.formAvaliacao.get('items').value;
 
         projetos.forEach(element => {
-
             vlrAbrangencia = parseInt(element.Abrangencia, 10);
             vlrComplexidade = parseInt(element.Complexidade, 10);
             vlrImpacto = parseInt(element.Impacto, 10);
-
-            this.valorProjetos = this.valorProjetos + (vlrAbrangencia + vlrComplexidade + vlrImpacto);
-            //console.log(this.valorProjetos);
+            this.vlrProjetos = this.vlrProjetos + (vlrAbrangencia + vlrComplexidade + vlrImpacto);
+            console.log('Total de projetos: ', this.vlrProjetos);
         });
+
     }
 
     somaValores() {
 
-        // Tratamento de papeis
-        let QtdPapeis = 0;
-        QtdPapeis = this.papel.length; // Buscar na Tabela de Pesos o %
-        this.vlrTotal = (this.vlrTotal * QtdPapeis);
 
-        // Valor das Tecnologias
-        // Buscar o valor na tabela de pesos para Quantidade de tecnologias
-        // Buscar na tabela de pesos o %
-        let QtdTecnologias = 0;
-        QtdTecnologias = this.vlrTecnologia;
-        this.vlrTotal = (this.vlrTotal * QtdTecnologias);
-        //console.log('Valor Total tecnologias = ', this.vlrTotal);
+        let QtdPapeis, QtdTecnologias, QtdProjetos = 0;
 
-        // Valor dos Atributos
-        this.vlrTotal = this.vlrTotal + this.valorAtributo;
-        //console.log(this.vlrTotal, this.formAvaliacao.get('papel').value);
-        this.getChangeData(this.formAvaliacao.get('papel').value);
-        // let i = 0;
-        // let j = 0;
-        // let valorAtributo = 0;
-        // let letra = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n'];
-        // let tamanhoLetra = letra.length;
-        // let tamanho = this.PapelAtributo.length;
+        // Papeis
+        QtdPapeis = this.valuePapel.length; // Buscar na Tabela de Pesos o %
+        console.log('Papeis: ', QtdPapeis);
 
-        // for (i; i < tamanho; i++) {
-        //     for (j; j < tamanhoLetra; j++) {
-        //         // debugger
-        //         if (this.PapelAtributo[i].letra == letra[j]) {
-        //             console.log("Letra no IF >>> ", letra[j]);
-        //             console.log("Abrangencia >>> ", this.formAvaliacao.get('abrangencia' + letra[j]).value);
-        //             console.log("Complexidade >>> ", this.formAvaliacao.get('complexidade' + letra[j]).value);
-        //             console.log("Impacto >>> ", this.formAvaliacao.get('impacto' + letra[j]).value);
+        // Tecnologias
+        QtdTecnologias = this.valueTec.length;
+        console.log('Tecnologia: ', QtdTecnologias);
 
-        // valorAtributo = parseFloat(this.formAvaliacao.get('abrangencia' + letra[j]).value);
-        // valorAtributo = valorAtributo + parseFloat(this.formAvaliacao.get('complexidade' + letra[j]).value);
-        // valorAtributo = valorAtributo + parseFloat(this.formAvaliacao.get('impacto' + letra[j]).value);
-        // this.vlrTotal = this.vlrTotal + valorAtributo;
-        //         }
-        //     }
-        // }
+        // Atributos
+        console.log('Atributos: ', this.vlrAtributo);
 
-        //console.log("VALOR TOTAL >>> ", this.vlrTotal);
+        // Valor dos Projetos
+        QtdProjetos = this.formAvaliacao.get('qtdProjetos').value;
+        console.log('Valor Total Projetos = ', 'QtdProjetos: ',QtdProjetos, 'Soma Projetos: ', this.vlrProjetos);
 
-        //Valor dos Projetos
-
-        let QtdProjetos = 0;
-        QtdProjetos = this.valorProjetos;
-        this.vlrTotal = (this.vlrTotal * QtdProjetos);
-        //console.log('Valor Total Projetos SOMA= ', this.vlrTotal);
-        //console.log('Valor Total Projetos = ', this.valorProjetos);
+        // Atribuição no valor total
+        this.formAvaliacao.get('vlrPtTotal').setValue(this.vlrAtributo.toFixed(2));
 
 
-        //Percentual de ociosidade
+        // Calculo dos pesos
+        console.log(this.Pesos);
+        this.Pesos.forEach(pesos => {
+            switch (pesos.tipo) {
+                case 'Projeto': {
+                    // console.log('Projeto', QtdProjetos, pesos.quantidade);
+                    QtdProjetos = 2 ? this.vlrTotal = (QtdProjetos * pesos.valor) : 0;
+                    // console.log('Projeto', (QtdProjetos * pesos.valor));
+                    break;
+                }
+                case 'Papel': {
+                    debugger
+                    console.log('Papel', QtdPapeis, pesos.quantidade, pesos.valor);
+                    // QtdPapeis = 2 ? this.vlrTotal = (QtdPapeis * pesos.valor) : 0;
+                    // QtdPapeis = (parseFloat(QtdPapeis) * pesos.valor);
+                    console.log('papel', QtdPapeis, (QtdPapeis * pesos.valor));
+                    break;
+                }
+                default: {
+                    console.log('Outro tipo');
+                    break;
+                }
+            }
+        });
 
-        //Pontuação Total
 
-        //Pontuação FCT Atual
 
-        //Ajuste | %
+        // Percentual de ociosidade
 
-        //Referencia FCT pela Pontuação Total
+        // Pontuação Total
 
-        //Referencia FCT Atual | %
+        // Pontuação FCT Atual
+
+        // Ajuste | %
+
+        // Referencia FCT pela Pontuação Total
+
+        // Referencia FCT Atual | %
 
 
     }
+
+    somaAtributos() {
+
+        this.vlrAtributo = 0;
+        let vlrAbrangencia, vlrComplexidade, vlrImpacto: number;
+        let atributos = this.formAvaliacao.get('itemsAtributo').value;
+
+        atributos.forEach(element => {
+            vlrAbrangencia = parseInt(element.Abrangencia, 10);
+            vlrComplexidade = parseInt(element.Complexidade, 10);
+            vlrImpacto = parseInt(element.Impacto, 10);
+            this.vlrAtributo = this.vlrAtributo + (vlrAbrangencia + vlrComplexidade + vlrImpacto);
+            console.log('Total atributos: ', this.vlrAtributo);
+        });
+        this.formAvaliacao.get('vlrPtTotal').setValue(this.vlrAtributo.toFixed(2));
+    }
+
 }

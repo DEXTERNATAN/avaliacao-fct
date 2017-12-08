@@ -53,7 +53,7 @@
                     </select>
                   </td>
                   <td>
-                    <ng2-selectize [config]="configPapel" (change)="somaValores()" [options]="papel" [(ngModel)]="value" formControlName="papel"></ng2-selectize>
+                    <ng2-selectize [config]="configPapel" (change)="somaValores()" [options]="papel" [(ngModel)]="valuePapel" formControlName="papel"></ng2-selectize>
                   </td>
                 </tr>
               </table>
@@ -96,48 +96,46 @@
                         <span class="badge bg-green">Impacto</span>
                       </th>
                     </tr>
-
-                    <!-- <tr *ngFor="let item of PapelAtributo; let j = index;"> -->
                     <tr formArrayName="itemsAtributo" *ngFor="let item of formAvaliacao.get('itemsAtributo').controls; let i = index;">
                       <td [formGroupName]="i">
-                        <label>{{ item.value.descricao }}</label>
+                        <label>{{ item.value.letra }}) - {{ item.value.descricao }}</label>
                       </td>
                       <td [formGroupName]="i">
                         <!-- Abrangencia -->
                         <div class="radio" style="float: left;">
                           <label>
-                            <input type="radio" formControlName="Abrangencia" value="1">
-                            <span data-toggle="tooltip" title="{{item.descricaoAbrangencia1}}" class="badge bg-yellow">1-Moderado</span>
+                            
+                            <input type="radio" formControlName="Abrangencia" (change)="somaAtributos()" [value]="1"    >
+                            <span data-toggle="tooltip" title="{{item.descricaoAbrangencia1}}"class="badge bg-yellow">1-Moderado</span>
                           </label>
                           <br>
                           <label>
-                            <input type="radio" formControlName="Abrangencia" value="2">
+                            <input type="radio" formControlName="Abrangencia" (change)="somaAtributos()" [value]="2">
                             <span data-toggle="tooltip" title="{{item.descricaoAbrangencia2}}" class="badge bg-yellow">2-Significativa</span>
                           </label>
                           <br>
                           <label>
-                            <input type="radio" formControlName="Abrangencia" value="3">
+                            <input type="radio" formControlName="Abrangencia" (change)="somaAtributos()" [value]="3">
                             <span data-toggle="tooltip" title="{{item.descricaoAbrangencia3}}" class="badge bg-yellow">3-Muito</span>
                           </label>
                         </div>
-
                       </td>
                       <td [formGroupName]="i">
                         <!-- Complexidade -->
                         <div class="radio" style="float: left; position: relative;">
                           <label>
-                            <input type="radio" formControlName="Complexidade" value="1">
+                            <input type="radio" formControlName="Complexidade" (change)="somaAtributos()" [value]="1" checked>
                             <span data-toggle="tooltip" title="{{item.descricaoComplexidade1}}" class="badge bg-light-blue">1-Moderada</span>
                           </label>
                           <br>
                           <label>
-                            <input type="radio" formControlName="Complexidade" value="2">
+                            <input type="radio" formControlName="Complexidade" (change)="somaAtributos()" [value]="2">
 
                             <span data-toggle="tooltip" title="{{item.descricaoComplexidade2}}" class="badge bg-light-blue">2-Alta</span>
                           </label>
                           <br>
                           <label>
-                            <input type="radio" formControlName="Complexidade" value="3">
+                            <input type="radio" formControlName="Complexidade" (change)="somaAtributos()" [value]="3">
                             <span data-toggle="tooltip" title="{{item.descricaoComplexidade3}}" class="badge bg-light-blue">3-Altíssima</span>
                           </label>
                         </div>
@@ -147,17 +145,17 @@
                         <!-- Impacto -->
                         <div class="radio" style="float: left; position: relative;">
                           <label>
-                            <input type="radio" formControlName="Impacto" value="1">
+                            <input type="radio" formControlName="Impacto" (change)="somaAtributos()" [value]="1" checked="checked" >
                             <span data-toggle="tooltip" title="{{item.descricaoImpacto1}}" class="badge bg-green">1-Relevante</span>
                           </label>
                           <br>
                           <label>
-                            <input type="radio" formControlName="Impacto" value="2">
+                            <input type="radio" formControlName="Impacto" (change)="somaAtributos()" [value]="2">
                             <span data-toggle="tooltip" title="{{item.descricaoImpacto2}}" class="badge bg-green">2-Muito</span>
                           </label>
                           <br>
                           <label>
-                            <input type="radio" formControlName="Impacto" value="3">
+                            <input type="radio" formControlName="Impacto" (change)="somaAtributos()" [value]="3">
                             <span data-toggle="tooltip" title="{{item.descricaoImpacto3}}" class="badge bg-green">3-Altamente</span>
                           </label>
                         </div>
@@ -177,16 +175,6 @@
                 <tr>
                   <td>
                     <button type="button" class="btn btn-default" (click)="addProjeto()">Adicionar projeto</button>
-                    <!-- <label style="width: 20%">
-                      <select class="form-control" formControlName="qtdProjetos" (change)="addProjeto($event.target.value)">
-                        <option value="1" selected>1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                      </select>
-                    </label> -->
                   </td>
                 </tr>
               </table>
@@ -314,7 +302,7 @@
                 <tr>
                   <td>
                     <label style="width: 100%">
-                      <input type="text" class="form-control" id="" readonly placeholder="" value="97.54">
+                      <input type="text" class="form-control" formControlName="vlrPtTotal" readonly>
                     </label>
                   </td>
                   <td>
