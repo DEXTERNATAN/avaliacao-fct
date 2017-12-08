@@ -109,48 +109,6 @@ export class AvaliacaoFormComponent implements OnInit {
             Projeto: [0],
             items: this.formBuilder.array([this.createItem()]),
             itemsAtributo: this.formBuilder.array([]),
-            // abrangenciaa: [0],
-            // abrangenciab: [0],
-            // abrangenciac: [0],
-            // abrangenciad: [0],
-            // abrangenciae: [0],
-            // abrangenciaf: [0],
-            // abrangenciag: [0],
-            // abrangenciah: [0],
-            // abrangenciai: [0],
-            // abrangenciaj: [0],
-            // abrangenciak: [0],
-            // abrangencial: [0],
-            // abrangenciam: [0],
-            // abrangencian: [0],
-            // complexidadea: [0],
-            // complexidadeb: [0],
-            // complexidadec: [0],
-            // complexidaded: [0],
-            // complexidadee: [0],
-            // complexidadeg: [0],
-            // complexidadeh: [0],
-            // complexidadei: [0],
-            // complexidadej: [0],
-            // complexidadek: [0],
-            // complexidadel: [0],
-            // complexidadem: [0],
-            // complexidaden: [0],
-            // complexidadef: [0],
-            // impactoa: [0],
-            // impactob: [0],
-            // impactoc: [0],
-            // impactod: [0],
-            // impactoe: [0],
-            // impactof: [0],
-            // impactog: [0],
-            // impactoh: [0],
-            // impactoi: [0],
-            // impactoj: [0],
-            // impactok: [0],
-            // impactol: [0],
-            // impactom: [0],
-            // impacton: [0],
             tecnologia: [null],
             qtdProjetos: [1]
         });
@@ -280,6 +238,10 @@ export class AvaliacaoFormComponent implements OnInit {
 
     addProjeto(value: number) {
         this.addItem();
+    }
+
+    excProjeto(){
+        this.formAvaliacao.controls['items'] = this.formBuilder.array([]);
     }
 
     onCancel() {

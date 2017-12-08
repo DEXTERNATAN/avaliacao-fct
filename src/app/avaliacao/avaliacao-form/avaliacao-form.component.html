@@ -100,7 +100,7 @@
                     <!-- <tr *ngFor="let item of PapelAtributo; let j = index;"> -->
                     <tr formArrayName="itemsAtributo" *ngFor="let item of formAvaliacao.get('itemsAtributo').controls; let i = index;">
                       <td [formGroupName]="i">
-                        <label>{{ item.value.descricao }}</label>
+                        <label>{{ item.value.letra }}){{ item.value.descricao }}</label>
                       </td>
                       <td [formGroupName]="i">
                         <!-- Abrangencia -->
@@ -176,17 +176,8 @@
                 </tr>
                 <tr>
                   <td>
-                    <button type="button" class="btn btn-default" (click)="addProjeto()">Adicionar projeto</button>
-                    <!-- <label style="width: 20%">
-                      <select class="form-control" formControlName="qtdProjetos" (change)="addProjeto($event.target.value)">
-                        <option value="1" selected>1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                      </select>
-                    </label> -->
+                    <button type="button" class="btn btn-default" (click)="addProjeto()">Adicionar</button>&nbsp;
+                    <button type="button" class="btn btn-default" (click)="excProjeto()">Limpar</button>
                   </td>
                 </tr>
               </table>
@@ -219,7 +210,7 @@
 
                     <tr formArrayName="items" *ngFor="let item of formAvaliacao.get('items').controls; let i = index;" [attr.data-index]="i">
                       <td>
-                        <label>{{i}}</label>
+                        <label>{{i+1}}</label>
                       </td>
                       <td [formGroupName]="i">
                         <select class="form-control" formControlName="Projetos">
