@@ -26,6 +26,7 @@ import { PesosService } from './../../pesos/pesos.service';
 })
 
 export class AvaliacaoFormComponent implements OnInit {
+    vlrTotal: any;
 
     formAvaliacao: FormGroup;
     avaliacao: Avaliacao = new Avaliacao();
@@ -46,7 +47,6 @@ export class AvaliacaoFormComponent implements OnInit {
     title: string;
     idResource: any;
     vlrTecnologia = 0;
-    vlrTotal = 0;
     vlrAtributo = 0;
     vlrProjetos = 0;
     items: FormArray;
@@ -226,9 +226,9 @@ export class AvaliacaoFormComponent implements OnInit {
 
     createItem(): FormGroup {
         return this.formBuilder.group({
-            Abrangencia: [0],
-            Complexidade: [0],
-            Impacto: [0],
+            Abrangencia: 1,
+            Complexidade: 1,
+            Impacto: 1,
             Projetos: [0]
         });
     }
@@ -332,7 +332,7 @@ export class AvaliacaoFormComponent implements OnInit {
 
     somaValores() {
 
-
+        this.vlrTotal  =  this.formAvaliacao.get('vlrPtTotal');
         let QtdPapeis, QtdTecnologias, QtdProjetos = 0;
 
         // Papeis
@@ -351,7 +351,7 @@ export class AvaliacaoFormComponent implements OnInit {
         console.log('Valor Total Projetos = ', 'QtdProjetos: ',QtdProjetos, 'Soma Projetos: ', this.vlrProjetos);
 
         // Atribuição no valor total
-        this.formAvaliacao.get('vlrPtTotal').setValue(this.vlrAtributo.toFixed(2));
+        //this.formAvaliacao.get('vlrPtTotal').setValue(this.vlrAtributo.toFixed(2));
 
 
         // Calculo dos pesos
@@ -359,17 +359,14 @@ export class AvaliacaoFormComponent implements OnInit {
         this.Pesos.forEach(pesos => {
             switch (pesos.tipo) {
                 case 'Projeto': {
-                    // console.log('Projeto', QtdProjetos, pesos.quantidade);
-                    QtdProjetos = 2 ? this.vlrTotal = (QtdProjetos * pesos.valor) : 0;
-                    // console.log('Projeto', (QtdProjetos * pesos.valor));
+                    console.log('Projeto', QtdProjetos, pesos.quantidade);
                     break;
                 }
                 case 'Papel': {
                     debugger
-                    console.log('Papel', QtdPapeis, pesos.quantidade, pesos.valor);
-                    // QtdPapeis = 2 ? this.vlrTotal = (QtdPapeis * pesos.valor) : 0;
-                    // QtdPapeis = (parseFloat(QtdPapeis) * pesos.valor);
-                    console.log('papel', QtdPapeis, (QtdPapeis * pesos.valor));
+                    if ( pesos.quantidade === QtdPapeis ) {
+                        this.vlrTotal.setValue(this.vlrTotal.value * pesos.valor);
+                    }
                     break;
                 }
                 default: {
