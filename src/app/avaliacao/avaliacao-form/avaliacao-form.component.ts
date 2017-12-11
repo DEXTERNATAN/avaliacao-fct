@@ -42,11 +42,12 @@ export class AvaliacaoFormComponent implements OnInit {
     PapelAtributo: any[] = [];
     projetosList: number[] = [1];
     valuePapel: string[];
-    valueTec: string[];
+    valueTec: string[] = [];
     current: any[];
     title: string;
     idResource: any;
     vlrTecnologia = 0;
+    qtdTecnologia = 0;
     vlrAtributo = 0;
     vlrProjetos = 0;
     vlrPapeis = 0;
@@ -79,8 +80,8 @@ export class AvaliacaoFormComponent implements OnInit {
         dropdownDirection: 'down',
         maxItems: 7,
         onItemRemove: this.getApagarTecnologia.bind(this),
+        //onItemAdd: this.getSomarTecnologia.bind(this)
         onChange: this.getSomarTecnologia.bind(this)
-        
     };
 
     constructor(
@@ -114,10 +115,10 @@ export class AvaliacaoFormComponent implements OnInit {
             divisao: [0],
             colaborador: [0],
             papel: [0],
+            tecnologia: [0],
             Projeto: [0],
             items: this.formBuilder.array([]), // this.createItem()
             itemsAtributo: this.formBuilder.array([]),
-            tecnologia: [0],
             qtdProjetos: [0],
             vlrPtTotal: 0.00,
             ociosidade: 0.00
@@ -309,12 +310,19 @@ export class AvaliacaoFormComponent implements OnInit {
     }
 
     getSomarTecnologia(valor) {
-        this.vlrTecnologia = this.vlrTecnologia + 1;
+        
+        console.log("qtdTecnologia somar: ", this.qtdTecnologia);
+
+        this.qtdTecnologia = this.qtdTecnologia + 1;
         this.somaValores('tecnologia');
     }
 
     getApagarTecnologia(valor) {
-        this.vlrTecnologia = this.vlrTecnologia - 1;
+
+        console.log("qtdTecnologia apagar: ", this.qtdTecnologia);
+
+        this.qtdTecnologia = this.qtdTecnologia - 1;
+        this.somaValores('tecnologia');
     }
 
     somaProjetos() {
@@ -356,9 +364,6 @@ export class AvaliacaoFormComponent implements OnInit {
         
         this.vlrTotal  =  parseFloat(this.formAvaliacao.get('vlrPtTotal').value);
 
-        console.log("this.valuePapel > ", this.valuePapel);
-        console.log("this.valueTec > ", this.valueTec);
-
         switch (tipo) {
             case 'atributo': {
                 let QtdPapeis = 0;
@@ -372,15 +377,21 @@ export class AvaliacaoFormComponent implements OnInit {
                 break;
             }
             case 'tecnologia':{
-                let QtdTecnologias = 0;
-
-                console.log("this.valueTec.length > ", this.valueTec );
-
-                //QtdTecnologias = this.valueTec.length;
                 this.Pesos.forEach(pesos => {
-                    if ((pesos.tipo == 'Tecnologia') && (parseInt(pesos.quantidade) == QtdTecnologias)) {
-                        this.vlrTecnologia = (this.vlrTotal * pesos.valor);
-                    }
+/*
+                    console.log("qtdTecnologias: ", this.qtdTecnologia);
+                    console.log("pesos.quantidade: ", parseInt(pesos.quantidade));
+                    console.log("pesos.tipo: ", pesos.tipo);
+*/
+                    if ((pesos.tipo == 'Tecnologia') && (parseInt(pesos.quantidade) == this.qtdTecnologia)) {
+                        
+                        //console.log("entrou: this.vlrTecnologia > ", this.vlrTecnologia);
+                        //console.log("peso.valor > ", pesos.valor);
+
+                        this.vlrTecnologia = (this.qtdTecnologia * pesos.valor);
+
+                        //console.log("this.vlrTecnologia apos o calculo do peso: ", this.vlrTecnologia);
+                    }    
                 });
                 break;
             }      
