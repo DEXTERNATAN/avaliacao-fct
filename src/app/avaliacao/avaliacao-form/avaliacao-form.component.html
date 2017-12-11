@@ -53,7 +53,7 @@
                     </select>
                   </td>
                   <td>
-                    <ng2-selectize [config]="configPapel" (change)="somaValores()" [options]="papel" [(ngModel)]="valuePapel" formControlName="papel"></ng2-selectize>
+                    <ng2-selectize [config]="configPapel" [options]="papel" [(ngModel)]="valuePapel" formControlName="papel"></ng2-selectize>
                   </td>
                 </tr>
               </table>
@@ -67,7 +67,7 @@
                 </tr>
                 <tr>
                   <td>
-                    <ng2-selectize [config]="configTecnologia" [options]="Tecnologia" [(ngModel)]="valueTec" formControlName="tecnologia"></ng2-selectize>
+                    <ng2-selectize [config]="configTecnologia" [options]="tecnologia" [(ngModel)]="valueTec" formControlName="tecnologia"></ng2-selectize>
                   </td>
                 </tr>
               </table>
@@ -105,17 +105,17 @@
                         <div class="radio" style="float: left;">
                           <label>
                             
-                            <input type="radio" formControlName="Abrangencia" (change)="somaAtributos()" [value]="1"    >
+                            <input type="radio" formControlName="Abrangencia" (change)="somaValores('atributo')" [value]="1"    >
                             <span data-toggle="tooltip" title="{{item.descricaoAbrangencia1}}"class="badge bg-yellow">1-Moderado</span>
                           </label>
                           <br>
                           <label>
-                            <input type="radio" formControlName="Abrangencia" (change)="somaAtributos()" [value]="2">
+                            <input type="radio" formControlName="Abrangencia" (change)="somaValores('atributo')" [value]="2">
                             <span data-toggle="tooltip" title="{{item.descricaoAbrangencia2}}" class="badge bg-yellow">2-Significativa</span>
                           </label>
                           <br>
                           <label>
-                            <input type="radio" formControlName="Abrangencia" (change)="somaAtributos()" [value]="3">
+                            <input type="radio" formControlName="Abrangencia" (change)="somaValores('atributo')" [value]="3">
                             <span data-toggle="tooltip" title="{{item.descricaoAbrangencia3}}" class="badge bg-yellow">3-Muito</span>
                           </label>
                         </div>
@@ -124,18 +124,18 @@
                         <!-- Complexidade -->
                         <div class="radio" style="float: left; position: relative;">
                           <label>
-                            <input type="radio" formControlName="Complexidade" (change)="somaAtributos()" [value]="1" checked>
+                            <input type="radio" formControlName="Complexidade" (change)="somaValores('atributo')" [value]="1" checked>
                             <span data-toggle="tooltip" title="{{item.descricaoComplexidade1}}" class="badge bg-light-blue">1-Moderada</span>
                           </label>
                           <br>
                           <label>
-                            <input type="radio" formControlName="Complexidade" (change)="somaAtributos()" [value]="2">
+                            <input type="radio" formControlName="Complexidade" (change)="somaValores('atributo')" [value]="2">
 
                             <span data-toggle="tooltip" title="{{item.descricaoComplexidade2}}" class="badge bg-light-blue">2-Alta</span>
                           </label>
                           <br>
                           <label>
-                            <input type="radio" formControlName="Complexidade" (change)="somaAtributos()" [value]="3">
+                            <input type="radio" formControlName="Complexidade" (change)="somaValores('atributo')" [value]="3">
                             <span data-toggle="tooltip" title="{{item.descricaoComplexidade3}}" class="badge bg-light-blue">3-Altíssima</span>
                           </label>
                         </div>
@@ -145,17 +145,17 @@
                         <!-- Impacto -->
                         <div class="radio" style="float: left; position: relative;">
                           <label>
-                            <input type="radio" formControlName="Impacto" (change)="somaAtributos()" [value]="1" checked="checked" >
+                            <input type="radio" formControlName="Impacto" (change)="somaValores('atributo')" [value]="1" checked="checked" >
                             <span data-toggle="tooltip" title="{{item.descricaoImpacto1}}" class="badge bg-green">1-Relevante</span>
                           </label>
                           <br>
                           <label>
-                            <input type="radio" formControlName="Impacto" (change)="somaAtributos()" [value]="2">
+                            <input type="radio" formControlName="Impacto" (change)="somaValores('atributo')" [value]="2">
                             <span data-toggle="tooltip" title="{{item.descricaoImpacto2}}" class="badge bg-green">2-Muito</span>
                           </label>
                           <br>
                           <label>
-                            <input type="radio" formControlName="Impacto" (change)="somaAtributos()" [value]="3">
+                            <input type="radio" formControlName="Impacto" (change)="somaValores('atributo')" [value]="3">
                             <span data-toggle="tooltip" title="{{item.descricaoImpacto3}}" class="badge bg-green">3-Altamente</span>
                           </label>
                         </div>
@@ -219,17 +219,17 @@
                       <td [formGroupName]="i">
                         <div class="radio">
                           <label>
-                            <input type="radio" formControlName="Abrangencia" (change)="somaProjetos()" [value]="1">
+                            <input type="radio" formControlName="Abrangencia" (change)="somaValores('projeto')" [value]="1">
                             <span class="badge bg-yellow">1-Moderado</span>
                           </label>
                           <br>
                           <label>
-                            <input type="radio" formControlName="Abrangencia" (change)="somaProjetos()" [value]="2">
+                            <input type="radio" formControlName="Abrangencia" (change)="somaValores('projeto')" [value]="2">
                             <span class="badge bg-yellow">2-Significativa</span>
                           </label>
                           <br>
                           <label>
-                            <input type="radio" formControlName="Abrangencia" (change)="somaProjetos()" [value]="3">
+                            <input type="radio" formControlName="Abrangencia" (change)="somaValores('projeto')" [value]="3">
                             <span class="badge bg-yellow">3-Muito</span>
                           </label>
                         </div>
@@ -237,17 +237,17 @@
                       <td [formGroupName]="i">
                         <div class="radio">
                           <label>
-                            <input type="radio" formControlName="Complexidade" (change)="somaProjetos()" [value]="1">
+                            <input type="radio" formControlName="Complexidade" (change)="somaValores('projeto')" [value]="1">
                             <span class="badge bg-light-blue">1-Moderada</span>
                           </label>
                           <br>
                           <label>
-                            <input type="radio" formControlName="Complexidade" (change)="somaProjetos()" [value]="2">
+                            <input type="radio" formControlName="Complexidade" (change)="somaValores('projeto')" [value]="2">
                             <span class="badge bg-light-blue">2-Alta</span>
                           </label>
                           <br>
                           <label>
-                            <input type="radio" formControlName="Complexidade" (change)="somaProjetos()" [value]="3">
+                            <input type="radio" formControlName="Complexidade" (change)="somaValores('projeto')" [value]="3">
                             <span class="badge bg-light-blue">3-Altíssima</span>
                           </label>
                         </div>
@@ -255,17 +255,17 @@
                       <td [formGroupName]="i">
                         <div class="radio">
                           <label>
-                            <input type="radio" formControlName="Impacto" (change)="somaProjetos()" [value]="1">
+                            <input type="radio" formControlName="Impacto" (change)="somaValores('projeto')" [value]="1">
                             <span class="badge bg-green">1-Relevante</span>
                           </label>
                           <br>
                           <label>
-                            <input type="radio" formControlName="Impacto" (change)="somaProjetos()" [value]="2">
+                            <input type="radio" formControlName="Impacto" (change)="somaValores('projeto')" [value]="2">
                             <span class="badge bg-green">2-Muito</span>
                           </label>
                           <br>
                           <label>
-                            <input type="radio" id="Impacto" formControlName="Impacto" (change)="somaProjetos()" [value]="3">
+                            <input type="radio" id="Impacto" formControlName="Impacto" (change)="somaValores('projeto')" [value]="3">
                             <span class="badge bg-green">3-Altamente</span>
                           </label>
                         </div>
@@ -285,7 +285,7 @@
                 <tr>
                   <td>
                     <label style="width: 20%">
-                      <input type="text" class="form-control" id="" placeholder="Informe o % de Ociosidade" maxlength="6" value="0.00">
+                      <input type="text" class="form-control" id="" formControlName="ociosidade" (change)="somaValores('ociosidade')" placeholder="Informe o % de Ociosidade" maxlength="6" value="0.00" >
                     </label>
                   </td>
                 </tr>

@@ -34,7 +34,7 @@ export class AvaliacaoFormComponent implements OnInit {
     Colaborador: Colaborador[] = [];
     Papel: Papel[] = [];
     Projeto: Projeto[];
-    Tecnologia: Tecnologia[] = [];
+    tecnologia: Tecnologia[] = [];
     Pesos: Pesos[];
     papel: Papel[] = [];
     PapelAtributo2: any[] = [];
@@ -49,9 +49,10 @@ export class AvaliacaoFormComponent implements OnInit {
     vlrTecnologia = 0;
     vlrAtributo = 0;
     vlrProjetos = 0;
+    vlrPapeis = 0;
     items: FormArray;
     itemsAtributo: FormArray;
-
+ 
     /* Selectize Papel */
     configPapel = {
         create: true,
@@ -77,8 +78,9 @@ export class AvaliacaoFormComponent implements OnInit {
         plugins: ['dropdown_direction', 'remove_button'],
         dropdownDirection: 'down',
         maxItems: 7,
-        onItemAdd: this.getSomarTecnologia.bind(this, this),
-        onItemRemove: this.getApagarTecnologia.bind(this)
+        onItemRemove: this.getApagarTecnologia.bind(this),
+        onChange: this.getSomarTecnologia.bind(this)
+        
     };
 
     constructor(
@@ -115,9 +117,10 @@ export class AvaliacaoFormComponent implements OnInit {
             Projeto: [0],
             items: this.formBuilder.array([]), // this.createItem()
             itemsAtributo: this.formBuilder.array([]),
-            tecnologia: [null],
+            tecnologia: [0],
             qtdProjetos: [0],
-            vlrPtTotal: 0.00
+            vlrPtTotal: 0.00,
+            ociosidade: 0.00
         });
 
         this.route.params.subscribe(params => {
@@ -162,7 +165,7 @@ export class AvaliacaoFormComponent implements OnInit {
 
     save() {
         let result, userValue = this.formAvaliacao.value;
-        this.somaValores();
+        this.somaValores('tudo');
         // if (this.idResource) {
         //     result = this.avaliacaoService.updateAvaliacao(this.idResource, userValue);
         // } else {
@@ -192,7 +195,7 @@ export class AvaliacaoFormComponent implements OnInit {
 
     getTecnologia() {
         this.tecnologiaService.getTecnologia().subscribe(tecnologia => {
-            this.Tecnologia = tecnologia;
+            this.tecnologia = tecnologia;
         });
     }
 
@@ -292,8 +295,7 @@ export class AvaliacaoFormComponent implements OnInit {
                                 }
                             });
                             this.addItemAtributo(arrayPush.letra, arrayPush.descricao);
-                            this.somaAtributos();
-                            this.formAvaliacao.get('vlrPtTotal').setValue(this.vlrAtributo.toFixed(2));
+                            this.somaValores('atributo');
                         }
                     });
                 }
@@ -303,11 +305,12 @@ export class AvaliacaoFormComponent implements OnInit {
 
     getResetarAtributo(valor) {
         //this.PapelAtributo = [];
-        this.clearArray();
+        //this.clearArray();
     }
 
-    getSomarTecnologia(valor, item) {
+    getSomarTecnologia(valor) {
         this.vlrTecnologia = this.vlrTecnologia + 1;
+        this.somaValores('tecnologia');
     }
 
     getApagarTecnologia(valor) {
@@ -325,77 +328,14 @@ export class AvaliacaoFormComponent implements OnInit {
             vlrComplexidade = parseInt(element.Complexidade, 10);
             vlrImpacto = parseInt(element.Impacto, 10);
             this.vlrProjetos = this.vlrProjetos + (vlrAbrangencia + vlrComplexidade + vlrImpacto);
-            console.log('Total de projetos: ', this.vlrProjetos);
         });
-
-    }
-
-    somaValores() {
-
-        this.vlrTotal  =  this.formAvaliacao.get('vlrPtTotal');
-        let QtdPapeis, QtdTecnologias, QtdProjetos = 0;
-
-        // Papeis
-        QtdPapeis = this.valuePapel.length; // Buscar na Tabela de Pesos o %
-        console.log('Papeis: ', QtdPapeis);
-
-        // Tecnologias
-        QtdTecnologias = this.valueTec.length;
-        console.log('Tecnologia: ', QtdTecnologias);
-
-        // Atributos
-        console.log('Atributos: ', this.vlrAtributo);
-
-        // Valor dos Projetos
-        QtdProjetos = this.formAvaliacao.get('qtdProjetos').value;
-        console.log('Valor Total Projetos = ', 'QtdProjetos: ',QtdProjetos, 'Soma Projetos: ', this.vlrProjetos);
-
-        // Atribuição no valor total
-        //this.formAvaliacao.get('vlrPtTotal').setValue(this.vlrAtributo.toFixed(2));
-
-
-        // Calculo dos pesos
-        console.log(this.Pesos);
-        this.Pesos.forEach(pesos => {
-            switch (pesos.tipo) {
-                case 'Projeto': {
-                    console.log('Projeto', QtdProjetos, pesos.quantidade);
-                    break;
-                }
-                case 'Papel': {
-                    debugger
-                    if ( pesos.quantidade === QtdPapeis ) {
-                        this.vlrTotal.setValue(this.vlrTotal.value * pesos.valor);
-                    }
-                    break;
-                }
-                default: {
-                    console.log('Outro tipo');
-                    break;
-                }
-            }
-        });
-
-
-
-        // Percentual de ociosidade
-
-        // Pontuação Total
-
-        // Pontuação FCT Atual
-
-        // Ajuste | %
-
-        // Referencia FCT pela Pontuação Total
-
-        // Referencia FCT Atual | %
-
-
     }
 
     somaAtributos() {
 
         this.vlrAtributo = 0;
+        let qtdAtributos = 0;
+        let ajusteAtributos = 0.00;
         let vlrAbrangencia, vlrComplexidade, vlrImpacto: number;
         let atributos = this.formAvaliacao.get('itemsAtributo').value;
 
@@ -404,9 +344,83 @@ export class AvaliacaoFormComponent implements OnInit {
             vlrComplexidade = parseInt(element.Complexidade, 10);
             vlrImpacto = parseInt(element.Impacto, 10);
             this.vlrAtributo = this.vlrAtributo + (vlrAbrangencia + vlrComplexidade + vlrImpacto);
-            console.log('Total atributos: ', this.vlrAtributo);
+            qtdAtributos = qtdAtributos + 1;
         });
-        this.formAvaliacao.get('vlrPtTotal').setValue(this.vlrAtributo.toFixed(2));
+
+        ajusteAtributos = (3 * qtdAtributos);
+        ajusteAtributos = (13 / (ajusteAtributos/3));
+        this.vlrAtributo = this.vlrAtributo * ajusteAtributos;
     }
 
+    somaValores(tipo: string) {
+        
+        this.vlrTotal  =  parseFloat(this.formAvaliacao.get('vlrPtTotal').value);
+
+        console.log("this.valuePapel > ", this.valuePapel);
+        console.log("this.valueTec > ", this.valueTec);
+
+        switch (tipo) {
+            case 'atributo': {
+                let QtdPapeis = 0;
+                QtdPapeis = this.valuePapel.length;
+                this.somaAtributos();
+                this.Pesos.forEach(pesos => {
+                    if ((pesos.tipo == 'Papel') && (parseInt(pesos.quantidade) == QtdPapeis)){
+                        this.vlrAtributo = (this.vlrAtributo * pesos.valor);
+                    }
+                });
+                break;
+            }
+            case 'tecnologia':{
+                let QtdTecnologias = 0;
+
+                console.log("this.valueTec.length > ", this.valueTec );
+
+                //QtdTecnologias = this.valueTec.length;
+                this.Pesos.forEach(pesos => {
+                    if ((pesos.tipo == 'Tecnologia') && (parseInt(pesos.quantidade) == QtdTecnologias)) {
+                        this.vlrTecnologia = (this.vlrTotal * pesos.valor);
+                    }
+                });
+                break;
+            }      
+            case 'projeto':{
+                let QtdProjetos = 0;
+                QtdProjetos = this.formAvaliacao.get('qtdProjetos').value;
+                this.somaProjetos();
+                this.vlrProjetos = (this.vlrProjetos / QtdProjetos);
+                this.Pesos.forEach(pesos => {
+                    if ((pesos.tipo == 'Projeto') && (parseInt(pesos.quantidade) == QtdProjetos)) {
+                        this.vlrProjetos = (this.vlrProjetos * pesos.valor);
+                    }
+                });
+                break;
+            }
+            case 'ociosidade': {
+                this.vlrTotal = this.vlrTotal * this.formAvaliacao.get('ociosidade').value;
+                console.log("Valor ociosidade: ", this.formAvaliacao.get('ociosidade').value);
+
+                this.formAvaliacao.get('vlrPtTotal').setValue(this.vlrTotal.toFixed(2));
+                break;
+            }
+            case 'tudo': {
+
+                break;
+            }    
+        }
+
+
+        this.vlrTotal = this.vlrAtributo + this.vlrTecnologia + this.vlrProjetos;
+
+        this.formAvaliacao.get('vlrPtTotal').setValue(this.vlrTotal.toFixed(2));
+
+        // Pontuação FCT Atual
+
+        // Ajuste | %
+
+        // Referencia FCT pela Pontuação Total
+
+        // Referencia FCT Atual | %
+        
+    }
 }
