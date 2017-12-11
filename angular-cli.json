@@ -38,7 +38,8 @@
         "../node_modules/datatables.net/js/jquery.dataTables.js",
         "../node_modules/admin-lte/bootstrap/js/bootstrap.min.js",
         "../node_modules/admin-lte/dist/js/app.min.js",
-        "../node_modules/ng-selectize/selectize/selectize.standalone.js"
+        "../node_modules/ng-selectize/selectize/selectize.standalone.js",
+        "../node_modules/icheck/icheck.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

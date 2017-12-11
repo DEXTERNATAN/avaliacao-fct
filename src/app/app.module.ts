@@ -1,3 +1,5 @@
+import { AuthenticationService } from 'app/login/login.service';
+import { AuthGuard } from 'app/shared/auth.guard';
 import { RequestOptions } from '@angular/http';
 import { XHRBackend } from '@angular/http';
 import { Http } from '@angular/http';
@@ -16,12 +18,8 @@ import { TextMaskModule } from 'angular2-text-mask';
 import { Select2Module } from 'ng2-select2';
 import { DataTablesModule } from 'angular-datatables';
 import { LOCALE_ID } from '@angular/core';
-// import { CurrencyPipe } from '@angular/common';
-// import { DatePipe } from '@angular/common';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { CurrencyMaskConfig, CURRENCY_MASK_CONFIG } from 'ng2-currency-mask/src/currency-mask.config';
-// import {CalendarModule} from 'primeng/primeng';
-// import { FilterPipe } from './shared/pipes/filter';
 
 /* Modules */
 import { AbrangenciaModule } from './abrangencia/abrangencia.module';
@@ -58,44 +56,12 @@ import { avaliacaoRouting } from './avaliacao/avaliacao.routes';
 import { faixaRouting } from './faixa/faixa.routes';
 import { consultaavaliacaoRouting } from './consultaavaliacao/consultaavaliacao.routes';
 
-
-/* Services */
-// import { DivisaoService } from './divisao/divisao.service';
-// import { AbrangenciaService } from './abrangencia/abrangencia.service';
-// import { PapelService } from './papel/papel.service';
-// import { TecnologiaService } from './tecnologia/tecnologia.service';
-// import { ImpactoService } from './impacto/impacto.service';
-// import { ReferenciaService } from './referencia/referencia.service';
-// import { ColaboradorService } from './colaborador/colaborador.service';
-// import { PesosService } from './pesos/pesos.service';
-// import { ProjetoService } from './projeto/projeto.service';
-// import { DistribuicaoService } from './distribuicao/distribuicao.service';
-// import { AtributoService } from './atributo/atributo.service';
-// import { AvaliacaoService } from './avaliacao/avaliacao.service';
-// import { FaixaService } from './faixa/faixa.service';
-// import { ConsultaavaliacaoService } from './consultaavaliacao/consultaavaliacao.service';
-
 /* Components */
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { LoginComponent } from './login/login.component';
-// import { DivisaoComponent } from './divisao/divisao.component';
-// import { PapelComponent } from './papel/papel.component';
-// import { AbrangenciaComponent } from './abrangencia/abrangencia.component';
-// import { ImpactoComponent } from './impacto/impacto.component';
-// import { ComplexidadeComponent } from './complexidade/complexidade.component';
-// import { TecnologiaComponent } from './tecnologia/tecnologia.component';
-// import { ReferenciaComponent } from './referencia/referencia.component';
-// import { ColaboradorComponent } from './colaborador/colaborador.component';
-// import { PesosComponent } from './pesos/pesos.component';
-// import { ProjetoComponent } from './projeto/projeto.component';
-// import { DistribuicaoComponent } from './distribuicao/distribuicao.component';
-// import { AtributoComponent } from './atributo/atributo.component';
-// import { AvaliacaoComponent } from './avaliacao/avaliacao.component';
-// import { FaixaComponent } from './faixa/faixa.component';
-// import { ConsultaavaliacaoComponent } from './consultaavaliacao/consultaavaliacao.component';
 import { MensagensComponent } from 'app/shared/components/mensagens.component';
 
 
@@ -169,7 +135,9 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
             { provide: LOCALE_ID, useValue: 'pt-BR' },
             { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig },
             { provide: Http, useFactory: httpFactory, deps: [XHRBackend, RequestOptions, LoaderService, MensagensHandler] },
-            NgSpinningPreloader
+            NgSpinningPreloader,
+            AuthGuard,
+            AuthenticationService
         ],
     bootstrap: [AppComponent]
 })
