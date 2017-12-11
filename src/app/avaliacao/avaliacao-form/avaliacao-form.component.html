@@ -98,11 +98,7 @@
                     </tr>
                     <tr formArrayName="itemsAtributo" *ngFor="let item of formAvaliacao.get('itemsAtributo').controls; let i = index;">
                       <td [formGroupName]="i">
-<<<<<<< HEAD
                         <label>{{ item.value.letra }}){{ item.value.descricao }}</label>
-=======
-                        <label>{{ item.value.letra }}) - {{ item.value.descricao }}</label>
->>>>>>> dc2110949d8b1a9a8d26facbfd33c970ea145a4e
                       </td>
                       <td [formGroupName]="i">
                         <!-- Abrangencia -->
@@ -178,12 +174,8 @@
                 </tr>
                 <tr>
                   <td>
-<<<<<<< HEAD
                     <button type="button" class="btn btn-default" (click)="addProjeto()">Adicionar</button>&nbsp;
                     <button type="button" class="btn btn-default" (click)="excProjeto()">Limpar</button>
-=======
-                    <button type="button" class="btn btn-default" (click)="addProjeto()">Adicionar projeto</button>
->>>>>>> dc2110949d8b1a9a8d26facbfd33c970ea145a4e
                   </td>
                 </tr>
               </table>
