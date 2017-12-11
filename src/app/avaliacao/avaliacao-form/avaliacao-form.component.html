@@ -23,11 +23,6 @@
           <div class="alert alert-success" role="alert" *ngIf="sucesso">
             Avaliação Registrada com sucesso!
           </div>
-  
-          <pre>
-              {{ formAvaliacao.value | json }}
-          </pre>
-  
           <form role="form" [formGroup]="formAvaliacao" (ngSubmit)="save()">
             <div class="box-body">
               <div class="form-group">
@@ -212,7 +207,6 @@
                         </td>
                         <td [formGroupName]="i">
                           <select class="form-control" formControlName="Projetos">
-                            <option value="0">Selecione</option>
                             <option *ngFor="let item of Projeto" [value]="item.cod_servico">{{ item.cod_servico }} - {{ item.titulo }}</option>
                           </select>
                         </td>
@@ -308,12 +302,12 @@
                     </td>
                     <td>
                       <label style="width: 100%">
-                        <input type="text" class="form-control" id="" readonly placeholder="" value="87.98">
+                        <input type="text" class="form-control" formControlName="vlrFCTatual" readonly>
                       </label>
                     </td>
                     <td>
                       <label style="width: 100%">
-                        <input type="text" class="form-control" id="" readonly placeholder="" value="-9.56">
+                        <input type="text" class="form-control" formControlName="ajuste" readonly>
                       </label>
                     </td>
                     <td>
@@ -322,7 +316,7 @@
                       </div>
                     </td>
                     <td>
-                      <span class="badge bg-green">-10%</span>
+                      <span class="badge bg-green">{{}}</span>
                     </td>
                   </tr>
                 </table>

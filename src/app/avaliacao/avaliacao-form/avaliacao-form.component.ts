@@ -47,10 +47,12 @@ export class AvaliacaoFormComponent implements OnInit {
     title: string;
     idResource: any;
     vlrTecnologia = 0;
+    vlrOciosidade = 0;
     qtdTecnologia = 0;
     vlrAtributo = 0;
     vlrProjetos = 0;
     vlrPapeis = 0;
+    vlrAjuste = 0.00;
     items: FormArray;
     itemsAtributo: FormArray;
  
@@ -80,8 +82,7 @@ export class AvaliacaoFormComponent implements OnInit {
         dropdownDirection: 'down',
         maxItems: 7,
         onItemRemove: this.getApagarTecnologia.bind(this),
-        //onItemAdd: this.getSomarTecnologia.bind(this)
-        onChange: this.getSomarTecnologia.bind(this)
+        onItemAdd: this.getSomarTecnologia.bind(this)
     };
 
     constructor(
@@ -121,7 +122,9 @@ export class AvaliacaoFormComponent implements OnInit {
             itemsAtributo: this.formBuilder.array([]),
             qtdProjetos: [0],
             vlrPtTotal: 0.00,
-            ociosidade: 0.00
+            ociosidade: 0.00,
+            vlrFCTatual: 0.00,
+            ajuste: 0.00
         });
 
         this.route.params.subscribe(params => {
@@ -258,10 +261,12 @@ export class AvaliacaoFormComponent implements OnInit {
 
     addProjeto(value: number) {
         this.addItem();
+        this.somaValores('projeto');
     }
 
     excProjeto(){
         this.formAvaliacao.controls['items'] = this.formBuilder.array([]);
+        this.somaValores('projeto');
     }
 
     onCancel() {
@@ -310,17 +315,11 @@ export class AvaliacaoFormComponent implements OnInit {
     }
 
     getSomarTecnologia(valor) {
-        
-        console.log("qtdTecnologia somar: ", this.qtdTecnologia);
-
         this.qtdTecnologia = this.qtdTecnologia + 1;
         this.somaValores('tecnologia');
     }
 
     getApagarTecnologia(valor) {
-
-        console.log("qtdTecnologia apagar: ", this.qtdTecnologia);
-
         this.qtdTecnologia = this.qtdTecnologia - 1;
         this.somaValores('tecnologia');
     }
@@ -353,9 +352,8 @@ export class AvaliacaoFormComponent implements OnInit {
             vlrImpacto = parseInt(element.Impacto, 10);
             this.vlrAtributo = this.vlrAtributo + (vlrAbrangencia + vlrComplexidade + vlrImpacto);
             qtdAtributos = qtdAtributos + 1;
+            ajusteAtributos = ajusteAtributos + 3;
         });
-
-        ajusteAtributos = (3 * qtdAtributos);
         ajusteAtributos = (13 / (ajusteAtributos/3));
         this.vlrAtributo = this.vlrAtributo * ajusteAtributos;
     }
@@ -377,20 +375,10 @@ export class AvaliacaoFormComponent implements OnInit {
                 break;
             }
             case 'tecnologia':{
+                this.vlrTecnologia = this.qtdTecnologia;
                 this.Pesos.forEach(pesos => {
-/*
-                    console.log("qtdTecnologias: ", this.qtdTecnologia);
-                    console.log("pesos.quantidade: ", parseInt(pesos.quantidade));
-                    console.log("pesos.tipo: ", pesos.tipo);
-*/
                     if ((pesos.tipo == 'Tecnologia') && (parseInt(pesos.quantidade) == this.qtdTecnologia)) {
-                        
-                        //console.log("entrou: this.vlrTecnologia > ", this.vlrTecnologia);
-                        //console.log("peso.valor > ", pesos.valor);
-
                         this.vlrTecnologia = (this.qtdTecnologia * pesos.valor);
-
-                        //console.log("this.vlrTecnologia apos o calculo do peso: ", this.vlrTecnologia);
                     }    
                 });
                 break;
@@ -408,10 +396,8 @@ export class AvaliacaoFormComponent implements OnInit {
                 break;
             }
             case 'ociosidade': {
-                this.vlrTotal = this.vlrTotal * this.formAvaliacao.get('ociosidade').value;
-                console.log("Valor ociosidade: ", this.formAvaliacao.get('ociosidade').value);
-
-                this.formAvaliacao.get('vlrPtTotal').setValue(this.vlrTotal.toFixed(2));
+                this.vlrOciosidade = (this.formAvaliacao.get('ociosidade').value / 100);
+                console.log("valor Total ociosidade: ", this.vlrTotal);
                 break;
             }
             case 'tudo': {
@@ -420,15 +406,19 @@ export class AvaliacaoFormComponent implements OnInit {
             }    
         }
 
-
-        this.vlrTotal = this.vlrAtributo + this.vlrTecnologia + this.vlrProjetos;
-
+        this.vlrTotal = (this.vlrAtributo + this.vlrTecnologia + this.vlrProjetos);
+        this.vlrTotal = this.vlrTotal - (this.vlrTotal * this.vlrOciosidade);
         this.formAvaliacao.get('vlrPtTotal').setValue(this.vlrTotal.toFixed(2));
 
         // Pontuação FCT Atual
-
+        this.formAvaliacao.get('vlrFCTatual').setValue(this.vlrAtributo.toFixed(2));
         // Ajuste | %
+        this.vlrAjuste = this.formAvaliacao.get('vlrFCTatual').value - this.formAvaliacao.get('vlrPtTotal').value;
+        this.formAvaliacao.get('ajuste').setValue(this.vlrAjuste.toFixed(2));
 
+        //((formAvaliacao.get('ajuste').value)/(formAvaliacao.get('vlrFCTatual').value)*100)
+        //badge bg-green
+        
         // Referencia FCT pela Pontuação Total
 
         // Referencia FCT Atual | %
