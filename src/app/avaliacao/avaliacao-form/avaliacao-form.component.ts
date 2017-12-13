@@ -57,9 +57,7 @@ export class AvaliacaoFormComponent implements OnInit {
     percAjuste2 = 0;
     percAjusteBarra = '';
     classeCss1 = 'badge bg-green';
-    classeCss2 = 'badge bg-green';
     classeBarra1 = 'progress-bar progress-bar-success';
-    classeBarra2 = 'progress-bar progress-bar-success';
     items: FormArray;
     itemsAtributo: FormArray;
  
@@ -131,7 +129,8 @@ export class AvaliacaoFormComponent implements OnInit {
             vlrPtTotal: 0.00,
             ociosidade: 0.00,
             vlrFCTatual: 0.00,
-            ajuste: 0.00
+            ajuste: 0.00,
+            referenciaFctAtual: ''
         });
 
         this.route.params.subscribe(params => {
@@ -306,20 +305,8 @@ export class AvaliacaoFormComponent implements OnInit {
                 if (data !== []) {
                     data.forEach(arrayPush => {
                         let vlrRepetido = this.PapelAtributo.find(result => result.letra === arrayPush.letra) ? true : false;
-                        if ( vlrRepetido ) {
-                            //console.log('REPETIDO', vlrRepetido);
-                        }else {
-
+                        if ( !vlrRepetido ) {
                             this.PapelAtributo.push(arrayPush);
-                            this.PapelAtributo.sort(function (a, b) {
-                                if (a.letra < b.letra) {
-                                    return -1;
-                                } else if (a.letra > b.letra) {
-                                    return 1;
-                                } else {
-                                    return 0;
-                                }
-                            });
                             this.addItemAtributo(arrayPush);
                             this.somaValores('atributo');
                         }
@@ -330,8 +317,8 @@ export class AvaliacaoFormComponent implements OnInit {
     }
 
     getResetarAtributo(valor) {
-        //this.PapelAtributo = [];
-        //this.clearArray();
+        this.PapelAtributo = [];
+        this.clearArray();
     }
 
     getSomarTecnologia(valor) {
@@ -419,6 +406,13 @@ export class AvaliacaoFormComponent implements OnInit {
                 break;
             }
             case 'fctatual': {
+                // Pontuação FCT Atual
+
+                //this.formAvaliacao.get('vlrFCTatual').setValue(this.vlrAtributo.toFixed(2));
+                this.formAvaliacao.get('vlrFCTatual').setValue(85.39);
+                
+                // Referencia FCT Atual | %
+                this.formAvaliacao.get('referenciaFctAtual').setValue(this.formAvaliacao.get('colaborador').value.referenciaFct);
 
                 break;
             }    
@@ -427,11 +421,6 @@ export class AvaliacaoFormComponent implements OnInit {
         this.vlrTotal = (this.vlrAtributo + this.vlrTecnologia + this.vlrProjetos);
         this.vlrTotal = this.vlrTotal - (this.vlrTotal * this.vlrOciosidade);
         this.formAvaliacao.get('vlrPtTotal').setValue(this.vlrTotal.toFixed(2));
-
-        // Pontuação FCT Atual
-
-        //this.formAvaliacao.get('vlrFCTatual').setValue(this.vlrAtributo.toFixed(2));
-        this.formAvaliacao.get('vlrFCTatual').setValue('38');
 
         // Ajuste
         this.vlrAjuste = this.formAvaliacao.get('vlrFCTatual').value - this.formAvaliacao.get('vlrPtTotal').value;
@@ -456,8 +445,5 @@ export class AvaliacaoFormComponent implements OnInit {
         }
 
         // Referencia FCT pela Pontuação Total
-
-        // Referencia FCT Atual | %
-        
     }
 }

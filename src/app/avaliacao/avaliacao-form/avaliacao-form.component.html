@@ -42,9 +42,9 @@
                       </div>
                     </td>
                     <td>
-                      <select class="form-control" id="" formControlName="colaborador">
+                      <select class="form-control" id="" formControlName="colaborador" (change)="somaValores('fctatual')">
                         <option [selected]="true" value="">Selecione</option>
-                        <option *ngFor="let colaborador of Colaborador; let i = index" [value]="colaborador.idColaborador">{{ colaborador.nome }}</option>
+                        <option *ngFor="let colaborador of Colaborador; let i = index" [ngValue]="colaborador">{{ colaborador.nome }}</option>
                       </select>
                     </td>
                     <td>
@@ -329,27 +329,17 @@
                   <tr>
                     <th style="width: 36%">Referência FCT pela Pontuação Total</th>
                     <th style="width: 36%">Referência FCT Atual</th>
-                    <th style="width: 5%"></th>
-                    <th></th>
                   </tr>
                   <tr>
                     <td>
                       <label style="width: 100%">
-                        <input type="text" class="form-control" id="" readonly placeholder="" value="13 - Técnico (R$ 678.19)">
+                        <input type="text" class="form-control" readonly value="13 - Técnico (R$ 678.19)">
                       </label>
                     </td>
                     <td>
                       <label style="width: 100%">
-                        <input type="text" class="form-control" id="" readonly placeholder="" value="11 - Técnico (R$ 395.77)">
+                        <input type="text" class="form-control" formControlName="referenciaFctAtual" readonly>
                       </label>
-                    </td>
-                    <td>
-                      <span class="{{this.classeCss2}}">{{this.percAjuste.toFixed(2)}}%</span>
-                    </td>
-                    <td>
-                      <div class="progress progress-sm progress-striped active">
-                        <div class="{{this.classeBarra2}}" [style.width]="percAjusteBarra"></div>
-                      </div>
                     </td>
                   </tr>
                 </table>
