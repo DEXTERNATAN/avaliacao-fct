@@ -53,6 +53,13 @@ export class AvaliacaoFormComponent implements OnInit {
     vlrProjetos = 0;
     vlrPapeis = 0;
     vlrAjuste = 0.00;
+    percAjuste = 0;
+    percAjuste2 = 0;
+    percAjusteBarra = '';
+    classeCss1 = 'badge bg-green';
+    classeCss2 = 'badge bg-green';
+    classeBarra1 = 'progress-bar progress-bar-success';
+    classeBarra2 = 'progress-bar progress-bar-success';
     items: FormArray;
     itemsAtributo: FormArray;
  
@@ -80,7 +87,7 @@ export class AvaliacaoFormComponent implements OnInit {
         delimiter: ',',
         plugins: ['dropdown_direction', 'remove_button'],
         dropdownDirection: 'down',
-        maxItems: 7,
+        maxItems: 6,
         onItemRemove: this.getApagarTecnologia.bind(this),
         onItemAdd: this.getSomarTecnologia.bind(this)
     };
@@ -227,7 +234,6 @@ export class AvaliacaoFormComponent implements OnInit {
     addItem(): void {
         this.items = this.formAvaliacao.get('items') as FormArray;
         this.items.push(this.createItem());
-        console.log(this.items.length);
         this.formAvaliacao.get('qtdProjetos').setValue(this.items.length);
     }
 
@@ -240,18 +246,27 @@ export class AvaliacaoFormComponent implements OnInit {
         });
     }
 
-    addItemAtributo(letra, descricao): void {
+    addItemAtributo(atributo): void {
         this.items = this.formAvaliacao.get('itemsAtributo') as FormArray;
-        this.items.push(this.createItemAtributo(letra, descricao));
+        this.items.push(this.createItemAtributo(atributo));
     }
 
-    createItemAtributo(letra, descricao): FormGroup {
+    createItemAtributo(atributo): FormGroup {
         return this.formBuilder.group({
             Abrangencia: 1,
             Complexidade: 1,
             Impacto: 1,
-            letra: letra,
-            descricao: descricao
+            letra: atributo.letra,
+            descricao: atributo.descricao,
+            descricaoAbrangencia1: atributo.descricaoAbrangencia1,
+            descricaoAbrangencia2: atributo.descricaoAbrangencia2,
+            descricaoAbrangencia3: atributo.descricaoAbrangencia3,
+            descricaoComplexidade1: atributo.descricaoComplexidade1,
+            descricaoComplexidade2: atributo.descricaoComplexidade2,
+            descricaoComplexidade3: atributo.descricaoComplexidade3,
+            descricaoImpacto1: atributo.descricaoImpacto1,
+            descricaoImpacto2: atributo.descricaoImpacto2,
+            descricaoImpacto3: atributo.descricaoImpacto3
         });
     }
 
@@ -264,8 +279,13 @@ export class AvaliacaoFormComponent implements OnInit {
         this.somaValores('projeto');
     }
 
-    excProjeto(){
-        this.formAvaliacao.controls['items'] = this.formBuilder.array([]);
+    excProjeto(index: number){
+        if (index > 7){
+            this.formAvaliacao.controls['items'] = this.formBuilder.array([]);
+        }else{
+            this.items = this.formAvaliacao.get('items') as FormArray;
+            this.items.removeAt(index);
+        }
         this.somaValores('projeto');
     }
 
@@ -287,7 +307,7 @@ export class AvaliacaoFormComponent implements OnInit {
                     data.forEach(arrayPush => {
                         let vlrRepetido = this.PapelAtributo.find(result => result.letra === arrayPush.letra) ? true : false;
                         if ( vlrRepetido ) {
-                            console.log('REPETIDO', vlrRepetido);
+                            //console.log('REPETIDO', vlrRepetido);
                         }else {
 
                             this.PapelAtributo.push(arrayPush);
@@ -300,7 +320,7 @@ export class AvaliacaoFormComponent implements OnInit {
                                     return 0;
                                 }
                             });
-                            this.addItemAtributo(arrayPush.letra, arrayPush.descricao);
+                            this.addItemAtributo(arrayPush);
                             this.somaValores('atributo');
                         }
                     });
@@ -387,7 +407,6 @@ export class AvaliacaoFormComponent implements OnInit {
                 let QtdProjetos = 0;
                 QtdProjetos = this.formAvaliacao.get('qtdProjetos').value;
                 this.somaProjetos();
-                this.vlrProjetos = (this.vlrProjetos / QtdProjetos);
                 this.Pesos.forEach(pesos => {
                     if ((pesos.tipo == 'Projeto') && (parseInt(pesos.quantidade) == QtdProjetos)) {
                         this.vlrProjetos = (this.vlrProjetos * pesos.valor);
@@ -397,10 +416,9 @@ export class AvaliacaoFormComponent implements OnInit {
             }
             case 'ociosidade': {
                 this.vlrOciosidade = (this.formAvaliacao.get('ociosidade').value / 100);
-                console.log("valor Total ociosidade: ", this.vlrTotal);
                 break;
             }
-            case 'tudo': {
+            case 'fctatual': {
 
                 break;
             }    
@@ -411,14 +429,32 @@ export class AvaliacaoFormComponent implements OnInit {
         this.formAvaliacao.get('vlrPtTotal').setValue(this.vlrTotal.toFixed(2));
 
         // Pontuação FCT Atual
-        this.formAvaliacao.get('vlrFCTatual').setValue(this.vlrAtributo.toFixed(2));
-        // Ajuste | %
+
+        //this.formAvaliacao.get('vlrFCTatual').setValue(this.vlrAtributo.toFixed(2));
+        this.formAvaliacao.get('vlrFCTatual').setValue('38');
+
+        // Ajuste
         this.vlrAjuste = this.formAvaliacao.get('vlrFCTatual').value - this.formAvaliacao.get('vlrPtTotal').value;
         this.formAvaliacao.get('ajuste').setValue(this.vlrAjuste.toFixed(2));
-
-        //((formAvaliacao.get('ajuste').value)/(formAvaliacao.get('vlrFCTatual').value)*100)
-        //badge bg-green
         
+        this.percAjuste = ((this.formAvaliacao.get('vlrFCTatual').value)/(this.formAvaliacao.get('vlrPtTotal').value)*100);
+        this.percAjuste = this.percAjuste - 100;
+        
+        // Percentual Ajuste
+        if(this.vlrAjuste < 0){
+            this.classeCss1 = "badge bg-red";
+            this.classeBarra1 = "progress-bar progress-bar-danger";
+            this.percAjuste2 = this.percAjuste * (-1);
+            this.percAjusteBarra = this.percAjuste2.toFixed(2) + "%";
+        }else{
+            this.classeCss1 = "badge bg-green";
+            this.classeBarra1 = "progress-bar progress-bar-success";
+            if(this.percAjuste > 100){
+                this.percAjuste = 100;
+            }    
+            this.percAjusteBarra = this.percAjuste.toFixed(2) + "%";
+        }
+
         // Referencia FCT pela Pontuação Total
 
         // Referencia FCT Atual | %

@@ -101,17 +101,17 @@
                             <label>
                               
                               <input type="radio" formControlName="Abrangencia" (change)="somaValores('atributo')" [value]="1"    >
-                              <span data-toggle="tooltip" title="{{item.descricaoAbrangencia1}}"class="badge bg-yellow">1-Moderado</span>
+                              <span data-toggle="tooltip" title="{{item.value.descricaoAbrangencia1}}" class="badge bg-yellow">1-Moderado</span>
                             </label>
                             <br>
                             <label>
                               <input type="radio" formControlName="Abrangencia" (change)="somaValores('atributo')" [value]="2">
-                              <span data-toggle="tooltip" title="{{item.descricaoAbrangencia2}}" class="badge bg-yellow">2-Significativa</span>
+                              <span data-toggle="tooltip" title="{{item.value.descricaoAbrangencia2}}" class="badge bg-yellow">2-Significativa</span>
                             </label>
                             <br>
                             <label>
                               <input type="radio" formControlName="Abrangencia" (change)="somaValores('atributo')" [value]="3">
-                              <span data-toggle="tooltip" title="{{item.descricaoAbrangencia3}}" class="badge bg-yellow">3-Muito</span>
+                              <span data-toggle="tooltip" title="{{item.value.descricaoAbrangencia3}}" class="badge bg-yellow">3-Muito</span>
                             </label>
                           </div>
                         </td>
@@ -120,18 +120,18 @@
                           <div class="radio" style="float: left; position: relative;">
                             <label>
                               <input type="radio" formControlName="Complexidade" (change)="somaValores('atributo')" [value]="1" checked>
-                              <span data-toggle="tooltip" title="{{item.descricaoComplexidade1}}" class="badge bg-light-blue">1-Moderada</span>
+                              <span data-toggle="tooltip" title="{{item.value.descricaoComplexidade1}}" class="badge bg-light-blue">1-Moderada</span>
                             </label>
                             <br>
                             <label>
                               <input type="radio" formControlName="Complexidade" (change)="somaValores('atributo')" [value]="2">
   
-                              <span data-toggle="tooltip" title="{{item.descricaoComplexidade2}}" class="badge bg-light-blue">2-Alta</span>
+                              <span data-toggle="tooltip" title="{{item.value.descricaoComplexidade2}}" class="badge bg-light-blue">2-Alta</span>
                             </label>
                             <br>
                             <label>
                               <input type="radio" formControlName="Complexidade" (change)="somaValores('atributo')" [value]="3">
-                              <span data-toggle="tooltip" title="{{item.descricaoComplexidade3}}" class="badge bg-light-blue">3-Altíssima</span>
+                              <span data-toggle="tooltip" title="{{item.value.descricaoComplexidade3}}" class="badge bg-light-blue">3-Altíssima</span>
                             </label>
                           </div>
   
@@ -141,17 +141,17 @@
                           <div class="radio" style="float: left; position: relative;">
                             <label>
                               <input type="radio" formControlName="Impacto" (change)="somaValores('atributo')" [value]="1" checked="checked" >
-                              <span data-toggle="tooltip" title="{{item.descricaoImpacto1}}" class="badge bg-green">1-Relevante</span>
+                              <span data-toggle="tooltip" title="{{item.value.descricaoImpacto1}}" class="badge bg-green">1-Relevante</span>
                             </label>
                             <br>
                             <label>
                               <input type="radio" formControlName="Impacto" (change)="somaValores('atributo')" [value]="2">
-                              <span data-toggle="tooltip" title="{{item.descricaoImpacto2}}" class="badge bg-green">2-Muito</span>
+                              <span data-toggle="tooltip" title="{{item.value.descricaoImpacto2}}" class="badge bg-green">2-Muito</span>
                             </label>
                             <br>
                             <label>
                               <input type="radio" formControlName="Impacto" (change)="somaValores('atributo')" [value]="3">
-                              <span data-toggle="tooltip" title="{{item.descricaoImpacto3}}" class="badge bg-green">3-Altamente</span>
+                              <span data-toggle="tooltip" title="{{item.value.descricaoImpacto3}}" class="badge bg-green">3-Altamente</span>
                             </label>
                           </div>
                         </td>
@@ -170,7 +170,7 @@
                   <tr>
                     <td>
                       <button type="button" class="btn btn-default" (click)="addProjeto()">Adicionar</button>&nbsp;
-                      <button type="button" class="btn btn-default" (click)="excProjeto()">Limpar</button>
+                      <button type="button" class="btn btn-default" (click)="excProjeto(10)">Limpar</button>
                     </td>
                   </tr>
                 </table>
@@ -199,8 +199,8 @@
                         <th>
                           <span class="badge bg-green">Impacto</span>
                         </th>
+                        <th></th>
                       </tr>
-  
                       <tr formArrayName="items" *ngFor="let item of formAvaliacao.get('items').controls; let i = index;" [attr.data-index]="i">
                         <td>
                           <label>{{i+1}}</label>
@@ -264,6 +264,9 @@
                             </label>
                           </div>
                         </td>
+                        <td>
+                          <button (click)="excProjeto(i)" type="button" class="btn  btn-xs bg-red btn-flat" ><i class="fa fa-remove"></i></button>
+                        </td>
                       </tr>
                     </table>
                   </div>
@@ -279,7 +282,7 @@
                   <tr>
                     <td>
                       <label style="width: 20%">
-                        <input type="text" class="form-control" id="" formControlName="ociosidade" (change)="somaValores('ociosidade')" placeholder="Informe o % de Ociosidade" maxlength="6" value="0.00" >
+                        <input type="text" class="form-control" formControlName="ociosidade" (change)="somaValores('ociosidade')" placeholder="Informe o % de Ociosidade" maxlength="2" value="0">
                       </label>
                     </td>
                   </tr>
@@ -291,8 +294,8 @@
                     <th style="width: 24%">Pontuação Total</th>
                     <th style="width: 24%">Pontuação FCT Atual</th>
                     <th style="width: 24%">Ajuste</th>
+                    <th style="width: 5%"></th>
                     <th></th>
-                    <th style="width: 10%"></th>
                   </tr>
                   <tr>
                     <td>
@@ -311,12 +314,12 @@
                       </label>
                     </td>
                     <td>
-                      <div class="progress progress-sm progress-striped active">
-                        <div class="progress-bar progress-bar-success" style="width: 10%"></div>
-                      </div>
+                      <span class="{{this.classeCss1}}">{{this.percAjuste.toFixed(2)}}%</span>
                     </td>
                     <td>
-                      <span class="badge bg-green">{{}}</span>
+                      <div class="progress progress-sm progress-striped active">
+                        <div class="{{this.classeBarra1}}" [style.width]="percAjusteBarra"></div>
+                      </div>
                     </td>
                   </tr>
                 </table>
@@ -326,8 +329,8 @@
                   <tr>
                     <th style="width: 36%">Referência FCT pela Pontuação Total</th>
                     <th style="width: 36%">Referência FCT Atual</th>
+                    <th style="width: 5%"></th>
                     <th></th>
-                    <th style="width: 10%"></th>
                   </tr>
                   <tr>
                     <td>
@@ -341,12 +344,12 @@
                       </label>
                     </td>
                     <td>
-                      <div class="progress progress-sm progress-striped active">
-                        <div class="progress-bar progress-bar-success" style="width: 58%"></div>
-                      </div>
+                      <span class="{{this.classeCss2}}">{{this.percAjuste.toFixed(2)}}%</span>
                     </td>
                     <td>
-                      <span class="badge bg-green">-58%</span>
+                      <div class="progress progress-sm progress-striped active">
+                        <div class="{{this.classeBarra2}}" [style.width]="percAjusteBarra"></div>
+                      </div>
                     </td>
                   </tr>
                 </table>
