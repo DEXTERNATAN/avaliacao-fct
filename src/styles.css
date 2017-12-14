@@ -269,3 +269,16 @@ body {
   border-bottom-right-radius: 0;
   width: 37vw !important;
 }
+
+/* Alteração na pagina de login */
+/* .content-wrapper, .right-side {
+  min-height: 100vh;
+} */
+
+.tela-login {
+  min-height: 100vh;
+}
+
+.tela-not-login {
+  min-height: 92vh;
+}

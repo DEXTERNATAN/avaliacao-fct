@@ -19,7 +19,9 @@ export class LoginService {
     login(email: string, password: string): Observable<User> {
         return this.http.post('http://www.mocky.io/v2/5a31529d2e00001029e3b48a', { email: email, password: password })
         .map(response => response.json())
-        .do(user => this.user = user);
+        .do(user => { 
+            this.user = user;
+        });
     }
 
     handleLogin() {

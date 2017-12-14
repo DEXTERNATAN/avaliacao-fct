@@ -1,9 +1,11 @@
 <div class="wrapper">
-  
-  <mt-header></mt-header>
+
+  <div *ngIf="isloggedIn()">
+    <mt-header></mt-header>
+  </div>
   
   <!-- Full Width Column -->
-  <div class="content-wrapper">
+  <div class="content-wrapper" [ngClass]="{ 'tela-login': !isloggedIn(), 'tela-not-login': isloggedIn() }">
     <div class="container">
       <avalia-mensagens></avalia-mensagens>
       <avaliacao-loader></avaliacao-loader>
@@ -12,7 +14,7 @@
   </div>
 
   <!-- snakbar deve ser aqui -->
-  <footer class="main-footer">
+  <footer class="main-footer" *ngIf="isloggedIn()">
     <div class="container">
       <div class="pull-right hidden-xs">
         <b>Version</b> 1.0.0

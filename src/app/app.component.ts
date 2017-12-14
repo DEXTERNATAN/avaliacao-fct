@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TextMaskModule } from 'angular2-text-mask';
-import {Component, OnInit} from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+import { LoginService } from 'app/security/login/login.service';
 
 @Component({
   selector: 'mt-app',
@@ -10,15 +10,21 @@ import {Component, OnInit} from '@angular/core';
 })
 export class AppComponent implements OnInit {
 
-  
-  mostrarMenu: boolean = false; 
+  mostrarMenu: boolean = false;
   content = 'Bem vindo ao Avalia App!';
 
+  constructor(private loginService: LoginService) { }
+
   ngOnInit() {
+    this.loginService.isLoggedIn();
+  }
+  
+  isloggedIn(): boolean {
+    return this.loginService.isLoggedIn();
   }
 
 }
- 
+
 @NgModule({
   imports: [
     FormsModule,
@@ -26,4 +32,4 @@ export class AppComponent implements OnInit {
   ],
   declarations: []
 })
-export class MyModule {}
+export class MyModule { }

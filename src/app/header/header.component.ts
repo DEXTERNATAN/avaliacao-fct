@@ -3,9 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'app/security/login/login.service';
 import { User } from 'app/security/login/user';
 
-
 @Component({
-
   selector: 'mt-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
