@@ -319,6 +319,7 @@ export class AvaliacaoFormComponent implements OnInit {
     getResetarAtributo(valor) {
         this.PapelAtributo = [];
         this.clearArray();
+        this.somaValores('atributo');
     }
 
     getSomarTecnologia(valor) {
@@ -361,8 +362,13 @@ export class AvaliacaoFormComponent implements OnInit {
             qtdAtributos = qtdAtributos + 1;
             ajusteAtributos = ajusteAtributos + 3;
         });
-        ajusteAtributos = (13 / (ajusteAtributos/3));
-        this.vlrAtributo = this.vlrAtributo * ajusteAtributos;
+        
+        if (ajusteAtributos > 0){
+            ajusteAtributos = (13 / (ajusteAtributos/3));
+            this.vlrAtributo = this.vlrAtributo * ajusteAtributos;
+        }else{
+            this.vlrAtributo = 0.00;
+        }
     }
 
     somaValores(tipo: string) {
@@ -407,9 +413,7 @@ export class AvaliacaoFormComponent implements OnInit {
             }
             case 'fctatual': {
                 // Pontuação FCT Atual
-
-                //this.formAvaliacao.get('vlrFCTatual').setValue(this.vlrAtributo.toFixed(2));
-                this.formAvaliacao.get('vlrFCTatual').setValue(85.39);
+                this.formAvaliacao.get('vlrFCTatual').setValue(this.formAvaliacao.get('colaborador').value.pontuacao.toFixed(2));
                 
                 // Referencia FCT Atual | %
                 this.formAvaliacao.get('referenciaFctAtual').setValue(this.formAvaliacao.get('colaborador').value.referenciaFct);
