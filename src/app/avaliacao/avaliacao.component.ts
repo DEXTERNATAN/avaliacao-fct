@@ -1,11 +1,11 @@
 import { DataTableDirective } from 'angular-datatables';
 import { FormBuilder } from '@angular/forms';
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
-
 import { Subject } from 'rxjs/Rx';
 
 import { AvaliacaoService } from 'app/avaliacao/avaliacao.service';
 import { Avaliacao } from './avaliacao.model';
+import { LoginService } from 'app/security/login/login.service';
 
 @Component({
   selector: 'mt-avaliacao',
@@ -25,9 +25,11 @@ export class AvaliacaoComponent implements OnInit, AfterViewInit {
   dtTrigger: Subject<Avaliacao> = new Subject();
   lang: string = 'Portuguese-Brasil';
 
-  constructor(private _avaliacaoService: AvaliacaoService) { }
+  constructor(private _avaliacaoService: AvaliacaoService, private loginService: LoginService) { }
 
    ngOnInit() {
+
+   
 
     this.dtOptions = {
       language: {

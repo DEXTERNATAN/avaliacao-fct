@@ -2,12 +2,12 @@ import { ComplexidadeFormComponent } from './complexidade-form/complexidade-form
 import { Routes, RouterModule } from '@angular/router';
 
 import { ComplexidadeComponent } from './complexidade.component';
-import { AuthGuard } from 'app/shared/auth.guard';
+import { LoggedInGuard } from 'app/shared/loggedin.guard';
 
 const complexidadeRoutes: Routes = [
-	{ path: 'complexidade', component: ComplexidadeComponent, pathMatch: 'full' , canActivate: [ AuthGuard ] },
-	{ path: 'complexidade/novo', component: ComplexidadeFormComponent , canActivate: [ AuthGuard ] },
-	{ path: 'complexidade/:id_complexidade', component: ComplexidadeFormComponent, canActivate: [ AuthGuard ]  }
+	{ path: 'complexidade', component: ComplexidadeComponent, pathMatch: 'full' , canLoad: [ LoggedInGuard ] },
+	{ path: 'complexidade/novo', component: ComplexidadeFormComponent , canLoad: [ LoggedInGuard ] },
+	{ path: 'complexidade/:id_complexidade', component: ComplexidadeFormComponent, canLoad: [ LoggedInGuard ]  }
 ];
 
 export const complexidadeRouting = RouterModule.forChild(complexidadeRoutes);

@@ -2,12 +2,13 @@ import { AtributoFormComponent } from './atributo-form/atributo-form.component';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AtributoComponent } from './atributo.component';
-import { AuthGuard } from 'app/shared/auth.guard';
+import { LoggedInGuard } from 'app/shared/loggedin.guard';
+
 
 const atributoRoutes: Routes = [
- { path: 'atributo', component: AtributoComponent, pathMatch: 'full' , canActivate: [ AuthGuard ] },
-  { path: 'atributo/novo', component: AtributoFormComponent, canActivate: [ AuthGuard ] },
-  { path: 'atributo/:id_atributo', component: AtributoFormComponent, canActivate: [ AuthGuard ] }
+ { path: 'atributo', component: AtributoComponent, pathMatch: 'full' , canLoad: [ LoggedInGuard ] },
+  { path: 'atributo/novo', component: AtributoFormComponent, canLoad: [ LoggedInGuard ] },
+  { path: 'atributo/:id_atributo', component: AtributoFormComponent, canLoad: [ LoggedInGuard ] }
 ];
 
 export const atributoRouting = RouterModule.forChild(atributoRoutes);

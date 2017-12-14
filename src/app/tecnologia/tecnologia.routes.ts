@@ -2,12 +2,13 @@ import { TecnologiaFormComponent } from './tecnologia-form/tecnologia-form.compo
 import { Routes, RouterModule } from '@angular/router';
 
 import { TecnologiaComponent	 } from './tecnologia.component';
-import { AuthGuard } from 'app/shared/auth.guard';
+import { LoggedInGuard } from 'app/shared/loggedin.guard';
+
 
 const tecnologiaRoutes: Routes = [
-	{ path: 'tecnologia', component: TecnologiaComponent, pathMatch: 'full', canActivate: [ AuthGuard ]  },
-  	{ path: 'tecnologia/novo', component: TecnologiaFormComponent , canActivate: [ AuthGuard ] },
-	{ path: 'tecnologia/:id_tecnologia', component: TecnologiaFormComponent , canActivate: [ AuthGuard ] }
+	{ path: 'tecnologia', component: TecnologiaComponent, pathMatch: 'full', canLoad: [ LoggedInGuard ]  },
+  	{ path: 'tecnologia/novo', component: TecnologiaFormComponent , canLoad: [ LoggedInGuard ] },
+	{ path: 'tecnologia/:id_tecnologia', component: TecnologiaFormComponent , canLoad: [ LoggedInGuard ] }
 ];
 
 export const tecnologiaRouting = RouterModule.forChild(tecnologiaRoutes);

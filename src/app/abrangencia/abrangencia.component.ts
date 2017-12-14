@@ -1,3 +1,4 @@
+import { LoginService } from 'app/security/login/login.service';
 import { MensagensHandler } from 'app/shared/services/mensagens-handler.service';
 import { LoaderService } from 'app/shared/services/loader.service';
 import { DataTableDirective } from 'angular-datatables';
@@ -30,10 +31,16 @@ export class AbrangenciaComponent implements OnInit, AfterViewInit {
   constructor(
     private _abrangenciaService: AbrangenciaService, 
     private loaderService: LoaderService,
-    private mensagensHandler: MensagensHandler
+    private mensagensHandler: MensagensHandler,
+    private loginService: LoginService
   ) { }
 
   ngOnInit() {
+
+    console.log('xxxx: ', this.loginService.isLoggedIn());
+    if ( this.loginService.isLoggedIn() ) {
+      console.log('valor do token: ', this.loginService.user.accessToken);
+    }
 
     this.loaderService.setMsgLoading("Carregando abrangencias...");
 

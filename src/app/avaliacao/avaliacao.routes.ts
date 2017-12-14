@@ -2,11 +2,11 @@ import { AvaliacaoFormComponent } from './avaliacao-form/avaliacao-form.componen
 import { Routes, RouterModule } from '@angular/router';
 
 import { AvaliacaoComponent } from './avaliacao.component';
-import { AuthGuard } from 'app/shared/auth.guard';
+import { LoggedInGuard } from 'app/shared/loggedin.guard';
 
 const avaliacaoRoutes: Routes = [
- { path: 'avaliacao', component: AvaliacaoComponent, pathMatch: 'full' , canActivate: [ AuthGuard ]},
- { path: 'avaliacao/novo', component: AvaliacaoFormComponent, canActivate: [ AuthGuard ]}
+ { path: 'avaliacao', component: AvaliacaoComponent, pathMatch: 'full' , canLoad: [ LoggedInGuard ]},
+ { path: 'avaliacao/novo', component: AvaliacaoFormComponent, canLoad: [ LoggedInGuard ]}
 // { path: 'avaliacao/:id_resultado', component: AvaliacaoFormComponent}
 ];
 

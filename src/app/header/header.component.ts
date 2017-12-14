@@ -1,7 +1,8 @@
-import { AuthenticationService } from 'app/login/login.service';
 import { Component, OnInit } from '@angular/core';
 
-import { User } from './../login/login.service';
+import { LoginService } from 'app/security/login/login.service';
+import { User } from 'app/security/login/user';
+
 
 @Component({
 
@@ -10,19 +11,28 @@ import { User } from './../login/login.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  public user: User;
 
-  constructor( private _service: AuthenticationService ) {
-    
-    this.user = JSON.parse(localStorage.getItem('user'));
-  }
+  constructor(private loginService: LoginService) { }
 
   ngOnInit() {
-    // this._service.checkCredentials();
+    this.user()
+  }
+
+  user(): User {
+    console.log('USER: ', this.loginService.user);
+    return this.loginService.user;
+  }
+
+  isloggedIn(): boolean {
+    return this.loginService.isLoggedIn();
+  }
+
+  login(){
+    return this.loginService.handleLogin();
   }
 
   logout() {
-    this._service.logout();
+    return this.loginService.logout();
   }
 
 }

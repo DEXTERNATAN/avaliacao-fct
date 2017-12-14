@@ -2,12 +2,12 @@ import { DistribuicaoFormComponent } from './distribuicao-form/distribuicao-form
 import { Routes, RouterModule } from '@angular/router';
 
 import { DistribuicaoComponent } from './distribuicao.component';
-import { AuthGuard } from 'app/shared/auth.guard';
+import { LoggedInGuard } from 'app/shared/loggedin.guard';
 
 const distribuicaoRoutes: Routes = [
- { path: 'distribuicao', component: DistribuicaoComponent, pathMatch: 'full' , canActivate: [ AuthGuard ] },
-  { path: 'distribuicao/novo', component: DistribuicaoFormComponent, canActivate: [ AuthGuard ] },
-  { path: 'distribuicao/:id_distribuicao', component: DistribuicaoFormComponent, canActivate: [ AuthGuard ] }
+ { path: 'distribuicao', component: DistribuicaoComponent, pathMatch: 'full' , canLoad: [ LoggedInGuard ] },
+  { path: 'distribuicao/novo', component: DistribuicaoFormComponent, canLoad: [ LoggedInGuard ] },
+  { path: 'distribuicao/:id_distribuicao', component: DistribuicaoFormComponent, canLoad: [ LoggedInGuard ] }
 ];
 
 export const distribuicaoRouting = RouterModule.forChild(distribuicaoRoutes);

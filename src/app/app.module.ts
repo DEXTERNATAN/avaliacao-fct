@@ -1,5 +1,4 @@
-import { AuthenticationService } from 'app/login/login.service';
-import { AuthGuard } from 'app/shared/auth.guard';
+import { HttpClient } from '@angular/common/http';
 import { RequestOptions } from '@angular/http';
 import { XHRBackend } from '@angular/http';
 import { Http } from '@angular/http';
@@ -61,8 +60,12 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from 'app/security/login/login.component';
 import { MensagensComponent } from 'app/shared/components/mensagens.component';
+
+import { LoginService } from 'app/security/login/login.service';
+import { NotificationService } from 'app/shared/messages/notification.service';
+import { LoggedInGuard } from 'app/shared/loggedin.guard';
 
 
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
@@ -136,8 +139,10 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
             { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig },
             { provide: Http, useFactory: httpFactory, deps: [XHRBackend, RequestOptions, LoaderService, MensagensHandler] },
             NgSpinningPreloader,
-            AuthGuard,
-            AuthenticationService
+            HttpClient,
+            LoginService,
+            NotificationService,
+            LoggedInGuard
         ],
     bootstrap: [AppComponent]
 })

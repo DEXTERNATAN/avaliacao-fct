@@ -2,12 +2,13 @@ import { ColaboradorFormComponent } from './colaborador-form/colaborador-form.co
 import { Routes, RouterModule } from '@angular/router';
 
 import { ColaboradorComponent } from './colaborador.component';
-import { AuthGuard } from 'app/shared/auth.guard';
+import { LoggedInGuard } from 'app/shared/loggedin.guard';
+
 
 const colaboradorRoutes: Routes = [
- { path: 'colaborador', component: ColaboradorComponent, pathMatch: 'full' , canActivate: [ AuthGuard ] },
-  { path: 'colaborador/novo', component: ColaboradorFormComponent, canActivate: [ AuthGuard ] },
-  { path: 'colaborador/:idColaborador', component: ColaboradorFormComponent, canActivate: [ AuthGuard ] }
+ { path: 'colaborador', component: ColaboradorComponent, pathMatch: 'full' , canLoad: [ LoggedInGuard ] },
+  { path: 'colaborador/novo', component: ColaboradorFormComponent, canLoad: [ LoggedInGuard ] },
+  { path: 'colaborador/:idColaborador', component: ColaboradorFormComponent, canLoad: [ LoggedInGuard ] }
 ];
 
 export const colaboradorRouting = RouterModule.forChild(colaboradorRoutes);

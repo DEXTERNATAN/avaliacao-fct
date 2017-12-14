@@ -9,11 +9,12 @@ import { ApplicationErrorMessage } from 'app/shared/models/ApplicationErrorMessa
 import { MensagensHandler } from 'app/shared/services/mensagens-handler.service';
 
 import { Abrangencia } from './abrangencia.model';
+import { LoginService } from 'app/security/login/login.service';
 
 @Injectable()
 export class AbrangenciaService extends RestService<Abrangencia>{
 
-    constructor(protected http: Http){
+    constructor(protected http: Http, private loginService: LoginService){
         super(http);
     }
 
@@ -26,6 +27,7 @@ export class AbrangenciaService extends RestService<Abrangencia>{
     }
 
     getAbrangencia(): Observable<Abrangencia[]> {
+        console.log(this.loginService.isLoggedIn(), this.loginService.user);
         return super.obterTodos();
     }
 

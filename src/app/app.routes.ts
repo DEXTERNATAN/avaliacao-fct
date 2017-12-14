@@ -17,30 +17,30 @@ import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule }   from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
-import { LoginComponent } from './login/login.component';
-import { AuthGuard } from 'app/shared/auth.guard';
+import { LoginComponent } from './security/login/login.component';
+import { LoggedInGuard } from 'app/shared/loggedin.guard';
 
 const appRoutes: Routes = [
-    { path: '', component: HomeComponent, canActivate: [ AuthGuard ] },
-    { path: 'login', component: LoginComponent },
+    { path: 'home', component: HomeComponent , canActivate: [ LoggedInGuard] , canLoad: [ LoggedInGuard] },
+    { path: '', component: LoginComponent },
     { path: 'about', component: AboutComponent },
-    { path: 'papel', component: PapelComponent, canActivate: [ AuthGuard ]},
-    { path: 'abrangencia', component: AbrangenciaComponent, canActivate: [ AuthGuard ]},
-    { path: 'complexidade', component: ComplexidadeComponent , canActivate: [ AuthGuard ]},
-    { path: 'referencia', component: ReferenciaComponent , canActivate: [ AuthGuard ]},
-    { path: 'tecnologia', component: TecnologiaComponent , canActivate: [ AuthGuard ]},
-    { path: 'colaborador', component: ColaboradorComponent , canActivate: [ AuthGuard ]},
-    { path: 'impacto', component: ImpactoComponent , canActivate: [ AuthGuard ]},
-    { path: 'pesos', component: PesosComponent , canActivate: [ AuthGuard ]},
-    { path: 'projeto', component: ProjetoComponent , canActivate: [ AuthGuard ]},
-    { path: 'distribuicao', component: DistribuicaoComponent , canActivate: [ AuthGuard ]},
-    { path: 'atributo', component: AtributoComponent , canActivate: [ AuthGuard ]},
-    { path: 'avaliacao', component: AvaliacaoComponent , canActivate: [ AuthGuard ]},
-    { path: 'faixa', component: FaixaComponent , canActivate: [ AuthGuard ]},
-    { path: 'consultaavaliacao', component: ConsultaavaliacaoComponent , canActivate: [ AuthGuard ]},
+    { path: 'papel', component: PapelComponent},
+    { path: 'abrangencia', component: AbrangenciaComponent , canLoad: [ LoggedInGuard]  , canActivate: [ LoggedInGuard] },
+    { path: 'complexidade', component: ComplexidadeComponent },
+    { path: 'referencia', component: ReferenciaComponent },
+    { path: 'tecnologia', component: TecnologiaComponent },
+    { path: 'colaborador', component: ColaboradorComponent },
+    { path: 'impacto', component: ImpactoComponent },
+    { path: 'pesos', component: PesosComponent },
+    { path: 'projeto', component: ProjetoComponent },
+    { path: 'distribuicao', component: DistribuicaoComponent },
+    { path: 'atributo', component: AtributoComponent },
+    { path: 'avaliacao', component: AvaliacaoComponent },
+    { path: 'faixa', component: FaixaComponent },
+    { path: 'consultaavaliacao', component: ConsultaavaliacaoComponent },
 
     // otherwise redirect to home
-    { path: '**', redirectTo: '', canActivate: [ AuthGuard ] }
+    { path: '**', redirectTo: '' }
 
 ];
 

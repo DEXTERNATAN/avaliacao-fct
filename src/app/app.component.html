@@ -1,12 +1,7 @@
 <div class="wrapper">
-  <div *ngIf="login">
-    <p>Login ativo</p>
-  </div>
   
-  <div *ngIf="mostrarMenu">
-    <mt-header></mt-header>
-  </div>
-
+  <mt-header></mt-header>
+  
   <!-- Full Width Column -->
   <div class="content-wrapper">
     <div class="container">
@@ -17,8 +12,7 @@
   </div>
 
   <!-- snakbar deve ser aqui -->
-
-  <footer class="main-footer" *ngIf="mostrarMenu">
+  <footer class="main-footer">
     <div class="container">
       <div class="pull-right hidden-xs">
         <b>Version</b> 1.0.0
