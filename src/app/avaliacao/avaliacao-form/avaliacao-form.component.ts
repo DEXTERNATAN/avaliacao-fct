@@ -10,6 +10,7 @@ import { Papel } from './../../papel/papel.model';
 import { Tecnologia } from './../../tecnologia/tecnologia.model';
 import { Projeto } from './../../projeto/projeto.model';
 import { Pesos } from './../../pesos/pesos.model';
+
 import { AvaliacaoService } from './../avaliacao.service';
 import { ColaboradorService } from './../../colaborador/colaborador.service';
 import { DivisaoService } from './../../divisao/divisao.service';
