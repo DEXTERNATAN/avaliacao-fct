@@ -1,5 +1,6 @@
 export interface User {
-    name: string;
-    email: string;
-    accessToken: string;
+    id_acesso: number;
+    perfil: string;
+    login: string;
+    senha: string;
 }
