@@ -17,7 +17,6 @@
 				</div>
 				<div class="alert alert-success" role="alert" *ngIf="sucesso">
 					Formulário enviado com sucesso!
-					{{debug()}}
 				</div>
 				<form role="form" [formGroup]="formReferencia" (ngSubmit)="save()">
 					<div class="box-body">

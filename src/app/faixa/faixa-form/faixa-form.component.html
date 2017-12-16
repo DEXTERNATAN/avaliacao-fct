@@ -29,30 +29,30 @@
 									<th width="20%">Quantidade de Faixas</th>
 									<th width="20%">Amplitude das Faixas</th>	
 								</tr>
-								<tr>	
+								<tr *ngFor="let distribuicao of Distribuicao">	
 									<td>
 										<label for="">
-											<span class="badge bg-red">49.58</span>
+											<span class="badge bg-red">{{distribuicao.pontuacao_minima}}</span>
 										</label>
 									</td>
 									<td>		
 										<label for="">
-											<span class="badge bg-yellow">150.42</span>
+											<span class="badge bg-yellow">{{distribuicao.pontuacao_maxima}}</span>
 										</label>
 									</td>
 									<td>		
 										<label for="">
-											<span class="badge bg-light-blue">100.83</span>
+											<span class="badge bg-light-blue">{{distribuicao.diferenca}}</span>
 										</label>
 									</td>
 									<td>		
 										<label for="">
-											<span class="badge bg-aqua">4</span>
+											<span class="badge bg-aqua">{{distribuicao.qtde_faixas}}</span>
 										</label>
 									</td>
 									<td>		
 										<label for="">
-											<span class="badge bg-green">25.21</span>
+											<span class="badge bg-green">{{distribuicao.amplitude_faixas}}</span>
 										</label>
 									</td>
 								</tr>
@@ -76,103 +76,28 @@
 											<th width="240px">Pontuação de referência da Faixa</th>
 											<th width="240px">Quantidade de Pessoas na Faixa</th>
 										</tr>
-										<tr>	
+										<tr *ngFor="let faixa of Faixa; let i = index;">	
 											<td>
-												<label for="">1</label>
+												<label for="">{{i+1}}</label>
 											</td>
 											<td>		
 												<label for="">
-													<span class="badge bg-red">49.58</span>
+													<span class="badge bg-red">{{faixa.limite_inferior}}</span>
 												</label>
 											</td>
 											<td>		
 												<label for="">
-													<span class="badge bg-yellow">74.79</span>
+													<span class="badge bg-yellow">{{faixa.limite_superior}}</span>
 												</label>
 											</td>
 											<td>		
 												<label for="">
-													<span class="badge bg-light-blue">74.79</span>
+													<span class="badge bg-light-blue">{{faixa.pontuacao_referencia}}}</span>
 												</label>
 											</td>
 											<td>		
 												<label for="">
-													<span class="badge bg-green">4</span>
-												</label>
-											</td>
-										</tr>
-										<tr>	
-											<td>
-												<label for="">2</label>
-											</td>
-											<td>		
-												<label for="">
-													<span class="badge bg-red">74.79</span>
-												</label>
-											</td>
-											<td>		
-												<label for="">
-													<span class="badge bg-yellow">100.00</span>
-												</label>
-											</td>
-											<td>		
-												<label for="">
-													<span class="badge bg-light-blue">87.40</span>
-												</label>
-											</td>
-											<td>		
-												<label for="">
-													<span class="badge bg-green">22</span>
-												</label>
-											</td>
-										</tr>
-										<tr>	
-											<td>
-												<label for="">3</label>
-											</td>
-											<td>		
-												<label for="">
-													<span class="badge bg-red">100.00</span>
-												</label>
-											</td>
-											<td>		
-												<label for="">
-													<span class="badge bg-yellow">125.21</span>
-												</label>
-											</td>
-											<td>		
-												<label for="">
-													<span class="badge bg-light-blue">112.60</span>
-												</label>
-											</td>
-											<td>		
-												<label for="">
-													<span class="badge bg-green">9</span>
-												</label>
-											</td>
-										</tr>
-										<tr>	
-											<td>
-												<label for="">4</label>
-											</td>
-											<td>		
-												<label for="">
-													<span class="badge bg-red">125.21</span>
-												</label>
-											</td>
-											<td>		
-												<label for="">
-													<span class="badge bg-yellow">150.42</span>
-												</label>
-											</td>
-											<td>		
-												<label for="">
-													<span class="badge bg-light-blue">125.21</span>
-												</label>
-											</td>
-											<td>		
-												<label for="">
-													<span class="badge bg-green">4</span>
+													<span class="badge bg-green">{{faixa.qtde_pessoas}}</span>
 												</label>
 											</td>
 										</tr>
@@ -190,31 +115,14 @@
 								<tr>	
 									<td>
 										<label for="">
-											<input type="text" class="form-control" id="" readonly placeholder="" value="R$ 25000.00">
+											<input type="text" class="form-control" readonly placeholder="" value="{{distribuicao.valor}}">
 										</label>
 									</td>
 									<td>
 										<label style="width: 60%">
-											<select class="form-control" id="">
-												<option  value="1" [selected]="true">1 - Analista (R$ 329.84)</option>
-												<option  value="2">2 - Analista (R$ 357.55)</option>
-												<option  value="3">3 - Analista (R$ 387.57)</option>
-												<option  value="4">4 - Analista (R$ 420.13)</option>
-												<option  value="5">5 - Analista (R$ 455.42)</option>
-												<option  value="6">6 - Analista (R$ 493.69)</option>
-												<option  value="7">7 - Analista (R$ 535.14)</option>
-												<option  value="8">8 - Analista (R$ 580.09)</option>
-												<option  value="9">9 - Analista (R$ 628.82)</option>
-												<option  value="10">10 - Analista (R$ 681.63)</option>
-												<option  value="11">11 - Analista (R$ 738.91)</option>
-												<option  value="12">12 - Analista (R$ 796,00)</option>
-												<option  value="13">13 - Analista (R$ 868.26)</option>
-												<option  value="14">14 - Analista (R$ 941.18)</option>
-												<option  value="15">15 - Analista (R$ 1020.22)</option>
-												<option  value="16">16 - Analista (R$ 1105.93)</option>
-												<option  value="17">17 - Analista (R$ 1198.83)</option>
-												<option  value="18">18 - Analista (R$ 1299.54)</option>
-												<option  value="19">19 - Analista (R$ 1527.04)</option>
+											<select [(ngModel)]="referencia" class="form-control" formControlName="referencia">
+												<option *ngFor="let referencia of Referencia; let i = index" [selected]="referencia.id_referencia === referencia.referencia"
+												 value="{{referencia.id_referencia}}">{{referencia.num_referencia + " - " + referencia.cargo + " (R$ " + referencia.valor_referencia + ")"}}</option>
 											</select>
 										</label>
 									</td>
@@ -257,7 +165,7 @@
 											</td>
 											<td>		
 												<label for="">
-													<input type="text" class="form-control" id="" maxlength="5" placeholder="" value="30.00">
+													<input type="text" class="form-control" maxlength="5" placeholder="" value="30.00">
 												</label>
 											</td>
 											<td>		

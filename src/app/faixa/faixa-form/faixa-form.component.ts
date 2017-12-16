@@ -1,8 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, Route, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+
 import { Faixa } from './../faixa.model';
+import { Distribuicao } from './../../distribuicao/distribuicao.model';
+import { Referencia } from './../../referencia/referencia.model';
+
 import { FaixaService } from './../faixa.service';
+import { DistribuicaoService } from './../../distribuicao/distribuicao.service';
+import { ReferenciaService } from './../../referencia/referencia.service';
 
 @Component({
     selector: 'mt-faixa-form',
@@ -15,25 +21,18 @@ export class FaixaFormComponent implements OnInit {
     title: string;
     faixa: Faixa = new Faixa();
     idResource: any;
+    distribuicao: Distribuicao[] = [];
+    referencia: Referencia[] = [];
 
     constructor(
-        formBuilder: FormBuilder,
+        private formBuilder: FormBuilder,
         private router: Router,
         private route: ActivatedRoute,
-        private faixaService: FaixaService
-    ) {
-        this.formFaixa = formBuilder.group({
-            limite_inferior: [null, Validators.required],
-            limite_superior: [null, Validators.required],
-            pontuacao_referencia: [null, Validators.required],
-            qtde_pessoas: [null, Validators.required],
-            valor_rateio_pessoa: [null, Validators.required],
-            percentual: [null, Validators.required],
-            tb_colaborador_id_colaborador: [null, Validators.required],
-            tb_distribuicao_id_distribuicao: [null, Validators.required]
-        })
-    }
-
+        private faixaService: FaixaService,
+        private distribuicaoService: DistribuicaoService,
+        private referenciaService: ReferenciaService
+    ) {}
+    
     hasErrors(): boolean {
         var hasErrors: boolean = false;
         for (var controlName in this.formFaixa.controls) {
@@ -47,7 +46,11 @@ export class FaixaFormComponent implements OnInit {
     }
 
     ngOnInit() {
-        
+        this.formFaixa = this.formBuilder.group({
+            referencia_fct: [],
+            percentual_fixo: []
+        })
+
         var id_resultado = this.route.params.subscribe(params => {
             this.idResource = params['id_faixa'];
             this.title = this.idResource ? 'Editar Faixa' : 'Nova Faixa';
@@ -66,6 +69,10 @@ export class FaixaFormComponent implements OnInit {
             })
 
         })
+    
+        //carga dos Dados complementares
+        this.getDistribuicao();
+        this.getReferencia();
     }
 
     save() {
@@ -80,6 +87,18 @@ export class FaixaFormComponent implements OnInit {
         }
 
         result.subscribe(data => this.router.navigate(['faixa']));
+    }
+
+    getDistribuicao() {
+        this.distribuicaoService.getDistribuicao().subscribe(distribuicao => {
+            this.distribuicao = distribuicao;
+        });
+    }
+
+    getReferencia() {
+        this.referenciaService.getReferencia().subscribe(referencia => {
+            this.referencia = referencia;
+        });
     }
 
     onCancel() {
