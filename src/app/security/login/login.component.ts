@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
     this.loginService.loginUser( this.loginForm.value ).subscribe(
                             users => {
                               this.notificationService.notify(`Bem Vindo, ${users.login}`);
-                              console.log(users.login);
+                              //console.log(users.login);
                               this.router.navigate(['home']);
                             },
                             response => this.notificationService.notify('Dados invalidos. Por favor! tente novamente ...')

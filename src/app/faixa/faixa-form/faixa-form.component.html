@@ -76,7 +76,7 @@
 											<th width="240px">Pontuação de referência da Faixa</th>
 											<th width="240px">Quantidade de Pessoas na Faixa</th>
 										</tr>
-										<tr *ngFor="let faixa of Faixa; let i = index;">	
+										<tr *ngFor="let faixa of faixa; let i = index;">	
 											<td>
 												<label for="">{{i+1}}</label>
 											</td>
@@ -120,9 +120,9 @@
 									</td>
 									<td>
 										<label style="width: 60%">
-											<select [(ngModel)]="referencia" class="form-control" formControlName="referencia">
-												<option *ngFor="let referencia of Referencia; let i = index" [selected]="referencia.id_referencia === referencia.referencia"
-												 value="{{referencia.id_referencia}}">{{referencia.num_referencia + " - " + referencia.cargo + " (R$ " + referencia.valor_referencia + ")"}}</option>
+											<select class="form-control" formControlName="referencia_fct">
+												<option *ngFor="let referencia of referencia; let i = index" [selected]="referencia.id_referencia === referencia.referencia"
+												 value="{{referencia.id_referencia}}">{{referencia.num_referencia + " - " + referencia.cargo + " (" + referencia.valor_referencia + ")"}}</option>
 											</select>
 										</label>
 									</td>
