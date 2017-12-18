@@ -1,3 +1,4 @@
+import { SnackbarComponent } from './shared/messages/snackbar/snackbar.component';
 import { HttpClient } from '@angular/common/http';
 import { RequestOptions } from '@angular/http';
 import { XHRBackend } from '@angular/http';
@@ -87,7 +88,8 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
         AboutComponent,
         LoginComponent,
         LoaderComponent,
-        MensagensComponent
+        MensagensComponent,
+        SnackbarComponent
 
     ],
     imports: [

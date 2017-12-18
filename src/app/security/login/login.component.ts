@@ -1,9 +1,11 @@
+import { SnackbarComponent } from 'app/shared/messages/snackbar/snackbar.component';
 import { LoginService } from './login.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { NotificationService } from 'app/shared/messages/notification.service';
 import { ActivatedRoute, Router } from '@angular/router';
+
 
 @Component({
   selector: 'mt-login',
@@ -35,11 +37,11 @@ export class LoginComponent implements OnInit {
 
     this.loginService.loginUser( this.loginForm.value ).subscribe(
                             users => {
-                              this.notificationService.notify(`Bem Vindo, ${users}`);
+                              this.notificationService.notify(`Bem Vindo, ${users.login}`);
                               console.log(users.login);
                               this.router.navigate(['home']);
                             },
-                            response => this.notificationService.notify(response.error.message)
+                            response => this.notificationService.notify('Dados invalidos. Por favor! tente novamente ...')
                             // ()=> {
                             //   this.router.navigate([atob(this.navigateTo)]);
                             // }
