@@ -309,6 +309,17 @@ export class AvaliacaoFormComponent implements OnInit {
                         if ( !vlrRepetido ) {
                             this.PapelAtributo.push(arrayPush);
                             this.addItemAtributo(arrayPush);
+
+                            this.items.controls.sort(function (a, b) {
+                                if (a.value.letra < b.value.letra) {
+                                    return -1;
+                                } else if (a.value.letra > b.value.letra) {
+                                    return 1;
+                                } else {
+                                    return 0;
+                                }
+                            });
+
                             this.somaValores('atributo');
                         }
                     });
