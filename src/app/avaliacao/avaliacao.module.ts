@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -6,6 +7,8 @@ import { HttpModule }  from '@angular/http';
 import { DataTablesModule } from 'angular-datatables';
 import {Ng2SelectizeModule} from 'ng2-selectize';
 import {AutoCompleteModule} from 'primeng/components/autocomplete/autocomplete';
+import { NgxMaskModule } from 'ngx-mask';
+
 
 import { AvaliacaoComponent } from './avaliacao.component';
 import { AvaliacaoService } from 'app/avaliacao/avaliacao.service';
@@ -22,7 +25,8 @@ import { FilterSearchPipe } from 'app/shared/pipes/filterSearch.pipes';
     HttpModule,
     DataTablesModule,
     AutoCompleteModule,
-    Ng2SelectizeModule
+    Ng2SelectizeModule,
+    NgxMaskModule.forRoot()
   ],
   providers: [ AvaliacaoService ],
   declarations: [
