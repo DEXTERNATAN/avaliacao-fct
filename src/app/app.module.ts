@@ -1,13 +1,14 @@
-import { SnackbarComponent } from './shared/messages/snackbar/snackbar.component';
+import { NgModule, LOCALE_ID } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { HttpModule } from '@angular/http';
 import { HttpClient } from '@angular/common/http';
 import { RequestOptions } from '@angular/http';
 import { XHRBackend } from '@angular/http';
 import { Http } from '@angular/http';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+
 import { NgSpinningPreloader } from 'ng2-spinning-preloader';
 import { Ng2SelectizeModule } from 'ng2-selectize';
 import { LoaderService } from 'app/shared/services/loader.service';
@@ -17,10 +18,8 @@ import { MensagensHandler } from './shared/services/mensagens-handler.service';
 import { TextMaskModule } from 'angular2-text-mask';
 import { Select2Module } from 'ng2-select2';
 import { DataTablesModule } from 'angular-datatables';
-import { LOCALE_ID } from '@angular/core';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { CurrencyMaskConfig, CURRENCY_MASK_CONFIG } from 'ng2-currency-mask/src/currency-mask.config';
-//import { NgxMaskModule } from 'ngx-mask';
 
 /* Modules */
 import { AbrangenciaModule } from './abrangencia/abrangencia.module';
@@ -68,6 +67,7 @@ import { MensagensComponent } from 'app/shared/components/mensagens.component';
 import { LoginService } from 'app/security/login/login.service';
 import { NotificationService } from 'app/shared/messages/notification.service';
 import { LoggedInGuard } from 'app/shared/loggedin.guard';
+import { SnackbarComponent } from './shared/messages/snackbar/snackbar.component';
 
 
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
@@ -104,7 +104,6 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
         Select2Module,
         CurrencyMaskModule,
         Ng2SelectizeModule,
-        //NgxMaskModule.forRoot(),
         DivisaoModule,
         divisaoRouting,
         AbrangenciaModule,
@@ -142,6 +141,7 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
             { provide: LOCALE_ID, useValue: 'pt-BR' },
             { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig },
             { provide: Http, useFactory: httpFactory, deps: [XHRBackend, RequestOptions, LoaderService, MensagensHandler] },
+            { provide: LocationStrategy, useClass: HashLocationStrategy} ,
             NgSpinningPreloader,
             HttpClient,
             LoginService,
