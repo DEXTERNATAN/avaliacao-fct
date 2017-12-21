@@ -39,7 +39,7 @@ const appRoutes: Routes = [
     { path: 'faixa', component: FaixaComponent, canLoad: [ LoggedInGuard]  , canActivate: [ LoggedInGuard] },
     { path: 'consultaavaliacao', component: ConsultaavaliacaoComponent, canLoad: [ LoggedInGuard]  , canActivate: [ LoggedInGuard] },
 
-    //  otherwise redirect to home
+    // otherwise redirect to home
     { path: '**', redirectTo: '' }
 
 ];
