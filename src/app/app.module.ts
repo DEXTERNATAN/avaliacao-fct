@@ -20,7 +20,7 @@ import { DataTablesModule } from 'angular-datatables';
 import { LOCALE_ID } from '@angular/core';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { CurrencyMaskConfig, CURRENCY_MASK_CONFIG } from 'ng2-currency-mask/src/currency-mask.config';
-import { NgxMaskModule } from 'ngx-mask';
+//import { NgxMaskModule } from 'ngx-mask';
 
 /* Modules */
 import { AbrangenciaModule } from './abrangencia/abrangencia.module';
@@ -104,7 +104,7 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
         Select2Module,
         CurrencyMaskModule,
         Ng2SelectizeModule,
-        NgxMaskModule.forRoot(),
+        //NgxMaskModule.forRoot(),
         DivisaoModule,
         divisaoRouting,
         AbrangenciaModule,

@@ -60,7 +60,9 @@ export class AvaliacaoFormComponent implements OnInit {
     classeBarra1 = 'progress-bar progress-bar-success';
     items: FormArray;
     itemsAtributo: FormArray;
- 
+
+    public percentMask = [/\d/, /\d/, '.', /\d/, /\d/];
+
     /* Selectize Papel */
     configPapel = {
         create: true,
@@ -461,4 +463,6 @@ export class AvaliacaoFormComponent implements OnInit {
 
         // Referencia FCT pela Pontuação Total
     }
+
+    
 }
