@@ -23,23 +23,23 @@ import { LoggedInGuard } from 'app/shared/loggedin.guard';
 const appRoutes: Routes = [
     { path: 'home', component: HomeComponent , canActivate: [ LoggedInGuard] , canLoad: [ LoggedInGuard] },
     { path: '', component: LoginComponent },
-    { path: 'about', component: AboutComponent },
-    { path: 'papel', component: PapelComponent},
-    { path: 'abrangencia', component: AbrangenciaComponent , canLoad: [ LoggedInGuard]  , canActivate: [ LoggedInGuard] },
-    { path: 'complexidade', component: ComplexidadeComponent },
-    { path: 'referencia', component: ReferenciaComponent },
-    { path: 'tecnologia', component: TecnologiaComponent },
-    { path: 'colaborador', component: ColaboradorComponent },
-    { path: 'impacto', component: ImpactoComponent },
-    { path: 'pesos', component: PesosComponent },
-    { path: 'projeto', component: ProjetoComponent },
-    { path: 'distribuicao', component: DistribuicaoComponent },
-    { path: 'atributo', component: AtributoComponent },
-    { path: 'avaliacao', component: AvaliacaoComponent },
-    { path: 'faixa', component: FaixaComponent },
-    { path: 'consultaavaliacao', component: ConsultaavaliacaoComponent },
+    { path: 'about', component: AboutComponent, canLoad: [ LoggedInGuard]  , canActivate: [ LoggedInGuard]},
+    { path: 'papel', component: PapelComponent, canLoad: [ LoggedInGuard]  , canActivate: [ LoggedInGuard]},
+    { path: 'abrangencia', component: AbrangenciaComponent, canLoad: [ LoggedInGuard]  , canActivate: [ LoggedInGuard] },
+    { path: 'complexidade', component: ComplexidadeComponent, canLoad: [ LoggedInGuard]  , canActivate: [ LoggedInGuard] },
+    { path: 'referencia', component: ReferenciaComponent, canLoad: [ LoggedInGuard]  , canActivate: [ LoggedInGuard] },
+    { path: 'tecnologia', component: TecnologiaComponent, canLoad: [ LoggedInGuard]  , canActivate: [ LoggedInGuard] },
+    { path: 'colaborador', component: ColaboradorComponent, canLoad: [ LoggedInGuard]  , canActivate: [ LoggedInGuard] },
+    { path: 'impacto', component: ImpactoComponent, canLoad: [ LoggedInGuard]  , canActivate: [ LoggedInGuard] },
+    { path: 'pesos', component: PesosComponent, canLoad: [ LoggedInGuard]  , canActivate: [ LoggedInGuard] },
+    { path: 'projeto', component: ProjetoComponent, canLoad: [ LoggedInGuard]  , canActivate: [ LoggedInGuard] },
+    { path: 'distribuicao', component: DistribuicaoComponent, canLoad: [ LoggedInGuard]  , canActivate: [ LoggedInGuard] },
+    { path: 'atributo', component: AtributoComponent, canLoad: [ LoggedInGuard]  , canActivate: [ LoggedInGuard] },
+    { path: 'avaliacao', component: AvaliacaoComponent, canLoad: [ LoggedInGuard]  , canActivate: [ LoggedInGuard] },
+    { path: 'faixa', component: FaixaComponent, canLoad: [ LoggedInGuard]  , canActivate: [ LoggedInGuard] },
+    { path: 'consultaavaliacao', component: ConsultaavaliacaoComponent, canLoad: [ LoggedInGuard]  , canActivate: [ LoggedInGuard] },
 
-    // otherwise redirect to home
+    //  otherwise redirect to home
     { path: '**', redirectTo: '' }
 
 ];

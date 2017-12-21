@@ -5,8 +5,8 @@ import { AvaliacaoComponent } from './avaliacao.component';
 import { LoggedInGuard } from 'app/shared/loggedin.guard';
 
 const avaliacaoRoutes: Routes = [
- { path: 'avaliacao', component: AvaliacaoComponent, pathMatch: 'full' , canLoad: [ LoggedInGuard ]},
- { path: 'avaliacao/novo', component: AvaliacaoFormComponent, canLoad: [ LoggedInGuard ]}
+ { path: 'avaliacao', component: AvaliacaoComponent, pathMatch: 'full', canLoad: [ LoggedInGuard]  , canActivate: [ LoggedInGuard]},
+ { path: 'avaliacao/novo', component: AvaliacaoFormComponent, canLoad: [ LoggedInGuard]  , canActivate: [ LoggedInGuard]}
 // { path: 'avaliacao/:id_resultado', component: AvaliacaoFormComponent}
 ];
 
