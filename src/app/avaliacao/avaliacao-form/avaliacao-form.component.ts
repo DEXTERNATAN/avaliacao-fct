@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, state } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import 'rxjs/Rx';
@@ -18,7 +18,6 @@ import { PapelService } from './../../papel/papel.service';
 import { TecnologiaService } from './../../tecnologia/tecnologia.service';
 import { ProjetoService } from './../../projeto/projeto.service';
 import { PesosService } from './../../pesos/pesos.service';
-
 
 @Component({
     selector: 'mt-avaliacao-form',
