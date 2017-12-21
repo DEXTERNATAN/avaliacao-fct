@@ -129,7 +129,7 @@ export class AvaliacaoFormComponent implements OnInit {
             itemsAtributo: this.formBuilder.array([]),
             qtdProjetos: [0],
             vlrPtTotal: 0.00,
-            ociosidade: "00.00",
+            ociosidade: '',
             vlrFCTatual: 0.00,
             ajuste: 0.00,
             referenciaFctAtual: ''
@@ -421,7 +421,8 @@ export class AvaliacaoFormComponent implements OnInit {
                 break;
             }
             case 'ociosidade': {
-                this.vlrOciosidade = (this.formAvaliacao.get('ociosidade').value / 100);
+                let frmOciosidade = this.formAvaliacao.get('ociosidade').value || 0.00;
+                this.vlrOciosidade = ( frmOciosidade / 100);
                 break;
             }
             case 'fctatual': {
