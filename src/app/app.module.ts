@@ -20,6 +20,7 @@ import { Select2Module } from 'ng2-select2';
 import { DataTablesModule } from 'angular-datatables';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { CurrencyMaskConfig, CURRENCY_MASK_CONFIG } from 'ng2-currency-mask/src/currency-mask.config';
+import { ChartModule } from 'angular2-chartjs';
 
 /* Modules */
 import { AbrangenciaModule } from './abrangencia/abrangencia.module';
@@ -68,6 +69,7 @@ import { LoginService } from 'app/security/login/login.service';
 import { NotificationService } from 'app/shared/messages/notification.service';
 import { LoggedInGuard } from 'app/shared/loggedin.guard';
 import { SnackbarComponent } from './shared/messages/snackbar/snackbar.component';
+import { RelatoriosComponent } from 'app/relatorios/relatorios.component';
 
 
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
@@ -90,7 +92,8 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
         LoginComponent,
         LoaderComponent,
         MensagensComponent,
-        SnackbarComponent
+        SnackbarComponent,
+        RelatoriosComponent
 
     ],
     imports: [
@@ -104,6 +107,7 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
         Select2Module,
         CurrencyMaskModule,
         Ng2SelectizeModule,
+        ChartModule,
         DivisaoModule,
         divisaoRouting,
         AbrangenciaModule,

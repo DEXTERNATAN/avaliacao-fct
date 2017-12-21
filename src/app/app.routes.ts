@@ -19,9 +19,11 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { LoginComponent } from './security/login/login.component';
 import { LoggedInGuard } from 'app/shared/loggedin.guard';
+import { RelatoriosComponent } from 'app/relatorios/relatorios.component';
 
 const appRoutes: Routes = [
     { path: 'home', component: HomeComponent , canActivate: [ LoggedInGuard] , canLoad: [ LoggedInGuard] },
+    { path: 'relatorios', component: RelatoriosComponent , canActivate: [ LoggedInGuard] , canLoad: [ LoggedInGuard] },
     { path: '', component: LoginComponent },
     { path: 'about', component: AboutComponent, canLoad: [ LoggedInGuard]  , canActivate: [ LoggedInGuard]},
     { path: 'papel', component: PapelComponent, canLoad: [ LoggedInGuard]  , canActivate: [ LoggedInGuard]},
