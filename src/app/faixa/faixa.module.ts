@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule }  from '@angular/router';
 import { HttpModule }  from '@angular/http';
+import { TextMaskModule } from 'angular2-text-mask';
 
 import { DataTablesModule } from 'angular-datatables';
 
@@ -17,7 +18,8 @@ import { FaixaFormComponent } from 'app/faixa/faixa-form/faixa-form.component';
     ReactiveFormsModule,
     RouterModule,
     HttpModule,
-    DataTablesModule
+    DataTablesModule,
+    TextMaskModule
   ],
   providers: [ FaixaService ],
   declarations: [

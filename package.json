@@ -26,6 +26,7 @@
     "admin-lte": "2.3.11",
     "angular-4-data-table": "^0.2.3",
     "angular-datatables": "^4.4.0",
+    "angular2-chartjs": "^0.4.1",
     "angular2-text-mask": "^8.0.4",
     "core-js": "2.4.1",
     "datatables.net": "^1.10.16",

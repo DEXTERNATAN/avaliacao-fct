@@ -122,7 +122,7 @@
                 <tr>
                   <td>
                     <label for="">
-                      <input type="text" class="form-control" readonly placeholder="" value="{{distribuicao.valor}}">
+                      <input type="text" class="form-control" readonly formControlName="valorDistribuicao">
                     </label>
                   </td>
                   <td>
@@ -172,7 +172,7 @@
                       </td>
                       <td>
                         <label for="">
-                          <input type="text" class="form-control" maxlength="5" placeholder="" value="30.00">
+                          <input type="text" class="form-control" placeholder="30.00" [textMask]="{mask: percentMask}">
                         </label>
                       </td>
                       <td>
@@ -217,7 +217,7 @@
                       </td>
                       <td>
                         <label for="">
-                          <input type="text" class="form-control" id="" maxlength="5" placeholder="" value="40.00">
+                          <input type="text" class="form-control" placeholder="40.00" [textMask]="{mask: percentMask}">
                         </label>
                       </td>
                       <td>
@@ -262,7 +262,7 @@
                       </td>
                       <td>
                         <label for="">
-                          <input type="text" class="form-control" id="" maxlength="5" placeholder="" value="25.00">
+                          <input type="text" class="form-control" placeholder="25.00" [textMask]="{mask: percentMask}">
                         </label>
                       </td>
                       <td>
@@ -307,7 +307,7 @@
                       </td>
                       <td>
                         <label for="">
-                          <input type="text" class="form-control" id="" maxlength="5" placeholder="" value="5.00">
+                          <input type="text" class="form-control" placeholder="5.00" [textMask]="{mask: percentMask}">
                         </label>
                       </td>
                       <td>

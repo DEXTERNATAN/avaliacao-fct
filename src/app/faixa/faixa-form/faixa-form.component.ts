@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import 'rxjs/Rx';
 
 import { Faixa } from './../faixa.model';
 import { Distribuicao } from './../../distribuicao/distribuicao.model';
@@ -24,6 +25,8 @@ export class FaixaFormComponent implements OnInit {
     idResource: any;
     distribuicao: Distribuicao[] = [];
     referencia: Referencia[] = [];
+
+    public percentMask = [/\d/, /\d/, '.', /\d/, /\d/];
 
     constructor(
         private formBuilder: FormBuilder,
@@ -50,7 +53,8 @@ export class FaixaFormComponent implements OnInit {
 
         this.formFaixa = this.formBuilder.group({
             referencia_fct: [],
-            percentual_fixo: []
+            percentual_fixo: [],
+            valorDistribuicao: ''
         });
 
         // var id_resultado = this.route.params.subscribe(params => {
@@ -96,7 +100,13 @@ export class FaixaFormComponent implements OnInit {
     getDistribuicao() {
         this.distribuicaoService.getDistribuicao().subscribe(distribuicao => {
             console.log(distribuicao);
+
+            distribuicao.map(distVlr => {
+                this.formFaixa.get('valorDistribuicao').setValue(distVlr.valor);
+            });
+
             this.distribuicao = distribuicao;
+            
         });
     }
 
