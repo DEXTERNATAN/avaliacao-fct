@@ -6,12 +6,12 @@ import { HttpModule }  from '@angular/http';
 import { DataTablesModule } from 'angular-datatables';
 import {Ng2SelectizeModule} from 'ng2-selectize';
 import {AutoCompleteModule} from 'primeng/components/autocomplete/autocomplete';
+import { TextMaskModule } from 'angular2-text-mask';
 
 import { AvaliacaoComponent } from './avaliacao.component';
 import { AvaliacaoService } from 'app/avaliacao/avaliacao.service';
 import { AvaliacaoFormComponent } from 'app/avaliacao/avaliacao-form/avaliacao-form.component';
 import { FilterSearchPipe } from 'app/shared/pipes/filterSearch.pipes';
-
 
 @NgModule({
   imports: [
@@ -22,8 +22,9 @@ import { FilterSearchPipe } from 'app/shared/pipes/filterSearch.pipes';
     HttpModule,
     DataTablesModule,
     AutoCompleteModule,
-    Ng2SelectizeModule
-  ],
+    Ng2SelectizeModule,
+    TextMaskModule
+ ],
   providers: [ AvaliacaoService ],
   declarations: [
     AvaliacaoComponent,

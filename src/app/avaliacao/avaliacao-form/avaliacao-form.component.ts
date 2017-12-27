@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, state } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import 'rxjs/Rx';
@@ -18,7 +18,6 @@ import { PapelService } from './../../papel/papel.service';
 import { TecnologiaService } from './../../tecnologia/tecnologia.service';
 import { ProjetoService } from './../../projeto/projeto.service';
 import { PesosService } from './../../pesos/pesos.service';
-
 
 @Component({
     selector: 'mt-avaliacao-form',
@@ -61,7 +60,9 @@ export class AvaliacaoFormComponent implements OnInit {
     classeBarra1 = 'progress-bar progress-bar-success';
     items: FormArray;
     itemsAtributo: FormArray;
- 
+
+    public percentMask = [/\d/, /\d/, '.', /\d/, /\d/];
+
     /* Selectize Papel */
     configPapel = {
         create: true,
@@ -128,7 +129,7 @@ export class AvaliacaoFormComponent implements OnInit {
             itemsAtributo: this.formBuilder.array([]),
             qtdProjetos: [0],
             vlrPtTotal: 0.00,
-            ociosidade: 0.00,
+            ociosidade: '',
             vlrFCTatual: 0.00,
             ajuste: 0.00,
             referenciaFctAtual: ''
@@ -420,7 +421,8 @@ export class AvaliacaoFormComponent implements OnInit {
                 break;
             }
             case 'ociosidade': {
-                this.vlrOciosidade = (this.formAvaliacao.get('ociosidade').value / 100);
+                let frmOciosidade = this.formAvaliacao.get('ociosidade').value || 0.00;
+                this.vlrOciosidade = ( frmOciosidade / 100);
                 break;
             }
             case 'fctatual': {
@@ -462,4 +464,6 @@ export class AvaliacaoFormComponent implements OnInit {
 
         // Referencia FCT pela Pontuação Total
     }
+
+    
 }

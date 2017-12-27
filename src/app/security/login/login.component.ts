@@ -1,20 +1,29 @@
-import { SnackbarComponent } from 'app/shared/messages/snackbar/snackbar.component';
 import { LoginService } from './login.service';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 import { NotificationService } from 'app/shared/messages/notification.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
-
 @Component({
   selector: 'mt-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  animations: [
+    trigger('avaliacaoState', [
+      state('ready', style({ opacity: 1 })),
+      transition('void => ready', [
+        style({ opacity: 0, transform: 'translate(-30px, -10px)' }),
+        animate('300ms 0s ease-in-out')
+      ])
+    ])
+  ]
 })
 export class LoginComponent implements OnInit {
 
   navigateTo: any;
+  loginState = 'ready';
   public loginForm: FormGroup;
 
   constructor(private fb: FormBuilder,
@@ -35,17 +44,17 @@ export class LoginComponent implements OnInit {
 
   login() {
 
-    this.loginService.loginUser( this.loginForm.value ).subscribe(
-                            users => {
-                              this.notificationService.notify(`Bem Vindo, ${users.login}`);
-                              //console.log(users.login);
-                              this.router.navigate(['home']);
-                            },
-                            response => this.notificationService.notify('Dados invalidos. Por favor! tente novamente ...')
-                            // ()=> {
-                            //   this.router.navigate([atob(this.navigateTo)]);
-                            // }
-      );
+    this.loginService.loginUser(this.loginForm.value).subscribe(
+      users => {
+        this.notificationService.notify(`Bem Vindo, ${users.login}`);
+        //console.log(users.login);
+        this.router.navigate(['home']);
+      },
+      response => this.notificationService.notify('Dados invalidos. Por favor! tente novamente ...')
+      // ()=> {
+      //   this.router.navigate([atob(this.navigateTo)]);
+      // }
+    );
   }
 
 }

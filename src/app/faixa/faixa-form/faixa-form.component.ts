@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, Route, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import 'rxjs/Rx';
 
 import { Faixa } from './../faixa.model';
 import { Distribuicao } from './../../distribuicao/distribuicao.model';
@@ -20,9 +21,12 @@ export class FaixaFormComponent implements OnInit {
     formFaixa: FormGroup;
     title: string;
     faixa: Faixa = new Faixa();
+    faixaList: Faixa[] = [];
     idResource: any;
     distribuicao: Distribuicao[] = [];
     referencia: Referencia[] = [];
+
+    public percentMask = [/\d/, /\d/, '.', /\d/, /\d/];
 
     constructor(
         private formBuilder: FormBuilder,
@@ -31,48 +35,52 @@ export class FaixaFormComponent implements OnInit {
         private faixaService: FaixaService,
         private distribuicaoService: DistribuicaoService,
         private referenciaService: ReferenciaService
-    ) {}
-    
-    hasErrors(): boolean {
-        var hasErrors: boolean = false;
-        for (var controlName in this.formFaixa.controls) {
-            var control: AbstractControl = this.formFaixa.controls[controlName];
-            if (!control.valid && !control.pristine) {
-                hasErrors = true;
-                break;
-            }
-        }
-        return hasErrors;
-    }
+    ) { }
+
+    // hasErrors(): boolean {
+    //     var hasErrors: boolean = false;
+    //     for (var controlName in this.formFaixa.controls) {
+    //         var control: AbstractControl = this.formFaixa.controls[controlName];
+    //         if (!control.valid && !control.pristine) {
+    //             hasErrors = true;
+    //             break;
+    //         }
+    //     }
+    //     return hasErrors;
+    // }
 
     ngOnInit() {
+
         this.formFaixa = this.formBuilder.group({
             referencia_fct: [],
-            percentual_fixo: []
-        })
+            percentual_fixo: [],
+            valorDistribuicao: ''
+        });
 
-        var id_resultado = this.route.params.subscribe(params => {
-            this.idResource = params['id_faixa'];
-            this.title = this.idResource ? 'Editar Faixa' : 'Nova Faixa';
+        // var id_resultado = this.route.params.subscribe(params => {
+        //     this.idResource = params['id_faixa'];
+        //     this.title = this.idResource ? 'Editar Faixa' : 'Nova Faixa';
 
-            if (!this.idResource)
-                return;
-               
-            this.faixaService.getFaixaId(this.idResource).subscribe(faixa => {
-                faixa = this.faixa = faixa
+        //     if (!this.idResource)
+        //         return;
 
-                    response => {
-                        if (response.status == 404) {
-                            this.router.navigate(['faixa'])
-                        }
-                    }
-            })
+        this.faixaService.getFaixa().subscribe(
+            faixas => {
+                this.faixaList = faixas;
+            },
+            response => {
+                if (response.status === 404) {
+                    this.router.navigate(['faixa'])
+                }
+            }
+        );
 
-        })
-    
-        //carga dos Dados complementares
+        // })
+
+        // carga dos Dados complementares
         this.getDistribuicao();
         this.getReferencia();
+
     }
 
     save() {
@@ -91,7 +99,14 @@ export class FaixaFormComponent implements OnInit {
 
     getDistribuicao() {
         this.distribuicaoService.getDistribuicao().subscribe(distribuicao => {
+            console.log(distribuicao);
+
+            distribuicao.map(distVlr => {
+                this.formFaixa.get('valorDistribuicao').setValue(distVlr.valor);
+            });
+
             this.distribuicao = distribuicao;
+            
         });
     }
 

@@ -1,355 +1,362 @@
 <section class="content-header">
-	<h1>
-		Distribuição das Faixas
-	</h1>
-	<ol class="breadcrumb">
-		<li><a href="#"><i class="fa fa-home"></i> Home</a></li>
-		<li><a href="#">Faixas</a></li>
-		<li class="active">Distribuição das Faixas</li>
-	</ol>
+  <h1>
+    Distribuição das Faixas
+  </h1>
+  <ol class="breadcrumb">
+    <li>
+      <a href="#">
+        <i class="fa fa-home"></i> Home</a>
+    </li>
+    <li>
+      <a href="#">Faixas</a>
+    </li>
+    <li class="active">Distribuição das Faixas</li>
+  </ol>
 </section>
 <section class="content">
-	<div class="row">
-		<div class="col-md-12">
-			<div class="box box-primary">
-				<div class="box-header with-border">
-					<h3 class="box-title">Definição</h3>
-				</div>
-				<div class="alert alert-success" role="alert" *ngIf="sucesso">
-					Faixas definidas com sucesso!
-				</div>
-				<form [formGroup]="formFaixa" role="form">
-					<div class="box-body">
-						<div class="form-group">
-							<table class="table table-condensed">
-								<tr>
-									<th width="20%">Pontuação Mínima</th>
-									<th width="20%">Pontuação Máxima</th>
-									<th width="20%">Diferença</th>
-									<th width="20%">Quantidade de Faixas</th>
-									<th width="20%">Amplitude das Faixas</th>	
-								</tr>
-								<tr *ngFor="let distribuicao of Distribuicao">	
-									<td>
-										<label for="">
-											<span class="badge bg-red">{{distribuicao.pontuacao_minima}}</span>
-										</label>
-									</td>
-									<td>		
-										<label for="">
-											<span class="badge bg-yellow">{{distribuicao.pontuacao_maxima}}</span>
-										</label>
-									</td>
-									<td>		
-										<label for="">
-											<span class="badge bg-light-blue">{{distribuicao.diferenca}}</span>
-										</label>
-									</td>
-									<td>		
-										<label for="">
-											<span class="badge bg-aqua">{{distribuicao.qtde_faixas}}</span>
-										</label>
-									</td>
-									<td>		
-										<label for="">
-											<span class="badge bg-green">{{distribuicao.amplitude_faixas}}</span>
-										</label>
-									</td>
-								</tr>
-							</table>
-						</div>
-						<div class="form-group">
-							<div class="box">
-        						<div class="box-header with-border">
-          							<h3 class="box-title">Faixas</h3>
-          							<div class="box-tools pull-right">
-            							<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip">
-              							<i class="fa fa-minus"></i></button>
-            						</div>
-								</div>
-        						<div class="box-body">
-									<table class="table table-striped">
-										<tr>
-											<th>#</th>
-											<th width="240px">Limite Inferior</th>
-											<th width="240px">Limite Superior</th>
-											<th width="240px">Pontuação de referência da Faixa</th>
-											<th width="240px">Quantidade de Pessoas na Faixa</th>
-										</tr>
-										<tr *ngFor="let faixa of faixa; let i = index;">	
-											<td>
-												<label for="">{{i+1}}</label>
-											</td>
-											<td>		
-												<label for="">
-													<span class="badge bg-red">{{faixa.limite_inferior}}</span>
-												</label>
-											</td>
-											<td>		
-												<label for="">
-													<span class="badge bg-yellow">{{faixa.limite_superior}}</span>
-												</label>
-											</td>
-											<td>		
-												<label for="">
-													<span class="badge bg-light-blue">{{faixa.pontuacao_referencia}}}</span>
-												</label>
-											</td>
-											<td>		
-												<label for="">
-													<span class="badge bg-green">{{faixa.qtde_pessoas}}</span>
-												</label>
-											</td>
-										</tr>
-									</table>
-								</div>
-							</div>		
-						</div>
-						<div class="form-group">
-							<table class="table table-condensed">
-								<tr>
-									<th>Valor Total da Distribuição</th>
-									<th>Referência FCT para pontuação mínima</th>
-									<th>&nbsp;</th>
-								</tr>
-								<tr>	
-									<td>
-										<label for="">
-											<input type="text" class="form-control" readonly placeholder="" value="{{distribuicao.valor}}">
-										</label>
-									</td>
-									<td>
-										<label style="width: 60%">
-											<select class="form-control" formControlName="referencia_fct">
-												<option *ngFor="let referencia of referencia; let i = index" [selected]="referencia.id_referencia === referencia.referencia"
-												 value="{{referencia.id_referencia}}">{{referencia.num_referencia + " - " + referencia.cargo + " (" + referencia.valor_referencia + ")"}}</option>
-											</select>
-										</label>
-									</td>
-									<td>		
-										<div class="checkbox">
-											<label>
-												<input type="checkbox">
-												Assumir o Percentual(%) Calculado
-											</label>
-										</div>
-									</td>
-								</tr>
-							</table>
-						</div>	
-						<div class="form-group">
-							<div class="box">
-        						<div class="box-header with-border">
-          							<h3 class="box-title">Valores</h3>
-          							<div class="box-tools pull-right">
-            							<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip">
-              							<i class="fa fa-minus"></i></button>
-            						</div>
-        						</div>
-        						<div class="box-body">
-									<table class="table table-striped">
-										<tr>
-											<th>Faixa</th>
-											<th>Percentual(%) Fixo</th>
-											<th style="width:12%">Valor Total Fixo</th>
-											<th style="width:12%">Valor Rateio por Pessoa Fixo</th>
-											<th style="width:12%">Valor Rateio Somado por Faixa Fixo</th>
-											<th style="width:12%">Percentual Calculado</th>
-											<th style="width:12%">Valor Total Calculado</th>
-											<th style="width:12%">Valor Rateio por Pessoa Calculado</th>
-											<th style="width:12%">Valor Rateio Somado por Faixa</th>
-										</tr>
-										<tr>	
-											<td>
-												<label for="">1</label>
-											</td>
-											<td>		
-												<label for="">
-													<input type="text" class="form-control" maxlength="5" placeholder="" value="30.00">
-												</label>
-											</td>
-											<td>		
-												<label for="">
-													<span class="badge bg-yellow">R$ 7500.00</span>
-												</label>
-											</td>
-											<td>		
-												<label for="">
-													<span class="badge bg-yellow">R$ 192.31</span>
-												</label>
-											</td>
-											<td>
-												<label for="">
-													<span class="badge bg-aqua">R$ 192.31</span>
-												</label>
-											</td>
-											<td>		
-												<label for="">
-													<span class="badge bg-green">10.00%</span>
-												</label>
-											</td>
-											<td>		
-												<label for="">
-													<span class="badge bg-light-blue">R$ 2564.10</span>
-												</label>
-											</td>
-											<td>		
-												<label for="">
-													<span class="badge bg-light-blue">R$ 65.75</span>
-												</label>
-											</td>
-											<td>
-												<label for="">
-													<span class="badge bg-aqua">R$ 65.75</span>
-												</label>
-											</td>
-										</tr>
-										<tr>	
-											<td>
-												<label for="">2</label>
-											</td>
-											<td>		
-												<label for="">
-													<input type="text" class="form-control" id="" maxlength="5" placeholder="" value="40.00">
-												</label>
-											</td>
-											<td>		
-												<label for="">
-													<span class="badge bg-yellow">R$ 1000.00</span>
-												</label>
-											</td>
-											<td>		
-												<label for="">
-													<span class="badge bg-yellow">R$ 285.71</span>
-												</label>
-											</td>
-											<td>		
-												<label for="">
-													<span class="badge bg-aqua">R$ 478.02</span>
-												</label>
-											</td>
-											<td>		
-												<label for="">
-													<span class="badge bg-green">56.00%</span>
-												</label>
-											</td>
-											<td>		
-												<label for="">
-													<span class="badge bg-light-blue">R$ 14102.56</span>
-												</label>
-											</td>
-											<td>		
-												<label for="">
-													<span class="badge bg-light-blue">R$ 402.93</span>
-												</label>
-											</td>
-											<td>		
-												<label for="">
-													<span class="badge bg-aqua">R$ 468.68</span>
-												</label>
-											</td>
-										</tr>
-										<tr>	
-											<td>
-												<label for="">3</label>
-											</td>
-											<td>		
-												<label for="">
-													<input type="text" class="form-control" id="" maxlength="5" placeholder="" value="25.00">
-												</label>
-											</td>
-											<td>		
-												<label for="">
-													<span class="badge bg-yellow">R$ 6250.00</span>
-												</label>
-											</td>
-											<td>		
-												<label for="">
-													<span class="badge bg-yellow">R$ 480.77</span>
-												</label>
-											</td>
-											<td>		
-												<label for="">
-													<span class="badge bg-aqua">R$ 958.79</span>
-												</label>
-											</td>
-											<td>		
-												<label for="">
-													<span class="badge bg-green">23.00%</span>
-												</label>
-											</td>
-											<td>		
-												<label for="">
-													<span class="badge bg-light-blue">R$ 5769.23</span>
-												</label>
-											</td>
-											<td>		
-												<label for="">
-													<span class="badge bg-light-blue">R$ 443.79</span>
-												</label>
-											</td>
-											<td>		
-												<label for="">
-													<span class="badge bg-aqua">R$ 912.47</span>
-												</label>
-											</td>
-										</tr>
-										<tr>	
-											<td>
-												<label for="">4</label>
-											</td>
-											<td>		
-												<label for="">
-													<input type="text" class="form-control" id="" maxlength="5" placeholder="" value="5.00">
-												</label>
-											</td>
-											<td>		
-												<label for="">
-													<span class="badge bg-yellow">R$ 1250.00</span>
-												</label>
-											</td>
-											<td>		
-												<label for="">
-													<span class="badge bg-yellow">R$ 312.50</span>
-												</label>
-											</td>
-											<td>		
-												<label for="">
-													<span class="badge bg-aqua">R$ 1271.29</span>
-												</label>
-											</td>
-											<td>		
-												<label for="">
-													<span class="badge bg-green">10.00%</span>
-												</label>
-											</td>
-											<td>		
-												<label for="">
-													<span class="badge bg-light-blue">R$ 2564.10</span>
-												</label>
-											</td>
-											<td>		
-												<label for="">
-													<span class="badge bg-light-blue">R$ 641.03</span>
-												</label>
-											</td>
-											<td>		
-												<label for="">
-													<span class="badge bg-aqua">R$ 1553.50</span>
-												</label>
-											</td>
-										</tr>
-									</table>
-								</div>
-							</div>		
-						</div>
-					</div>
-					<div class="box-footer">
-						<button type="button" class="btn btn-default" (click)="onCancel()">Cancelar</button>
-						<button type="submit" class="btn btn-info pull-right">Cadastrar</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">Definição</h3>
+        </div>
+        <div class="alert alert-success" role="alert" *ngIf="sucesso">
+          Faixas definidas com sucesso!
+        </div>
+        <form [formGroup]="formFaixa" role="form">
+          <div class="box-body">
+            <div class="form-group">
+              <table class="table table-condensed">
+                <tr>
+                  <th width="20%">Pontuação Mínima</th>
+                  <th width="20%">Pontuação Máxima</th>
+                  <th width="20%">Diferença</th>
+                  <th width="20%">Quantidade de Faixas</th>
+                  <th width="20%">Amplitude das Faixas</th>
+                </tr>
+                
+                <tr *ngFor="let distribuicao of distribuicao">
+                  <td>
+                    <label for="">
+                      <span class="badge bg-red">{{distribuicao.pontuacao_minima}}</span>
+                    </label>
+                  </td>
+                  <td>
+                    <label for="">
+                      <span class="badge bg-yellow">{{distribuicao.pontuacao_maxima}}</span>
+                    </label>
+                  </td>
+                  <td>
+                    <label for="">
+                      <span class="badge bg-light-blue">{{distribuicao.diferenca}}</span>
+                    </label>
+                  </td>
+                  <td>
+                    <label for="">
+                      <span class="badge bg-aqua">{{distribuicao.qtde_faixas}}</span>
+                    </label>
+                  </td>
+                  <td>
+                    <label for="">
+                      <span class="badge bg-green">{{distribuicao.amplitude_faixas}}</span>
+                    </label>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class="form-group">
+              <div class="box">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Faixas</h3>
+                  <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip">
+                      <i class="fa fa-minus"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="box-body">
+                  <table class="table table-striped">
+                    <tr>
+                      <th>#</th>
+                      <th width="240px">Limite Inferior</th>
+                      <th width="240px">Limite Superior</th>
+                      <th width="240px">Pontuação de referência da Faixa</th>
+                      <th width="240px">Quantidade de Pessoas na Faixa</th>
+                    </tr>
+                    <tr *ngFor="let faixa of faixaList; let i = index;">
+                      <td>
+                        <label for="">{{i+1}}</label>
+                      </td>
+                      <td>
+                        <label for="">
+                          <span class="badge bg-red">{{faixa.limite_inferior}}</span>
+                        </label>
+                      </td>
+                      <td>
+                        <label for="">
+                          <span class="badge bg-yellow">{{faixa.limite_superior}}</span>
+                        </label>
+                      </td>
+                      <td>
+                        <label for="">
+                          <span class="badge bg-light-blue">{{faixa.pontuacao_referencia}}</span>
+                        </label>
+                      </td>
+                      <td>
+                        <label for="">
+                          <span class="badge bg-green">{{faixa.qtde_pessoas}}</span>
+                        </label>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <table class="table table-condensed">
+                <tr>
+                  <th>Valor Total da Distribuição</th>
+                  <th>Referência FCT para pontuação mínima</th>
+                  <th>&nbsp;</th>
+                </tr>
+                <tr>
+                  <td>
+                    <label for="">
+                      <input type="text" class="form-control" readonly formControlName="valorDistribuicao">
+                    </label>
+                  </td>
+                  <td>
+                    <label style="width: 60%">
+                      <select class="form-control" formControlName="referencia_fct">
+                        <option *ngFor="let referencia of referencia; let i = index" [selected]="referencia.id_referencia === referencia.referencia"
+                          value="{{referencia.id_referencia}}">{{referencia.num_referencia + " - " + referencia.cargo + " (" + referencia.valor_referencia + ")"}}</option>
+                      </select>
+                    </label>
+                  </td>
+                  <td>
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox"> Assumir o Percentual(%) Calculado
+                      </label>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class="form-group">
+              <div class="box">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Valores</h3>
+                  <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip">
+                      <i class="fa fa-minus"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="box-body">
+                  <table class="table table-striped">
+                    <tr>
+                      <th>Faixa</th>
+                      <th>Percentual(%) Fixo</th>
+                      <th style="width:12%">Valor Total Fixo</th>
+                      <th style="width:12%">Valor Rateio por Pessoa Fixo</th>
+                      <th style="width:12%">Valor Rateio Somado por Faixa Fixo</th>
+                      <th style="width:12%">Percentual Calculado</th>
+                      <th style="width:12%">Valor Total Calculado</th>
+                      <th style="width:12%">Valor Rateio por Pessoa Calculado</th>
+                      <th style="width:12%">Valor Rateio Somado por Faixa</th>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label for="">1</label>
+                      </td>
+                      <td>
+                        <label for="">
+                          <input type="text" class="form-control" placeholder="30.00" [textMask]="{mask: percentMask}">
+                        </label>
+                      </td>
+                      <td>
+                        <label for="">
+                          <span class="badge bg-yellow">R$ 7500.00</span>
+                        </label>
+                      </td>
+                      <td>
+                        <label for="">
+                          <span class="badge bg-yellow">R$ 192.31</span>
+                        </label>
+                      </td>
+                      <td>
+                        <label for="">
+                          <span class="badge bg-aqua">R$ 192.31</span>
+                        </label>
+                      </td>
+                      <td>
+                        <label for="">
+                          <span class="badge bg-green">10.00%</span>
+                        </label>
+                      </td>
+                      <td>
+                        <label for="">
+                          <span class="badge bg-light-blue">R$ 2564.10</span>
+                        </label>
+                      </td>
+                      <td>
+                        <label for="">
+                          <span class="badge bg-light-blue">R$ 65.75</span>
+                        </label>
+                      </td>
+                      <td>
+                        <label for="">
+                          <span class="badge bg-aqua">R$ 65.75</span>
+                        </label>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label for="">2</label>
+                      </td>
+                      <td>
+                        <label for="">
+                          <input type="text" class="form-control" placeholder="40.00" [textMask]="{mask: percentMask}">
+                        </label>
+                      </td>
+                      <td>
+                        <label for="">
+                          <span class="badge bg-yellow">R$ 1000.00</span>
+                        </label>
+                      </td>
+                      <td>
+                        <label for="">
+                          <span class="badge bg-yellow">R$ 285.71</span>
+                        </label>
+                      </td>
+                      <td>
+                        <label for="">
+                          <span class="badge bg-aqua">R$ 478.02</span>
+                        </label>
+                      </td>
+                      <td>
+                        <label for="">
+                          <span class="badge bg-green">56.00%</span>
+                        </label>
+                      </td>
+                      <td>
+                        <label for="">
+                          <span class="badge bg-light-blue">R$ 14102.56</span>
+                        </label>
+                      </td>
+                      <td>
+                        <label for="">
+                          <span class="badge bg-light-blue">R$ 402.93</span>
+                        </label>
+                      </td>
+                      <td>
+                        <label for="">
+                          <span class="badge bg-aqua">R$ 468.68</span>
+                        </label>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label for="">3</label>
+                      </td>
+                      <td>
+                        <label for="">
+                          <input type="text" class="form-control" placeholder="25.00" [textMask]="{mask: percentMask}">
+                        </label>
+                      </td>
+                      <td>
+                        <label for="">
+                          <span class="badge bg-yellow">R$ 6250.00</span>
+                        </label>
+                      </td>
+                      <td>
+                        <label for="">
+                          <span class="badge bg-yellow">R$ 480.77</span>
+                        </label>
+                      </td>
+                      <td>
+                        <label for="">
+                          <span class="badge bg-aqua">R$ 958.79</span>
+                        </label>
+                      </td>
+                      <td>
+                        <label for="">
+                          <span class="badge bg-green">23.00%</span>
+                        </label>
+                      </td>
+                      <td>
+                        <label for="">
+                          <span class="badge bg-light-blue">R$ 5769.23</span>
+                        </label>
+                      </td>
+                      <td>
+                        <label for="">
+                          <span class="badge bg-light-blue">R$ 443.79</span>
+                        </label>
+                      </td>
+                      <td>
+                        <label for="">
+                          <span class="badge bg-aqua">R$ 912.47</span>
+                        </label>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label for="">4</label>
+                      </td>
+                      <td>
+                        <label for="">
+                          <input type="text" class="form-control" placeholder="5.00" [textMask]="{mask: percentMask}">
+                        </label>
+                      </td>
+                      <td>
+                        <label for="">
+                          <span class="badge bg-yellow">R$ 1250.00</span>
+                        </label>
+                      </td>
+                      <td>
+                        <label for="">
+                          <span class="badge bg-yellow">R$ 312.50</span>
+                        </label>
+                      </td>
+                      <td>
+                        <label for="">
+                          <span class="badge bg-aqua">R$ 1271.29</span>
+                        </label>
+                      </td>
+                      <td>
+                        <label for="">
+                          <span class="badge bg-green">10.00%</span>
+                        </label>
+                      </td>
+                      <td>
+                        <label for="">
+                          <span class="badge bg-light-blue">R$ 2564.10</span>
+                        </label>
+                      </td>
+                      <td>
+                        <label for="">
+                          <span class="badge bg-light-blue">R$ 641.03</span>
+                        </label>
+                      </td>
+                      <td>
+                        <label for="">
+                          <span class="badge bg-aqua">R$ 1553.50</span>
+                        </label>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="box-footer">
+            <button type="button" class="btn btn-default" (click)="onCancel()">Cancelar</button>
+            <button type="submit" class="btn btn-info pull-right">Cadastrar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </section>

@@ -44,4 +44,5 @@ export class FaixaService extends RestService<Faixa>{
     updateFaixa(id, faixa) {
         return super.atualizarPorId(faixa, id);
     }
+
 }

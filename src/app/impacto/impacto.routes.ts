@@ -6,9 +6,9 @@ import { LoggedInGuard } from 'app/shared/loggedin.guard';
 
 
 const impactoRoutes: Routes = [
-	{ path: 'impacto', component: ImpactoComponent, pathMatch: 'full' , canLoad: [ LoggedInGuard ] },
-  { path: 'impacto/novo', component: ImpactoFormComponent , canLoad: [ LoggedInGuard ] },
-	{ path: 'impacto/:id_impacto', component: ImpactoFormComponent , canLoad: [ LoggedInGuard ] }
+	{ path: 'impacto', component: ImpactoComponent, pathMatch: 'full' , canLoad: [ LoggedInGuard]  , canActivate: [ LoggedInGuard] },
+  { path: 'impacto/novo', component: ImpactoFormComponent , canLoad: [ LoggedInGuard]  , canActivate: [ LoggedInGuard] },
+	{ path: 'impacto/:id_impacto', component: ImpactoFormComponent , canLoad: [ LoggedInGuard]  , canActivate: [ LoggedInGuard] }
 ];
 
 export const impactoRouting = RouterModule.forChild(impactoRoutes);
