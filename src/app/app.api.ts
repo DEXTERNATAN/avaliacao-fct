@@ -1,5 +1,5 @@
-export const MEAT_API = 'http://localhost:4200';
-// export const MEAT_API = 'http://10.12.102.147:4200'
+// export const MEAT_API = 'http://localhost:4200';
+ export const MEAT_API = 'http://10.12.102.147:4200'
 
 export const maskData = [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/];
 export const phoneMask = ['(', /[1-9]/, /\d/, ')', ' ', /\d/ , /\d/ , /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];

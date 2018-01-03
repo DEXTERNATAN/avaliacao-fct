@@ -15,9 +15,9 @@
 				<div class="box-header with-border">
 					<h3 class="box-title">Detalhes da Referência FCT</h3>
 				</div>
-				<div class="alert alert-success" role="alert" *ngIf="sucesso">
+				<!-- <div class="alert alert-success" role="alert" *ngIf="sucesso">
 					Formulário enviado com sucesso!
-				</div>
+				</div> -->
 				<form role="form" [formGroup]="formReferencia" (ngSubmit)="save()">
 					<div class="box-body">
 						<div class="form-group" [ngClass]="{'has-error': (!formReferencia.controls['cargo'].valid && formReferencia.controls['cargo'].touched) }">

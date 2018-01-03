@@ -13,8 +13,8 @@ import { Distribuicao } from './distribuicao.model';
 })
 export class DistribuicaoComponent implements OnInit {
 
-  private Distribuicao: Distribuicao[] = [];
-  private distribuicaoCarregada: boolean = true;
+  public Distribuicao: Distribuicao[] = [];
+  public distribuicaoCarregada: boolean = true;
   dtOptions: DataTables.Settings = {};
 
   // We use this trigger because fetching the list of persons can be quite long,

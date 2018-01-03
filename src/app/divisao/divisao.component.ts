@@ -14,8 +14,8 @@ import { Divisao } from './divisao.model';
 })
 export class DivisaoComponent implements OnInit {
 
-  private Divisao: Divisao[] = [];
-  private divisaoCarregada: boolean = true;
+  public Divisao: Divisao[] = [];
+  public divisaoCarregada: boolean = true;
   dtOptions: DataTables.Settings = {};
   @ViewChild(DataTableDirective)
   dtElement: DataTableDirective;

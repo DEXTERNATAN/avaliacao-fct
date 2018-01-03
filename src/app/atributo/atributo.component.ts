@@ -1,8 +1,7 @@
 import { MensagensHandler } from 'app/shared/services/mensagens-handler.service';
 import { LoaderService } from 'app/shared/services/loader.service';
 import { DataTableDirective } from 'angular-datatables';
-import { FormBuilder } from '@angular/forms';
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs/Rx';
 
 import { AtributoService } from './atributo.service';
@@ -15,8 +14,7 @@ import { Atributo } from './atributo.model';
 })
 export class AtributoComponent implements OnInit {
 
-  private Atributo: Atributo[] = [];
-  atributoCarregada: boolean = true;
+  public Atributo: Atributo[] = [];
   dtOptions: DataTables.Settings = {};
   @ViewChild(DataTableDirective)
   dtElement: DataTableDirective;
@@ -24,7 +22,7 @@ export class AtributoComponent implements OnInit {
   // We use this trigger because fetching the list of persons can be quite long,
   // thus we ensure the data is fetched before rendering
   dtTrigger: Subject<Atributo> = new Subject();
-  lang: string = 'Portuguese-Brasil';
+  lang = 'Portuguese-Brasil';
 
   constructor(
     private _atributoService: AtributoService,
@@ -33,7 +31,6 @@ export class AtributoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    
     this.loaderService.setMsgLoading("Carregando...");
 
     // Configurações do datatable
@@ -46,14 +43,14 @@ export class AtributoComponent implements OnInit {
     this._atributoService.getAtributo()
       .subscribe(atributo => {
         this.Atributo = atributo
-        this.atributoCarregada = false;
+
         // Calling the DT trigger to manually render the table
         this.dtTrigger.next();
       });
   }
 
   deleteAtributo(atributo) {
-    if (confirm("Tem certeza que quer APAGAR o Atributo #" + atributo.idAtributo + " (" + atributo.letra + ")?")) {
+    if (confirm('Tem certeza que quer APAGAR o Atributo #' + atributo.idAtributo + ' (' + atributo.letra + ')?')) {
       var index = this.Atributo.indexOf(atributo);
       this.Atributo.splice(index, 1);
 
@@ -69,10 +66,11 @@ export class AtributoComponent implements OnInit {
         .subscribe(null,
         err => {
 
-          alert("Não foi possível apagar o Atributo!");
-          
+          alert('Não foi possível apagar o Atributo!');
           this.Atributo.splice(index, 0, atributo);
+
         });
     }
   }
+
 }

@@ -14,8 +14,8 @@ import { Tecnologia } from './tecnologia.model';
 })
 export class TecnologiaComponent implements OnInit {
 
-  private Tecnologia: Tecnologia[];
-  private tecnologiaCarregada: boolean = true;
+  public Tecnologia: Tecnologia[];
+  public tecnologiaCarregada: boolean = true;
   dtOptions: DataTables.Settings = {};
   @ViewChild(DataTableDirective)
   dtElement: DataTableDirective;

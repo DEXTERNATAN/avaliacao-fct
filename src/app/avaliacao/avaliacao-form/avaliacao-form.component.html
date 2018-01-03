@@ -23,7 +23,7 @@
         <div class="alert alert-success" role="alert" *ngIf="sucesso">
           Avaliação Registrada com sucesso!
         </div>
-        <form role="form" [formGroup]="formAvaliacao" (ngSubmit)="save()">
+        <form role="form" [formGroup]="formAvaliacao" (ngSubmit)="registrarAvaliacao()">
           <div class="box-body">
             <div class="form-group">
               <table class="table table-condensed">
@@ -37,7 +37,7 @@
                     <div class="form-group">
                       <select class="form-control" id="sigla" formControlName="divisao">
                         <option [selected]="true" value="0">Selecione</option>
-                        <option *ngFor="let divisao of Divisao; let i = index" [value]="divisao.sigla">{{divisao.sigla}}</option>
+                        <option *ngFor="let divisao of Divisao; let i = index" [ngValue]="divisao">{{divisao.sigla}}</option>
                       </select>
                     </div>
                   </td>
@@ -96,7 +96,7 @@
                         <label>{{ item.value.letra }}){{ item.value.descricao }}</label>
                       </td>
                       <td [formGroupName]="i">
-                        <!-- Abrangencia -->
+                        Abrangencia
                         <div class="radio" style="float: left;">
                           <label>
 
@@ -116,7 +116,7 @@
                         </div>
                       </td>
                       <td [formGroupName]="i">
-                        <!-- Complexidade -->
+                        Complexidade
                         <div class="radio" style="float: left; position: relative;">
                           <label>
                             <input type="radio" formControlName="Complexidade" (change)="somaValores('atributo')" [value]="1" checked>
@@ -137,7 +137,7 @@
 
                       </td>
                       <td [formGroupName]="i">
-                        <!-- Impacto -->
+                        Impacto
                         <div class="radio" style="float: left; position: relative;">
                           <label>
                             <input type="radio" formControlName="Impacto" (change)="somaValores('atributo')" [value]="1" checked="checked">
@@ -364,6 +364,7 @@
           <div class="box-footer">
             <button type="button" class="btn btn-default" (click)="onCancel()">Cancelar</button>
             <button type="submit" class="btn btn-info pull-right">Registrar</button>
+            <!-- <button type="submit" class="btn btn-info pull-right" [disabled]="!formColaborador.valid">Enviar</button> -->
           </div>
         </form>
       </div>
