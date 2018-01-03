@@ -106,7 +106,7 @@ export class AbrangenciaFormComponent implements OnInit {
         this.router.navigate(['/abrangencia']);
     }
 
-    setNomeAbrangencia(id: string) {
+    setNomeAbrangencia(id: any) {
         switch (id) {
             case '1':
                 {

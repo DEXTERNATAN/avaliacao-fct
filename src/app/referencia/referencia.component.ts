@@ -14,8 +14,8 @@ import { Referencia } from './referencia.model';
 })
 export class ReferenciaComponent implements OnInit {
 
-  private Referencia: Referencia[];
-  private referenciaCarregada: boolean = true;
+  public Referencia: Referencia[];
+  public referenciaCarregada: boolean = true;
   dtOptions: DataTables.Settings = {};
   @ViewChild(DataTableDirective)
   dtElement: DataTableDirective;

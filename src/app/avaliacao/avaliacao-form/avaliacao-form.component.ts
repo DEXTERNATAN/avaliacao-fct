@@ -1,6 +1,6 @@
 import { Component, OnInit, state } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl, FormArray } from '@angular/forms';
 import 'rxjs/Rx';
 
 import { Avaliacao } from './../avaliacao.model';
@@ -26,8 +26,7 @@ import { PesosService } from './../../pesos/pesos.service';
 })
 
 export class AvaliacaoFormComponent implements OnInit {
-    vlrTotal: any;
-
+    
     formAvaliacao: FormGroup;
     avaliacao: Avaliacao = new Avaliacao();
     Divisao: Divisao[] = [];
@@ -60,6 +59,7 @@ export class AvaliacaoFormComponent implements OnInit {
     classeBarra1 = 'progress-bar progress-bar-success';
     items: FormArray;
     itemsAtributo: FormArray;
+    vlrTotal: any;
 
     public percentMask = [/\d/, /\d/, '.', /\d/, /\d/];
 
@@ -75,7 +75,6 @@ export class AvaliacaoFormComponent implements OnInit {
         maxItems: 3,
         onItemRemove: this.getResetarAtributo.bind(this),
         onChange: this.getChangeData.bind(this)
-
     };
 
     /* Selectize Tecnologia */
@@ -145,9 +144,9 @@ export class AvaliacaoFormComponent implements OnInit {
 
             this.avaliacaoService.getAvaliacaoId(this.idResource).subscribe(response => {
                 response = this.avaliacao = response;
-                if (response.status === 404) {
-                    this.router.navigate(['avaliacao'])
-                }
+                // if (response.status === 404) {
+                    this.router.navigate(['avaliacao']);
+                // }
             });
         });
 
@@ -167,7 +166,7 @@ export class AvaliacaoFormComponent implements OnInit {
                 let colabFilter: any[];
                 this.colaboradorService.getColaborador().subscribe(colaborador => {
                     colabFilter = colaborador.filter(function (el) {
-                        return el['sigla'] === divisao;
+                        return el['sigla'] === divisao.sigla;
                     });
                     this.Colaborador = colabFilter;
                 });
@@ -175,16 +174,35 @@ export class AvaliacaoFormComponent implements OnInit {
         );
     }
 
-    save() {
-        let result, userValue = this.formAvaliacao.value;
-        this.somaValores('tudo');
-        // if (this.idResource) {
-        //     result = this.avaliacaoService.updateAvaliacao(this.idResource, userValue);
-        // } else {
-        //     result = this.avaliacaoService.addAvaliacao(userValue);
-        // }
+    registrarAvaliacao() {
 
-        // result.subscribe(data => this.router.navigate(['avaliacao']));
+        let avaliacaoForm = this.formAvaliacao.value;
+        this.somaValores('tudo');
+console.log({
+    "id_resultado": 'null',
+    "pontuacao": avaliacaoForm.vlrPtTotal,
+    "dt_resultado": "2017-11-29T18:11:20.000Z",
+    "ajuste": avaliacaoForm.ajuste,
+    "ociosidade": avaliacaoForm.ociosidade,
+    "referencia_fct_gfe_pontuacao": '10',
+    "TB_COLABORADOR_id_colaborador": avaliacaoForm.colaborador.idColaborador,
+    "TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe": '12',
+    "TB_COLABORADOR_TB_DIVISAO_id_divisao": avaliacaoForm.divisao.id_divisao,
+  })
+        this.avaliacaoService.addAvaliacao({
+            "id_resultado": 'null',
+            "pontuacao": avaliacaoForm.vlrPtTotal,
+            "dt_resultado": "2017-11-29T18:11:20.000Z",
+            "ajuste": avaliacaoForm.ajuste,
+            "ociosidade": avaliacaoForm.ociosidade,
+            "referencia_fct_gfe_pontuacao": '10',
+            "TB_COLABORADOR_id_colaborador": 1,
+            "TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe": '12',
+            "TB_COLABORADOR_TB_DIVISAO_id_divisao": avaliacaoForm.divisao.id_divisao,
+          }).subscribe(data => { 
+            console.log(data);
+            this.router.navigate(['avaliacao']);
+        });
     }
 
     getPapeis() {
@@ -280,10 +298,10 @@ export class AvaliacaoFormComponent implements OnInit {
         this.somaValores('projeto');
     }
 
-    excProjeto(index: number){
-        if (index > 7){
+    excProjeto(index: any) {
+        if (index > 7) {
             this.formAvaliacao.controls['items'] = this.formBuilder.array([]);
-        }else{
+        } else {
             this.items = this.formAvaliacao.get('items') as FormArray;
             this.items.removeAt(index);
         }
@@ -307,7 +325,7 @@ export class AvaliacaoFormComponent implements OnInit {
                 if (data !== []) {
                     data.forEach(arrayPush => {
                         let vlrRepetido = this.PapelAtributo.find(result => result.letra === arrayPush.letra) ? true : false;
-                        if ( !vlrRepetido ) {
+                        if (!vlrRepetido) {
                             this.PapelAtributo.push(arrayPush);
                             this.addItemAtributo(arrayPush);
 
@@ -375,18 +393,18 @@ export class AvaliacaoFormComponent implements OnInit {
             qtdAtributos = qtdAtributos + 1;
             ajusteAtributos = ajusteAtributos + 3;
         });
-        
-        if (ajusteAtributos > 0){
-            ajusteAtributos = (13 / (ajusteAtributos/3));
+
+        if (ajusteAtributos > 0) {
+            ajusteAtributos = (13 / (ajusteAtributos / 3));
             this.vlrAtributo = this.vlrAtributo * ajusteAtributos;
-        }else{
+        } else {
             this.vlrAtributo = 0.00;
         }
     }
 
     somaValores(tipo: string) {
-        
-        this.vlrTotal  =  parseFloat(this.formAvaliacao.get('vlrPtTotal').value);
+
+        this.vlrTotal = parseFloat(this.formAvaliacao.get('vlrPtTotal').value);
 
         switch (tipo) {
             case 'atributo': {
@@ -394,22 +412,22 @@ export class AvaliacaoFormComponent implements OnInit {
                 QtdPapeis = this.valuePapel.length;
                 this.somaAtributos();
                 this.Pesos.forEach(pesos => {
-                    if ((pesos.tipo == 'Papel') && (parseInt(pesos.quantidade) == QtdPapeis)){
+                    if ((pesos.tipo == 'Papel') && (parseInt(pesos.quantidade) == QtdPapeis)) {
                         this.vlrAtributo = (this.vlrAtributo * pesos.valor);
                     }
                 });
                 break;
             }
-            case 'tecnologia':{
+            case 'tecnologia': {
                 this.vlrTecnologia = this.qtdTecnologia;
                 this.Pesos.forEach(pesos => {
                     if ((pesos.tipo == 'Tecnologia') && (parseInt(pesos.quantidade) == this.qtdTecnologia)) {
                         this.vlrTecnologia = (this.qtdTecnologia * pesos.valor);
-                    }    
+                    }
                 });
                 break;
-            }      
-            case 'projeto':{
+            }
+            case 'projeto': {
                 let QtdProjetos = 0;
                 QtdProjetos = this.formAvaliacao.get('qtdProjetos').value;
                 this.somaProjetos();
@@ -422,18 +440,18 @@ export class AvaliacaoFormComponent implements OnInit {
             }
             case 'ociosidade': {
                 let frmOciosidade = this.formAvaliacao.get('ociosidade').value || 0.00;
-                this.vlrOciosidade = ( frmOciosidade / 100);
+                this.vlrOciosidade = (frmOciosidade / 100);
                 break;
             }
             case 'fctatual': {
                 // Pontuação FCT Atual
                 this.formAvaliacao.get('vlrFCTatual').setValue(this.formAvaliacao.get('colaborador').value.pontuacao.toFixed(2));
-                
+
                 // Referencia FCT Atual | %
                 this.formAvaliacao.get('referenciaFctAtual').setValue(this.formAvaliacao.get('colaborador').value.referenciaFct);
 
                 break;
-            }    
+            }
         }
 
         this.vlrTotal = (this.vlrAtributo + this.vlrTecnologia + this.vlrProjetos);
@@ -443,27 +461,27 @@ export class AvaliacaoFormComponent implements OnInit {
         // Ajuste
         this.vlrAjuste = this.formAvaliacao.get('vlrFCTatual').value - this.formAvaliacao.get('vlrPtTotal').value;
         this.formAvaliacao.get('ajuste').setValue(this.vlrAjuste.toFixed(2));
-        
-        this.percAjuste = ((this.formAvaliacao.get('vlrFCTatual').value)/(this.formAvaliacao.get('vlrPtTotal').value)*100);
+
+        this.percAjuste = ((this.formAvaliacao.get('vlrFCTatual').value) / (this.formAvaliacao.get('vlrPtTotal').value) * 100);
         this.percAjuste = this.percAjuste - 100;
-        
+
         // Percentual Ajuste
-        if(this.vlrAjuste < 0){
+        if (this.vlrAjuste < 0) {
             this.classeCss1 = "badge bg-red";
             this.classeBarra1 = "progress-bar progress-bar-danger";
             this.percAjuste2 = this.percAjuste * (-1);
             this.percAjusteBarra = this.percAjuste2.toFixed(2) + "%";
-        }else{
+        } else {
             this.classeCss1 = "badge bg-green";
             this.classeBarra1 = "progress-bar progress-bar-success";
-            if(this.percAjuste > 100){
+            if (this.percAjuste > 100) {
                 this.percAjuste = 100;
-            }    
+            }
             this.percAjusteBarra = this.percAjuste.toFixed(2) + "%";
         }
 
         // Referencia FCT pela Pontuação Total
     }
 
-    
+
 }

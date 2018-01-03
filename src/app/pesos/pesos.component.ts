@@ -14,8 +14,8 @@ import { Pesos } from './pesos.model';
 })
 export class PesosComponent implements OnInit {
 
-  private Pesos: Pesos[];
-  private pesoCarregado: boolean = true;
+  public Pesos: Pesos[];
+  public pesoCarregado: boolean = true;
   dtOptions: DataTables.Settings = {};
   @ViewChild(DataTableDirective)
   dtElement: DataTableDirective;

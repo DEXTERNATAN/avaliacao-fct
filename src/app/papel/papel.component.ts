@@ -14,8 +14,8 @@ import { Papel } from './papel.model';
 })
 export class PapelComponent implements OnInit {
 
-  private Papel: Papel[];
-  private papelCarregado: boolean = true;
+  public Papel: Papel[];
+  public papelCarregado: boolean = true;
   dtOptions: DataTables.Settings = {};
   @ViewChild(DataTableDirective)
   dtElement: DataTableDirective;

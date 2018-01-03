@@ -14,8 +14,8 @@ import { Complexidade } from './complexidade.model';
 })
 export class ComplexidadeComponent implements OnInit {
 
-  private Complexidade: Complexidade[] = [];
-  private complexidadeCarregada: boolean = true;
+  public Complexidade: Complexidade[] = [];
+  public complexidadeCarregada: boolean = true;
   dtOptions: DataTables.Settings = {};
   @ViewChild(DataTableDirective)
   dtElement: DataTableDirective;

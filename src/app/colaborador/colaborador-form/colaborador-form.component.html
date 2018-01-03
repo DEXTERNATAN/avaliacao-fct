@@ -78,9 +78,9 @@
 						<div class="form-group" [ngClass]="{'has-error': (!formColaborador.controls['TB_ACESSO_id_acesso'].valid && formColaborador.controls['TB_ACESSO_id_acesso'].touched)}">
 							<label for="TB_ACESSO_id_acesso">Perfil de Acesso</label>
 							<select class="form-control" [(ngModel)]="colaborador.TB_ACESSO_id_acesso" formControlName="TB_ACESSO_id_acesso">
-                            	<option value="1" [selected]="colaborador.TB_ACESSO_id_acesso == 1">ADMINISTRADOR</option>
-								<option value="2" [selected]="colaborador.TB_ACESSO_id_acesso == 2">LÍDER</option>
-								<option value="3" [selected]="colaborador.TB_ACESSO_id_acesso == 3" [selected]="true">COLABORADOR</option>
+                            	<option value="1" [selected]="colaborador.TB_ACESSO_id_acesso == '1'">ADMINISTRADOR</option>
+								<option value="2" [selected]="colaborador.TB_ACESSO_id_acesso == '2'">LÍDER</option>
+								<option value="3" [selected]="colaborador.TB_ACESSO_id_acesso == '3'" [selected]="true">COLABORADOR</option>
 							</select>
 						</div>
 					<!-- /.box-body -->

@@ -16,9 +16,9 @@
 				<div class="box-header with-border">
 					<h3 class="box-title">Detalhes do Peso</h3>
 				</div>
-				<div class="alert alert-success" role="alert" *ngIf="sucesso">
+				<!-- <div class="alert alert-success" role="alert" *ngIf="sucesso">
 					Formulário enviado com sucesso!
-				</div>
+				</div> -->
 				<form role="form" [formGroup]="formPesos" (ngSubmit)="save()">
 					<div class="box-body">
 						<div class="form-group" [ngClass]="{'has-error': (!formPesos.controls['tipo'].valid && formPesos.controls['tipo'].touched) }">

@@ -15,8 +15,8 @@ import { Impacto } from './impacto.model';
 
 export class ImpactoComponent implements OnInit {
 
-  private Impacto: Impacto[] = [];
-  private impactoCarregada: boolean = true;
+  public Impacto: Impacto[] = [];
+  public impactoCarregada: boolean = true;
   dtOptions: DataTables.Settings = {};
   @ViewChild(DataTableDirective)
   dtElement: DataTableDirective;

@@ -17,8 +17,8 @@ import { Abrangencia } from './abrangencia.model';
 })
 export class AbrangenciaComponent implements OnInit, AfterViewInit {
 
-  private Abrangencia: Abrangencia[] = [];
-  private abrangenciaCarregada: boolean = true;
+  public Abrangencia: Abrangencia[] = [];
+  public abrangenciaCarregada: boolean = true;
   dtOptions: DataTables.Settings = {};
   @ViewChild(DataTableDirective)
   dtElement: DataTableDirective;

@@ -15,8 +15,8 @@ import { colaboradorRouting } from './colaborador.routes';
 })
 export class ColaboradorComponent implements OnInit {
 
-  private Colaborador: Colaborador[] = [];
-  private colaboradorCarregada: boolean = true;
+  public Colaborador: Colaborador[] = [];
+  public colaboradorCarregada: boolean = true;
   dtOptions: DataTables.Settings = {};
   @ViewChild(DataTableDirective)
   dtElement: DataTableDirective;

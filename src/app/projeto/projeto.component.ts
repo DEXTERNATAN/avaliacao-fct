@@ -14,8 +14,8 @@ import { Projeto } from './projeto.model';
 })
 export class ProjetoComponent implements OnInit {
 
-  private Projeto: Projeto[] = [];
-  private projetoCarregada: boolean = true;
+  public Projeto: Projeto[] = [];
+  public projetoCarregada: boolean = true;
   dtOptions: DataTables.Settings = {};
   @ViewChild(DataTableDirective)
   dtElement: DataTableDirective;
