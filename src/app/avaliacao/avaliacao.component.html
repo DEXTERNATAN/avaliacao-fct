@@ -17,9 +17,12 @@
         <div class="box">
           <div class="box-header">
             <h3 class="box-title">Avaliações Registradas</h3>
-            <!--<div class="box-tools">
-							<a routerLink="/avaliacao/novo" class="btn btn-sm pull-left btn-flat bg-purple margin-right-10" ><i class="fa fa-plus"></i> <b>Nova Abrangência</b></a>
-							</div>-->
+            <div class="box-tools">
+              <a routerLink="/avaliacao/novo" class="btn btn-sm pull-left btn-flat bg-purple margin-right-10">
+                <i class="fa fa-plus"></i>
+                <b>Nova Abrangência</b>
+              </a>
+            </div>
           </div>
           <!-- /.box-header -->
           <div class="box-body">
@@ -37,8 +40,8 @@
                     <div class="box box-default collapsed-box">
                       <div class="box-header with-border">
                         <label>
-                          &nbsp;&nbsp; {{ aval.listGroup.id_resultado }} &nbsp; {{ aval.listGroup.sigla_divisao }} &nbsp;&nbsp;&nbsp;&nbsp; {{ aval.listGroup.no_colaborador }} {{ aval.listGroup.TB_COLABORADOR_id_colaborador
-                          }}
+                          &nbsp;&nbsp; {{ aval.listGroup.id_resultado }} &nbsp; {{ aval.listGroup.sigla_divisao }} &nbsp;&nbsp;&nbsp;&nbsp; {{ aval.listGroup.no_colaborador
+                          }} {{ aval.listGroup.TB_COLABORADOR_id_colaborador }}
                         </label>
                         <div class="box-tools pull-right">
                           <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip">
@@ -58,287 +61,38 @@
                             <th></th>
                             <th></th>
                             <th></th>
-						  </tr>
+                          </tr>
                           <tr *ngFor="let items of aval.listDetalhe">
-                            <td>{{ items.id_resultado  }}</td>
-							<td>{{ items.dt_resultado }}</td>
-							<td>{{ items.pontuacao }}</td>
-							<td>{{ items.ajuste }}</td>
-							<td>{{ items.ociosidade }}</td>
-							<td>
-									<div class="progress progress-sm progress-striped active">
-									  <div class="progress-bar progress-bar-danger" style="width: 12%"></div>
-									</div>
-								  </td>
-								  <td>
-										<span class="badge bg-red">+12%</span>
-									  </td>
-									  <td>
-											<a class="btn  btn-xs bg-blue btn-flat">
-											  <i class="fa fa-pencil"></i>
-											</a>
-										  </td>
-									   
-                            
-                            
+                            <td>{{ items.id_resultado }}</td>
+                            <td>{{ items.dt_resultado }}</td>
+                            <td>{{ items.pontuacao }}</td>
+                            <td>{{ items.ajuste }}</td>
+                            <td>{{ items.ociosidade }}</td>
+                            <td>
+                              <div class="progress progress-sm progress-striped active">
+                                <div class="progress-bar progress-bar-danger" style="width: 12%"></div>
+                              </div>
+                            </td>
+                            <td>
+                              <span class="badge bg-red">+12%</span>
+                            </td>
+                            <td>
+                              <a class="btn  btn-xs bg-blue btn-flat">
+                                <i class="fa fa-pencil"></i>
+                              </a>
+                            </td>
                             <td>
                               <button type="button" class="btn  btn-xs bg-red btn-flat">
                                 <i class="fa fa-remove"></i>
                               </button>
                             </td>
                           </tr>
-                          <!-- <tr>
-                            <td>1.2</td>
-                            <td>22/10/2017</td>
-                            <td>75.66</td>
-                            <td>-24.18</td>
-                            <td>99.84</td>
-                            <td>
-                              <div class="progress progress-sm progress-striped active">
-                                <div class="progress-bar progress-bar-success" style="width: 32%"></div>
-                              </div>
-                            </td>
-                            <td>
-                              <span class="badge bg-green">-32%</span>
-                            </td>
-                            <td>
-                              <a [routerLink]="['/avaliacao', avaliacao.id_resultado]" class="btn  btn-xs bg-blue btn-flat">
-                              <a class="btn  btn-xs bg-blue btn-flat">
-                                <i class="fa fa-pencil"></i>
-                              </a>
-                            </td>
-                            <td>
-                              <button type="button" class="btn  btn-xs bg-red btn-flat">
-                                <i class="fa fa-remove"></i>
-                              </button>
-                            </td>
-                          </tr> -->
-                          <!-- <tr>
-                            <td>1.3</td>
-                            <td>22/10/2017</td>
-                            <td>98.31</td>
-                            <td>+45.22</td>
-                            <td>53.09</td>
-                            <td>
-                              <div class="progress progress-sm progress-striped active">
-                                <div class="progress-bar progress-bar-danger" style="width: 46%"></div>
-                              </div>
-                            </td>
-                            <td>
-                              <span class="badge bg-red">+46%</span>
-                            </td>
-                            <td>
-                              <a [routerLink]="['/avaliacao', avaliacao.id_resultado]" class="btn  btn-xs bg-blue btn-flat">
-                              <a class="btn  btn-xs bg-blue btn-flat">
-                                <i class="fa fa-pencil"></i>
-                              </a>
-                            </td>
-                            <td>
-                              <button type="button" class="btn  btn-xs bg-red btn-flat">
-                                <i class="fa fa-remove"></i>
-                              </button>
-                            </td>
-                          </tr> -->
                         </table>
                       </div>
                     </div>
                   </div>
                 </td>
               </tr>
-              <!-- <tr>
-								<td>				
-									<div class="box-body table-responsive no-padding">
-										<div class="box box-default collapsed-box">
-											<div class="box-header with-border">
-												<label>
-													&nbsp;&nbsp;
-													2
-													&nbsp;
-													SDDEP
-													&nbsp;&nbsp;&nbsp;&nbsp;
-													Mindalva Jurema Siqueira Souza
-												</label>
-												<div class="box-tools pull-right">
-													<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip">
-													<i class="fa fa-plus"></i></button>
-												</div>
-											</div>
-											<div class="box-body">
-												<table id="" class="table table-striped">
-													<tr>
-														<th></th>
-														<th>Data da Avaliação</th>
-														<th>Pontuação</th>
-														<th>Ajuste</th>
-														<th>Pontuação Ideal</th>
-														<th>Diferença</th>
-														<th></th>
-														<th></th>
-														<th></th>
-													</tr>
-													<tr>	
-														<td>2.1</td>
-														<td>25/10/2017</td>
-														<td>98.36</td>
-														<td>-12.03</td>
-														<td>110.39</td>
-														<td>
-															<div class="progress progress-sm progress-striped active">
-																<div class="progress-bar progress-bar-success" style="width: 12%"></div>
-															</div>
-														</td>
-														<td>	
-															<span class="badge bg-green">-12%</span>
-														</td>
-														<td>
-															<a [routerLink]="['/avaliacao', avaliacao.id_resultado]" class="btn  btn-xs bg-blue btn-flat">
-															<a class="btn  btn-xs bg-blue btn-flat">
-															<i class="fa fa-pencil"></i>
-															</a>
-														</td>
-														<td>
-															<button type="button" class="btn  btn-xs bg-red btn-flat" ><i class="fa fa-remove"></i></button>
-														</td>
-													</tr>
-													<tr>	
-														<td>2.2</td>
-														<td>22/10/2017</td>
-														<td>98.31</td>
-														<td>+45.22</td>
-														<td>53.09</td>
-														<td>
-															<div class="progress progress-sm progress-striped active">
-																<div class="progress-bar progress-bar-danger" style="width: 46%"></div>
-															</div>
-														</td>
-														<td>	
-															<span class="badge bg-red">+46%</span>
-														</td>
-														<td>
-															<a [routerLink]="['/avaliacao', avaliacao.id_resultado]" class="btn  btn-xs bg-blue btn-flat">
-															<a class="btn  btn-xs bg-blue btn-flat">
-															<i class="fa fa-pencil"></i>
-															</a>
-														</td>
-														<td>
-															<button type="button" class="btn  btn-xs bg-red btn-flat" ><i class="fa fa-remove"></i></button>
-														</td>
-													</tr>
-												</table>
-											</div>
-										</div>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td>				
-									<div class="box-body table-responsive no-padding">
-										<div class="box box-default collapsed-box">
-											<div class="box-header with-border">
-												<label>
-													&nbsp;&nbsp;
-													3
-													&nbsp;
-													SDDFE
-													&nbsp;&nbsp;&nbsp;&nbsp;
-													Jurema Lobato Silva da Cunha
-												</label>
-												<div class="box-tools pull-right">
-													<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip">
-													<i class="fa fa-plus"></i></button>
-												</div>
-											</div>
-											<div class="box-body">
-												<table id="" class="table table-striped">
-													<tr>
-														<th></th>
-														<th>Data da Avaliação</th>
-														<th>Pontuação</th>
-														<th>Ajuste</th>
-														<th>Pontuação Ideal</th>
-														<th>Diferença</th>
-														<th></th>
-														<th></th>
-														<th></th>
-													</tr>
-													<tr>	
-														<td>3.1</td>
-														<td>25/10/2017</td>
-														<td>98.36</td>
-														<td>+12.03</td>
-														<td>86.33</td>
-														<td>
-															<div class="progress progress-sm progress-striped active">
-																<div class="progress-bar progress-bar-danger" style="width: 12%"></div>
-															</div>
-														</td>
-														<td>	
-															<span class="badge bg-red">+12%</span>
-														</td>
-														<td>
-															<a [routerLink]="['/avaliacao', avaliacao.id_resultado]" class="btn  btn-xs bg-blue btn-flat">
-															<a class="btn  btn-xs bg-blue btn-flat">
-															<i class="fa fa-pencil"></i>
-															</a>
-														</td>
-														<td>
-															<button type="button" class="btn  btn-xs bg-red btn-flat" ><i class="fa fa-remove"></i></button>
-														</td>
-													</tr>
-													<tr>	
-														<td>3.2</td>
-														<td>22/10/2017</td>
-														<td>75.66</td>
-														<td>+24.18</td>
-														<td>51.48</td>
-														<td>
-															<div class="progress progress-sm progress-striped active">
-																<div class="progress-bar progress-bar-danger" style="width: 32%"></div>
-															</div>
-														</td>
-														<td>	
-															<span class="badge bg-red">+32%</span>
-														</td>
-														<td>
-															<a [routerLink]="['/avaliacao', avaliacao.id_resultado]" class="btn  btn-xs bg-blue btn-flat">
-															<a class="btn  btn-xs bg-blue btn-flat">
-															<i class="fa fa-pencil"></i>
-															</a>
-														</td>
-														<td>
-															<button type="button" class="btn  btn-xs bg-red btn-flat" ><i class="fa fa-remove"></i></button>
-														</td>
-													</tr>
-													<tr>	
-														<td>3.3</td>
-														<td>22/10/2017</td>
-														<td>98.31</td>
-														<td>+45.22</td>
-														<td>53.09</td>
-														<td>
-															<div class="progress progress-sm progress-striped active">
-																<div class="progress-bar progress-bar-danger" style="width: 46%"></div>
-															</div>
-														</td>
-														<td>	
-															<span class="badge bg-red">+46%</span>
-														</td>
-														<td>
-															<a [routerLink]="['/avaliacao', avaliacao.id_resultado]" class="btn  btn-xs bg-blue btn-flat">
-															<a class="btn  btn-xs bg-blue btn-flat">
-															<i class="fa fa-pencil"></i>
-															</a>
-														</td>
-														<td>
-															<button type="button" class="btn  btn-xs bg-red btn-flat" ><i class="fa fa-remove"></i></button>
-														</td>
-													</tr>
-												</table>
-											</div>
-										</div>
-									</div>
-								</td>
-							</tr> -->
             </table>
           </div>
         </div>

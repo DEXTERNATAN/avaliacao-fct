@@ -48,7 +48,7 @@ export class AvaliacaoComponent implements OnInit, AfterViewInit {
                 this.avaliacaoCarregada = false;
                 this.dtTrigger.next();
                 this.getAvaliacaoDetalhe(avaliacao);
-        });
+            });
 
 
     }
@@ -76,23 +76,14 @@ export class AvaliacaoComponent implements OnInit, AfterViewInit {
     }
 
     getAvaliacaoDetalhe(data) {
-        // console.log(data);
-
         data.forEach(elementGroup => {
-
             this._avaliacaoService.getAvaliacaoId(elementGroup.TB_COLABORADOR_id_colaborador).subscribe(elementDetalhe => {
-
                 this.avaliacaoDetalhe.push({
                     'listGroup': elementGroup,
                     'listDetalhe': elementDetalhe
                 });
-
                 console.log(this.avaliacaoDetalhe);
-
             });
-
         });
-
-        
     }
 }
