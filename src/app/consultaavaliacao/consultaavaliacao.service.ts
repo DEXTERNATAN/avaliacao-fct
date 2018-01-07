@@ -25,7 +25,7 @@ export class ConsultaavaliacaoService {
     }
 
     getConsultaavaliacao(): Observable<Consultaavaliacao[]> {
-        return this._http.get(`${MEAT_API}/consultaavaliacao`)
+        return this._http.get(`${MEAT_API}/avaliacao`)
             .map(response => response.json())
     }
 }
