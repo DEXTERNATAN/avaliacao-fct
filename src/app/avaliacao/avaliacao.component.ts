@@ -55,21 +55,19 @@ export class AvaliacaoComponent implements OnInit, AfterViewInit {
 
     ngAfterViewInit(): void { }
 
-    deleteAvaliacao(avaliacao) {
+    deleteAvaliacao(avaliacao, avaliacaoDetalhe) {
+        
         if (confirm('Tem certeza que quer APAGAR a Avaliação #' + avaliacao.id_resultado + ' ?')) {
-            let index = this.Avaliacao.indexOf(avaliacao);
-
-            this.Avaliacao.splice(index, 1);
-            this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-                dtInstance.destroy();
-                this.dtTrigger.next();
-            });
+            
+            let index = avaliacaoDetalhe.indexOf(avaliacao);
+            avaliacaoDetalhe.splice(index, 1);
 
             this._avaliacaoService.deleteAvaliacao(avaliacao.id_resultado)
-                .subscribe(null,
+                .subscribe(
+                    null,
                 err => {
                     alert("A avaliação não foi apagada!");
-                    this.Avaliacao.splice(index, 0, avaliacao);
+                    avaliacaoDetalhe.splice(index, 0, avaliacao);
                     throw err;
                 });
         }

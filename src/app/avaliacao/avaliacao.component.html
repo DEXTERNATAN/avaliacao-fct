@@ -20,7 +20,7 @@
             <div class="box-tools">
               <a routerLink="/avaliacao/novo" class="btn btn-sm pull-left btn-flat bg-purple margin-right-10">
                 <i class="fa fa-plus"></i>
-                <b>Nova Abrangência</b>
+                <b>Nova Avaliação</b>
               </a>
             </div>
           </div>
@@ -62,6 +62,15 @@
                             <th></th>
                             <th></th>
                           </tr>
+                          <tr *ngIf="!aval.listDetalhe.length">
+                          <td colspan="10">
+                          <div class="alert alert-warning alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <h4><i class="icon fa fa-warning"></i> Alerta!</h4>
+                                Não existem avaliações para este usuário!
+                            </div>
+                          </td>
+                          </tr>
                           <tr *ngFor="let items of aval.listDetalhe">
                             <td>{{ items.id_resultado }}</td>
                             <td>{{ items.dt_resultado }}</td>
@@ -82,7 +91,7 @@
                               </a>
                             </td>
                             <td>
-                              <button type="button" class="btn  btn-xs bg-red btn-flat">
+                              <button type="button" class="btn  btn-xs bg-red btn-flat" (click)="deleteAvaliacao(items, aval.listDetalhe)">
                                 <i class="fa fa-remove"></i>
                               </button>
                             </td>
