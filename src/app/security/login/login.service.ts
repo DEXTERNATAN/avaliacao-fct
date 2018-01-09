@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 
 @Injectable()
 export class LoginService  extends RestService<User> {
-    
+
     user: User;
 
     constructor(protected http: Http, private router: Router){
@@ -51,18 +51,11 @@ export class LoginService  extends RestService<User> {
         return this.http.post(`${this.getUrlBase()}/${this.getUrl()}`, user, this.getDefaultRequestOptions())
         .map(response => response.json())
         .do(users => {
-            this.user = users;
+            localStorage.setItem('users', JSON.stringify(users));
+            this.user = JSON.parse(localStorage.getItem('users'));
+            console.log(this.user);
         });
     }
-
-    // login(email: string, password: string): Observable<User> {
-    //     debugger
-    //     return this.http.post('http://localhost:3000/users', { email: email, password: password } )
-    //     .map(response => response.json())
-    //     .do(user => {
-    //         this.user = user;
-    //     });
-    // }
 
     handleLogin() {
         this.router.navigate(['/login']);
@@ -71,6 +64,8 @@ export class LoginService  extends RestService<User> {
     logout() {
         this.user = undefined;
         this.router.navigate(['/login']);
+        localStorage.removeItem('users');
+        localStorage.clear();
     }
 
 }

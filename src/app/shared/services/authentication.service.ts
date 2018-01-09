@@ -30,7 +30,9 @@ export class AuthenticationService {
     constructor(private _router: Router) { }
 
     login(user: User) {
-debugger
+
+        debugger
+
         let authenticatedUser = users.find(u => u.email === user.email);
         if (user.userName !== '' && user.password != '') { // {3}
             localStorage.setItem('user', JSON.stringify(authenticatedUser));

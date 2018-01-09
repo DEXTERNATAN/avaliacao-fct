@@ -1,7 +1,9 @@
-import { Component, OnInit, state } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators, AbstractControl, FormArray } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import 'rxjs/Rx';
+
+import { ScrollSpyService } from 'ngx-scrollspy';
 
 import { Avaliacao } from './../avaliacao.model';
 import { Colaborador } from './../../colaborador/colaborador.model';
@@ -25,7 +27,7 @@ import { PesosService } from './../../pesos/pesos.service';
     styleUrls: ['./avaliacao-form.component.css']
 })
 
-export class AvaliacaoFormComponent implements OnInit {
+export class AvaliacaoFormComponent implements OnInit  {
     
     formAvaliacao: FormGroup;
     avaliacao: Avaliacao = new Avaliacao();
@@ -60,6 +62,7 @@ export class AvaliacaoFormComponent implements OnInit {
     items: FormArray;
     itemsAtributo: FormArray;
     vlrTotal: any;
+    vlrSucesso = true;
 
     public percentMask = [/\d/, /\d/, '.', /\d/, /\d/];
 
@@ -95,6 +98,7 @@ export class AvaliacaoFormComponent implements OnInit {
         private formBuilder: FormBuilder,
         private router: Router,
         private route: ActivatedRoute,
+        private scrollSpyService: ScrollSpyService,
         private colaboradorService: ColaboradorService,
         private avaliacaoService: AvaliacaoService,
         private papelService: PapelService,
@@ -133,6 +137,8 @@ export class AvaliacaoFormComponent implements OnInit {
             ajuste: 0.00,
             referenciaFctAtual: ''
         });
+
+        console.log(this.formAvaliacao);
 
         this.route.params.subscribe(params => {
             this.idResource = params['id_resultado'];
@@ -265,6 +271,10 @@ console.log({
         });
     }
 
+    getItems(formAvaliacao) {
+        return formAvaliacao.get('items').controls;
+    }
+
     addItemAtributo(atributo): void {
         this.items = this.formAvaliacao.get('itemsAtributo') as FormArray;
         this.items.push(this.createItemAtributo(atributo));
@@ -289,11 +299,15 @@ console.log({
         });
     }
 
+    getItemsAtributo(formAvaliacao) {
+        return formAvaliacao.get('itemsAtributo').controls;
+    }
+
     clearArray() {
         this.formAvaliacao.controls['itemsAtributo'] = this.formBuilder.array([]);
     }
 
-    addProjeto(value: number) {
+    addProjeto() {
         this.addItem();
         this.somaValores('projeto');
     }

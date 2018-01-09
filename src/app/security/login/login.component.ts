@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
       login: this.fb.control('', []),
       senha: this.fb.control('', [])
     });
-    //this.navigateTo = this.activatedRoute.snapshot.params['to'] || '/'
+    this.navigateTo = this.activatedRoute.snapshot.params['to'] || '/'
   }
 
   login() {
@@ -47,10 +47,13 @@ export class LoginComponent implements OnInit {
     this.loginService.loginUser(this.loginForm.value).subscribe(
       users => {
         this.notificationService.notify(`Bem Vindo, ${users.login}`);
-        //console.log(users.login);
+        console.log(users.login);
         this.router.navigate(['home']);
       },
-      response => this.notificationService.notify('Dados invalidos. Por favor! tente novamente ...')
+      response => {
+        this.notificationService.notify('Dados invalidos. Por favor! tente novamente ...'); 
+        this.router.navigate([atob(this.navigateTo)]);
+      }
       // ()=> {
       //   this.router.navigate([atob(this.navigateTo)]);
       // }

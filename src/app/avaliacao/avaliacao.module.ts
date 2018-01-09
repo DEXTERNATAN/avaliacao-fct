@@ -13,6 +13,8 @@ import { AvaliacaoService } from 'app/avaliacao/avaliacao.service';
 import { AvaliacaoFormComponent } from 'app/avaliacao/avaliacao-form/avaliacao-form.component';
 import { FilterSearchPipe } from 'app/shared/pipes/filterSearch.pipes';
 
+import { ScrollSpyModule, ScrollSpyService } from 'ngx-scrollspy';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -23,9 +25,10 @@ import { FilterSearchPipe } from 'app/shared/pipes/filterSearch.pipes';
     DataTablesModule,
     AutoCompleteModule,
     Ng2SelectizeModule,
-    TextMaskModule
+    TextMaskModule,
+    ScrollSpyModule.forRoot()
  ],
-  providers: [ AvaliacaoService ],
+  providers: [ AvaliacaoService, ScrollSpyService ],
   declarations: [
     AvaliacaoComponent,
     AvaliacaoFormComponent,
