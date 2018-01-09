@@ -81,7 +81,7 @@ export class AvaliacaoComponent implements OnInit, AfterViewInit {
                     'listGroup': elementGroup,
                     'listDetalhe': elementDetalhe
                 });
-                console.log(this.avaliacaoDetalhe);
+                // console.log(this.avaliacaoDetalhe);
             });
         });
     }

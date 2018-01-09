@@ -44,7 +44,7 @@ export class LoginService  extends RestService<User> {
     }
 
     isLoggedIn(): boolean {
-        console.log(this.user);
+        // console.log(this.user);
         return this.user !== undefined;
     }
 

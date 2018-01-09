@@ -27,7 +27,7 @@ export class AbrangenciaService extends RestService<Abrangencia>{
     }
 
     getAbrangencia(): Observable<Abrangencia[]> {
-        console.log(this.loginService.isLoggedIn(), this.loginService.user);
+        // console.log(this.loginService.isLoggedIn(), this.loginService.user);
         return super.obterTodos();
     }
 

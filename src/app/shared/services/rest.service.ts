@@ -60,7 +60,7 @@ export abstract class RestService<T> {
     adicionar(objeto: T): Observable<string> {
         return this.http.post(`${this.getUrlBase()}/${this.getUrl()}`, objeto, this.getDefaultRequestOptions())
             .map(response => response.text())
-            //.do(data => console.log('server data:', data))  // debug
+            .do(data => console.log('server data:', data))  // debug
             .catch(ErrorHandler.handleError);
     }
 

@@ -99,7 +99,7 @@ export class FaixaFormComponent implements OnInit {
 
     getDistribuicao() {
         this.distribuicaoService.getDistribuicao().subscribe(distribuicao => {
-            console.log(distribuicao);
+            // console.log(distribuicao);
 
             distribuicao.map(distVlr => {
                 this.formFaixa.get('valorDistribuicao').setValue(distVlr.valor);

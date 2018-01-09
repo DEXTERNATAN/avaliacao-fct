@@ -25,8 +25,8 @@ import { PesosService } from './../../pesos/pesos.service';
     styleUrls: ['./avaliacao-form.component.css']
 })
 
-export class AvaliacaoFormComponent implements OnInit  {
-    
+export class AvaliacaoFormComponent implements OnInit {
+
     formAvaliacao: FormGroup;
     avaliacao: Avaliacao = new Avaliacao();
     Divisao: Divisao[] = [];
@@ -105,17 +105,6 @@ export class AvaliacaoFormComponent implements OnInit  {
         private pesosService: PesosService
     ) { }
 
-    // hasErrors(): boolean {
-    //     let hasErrors: boolean = false;
-    //     for (let controlName in this.formAvaliacao.controls) {
-    //         let control: AbstractControl = this.formAvaliacao.controls[controlName];
-    //         if (!control.valid && !control.pristine) {
-    //             hasErrors = true;
-    //             break;
-    //         }
-    //     }
-    //     return hasErrors;
-    // }
 
     ngOnInit() {
 
@@ -148,7 +137,7 @@ export class AvaliacaoFormComponent implements OnInit  {
             this.avaliacaoService.getAvaliacaoId(this.idResource).subscribe(response => {
                 response = this.avaliacao = response;
                 // if (response.status === 404) {
-                    this.router.navigate(['avaliacao']);
+                this.router.navigate(['avaliacao']);
                 // }
             });
         });
@@ -181,31 +170,34 @@ export class AvaliacaoFormComponent implements OnInit  {
 
         let avaliacaoForm = this.formAvaliacao.value;
         this.somaValores('tudo');
-console.log({
-    "id_resultado": 'null',
-    "pontuacao": avaliacaoForm.vlrPtTotal,
-    "dt_resultado": "2017-11-29T18:11:20.000Z",
-    "ajuste": avaliacaoForm.ajuste,
-    "ociosidade": avaliacaoForm.ociosidade,
-    "referencia_fct_gfe_pontuacao": '10',
-    "TB_COLABORADOR_id_colaborador": avaliacaoForm.colaborador.idColaborador,
-    "TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe": '12',
-    "TB_COLABORADOR_TB_DIVISAO_id_divisao": avaliacaoForm.divisao.id_divisao,
-  })
+
+        console.log({
+            'id_resultado': 'null',
+            'pontuacao': avaliacaoForm.vlrPtTotal,
+            'dt_resultado': 'null',
+            'ajuste': avaliacaoForm.ajuste,
+            'ociosidade': avaliacaoForm.ociosidade,
+            'referencia_fct_gfe_pontuacao': avaliacaoForm.colaborador.referencia_fct_gfe_pontuacao,
+            'TB_COLABORADOR_id_colaborador': avaliacaoForm.colaborador.idColaborador,
+            'TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe': avaliacaoForm.colaborador.referencia_fct_gfe_pontuacao,
+            'TB_COLABORADOR_TB_DIVISAO_id_divisao': avaliacaoForm.divisao.id_divisao,
+        });
+
         this.avaliacaoService.addAvaliacao({
-            "id_resultado": 'null',
-            "pontuacao": avaliacaoForm.vlrPtTotal,
-            "dt_resultado": "2017-11-29T18:11:20.000Z",
-            "ajuste": avaliacaoForm.ajuste,
-            "ociosidade": avaliacaoForm.ociosidade,
-            "referencia_fct_gfe_pontuacao": '10',
-            "TB_COLABORADOR_id_colaborador": 1,
-            "TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe": '12',
-            "TB_COLABORADOR_TB_DIVISAO_id_divisao": avaliacaoForm.divisao.id_divisao,
-          }).subscribe(data => { 
+            'id_resultado': 'null',
+            'pontuacao': avaliacaoForm.vlrPtTotal,
+            'dt_resultado': 'null',
+            'ajuste': avaliacaoForm.ajuste,
+            'ociosidade': avaliacaoForm.ociosidade,
+            'referencia_fct_gfe_pontuacao': avaliacaoForm.colaborador.referencia_fct_gfe_pontuacao,
+            'TB_COLABORADOR_id_colaborador': avaliacaoForm.colaborador.idColaborador,
+            'TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe': avaliacaoForm.colaborador.referencia_fct_gfe_pontuacao,
+            'TB_COLABORADOR_TB_DIVISAO_id_divisao': avaliacaoForm.divisao.id_divisao,
+        }).subscribe(data => {
             console.log(data);
             this.router.navigate(['avaliacao']);
         });
+
     }
 
     getPapeis() {
@@ -328,7 +320,7 @@ console.log({
     }
 
     getChangeData(idAtributo) {
-        let vlrArray: any[] = [];
+        
         this.vlrAtributo = 0;
 
         idAtributo.forEach(element => {

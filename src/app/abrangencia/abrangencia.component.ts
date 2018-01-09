@@ -37,9 +37,9 @@ export class AbrangenciaComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
 
-    console.log('xxxx: ', this.loginService.isLoggedIn());
+    // console.log('xxxx: ', this.loginService.isLoggedIn());
     if ( this.loginService.isLoggedIn() ) {
-      console.log('valor do token: ', this.loginService.user);
+      // console.log('valor do token: ', this.loginService.user);
     }
 
     this.loaderService.setMsgLoading("Carregando abrangencias...");
