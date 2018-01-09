@@ -14,7 +14,7 @@
       <li class="active">Detalhes da Avaliação</li>
     </ol>
   </section>
-  <section class="content">
+  <section class="content" style="margin-right: 235px;">
     <div class="row">
       <div class="col-md-12">
         <div class="box box-primary">
@@ -273,7 +273,7 @@
                           </button>
                         </td>
                       </tr>
-                    </table> -->
+                    </table>
                   </div>
                 </div>
               </div>
@@ -299,68 +299,68 @@
 
               <section class="canto" id="myScrollspy">
                 <div class="row">
-                  <div class="col-md-3">
+                  <div class="col-md-12">
                     <div class="box box-default">
                       <div class="box-header with-border">
                         <h3 class="box-title">Resumo da avaliação</h3>
-          
                         <div class="box-tools pull-right">
-                          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                          <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                            <i class="fa fa-minus"></i>
                           </button>
                         </div>
                         <!-- /.box-tools -->
                       </div>
                       <!-- /.box-header -->
                       <div class="box-body">
-                        The body of the box
+                          <div class="form-group" data-spy="affix" data-offset-top="195">
+                              <table class="table table-condensed">
+                                <tr>
+                                  <th style="width: 50%">Pontuação Total</th>
+                                  <th style="width: 50%">Pontuação FCT Atual</th>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <label style="width: 100%">
+                                      <input type="text" class="form-control" formControlName="vlrPtTotal" readonly>
+                                    </label>
+                                  </td>
+                                  <td>
+                                    <label style="width: 100%">
+                                      <input type="text" class="form-control" formControlName="vlrFCTatual" readonly>
+                                    </label>
+                                  </td>
+                                </tr>
+                              </table>
+                              <table class="table table-condensed">
+                                <tr>
+                                  <th style="width: 50%">Ajuste</th>
+                                  <th style="width: 5%"></th>
+                                  <th></th>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <label style="width: 100%">
+                                      <input type="text" class="form-control" formControlName="ajuste" readonly>
+                                    </label>
+                                  </td>
+                                  <td>
+                                    <span class="{{this.classeCss1}}">{{this.percAjuste.toFixed(2)}}%</span>
+                                  </td>
+                                  <td>
+                                    <div class="progress progress-sm progress-striped active">
+                                      <div class="{{this.classeBarra1}}" [style.width]="percAjusteBarra"></div>
+                                    </div>
+                                  </td>
+                                </tr>
+                              </table>
+                            </div>
                       </div>
                       <!-- /.box-body -->
                     </div>
                     <!-- /.box -->
                   </div>
                 </div>
-                <div class="form-group" data-spy="affix" data-offset-top="195">
-                  <table class="table table-condensed">
-                    <tr>
-                      <th style="width: 50%">Pontuação Total</th>
-                      <th style="width: 50%">Pontuação FCT Atual</th>
-                    </tr>
-                    <tr>
-                      <td>
-                        <label style="width: 100%">
-                          <input type="text" class="form-control" formControlName="vlrPtTotal" readonly>
-                        </label>
-                      </td>
-                      <td>
-                        <label style="width: 100%">
-                          <input type="text" class="form-control" formControlName="vlrFCTatual" readonly>
-                        </label>
-                      </td>
-                    </tr>
-                  </table>
-                  <table class="table table-condensed">
-                    <tr>
-                      <th style="width: 50%">Ajuste</th>
-                      <th style="width: 5%"></th>
-                      <th></th>
-                    </tr>
-                    <tr>
-                      <td>
-                        <label style="width: 100%">
-                          <input type="text" class="form-control" formControlName="ajuste" readonly>
-                        </label>
-                      </td>
-                      <td>
-                        <span class="{{this.classeCss1}}">{{this.percAjuste.toFixed(2)}}%</span>
-                      </td>
-                      <td>
-                        <div class="progress progress-sm progress-striped active">
-                          <div class="{{this.classeBarra1}}" [style.width]="percAjusteBarra"></div>
-                        </div>
-                      </td>
-                    </tr>
-                  </table>
-                </div>
+                
 
               </section>
 
@@ -387,7 +387,7 @@
             </div>
             <div class="box-footer">
               <button type="button" class="btn btn-default" (click)="onCancel()">Cancelar</button>
-              <button type="submit" class="btn btn-info pull-right">Registrar</button>
+              <!-- <button type="submit" class="btn btn-info pull-right">Registrar</button> -->
               <button type="submit" class="btn btn-info pull-right" [disabled]="!formAvaliacao.valid">Enviar</button>
             </div>
           </form>

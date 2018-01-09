@@ -71,8 +71,6 @@ import { LoggedInGuard } from 'app/shared/loggedin.guard';
 import { SnackbarComponent } from './shared/messages/snackbar/snackbar.component';
 import { RelatoriosComponent } from 'app/relatorios/relatorios.component';
 
-import { ScrollSpyModule } from 'ngx-scrollspy';
-
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     align: 'left',
     allowNegative: true,
@@ -109,7 +107,6 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
         CurrencyMaskModule,
         Ng2SelectizeModule,
         ChartModule,
-        ScrollSpyModule.forRoot(),
         DivisaoModule,
         divisaoRouting,
         AbrangenciaModule,

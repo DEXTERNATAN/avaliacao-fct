@@ -44,6 +44,7 @@ export class LoginService  extends RestService<User> {
     }
 
     isLoggedIn(): boolean {
+        console.log(this.user);
         return this.user !== undefined;
     }
 
@@ -53,7 +54,7 @@ export class LoginService  extends RestService<User> {
         .do(users => {
             localStorage.setItem('users', JSON.stringify(users));
             this.user = JSON.parse(localStorage.getItem('users'));
-            console.log(this.user);
+            // console.log(this.user);
         });
     }
 

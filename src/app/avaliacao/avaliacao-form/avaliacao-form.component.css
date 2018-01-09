@@ -2,3 +2,15 @@
     top: 20px;
     z-index: 9999 !important;
 }
+
+.canto {
+    min-width: 25%;
+    min-height: 200px;
+    /* border-radius: 10px; */
+    top: 106px;
+    right: 10px;
+    text-align: center;
+    position: fixed;
+    background: #f4f4f4;
+    z-index: 999;
+}

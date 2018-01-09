@@ -3,8 +3,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import 'rxjs/Rx';
 
-import { ScrollSpyService } from 'ngx-scrollspy';
-
 import { Avaliacao } from './../avaliacao.model';
 import { Colaborador } from './../../colaborador/colaborador.model';
 import { Divisao } from './../../divisao/divisao.model';
@@ -62,7 +60,7 @@ export class AvaliacaoFormComponent implements OnInit  {
     items: FormArray;
     itemsAtributo: FormArray;
     vlrTotal: any;
-    vlrSucesso = true;
+    vlrSucesso = false;
 
     public percentMask = [/\d/, /\d/, '.', /\d/, /\d/];
 
@@ -98,7 +96,6 @@ export class AvaliacaoFormComponent implements OnInit  {
         private formBuilder: FormBuilder,
         private router: Router,
         private route: ActivatedRoute,
-        private scrollSpyService: ScrollSpyService,
         private colaboradorService: ColaboradorService,
         private avaliacaoService: AvaliacaoService,
         private papelService: PapelService,
