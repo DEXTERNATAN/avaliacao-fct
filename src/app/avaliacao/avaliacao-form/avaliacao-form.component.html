@@ -35,18 +35,24 @@
                   </tr>
                   <tr>
                     <td>
-                      <div class="form-group">
-                        <select class="form-control" id="sigla" formControlName="divisao">
-                          <option [selected]="true" value="0">Selecione</option>
+                      <div class="form-group" [ngClass]="{'has-error': (!formAvaliacao.controls['divisao'].valid && formAvaliacao.controls['divisao'].touched) }">
+                        <select class="form-control" formControlName="divisao" ngModel>
+                          <option value="" disabled>Selecione</option>
+                          <!-- <option value="" disabled>Choose a state</option> -->
                           <option *ngFor="let divisao of Divisao; let i = index" [ngValue]="divisao">{{divisao.sigla}}</option>
                         </select>
+                        <span *ngIf="!formAvaliacao.controls['divisao'].valid && formAvaliacao.controls['divisao'].touched" class="help-block">O campo Divisão é obrigatório!</span>
                       </div>
                     </td>
                     <td>
-                      <select class="form-control" id="" formControlName="colaborador" (change)="somaValores('fctatual')">
-                        <option [selected]="true" value="">Selecione</option>
-                        <option *ngFor="let colaborador of Colaborador; let i = index" [ngValue]="colaborador">{{ colaborador.nome }}</option>
-                      </select>
+                      <div class="form-group" [ngClass]="{'has-error': (!formAvaliacao.controls['colaborador'].valid && formAvaliacao.controls['colaborador'].touched) }">
+                        <select class="form-control" formControlName="colaborador" (change)="somaValores('fctatual')" ngModel>
+                          <!-- <option [selected]="true" value="">Selecione</option> -->
+                          <option value="" disabled>Selecione</option>
+                          <option *ngFor="let colaborador of Colaborador; let i = index" [ngValue]="colaborador">{{ colaborador.nome }}</option>
+                        </select>
+                        <span *ngIf="!formAvaliacao.controls['colaborador'].valid && formAvaliacao.controls['colaborador'].touched" class="help-block">O campo Colaborador é obrigatório!</span>
+                      </div>
                     </td>
                     <td>
                       <ng2-selectize [config]="configPapel" [options]="papel" [(ngModel)]="valuePapel" formControlName="papel"></ng2-selectize>
@@ -312,55 +318,55 @@
                       </div>
                       <!-- /.box-header -->
                       <div class="box-body">
-                          <div class="form-group" data-spy="affix" data-offset-top="195">
-                              <table class="table table-condensed">
-                                <tr>
-                                  <th style="width: 50%">Pontuação Total</th>
-                                  <th style="width: 50%">Pontuação FCT Atual</th>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <label style="width: 100%">
-                                      <input type="text" class="form-control" formControlName="vlrPtTotal" readonly>
-                                    </label>
-                                  </td>
-                                  <td>
-                                    <label style="width: 100%">
-                                      <input type="text" class="form-control" formControlName="vlrFCTatual" readonly>
-                                    </label>
-                                  </td>
-                                </tr>
-                              </table>
-                              <table class="table table-condensed">
-                                <tr>
-                                  <th style="width: 50%">Ajuste</th>
-                                  <th style="width: 5%"></th>
-                                  <th></th>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <label style="width: 100%">
-                                      <input type="text" class="form-control" formControlName="ajuste" readonly>
-                                    </label>
-                                  </td>
-                                  <td>
-                                    <span class="{{this.classeCss1}}">{{this.percAjuste.toFixed(2)}}%</span>
-                                  </td>
-                                  <td>
-                                    <div class="progress progress-sm progress-striped active">
-                                      <div class="{{this.classeBarra1}}" [style.width]="percAjusteBarra"></div>
-                                    </div>
-                                  </td>
-                                </tr>
-                              </table>
-                            </div>
+                        <div class="form-group" data-spy="affix" data-offset-top="195">
+                          <table class="table table-condensed">
+                            <tr>
+                              <th style="width: 50%">Pontuação Total</th>
+                              <th style="width: 50%">Pontuação FCT Atual</th>
+                            </tr>
+                            <tr>
+                              <td>
+                                <label style="width: 100%">
+                                  <input type="text" class="form-control" formControlName="vlrPtTotal" readonly>
+                                </label>
+                              </td>
+                              <td>
+                                <label style="width: 100%">
+                                  <input type="text" class="form-control" formControlName="vlrFCTatual" readonly>
+                                </label>
+                              </td>
+                            </tr>
+                          </table>
+                          <table class="table table-condensed">
+                            <tr>
+                              <th style="width: 50%">Ajuste</th>
+                              <th style="width: 5%"></th>
+                              <th></th>
+                            </tr>
+                            <tr>
+                              <td>
+                                <label style="width: 100%">
+                                  <input type="text" class="form-control" formControlName="ajuste" readonly>
+                                </label>
+                              </td>
+                              <td>
+                                <span class="{{this.classeCss1}}">{{this.percAjuste.toFixed(2)}}%</span>
+                              </td>
+                              <td>
+                                <div class="progress progress-sm progress-striped active">
+                                  <div class="{{this.classeBarra1}}" [style.width]="percAjusteBarra"></div>
+                                </div>
+                              </td>
+                            </tr>
+                          </table>
+                        </div>
                       </div>
                       <!-- /.box-body -->
                     </div>
                     <!-- /.box -->
                   </div>
                 </div>
-                
+
 
               </section>
 

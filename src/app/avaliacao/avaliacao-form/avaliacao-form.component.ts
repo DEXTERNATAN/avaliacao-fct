@@ -1,6 +1,6 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, Validators, AbstractControl } from '@angular/forms';
 import 'rxjs/Rx';
 
 import { Avaliacao } from './../avaliacao.model';
@@ -104,13 +104,25 @@ export class AvaliacaoFormComponent implements OnInit {
         private projetoService: ProjetoService,
         private pesosService: PesosService
     ) { }
+    
+    hasErrors(): boolean {
+        var hasErrors: boolean = false;
+        for (var controlName in this.formAvaliacao.controls) {
+            var control: AbstractControl = this.formAvaliacao.controls[controlName];
+            if (!control.valid && !control.pristine) {
+                hasErrors = true;
+                break;
+            }
+        }
+        return hasErrors;
+    }
 
 
     ngOnInit() {
 
         this.formAvaliacao = this.formBuilder.group({
-            divisao: [0],
-            colaborador: [0],
+            divisao: [null, Validators.required],
+            colaborador: [null, Validators.required],
             papel: [0],
             tecnologia: [0],
             Projeto: [0],
@@ -123,6 +135,8 @@ export class AvaliacaoFormComponent implements OnInit {
             ajuste: 0.00,
             referenciaFctAtual: ''
         });
+
+ 
 
         console.log(this.formAvaliacao);
 
@@ -170,18 +184,6 @@ export class AvaliacaoFormComponent implements OnInit {
 
         let avaliacaoForm = this.formAvaliacao.value;
         this.somaValores('tudo');
-
-        console.log({
-            'id_resultado': 'null',
-            'pontuacao': avaliacaoForm.vlrPtTotal,
-            'dt_resultado': 'null',
-            'ajuste': avaliacaoForm.ajuste,
-            'ociosidade': avaliacaoForm.ociosidade,
-            'referencia_fct_gfe_pontuacao': avaliacaoForm.colaborador.referencia_fct_gfe_pontuacao,
-            'TB_COLABORADOR_id_colaborador': avaliacaoForm.colaborador.idColaborador,
-            'TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe': avaliacaoForm.colaborador.referencia_fct_gfe_pontuacao,
-            'TB_COLABORADOR_TB_DIVISAO_id_divisao': avaliacaoForm.divisao.id_divisao,
-        });
 
         this.avaliacaoService.addAvaliacao({
             'id_resultado': 'null',
@@ -320,10 +322,9 @@ export class AvaliacaoFormComponent implements OnInit {
     }
 
     getChangeData(idAtributo) {
-        
         this.vlrAtributo = 0;
-
         idAtributo.forEach(element => {
+
             this.avaliacaoService.getPapelAtributo(element).subscribe((data) => {
                 if (data !== []) {
                     data.forEach(arrayPush => {
