@@ -10,6 +10,7 @@ import { TextMaskModule } from 'angular2-text-mask';
 
 import { AvaliacaoComponent } from './avaliacao.component';
 import { AvaliacaoService } from 'app/avaliacao/avaliacao.service';
+import { AtributoColaboradorService } from './AtributoColaborador.service';
 import { AvaliacaoFormComponent } from 'app/avaliacao/avaliacao-form/avaliacao-form.component';
 import { FilterSearchPipe } from 'app/shared/pipes/filterSearch.pipes';
 
@@ -25,7 +26,7 @@ import { FilterSearchPipe } from 'app/shared/pipes/filterSearch.pipes';
     Ng2SelectizeModule,
     TextMaskModule
  ],
-  providers: [ AvaliacaoService ],
+  providers: [ AvaliacaoService, AtributoColaboradorService ],
   declarations: [
     AvaliacaoComponent,
     AvaliacaoFormComponent,

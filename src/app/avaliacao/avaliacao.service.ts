@@ -53,42 +53,5 @@ export class AvaliacaoService  extends RestService<Avaliacao>{
         return super.atualizarPorId(avaliacao, id);
     }
 
-
-    // deleteAvaliacao(id_avaliacao) {
-    //     return this.http.delete(`${MEAT_API}/avaliacao/${id_avaliacao}`)
-    //         .map(response => response.json())
-    //         .do(data => console.log('server data:', data))  // debug
-    //         .catch(ErrorHandler.handleError);
-    // }
-
-    // getAvaliacaoId(id_avaliacao) {
-    //     return this.http.get(`${MEAT_API}/avaliacao/${id_avaliacao}`)
-    //     .map(response => response.json())
-    // }
-
-    // // addAvaliacao(avaliacao) {
-    // //     return this._http.post(`${MEAT_API}/avaliacao`, JSON.stringify(avaliacao), this.options)
-    // //         .map(res => res.json());
-    // // }
-
-    // addAvaliacao(avaliacao: any): Observable<any> {
-    //     debugger
-    //     let body = JSON.stringify(avaliacao);
-    //     return this._http.post('http://localhost:3000/avaliacao', body, this.options)
-    //         .map(this.extractData)
-    //         .do(data => console.log('server data:', data))  // debug
-    //         .catch(ErrorHandler.handleError);
-    // }
-
-    // private extractData(res: Response) {
-    //     let body = res.json();
-    //     return body || {};
-    // }
-
-
-    // updateAvaliacao(id_avaliacao, avaliacao) {
-    //     return this._http.put(`${MEAT_API}/avaliacao/${id_avaliacao}`, JSON.stringify(avaliacao), this.options)
-    //         .map(response => response.json())
-    // }
-
+    
 }

@@ -1,4 +1,5 @@
-import { Component, OnInit} from '@angular/core';
+import { AtributoColaborador } from './../AtributoColaborador.model';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, FormArray, Validators, AbstractControl } from '@angular/forms';
 import 'rxjs/Rx';
@@ -19,6 +20,8 @@ import { TecnologiaService } from './../../tecnologia/tecnologia.service';
 import { ProjetoService } from './../../projeto/projeto.service';
 import { PesosService } from './../../pesos/pesos.service';
 
+import { AtributoColaboradorService } from './../AtributoColaborador.service';
+
 @Component({
     selector: 'mt-avaliacao-form',
     templateUrl: './avaliacao-form.component.html',
@@ -37,6 +40,7 @@ export class AvaliacaoFormComponent implements OnInit {
     Pesos: Pesos[];
     papel: Papel[] = [];
     PapelAtributo2: any[] = [];
+    atributoColaborador: AtributoColaborador[];
     valorCopy: any[];
     PapelAtributo: any[] = [];
     projetosList: number[] = [1];
@@ -102,20 +106,21 @@ export class AvaliacaoFormComponent implements OnInit {
         private tecnologiaService: TecnologiaService,
         private divisaoService: DivisaoService,
         private projetoService: ProjetoService,
-        private pesosService: PesosService
+        private pesosService: PesosService,
+        private atributoColaboradorService: AtributoColaboradorService
     ) { }
-    
-    hasErrors(): boolean {
-        var hasErrors: boolean = false;
-        for (var controlName in this.formAvaliacao.controls) {
-            var control: AbstractControl = this.formAvaliacao.controls[controlName];
-            if (!control.valid && !control.pristine) {
-                hasErrors = true;
-                break;
-            }
-        }
-        return hasErrors;
-    }
+
+    // hasErrors(): boolean {
+    //     var hasErrors: boolean = false;
+    //     for (var controlName in this.formAvaliacao.controls) {
+    //         var control: AbstractControl = this.formAvaliacao.controls[controlName];
+    //         if (!control.valid && !control.pristine) {
+    //             hasErrors = true;
+    //             break;
+    //         }
+    //     }
+    //     return hasErrors;
+    // }
 
 
     ngOnInit() {
@@ -126,7 +131,7 @@ export class AvaliacaoFormComponent implements OnInit {
             papel: [0],
             tecnologia: [0],
             Projeto: [0],
-            items: this.formBuilder.array([]), // this.createItem()
+            items: this.formBuilder.array([]),
             itemsAtributo: this.formBuilder.array([]),
             qtdProjetos: [0],
             vlrPtTotal: 0.00,
@@ -136,7 +141,7 @@ export class AvaliacaoFormComponent implements OnInit {
             referenciaFctAtual: ''
         });
 
- 
+
 
         console.log(this.formAvaliacao);
 
@@ -184,6 +189,9 @@ export class AvaliacaoFormComponent implements OnInit {
 
         let avaliacaoForm = this.formAvaliacao.value;
         this.somaValores('tudo');
+        debugger
+        // Relacionar colaborador a atributo
+        this.associaColabAtributo(avaliacaoForm);
 
         this.avaliacaoService.addAvaliacao({
             'id_resultado': 'null',
@@ -201,6 +209,27 @@ export class AvaliacaoFormComponent implements OnInit {
         });
 
     }
+
+    associaColabAtributo(formAvaliacao: any): any {
+        console.log('AVALIACAO: ', formAvaliacao);
+        //this.atributoColaborador.push(
+          let teste =   { 
+                'TB_COLABORADOR_id_colaborador': 2, 
+                'TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe': 59, 
+                'TB_COLABORADOR_TB_DIVISAO_id_divisao': 3, 
+                'TB_ATRIBUTO_id_atributo': 1, 
+                'TB_ATRIBUTO_TB_ABRANGENCIA_id_abrangencia': 1, 
+                'TB_ATRIBUTO_TB_COMPLEXIDADE_id_complexidade': 1, 
+                'TB_ATRIBUTO_TB_IMPACTO_id_impacto': 1 
+            }
+        //);
+
+        this.atributoColaboradorService.addAssociacaoAtributoColaborador(teste).subscribe(data => {
+            console.log('ATRIBUTO COLABORADOR: ', data);
+        });
+
+    }
+
 
     getPapeis() {
         this.papelService.getPapel().subscribe(papel => {
@@ -273,9 +302,9 @@ export class AvaliacaoFormComponent implements OnInit {
 
     createItemAtributo(atributo): FormGroup {
         return this.formBuilder.group({
-            Abrangencia: 1,
-            Complexidade: 1,
-            Impacto: 1,
+            Abrangencia: [1, Validators.required],
+            Complexidade: [1, Validators.required],
+            Impacto: [1, Validators.required],
             letra: atributo.letra,
             descricao: atributo.descricao,
             descricaoAbrangencia1: atributo.descricaoAbrangencia1,
@@ -291,6 +320,7 @@ export class AvaliacaoFormComponent implements OnInit {
     }
 
     getItemsAtributo(formAvaliacao) {
+        console.log(formAvaliacao.get('itemsAtributo').controls);
         return formAvaliacao.get('itemsAtributo').controls;
     }
 
@@ -330,6 +360,7 @@ export class AvaliacaoFormComponent implements OnInit {
                     data.forEach(arrayPush => {
                         let vlrRepetido = this.PapelAtributo.find(result => result.letra === arrayPush.letra) ? true : false;
                         if (!vlrRepetido) {
+
                             this.PapelAtributo.push(arrayPush);
                             this.addItemAtributo(arrayPush);
 

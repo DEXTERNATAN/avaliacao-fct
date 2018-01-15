@@ -6,7 +6,7 @@
     <ol class="breadcrumb">
       <li>
         <a href="#">
-          <i class="fa fa-home"></i> Home</a>
+          <i class="fa fa-home"></i>Home</a>
       </li>
       <li>
         <a href="#">Avaliação</a>
@@ -55,7 +55,10 @@
                       </div>
                     </td>
                     <td>
-                      <ng2-selectize [config]="configPapel" [options]="papel" [(ngModel)]="valuePapel" formControlName="papel"></ng2-selectize>
+                      <div class="form-group" [ngClass]="{'has-error': (!formAvaliacao.controls['papel'].valid && formAvaliacao.controls['papel'].touched) }">
+                        <ng2-selectize [config]="configPapel" [options]="papel" [(ngModel)]="valuePapel" formControlName="papel"></ng2-selectize>
+                        <span *ngIf="!formAvaliacao.controls['papel'].valid && formAvaliacao.controls['papel'].touched" class="help-block">O campo Papel é obrigatório!</span>
+                      </div>
                     </td>
                   </tr>
                 </table>
