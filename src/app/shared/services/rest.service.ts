@@ -1,11 +1,8 @@
 
 import { Http, Response, RequestOptions, Headers, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw'
-import { LoaderService } from 'app/shared/services/loader.service';
-import { MensagensHandler } from 'app/shared/services/mensagens-handler.service';
 import { MEAT_API } from 'app/app.api';
 import { ErrorHandler } from 'app/app.error-handler';
 
@@ -37,14 +34,14 @@ export abstract class RestService<T> {
     obterTodos(): Observable<T[]> {
         return this.http.get(`${this.getUrlBase()}/${this.getUrl()}`, this.getDefaultRequestOptions())
             .map(response => response.json())
-            .do(data => console.log('COLABORADOR:', data))  // debug
+            // .do(data => console.log('COLABORADOR:', data))  // debug
             .catch(ErrorHandler.handleError);
     }
 
     obterPorId(id: string): Observable<T> {
         return this.http.get(`${this.getUrlBase()}/${this.getUrl()}/${id}`, this.getDefaultRequestOptions())
             .map(response => response.json())
-            //.do(data => console.log('server data:', data))  // debug
+            // .do(data => console.log('server data:', data))  // debug
             .catch(ErrorHandler.handleError);
     }
 
@@ -53,21 +50,21 @@ export abstract class RestService<T> {
         options.search = urlSearch;
         return this.http.get(`${this.getUrlBase()}/${url}`, options)
             .map(response => response.json())
-            //.do(data => console.log('server data:', data))  // debug
+            // .do(data => console.log('server data:', data))  // debug
             .catch(ErrorHandler.handleError);
     }
 
     adicionar(objeto: T): Observable<string> {
         return this.http.post(`${this.getUrlBase()}/${this.getUrl()}`, objeto, this.getDefaultRequestOptions())
             .map(response => response.text())
-            .do(data => console.log('server data:', data))  // debug
+            // .do(data => console.log('server data:', data))  // debug
             .catch(ErrorHandler.handleError);
     }
 
     atualizar(objeto: T): Observable<T> {
         return this.http.put(`${this.getUrlBase()}/${this.getUrl()}` + '/' + this.mapIdentificador(objeto), objeto, this.getDefaultRequestOptions())
             .map(response => response.json())
-            //.do(data => console.log('server data:', data))  // debug
+            // .do(data => console.log('server data:', data))  // debug
             .catch(ErrorHandler.handleError);
     }
 
@@ -75,7 +72,7 @@ export abstract class RestService<T> {
         //debugger
         return this.http.put(`${this.getUrlBase()}/${this.getUrl()}` + '/' + id + this.mapIdentificador(objeto), objeto, this.getDefaultRequestOptions())
             .map(response => response.json())
-            .do(data => console.log('server data:', data))  // debug
+            // .do(data => console.log('server data:', data))  // debug
             .catch(ErrorHandler.handleError);
     }
 
@@ -83,7 +80,7 @@ export abstract class RestService<T> {
         return this.http.delete(`${this.getUrlBase()}/${this.getUrl()}` + '/' + this.mapIdentificador(objeto),
             this.getDefaultRequestOptions())
             .map(response => response.json())
-            //.do(data => console.log('server data:', data))  // debug
+            // .do(data => console.log('server data:', data))  // debug
             .catch(ErrorHandler.handleError);
 
     }
@@ -91,7 +88,7 @@ export abstract class RestService<T> {
     removerPorId(id: number): Observable<any> {
         return this.http.delete(`${this.getUrlBase()}/${this.getUrl()}` + '/' + id,
             this.getDefaultRequestOptions())
-            //.do(data => console.log('server data:', data))  // debug
+            // .do(data => console.log('server data:', data))  // debug
             .catch(ErrorHandler.handleError);
     }
 

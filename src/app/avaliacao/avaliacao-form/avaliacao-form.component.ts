@@ -143,7 +143,7 @@ export class AvaliacaoFormComponent implements OnInit {
 
 
 
-        console.log(this.formAvaliacao);
+        // console.log(this.formAvaliacao);
 
         this.route.params.subscribe(params => {
             this.idResource = params['id_resultado'];
@@ -189,7 +189,7 @@ export class AvaliacaoFormComponent implements OnInit {
 
         let avaliacaoForm = this.formAvaliacao.value;
         this.somaValores('tudo');
-        debugger
+        
         // Relacionar colaborador a atributo
         this.associaColabAtributo(avaliacaoForm);
 
@@ -204,15 +204,15 @@ export class AvaliacaoFormComponent implements OnInit {
             'TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe': avaliacaoForm.colaborador.referencia_fct_gfe_pontuacao,
             'TB_COLABORADOR_TB_DIVISAO_id_divisao': avaliacaoForm.divisao.id_divisao,
         }).subscribe(data => {
-            console.log(data);
+            // console.log(data);
             this.router.navigate(['avaliacao']);
         });
 
     }
 
     associaColabAtributo(formAvaliacao: any): any {
-        console.log('AVALIACAO: ', formAvaliacao);
-        //this.atributoColaborador.push(
+        // console.log('AVALIACAO: ', formAvaliacao);
+        // this.atributoColaborador.push(
           let teste =   { 
                 'TB_COLABORADOR_id_colaborador': 2, 
                 'TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe': 59, 
@@ -225,7 +225,7 @@ export class AvaliacaoFormComponent implements OnInit {
         //);
 
         this.atributoColaboradorService.addAssociacaoAtributoColaborador(teste).subscribe(data => {
-            console.log('ATRIBUTO COLABORADOR: ', data);
+            // console.log('ATRIBUTO COLABORADOR: ', data);
         });
 
     }
@@ -320,7 +320,7 @@ export class AvaliacaoFormComponent implements OnInit {
     }
 
     getItemsAtributo(formAvaliacao) {
-        console.log(formAvaliacao.get('itemsAtributo').controls);
+        // console.log(formAvaliacao.get('itemsAtributo').controls);
         return formAvaliacao.get('itemsAtributo').controls;
     }
 
