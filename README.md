@@ -18,10 +18,7 @@
 
 `npm install -g json-server`
 
-
-##----------------------------------------------##
-##-------Comandos principais + utilizados-------##
-##----------------------------------------------##
+### Comandos principais + utilizados
 ## 1.Inicializando o Servidor
 `ng serve` ou `npm start`
 
