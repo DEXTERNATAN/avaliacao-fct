@@ -3,7 +3,7 @@
 	<nav class="navbar navbar-static-top">
 		<div class="container">
 			<div class="navbar-header">
-				<a [routerLink]="['/']" class="navbar-brand"><b>Avaliação FCT</b></a>
+				<a [routerLink]="['/home']" class="navbar-brand"><b>Avaliação FCT</b></a>
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
             		<i class="fa fa-bars"></i>
           		</button>
@@ -13,7 +13,7 @@
 				<ul class="nav navbar-nav">
 					<li routerLinkActive="active"><a [routerLink]="['/avaliacao/novo']">Avaliar</a></li>
 					<li class="dropdown" >
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Cadastros Base <span class="caret"></span></a>
+						<a [routerLink]="['/home']" class="dropdown-toggle" data-toggle="dropdown">Cadastros Base <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<li routerLinkActive="active"><a [routerLink]="['/abrangencia']">Abrangência</a></li>
 							<li class="divider"></li>
@@ -39,7 +39,7 @@
 						</ul>
 					</li>
 					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Cadastro Avançado<span class="caret"></span></a>
+						<a [routerLink]="['/home']" class="dropdown-toggle" data-toggle="dropdown">Cadastro Avançado<span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<li routerLinkActive="active"><a [routerLink]="['/distribuicao']">Distribuição de Valor</a></li>
 						    <li class="divider"></li>
@@ -47,7 +47,7 @@
 						</ul>
 					</li>
 					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Consultas<span class="caret"></span></a>
+						<a [routerLink]="['/home']" class="dropdown-toggle" data-toggle="dropdown">Consultas<span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<li routerLinkActive="active"><a [routerLink]="['/avaliacao']">Avaliações</a></li>
 							<li class="divider"></li>
@@ -55,7 +55,7 @@
 						</ul>
 					</li>
 					<li routerLinkActive="active"><a [routerLink]="['/about']">Sobre</a></li>
-					<!-- <li routerLinkActive="active"><a (click)="logout()" href="#">Sair</a></li> -->
+					<!-- <li routerLinkActive="active"><a (click)="logout()" [routerLink]="['/home']">Sair</a></li> -->
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
@@ -63,7 +63,7 @@
 					<ul class="nav navbar-nav">
 					  <!-- Messages: style can be found in dropdown.less-->
 					  <li class="dropdown messages-menu">
-						<!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						<!-- <a [routerLink]="['/home']" class="dropdown-toggle" data-toggle="dropdown">
 						  <i class="fa fa-envelope-o"></i>
 						  <span class="label label-success">4</span>
 						</a> -->
@@ -74,7 +74,7 @@
 							<!-- <ul class="menu"> -->
 							  <!-- <li> -->
 								  <!-- start message -->
-								<!-- <a href="#">
+								<!-- <a [routerLink]="['/home']">
 								  <div class="pull-left">
 									<img src="assets/img/profile/avatar-perfil-05.png" class="img-circle" alt="User Image">
 								  </div>
@@ -87,7 +87,7 @@
 							  </li> -->
 							  <!-- end message -->
 							  <!-- <li>
-								<a href="#">
+								<a [routerLink]="['/home']">
 								  <div class="pull-left">
 									<img src="assets/img/profile/user3-128x128.jpg" class="img-circle" alt="User Image">
 								  </div>
@@ -99,7 +99,7 @@
 								</a>
 							  </li>
 							  <li>
-								<a href="#">
+								<a [routerLink]="['/home']">
 								  <div class="pull-left">
 									<img src="assets/img/profile/user4-128x128.jpg" class="img-circle" alt="User Image">
 								  </div>
@@ -111,7 +111,7 @@
 								</a>
 							  </li>
 							  <li>
-								<a href="#">
+								<a [routerLink]="['/home']">
 								  <div class="pull-left">
 									<img src="assets/img/profile/user3-128x128.jpg" class="img-circle" alt="User Image">
 								  </div>
@@ -123,7 +123,7 @@
 								</a>
 							  </li>
 							  <li>
-								<a href="#">
+								<a [routerLink]="['/home']">
 								  <div class="pull-left">
 									<img src="assets/img/profile/user4-128x128.jpg" class="img-circle" alt="User Image">
 								  </div>
@@ -136,12 +136,12 @@
 							  </li>
 							</ul>
 						  </li>
-						  <li class="footer"><a href="#">See All Messages</a></li>
+						  <li class="footer"><a [routerLink]="['/home']">See All Messages</a></li>
 						</ul>
 					  </li> -->
 					  <!-- Notifications: style can be found in dropdown.less -->
 					  <!-- <li class="dropdown notifications-menu">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						<a [routerLink]="['/home']" class="dropdown-toggle" data-toggle="dropdown">
 						  <i class="fa fa-bell-o"></i>
 						  <span class="label label-warning">10</span>
 						</a>
@@ -151,39 +151,39 @@
 							<!-- inner menu: contains the actual data -->
 							<!-- <ul class="menu">
 							  <li>
-								<a href="#">
+								<a [routerLink]="['/home']">
 								  <i class="fa fa-users text-aqua"></i> 5 new members joined today
 								</a>
 							  </li>
 							  <li>
-								<a href="#">
+								<a [routerLink]="['/home']">
 								  <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the
 								  page and may cause design problems
 								</a>
 							  </li>
 							  <li>
-								<a href="#">
+								<a [routerLink]="['/home']">
 								  <i class="fa fa-users text-red"></i> 5 new members joined
 								</a>
 							  </li>
 							  <li>
-								<a href="#">
+								<a [routerLink]="['/home']">
 								  <i class="fa fa-shopping-cart text-green"></i> 25 sales made
 								</a>
 							  </li>
 							  <li>
-								<a href="#">
+								<a [routerLink]="['/home']">
 								  <i class="fa fa-user text-red"></i> You changed your username
 								</a>
 							  </li>
 							</ul>
 						  </li>
-						  <li class="footer"><a href="#">View all</a></li>
+						  <li class="footer"><a [routerLink]="['/home']">View all</a></li>
 						</ul>
 					  </li> -->
 					  <!-- Tasks: style can be found in dropdown.less -->
 					  <!-- <li class="dropdown tasks-menu">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						<a [routerLink]="['/home']" class="dropdown-toggle" data-toggle="dropdown">
 						  <i class="fa fa-flag-o"></i>
 						  <span class="label label-danger">9</span>
 						</a>
@@ -194,7 +194,7 @@
 							<!-- <ul class="menu"> -->
 							  <!-- <li> -->
 								  <!-- Task item -->
-								<!-- <a href="#">
+								<!-- <a [routerLink]="['/home']">
 								  <h3>
 									Design some buttons
 									<small class="pull-right">20%</small>
@@ -209,7 +209,7 @@
 							  <!-- end task item -->
 							  <!-- <li> -->
 								  <!-- Task item -->
-								<!-- <a href="#">
+								<!-- <a [routerLink]="['/home']">
 								  <h3>
 									Create a nice theme
 									<small class="pull-right">40%</small>
@@ -224,7 +224,7 @@
 							  <!-- end task item -->
 							  <!-- <li> -->
 								  <!-- Task item -->
-								<!-- <a href="#">
+								<!-- <a [routerLink]="['/home']">
 								  <h3>
 									Some task I need to do
 									<small class="pull-right">60%</small>
@@ -239,7 +239,7 @@
 							  <!-- end task item -->
 							  <!-- <li> -->
 								  <!-- Task item -->
-								<!-- <a href="#">
+								<!-- <a [routerLink]="['/home']">
 								  <h3>
 									Make beautiful transitions
 									<small class="pull-right">80%</small>
@@ -255,13 +255,13 @@
 							<!-- </ul>
 						  </li>
 						  <li class="footer">
-							<a href="#">View all tasks</a>
+							<a [routerLink]="['/home']">View all tasks</a>
 						  </li>
 						</ul>
 					  </li> -->
 					  <!-- User Account: style can be found in dropdown.less -->
 					  <li class="dropdown user user-menu">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						<a [routerLink]="['/home']" class="dropdown-toggle" data-toggle="dropdown">
 						  <img src="assets/img/profile/avatar-perfil-05.png" class="user-image" alt="User Image">
 							<span class="hidden-xs">{{ user().login }}</span>
 						</a>
@@ -278,13 +278,13 @@
 						  <!-- <li class="user-body">
 							<div class="row">
 							  <div class="col-xs-4 text-center">
-								<a href="#">Followers</a>
+								<a [routerLink]="['/home']">Followers</a>
 							  </div>
 							  <div class="col-xs-4 text-center">
-								<a href="#">Sales</a>
+								<a [routerLink]="['/home']">Sales</a>
 							  </div>
 							  <div class="col-xs-4 text-center">
-								<a href="#">Friends</a>
+								<a [routerLink]="['/home']">Friends</a>
 							  </div>
 							</div> -->
 							<!-- /.row -->
@@ -292,7 +292,7 @@
 						  <!-- Menu Footer-->
 						  <li class="user-footer">
 							<div class="pull-left">
-							  <a href="#" class="btn btn-default btn-flat">Alterar Senha</a>
+							  <a [routerLink]="['/home']" class="btn btn-default btn-flat">Alterar Senha</a>
 							</div>
 							<div class="pull-right">
 							  <a (click)="logout()" class="btn btn-default btn-flat">Sair</a>
@@ -302,7 +302,7 @@
 					  </li>
 					  <!-- Control Sidebar Toggle Button -->
 					  <!-- <li>
-						<a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+						<a [routerLink]="['/home']" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
 					  </li> -->
 					</ul>
 				  </div>
