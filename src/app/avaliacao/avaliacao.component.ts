@@ -9,6 +9,7 @@ import { LoginService } from 'app/security/login/login.service';
 import { ColaboradorService } from 'app/colaborador/colaborador.service';
 
 
+
 @Component({
     selector: 'mt-avaliacao',
     templateUrl: './avaliacao.component.html',
@@ -31,10 +32,13 @@ export class AvaliacaoComponent implements OnInit, AfterViewInit {
 
     constructor(
         private _avaliacaoService: AvaliacaoService,
-        private _colaboradorService: ColaboradorService
+        private _colaboradorService: ColaboradorService,
+        private loginService: LoginService
     ) { }
 
     ngOnInit() {
+
+        
 
         this.dtOptions = {
             language: {
@@ -51,7 +55,10 @@ export class AvaliacaoComponent implements OnInit, AfterViewInit {
             });
 
 
-    }
+    
+        }
+
+    
 
     ngAfterViewInit(): void { }
 

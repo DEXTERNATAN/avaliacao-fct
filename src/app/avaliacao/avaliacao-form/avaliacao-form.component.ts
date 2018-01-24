@@ -20,6 +20,10 @@ import { TecnologiaService } from './../../tecnologia/tecnologia.service';
 import { ProjetoService } from './../../projeto/projeto.service';
 import { PesosService } from './../../pesos/pesos.service';
 
+import { LoginService } from 'app/security/login/login.service';
+
+import { User } from 'app/security/login/user';
+
 import { AtributoColaboradorService } from './../AtributoColaborador.service';
 
 @Component({
@@ -107,7 +111,8 @@ export class AvaliacaoFormComponent implements OnInit {
         private divisaoService: DivisaoService,
         private projetoService: ProjetoService,
         private pesosService: PesosService,
-        private atributoColaboradorService: AtributoColaboradorService
+        private atributoColaboradorService: AtributoColaboradorService,
+        private loginService: LoginService
     ) { }
 
     // hasErrors(): boolean {
@@ -124,6 +129,8 @@ export class AvaliacaoFormComponent implements OnInit {
 
 
     ngOnInit() {
+
+        this.user();
 
         this.formAvaliacao = this.formBuilder.group({
             divisao: [null, Validators.required],
@@ -185,6 +192,11 @@ export class AvaliacaoFormComponent implements OnInit {
         );
     }
 
+
+    user(): User {
+        return this.loginService.user;
+      }
+
     registrarAvaliacao() {
 
         let avaliacaoForm = this.formAvaliacao.value;
@@ -238,9 +250,22 @@ export class AvaliacaoFormComponent implements OnInit {
     }
 
     getDivisao() {
+
+        let divisaoFilter: any[];
+        let idDivisaoUser = this.user().TB_DIVISAO_id_divisao;
+        // Verificar se o perfil do usuario logado é de lider = 2
         this.divisaoService.getDivisao().subscribe(divisao => {
-            this.Divisao = divisao;
+            console.log(idDivisaoUser);
+            if ( this.user().perfil != '1' ) {
+                divisaoFilter = divisao.filter(function (el) {
+                    return el['id_divisao'] === idDivisaoUser;
+                });
+                this.Divisao = divisaoFilter;
+            }else {
+                this.Divisao = divisao;
+            }
         });
+
     }
 
     getColaborador() {

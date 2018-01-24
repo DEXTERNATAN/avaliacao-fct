@@ -23,38 +23,19 @@ export class LoginService  extends RestService<User> {
         return objeto.id_acesso;
     }
 
-    getProjeto(): Observable<User[]> {
-        return super.obterTodos();
-    }
-
-    getProjetoId(id): Observable<User> {
-        return super.obterPorId(id);
-    }
-
-    addProjeto(user: User) {
-        return super.adicionar(user);
-    }
-
-    deleteProjeto(id: number) {
-        return super.removerPorId(id);
-    }
-
-    updateProjeto(id, user) {
-        return super.atualizarPorId(user, id);
-    }
-
     isLoggedIn(): boolean {
         // console.log(this.user);
         return this.user !== undefined;
     }
 
     loginUser(user: User): Observable<User> {
+        console.log(this.getUrlBase() + '/' + this.getUrl());
         return this.http.post(`${this.getUrlBase()}/${this.getUrl()}`, user, this.getDefaultRequestOptions())
         .map(response => response.json())
         .do(users => {
             localStorage.setItem('users', JSON.stringify(users));
             this.user = JSON.parse(localStorage.getItem('users'));
-            // console.log(this.user);
+            console.log('Passei aqui: ', users);
         });
     }
 
