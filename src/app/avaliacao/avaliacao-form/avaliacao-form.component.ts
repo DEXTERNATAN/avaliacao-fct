@@ -213,8 +213,6 @@ export class AvaliacaoFormComponent implements OnInit {
             'ociosidade': avaliacaoForm.ociosidade,
             'referencia_fct_gfe_pontuacao': avaliacaoForm.colaborador.referencia_fct_gfe_pontuacao,
             'TB_COLABORADOR_id_colaborador': avaliacaoForm.colaborador.idColaborador,
-            'TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe': avaliacaoForm.colaborador.referencia_fct_gfe_pontuacao,
-            'TB_COLABORADOR_TB_DIVISAO_id_divisao': avaliacaoForm.divisao.id_divisao,
         }).subscribe(data => {
             // console.log(data);
             this.router.navigate(['avaliacao']);
