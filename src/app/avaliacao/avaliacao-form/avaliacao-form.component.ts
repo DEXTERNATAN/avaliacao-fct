@@ -271,6 +271,7 @@ export class AvaliacaoFormComponent implements OnInit {
     getColaborador() {
         this.colaboradorService.getColaborador().subscribe(colaborador => {
             this.Colaborador = colaborador;
+            console.log(colaborador);
         });
     }
 
@@ -505,7 +506,9 @@ export class AvaliacaoFormComponent implements OnInit {
             }
             case 'fctatual': {
                 // Pontuação FCT Atual
-                this.formAvaliacao.get('vlrFCTatual').setValue(this.formAvaliacao.get('colaborador').value.pontuacao.toFixed(2));
+                let colabForm = (this.formAvaliacao.get('colaborador').value.pontuacao || 0).toFixed(2);
+                console.log(colabForm);
+                this.formAvaliacao.get('vlrFCTatual').setValue(colabForm);
 
                 // Referencia FCT Atual | %
                 this.formAvaliacao.get('referenciaFctAtual').setValue(this.formAvaliacao.get('colaborador').value.referenciaFct);

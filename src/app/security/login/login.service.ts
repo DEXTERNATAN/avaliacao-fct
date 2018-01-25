@@ -29,13 +29,11 @@ export class LoginService  extends RestService<User> {
     }
 
     loginUser(user: User): Observable<User> {
-        console.log(this.getUrlBase() + '/' + this.getUrl());
         return this.http.post(`${this.getUrlBase()}/${this.getUrl()}`, user, this.getDefaultRequestOptions())
         .map(response => response.json())
         .do(users => {
             localStorage.setItem('users', JSON.stringify(users));
             this.user = JSON.parse(localStorage.getItem('users'));
-            console.log('Passei aqui: ', users);
         });
     }
 
