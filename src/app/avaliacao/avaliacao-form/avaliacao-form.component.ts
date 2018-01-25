@@ -256,12 +256,14 @@ export class AvaliacaoFormComponent implements OnInit {
         // Verificar se o perfil do usuario logado é de lider = 2
         this.divisaoService.getDivisao().subscribe(divisao => {
             console.log(idDivisaoUser);
-            if ( this.user().perfil != '1' ) {
+            if ( this.user().id_perfil != '1' ) {
+                console.log('lider e colaboradora', this.user());
                 divisaoFilter = divisao.filter(function (el) {
                     return el['id_divisao'] === idDivisaoUser;
                 });
                 this.Divisao = divisaoFilter;
             }else {
+                console.log('ADMINISTRADOR');
                 this.Divisao = divisao;
             }
         });
