@@ -145,8 +145,7 @@ export class AvaliacaoFormComponent implements OnInit {
             ociosidade: '',
             vlrFCTatual: 0.00,
             ajuste: 0.00,
-            referenciaFctAtual: '',
-            referenciaFctAvaliacao: ''
+            referenciaFctAtual: ''
         });
 
 
@@ -212,7 +211,7 @@ export class AvaliacaoFormComponent implements OnInit {
             'dt_resultado': 'null',
             'ajuste': avaliacaoForm.ajuste,
             'ociosidade': avaliacaoForm.ociosidade,
-            'referencia_fct_gfe_pontuacao': avaliacaoForm.referenciaFctAvaliacao,
+            'referencia_fct_gfe_pontuacao': avaliacaoForm.colaborador.referenciaFct,
             'TB_COLABORADOR_id_colaborador': avaliacaoForm.colaborador.idColaborador,
         }).subscribe(data => {
             // console.log(data);
