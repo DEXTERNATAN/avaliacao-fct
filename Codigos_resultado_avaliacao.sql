@@ -6,13 +6,13 @@ select * from tb_colaborador where id_colaborador in (1,2,4,7);
 Select * from vw_avaliacao GROUP BY TB_COLABORADOR_id_colaborador ORDER BY id_resultado;
 select * from vw_avaliacao where TB_COLABORADOR_id_colaborador = 1;
 
-drop view vw_avaliacao;
+drop view VW_AVALIACAO;
 
-create view vw_avaliacao as
+create view VW_AVALIACAO as
 select 
 	tba.*,
     clb.nome as no_colaborador,
-	(select dv.sigla from avaliacaofct.tb_divisao dv where dv.id_divisao = clb.TB_DIVISAO_id_divisao) AS sigla_divisao
+	(select dv.sigla from TB_DIVISAO dv where dv.id_divisao = clb.TB_DIVISAO_id_divisao) AS sigla_divisao
 from 
-	tb_resultado tba 
-inner join tb_colaborador clb on (clb.id_colaborador = tba.TB_COLABORADOR_id_colaborador)
+	TB_RESULTADO tba 
+inner join TB_COLABORADOR clb on (clb.id_colaborador = tba.TB_COLABORADOR_id_colaborador)

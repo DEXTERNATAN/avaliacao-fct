@@ -1,13 +1,13 @@
 import { DataTableDirective } from 'angular-datatables';
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs/Rx';
+import { MensagensHandler } from 'app/shared/services/mensagens-handler.service';
 
 import { Avaliacao } from './avaliacao.model';
 
-import { AvaliacaoService } from 'app/avaliacao/avaliacao.service';
 import { LoginService } from 'app/security/login/login.service';
+import { AvaliacaoService } from 'app/avaliacao/avaliacao.service';
 import { ColaboradorService } from 'app/colaborador/colaborador.service';
-
 
 
 @Component({
@@ -33,12 +33,11 @@ export class AvaliacaoComponent implements OnInit, AfterViewInit {
     constructor(
         private _avaliacaoService: AvaliacaoService,
         private _colaboradorService: ColaboradorService,
-        private loginService: LoginService
+        private loginService: LoginService,
+        private mensagensHandler: MensagensHandler
     ) { }
 
     ngOnInit() {
-
-        
 
         this.dtOptions = {
             language: {
@@ -53,12 +52,7 @@ export class AvaliacaoComponent implements OnInit, AfterViewInit {
                 this.dtTrigger.next();
                 this.getAvaliacaoDetalhe(avaliacao);
             });
-
-
-    
         }
-
-    
 
     ngAfterViewInit(): void { }
 
@@ -69,9 +63,13 @@ export class AvaliacaoComponent implements OnInit, AfterViewInit {
             let index = avaliacaoDetalhe.indexOf(avaliacao);
             avaliacaoDetalhe.splice(index, 1);
 
-            this._avaliacaoService.deleteAvaliacao(avaliacao.id_resultado)
-                .subscribe(
-                    null,
+            this._avaliacaoService.deleteAvaliacao(avaliacao.id_resultado).subscribe(
+                data => {
+                    this.mensagensHandler.handleSuccess("Avaliação removida com sucesso!");
+                    setTimeout(()=>{    
+                        this.mensagensHandler.handleClearMessages();
+                    },3000);
+                },
                 err => {
                     alert("A avaliação não foi apagada!");
                     avaliacaoDetalhe.splice(index, 0, avaliacao);
