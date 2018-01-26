@@ -145,7 +145,8 @@ export class AvaliacaoFormComponent implements OnInit {
             ociosidade: '',
             vlrFCTatual: 0.00,
             ajuste: 0.00,
-            referenciaFctAtual: ''
+            referenciaFctAtual: '',
+            referenciaFctAvaliacao: ''
         });
 
 
@@ -201,9 +202,9 @@ export class AvaliacaoFormComponent implements OnInit {
 
         let avaliacaoForm = this.formAvaliacao.value;
         this.somaValores('tudo');
-        
+        console.log('Referencia FCT: ', avaliacaoForm.colaborador.referenciaFct);
         // Relacionar colaborador a atributo
-        this.associaColabAtributo(avaliacaoForm);
+        // this.associaColabAtributo(avaliacaoForm);
 
         this.avaliacaoService.addAvaliacao({
             'id_resultado': 'null',
@@ -211,7 +212,7 @@ export class AvaliacaoFormComponent implements OnInit {
             'dt_resultado': 'null',
             'ajuste': avaliacaoForm.ajuste,
             'ociosidade': avaliacaoForm.ociosidade,
-            'referencia_fct_gfe_pontuacao': avaliacaoForm.colaborador.referencia_fct_gfe_pontuacao,
+            'referencia_fct_gfe_pontuacao': avaliacaoForm.referenciaFctAvaliacao,
             'TB_COLABORADOR_id_colaborador': avaliacaoForm.colaborador.idColaborador,
         }).subscribe(data => {
             // console.log(data);

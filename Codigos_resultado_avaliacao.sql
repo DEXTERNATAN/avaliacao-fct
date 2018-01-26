@@ -12,8 +12,7 @@ create view vw_avaliacao as
 select 
 	tba.*,
     clb.nome as no_colaborador,
-	divs.sigla as sigla_divisao
+	(select dv.sigla from avaliacaofct.tb_divisao dv where dv.id_divisao = clb.TB_DIVISAO_id_divisao) AS sigla_divisao
 from 
 	tb_resultado tba 
 inner join tb_colaborador clb on (clb.id_colaborador = tba.TB_COLABORADOR_id_colaborador)
-inner join tb_divisao divs on (divs.id_divisao = tba.TB_COLABORADOR_TB_DIVISAO_id_divisao)
