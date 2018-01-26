@@ -492,9 +492,15 @@ somaValores(tipo: string) {
         }
         case 'fctatual': {
                 // Pontuação FCT Atual
-                let colabForm = (this.formAvaliacao.get('colaborador').value.pontuacao || 0).toFixed(2);
-                console.log(colabForm);
-                this.formAvaliacao.get('vlrFCTatual').setValue(colabForm);
+                let ref1 = (this.formAvaliacao.get('colaborador').value.ref_pontuacao_fct || 0);
+                let ref2 = (this.formAvaliacao.get('colaborador').value.ref_fct_atual || 0);
+                let pontReferencia = (this.formAvaliacao.get('colaborador').value.pontuacao_inicial || 0).toFixed(2); 
+                let calculoReferencia = ((ref2 * pontReferencia) / ref1).toFixed(2);
+                
+                console.log("Pontuacao FCT ATUAL > ", calculoReferencia);
+                
+
+                this.formAvaliacao.get('vlrFCTatual').setValue(calculoReferencia);
 
                 // Referencia FCT Atual | %
                 this.formAvaliacao.get('referenciaFctAtual').setValue(this.formAvaliacao.get('colaborador').value.referenciaFct);
@@ -523,9 +529,13 @@ somaValores(tipo: string) {
         } else {
             this.classeCss1 = "badge bg-green";
             this.classeBarra1 = "progress-bar progress-bar-success";
-            if (this.percAjuste > 100) {
+
+            if (this.percAjuste > 100){ 
                 this.percAjuste = 100;
+            }else if (isNaN(this.percAjuste)){
+                this.percAjuste = 0;  
             }
+
             this.percAjusteBarra = this.percAjuste.toFixed(2) + "%";
         }
 
