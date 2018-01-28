@@ -37,6 +37,12 @@ export class LoginService  extends RestService<User> {
         });
     }
 
+    resetUser(id_acesso: number, user: User): Observable<User> {
+        return this.http.put(`${this.getUrlBase()}/${this.getUrl()}/` + id_acesso, user, this.getDefaultRequestOptions())
+        .map(response => response.json())
+        .do(users => users);
+    }
+
     handleLogin() {
         this.router.navigate(['/login']);
     }

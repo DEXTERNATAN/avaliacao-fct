@@ -1,3 +1,4 @@
+import { ResetSenhaComponent } from './security/reset/reset.component';
 import { ImpactoComponent } from './impacto/impacto.component';
 import { ComplexidadeComponent } from './complexidade/complexidade.component';
 import { AbrangenciaComponent } from './abrangencia/abrangencia.component';
@@ -25,6 +26,7 @@ const appRoutes: Routes = [
     { path: 'home', component: HomeComponent , canActivate: [ LoggedInGuard] , canLoad: [ LoggedInGuard] },
     { path: 'relatorios', component: RelatoriosComponent , canActivate: [ LoggedInGuard] , canLoad: [ LoggedInGuard] },
     { path: '', component: LoginComponent },
+    { path: 'recuperarSenha', component: ResetSenhaComponent , canActivate: [ LoggedInGuard] , canLoad: [ LoggedInGuard] },
     { path: 'about', component: AboutComponent, canLoad: [ LoggedInGuard]  , canActivate: [ LoggedInGuard]},
     { path: 'papel', component: PapelComponent, canLoad: [ LoggedInGuard]  , canActivate: [ LoggedInGuard]},
     { path: 'abrangencia', component: AbrangenciaComponent, canLoad: [ LoggedInGuard]  , canActivate: [ LoggedInGuard] },

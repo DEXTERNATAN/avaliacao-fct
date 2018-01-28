@@ -63,7 +63,9 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { LoginComponent } from 'app/security/login/login.component';
+
 import { MensagensComponent } from 'app/shared/components/mensagens.component';
+import { ResetSenhaComponent } from './security/reset/reset.component';
 
 import { LoginService } from 'app/security/login/login.service';
 import { NotificationService } from 'app/shared/messages/notification.service';
@@ -89,6 +91,7 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
         HomeComponent,
         AboutComponent,
         LoginComponent,
+        ResetSenhaComponent,
         LoaderComponent,
         MensagensComponent,
         SnackbarComponent,
