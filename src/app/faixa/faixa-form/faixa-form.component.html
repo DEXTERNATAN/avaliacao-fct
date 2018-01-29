@@ -38,17 +38,17 @@
                 <tr *ngFor="let distribuicao of distribuicao">
                   <td>
                     <label for="">
-                      <span class="badge bg-red">{{distribuicao.pontuacao_minima}}</span>
+                      <span class="badge bg-red">{{(distribuicao.pontuacao_minima).toFixed(2)}}</span>
                     </label>
                   </td>
                   <td>
                     <label for="">
-                      <span class="badge bg-yellow">{{distribuicao.pontuacao_maxima}}</span>
+                      <span class="badge bg-yellow">{{(distribuicao.pontuacao_maxima).toFixed(2)}}</span>
                     </label>
                   </td>
                   <td>
                     <label for="">
-                      <span class="badge bg-light-blue">{{distribuicao.diferenca}}</span>
+                      <span class="badge bg-light-blue">{{(distribuicao.diferenca).toFixed(2)}}</span>
                     </label>
                   </td>
                   <td>
@@ -58,7 +58,7 @@
                   </td>
                   <td>
                     <label for="">
-                      <span class="badge bg-green">{{distribuicao.amplitude_faixas}}</span>
+                      <span class="badge bg-green">{{(distribuicao.amplitude_faixas).toFixed(2)}}</span>
                     </label>
                   </td>
                 </tr>
@@ -89,17 +89,17 @@
                       </td>
                       <td>
                         <label for="">
-                          <span class="badge bg-red">{{faixa.limite_inferior}}</span>
+                          <span class="badge bg-red">{{(faixa.limite_inferior).toFixed(2)}}</span>
                         </label>
                       </td>
                       <td>
                         <label for="">
-                          <span class="badge bg-yellow">{{faixa.limite_superior}}</span>
+                          <span class="badge bg-yellow">{{(faixa.limite_superior).toFixed(2)}}</span>
                         </label>
                       </td>
                       <td>
                         <label for="">
-                          <span class="badge bg-light-blue">{{faixa.pontuacao_referencia}}</span>
+                          <span class="badge bg-light-blue">{{(faixa.pontuacao_referencia).toFixed(2)}}</span>
                         </label>
                       </td>
                       <td>
@@ -128,7 +128,7 @@
                   <td>
                     <label style="width: 60%">
                       <select class="form-control" formControlName="referencia_fct">
-                        <option *ngFor="let referencia of referencia; let i = index" [selected]="referencia.id_referencia === referencia.referencia"
+                        <option *ngFor="let referencia of referencia; let i = index" [selected]="referencia.id_referencia == referencia.referencia"
                           value="{{referencia.id_referencia}}">{{referencia.num_referencia + " - " + referencia.cargo + " (" + referencia.valor_referencia + ")"}}</option>
                       </select>
                     </label>
@@ -172,42 +172,42 @@
                       </td>
                       <td>
                         <label for="">
-                          <input type="text" class="form-control" placeholder="30.00" [textMask]="{mask: percentMask}">
+                          <input type="text" formControlName="percentualFixo1" class="form-control" placeholder="00.00" [textMask]="{mask: percentMask}" (change)="calculaValores()">
                         </label>
                       </td>
                       <td>
                         <label for="">
-                          <span class="badge bg-yellow">R$ 7500.00</span>
+                          <span class="badge bg-yellow">R$ {{this.valorTotalFixo1}}</span>
                         </label>
                       </td>
                       <td>
                         <label for="">
-                          <span class="badge bg-yellow">R$ 192.31</span>
+                          <span class="badge bg-yellow">R$ {{this.valorRateioPessoa1}}</span>
                         </label>
                       </td>
                       <td>
                         <label for="">
-                          <span class="badge bg-aqua">R$ 192.31</span>
+                          <span class="badge bg-aqua">R$ {{this.valorRateioSomado1}}</span>
                         </label>
                       </td>
                       <td>
                         <label for="">
-                          <span class="badge bg-green">10.00%</span>
+                          <span class="badge bg-green">{{this.percentualCalculado1}}%</span>
                         </label>
                       </td>
                       <td>
                         <label for="">
-                          <span class="badge bg-light-blue">R$ 2564.10</span>
+                          <span class="badge bg-light-blue">R$ {{this.valorTotalCalculado1}}</span>
                         </label>
                       </td>
                       <td>
                         <label for="">
-                          <span class="badge bg-light-blue">R$ 65.75</span>
+                          <span class="badge bg-light-blue">R$ {{this.valorRateioPessoaCalculado1}}</span>
                         </label>
                       </td>
                       <td>
                         <label for="">
-                          <span class="badge bg-aqua">R$ 65.75</span>
+                          <span class="badge bg-aqua">R$ {{this.valorRateioSomadoFaixa1}}</span>
                         </label>
                       </td>
                     </tr>
@@ -217,7 +217,7 @@
                       </td>
                       <td>
                         <label for="">
-                          <input type="text" class="form-control" placeholder="40.00" [textMask]="{mask: percentMask}">
+                          <input type="text" class="form-control" placeholder="00.00" [textMask]="{mask: percentMask}">
                         </label>
                       </td>
                       <td>
@@ -262,7 +262,7 @@
                       </td>
                       <td>
                         <label for="">
-                          <input type="text" class="form-control" placeholder="25.00" [textMask]="{mask: percentMask}">
+                          <input type="text" class="form-control" placeholder="00.00" [textMask]="{mask: percentMask}">
                         </label>
                       </td>
                       <td>
@@ -307,7 +307,7 @@
                       </td>
                       <td>
                         <label for="">
-                          <input type="text" class="form-control" placeholder="5.00" [textMask]="{mask: percentMask}">
+                          <input type="text" class="form-control" placeholder="00.00" [textMask]="{mask: percentMask}">
                         </label>
                       </td>
                       <td>

@@ -25,6 +25,16 @@ export class FaixaFormComponent implements OnInit {
     idResource: any;
     distribuicao: Distribuicao[] = [];
     referencia: Referencia[] = [];
+    valorTotalFixo1: any;
+    valorRateioPessoa1: any;
+    valorRateioSomado1: any;
+    percentualCalculado1: any;
+    valorTotalCalculado1: any;
+    valorRateioPessoaCalculado1: any;
+    valorRateioSomadoFaixa1: any;
+    qtdePessoas: any;
+    qtdePessoasFaixa: any;
+    valorDistribuicao: any;
 
     public percentMask = [/\d/, /\d/, '.', /\d/, /\d/];
 
@@ -54,7 +64,8 @@ export class FaixaFormComponent implements OnInit {
         this.formFaixa = this.formBuilder.group({
             referencia_fct: [],
             percentual_fixo: [],
-            valorDistribuicao: ''
+            valorDistribuicao: '',
+            percentualFixo1: ''
         });
 
         // var id_resultado = this.route.params.subscribe(params => {
@@ -80,7 +91,8 @@ export class FaixaFormComponent implements OnInit {
         // carga dos Dados complementares
         this.getDistribuicao();
         this.getReferencia();
-
+        //this.selecionaReferencia();
+        this.calculaValores();
     }
 
     save() {
@@ -103,6 +115,7 @@ export class FaixaFormComponent implements OnInit {
 
             distribuicao.map(distVlr => {
                 this.formFaixa.get('valorDistribuicao').setValue(distVlr.valor);
+                this.valorDistribuicao = distVlr.valor;
             });
 
             this.distribuicao = distribuicao;
@@ -114,6 +127,56 @@ export class FaixaFormComponent implements OnInit {
         this.referenciaService.getReferencia().subscribe(referencia => {
             this.referencia = referencia;
         });
+    }
+
+    selecionaReferencia(){
+        //for() this.referencia
+    }
+
+    calculaValores(){
+    
+        this.qtdePessoas = 5;
+        this.qtdePessoasFaixa = 2;
+        this.valorRateioSomadoFaixa1 = 0;
+
+        if(this.formFaixa.get('percentualFixo1').value != ''){
+            
+            //Valor Fixo
+            this.valorTotalFixo1 = (this.formFaixa.get('percentualFixo1').value / 100);
+            this.valorTotalFixo1 = (this.valorDistribuicao * this.valorTotalFixo1);
+            this.valorTotalFixo1 = (this.valorTotalFixo1).toFixed(2);
+            this.valorRateioPessoa1 = (this.valorTotalFixo1 / this.qtdePessoas).toFixed(2);
+            this.valorRateioSomado1 = (this.valorRateioSomado1 + this.valorRateioPessoa1).toFixed(2);
+
+        } else{
+            
+            this.valorTotalFixo1 = 0;
+            this.valorRateioPessoa1 = 0;
+            this.valorRateioSomado1 = 0;
+    
+        }
+        
+        //Valor Calculado
+        this.percentualCalculado1 = (this.qtdePessoasFaixa / this.qtdePessoas).toFixed(2);
+
+
+        console.log("valorDistribuicao >", this.valorDistribuicao);
+        console.log("percentualCalculado1 > ", this.percentualCalculado1);
+
+        this.valorTotalCalculado1 = (this.formFaixa.get('valorDistribuicao').value * this.percentualCalculado1).toFixed(2);
+
+        console.log("valorTotalCalculado1 > ", this.valorTotalCalculado1);    
+
+        this.valorRateioPessoaCalculado1 = (this.valorTotalCalculado1 / this.qtdePessoas).toFixed(2);
+
+        console.log("valorRateioPessoaCalculado1 > ", this.valorRateioPessoaCalculado1);    
+
+        this.valorRateioSomadoFaixa1 = (this.valorRateioSomadoFaixa1 + this.valorRateioSomadoFaixa1).toFixed(2);
+
+        console.log("valorRateioSomadoFaixa1 > ", this.valorRateioSomadoFaixa1);    
+
+        this.percentualCalculado1 = (this.percentualCalculado1 * 100);
+
     }
 
     onCancel() {
