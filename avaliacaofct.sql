@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tempo de Geração: 30/01/2018 às 15h54min
+-- Tempo de Geração: 30/01/2018 às 17h12min
 -- Versão do Servidor: 5.5.54
 -- Versão do PHP: 5.3.10-1ubuntu3.26
 
@@ -2944,7 +2944,7 @@ CREATE TABLE IF NOT EXISTS `TB_RESULTADO` (
   `referencia_fct_gfe_pontuacao` int(9) NOT NULL,
   `TB_COLABORADOR_id_colaborador` int(9) NOT NULL,
   PRIMARY KEY (`id_resultado`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29 ;
 
 --
 -- Extraindo dados da tabela `TB_RESULTADO`
@@ -2953,7 +2953,8 @@ CREATE TABLE IF NOT EXISTS `TB_RESULTADO` (
 INSERT INTO `TB_RESULTADO` (`id_resultado`, `pontuacao`, `dt_resultado`, `ajuste`, `ociosidade`, `referencia_fct_gfe_pontuacao`, `TB_COLABORADOR_id_colaborador`) VALUES
 (25, 47.70, '2018-01-30 16:28:46', -33.53, 0.00, 4, 3),
 (26, 57.07, '2018-01-30 16:48:55', -42.90, 35.60, 4, 3),
-(27, 101.19, '2018-01-30 16:49:56', 5.05, 0.00, 30, 7);
+(27, 101.19, '2018-01-30 16:49:56', 5.05, 0.00, 30, 7),
+(28, 64.66, '2018-01-30 19:10:00', -0.91, 0.00, 18, 8);
 
 -- --------------------------------------------------------
 
@@ -3050,7 +3051,6 @@ CREATE TABLE IF NOT EXISTS `VW_AVALIACAO` (
 ,`referencia_fct_gfe_pontuacao` int(9)
 ,`TB_COLABORADOR_id_colaborador` int(9)
 ,`no_colaborador` varchar(50)
-,`faixa` int(9)
 ,`sigla_divisao` varchar(5)
 ,`valor_rateio` decimal(32,2)
 );
@@ -3160,7 +3160,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`tiagooliveira`@`localhost` SQL SECURITY DEFI
 --
 DROP TABLE IF EXISTS `VW_AVALIACAO`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `VW_AVALIACAO` AS select `tba`.`id_resultado` AS `id_resultado`,`tba`.`pontuacao` AS `pontuacao`,date_format(`tba`.`dt_resultado`,'%d/%m/%Y') AS `dt_resultado`,`tba`.`ajuste` AS `ajuste`,`tba`.`ociosidade` AS `ociosidade`,`tba`.`referencia_fct_gfe_pontuacao` AS `referencia_fct_gfe_pontuacao`,`tba`.`TB_COLABORADOR_id_colaborador` AS `TB_COLABORADOR_id_colaborador`,`clb`.`nome` AS `no_colaborador`,`clb`.`TB_FAIXA_id_faixa` AS `faixa`,(select `dv`.`sigla` from `TB_DIVISAO` `dv` where (`dv`.`id_divisao` = `clb`.`TB_DIVISAO_id_divisao`)) AS `sigla_divisao`,(select sum(`t1`.`valor_rateio_pessoa`) from `TB_FAIXA` `t1` where (`t1`.`limite_superior` <= (select `TB_FAIXA`.`limite_superior` from `TB_FAIXA` where (`TB_FAIXA`.`id_faixa` = `clb`.`TB_FAIXA_id_faixa`)))) AS `valor_rateio` from ((`TB_RESULTADO` `tba` join `TB_COLABORADOR` `clb`) join `TB_FAIXA` `tbf`) where ((`clb`.`id_colaborador` = `tba`.`TB_COLABORADOR_id_colaborador`) and (`tbf`.`id_faixa` = `clb`.`TB_FAIXA_id_faixa`)) order by `clb`.`nome`,`tba`.`dt_resultado`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `VW_AVALIACAO` AS select `tba`.`id_resultado` AS `id_resultado`,`tba`.`pontuacao` AS `pontuacao`,date_format(`tba`.`dt_resultado`,'%d/%m/%Y') AS `dt_resultado`,`tba`.`ajuste` AS `ajuste`,`tba`.`ociosidade` AS `ociosidade`,`tba`.`referencia_fct_gfe_pontuacao` AS `referencia_fct_gfe_pontuacao`,`tba`.`TB_COLABORADOR_id_colaborador` AS `TB_COLABORADOR_id_colaborador`,`clb`.`nome` AS `no_colaborador`,(select `dv`.`sigla` from `TB_DIVISAO` `dv` where (`dv`.`id_divisao` = `clb`.`TB_DIVISAO_id_divisao`)) AS `sigla_divisao`,(select sum(`t1`.`valor_rateio_pessoa`) from `TB_FAIXA` `t1` where (`t1`.`limite_superior` <= (select `TB_FAIXA`.`limite_superior` from `TB_FAIXA` where (`TB_FAIXA`.`id_faixa` = `clb`.`TB_FAIXA_id_faixa`)))) AS `valor_rateio` from ((`TB_RESULTADO` `tba` join `TB_COLABORADOR` `clb`) join `TB_FAIXA` `tbf`) where ((`clb`.`id_colaborador` = `tba`.`TB_COLABORADOR_id_colaborador`) and (`tbf`.`id_faixa` = `clb`.`TB_FAIXA_id_faixa`)) order by `clb`.`nome`,`tba`.`dt_resultado`;
 
 -- --------------------------------------------------------
 
