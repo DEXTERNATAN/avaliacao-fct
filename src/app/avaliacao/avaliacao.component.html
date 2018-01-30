@@ -58,8 +58,8 @@
                             <th>Ajuste</th>
                             <th>Pontuação Ideal</th>
                             <th>Diferença</th>
-                            <!-- <th></th>
-                            <th></th> -->
+                            <th>Valor Rateio</th>
+                            <!-- <th></th> -->
                             <th></th>
                           </tr>
                           <tr *ngIf="!aval.listDetalhe.length">
@@ -80,12 +80,8 @@
                             <td>
                                 <span class="badge bg-green">{{ ((items.ajuste / items.pontuacao) * 100).toFixed(2) }}%</span>
                             </td>
+                            <td>R$ {{items.valor_rateio}}</td>
                             <!-- <td>
-                              <div class="progress progress-sm progress-striped active">
-                                <div class="progress-bar progress-bar-success" [style.width]="percAjusteBarra"></div>
-                              </div>
-                            </td>
-                            <td>
                               <a class="btn  btn-xs bg-blue btn-flat">
                                 <i class="fa fa-pencil"></i>
                               </a>
