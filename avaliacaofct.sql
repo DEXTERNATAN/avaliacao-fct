@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tempo de Geração: 23/10/2017 às 16h06min
+-- Tempo de Geração: 30/01/2018 às 15h54min
 -- Versão do Servidor: 5.5.54
 -- Versão do PHP: 5.3.10-1ubuntu3.26
 
@@ -34,55 +34,56 @@ CREATE TABLE IF NOT EXISTS `TB_ABRANGENCIA` (
   `nome` varchar(50) NOT NULL,
   `descricao` text NOT NULL,
   PRIMARY KEY (`id_abrangencia`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=64 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=62 ;
 
 --
 -- Extraindo dados da tabela `TB_ABRANGENCIA`
 --
 
 INSERT INTO `TB_ABRANGENCIA` (`id_abrangencia`, `atributo`, `classificacao`, `tipo`, `nome`, `descricao`) VALUES
-(1, 'a', 1, 'Desenvolvimento', 'Moderado', '-Conhece parcialmente o negócio;\n-Necessita de auxilio proposição de soluções;\n-Executa proposições com oportunidades de melhoria;'),
-(2, 'a', 2, 'Desenvolvimento', 'Significativa', '-Conhecimento do negócio;\n-Velocidade;\n-Referência para discutir necessidades dos projetos em que atua(Evoluções);\n-Participa na proposição de soluções técnicas;\n-Transita entre diferente tecnologias/assuntos;'),
-(3, 'a', 3, 'Desenvolvimento', 'Muito', '-Reduzir custo;\n-Reuso;\n-Velocidade (está relacionado ao conhecimento do negocio x tempo resposta);\n-Cenário novo;\n-Referências para discutir necessidades de novos projetos;\n-Facilidade de encontrar soluções;\n-Transita entre diferente tecnologias/assuntos;\n-Histórico de sucesso nas proposições;\n-Visão sistêmica;\n-Domínio do negócio;'),
-(4, 'b', 1, 'Desenvolvimento', 'Moderado', '-Conhecimento Documentações Ágeis;\n-Atua somente na atualização das documentações;\n-Necessita revisão;\n-Necessidade de apoio técnico(depende de auxílio);'),
-(5, 'b', 2, 'Desenvolvimento', 'Significativa', '-Conhecimento do Negócio;\n-Tem o domínio sobre a criação e execução dos casos de testes;\n-Consegue fazer revisão das documentações que outras pessoas criaram;'),
-(6, 'b', 3, 'Desenvolvimento', 'Muito', '-Conhecimento de diferentes formas de documentação/metodologias(Swagger, documentação sob Protótipo, documentações ágeis);\n-Aplicação de UX no processo;\n-Gama de conhecimento na proposição de alternativas para testes(Visão mais sistêmica, relacionado a ferramentas e processo);\n-Domínio do Negócio;\n-Consegue fazer uma análise crítica na documentação/propor soluções e ainda discutir necessidades da solicitação;'),
-(7, 'e', 1, 'Desenvolvimento', 'Moderado', '-Conhecimento da linguagem;\n-Dependência técnica;\n-Conhecimento parcial do negócio;'),
-(8, 'e', 2, 'Desenvolvimento', 'Significativa', '-Conhecimento mediano da linguagem;\n-Reuso;\n-Conhecimento mediano do negócio;'),
-(9, 'e', 3, 'Desenvolvimento', 'Muito', '-Versões de tecnologia;\n-Conhecimento pleno da linguagem;\n-Alto Reuso;\n-Conhecimento pleno do Negócio;'),
-(10, 'f', 1, 'Desenvolvimento', 'Moderado', '-Conhecimento da tecnologia(Unidade de implementação, documentação de API, UMLI);'),
-(11, 'f', 2, 'Desenvolvimento', 'Significativa', '-Conhecimento mediano da tecnologia(Unidade de implementação,documentação de API, UMLI)\r\n'),
-(12, 'f', 3, 'Desenvolvimento', 'Muito', '-Conhecimento Pleno da tecnologia(Unidade de implementação,documentação de API, UMLI)'),
-(13, 'g', 1, 'Desenvolvimento', 'Moderado', '-Conhecimento do assunto(uso do sistema, tecnologia)\r\n-Capacidade de comunicação'),
-(14, 'g', 2, 'Desenvolvimento', 'Significativa', '-Conhecimento mediano do assunto(uso do sistema, tecnologia)\r\n-Capacidade mediana de comunicação\r\n'),
-(15, 'g', 3, 'Desenvolvimento', 'Muito', '-Conhecimento Pleno do assunto(uso do sistema, tecnologia)\r\n-Capacidade pleno de comunicação'),
-(16, 'h', 1, 'Desenvolvimento', 'Moderado', '-Conhecimento do assunto(uso do sistema, tecnologia)\r\n-Capacidade de comunicação\r\n-Conhecimento do processo de internalização do SERPRO'),
-(17, 'h', 2, 'Desenvolvimento', 'Significativa', '-Conhecimento Mediano do assunto(uso do sistema, tecnologia)\r\n-Capacidade Mediana de comunicação\r\n-Conhecimento Mediano do processo de internalização do SERPRO\r\n'),
-(18, 'h', 3, 'Desenvolvimento', 'Muito', '-Conhecimento Pleno do assunto(uso do sistema, tecnologia)\r\n-Capacidade pleno de comunicação\r\n-Conhecimento Pleno do processo de internalização do SERPRO'),
-(19, 'i', 1, 'Desenvolvimento', 'Moderado', '-conhecimento parcial do negócio'),
-(20, 'i', 2, 'Desenvolvimento', 'Significativa', '-Conhecimento Mediano do negócio\r\n-Consegue prever riscos'),
-(21, 'i', 3, 'Desenvolvimento', 'Muito', '-Conhecimento Pleno do Negócio\r\n-Conhecimento da pilha tecnológica do departamento\r\n-Conhecimento da lógica de componentização para reuso.\r\n-Histórico de assertividade nos prazos\r\n-Visão sistêmica\r\n-consegue prever riscos'),
-(22, 'j', 1, 'Desenvolvimento', 'Moderado', '-Conhecimento da linguagem\r\n-Dependência técnica\r\n-conhecimento parcial do negócio'),
-(23, 'j', 2, 'Desenvolvimento', 'Significativa', '-Conhecimento mediano da linguagem\r\n-Reuso\r\n-conhecimento mediano do negócio'),
-(24, 'j', 3, 'Desenvolvimento', 'Muito', '-Versões tecnologia\r\n-Conhecimento pleno da linguagem\r\n-Alto Reuso\r\n-Conhecimento pleno do Negócio'),
-(25, 'l', 1, 'Desenvolvimento', 'Moderado', '-Conhecimento de ciclo de vida de softwares\r\n-Conhecimento em controle de versões/versionamento(Gestão de configuração)'),
-(26, 'l', 2, 'Desenvolvimento', 'Significativa', '-Conhecimento Mediano em controle de versões/versionamento(Gestão de configuração)'),
-(27, 'l', 3, 'Desenvolvimento', 'Muito', '-Conhecimento de ciclo de vida de softwares\r\n-Conhecimento Pleno em controle de versões/versionamento(Gestão de configuração)\r\n--Conhecimento de ciclo de vida de softwares open source(Licenças,releases,funcionamento de forks, desenvolvimento em comunidade)\r\n-Integração contínua'),
-(28, 'm', 1, 'Desenvolvimento', 'Moderado', '-Configure bem a ferramenta SONAR ou similar.'),
-(29, 'm', 2, 'Desenvolvimento', 'Significativa', '-Familiarizado com a ferramenta SONAR ou similar e sabe produzir códigos de acordo com os parâmetros recomendados pela ferramenta.\r\n-Atuação como code review\r\n-Conhecimento de padrões de codificação da tecnologia utilizada'),
-(30, 'm', 3, 'Desenvolvimento', 'Muito', '-Conhecimento pleno da tecnologia e consegue fazer proposição de melhoria(processo de melhoria conhecimentos)'),
-(31, 'n', 1, 'Desenvolvimento', 'Moderado', '-Conhecimento dos Processos\r\n-Conhecimento do Negócio'),
-(32, 'n', 2, 'Desenvolvimento', 'Significativa', '-Conhecimento mediano dos Processos\r\n-Conhecimento mediano do Negócio'),
-(33, 'n', 0, 'Design', 'Muito', '-Conhecimento pleno dos Processos\r\n-Conhecimento Pleno do Negócio\r\n-Conhecimento dos diferentes perfis e a gerencia dos mesmos(Capacidade de atendimento)'),
-(52, 'c', 1, 'Desenvolvimento', 'Moderado', ''),
-(53, 'c', 2, 'Desenvolvimento', 'Significativa', ''),
-(54, 'c', 3, 'Desenvolvimento', 'Muito', '\r\n'),
-(55, 'd', 1, 'Desenvolvimento', 'Moderado', ''),
-(56, 'd', 2, 'Desenvolvimento', 'Significativa', ''),
-(57, 'd', 3, 'Desenvolvimento', 'Muito', '\r\n'),
-(58, 'k', 1, 'Desenvolvimento', 'Moderado', ''),
-(59, 'k', 2, 'Desenvolvimento', 'Significativa', ''),
-(60, 'k', 3, 'Desenvolvimento', 'Muito', '\r\n');
+(1, 'a', 1, 'Desenvolvimento', 'Moderado', 'Conhece parcialmente o negócio; SDSEP\nNecessita de auxilio proposição de soluções;\nExecuta proposições com oportunidades de melhoria;'),
+(2, 'a', 2, 'Desenvolvimento', 'Significativa', 'Conhecimento do negócio;\nVelocidade;\nReferência para discutir necessidades dos projetos em que atua(Evoluções);\nParticipa na proposição de soluções técnicas;\nTransita entre diferente tecnologias/assuntos;'),
+(3, 'a', 3, 'Desenvolvimento', 'Muito', 'Reduzir custo;\nReuso;\nVelocidade (está relacionado ao conhecimento do negocio x tempo resposta);\nCenário novo;\nReferências para discutir necessidades de novos projetos;\nFacilidade de encontrar soluções;\nTransita entre diferente tecnologias/assuntos;\nHistórico de sucesso nas proposições;\nVisão sistêmica;\nDomínio do negócio;'),
+(4, 'b', 1, 'Desenvolvimento', 'Moderado', 'Conhecimento Documentações Ágeis;\nAtua somente na atualização das documentações;\nNecessita revisão;\nNecessidade de apoio técnico(depende de auxílio);'),
+(5, 'b', 2, 'Desenvolvimento', 'Significativa', 'Conhecimento do Negócio;\nTem o domínio sobre a criação e execução dos casos de testes;\nConsegue fazer revisão das documentações que outras pessoas criaram;'),
+(6, 'b', 3, 'Desenvolvimento', 'Muito', 'Conhecimento de diferentes formas de documentação/metodologias (Swagger, documentação sob Protótipo, documentações ágeis);\nAplicação de UX no processo;\nGama de conhecimento na proposição de alternativas para testes(Visão mais sistêmica, relacionado a ferramentas e processo);\nDomínio do Negócio;\nConsegue fazer uma análise crítica na documentação/propor soluções e ainda discutir necessidades da solicitação;'),
+(7, 'e', 1, 'Desenvolvimento', 'Moderado', 'Conhecimento da linguagem;\nDependência técnica;\nConhecimento parcial do negócio;'),
+(8, 'e', 2, 'Desenvolvimento', 'Significativa', 'Conhecimento mediano da linguagem;\nReuso;\nConhecimento mediano do negócio;'),
+(9, 'e', 3, 'Desenvolvimento', 'Muito', 'Versões de tecnologia;\nConhecimento pleno da linguagem;\nAlto Reuso;\nConhecimento pleno do Negócio;'),
+(10, 'f', 1, 'Desenvolvimento', 'Moderado', 'Conhecimento da tecnologia(Unidade de implementação, documentação de API, UMLI);'),
+(11, 'f', 2, 'Desenvolvimento', 'Significativa', 'Conhecimento mediano da tecnologia(Unidade de implementação,documentação de API, UMLI);'),
+(12, 'f', 3, 'Desenvolvimento', 'Muito', 'Conhecimento Pleno da tecnologia(Unidade de implementação,documentação de API, UMLI);'),
+(13, 'g', 1, 'Desenvolvimento', 'Moderado', 'Conhecimento do assunto(uso do sistema, tecnologia);\nCapacidade de comunicação;'),
+(14, 'g', 2, 'Desenvolvimento', 'Significativa', 'Conhecimento mediano do assunto(uso do sistema, tecnologia);\nCapacidade mediana de comunicação;'),
+(15, 'g', 3, 'Desenvolvimento', 'Muito', 'Conhecimento Pleno do assunto(uso do sistema, tecnologia);\nCapacidade pleno de comunicação;'),
+(16, 'h', 1, 'Desenvolvimento', 'Moderado', 'Conhecimento do assunto(uso do sistema, tecnologia);\nCapacidade de comunicação;\nConhecimento do processo de internalização do SERPRO;'),
+(17, 'h', 2, 'Desenvolvimento', 'Significativa', 'Conhecimento Mediano do assunto(uso do sistema, tecnologia);\nCapacidade Mediana de comunicação;\nConhecimento Mediano do processo de internalização do SERPRO;'),
+(18, 'h', 3, 'Desenvolvimento', 'Muito', 'Conhecimento Pleno do assunto(uso do sistema, tecnologia);\nCapacidade pleno de comunicação;\nConhecimento Pleno do processo de internalização do SERPRO;'),
+(19, 'i', 1, 'Desenvolvimento', 'Moderado', 'Conhecimento parcial do negócio;'),
+(20, 'i', 2, 'Desenvolvimento', 'Significativa', 'Conhecimento Mediano do negócio;\nConsegue prever riscos;'),
+(21, 'i', 3, 'Desenvolvimento', 'Muito', 'Conhecimento Pleno do Negócio;\nConhecimento da pilha tecnológica do departamento;\nConhecimento da lógica de componentização para reuso;\nHistórico de assertividade nos prazos;\nVisão sistêmica;\nConsegue prever riscos;'),
+(22, 'j', 1, 'Desenvolvimento', 'Moderado', 'Conhecimento da linguagem;\nDependência técnica;\nConhecimento parcial do negócio;'),
+(23, 'j', 2, 'Desenvolvimento', 'Significativa', 'Conhecimento mediano da linguagem;\nReuso;\nConhecimento mediano do negócio;'),
+(24, 'j', 3, 'Desenvolvimento', 'Muito', 'Versões tecnologia;\nConhecimento pleno da linguagem;\nAlto Reuso;\nConhecimento pleno do Negócio;'),
+(25, 'l', 1, 'Desenvolvimento', 'Moderado', 'Conhecimento de ciclo de vida de softwares;\nConhecimento em controle de versões/versionamento(Gestão de configuração);'),
+(26, 'l', 2, 'Desenvolvimento', 'Significativa', 'Conhecimento Mediano em controle de versões/versionamento(Gestão de configuração);'),
+(27, 'l', 3, 'Desenvolvimento', 'Muito', 'Conhecimento de ciclo de vida de softwares;\nConhecimento Pleno em controle de versões/versionamento(Gestão de configuração);\nConhecimento de ciclo de vida de softwares open source(licenças, releases, funcionamento de forks, desenvolvimento em comunidade);\nIntegração contínua;'),
+(28, 'm', 1, 'Desenvolvimento', 'Moderado', 'Configure bem a ferramenta SONAR ou similar;'),
+(29, 'm', 2, 'Desenvolvimento', 'Significativa', 'Familiarizado com a ferramenta SONAR ou similar e sabe produzir códigos de acordo com os parâmetros recomendados pela ferramenta;\nAtuação como code review;\nConhecimento de padrões de codificação da tecnologia utilizada;'),
+(30, 'm', 3, 'Desenvolvimento', 'Muito', 'Conhecimento pleno da tecnologia e consegue fazer proposição de melhoria(processo de melhoria conhecimentos);'),
+(31, 'n', 1, 'Desenvolvimento', 'Moderado', 'Conhecimento dos Processos;\nConhecimento do Negócio;'),
+(32, 'n', 2, 'Desenvolvimento', 'Significativa', 'Conhecimento mediano dos Processos;\nConhecimento mediano do Negócio;'),
+(33, 'n', 3, 'Design', 'Muito', 'Conhecimento pleno dos Processos;\nConhecimento Pleno do Negócio;\nConhecimento dos diferentes perfis e a gerencia dos mesmos(Capacidade de atendimento);'),
+(52, 'c', 1, 'Desenvolvimento', 'Moderado', 'Sem informação Cadastrada'),
+(53, 'c', 2, 'Desenvolvimento', 'Significativa', 'Sem informação Cadastrada'),
+(54, 'c', 3, 'Desenvolvimento', 'Muito', 'Sem informação Cadastrada'),
+(55, 'd', 1, 'Desenvolvimento', 'Moderado', 'Sem informação Cadastrada'),
+(56, 'd', 2, 'Desenvolvimento', 'Significativa', 'Sem informação Cadastrada'),
+(57, 'd', 3, 'Desenvolvimento', 'Muito', 'Sem informação Cadastrada'),
+(58, 'k', 1, 'Desenvolvimento', 'Moderado', 'Sem informação Cadastrada'),
+(59, 'k', 2, 'Desenvolvimento', 'Significativa', 'Sem informação Cadastrada'),
+(60, 'k', 3, 'Desenvolvimento', 'Muito', 'Sem informação Cadastrada'),
+(61, 'c', 1, 'Desenvolvimento', 'Moderado', 'iohkj');
 
 -- --------------------------------------------------------
 
@@ -92,19 +93,24 @@ INSERT INTO `TB_ABRANGENCIA` (`id_abrangencia`, `atributo`, `classificacao`, `ti
 
 CREATE TABLE IF NOT EXISTS `TB_ACESSO` (
   `id_acesso` int(9) NOT NULL AUTO_INCREMENT,
-  `perfil` varchar(20) NOT NULL,
   `login` varchar(11) NOT NULL,
   `senha` varchar(8) NOT NULL,
-  PRIMARY KEY (`id_acesso`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+  `status_ativo` tinyint(1) NOT NULL COMMENT '1 - Ativo    0 - Inativo',
+  PRIMARY KEY (`id_acesso`),
+  UNIQUE KEY `unico_cpf` (`login`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Extraindo dados da tabela `TB_ACESSO`
 --
 
-INSERT INTO `TB_ACESSO` (`id_acesso`, `perfil`, `login`, `senha`) VALUES
-(1, 'ADMINISTRADOR', '11111111135', '12345678'),
-(2, 'LÍDER', '22222222256', '01020304');
+INSERT INTO `TB_ACESSO` (`id_acesso`, `login`, `senha`, `status_ativo`) VALUES
+(1, '11111111135', '12345678', 0),
+(2, '22222222256', '01020304', 1),
+(3, '3333333000', '00000000', 0),
+(4, '86860224134', '22222222', 1),
+(5, '98287028191', '12345678', 1),
+(6, '11111111119', '12345678', 0);
 
 -- --------------------------------------------------------
 
@@ -2408,23 +2414,29 @@ CREATE TABLE IF NOT EXISTS `TB_COLABORADOR` (
   `especialidade` varchar(40) NOT NULL COMMENT 'Especialidade do Colaborador. Ex: Desenvolvimento de Sistemas, Programador Visual, etc...',
   `salario` decimal(10,2) NOT NULL,
   `percentual_salario` decimal(10,2) NOT NULL COMMENT 'Percentual de 8,5% do Salário.',
+  `dt_registro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe` int(9) NOT NULL,
   `TB_DIVISAO_id_divisao` int(9) NOT NULL,
   `TB_ACESSO_id_acesso` int(9) NOT NULL,
-  PRIMARY KEY (`id_colaborador`,`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`,`TB_DIVISAO_id_divisao`),
-  UNIQUE KEY `TB_ACESSO_id_acesso` (`TB_ACESSO_id_acesso`),
+  `TB_PERFIL_id_perfil` int(9) NOT NULL,
+  `TB_FAIXA_id_faixa` int(9) NOT NULL,
+  PRIMARY KEY (`id_colaborador`,`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`,`TB_DIVISAO_id_divisao`,`TB_ACESSO_id_acesso`),
   KEY `fk_TB_COLABORADOR_TB_REFERENCIA_FCT_GFE1` (`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`),
-  KEY `fk_TB_COLABORADOR_TB_DIVISAO1` (`TB_DIVISAO_id_divisao`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+  KEY `fk_TB_COLABORADOR_TB_DIVISAO1` (`TB_DIVISAO_id_divisao`),
+  KEY `fk_TB_COLABORADOR_TB_PERFIL1` (`TB_PERFIL_id_perfil`),
+  KEY `fk_TB_COLABORADOR_TB_ACESSO1` (`TB_ACESSO_id_acesso`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Extraindo dados da tabela `TB_COLABORADOR`
 --
 
-INSERT INTO `TB_COLABORADOR` (`id_colaborador`, `nome`, `matricula`, `telefone`, `especialidade`, `salario`, `percentual_salario`, `TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`, `TB_DIVISAO_id_divisao`, `TB_ACESSO_id_acesso`) VALUES
-(1, 'Natanael de Souza Leite', 12345677, 6120218888, 'Desenvolvimento de Sistemas', 7448.59, 633.13, 12, 1, 1),
-(2, 'Francisco Jose Joaquim de Souza', 12345678, 6120219999, 'Programação de Computador', 7500.00, 8.50, 18, 3, 2),
-(3, 'Roberto da Silveira Souza Paranhos', 22225454, 6120217777, 'Comunicação Social', 9859.67, 659.65, 7, 16, 0);
+INSERT INTO `TB_COLABORADOR` (`id_colaborador`, `nome`, `matricula`, `telefone`, `especialidade`, `salario`, `percentual_salario`, `dt_registro`, `TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`, `TB_DIVISAO_id_divisao`, `TB_ACESSO_id_acesso`, `TB_PERFIL_id_perfil`, `TB_FAIXA_id_faixa`) VALUES
+(2, 'Francisco Jose Joaquim de Souza', 12345678, 6120219999, 'Programação de Computador', 7500.00, 8.50, '2017-11-09 12:28:52', 59, 3, 5, 1, 3),
+(3, 'Roberto da Silveira Souza Paranhos', 22225454, 6154545454, 'Comunicação Social', 9859.67, 659.65, '2017-11-09 12:26:46', 45, 16, 4, 2, 1),
+(4, 'Natanael de Souza Leite', 12345677, 6120218888, 'Desenvolvimento de Sistemas', 5333.45, 233.13, '2017-11-09 12:26:23', 51, 1, 3, 1, 2),
+(7, 'Valfrido Verdana Joaquim', 99999999, 6120210000, 'Comunicação Social', 4566.66, 325.44, '2018-01-25 18:12:19', 70, 16, 2, 3, 1),
+(8, 'Antonio Francisco Joaquim Neto Sobrinho', 44444444, 6546546546, 'Atendimento', 11111.11, 111.11, '2017-11-07 17:41:57', 58, 1, 1, 2, 4);
 
 -- --------------------------------------------------------
 
@@ -2445,17 +2457,6 @@ CREATE TABLE IF NOT EXISTS `TB_COLABORADOR_has_TB_ATRIBUTO` (
   KEY `fk_TB_COLABORADOR_has_TB_ATRIBUTO_TB_COLABORADOR1` (`TB_COLABORADOR_id_colaborador`,`TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`,`TB_COLABORADOR_TB_DIVISAO_id_divisao`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Extraindo dados da tabela `TB_COLABORADOR_has_TB_ATRIBUTO`
---
-
-INSERT INTO `TB_COLABORADOR_has_TB_ATRIBUTO` (`TB_COLABORADOR_id_colaborador`, `TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`, `TB_COLABORADOR_TB_DIVISAO_id_divisao`, `TB_ATRIBUTO_id_atributo`, `TB_ATRIBUTO_TB_ABRANGENCIA_id_abrangencia`, `TB_ATRIBUTO_TB_COMPLEXIDADE_id_complexidade`, `TB_ATRIBUTO_TB_IMPACTO_id_impacto`) VALUES
-(1, 12, 1, 109, 7, 7, 7),
-(1, 12, 1, 136, 10, 10, 10),
-(1, 12, 1, 168, 13, 14, 15),
-(2, 18, 3, 109, 7, 7, 7),
-(2, 18, 3, 223, 19, 21, 19);
-
 -- --------------------------------------------------------
 
 --
@@ -2470,56 +2471,55 @@ CREATE TABLE IF NOT EXISTS `TB_COMPLEXIDADE` (
   `nome` varchar(50) NOT NULL,
   `descricao` text NOT NULL,
   PRIMARY KEY (`id_complexidade`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=45 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=43 ;
 
 --
 -- Extraindo dados da tabela `TB_COMPLEXIDADE`
 --
 
 INSERT INTO `TB_COMPLEXIDADE` (`id_complexidade`, `atributo`, `classificacao`, `tipo`, `nome`, `descricao`) VALUES
-(1, 'a', 1, 'Desenvolvimento', 'Moderada', '- depende de auxílio para tomada de decisão; - atua em 1 projeto/perfis diferentes'),
-(2, 'a', 2, 'Desenvolvimento', 'Alta', '- atua em 2 projetos em paralelo/perfis diferentes\r\n- complexidade dos projetos pode influenciar\r\n- prever problemas\r\n- projetos grandes'),
-(3, 'a', 3, 'Desenvolvimento', 'Altíssima', '- prever problemas\r\n- visão sistêmica\r\n- atuar em paralelo em diferentes linguagens/assuntos/projetos\r\n- projetos grandes x prazos curtos \r\n- atuar sob pressão\r\n- autonomia (independência na tomada de decisão)\r\n- atua em 3 ou mais projetos/perfis diferentes'),
-(4, 'b', 1, 'Desenvolvimento', 'Moderada', '-Pleno em um dos perfis.'),
-(5, 'b', 2, 'Desenvolvimento', 'Alta', '-Consegue integrar de forma objetiva aspectos tanto de testes quanto de negócio.\r\n-Pleno em um perfil e mediano em outro(teste/requisitos)(Pleno = não precisa de ajuda para atuar, Mediano necessita de algum apoio)'),
-(6, 'b', 3, 'Desenvolvimento', 'Altíssima', '-Consegue integrar de forma objetiva aspectos tanto de testes quanto de negócio, passando por experiência de usuário.\r\n-Visão Plena\r\n-Antecipar necessidades\r\n-Propor alternativas que aumente a satisfação do cliente, na visão de negócio.'),
-(7, 'e', 1, 'Desenvolvimento', 'Moderada', '-Atua no projeto com um perfil de forma plena'),
-(8, 'e', 2, 'Desenvolvimento', 'Alta', '-Sistemas com regras de negocio complexas\r\n-Atua no projeto com mais de um perfil de forma plena'),
-(9, 'e', 3, 'Desenvolvimento', 'Altíssima', '-Sistemas com necessidades de integrações\r\n-Novas tecnologias'),
-(10, 'f', 1, 'Desenvolvimento', 'Moderada', '-Documentação Padrão(Manual de utilização)'),
-(11, 'f', 2, 'Desenvolvimento', 'Alta', '-Documentação Técnica (Readme, Manual para desenvolvedor)\r\n-Diagrama UML'),
-(12, 'f', 3, 'Desenvolvimento', 'Altíssima', '-Documentação de componente\r\n-Documentação de API'),
-(13, 'g', 1, 'Desenvolvimento', 'Moderada', '-Treinamento sobre o uso de um sistema'),
-(14, 'g', 2, 'Desenvolvimento', 'Alta', '-Repasse de conhecimento(Tecnologia)'),
-(15, 'g', 3, 'Desenvolvimento', 'Altíssima', '-Ministrar treinamento sobre um assunto Novo no departamento(rápida absorção de novos conhecimentos demonstra rápida absorção.\r\n-Histórico de boa avaliação dos treinamentos'),
-(16, 'h', 1, 'Desenvolvimento', 'Moderada', '-Tecnologias de apoio que não afetam infra'),
-(17, 'h', 2, 'Desenvolvimento', 'Alta', '-Marco de versão(semantic version)'),
-(18, 'h', 3, 'Desenvolvimento', 'Altíssima', '-Quando demanda exige muito da infra\r\n-Não existe tecnologia similar'),
+(1, 'a', 1, 'Desenvolvimento', 'Moderada', 'Depende de auxílio para tomada de decisão;\nAtua em 1 projeto/perfis diferentes;'),
+(2, 'a', 2, 'Desenvolvimento', 'Alta', 'Atua em 2 projetos em paralelo/perfis diferentes;\nComplexidade dos projetos pode influenciar;\nPrever problemas;\nProjetos grandes;'),
+(3, 'a', 3, 'Desenvolvimento', 'Altíssima', 'Prever problemas;\nVisão sistêmica;\nAtuar em paralelo em diferentes linguagens/assuntos/projetos;\nProjetos grandes x prazos curtos;\nAtuar sob pressão;\nAutonomia (independência na tomada de decisão);\nAtua em 3 ou mais projetos/perfis diferentes;'),
+(4, 'b', 1, 'Desenvolvimento', 'Moderada', 'Pleno em um dos perfis;'),
+(5, 'b', 2, 'Desenvolvimento', 'Alta', 'Consegue integrar de forma objetiva aspectos tanto de testes quanto de negócio;\nPleno em um perfil e mediano em outro(teste/requisitos)(Pleno = não precisa de ajuda para atuar, Mediano necessita de algum apoio);'),
+(6, 'b', 3, 'Desenvolvimento', 'Altíssima', 'Consegue integrar de forma objetiva aspectos tanto de testes quanto de negócio, passando por experiência de usuário;\nVisão Plena;\nAntecipar necessidades;\nPropor alternativas que aumente a satisfação do cliente, na visão de negócio;'),
+(7, 'e', 1, 'Desenvolvimento', 'Moderada', 'Atua no projeto com um perfil de forma plena;'),
+(8, 'e', 2, 'Desenvolvimento', 'Alta', 'Sistemas com regras de negocio complexas;\nAtua no projeto com mais de um perfil de forma plena;'),
+(9, 'e', 3, 'Desenvolvimento', 'Altíssima', 'Sistemas com necessidades de integrações;\nNovas tecnologias;'),
+(10, 'f', 1, 'Desenvolvimento', 'Moderada', 'Documentação Padrão(Manual de utilização);'),
+(11, 'f', 2, 'Desenvolvimento', 'Alta', 'Documentação Técnica (Readme, Manual para desenvolvedor);\nDiagrama UML;'),
+(12, 'f', 3, 'Desenvolvimento', 'Altíssima', 'Documentação de componente;\nDocumentação de API;'),
+(13, 'g', 1, 'Desenvolvimento', 'Moderada', 'Treinamento sobre o uso de um sistema;'),
+(14, 'g', 2, 'Desenvolvimento', 'Alta', 'Repasse de conhecimento(Tecnologia);'),
+(15, 'g', 3, 'Desenvolvimento', 'Altíssima', 'Ministrar treinamento sobre um assunto Novo no departamento(rápida absorção de novos conhecimentos demonstra rápida absorção;\nHistórico de boa avaliação dos treinamentos;'),
+(16, 'h', 1, 'Desenvolvimento', 'Moderada', 'Tecnologias de apoio que não afetam infra;'),
+(17, 'h', 2, 'Desenvolvimento', 'Alta', 'Marco de versão(semantic version);'),
+(18, 'h', 3, 'Desenvolvimento', 'Altíssima', 'Quando demanda exige muito da infra;\nNão existe tecnologia similar;'),
 (19, 'i', 1, 'Desenvolvimento', 'Moderada', ''),
-(20, 'i', 2, 'Desenvolvimento', 'Alta', '-Integração(já foi feito)'),
-(21, 'i', 3, 'Desenvolvimento', 'Altíssima', '-ineditismo\r\n-Nova Integração entre sistemas\r\n-Manipulação de dados\r\n-Legado(Não existe suporte, ausência de documentação, não há desenvolvimento sendo feito para a plataforma)'),
-(22, 'j', 1, 'Desenvolvimento', 'Moderada', '-Atua no projeto com um perfil de forma plena'),
-(23, 'j', 2, 'Desenvolvimento', 'Alta', '-Manutenção em sistemas com regras de negocio complexas\r\n-Atua no projeto com mais de um perfil de forma plena'),
-(24, 'j', 3, 'Desenvolvimento', 'Altíssima', '-Sistemas com necessidades de integrações\r\n-Novas tecnologias'),
-(25, 'l', 1, 'Desenvolvimento', 'Moderada', '-Trabalha somente com um tipo de controle de versão'),
-(26, 'l', 2, 'Desenvolvimento', 'Alta', '-Trabalho com equipes paralelas equipes internas do SERPRO(padrões, regras de código,etc)'),
-(27, 'l', 3, 'Desenvolvimento', 'Altíssima', '-Trabalho com múltiplos controles de versão\r\n\r\n-Governança do componente(Quando será atualizado, teste de segurança,etc)\r\n\r\n-Trabalho com equipes paralelas equipes internas e externas do SERPRO(padrões, regras de código,etc)'),
+(20, 'i', 2, 'Desenvolvimento', 'Alta', 'Integração(já foi feito);'),
+(21, 'i', 3, 'Desenvolvimento', 'Altíssima', 'Ineditismo;\nNova Integração entre sistemas;\nManipulação de dados;\nLegado(Não existe suporte, ausência de documentação, não há desenvolvimento sendo feito para a plataforma);'),
+(22, 'j', 1, 'Desenvolvimento', 'Moderada', 'Atua no projeto com um perfil de forma plena;'),
+(23, 'j', 2, 'Desenvolvimento', 'Alta', 'Manutenção em sistemas com regras de negocio complexas;\nAtua no projeto com mais de um perfil de forma plena;'),
+(24, 'j', 3, 'Desenvolvimento', 'Altíssima', 'Sistemas com necessidades de integrações;\nNovas tecnologias;'),
+(25, 'l', 1, 'Desenvolvimento', 'Moderada', 'Trabalha somente com um tipo de controle de versão;'),
+(26, 'l', 2, 'Desenvolvimento', 'Alta', 'Trabalho com equipes paralelas equipes internas do SERPRO(padrões, regras de código,etc);'),
+(27, 'l', 3, 'Desenvolvimento', 'Altíssima', 'Trabalho com múltiplos controles de versão;\nGovernança do componente(Quando será atualizado, teste de segurança,etc);\nTrabalho com equipes paralelas equipes internas e externas do SERPRO(padrões, regras de código,etc);'),
 (28, 'm', 1, 'Desenvolvimento', 'Moderada', 'Apenas uma linguagem'),
-(29, 'm', 2, 'Desenvolvimento', 'Alta', '-envolve até 2 linguagens  atrelado a integração continua\r\n-Time de desenvolvimento experiente'),
-(30, 'm', 3, 'Desenvolvimento', 'Altíssima', '-Envolve mais de 2 Linguagens atrelado à Integração contínua\r\n-Time inexperiente\r\n-Exige tratamento da complexidade ciclomática'),
-(31, 'n', 1, 'Desenvolvimento', 'Moderada', '-Gerencia de 1 a 2 projetos'),
-(32, 'n', 2, 'Desenvolvimento', 'Alta', '-Gerencia mais de 2 projetos'),
-(33, 'n', 3, 'Desenvolvimento', 'Altíssima', '-Gerencia Equipes Remotas\r\n-Exige interdependência entre equipes de diferentes áreas\r\n-Sistemas com necessidades de integrações'),
-(34, 'c', 1, 'Desenvolvimento', 'Moderada', ''),
-(35, 'c', 2, 'Desenvolvimento', 'Alta', ''),
-(36, 'c', 3, 'Desenvolvimento', 'Altíssima', ''),
-(37, 'd', 1, 'Desenvolvimento', 'Moderada', ''),
-(38, 'd', 2, 'Desenvolvimento', 'Alta', ''),
-(39, 'd', 3, 'Desenvolvimento', 'Altíssima', ''),
-(40, 'k', 1, 'Desenvolvimento', 'Moderada', ''),
-(41, 'k', 2, 'Desenvolvimento', 'Alta', ''),
-(42, 'k', 3, 'Desenvolvimento', 'Altíssima', ''),
-(44, '', 0, '', '', '');
+(29, 'm', 2, 'Desenvolvimento', 'Alta', 'Envolve até 2 linguagens  atrelado a integração continua;\nTime de desenvolvimento experiente;'),
+(30, 'm', 3, 'Desenvolvimento', 'Altíssima', 'Envolve mais de 2 Linguagens atrelado à Integração contínua;\nTime inexperiente;\nExige tratamento da complexidade ciclomática;'),
+(31, 'n', 1, 'Desenvolvimento', 'Moderada', 'Gerencia de 1 a 2 projetos;'),
+(32, 'n', 2, 'Desenvolvimento', 'Alta', 'Gerencia mais de 2 projetos;'),
+(33, 'n', 3, 'Desenvolvimento', 'Altíssima', 'Gerencia Equipes Remotas;\nExige interdependência entre equipes de diferentes áreas;\nSistemas com necessidades de integrações;'),
+(34, 'c', 1, 'Desenvolvimento', 'Moderada', 'Sem informação Cadastrada'),
+(35, 'c', 2, 'Desenvolvimento', 'Alta', 'Sem informação Cadastrada'),
+(36, 'c', 3, 'Desenvolvimento', 'Altíssima', 'Sem informação Cadastrada'),
+(37, 'd', 1, 'Desenvolvimento', 'Moderada', 'Sem informação Cadastrada'),
+(38, 'd', 2, 'Desenvolvimento', 'Alta', 'Sem informação Cadastrada'),
+(39, 'd', 3, 'Desenvolvimento', 'Altíssima', 'Sem informação Cadastrada'),
+(40, 'k', 1, 'Desenvolvimento', 'Moderada', 'Sem informação Cadastrada'),
+(41, 'k', 2, 'Desenvolvimento', 'Alta', 'Sem informação Cadastrada'),
+(42, 'k', 3, 'Desenvolvimento', 'Altíssima', 'Sem informação Cadastrada');
 
 -- --------------------------------------------------------
 
@@ -2535,7 +2535,7 @@ CREATE TABLE IF NOT EXISTS `TB_DISTRIBUICAO` (
   `diferenca` decimal(5,2) NOT NULL,
   `amplitude_faixas` decimal(5,2) NOT NULL,
   `qtde_faixas` int(2) NOT NULL,
-  `dt_registro` date NOT NULL COMMENT 'Formato AAAA-MM-DD.',
+  `dt_registro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Formato AAAA-MM-DD.',
   PRIMARY KEY (`id_distribuicao`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
@@ -2544,7 +2544,7 @@ CREATE TABLE IF NOT EXISTS `TB_DISTRIBUICAO` (
 --
 
 INSERT INTO `TB_DISTRIBUICAO` (`id_distribuicao`, `valor`, `pontuacao_minima`, `pontuacao_maxima`, `diferenca`, `amplitude_faixas`, `qtde_faixas`, `dt_registro`) VALUES
-(1, 32997.91, 49.58, 150.42, 100.83, 25.21, 4, '2017-04-01');
+(1, 25000.00, 49.58, 115.68, 66.10, 16.50, 4, '2017-11-09 15:38:03');
 
 -- --------------------------------------------------------
 
@@ -2560,29 +2560,18 @@ CREATE TABLE IF NOT EXISTS `TB_DIVISAO` (
   `uf` varchar(2) NOT NULL COMMENT 'Local da Divisão.',
   `especialidade` varchar(40) NOT NULL COMMENT 'Desenvolvimento de Sistemas ou Design Gráfico.',
   PRIMARY KEY (`id_divisao`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
 
 --
 -- Extraindo dados da tabela `TB_DIVISAO`
 --
 
 INSERT INTO `TB_DIVISAO` (`id_divisao`, `sigla`, `nome`, `descricao`, `uf`, `especialidade`) VALUES
-(1, 'SDDEF', 'teste', 'teste', 'DF', 'Desenvolvimento'),
-(3, 'SDDEF', 'teste', 'teste', 'DF', 'Desenvolvimento'),
-(7, 'SDDEF', 'teste', 'teste', 'DF', 'Desenvolvimento'),
-(8, 'SDDEF', 'teste', 'teste', 'DF', 'Desenvolvimento'),
-(9, 'TEST1', 'teste1', 'teste 1', 'BH', 'Desenvolvimento'),
-(10, 'TEST2', 'teste 2', 'teste 2', 'SD', 'Design'),
-(11, 'TEST3', 'teste 3', 'teste 3', 'DF', 'Design'),
-(12, 'TEST4', 'teste 4', 'Teste 4', 'BH', 'Desenvolvimento/Design'),
-(13, 'TEST5', 'teste 5', 'Test 5', 'BH', 'Desenvolvimento'),
-(14, 'TEST6', 'teste 6', 'teste 6', 'BH', 'Desenvolvimento'),
-(15, 'TEST7', 'teste 7', 'teste 7', 'BH', 'Desenvolvimento'),
-(16, 'TEST8', 'teste 8', 'teste 8', 'BH', 'Desenvolvimento'),
-(17, 'TEST9', 'teste 9', 'teste 9', 'BH', 'Desenvolvimento'),
-(18, 'TES10', 'teste 10', 'teste 10', 'SD', 'Desenvolvimento/Design'),
-(19, 'TES11', 'teste 11', 'teste 11', 'DF', 'Desenvolvimento'),
-(20, 'TES12', 'teste 12', 'teste 12', 'DF', 'Design');
+(1, 'SDDEP', 'Experiência de Usuário e Portais', 'Divisão de Gestão de Demandas - Experiência de Usuário e Portais', 'DF', 'Desenvolvimento/Design'),
+(3, 'SDDEF', 'Soluções de Front-end e Portais', 'Divisão de Desenvolvimento - Soluções de Front-end e Portais', 'DF', 'Desenvolvimento'),
+(16, 'SDCSD', 'Soluções de Gerenciamento de Conteúdo - Salvador', 'Divisão de Desenvolvimento - Soluções de Gerenciamento de Conteúdo - Salvador', 'SD', 'Desenvolvimento'),
+(17, 'SDCBH', 'Soluções de Gerenciamento de Conteúdo - Belo Horizonte', 'Divisão de Desenvolvimento - Soluções de Gerenciamento de Conteúdo - Belo Horizonte', 'BH', 'Desenvolvimento'),
+(18, 'SDEXP', 'Soluções de Experiência do Usuário', 'Divisão de Design - Soluções de Experiência do Usuário', 'BH', 'Design');
 
 -- --------------------------------------------------------
 
@@ -2598,20 +2587,21 @@ CREATE TABLE IF NOT EXISTS `TB_FAIXA` (
   `qtde_pessoas` int(3) NOT NULL,
   `valor_rateio_pessoa` decimal(10,2) NOT NULL,
   `percentual` decimal(5,2) NOT NULL,
-  `TB_COLABORADOR_id_colaborador` int(9) NOT NULL,
+  `TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe` int(9) NOT NULL,
   `TB_DISTRIBUICAO_id_distribuicao` int(9) NOT NULL,
-  PRIMARY KEY (`id_faixa`,`TB_COLABORADOR_id_colaborador`,`TB_DISTRIBUICAO_id_distribuicao`),
-  KEY `fk_TB_FAIXA_TB_COLABORADOR` (`TB_COLABORADOR_id_colaborador`),
+  PRIMARY KEY (`id_faixa`,`TB_DISTRIBUICAO_id_distribuicao`),
   KEY `fk_TB_FAIXA_TB_DISTRIBUICAO1` (`TB_DISTRIBUICAO_id_distribuicao`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Extraindo dados da tabela `TB_FAIXA`
 --
 
-INSERT INTO `TB_FAIXA` (`id_faixa`, `limite_inferior`, `limite_superior`, `pontuacao_referencia`, `qtde_pessoas`, `valor_rateio_pessoa`, `percentual`, `TB_COLABORADOR_id_colaborador`, `TB_DISTRIBUICAO_id_distribuicao`) VALUES
-(1, 49.58, 74.79, 74.79, 4, 253.83, 30.00, 1, 1),
-(2, 74.79, 100.00, 87.40, 22, 377.12, 40.00, 1, 1);
+INSERT INTO `TB_FAIXA` (`id_faixa`, `limite_inferior`, `limite_superior`, `pontuacao_referencia`, `qtde_pessoas`, `valor_rateio_pessoa`, `percentual`, `TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`, `TB_DISTRIBUICAO_id_distribuicao`) VALUES
+(1, 49.58, 74.79, 74.79, 2, 253.83, 30.00, 54, 1),
+(2, 74.79, 100.00, 87.40, 1, 377.12, 40.00, 59, 1),
+(3, 100.00, 103.50, 101.75, 1, 365.85, 25.00, 62, 1),
+(4, 103.50, 115.68, 109.59, 1, 458.69, 5.00, 63, 1);
 
 -- --------------------------------------------------------
 
@@ -2627,55 +2617,55 @@ CREATE TABLE IF NOT EXISTS `TB_IMPACTO` (
   `nome` varchar(50) NOT NULL,
   `descricao` text NOT NULL,
   PRIMARY KEY (`id_impacto`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=47 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=46 ;
 
 --
 -- Extraindo dados da tabela `TB_IMPACTO`
 --
 
 INSERT INTO `TB_IMPACTO` (`id_impacto`, `atributo`, `classificacao`, `tipo`, `nome`, `descricao`) VALUES
-(1, 'a', 1, 'Desenvolvimento', 'Relevante', '-A ausência gera pouco impacto (Não impacta a entrega).\r\n-Atente somente a um tipo de contexto(tecnologia/versão)'),
-(2, 'a', 2, 'Desenvolvimento', 'Muito', '-Gera impacto no projeto quando houver sua ausência(Qualidade)\r\n-Atende alguns tipos de projetos (não domina todos assuntos)\r\n'),
-(3, 'a', 3, 'Desenvolvimento', 'Altamente', '- insubstituível (impacto muito alto, risco)\r\n- bus factor (risco da substituição)\r\n- se não houver essa atribuição no projeto: risco de falhas, atrasos, qualidade... \r\n- pode atender qualquer tipo de projeto (assunto, complexidade...)\r\n- velocidade (entrega antes do prazo previsto)\r\n'),
-(4, 'b', 3, 'Desenvolvimento', 'Altamente', '-Na Ausência do profissional perdemos nos quesitos(-Domínio pleno do negócio e da tecnologia empregada.\r\n-Estrategias antecipadas para eliminação de problemas)\r\n'),
-(5, 'b', 1, 'Desenvolvimento', 'Relevante', '\r\n'),
-(6, 'b', 2, 'Desenvolvimento', 'Muito', '\r\n'),
-(7, 'e', 1, 'Desenvolvimento', 'Relevante', '-Entrega no prazo e com qualidade (conforme especificado)'),
-(8, 'e', 2, 'Desenvolvimento', 'Muito', '-Entrega no prazo com qualidade acima da expectativa (propõe soluções)'),
-(9, 'e', 3, 'Desenvolvimento', 'Altamente', '-Entrega antes do prazo com qualidade superior\r\n-Atinge os objetivos sem retrabalho\r\n'),
-(10, 'f', 1, 'Desenvolvimento', 'Relevante', '-Documentação é importante porém não é essencial para o andamento do projeto (pode ser feita em um segundo momento)'),
-(11, 'f', 2, 'Desenvolvimento', 'Muito', '-Documentação é importante e essencial para o andamento do projeto'),
-(12, 'f', 3, 'Desenvolvimento', 'Altamente', '-Documentação extremamente necessária\r\n(Documentação incompleta do componente pode causar atraso na entrega e dificuldades de uso.\r\n-Erro na integração do componente com o projeto)\r\n-Grau de reuso'),
-(13, 'g', 1, 'Desenvolvimento', 'Relevante', '-Treinamento\r\nDe Uso \r\nde algum sistema\r\nDesenvolvido'),
-(14, 'g', 2, 'Desenvolvimento', 'Muito', '-Repasse de conhecimentos.'),
-(15, 'g', 3, 'Desenvolvimento', 'Altamente', '-Quando o treinamento de conhecimentos é uma pré condição para o projeto\r\n-Quando a equipe tem a percepção de necessidade de nivelar os conhecimentos(Implica no aumento de produtividade da equipe)'),
-(16, 'h', 1, 'Desenvolvimento', 'Relevante', '-Internalização com restrições de uso\r\n-internalização de ferramentas de apoio(aumenta produtividade/melhoria comunicação)'),
-(17, 'h', 2, 'Desenvolvimento', 'Muito', '-Internalização de uma tecnologia sem restrições de uso e sem a necessidade de treinamento/repasse(infra/segurança)'),
-(18, 'h', 3, 'Desenvolvimento', 'Altamente', '-Exige internalização por razão de negócio(prazo curto para internalizar uma tecnologia que será utilizada nos sistemas produtivos)\r\n-Quando houver necessidade de treinamentos para infra/segurança/contratação'),
+(1, 'a', 1, 'Desenvolvimento', 'Relevante', 'A ausência gera pouco impacto (Não impacta a entrega);\nAtente somente a um tipo de contexto(tecnologia/versão);'),
+(2, 'a', 2, 'Desenvolvimento', 'Muito', 'Gera impacto no projeto quando houver sua ausência(Qualidade);\nAtende alguns tipos de projetos (não domina todos assuntos);'),
+(3, 'a', 3, 'Desenvolvimento', 'Altamente', 'Insubstituível (impacto muito alto, risco);\nBus factor (risco da substituição);\nSe não houver essa atribuição no projeto: risco de falhas, atrasos, qualidade...;\nPode atender qualquer tipo de projeto (assunto, complexidade...);\nVelocidade (entrega antes do prazo previsto);'),
+(4, 'b', 3, 'Desenvolvimento', 'Altamente', 'Na Ausência do profissional perdemos nos quesitos;\nDomínio pleno do negócio e da tecnologia empregada;\nEstrategias antecipadas para eliminação de problemas;'),
+(5, 'b', 1, 'Desenvolvimento', 'Relevante', 'Sem informação Cadastrada'),
+(6, 'b', 2, 'Desenvolvimento', 'Muito', ' Sem informação Cadastrada'),
+(7, 'e', 1, 'Desenvolvimento', 'Relevante', 'Entrega no prazo e com qualidade (conforme especificado);'),
+(8, 'e', 2, 'Desenvolvimento', 'Muito', 'Entrega no prazo com qualidade acima da expectativa (propõe soluções);'),
+(9, 'e', 3, 'Desenvolvimento', 'Altamente', 'Entrega antes do prazo com qualidade superior;\nAtinge os objetivos sem retrabalho;'),
+(10, 'f', 1, 'Desenvolvimento', 'Relevante', 'Documentação é importante porém não é essencial para o andamento do projeto (pode ser feita em um segundo momento);'),
+(11, 'f', 2, 'Desenvolvimento', 'Muito', 'Documentação é importante e essencial para o andamento do projeto;'),
+(12, 'f', 3, 'Desenvolvimento', 'Altamente', 'Documentação extremamente necessária (Documentação incompleta do componente pode causar atraso na entrega e dificuldades de uso);\nErro na integração do componente com o projeto;\nGrau de reuso;'),
+(13, 'g', 1, 'Desenvolvimento', 'Relevante', 'Treinamento de Uso de algum sistema desenvolvido;'),
+(14, 'g', 2, 'Desenvolvimento', 'Muito', 'Repasse de conhecimentos;'),
+(15, 'g', 3, 'Desenvolvimento', 'Altamente', 'Quando o treinamento de conhecimentos é uma pré condição para o projeto;\nQuando a equipe tem a percepção de necessidade de nivelar os conhecimentos(Implica no aumento de produtividade da equipe);'),
+(16, 'h', 1, 'Desenvolvimento', 'Relevante', 'Internalização com restrições de uso;\nInternalização de ferramentas de apoio(aumenta produtividade/melhoria comunicação);'),
+(17, 'h', 2, 'Desenvolvimento', 'Muito', 'Internalização de uma tecnologia sem restrições de uso e sem a necessidade de treinamento/repasse(infra/segurança);'),
+(18, 'h', 3, 'Desenvolvimento', 'Altamente', 'Exige internalização por razão de negócio(prazo curto para internalizar uma tecnologia que será utilizada nos sistemas produtivos);\nQuando houver necessidade de treinamentos para infra/segurança/contratação;'),
 (19, 'i', 1, 'Desenvolvimento', 'Relevante', 'Boa assertividade porém não se preocupa muito com os riscos.'),
-(20, 'i', 2, 'Desenvolvimento', 'Muito', '-Boa assertividade com alguma lacuna na análise de riscos( sem impactos significativos)'),
-(21, 'i', 3, 'Desenvolvimento', 'Altamente', '-Assertividade nas estimativas\r\n-confiança do cliente(cumprimento dos prazos)\r\n-Melhores resultados\r\n-Qualidade incluída(Testes automatizados, testes unitários)\r\n-discrepância entre o valor orçado vs implementado\r\n-Análise de riscos Plena.'),
-(22, 'j', 1, 'Desenvolvimento', 'Relevante', '-Entrega no prazo e com qualidade (conforme especificado)'),
-(23, 'j', 2, 'Desenvolvimento', 'Muito', '-Entrega no prazo com qualidade acima da expectativa (propõe soluções)'),
-(24, 'j', 3, 'Desenvolvimento', 'Altamente', '-Entrega antes do prazo com qualidade superior\r\n-Atinge os objetivos sem retrabalho'),
-(25, 'l', 1, 'Desenvolvimento', 'Relevante', '-Documentação eficaz(Principais cenários de uso, quando não é incompatível)'),
-(26, 'l', 2, 'Desenvolvimento', 'Muito', '-Exige o trabalha em algum canal de comunicação(, lançamentos, novas versões, etc)'),
-(27, 'l', 3, 'Desenvolvimento', 'Altamente', '-Release quebrada\r\n-Administração de componente reusável(quando ocorre problema impacto é maior)\r\n-Faz análise de risco'),
-(28, 'm', 1, 'Desenvolvimento', 'Relevante', '-Manutenibilidade'),
-(29, 'm', 2, 'Desenvolvimento', 'Muito', '-Qualidade'),
-(30, 'm', 3, 'Desenvolvimento', 'Altamente', '-RNF(complexidade ciclomatica)\r\n\r\n-Identifica aspectos relacionados a segurança e performance'),
-(31, 'n', 1, 'Desenvolvimento', 'Relevante', '- Riscos Identificados\r\n-Prazos curtos'),
-(32, 'n', 2, 'Desenvolvimento', 'Muito', '-Onde a entrega impacta somente o projeto\r\n-Projeto estratégico'),
-(33, 'n', 3, 'Desenvolvimento', 'Altamente', '-Onde a entrega impacta outros projetos\r\n-Alto Risco'),
-(37, 'c', 3, 'Desenvolvimento', 'Altamente', ''),
-(38, 'c', 1, 'Desenvolvimento', 'Relevante', '\r\n'),
-(39, 'c', 2, 'Desenvolvimento', 'Muito', '\r\n'),
-(40, 'd', 1, 'Desenvolvimento', 'Relevante', '\r\n'),
-(41, 'd', 2, 'Desenvolvimento', 'Muito', '\r\n'),
-(42, 'd', 3, 'Desenvolvimento', 'Altamente', ''),
-(43, 'k', 1, 'Desenvolvimento', 'Relevante', '\r\n'),
-(44, 'k', 2, 'Desenvolvimento', 'Muito', '\r\n'),
-(45, 'k', 3, 'Desenvolvimento', 'Altamente', '');
+(20, 'i', 2, 'Desenvolvimento', 'Muito', 'Boa assertividade com alguma lacuna na análise de riscos(sem impactos significativos);'),
+(21, 'i', 3, 'Desenvolvimento', 'Altamente', 'Assertividade nas estimativas;\nConfiança do cliente(cumprimento dos prazos);\nMelhores resultados;\nQualidade incluída(Testes automatizados, testes unitários);\nDiscrepância entre o valor orçado vs implementado;\nAnálise de riscos Plena;'),
+(22, 'j', 1, 'Desenvolvimento', 'Relevante', 'Entrega no prazo e com qualidade (conforme especificado);'),
+(23, 'j', 2, 'Desenvolvimento', 'Muito', 'Entrega no prazo com qualidade acima da expectativa (propõe soluções);'),
+(24, 'j', 3, 'Desenvolvimento', 'Altamente', 'Entrega antes do prazo com qualidade superior;\nAtinge os objetivos sem retrabalho;'),
+(25, 'l', 1, 'Desenvolvimento', 'Relevante', 'Documentação eficaz(Principais cenários de uso, quando não é incompatível);'),
+(26, 'l', 2, 'Desenvolvimento', 'Muito', 'Exige o trabalha em algum canal de comunicação(lançamentos, novas versões, etc);'),
+(27, 'l', 3, 'Desenvolvimento', 'Altamente', 'Release quebrada;\nAdministração de componente reusável(quando ocorre problema impacto é maior);\nFaz análise de risco;'),
+(28, 'm', 1, 'Desenvolvimento', 'Relevante', 'Manutenibilidade;'),
+(29, 'm', 2, 'Desenvolvimento', 'Muito', 'Qualidade;'),
+(30, 'm', 3, 'Desenvolvimento', 'Altamente', 'RNF(complexidade ciclomatica);\nIdentifica aspectos relacionados a segurança e performance;'),
+(31, 'n', 1, 'Desenvolvimento', 'Relevante', 'Riscos Identificados;\nPrazos curtos;'),
+(32, 'n', 2, 'Desenvolvimento', 'Muito', 'Onde a entrega impacta somente o projeto;\nProjeto estratégico;'),
+(33, 'n', 3, 'Desenvolvimento', 'Altamente', 'Onde a entrega impacta outros projetos;\nAlto Risco;'),
+(37, 'c', 3, 'Desenvolvimento', 'Altamente', 'Sem informação Cadastrada'),
+(38, 'c', 1, 'Desenvolvimento', 'Relevante', 'Sem informação Cadastrada'),
+(39, 'c', 2, 'Desenvolvimento', 'Muito', 'Sem informação Cadastrada'),
+(40, 'd', 1, 'Desenvolvimento', 'Relevante', 'Sem informação Cadastrada'),
+(41, 'd', 2, 'Desenvolvimento', 'Muito', 'Sem informação Cadastrada'),
+(42, 'd', 3, 'Desenvolvimento', 'Altamente', 'Sem informação Cadastrada'),
+(43, 'k', 1, 'Desenvolvimento', 'Relevante', 'Sem informação Cadastrada'),
+(44, 'k', 2, 'Desenvolvimento', 'Muito', 'Sem informação Cadastrada'),
+(45, 'k', 3, 'Desenvolvimento', 'Altamente', 'Sem informação Cadastrada');
 
 -- --------------------------------------------------------
 
@@ -2689,20 +2679,20 @@ CREATE TABLE IF NOT EXISTS `TB_PAPEL` (
   `nome` varchar(50) NOT NULL,
   `descricao` text NOT NULL,
   PRIMARY KEY (`id_papel`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='Tabela de papeis dos colaboradores.' AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='Tabela de papeis dos colaboradores.' AUTO_INCREMENT=10 ;
 
 --
 -- Extraindo dados da tabela `TB_PAPEL`
 --
 
 INSERT INTO `TB_PAPEL` (`id_papel`, `tipo`, `nome`, `descricao`) VALUES
-(1, 'Desenvolvimento', 'Front-end', 'Desenvolvimento front-end.'),
+(1, 'Desenvolvimento', 'Front-end (Desenvolvimento) ', 'Desenvolvimento front-end.'),
 (2, 'Desenvolvimento', 'Arquiteto', 'Arquiteto de software.'),
 (3, 'Desenvolvimento', 'Testes', 'Colaboradores que possuem conhecimento aprofundado em testes.'),
 (4, 'Desenvolvimento', 'Requisitos', 'Colaboradores que possuem conhecimento aprofundado em requisitos.'),
 (5, 'Desenvolvimento', 'Back-end', 'Colaboradores que possuem conhecimento aprofundado em Back-end.'),
 (6, 'Desenvolvimento', 'Banco', 'Colaboradores que possuem conhecimento aprofundado em Banco de Dados.'),
-(7, 'Design', 'Front-end', 'Colaboradores que possuem conhecimento aprofundado em Front-end e são das equipes de Design.'),
+(7, 'Design', 'Front-end (Design)', 'Colaboradores que possuem conhecimento aprofundado em Front-end e são das equipes de Design.'),
 (8, 'Design', 'UI', 'Colaboradores que possuem conhecimento aprofundado em UI - User Interface.'),
 (9, 'Design', 'UX', 'Colaboradores que possuem conhecimento aprofundado em UX - User Experience.');
 
@@ -2722,14 +2712,26 @@ CREATE TABLE IF NOT EXISTS `TB_PAPEL_has_TB_COLABORADOR` (
   KEY `fk_TB_PAPEL_has_TB_COLABORADOR_TB_PAPEL1` (`TB_PAPEL_id_papel`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
 --
--- Extraindo dados da tabela `TB_PAPEL_has_TB_COLABORADOR`
+-- Estrutura da tabela `TB_PERFIL`
 --
 
-INSERT INTO `TB_PAPEL_has_TB_COLABORADOR` (`TB_PAPEL_id_papel`, `TB_COLABORADOR_id_colaborador`, `TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`, `TB_COLABORADOR_TB_DIVISAO_id_divisao`) VALUES
-(1, 1, 12, 1),
-(1, 2, 18, 3),
-(5, 1, 12, 1);
+CREATE TABLE IF NOT EXISTS `TB_PERFIL` (
+  `id_perfil` int(11) NOT NULL AUTO_INCREMENT,
+  `ds_perfil` varchar(20) NOT NULL COMMENT '1 - ADMINISTRADOR 2 - LIDER 3 - COLABORADOR ',
+  PRIMARY KEY (`id_perfil`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Extraindo dados da tabela `TB_PERFIL`
+--
+
+INSERT INTO `TB_PERFIL` (`id_perfil`, `ds_perfil`) VALUES
+(1, 'ADMINISTRADOR'),
+(2, 'LIDER'),
+(3, 'COLABORADOR');
 
 -- --------------------------------------------------------
 
@@ -2745,23 +2747,25 @@ CREATE TABLE IF NOT EXISTS `TB_PESOS` (
   `valor` decimal(5,3) NOT NULL,
   `dt_registro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_pesos`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
 
 --
 -- Extraindo dados da tabela `TB_PESOS`
 --
 
 INSERT INTO `TB_PESOS` (`id_pesos`, `quantidade`, `tipo`, `descricao`, `valor`, `dt_registro`) VALUES
-(3, 2, 'Papeis', 'Peso para o calculo quando o colaborador estiver executando em 2 papeis.', 1.300, '2017-06-06 03:00:00'),
-(4, 3, 'Papeis', 'Peso para o calculo quando o colaborador estiver executando em 3 papeis.', 1.500, '2017-06-06 03:00:00'),
-(5, 2, 'Projetos', 'Peso para o calculo quando o colaborador estiver envolvido em 2 projetos.', 1.125, '2017-06-06 03:00:00'),
-(6, 3, 'Projetos', 'Peso para o calculo quando o colaborador estiver envolvido em 3 projetos.', 1.250, '2017-06-06 03:00:00'),
-(7, 4, 'Projetos', 'Peso para o calculo quando o colaborador estiver envolvido em 4 projetos.', 1.375, '2017-06-06 03:00:00'),
-(8, 5, 'Projetos', 'Peso para o calculo quando o colaborador estiver envolvido em 5 projetos.', 1.500, '2017-06-06 03:00:00'),
-(9, 6, 'Projetos', 'Peso para o calculo quando o colaborador estiver envolvido em 6 projetos.', 1.625, '2017-06-06 03:00:00'),
-(10, 2, 'Papel', 'afasdfafsdwstfgastawet', 1.175, '0000-00-00 00:00:00'),
-(11, 3, 'Papel', 'sfsdfasdfas', 1.175, '0000-00-00 00:00:00'),
-(12, 1, 'werwqr', 'wqerwqrwqr', 99.999, '2017-10-23 18:04:53');
+(4, 2, 'Papel', 'Peso para o calculo quando o colaborador estiver executando em 2 papeis.', 1.300, '2017-06-06 03:00:00'),
+(5, 3, 'Papel', 'Peso para o calculo quando o colaborador estiver envolvido em 2 papeis.', 1.500, '2017-06-06 03:00:00'),
+(6, 2, 'Projeto', 'Peso para o calculo quando o colaborador estiver envolvido em 2 projetos.', 1.125, '2017-11-09 16:27:04'),
+(7, 3, 'Projeto', 'Peso para o calculo quando o colaborador estiver envolvido em 3 projetos.', 1.250, '2017-06-06 03:00:00'),
+(8, 4, 'Projeto', 'Peso para o calculo quando o colaborador estiver envolvido em 4 projetos.', 1.375, '2017-10-04 15:28:28'),
+(9, 5, 'Projeto', 'Peso para o calculo quando o colaborador estiver envolvido em 5 projetos.', 1.500, '2017-11-09 16:28:03'),
+(10, 6, 'Projeto', 'Peso para o calculo quando o colaborador estiver envolvido em 6 projetos.', 1.625, '2017-11-09 16:28:32'),
+(11, 2, 'Tecnologia', 'Peso para calculo de conhecimento em 2 tecnologias.', 1.100, '2017-11-24 18:53:49'),
+(12, 3, 'Tecnologia', 'Peso para calculo de conhecimento em 3 tecnologias.', 1.125, '2017-11-24 18:53:59'),
+(13, 4, 'Tecnologia', 'Peso para calculo de conhecimento em 4 tecnologias.', 1.150, '2017-11-24 18:54:23'),
+(14, 5, 'Tecnologia', 'Peso para calculo de conhecimento em 5 tecnologias.', 1.175, '2017-11-24 18:54:42'),
+(15, 6, 'Tecnologia', 'Peso para calculo de conhecimento em 6 tecnologias.', 1.200, '2017-12-12 11:09:16');
 
 -- --------------------------------------------------------
 
@@ -2785,14 +2789,14 @@ CREATE TABLE IF NOT EXISTS `TB_PROJETO` (
 --
 
 INSERT INTO `TB_PROJETO` (`id_projeto`, `titulo`, `cod_servico`, `descricao`, `dt_inicio`, `dt_fim`, `abrangencia`) VALUES
-(1, 'Intercâmbio de Informações', 10115, 'Intercâmbio de informações união Europeia.', '2017-01-01', '2017-07-31', 'Desenvolvimento'),
-(2, 'ECAT', 10445, 'ECAT - COMPARTILHAMENTO DE INFORMAÇÕES ENTRE ADMINISTRAÇÕES TRIBUTÁRIAS', '2017-01-01', '2017-07-31', 'Desenvolvimento'),
+(1, 'Intercâmbio de Informações', 10115, 'Intercâmbio de informações União Europeia.', '2017-08-02', '2017-11-21', 'Desenvolvimento'),
+(2, 'ECAT', 10445, 'ECAT - COMPARTILHAMENTO DE INFORMAÇÕES ENTRE ADMINISTRAÇÕES TRIBUTÁRIAS', '2017-10-03', '2017-10-27', 'Desenvolvimento'),
 (3, 'Portal Tesouro Direto', 10166, 'Tesouro Direto Web - Desenvolvimento', '2017-01-01', '2017-07-31', 'Desenvolvimento'),
 (4, 'ENAT', 37185, 'SITIO DO ENAT', '2017-01-01', '2017-07-31', 'Desenvolvimento'),
 (5, 'Novo Portal SERPRO', 10261, 'Novo Portal Serpro.', '2017-01-01', '2017-07-31', 'Desenvolvimento'),
 (6, 'PUCOMEX', 8275, 'PORTAL ÚNICO SISCOMEX ANUENTES INTERNET (PUCOMEX)', '2017-01-01', '2017-07-31', 'Desenvolvimento'),
 (7, 'VICOMEX', 7302, 'VICOMEX - VISÃO INTEGRADA DO COMÉRCIO EXTERIOR', '2017-01-01', '2017-07-31', 'Desenvolvimento'),
-(8, 'Anexação', 7353, 'ANEXAÇÃO ELETRÔNICA DE DOCUMENTOS', '2017-01-01', '2017-07-31', 'Desenvolvimento'),
+(8, 'Anexação', 7353, 'ANEXAÇÃO ELETRÔNICA DE DOCUMENTOS', '2017-07-11', '2017-07-31', 'Desenvolvimento'),
 (9, 'Workflow', 7881, 'SISCOMEX - WORKFLOW DO DESPACHO ADUANEIRO', '2017-01-01', '2017-07-31', 'Desenvolvimento'),
 (10, 'SISCOP', 80458, 'OCORRENCIAS DO SISCOP', '2017-01-01', '2017-07-31', 'Desenvolvimento'),
 (11, 'SERPRO Design', 80612, 'Serpro Design', '2017-01-01', '2017-07-31', 'Desenvolvimento'),
@@ -2825,13 +2829,6 @@ CREATE TABLE IF NOT EXISTS `TB_PROJETO_has_TB_COLABORADOR` (
   KEY `fk_TB_PROJETO_has_TB_COLABORADOR_TB_PROJETO1` (`TB_PROJETO_id_projeto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Extraindo dados da tabela `TB_PROJETO_has_TB_COLABORADOR`
---
-
-INSERT INTO `TB_PROJETO_has_TB_COLABORADOR` (`TB_PROJETO_id_projeto`, `TB_COLABORADOR_id_colaborador`, `TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`, `TB_COLABORADOR_TB_DIVISAO_id_divisao`) VALUES
-(6, 1, 12, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -2843,99 +2840,94 @@ CREATE TABLE IF NOT EXISTS `TB_REFERENCIA_FCT_GFE` (
   `cargo` varchar(8) NOT NULL COMMENT 'Analista, técnico ou auxiliar.',
   `num_referencia` int(2) NOT NULL COMMENT 'Número de referência na tabela de FCT/GFE.',
   `valor_referencia` decimal(10,2) NOT NULL COMMENT 'Valor de referencia de acordo com a tabela FCT/GFE.',
-  `dt_atualizacao` date NOT NULL,
+  `dt_atualizacao` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_referencia_fct_gfe`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=85 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=81 ;
 
 --
 -- Extraindo dados da tabela `TB_REFERENCIA_FCT_GFE`
 --
 
 INSERT INTO `TB_REFERENCIA_FCT_GFE` (`id_referencia_fct_gfe`, `cargo`, `num_referencia`, `valor_referencia`, `dt_atualizacao`) VALUES
-(1, 'Analista', 12, 800.97, '2016-05-01'),
-(2, 'Técnico', 1, 176.34, '2016-05-01'),
-(3, 'Técnico', 2, 191.16, '2016-05-01'),
-(4, 'Técnico', 3, 207.21, '2016-05-01'),
-(5, 'Técnico', 4, 224.61, '2016-05-01'),
-(6, 'Técnico', 5, 243.48, '2016-05-01'),
-(7, 'Técnico', 6, 263.92, '2016-05-01'),
-(8, 'Técnico', 7, 286.10, '2016-05-01'),
-(9, 'Técnico', 8, 310.13, '2016-05-01'),
-(10, 'Técnico', 9, 336.18, '2016-05-01'),
-(11, 'Técnico', 10, 364.43, '2016-05-01'),
-(12, 'Técnico', 11, 395.03, '2016-05-01'),
-(13, 'Técnico', 12, 428.21, '2016-05-01'),
-(14, 'Técnico', 13, 464.19, '2016-05-01'),
-(15, 'Técnico', 14, 503.17, '2016-05-01'),
-(16, 'Técnico', 15, 545.44, '2016-05-01'),
-(17, 'Técnico', 16, 591.27, '2016-05-01'),
-(18, 'Técnico', 17, 640.93, '2016-05-01'),
-(19, 'Técnico', 18, 694.76, '2016-05-01'),
-(20, 'Técnico', 19, 753.13, '2016-05-01'),
-(21, 'Técnico', 20, 816.39, '2016-05-01'),
-(22, 'Técnico', 21, 884.96, '2016-05-01'),
-(23, 'Técnico', 22, 959.30, '2016-05-01'),
-(24, 'Técnico', 23, 1039.89, '2016-05-01'),
-(25, 'Técnico', 24, 1127.21, '2016-05-01'),
-(26, 'Técnico', 25, 1221.90, '2016-05-01'),
-(27, 'Técnico', 26, 1324.56, '2016-05-01'),
-(28, 'Técnico', 27, 1435.84, '2016-05-01'),
-(29, 'Técnico', 28, 1556.43, '2016-05-01'),
-(30, 'Técnico', 29, 1687.17, '2016-05-01'),
-(31, 'Técnico', 30, 1828.90, '2016-05-01'),
-(32, 'Técnico', 31, 1982.52, '2016-05-01'),
-(33, 'Técnico', 32, 2149.04, '2016-05-01'),
-(34, 'Técnico', 33, 2329.58, '2016-05-01'),
-(35, 'Técnico', 34, 2525.26, '2016-05-01'),
-(36, 'Técnico', 35, 2737.36, '2016-05-01'),
-(37, 'Técnico', 36, 2967.32, '2016-05-01'),
-(38, 'Técnico', 37, 3216.57, '2016-05-01'),
-(39, 'Técnico', 38, 3486.76, '2016-05-01'),
-(40, 'Técnico', 39, 3779.64, '2016-05-01'),
-(41, 'Técnico', 40, 4097.13, '2016-05-01'),
-(42, 'Analista', 1, 329.84, '2016-05-01'),
-(43, 'Analista', 2, 357.55, '2016-05-01'),
-(44, 'Analista', 3, 387.57, '2016-05-01'),
-(45, 'Analista', 4, 420.13, '2016-05-01'),
-(46, 'Analista', 5, 455.42, '2016-05-01'),
-(47, 'Analista', 6, 493.69, '2016-05-01'),
-(48, 'Analista', 7, 535.14, '2016-05-01'),
-(49, 'Analista', 8, 580.09, '2016-05-01'),
-(50, 'Analista', 9, 628.82, '2016-05-01'),
-(51, 'Analista', 10, 681.63, '2016-05-01'),
-(52, 'Analista', 11, 738.91, '2016-05-01'),
-(53, 'Analista', 13, 868.26, '2016-05-01'),
-(54, 'Analista', 14, 941.18, '2016-05-01'),
-(55, 'Analista', 15, 1020.22, '2016-05-01'),
-(56, 'Analista', 16, 1105.93, '2016-05-01'),
-(57, 'Analista', 17, 1198.83, '2016-05-01'),
-(58, 'Analista', 18, 1299.54, '2016-05-01'),
-(59, 'Analista', 19, 1408.71, '2016-05-01'),
-(60, 'Analista', 20, 1527.04, '2016-05-01'),
-(61, 'Analista', 21, 1655.30, '2016-05-01'),
-(62, 'Analista', 22, 1794.35, '2016-05-01'),
-(63, 'Analista', 23, 1945.08, '2016-05-01'),
-(64, 'Analista', 24, 2108.45, '2016-05-01'),
-(65, 'Analista', 25, 2285.58, '2016-05-01'),
-(66, 'Analista', 26, 2477.55, '2016-05-01'),
-(67, 'Analista', 27, 2685.67, '2016-05-01'),
-(68, 'Analista', 28, 2911.28, '2016-05-01'),
-(69, 'Analista', 29, 3155.82, '2016-05-01'),
-(70, 'Analista', 30, 3420.90, '2016-05-01'),
-(71, 'Analista', 31, 3708.27, '2016-05-01'),
-(72, 'Analista', 32, 4019.76, '2016-05-01'),
-(73, 'Analista', 33, 4357.43, '2016-05-01'),
-(74, 'Analista', 34, 4723.44, '2016-05-01'),
-(75, 'Analista', 35, 5120.23, '2016-05-01'),
-(76, 'Analista', 36, 5550.30, '2016-05-01'),
-(77, 'Analista', 37, 6016.54, '2016-05-01'),
-(78, 'Analista', 38, 6521.94, '2016-05-01'),
-(79, 'Analista', 39, 7069.76, '2016-05-01'),
-(80, 'Analista', 40, 7663.62, '2016-05-01'),
-(81, 'Auxiliar', 3, 10.00, '0000-00-00'),
-(82, 'Analista', 3, 356.00, '0000-00-00'),
-(83, 'Técnico', 12, 356.98, '0000-00-00'),
-(84, 'Técnico', 17, 3256.88, '0000-00-00');
+(1, 'Analista', 12, 800.99, '2017-11-01 11:56:16'),
+(2, 'Técnico', 1, 176.34, '2016-05-01 03:00:00'),
+(3, 'Técnico', 2, 191.16, '2016-05-01 03:00:00'),
+(4, 'Técnico', 3, 207.21, '2016-05-01 03:00:00'),
+(6, 'Técnico', 5, 243.48, '2016-05-01 03:00:00'),
+(7, 'Técnico', 6, 263.92, '2016-05-01 03:00:00'),
+(8, 'Técnico', 7, 286.10, '2016-05-01 03:00:00'),
+(9, 'Técnico', 8, 310.13, '2016-05-01 03:00:00'),
+(10, 'Técnico', 9, 336.18, '2016-05-01 03:00:00'),
+(11, 'Técnico', 10, 364.43, '2016-05-01 03:00:00'),
+(12, 'Técnico', 11, 395.77, '2017-10-26 11:36:30'),
+(13, 'Técnico', 12, 428.21, '2016-05-01 03:00:00'),
+(14, 'Técnico', 13, 464.19, '2016-05-01 03:00:00'),
+(15, 'Técnico', 14, 503.17, '2016-05-01 03:00:00'),
+(16, 'Técnico', 15, 545.44, '2016-05-01 03:00:00'),
+(17, 'Técnico', 16, 591.27, '2016-05-01 03:00:00'),
+(18, 'Técnico', 17, 640.93, '2016-05-01 03:00:00'),
+(19, 'Técnico', 18, 694.76, '2016-05-01 03:00:00'),
+(20, 'Técnico', 19, 753.13, '2016-05-01 03:00:00'),
+(21, 'Técnico', 20, 816.39, '2016-05-01 03:00:00'),
+(22, 'Técnico', 21, 884.96, '2016-05-01 03:00:00'),
+(23, 'Técnico', 22, 959.30, '2016-05-01 03:00:00'),
+(24, 'Técnico', 23, 1039.89, '2016-05-01 03:00:00'),
+(25, 'Técnico', 24, 1127.21, '2016-05-01 03:00:00'),
+(26, 'Técnico', 25, 1221.90, '2016-05-01 03:00:00'),
+(27, 'Técnico', 26, 1324.56, '2016-05-01 03:00:00'),
+(28, 'Técnico', 27, 1435.84, '2016-05-01 03:00:00'),
+(29, 'Técnico', 28, 1556.43, '2016-05-01 03:00:00'),
+(30, 'Técnico', 29, 1687.17, '2016-05-01 03:00:00'),
+(31, 'Técnico', 30, 1828.90, '2016-05-01 03:00:00'),
+(32, 'Técnico', 31, 1982.52, '2016-05-01 03:00:00'),
+(33, 'Técnico', 32, 2149.04, '2016-05-01 03:00:00'),
+(34, 'Técnico', 33, 2329.58, '2016-05-01 03:00:00'),
+(35, 'Técnico', 34, 2525.26, '2016-05-01 03:00:00'),
+(36, 'Técnico', 35, 2737.36, '2016-05-01 03:00:00'),
+(37, 'Técnico', 36, 2967.32, '2016-05-01 03:00:00'),
+(38, 'Técnico', 37, 3216.57, '2016-05-01 03:00:00'),
+(39, 'Técnico', 38, 3486.76, '2016-05-01 03:00:00'),
+(40, 'Técnico', 39, 3779.64, '2016-05-01 03:00:00'),
+(41, 'Técnico', 40, 4097.13, '2016-05-01 03:00:00'),
+(42, 'Analista', 1, 329.84, '2016-05-01 03:00:00'),
+(43, 'Analista', 2, 357.55, '2016-05-01 03:00:00'),
+(44, 'Analista', 3, 387.57, '2016-05-01 03:00:00'),
+(45, 'Analista', 4, 420.13, '2016-05-01 03:00:00'),
+(46, 'Analista', 5, 455.42, '2016-05-01 03:00:00'),
+(47, 'Analista', 6, 493.69, '2016-05-01 03:00:00'),
+(48, 'Analista', 7, 535.14, '2016-05-01 03:00:00'),
+(49, 'Analista', 8, 580.09, '2016-05-01 03:00:00'),
+(50, 'Analista', 9, 628.82, '2016-05-01 03:00:00'),
+(51, 'Analista', 10, 681.63, '2016-05-01 03:00:00'),
+(52, 'Analista', 11, 738.91, '2016-05-01 03:00:00'),
+(53, 'Analista', 13, 868.26, '2016-05-01 03:00:00'),
+(54, 'Analista', 14, 941.18, '2016-05-01 03:00:00'),
+(55, 'Analista', 15, 1020.22, '2016-05-01 03:00:00'),
+(56, 'Analista', 16, 1105.93, '2016-05-01 03:00:00'),
+(57, 'Analista', 17, 1198.83, '2016-05-01 03:00:00'),
+(58, 'Analista', 18, 1299.54, '2016-05-01 03:00:00'),
+(59, 'Analista', 19, 1408.71, '2016-05-01 03:00:00'),
+(60, 'Analista', 20, 1527.04, '2016-05-01 03:00:00'),
+(61, 'Analista', 21, 1655.30, '2016-05-01 03:00:00'),
+(62, 'Analista', 22, 1794.35, '2016-05-01 03:00:00'),
+(63, 'Analista', 23, 1945.08, '2016-05-01 03:00:00'),
+(64, 'Analista', 24, 2108.45, '2016-05-01 03:00:00'),
+(65, 'Analista', 25, 2285.58, '2016-05-01 03:00:00'),
+(66, 'Analista', 26, 2477.55, '2016-05-01 03:00:00'),
+(67, 'Analista', 27, 2685.67, '2016-05-01 03:00:00'),
+(68, 'Analista', 28, 2911.28, '2016-05-01 03:00:00'),
+(69, 'Analista', 29, 3155.82, '2016-05-01 03:00:00'),
+(70, 'Analista', 30, 3420.90, '2016-05-01 03:00:00'),
+(71, 'Analista', 31, 3708.27, '2016-05-01 03:00:00'),
+(72, 'Analista', 32, 4019.76, '2016-05-01 03:00:00'),
+(73, 'Analista', 33, 4357.43, '2016-05-01 03:00:00'),
+(74, 'Analista', 34, 4723.44, '2016-05-01 03:00:00'),
+(75, 'Analista', 35, 5120.23, '2016-05-01 03:00:00'),
+(76, 'Analista', 36, 5550.30, '2016-05-01 03:00:00'),
+(77, 'Analista', 37, 6016.54, '2016-05-01 03:00:00'),
+(78, 'Analista', 38, 6521.94, '2016-05-01 03:00:00'),
+(79, 'Analista', 39, 7069.76, '2016-05-01 03:00:00'),
+(80, 'Analista', 40, 7663.62, '2016-05-01 03:00:00');
 
 -- --------------------------------------------------------
 
@@ -2945,16 +2937,23 @@ INSERT INTO `TB_REFERENCIA_FCT_GFE` (`id_referencia_fct_gfe`, `cargo`, `num_refe
 
 CREATE TABLE IF NOT EXISTS `TB_RESULTADO` (
   `id_resultado` int(9) NOT NULL AUTO_INCREMENT,
-  `tipo` varchar(20) NOT NULL COMMENT 'Tipos: Ideal ou FCT Atual.',
   `pontuacao` decimal(6,2) NOT NULL COMMENT 'Pontuação do Resultado da Avaliação.',
-  `dt_resultado` date NOT NULL,
+  `dt_resultado` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `ajuste` decimal(5,2) NOT NULL,
+  `ociosidade` decimal(9,2) NOT NULL,
+  `referencia_fct_gfe_pontuacao` int(9) NOT NULL,
   `TB_COLABORADOR_id_colaborador` int(9) NOT NULL,
-  `TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe` int(9) NOT NULL,
-  `TB_COLABORADOR_TB_DIVISAO_id_divisao` int(9) NOT NULL,
-  PRIMARY KEY (`id_resultado`,`TB_COLABORADOR_id_colaborador`,`TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`,`TB_COLABORADOR_TB_DIVISAO_id_divisao`),
-  KEY `fk_TB_RESULTADO_TB_COLABORADOR1` (`TB_COLABORADOR_id_colaborador`,`TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`,`TB_COLABORADOR_TB_DIVISAO_id_divisao`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  PRIMARY KEY (`id_resultado`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
+
+--
+-- Extraindo dados da tabela `TB_RESULTADO`
+--
+
+INSERT INTO `TB_RESULTADO` (`id_resultado`, `pontuacao`, `dt_resultado`, `ajuste`, `ociosidade`, `referencia_fct_gfe_pontuacao`, `TB_COLABORADOR_id_colaborador`) VALUES
+(25, 47.70, '2018-01-30 16:28:46', -33.53, 0.00, 4, 3),
+(26, 57.07, '2018-01-30 16:48:55', -42.90, 35.60, 4, 3),
+(27, 101.19, '2018-01-30 16:49:56', 5.05, 0.00, 30, 7);
 
 -- --------------------------------------------------------
 
@@ -2968,7 +2967,7 @@ CREATE TABLE IF NOT EXISTS `TB_TECNOLOGIA` (
   `nome` varchar(20) NOT NULL,
   `descricao` text NOT NULL,
   PRIMARY KEY (`id_tecnologia`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Extraindo dados da tabela `TB_TECNOLOGIA`
@@ -2977,18 +2976,11 @@ CREATE TABLE IF NOT EXISTS `TB_TECNOLOGIA` (
 INSERT INTO `TB_TECNOLOGIA` (`id_tecnologia`, `tipo`, `nome`, `descricao`) VALUES
 (3, 'Desenvolvimento', 'Liferay', 'Linguagem de programação Liferay.'),
 (4, 'Desenvolvimento', 'Angular', 'Linguagem de programação angular.'),
-(5, 'Desenvolvimento', 'Html/css', 'Linguagem de marcação de texto Html e css.'),
-(6, 'Design', 'Html/css', 'Linguagem de marcação de texto Html e css.'),
+(5, 'Desenvolvimento', 'Html/css (Desenv)', 'Linguagem de marcação de texto Html e css.'),
+(6, 'Design', 'Html/css (Design)', 'Linguagem de marcação de texto Html e css.'),
 (7, 'Desenvolvimento', 'Plone', 'Linguagem CMS Zope Plone.'),
 (8, 'Desenvolvimento', 'JavaScript', 'Linguagem de programação para browsers.'),
-(9, 'Desenvolvimento', 'Ckan', 'Linguagem Ckan.'),
-(10, 'Design', 'teste 1232323', 'teste 1'),
-(11, 'Desenvolvimento', 'teste 2', 'teste 2\n'),
-(12, 'Desenvolvimento', 'teste 3', 'teste 3'),
-(13, 'Desenvolvimento', 'teste 4', 'teste 4'),
-(14, 'Desenvolvimento', 'teste 5', 'teste 5'),
-(15, 'Desenvolvimento', 'teste 6', 'teste 6'),
-(16, 'Desenvolvimento', 'teste 7', 'teste 7');
+(9, 'Desenvolvimento', 'Ckan', 'Linguagem Ckan.');
 
 -- --------------------------------------------------------
 
@@ -3029,9 +3021,10 @@ CREATE TABLE IF NOT EXISTS `VW_ATRIBUTO` (
 `idAtributo` int(9)
 ,`letra` varchar(1)
 ,`descricao` text
-,`abrangenciaNome` varchar(117)
-,`complexidadeNome` varchar(87)
-,`impactoNome` varchar(117)
+,`tipo` varchar(50)
+,`abrangenciaNome` varchar(62)
+,`complexidadeNome` varchar(62)
+,`impactoNome` varchar(62)
 );
 -- --------------------------------------------------------
 
@@ -3046,6 +3039,24 @@ CREATE TABLE IF NOT EXISTS `VW_ATRIBUTO_COLABORADOR` (
 -- --------------------------------------------------------
 
 --
+-- Estrutura stand-in para visualizar `VW_AVALIACAO`
+--
+CREATE TABLE IF NOT EXISTS `VW_AVALIACAO` (
+`id_resultado` int(9)
+,`pontuacao` decimal(6,2)
+,`dt_resultado` varchar(10)
+,`ajuste` decimal(5,2)
+,`ociosidade` decimal(9,2)
+,`referencia_fct_gfe_pontuacao` int(9)
+,`TB_COLABORADOR_id_colaborador` int(9)
+,`no_colaborador` varchar(50)
+,`faixa` int(9)
+,`sigla_divisao` varchar(5)
+,`valor_rateio` decimal(32,2)
+);
+-- --------------------------------------------------------
+
+--
 -- Estrutura stand-in para visualizar `VW_COLABORADOR`
 --
 CREATE TABLE IF NOT EXISTS `VW_COLABORADOR` (
@@ -3054,10 +3065,13 @@ CREATE TABLE IF NOT EXISTS `VW_COLABORADOR` (
 ,`matricula` bigint(10)
 ,`telefone` bigint(11)
 ,`especialidade` varchar(40)
-,`salario` decimal(10,2)
-,`percentual_salario` decimal(10,2)
+,`salario` varchar(15)
+,`percentual_salario` varchar(15)
 ,`referenciaFct` varchar(40)
 ,`sigla` varchar(5)
+,`ref_fct_atual` bigint(11)
+,`pontuacao_inicial` decimal(10,2)
+,`ref_pontuacao_fct` bigint(11)
 );
 -- --------------------------------------------------------
 
@@ -3080,12 +3094,36 @@ CREATE TABLE IF NOT EXISTS `VW_DETALHE_ATRIBUTO` (
 -- --------------------------------------------------------
 
 --
+-- Estrutura stand-in para visualizar `VW_DISTRIBUICAO_FAIXA`
+--
+CREATE TABLE IF NOT EXISTS `VW_DISTRIBUICAO_FAIXA` (
+`id_faixa` int(9)
+,`limite_inferior` decimal(10,2)
+,`limite_superior` decimal(10,2)
+,`pontuacao_referencia` decimal(5,2)
+,`qtde_pessoas` int(3)
+,`valor_rateio_pessoa` decimal(10,2)
+,`percentual` decimal(5,2)
+,`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe` int(9)
+);
+-- --------------------------------------------------------
+
+--
 -- Estrutura stand-in para visualizar `VW_PAPEL_ATRIBUTO`
 --
 CREATE TABLE IF NOT EXISTS `VW_PAPEL_ATRIBUTO` (
 `TB_PAPEL_id_papel` int(9)
 ,`letra` varchar(1)
 ,`descricao` text
+,`descricaoAbrangencia1` text
+,`descricaoAbrangencia2` text
+,`descricaoAbrangencia3` text
+,`descricaoComplexidade1` text
+,`descricaoComplexidade2` text
+,`descricaoComplexidade3` text
+,`descricaoImpacto1` text
+,`descricaoImpacto2` text
+,`descricaoImpacto3` text
 );
 -- --------------------------------------------------------
 
@@ -3104,7 +3142,7 @@ CREATE TABLE IF NOT EXISTS `VW_PAPEL_COLABORADOR` (
 --
 DROP TABLE IF EXISTS `VW_ATRIBUTO`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`tiagooliveira`@`localhost` SQL SECURITY DEFINER VIEW `VW_ATRIBUTO` AS select `tb0`.`id_atributo` AS `idAtributo`,`tb0`.`letra` AS `letra`,`tb0`.`descricao` AS `descricao`,concat(`tb1`.`classificacao`,' - ',`tb1`.`tipo`,' (',`tb1`.`nome`,')') AS `abrangenciaNome`,concat(`tb2`.`classificacao`,' - ',`tb2`.`tipo`,' (',`tb2`.`nome`,')') AS `complexidadeNome`,concat(`tb3`.`classificacao`,' - ',`tb3`.`tipo`,' (',`tb3`.`nome`,')') AS `impactoNome` from (((`TB_ATRIBUTO` `tb0` join `TB_ABRANGENCIA` `tb1`) join `TB_COMPLEXIDADE` `tb2`) join `TB_IMPACTO` `tb3`) where ((`tb0`.`TB_ABRANGENCIA_id_abrangencia` = `tb1`.`id_abrangencia`) and (`tb0`.`TB_COMPLEXIDADE_id_complexidade` = `tb2`.`id_complexidade`) and (`tb0`.`TB_IMPACTO_id_impacto` = `tb3`.`id_impacto`)) order by `tb0`.`id_atributo`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`tiagooliveira`@`localhost` SQL SECURITY DEFINER VIEW `VW_ATRIBUTO` AS select `tb0`.`id_atributo` AS `idAtributo`,`tb0`.`letra` AS `letra`,`tb0`.`descricao` AS `descricao`,`tb1`.`tipo` AS `tipo`,concat(`tb1`.`classificacao`,'-',`tb1`.`nome`) AS `abrangenciaNome`,concat(`tb2`.`classificacao`,'-',`tb2`.`nome`) AS `complexidadeNome`,concat(`tb3`.`classificacao`,'-',`tb3`.`nome`) AS `impactoNome` from (((`TB_ATRIBUTO` `tb0` join `TB_ABRANGENCIA` `tb1`) join `TB_COMPLEXIDADE` `tb2`) join `TB_IMPACTO` `tb3`) where ((`tb0`.`TB_ABRANGENCIA_id_abrangencia` = `tb1`.`id_abrangencia`) and (`tb0`.`TB_COMPLEXIDADE_id_complexidade` = `tb2`.`id_complexidade`) and (`tb0`.`TB_IMPACTO_id_impacto` = `tb3`.`id_impacto`)) order by `tb0`.`id_atributo`;
 
 -- --------------------------------------------------------
 
@@ -3118,11 +3156,20 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`tiagooliveira`@`localhost` SQL SECURITY DEFI
 -- --------------------------------------------------------
 
 --
+-- Estrutura para visualizar `VW_AVALIACAO`
+--
+DROP TABLE IF EXISTS `VW_AVALIACAO`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `VW_AVALIACAO` AS select `tba`.`id_resultado` AS `id_resultado`,`tba`.`pontuacao` AS `pontuacao`,date_format(`tba`.`dt_resultado`,'%d/%m/%Y') AS `dt_resultado`,`tba`.`ajuste` AS `ajuste`,`tba`.`ociosidade` AS `ociosidade`,`tba`.`referencia_fct_gfe_pontuacao` AS `referencia_fct_gfe_pontuacao`,`tba`.`TB_COLABORADOR_id_colaborador` AS `TB_COLABORADOR_id_colaborador`,`clb`.`nome` AS `no_colaborador`,`clb`.`TB_FAIXA_id_faixa` AS `faixa`,(select `dv`.`sigla` from `TB_DIVISAO` `dv` where (`dv`.`id_divisao` = `clb`.`TB_DIVISAO_id_divisao`)) AS `sigla_divisao`,(select sum(`t1`.`valor_rateio_pessoa`) from `TB_FAIXA` `t1` where (`t1`.`limite_superior` <= (select `TB_FAIXA`.`limite_superior` from `TB_FAIXA` where (`TB_FAIXA`.`id_faixa` = `clb`.`TB_FAIXA_id_faixa`)))) AS `valor_rateio` from ((`TB_RESULTADO` `tba` join `TB_COLABORADOR` `clb`) join `TB_FAIXA` `tbf`) where ((`clb`.`id_colaborador` = `tba`.`TB_COLABORADOR_id_colaborador`) and (`tbf`.`id_faixa` = `clb`.`TB_FAIXA_id_faixa`)) order by `clb`.`nome`,`tba`.`dt_resultado`;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura para visualizar `VW_COLABORADOR`
 --
 DROP TABLE IF EXISTS `VW_COLABORADOR`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`tiagooliveira`@`localhost` SQL SECURITY DEFINER VIEW `VW_COLABORADOR` AS select `tb0`.`id_colaborador` AS `idColaborador`,`tb0`.`nome` AS `nome`,`tb0`.`matricula` AS `matricula`,`tb0`.`telefone` AS `telefone`,`tb0`.`especialidade` AS `especialidade`,`tb0`.`salario` AS `salario`,`tb0`.`percentual_salario` AS `percentual_salario`,concat(`tb1`.`num_referencia`,' - ',`tb1`.`cargo`,' (R$ ',`tb1`.`valor_referencia`,')') AS `referenciaFct`,`tb2`.`sigla` AS `sigla` from ((`TB_COLABORADOR` `tb0` join `TB_REFERENCIA_FCT_GFE` `tb1`) join `TB_DIVISAO` `tb2`) where ((`tb0`.`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe` = `tb1`.`id_referencia_fct_gfe`) and (`tb0`.`TB_DIVISAO_id_divisao` = `tb2`.`id_divisao`)) order by `tb0`.`id_colaborador`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `VW_COLABORADOR` AS select `tb0`.`id_colaborador` AS `idColaborador`,`tb0`.`nome` AS `nome`,`tb0`.`matricula` AS `matricula`,`tb0`.`telefone` AS `telefone`,`tb0`.`especialidade` AS `especialidade`,concat('R$ ',`tb0`.`salario`) AS `salario`,concat('R$ ',`tb0`.`percentual_salario`) AS `percentual_salario`,concat(`tb1`.`num_referencia`,' - ',`tb1`.`cargo`,' (R$ ',`tb1`.`valor_referencia`,')') AS `referenciaFct`,`tb2`.`sigla` AS `sigla`,(select `tb1`.`num_referencia` from (`TB_REFERENCIA_FCT_GFE` `tb1` join `TB_COLABORADOR` `tb2`) where ((`tb1`.`id_referencia_fct_gfe` = `tb2`.`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`) and (`tb2`.`id_colaborador` = `tb0`.`id_colaborador`))) AS `ref_fct_atual`,(select min(`TB_FAIXA`.`limite_inferior`) from `TB_FAIXA`) AS `pontuacao_inicial`,(select `tb1`.`num_referencia` from (`TB_REFERENCIA_FCT_GFE` `tb1` join `TB_FAIXA` `tb2`) where ((`tb1`.`id_referencia_fct_gfe` = `tb2`.`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`) and (`tb2`.`limite_inferior` = (select min(`TB_FAIXA`.`limite_inferior`) from `TB_FAIXA`)))) AS `ref_pontuacao_fct` from ((`TB_COLABORADOR` `tb0` join `TB_REFERENCIA_FCT_GFE` `tb1`) join `TB_DIVISAO` `tb2`) where ((`tb0`.`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe` = `tb1`.`id_referencia_fct_gfe`) and (`tb0`.`TB_DIVISAO_id_divisao` = `tb2`.`id_divisao`)) order by `tb0`.`id_colaborador`;
 
 -- --------------------------------------------------------
 
@@ -3136,11 +3183,20 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`tiagooliveira`@`localhost` SQL SECURITY DEFI
 -- --------------------------------------------------------
 
 --
+-- Estrutura para visualizar `VW_DISTRIBUICAO_FAIXA`
+--
+DROP TABLE IF EXISTS `VW_DISTRIBUICAO_FAIXA`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`tiagooliveira`@`localhost` SQL SECURITY DEFINER VIEW `VW_DISTRIBUICAO_FAIXA` AS select `TB_FAIXA`.`id_faixa` AS `id_faixa`,`TB_FAIXA`.`limite_inferior` AS `limite_inferior`,`TB_FAIXA`.`limite_superior` AS `limite_superior`,`TB_FAIXA`.`pontuacao_referencia` AS `pontuacao_referencia`,`TB_FAIXA`.`qtde_pessoas` AS `qtde_pessoas`,`TB_FAIXA`.`valor_rateio_pessoa` AS `valor_rateio_pessoa`,`TB_FAIXA`.`percentual` AS `percentual`,`TB_FAIXA`.`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe` AS `TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe` from `TB_FAIXA` group by `TB_FAIXA`.`limite_inferior`,`TB_FAIXA`.`limite_superior` order by `TB_FAIXA`.`limite_inferior`;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura para visualizar `VW_PAPEL_ATRIBUTO`
 --
 DROP TABLE IF EXISTS `VW_PAPEL_ATRIBUTO`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `VW_PAPEL_ATRIBUTO` AS select `TBA`.`TB_PAPEL_id_papel` AS `TB_PAPEL_id_papel`,`TA`.`letra` AS `letra`,`TA`.`descricao` AS `descricao` from (`TB_ATRIBUTO_has_TB_PAPEL` `TBA` join `TB_ATRIBUTO` `TA`) where ((`TA`.`id_atributo` = `TBA`.`TB_ATRIBUTO_id_atributo`) and (`TBA`.`TB_PAPEL_id_papel` = 1)) group by `TA`.`letra`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `VW_PAPEL_ATRIBUTO` AS select `TBA`.`TB_PAPEL_id_papel` AS `TB_PAPEL_id_papel`,`TA`.`letra` AS `letra`,`TA`.`descricao` AS `descricao`,`TB`.`descricao` AS `descricaoAbrangencia1`,(select `TB_ABRANGENCIA`.`descricao` from `TB_ABRANGENCIA` where ((`TB_ABRANGENCIA`.`atributo` = `TA`.`letra`) and (`TB_ABRANGENCIA`.`classificacao` = 2))) AS `descricaoAbrangencia2`,(select `TB_ABRANGENCIA`.`descricao` from `TB_ABRANGENCIA` where ((`TB_ABRANGENCIA`.`atributo` = `TA`.`letra`) and (`TB_ABRANGENCIA`.`classificacao` = 3))) AS `descricaoAbrangencia3`,`TC`.`descricao` AS `descricaoComplexidade1`,(select `TB_COMPLEXIDADE`.`descricao` from `TB_COMPLEXIDADE` where ((`TB_COMPLEXIDADE`.`atributo` = `TA`.`letra`) and (`TB_COMPLEXIDADE`.`classificacao` = 2))) AS `descricaoComplexidade2`,(select `TB_COMPLEXIDADE`.`descricao` from `TB_COMPLEXIDADE` where ((`TB_COMPLEXIDADE`.`atributo` = `TA`.`letra`) and (`TB_COMPLEXIDADE`.`classificacao` = 3))) AS `descricaoComplexidade3`,`TI`.`descricao` AS `descricaoImpacto1`,(select `TB_IMPACTO`.`descricao` from `TB_IMPACTO` where ((`TB_IMPACTO`.`atributo` = `TA`.`letra`) and (`TB_IMPACTO`.`classificacao` = 2))) AS `descricaoImpacto2`,(select `TB_IMPACTO`.`descricao` from `TB_IMPACTO` where ((`TB_IMPACTO`.`atributo` = `TA`.`letra`) and (`TB_IMPACTO`.`classificacao` = 3))) AS `descricaoImpacto3` from (((((`TB_ATRIBUTO_has_TB_PAPEL` `TBA` join `TB_ATRIBUTO` `TA`) join `TB_ABRANGENCIA` `TB`) join `TB_COMPLEXIDADE` `TC`) join `TB_IMPACTO` `TI`) join `TB_PAPEL` `TP`) where ((`TA`.`id_atributo` = `TBA`.`TB_ATRIBUTO_id_atributo`) and (`TA`.`TB_ABRANGENCIA_id_abrangencia` = `TB`.`id_abrangencia`) and (`TA`.`TB_COMPLEXIDADE_id_complexidade` = `TC`.`id_complexidade`) and (`TA`.`TB_IMPACTO_id_impacto` = `TI`.`id_impacto`) and (`TP`.`id_papel` = `TBA`.`TB_PAPEL_id_papel`)) group by `TP`.`nome`,`TA`.`letra`;
 
 -- --------------------------------------------------------
 
@@ -3181,8 +3237,10 @@ ALTER TABLE `TB_ATRIBUTO_has_TB_PROJETO`
 -- Restrições para a tabela `TB_COLABORADOR`
 --
 ALTER TABLE `TB_COLABORADOR`
+  ADD CONSTRAINT `fk_TB_COLABORADOR_TB_ACESSO1` FOREIGN KEY (`TB_ACESSO_id_acesso`) REFERENCES `TB_ACESSO` (`id_acesso`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_TB_COLABORADOR_TB_DIVISAO1` FOREIGN KEY (`TB_DIVISAO_id_divisao`) REFERENCES `TB_DIVISAO` (`id_divisao`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_TB_COLABORADOR_TB_REFERENCIA_FCT_GFE1` FOREIGN KEY (`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`) REFERENCES `TB_REFERENCIA_FCT_GFE` (`id_referencia_fct_gfe`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_TB_COLABORADOR_TB_REFERENCIA_FCT_GFE1` FOREIGN KEY (`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`) REFERENCES `TB_REFERENCIA_FCT_GFE` (`id_referencia_fct_gfe`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `TB_COLABORADOR_ibfk_1` FOREIGN KEY (`TB_PERFIL_id_perfil`) REFERENCES `TB_PERFIL` (`id_perfil`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Restrições para a tabela `TB_COLABORADOR_has_TB_ATRIBUTO`
@@ -3195,7 +3253,6 @@ ALTER TABLE `TB_COLABORADOR_has_TB_ATRIBUTO`
 -- Restrições para a tabela `TB_FAIXA`
 --
 ALTER TABLE `TB_FAIXA`
-  ADD CONSTRAINT `fk_TB_FAIXA_TB_COLABORADOR` FOREIGN KEY (`TB_COLABORADOR_id_colaborador`) REFERENCES `TB_COLABORADOR` (`id_colaborador`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_TB_FAIXA_TB_DISTRIBUICAO1` FOREIGN KEY (`TB_DISTRIBUICAO_id_distribuicao`) REFERENCES `TB_DISTRIBUICAO` (`id_distribuicao`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
@@ -3211,12 +3268,6 @@ ALTER TABLE `TB_PAPEL_has_TB_COLABORADOR`
 ALTER TABLE `TB_PROJETO_has_TB_COLABORADOR`
   ADD CONSTRAINT `fk_TB_PROJETO_has_TB_COLABORADOR_TB_COLABORADOR1` FOREIGN KEY (`TB_COLABORADOR_id_colaborador`, `TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`, `TB_COLABORADOR_TB_DIVISAO_id_divisao`) REFERENCES `TB_COLABORADOR` (`id_colaborador`, `TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`, `TB_DIVISAO_id_divisao`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_TB_PROJETO_has_TB_COLABORADOR_TB_PROJETO1` FOREIGN KEY (`TB_PROJETO_id_projeto`) REFERENCES `TB_PROJETO` (`id_projeto`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Restrições para a tabela `TB_RESULTADO`
---
-ALTER TABLE `TB_RESULTADO`
-  ADD CONSTRAINT `fk_TB_RESULTADO_TB_COLABORADOR1` FOREIGN KEY (`TB_COLABORADOR_id_colaborador`, `TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`, `TB_COLABORADOR_TB_DIVISAO_id_divisao`) REFERENCES `TB_COLABORADOR` (`id_colaborador`, `TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`, `TB_DIVISAO_id_divisao`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Restrições para a tabela `TB_TECNOLOGIA_has_TB_COLABORADOR`
