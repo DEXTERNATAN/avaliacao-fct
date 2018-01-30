@@ -109,7 +109,7 @@ export class DistribuicaoFormComponent implements OnInit {
     calcularDiferencaPontuacao(): void {
         let minima: number = parseFloat(this.distribuicao.pontuacao_minima);
         let maxima: number = parseFloat(this.distribuicao.pontuacao_maxima);
-        let calculoDiferenca: any = (maxima - minima);
+        let calculoDiferenca: any = (maxima - minima).toFixed(2);
 
         this.formDistribuicao.get('diferenca').setValue(calculoDiferenca);
 

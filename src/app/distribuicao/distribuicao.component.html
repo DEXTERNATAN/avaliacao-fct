@@ -46,10 +46,10 @@
 							<tr *ngFor="let distribuicao of Distribuicao">
 								<td>{{distribuicao.id_distribuicao}}</td>
 								<td>{{distribuicao.valor}}</td>
-								<td>{{distribuicao.pontuacao_minima}}</td>
-								<td>{{distribuicao.pontuacao_maxima}}</td>
-								<td>{{distribuicao.diferenca}}</td>
-								<td>{{distribuicao.amplitude_faixas}}</td>
+								<td>{{(distribuicao.pontuacao_minima).toFixed(2)}}</td>
+								<td>{{(distribuicao.pontuacao_maxima).toFixed(2)}}</td>
+								<td>{{(distribuicao.diferenca).toFixed(2)}}</td>
+								<td>{{(distribuicao.amplitude_faixas).toFixed(2)}}</td>
 								<td>{{distribuicao.qtde_faixas}}</td>
 								<td>{{distribuicao.dt_registro | date:'shortDate'}}</td>
 								<td>
