@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import 'rxjs/Rx';
 
 import { Faixa } from './../faixa.model';
@@ -25,15 +25,18 @@ export class FaixaFormComponent implements OnInit {
     idResource: any;
     distribuicao: Distribuicao[] = [];
     referencia: Referencia[] = [];
-    valorTotalFixo: any[];
-    valorRateioPessoa: any[];
-    valorRateioSomado: any[];
-    percentualCalculado: any[];
-    valorTotalCalculado: any[];
-    valorRateioPessoaCalculado: any[];
-    valorRateioSomadoFaixa: any[];
-    qtdePessoas: any;
-    qtdePessoasFaixa: any[];
+
+    listFaixas: FormArray;
+
+    // valorTotalFixo: any[];
+    // valorRateioPessoa: any[];
+    // valorRateioSomado: any[];
+    // percentualCalculado: any[];
+    // valorTotalCalculado: any[];
+    // valorRateioPessoaCalculado: any[];
+    // valorRateioSomadoFaixa: any[];
+    // qtdePessoas: any;
+    // qtdePessoasFaixa: any[];
     // valorDistribuicao: any;
 
     public percentMask = [/\d/, /\d/, '.', /\d/, /\d/];
@@ -65,7 +68,9 @@ export class FaixaFormComponent implements OnInit {
             referencia_fct: [],
             percentual_fixo: [],
             valorDistribuicao: '',
-            percentualFixo: []
+            percentualFixo: [],
+            assumirPercCalculado: false,
+            listFaixas: this.formBuilder.array([])
         });
 
         // var id_resultado = this.route.params.subscribe(params => {
@@ -78,6 +83,13 @@ export class FaixaFormComponent implements OnInit {
         this.faixaService.getFaixa().subscribe(
             faixas => {
                 this.faixaList = faixas;
+                let qtdePessoas: number = 0;
+                faixas.forEach(fxs => {
+                    qtdePessoas = (qtdePessoas + parseFloat(fxs.qtde_pessoas));    
+                    console.log(this.formFaixa.get('listFaixas').value);
+                    console.log('qtdePessoas: ', qtdePessoas);
+                });
+
             },
             response => {
                 if (response.status === 404) {
@@ -94,6 +106,30 @@ export class FaixaFormComponent implements OnInit {
         //this.selecionaReferencia();
         //this.calculaValores();
     }
+
+
+
+    addItemFaixa(faixas): void {
+        this.listFaixas = this.formFaixa.get('listFaixas') as FormArray;
+        this.listFaixas.push(this.createItemFaixa(faixas));
+    }
+
+    createItemFaixa(faixas): FormGroup {
+        return this.formBuilder.group({
+            percentualFixo: 0,
+            valorTotalFixo: 0,
+            valorRateioPessoa: 0,
+            valorRateioSomado: 0,
+            percentualCalculado: 0,
+            valorTotalCalculado: 0,
+            valorRateioPessoaCalculado: 0,
+            valorRateioSomadoFaixa: 0,
+            qtdePessoas: 0,
+            qtdePessoasFaixa: 0,
+            valorDistribuicao: 0
+        });
+    }
+
 
     save() {
         var result,
@@ -136,15 +172,13 @@ export class FaixaFormComponent implements OnInit {
 
     calculaValores(){
     
-        let i, j = 0;
-        this.qtdePessoas = 0;
+        // let i, j = 0;
+        // this.qtdePessoas = 0;
 
 
-        this.faixaList.forEach(fxs => {
-            this.qtdePessoas = (this.qtdePessoas + parseFloat(fxs.qtde_pessoas));
-            
-            
-        });
+        // this.faixaList.forEach(fxs => {
+        //     this.qtdePessoas = (this.qtdePessoas + parseFloat(fxs.qtde_pessoas));
+        // });
 
         // for (i = 0; i < this.faixaList.length; i++) {
         

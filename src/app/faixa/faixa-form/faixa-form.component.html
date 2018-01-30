@@ -137,7 +137,7 @@
                     <td>
                       <div class="checkbox">
                         <label>
-                          <input type="checkbox"> Assumir o Percentual(%) Calculado
+                          <input type="checkbox" formControlName="assumirPercCalculado"> Assumir o Percentual(%) Calculado
                         </label>
                       </div>
                     </td>
@@ -165,59 +165,60 @@
                     <table class="table table-striped">
                       <tr>
                         <th>Faixa</th>
-                        <!-- <th>Percentual(%) Fixo</th> -->
-                        <!-- <th style="width:12%">Valor Total Fixo</th>
+                        <th>Percentual(%) Fixo</th> 
+                        <th style="width:12%">Valor Total Fixo</th>
                         <th style="width:12%">Valor Rateio por Pessoa Fixo</th>
                         <th style="width:12%">Valor Rateio Somado por Faixa Fixo</th>
                         <th style="width:12%">Percentual Calculado</th>
                         <th style="width:12%">Valor Total Calculado</th>
                         <th style="width:12%">Valor Rateio por Pessoa Calculado</th>
-                        <th style="width:12%">Valor Rateio Somado por Faixa</th> -->
+                        <th style="width:12%">Valor Rateio Somado por Faixa</th>
                       </tr>
-                      <tr >
+                      <tr *ngFor="let faixaCalc of faixaList; let i = index;">
                         <td>
-                          <!-- <label>{{faixas}} - {{i}}</label> -->
-                        </td>
+                            <label for="">{{i+1}}</label>
+                            </td>
                         <td>
-                          <!-- <label for="">
-                            <input type="text" formControlName="percentualFixo" class="form-control" placeholder="00.00" [textMask]="{mask: percentMask}" (change)="calculaValores()"> 
-                          </label> -->
-                        </td>
-                        <!-- <td>
+                            <label for="">
+                              <input type="text" formControlName="percentualFixo" class="form-control" placeholder="00.00" [textMask]="{mask: percentMask}" (change)="calculaValores()" style="width: 70px;">  
+                            </label>
+                          </td>
+                       
+                        <td>
                           <label for="">
-                            <span class="badge bg-yellow">R$ {{this.valorTotalFixo[i]}}</span>
+                            <span class="badge bg-yellow">R$ 110</span>
                           </label>
                         </td>
                         <td>
                           <label for="">
-                            <span class="badge bg-yellow">R$ {{this.valorRateioPessoa[i]}}</span>
+                            <span class="badge bg-yellow">R$ 110</span>
                           </label>
                         </td>
                         <td>
                           <label for="">
-                            <span class="badge bg-aqua">R$ {{this.valorRateioSomado[i]}}</span>
+                            <span class="badge bg-aqua">R$ 110</span>
                           </label>
                         </td>
                         <td>
                           <label for="">
-                            <span class="badge bg-green">{{this.percentualCalculado[i]}}%</span>
+                            <span class="badge bg-green">10%</span>
                           </label>
                         </td>
                         <td>
                           <label for="">
-                            <span class="badge bg-light-blue">R$ {{this.valorTotalCalculado[i]}}</span>
+                            <span class="badge bg-light-blue">R$ 220</span>
                           </label>
                         </td>
                         <td>
                           <label for="">
-                            <span class="badge bg-light-blue">R$ {{this.valorRateioPessoaCalculado[i]}}</span>
+                            <span class="badge bg-light-blue">R$ 250</span>
                           </label>
                         </td>
                         <td>
                           <label for="">
-                            <span class="badge bg-aqua">R$ {{this.valorRateioSomadoFaixa[i]}}</span>
+                            <span class="badge bg-aqua">R$ 560</span>
                           </label>
-                        </td> -->
+                        </td>
                       </tr>
                       <!--<tr>
                         <td>
@@ -242,7 +243,7 @@
                           <label for="">
                             <span class="badge bg-aqua">R$ 478.02</span>
                           </label>
-                        </td>
+                        </td>	1
                         <td>
                           <label for="">
                             <span class="badge bg-green">56.00%</span>
@@ -263,8 +264,8 @@
                             <span class="badge bg-aqua">R$ 468.68</span>
                           </label>
                         </td>
-                      </tr>
-                      <tr>
+                      </tr>-->
+                      <!--<tr>
                         <td>
                           <label for="">3</label>
                         </td>
@@ -308,8 +309,8 @@
                             <span class="badge bg-aqua">R$ 912.47</span>
                           </label>
                         </td>
-                      </tr>
-                      <tr>
+                      </tr>-->
+                      <!--<tr>
                         <td>
                           <label for="">4</label>
                         </td>
@@ -353,7 +354,7 @@
                             <span class="badge bg-aqua">R$ 1553.50</span>
                           </label>
                         </td>
-                      </tr> -->
+                      </tr>-->
                     </table>
                   </div>
                 </div>
