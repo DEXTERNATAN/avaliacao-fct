@@ -40,7 +40,7 @@
                     <div class="box box-default collapsed-box">
                       <div class="box-header with-border">
                         <label>
-                          &nbsp;&nbsp; {{ aval.listGroup.id_resultado }} &nbsp; {{ aval.listGroup.sigla_divisao }} &nbsp;&nbsp;&nbsp;&nbsp; {{ aval.listGroup.no_colaborador
+                          &nbsp;&nbsp; {{ i+1 }} &nbsp; {{ aval.listGroup.sigla_divisao }} &nbsp;&nbsp;&nbsp;&nbsp; {{ aval.listGroup.no_colaborador
                           }} {{ aval.listGroup.TB_COLABORADOR_id_colaborador }}
                         </label>
                         <div class="box-tools pull-right">
@@ -58,8 +58,8 @@
                             <th>Ajuste</th>
                             <th>Pontuação Ideal</th>
                             <th>Diferença</th>
-                            <th></th>
-                            <th></th>
+                            <!-- <th></th>
+                            <th></th> -->
                             <th></th>
                           </tr>
                           <tr *ngIf="!aval.listDetalhe.length">
@@ -71,25 +71,25 @@
                             </div>
                           </td>
                           </tr>
-                          <tr *ngFor="let items of aval.listDetalhe">
-                            <td>{{ items.id_resultado }}</td>
+                          <tr *ngFor="let items of aval.listDetalhe; let i = index">
+                            <td>{{ i+1 }}</td>
                             <td>{{ items.dt_resultado }}</td>
                             <td>{{ items.pontuacao }}</td>
-                            <td>{{ items.ajuste }}</td>
-                            <td>{{ items.ociosidade }}</td>
+                            <td>{{ items.ajuste.toFixed(2) }}</td>
+                            <td>{{ ((items.pontuacao - items.ajuste) + (2 * items.ajuste)).toFixed(2) }}</td>
                             <td>
-                              <div class="progress progress-sm progress-striped active">
-                                <div class="progress-bar progress-bar-danger" style="width: 12%"></div>
-                              </div>
+                                <span class="badge bg-green">{{ ((items.ajuste / items.pontuacao) * 100).toFixed(2) }}%</span>
                             </td>
-                            <td>
-                              <span class="badge bg-red">+12%</span>
+                            <!-- <td>
+                              <div class="progress progress-sm progress-striped active">
+                                <div class="progress-bar progress-bar-success" [style.width]="percAjusteBarra"></div>
+                              </div>
                             </td>
                             <td>
                               <a class="btn  btn-xs bg-blue btn-flat">
                                 <i class="fa fa-pencil"></i>
                               </a>
-                            </td>
+                            </td> -->
                             <td>
                               <button type="button" class="btn  btn-xs bg-red btn-flat" (click)="deleteAvaliacao(items, aval.listDetalhe)">
                                 <i class="fa fa-remove"></i>
