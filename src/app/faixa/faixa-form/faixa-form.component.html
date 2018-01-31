@@ -1,4 +1,4 @@
-{{this.formFaixa.value || json}}
+{{this.formFaixa.value | json}}
 <section class="content-header">
     <h1>
       Distribuição das Faixas
@@ -155,13 +155,13 @@
                     </div>
                   </div>
                   <div class="box-body">
-  
-                    <!-- <h1>Listando os valores do banco</h1>
-                    <div *ngFor="let faixas of faixaList; let i = index" [attr.data-index]="i">
-                      <span>{{i}} - valor do indice</span>
+                    
+                    <!-- <div formArrayName="listFaixas" *ngFor="let item of getListaFaixas(formFaixa); let i = index;">
+                      <div [formGroupName]="i">
+                        <label>{{ item.value  | json }}</label>
+                      </div>
                     </div> -->
                     
-  
                     <table class="table table-striped">
                       <tr>
                         <th>Faixa</th>
@@ -174,49 +174,50 @@
                         <th style="width:12%">Valor Rateio por Pessoa Calculado</th>
                         <th style="width:12%">Valor Rateio Somado por Faixa</th>
                       </tr>
-                      <tr *ngFor="let faixaCalc of faixaList; let i = index;">
-                        <td>
-                            <label for="">{{i+1}}</label>
-                            </td>
-                        <td>
+                      <!-- <tr *ngFor="let faixaCalc of faixaList; let i = index;"> -->
+                        <tr formArrayName="listFaixas" *ngFor="let item of getListaFaixas(formFaixa); let i = index;">
+                        <td [formGroupName]="i">
+                            <span>{{ item.value.percentualFixo }} - Quantidade de pessoas - {{ item.value.qtdePessoas }}</span>
+                        </td>
+                        <td [formGroupName]="i">
                             <label for="">
-                              <input type="text" formControlName="percentualFixo" class="form-control" placeholder="00.00" [textMask]="{mask: percentMask}" (change)="calculaValores()" style="width: 70px;">  
+                              <input type="text" formControlName="percentualFixo" class="form-control" [textMask]="{mask: percentMask}" (change)="calculaValores()" style="width: 70px;">  
                             </label>
-                          </td>
-                       
-                        <td>
+                        </td>
+                        <td [formGroupName]="i">
                           <label for="">
-                            <span class="badge bg-yellow">R$ 110</span>
+                            <span class="badge bg-yellow">{{ item.value.valorTotalFixo }}</span>
                           </label>
                         </td>
-                        <td>
+                        
+                        <td [formGroupName]="i">
                           <label for="">
-                            <span class="badge bg-yellow">R$ 110</span>
+                              <span class="badge bg-yellow">{{ item.value.valorRateioPessoa }}</span>
                           </label>
                         </td>
-                        <td>
+                        <td [formGroupName]="i">
                           <label for="">
-                            <span class="badge bg-aqua">R$ 110</span>
+                              <span class="badge bg-yellow">{{ item.value.valorRateioSomado }}</span>
                           </label>
                         </td>
-                        <td>
+                        <td [formGroupName]="i">
                           <label for="">
-                            <span class="badge bg-green">10%</span>
+                              <span class="badge bg-aqua">{{ item.value.percentualCalculado }}</span>
                           </label>
                         </td>
-                        <td>
+                        <td [formGroupName]="i">
                           <label for="">
-                            <span class="badge bg-light-blue">R$ 220</span>
+                              <span class="badge bg-yellow">{{ item.value.valorTotalCalculado }}</span>
                           </label>
                         </td>
-                        <td>
+                        <td [formGroupName]="i">
                           <label for="">
-                            <span class="badge bg-light-blue">R$ 250</span>
+                              <span class="badge bg-yellow">{{ item.value.valorRateioPessoaCalculado }}</span>
                           </label>
                         </td>
-                        <td>
+                        <td [formGroupName]="i">
                           <label for="">
-                            <span class="badge bg-aqua">R$ 560</span>
+                              <span class="badge bg-yellow">{{ item.value.valorRateioSomadoFaixa }}</span>
                           </label>
                         </td>
                       </tr>

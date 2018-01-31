@@ -107,10 +107,8 @@
                           <label>{{ item.value.letra }}){{ item.value.descricao }}</label>
                         </td>
                         <td [formGroupName]="i">
-                          
                           <div class="radio" style="float: left;">
                             <label>
-
                               <input type="radio" formControlName="Abrangencia" (change)="somaValores('atributo')" [value]="1">
                               <span data-toggle="tooltip" title="{{item.value.descricaoAbrangencia1}}" class="badge bg-yellow">1-Moderado</span>
                             </label>

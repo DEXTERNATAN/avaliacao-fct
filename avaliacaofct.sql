@@ -3142,7 +3142,7 @@ CREATE TABLE IF NOT EXISTS `VW_PAPEL_COLABORADOR` (
 --
 DROP TABLE IF EXISTS `VW_ATRIBUTO`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`tiagooliveira`@`localhost` SQL SECURITY DEFINER VIEW `VW_ATRIBUTO` AS select `tb0`.`id_atributo` AS `idAtributo`,`tb0`.`letra` AS `letra`,`tb0`.`descricao` AS `descricao`,`tb1`.`tipo` AS `tipo`,concat(`tb1`.`classificacao`,'-',`tb1`.`nome`) AS `abrangenciaNome`,concat(`tb2`.`classificacao`,'-',`tb2`.`nome`) AS `complexidadeNome`,concat(`tb3`.`classificacao`,'-',`tb3`.`nome`) AS `impactoNome` from (((`TB_ATRIBUTO` `tb0` join `TB_ABRANGENCIA` `tb1`) join `TB_COMPLEXIDADE` `tb2`) join `TB_IMPACTO` `tb3`) where ((`tb0`.`TB_ABRANGENCIA_id_abrangencia` = `tb1`.`id_abrangencia`) and (`tb0`.`TB_COMPLEXIDADE_id_complexidade` = `tb2`.`id_complexidade`) and (`tb0`.`TB_IMPACTO_id_impacto` = `tb3`.`id_impacto`)) order by `tb0`.`id_atributo`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `VW_ATRIBUTO` AS select `tb0`.`id_atributo` AS `idAtributo`,`tb0`.`letra` AS `letra`,`tb0`.`descricao` AS `descricao`,`tb1`.`tipo` AS `tipo`,concat(`tb1`.`classificacao`,'-',`tb1`.`nome`) AS `abrangenciaNome`,concat(`tb2`.`classificacao`,'-',`tb2`.`nome`) AS `complexidadeNome`,concat(`tb3`.`classificacao`,'-',`tb3`.`nome`) AS `impactoNome` from (((`TB_ATRIBUTO` `tb0` join `TB_ABRANGENCIA` `tb1`) join `TB_COMPLEXIDADE` `tb2`) join `TB_IMPACTO` `tb3`) where ((`tb0`.`TB_ABRANGENCIA_id_abrangencia` = `tb1`.`id_abrangencia`) and (`tb0`.`TB_COMPLEXIDADE_id_complexidade` = `tb2`.`id_complexidade`) and (`tb0`.`TB_IMPACTO_id_impacto` = `tb3`.`id_impacto`)) order by `tb0`.`id_atributo`;
 
 -- --------------------------------------------------------
 
@@ -3151,7 +3151,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`tiagooliveira`@`localhost` SQL SECURITY DEFI
 --
 DROP TABLE IF EXISTS `VW_ATRIBUTO_COLABORADOR`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`tiagooliveira`@`localhost` SQL SECURITY DEFINER VIEW `VW_ATRIBUTO_COLABORADOR` AS select `tb3`.`letra` AS `letra`,`tb3`.`descricao` AS `descricao`,`tb2`.`id_colaborador` AS `id_colaborador` from ((`TB_COLABORADOR_has_TB_ATRIBUTO` `tb1` join `TB_COLABORADOR` `tb2`) join `TB_ATRIBUTO` `tb3`) where ((`tb1`.`TB_COLABORADOR_id_colaborador` = `tb2`.`id_colaborador`) and (`tb1`.`TB_ATRIBUTO_id_atributo` = `tb3`.`id_atributo`) and (`tb1`.`TB_COLABORADOR_id_colaborador` = `tb2`.`id_colaborador`));
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `VW_ATRIBUTO_COLABORADOR` AS select `tb3`.`letra` AS `letra`,`tb3`.`descricao` AS `descricao`,`tb2`.`id_colaborador` AS `id_colaborador` from ((`TB_COLABORADOR_has_TB_ATRIBUTO` `tb1` join `TB_COLABORADOR` `tb2`) join `TB_ATRIBUTO` `tb3`) where ((`tb1`.`TB_COLABORADOR_id_colaborador` = `tb2`.`id_colaborador`) and (`tb1`.`TB_ATRIBUTO_id_atributo` = `tb3`.`id_atributo`) and (`tb1`.`TB_COLABORADOR_id_colaborador` = `tb2`.`id_colaborador`));
 
 -- --------------------------------------------------------
 
@@ -3178,7 +3178,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `VW_DETALHE_ATRIBUTO`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`tiagooliveira`@`localhost` SQL SECURITY DEFINER VIEW `VW_DETALHE_ATRIBUTO` AS select `tb0`.`TB_ATRIBUTO_id_atributo` AS `idAtributo`,`tb4`.`letra` AS `Atributo`,`tb1`.`classificacao` AS `AbrangenciaClassificacao`,`tb1`.`nome` AS `AbrangenciaNome`,`tb1`.`descricao` AS `AbrangenciaDescricao`,`tb2`.`classificacao` AS `ComplexidadeClassificacao`,`tb2`.`nome` AS `ComplexidadeNome`,`tb2`.`descricao` AS `ComplexidadeDescricao`,`tb3`.`classificacao` AS `ImpactoClassificacao`,`tb3`.`nome` AS `ImpactoNome`,`tb3`.`descricao` AS `ImpactoDescricao` from ((((`TB_COLABORADOR_has_TB_ATRIBUTO` `tb0` join `TB_ABRANGENCIA` `tb1`) join `TB_COMPLEXIDADE` `tb2`) join `TB_IMPACTO` `tb3`) join `TB_ATRIBUTO` `tb4`) where ((`tb0`.`TB_COLABORADOR_id_colaborador` = 1) and (`tb0`.`TB_ATRIBUTO_TB_ABRANGENCIA_id_abrangencia` = `tb1`.`id_abrangencia`) and (`tb0`.`TB_ATRIBUTO_TB_COMPLEXIDADE_id_complexidade` = `tb2`.`id_complexidade`) and (`tb0`.`TB_ATRIBUTO_TB_IMPACTO_id_impacto` = `tb3`.`id_impacto`) and (`tb0`.`TB_ATRIBUTO_id_atributo` = `tb4`.`id_atributo`));
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `VW_DETALHE_ATRIBUTO` AS select `tb0`.`TB_ATRIBUTO_id_atributo` AS `idAtributo`,`tb4`.`letra` AS `Atributo`,`tb1`.`classificacao` AS `AbrangenciaClassificacao`,`tb1`.`nome` AS `AbrangenciaNome`,`tb1`.`descricao` AS `AbrangenciaDescricao`,`tb2`.`classificacao` AS `ComplexidadeClassificacao`,`tb2`.`nome` AS `ComplexidadeNome`,`tb2`.`descricao` AS `ComplexidadeDescricao`,`tb3`.`classificacao` AS `ImpactoClassificacao`,`tb3`.`nome` AS `ImpactoNome`,`tb3`.`descricao` AS `ImpactoDescricao` from ((((`TB_COLABORADOR_has_TB_ATRIBUTO` `tb0` join `TB_ABRANGENCIA` `tb1`) join `TB_COMPLEXIDADE` `tb2`) join `TB_IMPACTO` `tb3`) join `TB_ATRIBUTO` `tb4`) where ((`tb0`.`TB_COLABORADOR_id_colaborador` = 1) and (`tb0`.`TB_ATRIBUTO_TB_ABRANGENCIA_id_abrangencia` = `tb1`.`id_abrangencia`) and (`tb0`.`TB_ATRIBUTO_TB_COMPLEXIDADE_id_complexidade` = `tb2`.`id_complexidade`) and (`tb0`.`TB_ATRIBUTO_TB_IMPACTO_id_impacto` = `tb3`.`id_impacto`) and (`tb0`.`TB_ATRIBUTO_id_atributo` = `tb4`.`id_atributo`));
 
 -- --------------------------------------------------------
 
@@ -3187,7 +3187,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`tiagooliveira`@`localhost` SQL SECURITY DEFI
 --
 DROP TABLE IF EXISTS `VW_DISTRIBUICAO_FAIXA`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`tiagooliveira`@`localhost` SQL SECURITY DEFINER VIEW `VW_DISTRIBUICAO_FAIXA` AS select `TB_FAIXA`.`id_faixa` AS `id_faixa`,`TB_FAIXA`.`limite_inferior` AS `limite_inferior`,`TB_FAIXA`.`limite_superior` AS `limite_superior`,`TB_FAIXA`.`pontuacao_referencia` AS `pontuacao_referencia`,`TB_FAIXA`.`qtde_pessoas` AS `qtde_pessoas`,`TB_FAIXA`.`valor_rateio_pessoa` AS `valor_rateio_pessoa`,`TB_FAIXA`.`percentual` AS `percentual`,`TB_FAIXA`.`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe` AS `TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe` from `TB_FAIXA` group by `TB_FAIXA`.`limite_inferior`,`TB_FAIXA`.`limite_superior` order by `TB_FAIXA`.`limite_inferior`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `VW_DISTRIBUICAO_FAIXA` AS select `TB_FAIXA`.`id_faixa` AS `id_faixa`,`TB_FAIXA`.`limite_inferior` AS `limite_inferior`,`TB_FAIXA`.`limite_superior` AS `limite_superior`,`TB_FAIXA`.`pontuacao_referencia` AS `pontuacao_referencia`,`TB_FAIXA`.`qtde_pessoas` AS `qtde_pessoas`,`TB_FAIXA`.`valor_rateio_pessoa` AS `valor_rateio_pessoa`,`TB_FAIXA`.`percentual` AS `percentual`,`TB_FAIXA`.`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe` AS `TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe` from `TB_FAIXA` group by `TB_FAIXA`.`limite_inferior`,`TB_FAIXA`.`limite_superior` order by `TB_FAIXA`.`limite_inferior`;
 
 -- --------------------------------------------------------
 

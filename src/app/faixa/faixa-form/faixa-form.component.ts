@@ -25,7 +25,7 @@ export class FaixaFormComponent implements OnInit {
     idResource: any;
     distribuicao: Distribuicao[] = [];
     referencia: Referencia[] = [];
-
+    qtdePessoas: number = 0;
     listFaixas: FormArray;
 
     // valorTotalFixo: any[];
@@ -83,11 +83,13 @@ export class FaixaFormComponent implements OnInit {
         this.faixaService.getFaixa().subscribe(
             faixas => {
                 this.faixaList = faixas;
-                let qtdePessoas: number = 0;
+                
                 faixas.forEach(fxs => {
-                    qtdePessoas = (qtdePessoas + parseFloat(fxs.qtde_pessoas));    
-                    console.log(this.formFaixa.get('listFaixas').value);
-                    console.log('qtdePessoas: ', qtdePessoas);
+                    this.qtdePessoas = (this.qtdePessoas + parseFloat(fxs.qtde_pessoas));    
+                    console.log('qtdePessoas: ', this.qtdePessoas);
+                    this.addItemFaixa([]);
+                    //this.formFaixa.get('listFaixas').get('qtdePessoas').setValue('100');
+                    //console.log('Lista faixas: ', this.formFaixa.get('listFaixas').get('qtdePessoas').value);
                 });
 
             },
@@ -97,16 +99,18 @@ export class FaixaFormComponent implements OnInit {
                 }
             }
         );
-
         // })
 
         // carga dos Dados complementares
         this.getDistribuicao();
         this.getReferencia();
-        //this.selecionaReferencia();
-        //this.calculaValores();
+        // this.selecionaReferencia();
+        // this.calculaValores();
     }
 
+    getListaFaixas(formFaixas) {
+        return formFaixas.get('listFaixas').controls;
+    }
 
 
     addItemFaixa(faixas): void {
@@ -116,17 +120,17 @@ export class FaixaFormComponent implements OnInit {
 
     createItemFaixa(faixas): FormGroup {
         return this.formBuilder.group({
-            percentualFixo: 0,
-            valorTotalFixo: 0,
-            valorRateioPessoa: 0,
-            valorRateioSomado: 0,
-            percentualCalculado: 0,
-            valorTotalCalculado: 0,
-            valorRateioPessoaCalculado: 0,
-            valorRateioSomadoFaixa: 0,
-            qtdePessoas: 0,
-            qtdePessoasFaixa: 0,
-            valorDistribuicao: 0
+            percentualFixo: '00.00',
+            valorTotalFixo: '0.00',
+            valorRateioPessoa: '0.00',
+            valorRateioSomado: '0.00',
+            percentualCalculado: '0.00',
+            valorTotalCalculado: '0.00',
+            valorRateioPessoaCalculado: '0.00',
+            valorRateioSomadoFaixa: '0.00',
+            qtdePessoas: this.qtdePessoas,
+            qtdePessoasFaixa: '0.00',
+            valorDistribuicao: '0.00'
         });
     }
 
