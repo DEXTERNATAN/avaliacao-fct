@@ -27,19 +27,8 @@ export class FaixaFormComponent implements OnInit {
     referencia: Referencia[] = [];
     qtdePessoas: number = 0;
     listFaixas: FormArray;
-
-    // valorTotalFixo: any[];
-    // valorRateioPessoa: any[];
-    // valorRateioSomado: any[];
-    // percentualCalculado: any[];
-    // valorTotalCalculado: any[];
-    // valorRateioPessoaCalculado: any[];
-    // valorRateioSomadoFaixa: any[];
-    // qtdePessoas: any;
-    // qtdePessoasFaixa: any[];
-    // valorDistribuicao: any;
-
-    public percentMask = [/\d/, /\d/, '.', /\d/, /\d/];
+    
+    public percentMask = [/\d/, /\d/];
 
     constructor(
         private formBuilder: FormBuilder,
@@ -49,18 +38,6 @@ export class FaixaFormComponent implements OnInit {
         private distribuicaoService: DistribuicaoService,
         private referenciaService: ReferenciaService
     ) { }
-
-    // hasErrors(): boolean {
-    //     var hasErrors: boolean = false;
-    //     for (var controlName in this.formFaixa.controls) {
-    //         var control: AbstractControl = this.formFaixa.controls[controlName];
-    //         if (!control.valid && !control.pristine) {
-    //             hasErrors = true;
-    //             break;
-    //         }
-    //     }
-    //     return hasErrors;
-    // }
 
      ngOnInit() {
 
@@ -89,16 +66,17 @@ export class FaixaFormComponent implements OnInit {
                 }
             },
             () => {
+                    let vrRateioSomadoFaixa = 0;
+                    let vrRateioPessoaCalculado = 0;
+                    let qtdPessoasCalculado = this.qtdePessoas;
 
-                console.log("valor percentual Calculado: ", this.listFaixas.controls);
-                this.listFaixas.controls.map(function(data) {
-                
-                    console.log("valor percentual Calculado default: ", data.get('percentualCalculado').value);
-              
-                    let percCalculado = (parseInt(data.get('qtdePessoasFaixa').value) / data.get('qtdePessoasTotal').value).toFixed(2);
-                    data.get('percentualCalculado').setValue(percCalculado);
-                    console.log("valor percentual Calculado: ", data.get('percentualCalculado').value);  
-
+                    this.listFaixas.controls.map(function(data) {
+                        data.get('percentualCalculado').setValue(((parseFloat(data.get('qtdePessoasFaixa').value) / data.get('qtdePessoasTotal').value)* 100) || 0);
+                        data.get('valorTotalCalculado').setValue(((parseFloat(data.get('valorDistribuicao').value.replace("R$ ","")) * (data.get('percentualCalculado').value / 100)).toFixed(2)) || 0);
+                        data.get('valorRateioPessoaCalculado').setValue((parseFloat(data.get('valorTotalCalculado').value) / qtdPessoasCalculado).toFixed(2) || 0);
+                        vrRateioSomadoFaixa = ((vrRateioSomadoFaixa + parseFloat(data.get('valorRateioPessoaCalculado').value)) || 0);
+                        data.get('valorRateioSomadoFaixa').setValue((vrRateioSomadoFaixa).toFixed(2));
+                        qtdPessoasCalculado = (qtdPessoasCalculado - parseFloat(data.get('qtdePessoasFaixa').value));
                 })  
             }
         );
@@ -108,7 +86,6 @@ export class FaixaFormComponent implements OnInit {
         this.getDistribuicao();
         this.getReferencia();
         // this.selecionaReferencia();
-        // this.calculaValores();
     }
 
     getPessoasFaixaTotal(){
@@ -137,13 +114,13 @@ export class FaixaFormComponent implements OnInit {
             valorTotalFixo: '0.00',
             valorRateioPessoa: '0.00',
             valorRateioSomado: '0.00',
-            percentualCalculado: '50.50',
+            percentualCalculado: '0.00',
             valorTotalCalculado: '0.00',
             valorRateioPessoaCalculado: '0.00',
             valorRateioSomadoFaixa: '0.00',
             qtdePessoasTotal: this.qtdePessoas,
             qtdePessoasFaixa: faixas.qtde_pessoas,
-            valorDistribuicao: '0.00'
+            valorDistribuicao: this.formFaixa.get('valorDistribuicao').value
         });
     }
 
@@ -188,6 +165,20 @@ export class FaixaFormComponent implements OnInit {
 
     calculaValores(){
     
+        let vrRateioFixoFaixa = 0;
+        let vrRateioPessoaFixo = 0;
+        let qtdPessoasFixo = this.qtdePessoas;
+
+        // this.listFaixas.controls.map(function(data) {
+        //     data.get('valorTotalFixo').setValue(((parseFloat(data.get('valorDistribuicao').value.replace("R$ ","")) * (data.get('percentualFixo').value / 100)).toFixed(2)) || 0);
+        //     data.get('valorRateioPessoa').setValue((parseFloat(data.get('valorTotalFixo').value) / qtdPessoasFixo).toFixed(2) || 0);
+        //     vrRateioFixoFaixa = ((vrRateioFixoFaixa + parseFloat(data.get('valorRateioPessoa').value)) || 0);
+        //     data.get('valorRateioFixoFaixa').setValue((vrRateioFixoFaixa).toFixed(2));
+        //     qtdPessoasFixo = (qtdPessoasFixo - parseFloat(data.get('qtdePessoasFaixa').value));
+        // })
+        
+        
+        
         // let i, j = 0;
         // this.qtdePessoas = 0;
 

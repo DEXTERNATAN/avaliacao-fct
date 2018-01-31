@@ -74,7 +74,7 @@
                           <tr *ngFor="let items of aval.listDetalhe; let i = index">
                             <td>{{ i+1 }}</td>
                             <td>{{ items.dt_resultado }}</td>
-                            <td>{{ items.pontuacao }}</td>
+                            <td>{{ items.pontuacao.toFixed(2) }}</td>
                             <td>{{ items.ajuste.toFixed(2) }}</td>
                             <td>{{ ((items.pontuacao - items.ajuste) + (2 * items.ajuste)).toFixed(2) }}</td>
                             <td>
