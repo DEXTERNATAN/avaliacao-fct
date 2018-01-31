@@ -62,7 +62,7 @@ export class FaixaFormComponent implements OnInit {
     //     return hasErrors;
     // }
 
-    ngOnInit() {
+     ngOnInit() {
 
         this.formFaixa = this.formBuilder.group({
             referencia_fct: [],
@@ -73,33 +73,36 @@ export class FaixaFormComponent implements OnInit {
             listFaixas: this.formBuilder.array([])
         });
 
-        // var id_resultado = this.route.params.subscribe(params => {
-        //     this.idResource = params['id_faixa'];
-        //     this.title = this.idResource ? 'Editar Faixa' : 'Nova Faixa';
-
-        //     if (!this.idResource)
-        //         return;
+        this.getPessoasFaixaTotal();
 
         this.faixaService.getFaixa().subscribe(
             faixas => {
                 this.faixaList = faixas;
-                
                 faixas.forEach(fxs => {
-                    this.qtdePessoas = (this.qtdePessoas + parseFloat(fxs.qtde_pessoas));    
-                    console.log('qtdePessoas: ', this.qtdePessoas);
-                    this.addItemFaixa([]);
-                    //this.formFaixa.get('listFaixas').get('qtdePessoas').setValue('100');
-                    //console.log('Lista faixas: ', this.formFaixa.get('listFaixas').get('qtdePessoas').value);
+                    this.addItemFaixa(fxs);                    
                 });
-
+                 
             },
             response => {
                 if (response.status === 404) {
                     this.router.navigate(['faixa'])
                 }
+            },
+            () => {
+
+                console.log("valor percentual Calculado: ", this.listFaixas.controls);
+                this.listFaixas.controls.map(function(data) {
+                
+                    console.log("valor percentual Calculado default: ", data.get('percentualCalculado').value);
+              
+                    let percCalculado = (parseInt(data.get('qtdePessoasFaixa').value) / data.get('qtdePessoasTotal').value).toFixed(2);
+                    data.get('percentualCalculado').setValue(percCalculado);
+                    console.log("valor percentual Calculado: ", data.get('percentualCalculado').value);  
+
+                })  
             }
         );
-        // })
+        
 
         // carga dos Dados complementares
         this.getDistribuicao();
@@ -108,32 +111,41 @@ export class FaixaFormComponent implements OnInit {
         // this.calculaValores();
     }
 
+    getPessoasFaixaTotal(){
+
+        this.faixaService.getFaixa().subscribe(
+            faixas => {
+                faixas.forEach(fxs => {
+                    this.qtdePessoas = (this.qtdePessoas + parseFloat(fxs.qtde_pessoas));    
+                });
+            }
+        );
+    }
+
     getListaFaixas(formFaixas) {
         return formFaixas.get('listFaixas').controls;
     }
 
-
-    addItemFaixa(faixas): void {
+    addItemFaixa(faixas: Faixa): void {
         this.listFaixas = this.formFaixa.get('listFaixas') as FormArray;
         this.listFaixas.push(this.createItemFaixa(faixas));
     }
 
-    createItemFaixa(faixas): FormGroup {
+    createItemFaixa(faixas: Faixa): FormGroup {
         return this.formBuilder.group({
             percentualFixo: '00.00',
             valorTotalFixo: '0.00',
             valorRateioPessoa: '0.00',
             valorRateioSomado: '0.00',
-            percentualCalculado: '0.00',
+            percentualCalculado: '50.50',
             valorTotalCalculado: '0.00',
             valorRateioPessoaCalculado: '0.00',
             valorRateioSomadoFaixa: '0.00',
-            qtdePessoas: this.qtdePessoas,
-            qtdePessoasFaixa: '0.00',
+            qtdePessoasTotal: this.qtdePessoas,
+            qtdePessoasFaixa: faixas.qtde_pessoas,
             valorDistribuicao: '0.00'
         });
     }
-
 
     save() {
         var result,

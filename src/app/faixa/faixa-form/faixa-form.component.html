@@ -177,7 +177,7 @@
                       <!-- <tr *ngFor="let faixaCalc of faixaList; let i = index;"> -->
                         <tr formArrayName="listFaixas" *ngFor="let item of getListaFaixas(formFaixa); let i = index;">
                         <td [formGroupName]="i">
-                            <span>{{ item.value.percentualFixo }} - Quantidade de pessoas - {{ item.value.qtdePessoas }}</span>
+                            <span>{{ item.value.percentualFixo }} - Quantidade de pessoas - {{ item.value.qtdePessoasFaixa }}</span>
                         </td>
                         <td [formGroupName]="i">
                             <label for="">
