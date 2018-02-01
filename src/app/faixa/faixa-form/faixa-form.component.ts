@@ -100,7 +100,7 @@ export class FaixaFormComponent implements OnInit {
         );
     }
 
-    private getListaFaixas(formFaixas): FormControl {
+    getListaFaixas(formFaixas): FormControl {
         return formFaixas.get('listFaixas').controls;
     }
 
