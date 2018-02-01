@@ -26,10 +26,8 @@ export class FaixaFormComponent implements OnInit {
     idResource: string;
     distribuicao: Distribuicao[] = [];
     referencia: Referencia[] = [];
-    qtdePessoas: number = 0;
+    qtdePessoas = 0;
     listFaixas: FormArray;
-    
-    public percentMask = [/\d/, /\d/];
 
     constructor(
         private formBuilder: FormBuilder,
@@ -57,9 +55,9 @@ export class FaixaFormComponent implements OnInit {
             faixas => {
                 this.faixaList = faixas;
                 faixas.forEach(fxs => {
-                    this.addItemFaixa(fxs);                    
+                    this.addItemFaixa(fxs);
                 });
-                 
+
             },
             response => {
                 if (response.status === 404) {
@@ -68,33 +66,47 @@ export class FaixaFormComponent implements OnInit {
             },
             () => {
                     let vrRateioSomadoFaixa = 0;
-                    let vrRateioPessoaCalculado = 0;
                     let qtdPessoasCalculado = (this.qtdePessoas || 0);
 
                     this.listFaixas.controls.map(function(data) {
-                        data.get('percentualCalculado').setValue(((parseFloat(data.get('qtdePessoasFaixa').value) / data.get('qtdePessoasTotal').value)* 100));
-                        data.get('valorTotalCalculado').setValue(((parseFloat(data.get('valorDistribuicao').value.replace("R$ ","")) * (data.get('percentualCalculado').value / 100)).toFixed(2)) || 0);
-                        data.get('valorRateioPessoaCalculado').setValue((parseFloat(data.get('valorTotalCalculado').value) / qtdPessoasCalculado).toFixed(2) || 0);
-                        vrRateioSomadoFaixa = ((vrRateioSomadoFaixa + parseFloat(data.get('valorRateioPessoaCalculado').value)) || 0);
-                        data.get('valorRateioSomadoFaixa').setValue((vrRateioSomadoFaixa).toFixed(2));
-                        qtdPessoasCalculado = (qtdPessoasCalculado - parseFloat(data.get('qtdePessoasFaixa').value));
-                })  
+
+                        let vlrPercentCalculadoLc = data.get('percentualCalculado');
+                        let vlrQtdePessoasFaixaLc = data.get('qtdePessoasFaixa');
+                        let vlrQtdePessoasTotalLc = data.get('qtdePessoasTotal');
+                        let vlrTotalCalculadoLc = data.get('valorTotalCalculado');
+                        let vlrDistribuicaoLc = data.get('valorDistribuicao');
+                        let vlrRateioPessoaCalculadoLc = data.get('valorRateioPessoaCalculado');
+                        let vlrRateioSomadoFaixaLc = data.get('valorRateioSomadoFaixa');
+
+                        vlrPercentCalculadoLc.setValue(((parseFloat(vlrQtdePessoasFaixaLc.value) / vlrQtdePessoasTotalLc.value) * 100));
+                        vlrTotalCalculadoLc.setValue(((parseFloat(vlrDistribuicaoLc.value.replace('R$ ', '')) *
+                                                                                 (vlrPercentCalculadoLc.value / 100)).toFixed(2)) || 0);
+                        vlrRateioPessoaCalculadoLc.setValue((parseFloat(vlrTotalCalculadoLc.value) / qtdPessoasCalculado).toFixed(2) || 0);
+                        vrRateioSomadoFaixa = ((vrRateioSomadoFaixa + parseFloat(vlrRateioPessoaCalculadoLc.value)) || 0);
+                        vlrRateioSomadoFaixaLc.setValue((vrRateioSomadoFaixa).toFixed(2));
+                        qtdPessoasCalculado = (qtdPessoasCalculado - parseFloat(vlrQtdePessoasFaixaLc.value));
+                });
             }
         );
-        
 
         // carga dos Dados complementares
         this.getDistribuicao();
         this.getReferencia();
         // this.selecionaReferencia();
+
+        this.formFaixa.get('listFaixas').valueChanges
+        .debounceTime(400)
+        .subscribe(value => {
+            this.calculaValores();
+         });
     }
 
-    private getPessoasFaixaTotal(): void{
+    private getPessoasFaixaTotal(): void {
 
         this.faixaService.getFaixa().subscribe(
             faixas => {
                 faixas.forEach(fxs => {
-                    this.qtdePessoas = (this.qtdePessoas + parseFloat(fxs.qtde_pessoas));    
+                    this.qtdePessoas = (this.qtdePessoas + parseFloat(fxs.qtde_pessoas));
                 });
             }
         );
@@ -111,11 +123,11 @@ export class FaixaFormComponent implements OnInit {
 
     private createItemFaixa(faixas: Faixa): FormGroup {
         return this.formBuilder.group({
-            percentualFixo: '00.00',
+            percentualFixo: '00',
             valorTotalFixo: '0.00',
             valorRateioPessoa: '0.00',
             valorRateioSomado: '0.00',
-            percentualCalculado: '0.00',
+            percentualCalculado: '00',
             valorTotalCalculado: '0.00',
             valorRateioPessoaCalculado: '0.00',
             valorRateioSomadoFaixa: '0.00',
@@ -126,7 +138,7 @@ export class FaixaFormComponent implements OnInit {
     }
 
     save() {
-        var result,
+        let result,
             userValue = this.formFaixa.value;
 
         if (this.idResource) {
@@ -139,7 +151,7 @@ export class FaixaFormComponent implements OnInit {
     }
 
     getDistribuicao() {
-        
+
         this.distribuicaoService.getDistribuicao().subscribe(distribuicao => {
             distribuicao.map(distVlr => {
                 this.formFaixa.get('valorDistribuicao').setValue(distVlr.valor);
@@ -154,47 +166,71 @@ export class FaixaFormComponent implements OnInit {
         });
     }
 
-    selecionaReferencia(){
-        //for() this.referencia
+    selecionaReferencia() {
+        // for() this.referencia
     }
 
-    private calculaValores(): void{
+    private calculaValores(): void {
         let vrRateioFixoFaixa = 0;
-        let vrRateioPessoaFixo = 0;
         let totalPercFixo = 0;
         let qtdPessoasFixo = this.qtdePessoas;
         let tamanho = this.listFaixas.length;
         let index = 0;
-        
-        this.listFaixas.controls.map(function(data) {
-            
-            index = index + 1;
-            totalPercFixo = (totalPercFixo + parseFloat(data.get('percentualFixo').value));
 
-            if(totalPercFixo > 100){
-                if(index == tamanho){
-                    totalPercFixo = (totalPercFixo - data.get('percentualFixo').value);
+        this.listFaixas.controls.map(function(data) {
+
+            let vlrTotalFixoLc = data.get('valorTotalFixo');
+            let vlrDistribuicaoLc = data.get('valorDistribuicao');
+            let vlrPercentFixoLc = data.get('percentualFixo');
+            let vlrRateioPessoa = data.get('valorRateioPessoa');
+            let vlrRateioSomado = data.get('valorRateioSomado');
+            let qtdePessoasFaixa = data.get('qtdePessoasFaixa');
+
+            index = index + 1;
+            totalPercFixo = (totalPercFixo + parseFloat(vlrPercentFixoLc.value));
+
+            if (totalPercFixo > 100) {
+                if (index === tamanho) {
+                    totalPercFixo = (totalPercFixo - vlrPercentFixoLc.value);
                     totalPercFixo = (100 - totalPercFixo);
-                    if (totalPercFixo < 10)
-                        data.get('percentualFixo').setValue('0' + totalPercFixo);
-                    else    
-                        data.get('percentualFixo').setValue(totalPercFixo);
-                } else{
-                    totalPercFixo = 100 - (totalPercFixo - data.get('percentualFixo').value);
-                    if (totalPercFixo < 10)
-                        data.get('percentualFixo').setValue('0' + totalPercFixo);
-                    else    
-                        data.get('percentualFixo').setValue(totalPercFixo);
-                    totalPercFixo = 100;                        
+                    if (totalPercFixo < 10) {
+                        vlrPercentFixoLc.setValue('0' + totalPercFixo);
+                    }else {
+                        vlrPercentFixoLc.setValue(totalPercFixo);
+                    }
+                } else {
+                    totalPercFixo = 100 - (totalPercFixo - vlrPercentFixoLc.value);
+                    if (totalPercFixo < 10) {
+                        vlrPercentFixoLc.setValue('0' + totalPercFixo);
+                    } else {
+                        vlrPercentFixoLc.setValue(totalPercFixo);
+                    }
+                    totalPercFixo = 100;
                 }
-            }             
-            
-            data.get('valorTotalFixo').setValue(((parseFloat((data.get('valorDistribuicao').value.replace("R$ ","")) || 0) * (data.get('percentualFixo').value / 100)).toFixed(2)) || 0);
-            data.get('valorRateioPessoa').setValue((parseFloat(data.get('valorTotalFixo').value) / qtdPessoasFixo).toFixed(2) || 0);
-            vrRateioFixoFaixa = ((vrRateioFixoFaixa + parseFloat(data.get('valorRateioPessoa').value)) || 0);
-            data.get('valorRateioSomado').setValue((vrRateioFixoFaixa).toFixed(2));
-            qtdPessoasFixo = (qtdPessoasFixo - parseFloat(data.get('qtdePessoasFaixa').value));
-        })
+            }
+
+            vlrTotalFixoLc.setValue(((parseFloat((vlrDistribuicaoLc.value.replace('R$ ', '')) || 0) *
+                                                                            (vlrPercentFixoLc.value / 100)).toFixed(2)) || 0);
+            vlrRateioPessoa.setValue((parseFloat(vlrTotalFixoLc.value) / qtdPessoasFixo).toFixed(2) || 0);
+            vrRateioFixoFaixa = ((vrRateioFixoFaixa + parseFloat(vlrRateioPessoa.value)) || 0);
+            vlrRateioSomado.setValue((vrRateioFixoFaixa).toFixed(2));
+            qtdPessoasFixo = (qtdPessoasFixo - parseFloat(qtdePessoasFaixa.value));
+        });
+    }
+
+    private habDesCamposPercent(): void {
+
+        this.listFaixas.controls.map(function(data) {
+
+            console.log(' Assumir percentualFixo: ', data.get('percentualFixo').enabled);
+
+            if (data.get('percentualFixo').enabled) {
+                data.get('percentualFixo').disable;
+            } else {
+                data.get('percentualFixo').enable;
+                console.log(' Assumir percentualFixo disabled: ', data.get('percentualFixo').disabled);
+            }
+        });
     }
 
     onCancel() {

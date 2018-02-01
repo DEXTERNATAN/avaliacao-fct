@@ -136,7 +136,7 @@
                     <td>
                       <div class="checkbox">
                         <label>
-                          <input type="checkbox" formControlName="assumirPercCalculado"> Assumir o Percentual(%) Calculado
+                          <input type="checkbox" formControlName="assumirPercCalculado" (click)="habDesCamposPercent()"> Assumir o Percentual(%) Calculado
                         </label>
                       </div>
                     </td>
@@ -172,7 +172,7 @@
                         </td>
                         <td [formGroupName]="i">
                             <label for="">
-                              <input type="text" formControlName="percentualFixo" class="form-control" [textMask]="{mask: percentMask}" (change)="calculaValores()" style="width: 70px;">  
+                              <input type="text" formControlName="percentualFixo" class="form-control"  style="width: 70px;" maxlength="2">  
                             </label>
                         </td>
                         <td [formGroupName]="i">
@@ -212,141 +212,6 @@
                           </label>
                         </td>
                       </tr>
-                      <!--<tr>
-                        <td>
-                          <label for="">2</label>
-                        </td>
-                        <td>
-                          <label for="">
-                            <input type="text" class="form-control" placeholder="00.00" [textMask]="{mask: percentMask}">
-                          </label>
-                        </td>
-                        <td>
-                          <label for="">
-                            <span class="badge bg-yellow">R$ 1000.00</span>
-                          </label>
-                        </td>
-                        <td>
-                          <label for="">
-                            <span class="badge bg-yellow">R$ 285.71</span>
-                          </label>
-                        </td>
-                        <td>
-                          <label for="">
-                            <span class="badge bg-aqua">R$ 478.02</span>
-                          </label>
-                        </td>	1
-                        <td>
-                          <label for="">
-                            <span class="badge bg-green">56.00%</span>
-                          </label>
-                        </td>
-                        <td>
-                          <label for="">
-                            <span class="badge bg-light-blue">R$ 14102.56</span>
-                          </label>
-                        </td>
-                        <td>
-                          <label for="">
-                            <span class="badge bg-light-blue">R$ 402.93</span>
-                          </label>
-                        </td>
-                        <td>
-                          <label for="">
-                            <span class="badge bg-aqua">R$ 468.68</span>
-                          </label>
-                        </td>
-                      </tr>-->
-                      <!--<tr>
-                        <td>
-                          <label for="">3</label>
-                        </td>
-                        <td>
-                          <label for="">
-                            <input type="text" class="form-control" placeholder="00.00" [textMask]="{mask: percentMask}">
-                          </label>
-                        </td>
-                        <td>
-                          <label for="">
-                            <span class="badge bg-yellow">R$ 6250.00</span>
-                          </label>
-                        </td>
-                        <td>
-                          <label for="">
-                            <span class="badge bg-yellow">R$ 480.77</span>
-                          </label>
-                        </td>
-                        <td>
-                          <label for="">
-                            <span class="badge bg-aqua">R$ 958.79</span>
-                          </label>
-                        </td>
-                        <td>
-                          <label for="">
-                            <span class="badge bg-green">23.00%</span>
-                          </label>
-                        </td>
-                        <td>
-                          <label for="">
-                            <span class="badge bg-light-blue">R$ 5769.23</span>
-                          </label>
-                        </td>
-                        <td>
-                          <label for="">
-                            <span class="badge bg-light-blue">R$ 443.79</span>
-                          </label>
-                        </td>
-                        <td>
-                          <label for="">
-                            <span class="badge bg-aqua">R$ 912.47</span>
-                          </label>
-                        </td>
-                      </tr>-->
-                      <!--<tr>
-                        <td>
-                          <label for="">4</label>
-                        </td>
-                        <td>
-                          <label for="">
-                            <input type="text" class="form-control" placeholder="00.00" [textMask]="{mask: percentMask}">
-                          </label>
-                        </td>
-                        <td>
-                          <label for="">
-                            <span class="badge bg-yellow">R$ 1250.00</span>
-                          </label>
-                        </td>
-                        <td>
-                          <label for="">
-                            <span class="badge bg-yellow">R$ 312.50</span>
-                          </label>
-                        </td>
-                        <td>
-                          <label for="">
-                            <span class="badge bg-aqua">R$ 1271.29</span>
-                          </label>
-                        </td>
-                        <td>
-                          <label for="">
-                            <span class="badge bg-green">10.00%</span>
-                          </label>
-                        </td>
-                        <td>
-                          <label for="">
-                            <span class="badge bg-light-blue">R$ 2564.10</span>
-                          </label>
-                        </td>
-                        <td>
-                          <label for="">
-                            <span class="badge bg-light-blue">R$ 641.03</span>
-                          </label>
-                        </td>
-                        <td>
-                          <label for="">
-                            <span class="badge bg-aqua">R$ 1553.50</span>
-                          </label>
-                        </td>
-                      </tr>-->
                     </table>
                   </div>
                 </div>
