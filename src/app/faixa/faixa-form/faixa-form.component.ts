@@ -10,6 +10,7 @@ import { Referencia } from './../../referencia/referencia.model';
 import { FaixaService } from './../faixa.service';
 import { DistribuicaoService } from './../../distribuicao/distribuicao.service';
 import { ReferenciaService } from './../../referencia/referencia.service';
+import { FormControl } from '@angular/forms/src/model';
 
 @Component({
     selector: 'mt-faixa-form',
@@ -22,7 +23,7 @@ export class FaixaFormComponent implements OnInit {
     title: string;
     faixa: Faixa = new Faixa();
     faixaList: Faixa[] = [];
-    idResource: any;
+    idResource: string;
     distribuicao: Distribuicao[] = [];
     referencia: Referencia[] = [];
     qtdePessoas: number = 0;
@@ -68,10 +69,10 @@ export class FaixaFormComponent implements OnInit {
             () => {
                     let vrRateioSomadoFaixa = 0;
                     let vrRateioPessoaCalculado = 0;
-                    let qtdPessoasCalculado = this.qtdePessoas;
+                    let qtdPessoasCalculado = (this.qtdePessoas || 0);
 
                     this.listFaixas.controls.map(function(data) {
-                        data.get('percentualCalculado').setValue(((parseFloat(data.get('qtdePessoasFaixa').value) / data.get('qtdePessoasTotal').value)* 100) || 0);
+                        data.get('percentualCalculado').setValue(((parseFloat(data.get('qtdePessoasFaixa').value) / data.get('qtdePessoasTotal').value)* 100));
                         data.get('valorTotalCalculado').setValue(((parseFloat(data.get('valorDistribuicao').value.replace("R$ ","")) * (data.get('percentualCalculado').value / 100)).toFixed(2)) || 0);
                         data.get('valorRateioPessoaCalculado').setValue((parseFloat(data.get('valorTotalCalculado').value) / qtdPessoasCalculado).toFixed(2) || 0);
                         vrRateioSomadoFaixa = ((vrRateioSomadoFaixa + parseFloat(data.get('valorRateioPessoaCalculado').value)) || 0);
@@ -88,7 +89,7 @@ export class FaixaFormComponent implements OnInit {
         // this.selecionaReferencia();
     }
 
-    getPessoasFaixaTotal(){
+    private getPessoasFaixaTotal(): void{
 
         this.faixaService.getFaixa().subscribe(
             faixas => {
@@ -99,16 +100,16 @@ export class FaixaFormComponent implements OnInit {
         );
     }
 
-    getListaFaixas(formFaixas) {
+    private getListaFaixas(formFaixas): FormControl {
         return formFaixas.get('listFaixas').controls;
     }
 
-    addItemFaixa(faixas: Faixa): void {
+    private addItemFaixa(faixas: Faixa): void {
         this.listFaixas = this.formFaixa.get('listFaixas') as FormArray;
         this.listFaixas.push(this.createItemFaixa(faixas));
     }
 
-    createItemFaixa(faixas: Faixa): FormGroup {
+    private createItemFaixa(faixas: Faixa): FormGroup {
         return this.formBuilder.group({
             percentualFixo: '00.00',
             valorTotalFixo: '0.00',
@@ -128,7 +129,6 @@ export class FaixaFormComponent implements OnInit {
         var result,
             userValue = this.formFaixa.value;
 
-
         if (this.idResource) {
             result = this.faixaService.updateFaixa(this.idResource, userValue);
         } else {
@@ -141,15 +141,10 @@ export class FaixaFormComponent implements OnInit {
     getDistribuicao() {
         
         this.distribuicaoService.getDistribuicao().subscribe(distribuicao => {
-            // console.log(distribuicao);
-
             distribuicao.map(distVlr => {
                 this.formFaixa.get('valorDistribuicao').setValue(distVlr.valor);
             });
-
             this.distribuicao = distribuicao;
-            this.calculaValores();
-            
         });
     }
 
@@ -163,60 +158,43 @@ export class FaixaFormComponent implements OnInit {
         //for() this.referencia
     }
 
-    calculaValores(){
-    
+    private calculaValores(): void{
         let vrRateioFixoFaixa = 0;
         let vrRateioPessoaFixo = 0;
+        let totalPercFixo = 0;
         let qtdPessoasFixo = this.qtdePessoas;
-
-        // this.listFaixas.controls.map(function(data) {
-        //     data.get('valorTotalFixo').setValue(((parseFloat(data.get('valorDistribuicao').value.replace("R$ ","")) * (data.get('percentualFixo').value / 100)).toFixed(2)) || 0);
-        //     data.get('valorRateioPessoa').setValue((parseFloat(data.get('valorTotalFixo').value) / qtdPessoasFixo).toFixed(2) || 0);
-        //     vrRateioFixoFaixa = ((vrRateioFixoFaixa + parseFloat(data.get('valorRateioPessoa').value)) || 0);
-        //     data.get('valorRateioFixoFaixa').setValue((vrRateioFixoFaixa).toFixed(2));
-        //     qtdPessoasFixo = (qtdPessoasFixo - parseFloat(data.get('qtdePessoasFaixa').value));
-        // })
+        let tamanho = this.listFaixas.length;
+        let index = 0;
         
-        
-        
-        // let i, j = 0;
-        // this.qtdePessoas = 0;
-
-
-        // this.faixaList.forEach(fxs => {
-        //     this.qtdePessoas = (this.qtdePessoas + parseFloat(fxs.qtde_pessoas));
-        // });
-
-        // for (i = 0; i < this.faixaList.length; i++) {
-        
-        // this.qtdePessoas = (this.qtdePessoas + this.faixaList[i].qtde_pessoas);
-        // this.qtdePessoasFaixa[i] = this.faixaList[i].qtde_pessoas;
-        // this.valorRateioSomadoFaixa[i] = 0;
-
-            /*if(this.formFaixa.get('percentualFixo').value != ''){
+        this.listFaixas.controls.map(function(data) {
             
-                //Valor Fixo
-                this.valorTotalFixo[i] = (this.formFaixa.get('percentualFixo').value / 100);
-                this.valorTotalFixo[i] = (this.formFaixa.get('valorDistribuicao').value.replace("R$ ","") * this.valorTotalFixo[i]);
-                this.valorTotalFixo[i] = (this.valorTotalFixo[i]).toFixed(2);
-                this.valorRateioPessoa[i] = (this.valorTotalFixo[i] / this.qtdePessoas).toFixed(2);
-                this.valorRateioSomado[i] = (this.valorRateioSomado[i-j] + this.valorRateioPessoa[i]).toFixed(2);
-            } else{
+            index = index + 1;
+            totalPercFixo = (totalPercFixo + parseFloat(data.get('percentualFixo').value));
+
+            if(totalPercFixo > 100){
+                if(index == tamanho){
+                    totalPercFixo = (totalPercFixo - data.get('percentualFixo').value);
+                    totalPercFixo = (100 - totalPercFixo);
+                    if (totalPercFixo < 10)
+                        data.get('percentualFixo').setValue('0' + totalPercFixo);
+                    else    
+                        data.get('percentualFixo').setValue(totalPercFixo);
+                } else{
+                    totalPercFixo = 100 - (totalPercFixo - data.get('percentualFixo').value);
+                    if (totalPercFixo < 10)
+                        data.get('percentualFixo').setValue('0' + totalPercFixo);
+                    else    
+                        data.get('percentualFixo').setValue(totalPercFixo);
+                    totalPercFixo = 100;                        
+                }
+            }             
             
-                this.valorTotalFixo[i] = 0;
-                this.valorRateioPessoa[i] = 0;
-                this.valorRateioSomado[i] = 0;
-    
-            }*/
-        
-            //Valor Calculado
-            // this.percentualCalculado[i] = (this.qtdePessoasFaixa[i] / this.qtdePessoas).toFixed(2);
-            // this.valorTotalCalculado[i] = (this.formFaixa.get('valorDistribuicao').value.replace("R$ ","") * this.percentualCalculado[i]).toFixed(2);
-            // this.valorRateioPessoaCalculado[i] = (this.valorTotalCalculado[i] / this.qtdePessoas).toFixed(2);
-            // this.valorRateioSomadoFaixa[i] = (this.valorRateioSomadoFaixa[i-j] + parseFloat(this.valorRateioPessoaCalculado[i])).toFixed(2);
-            // this.percentualCalculado[i] = (this.percentualCalculado[i] * 100).toFixed(2);
-            // j = 1;
-        // }    
+            data.get('valorTotalFixo').setValue(((parseFloat((data.get('valorDistribuicao').value.replace("R$ ","")) || 0) * (data.get('percentualFixo').value / 100)).toFixed(2)) || 0);
+            data.get('valorRateioPessoa').setValue((parseFloat(data.get('valorTotalFixo').value) / qtdPessoasFixo).toFixed(2) || 0);
+            vrRateioFixoFaixa = ((vrRateioFixoFaixa + parseFloat(data.get('valorRateioPessoa').value)) || 0);
+            data.get('valorRateioSomado').setValue((vrRateioFixoFaixa).toFixed(2));
+            qtdPessoasFixo = (qtdPessoasFixo - parseFloat(data.get('qtdePessoasFaixa').value));
+        })
     }
 
     onCancel() {
