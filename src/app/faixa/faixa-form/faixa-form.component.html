@@ -48,7 +48,7 @@
                     </td>
                     <td>
                       <label for="">
-                        <span class="badge bg-light-blue">{{(distribuicao.diferenca).toFixed(2)}}</span>
+                        <span class="badge bg-light-blue">{{(distribuicao.pontuacao_maxima - distribuicao.pontuacao_minima).toFixed(2)}}</span>
                       </label>
                     </td>
                     <td>
@@ -58,7 +58,7 @@
                     </td>
                     <td>
                       <label for="">
-                        <span class="badge bg-green">{{(distribuicao.amplitude_faixas).toFixed(2)}}</span>
+                        <span class="badge bg-green">{{((distribuicao.pontuacao_maxima - distribuicao.pontuacao_minima) / distribuicao.qtde_faixas).toFixed(2)}}</span>
                       </label>
                     </td>
                   </tr>

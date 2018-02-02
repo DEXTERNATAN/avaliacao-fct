@@ -6,6 +6,7 @@ import { LoaderService } from 'app/shared/services/loader.service';
 
 import { Distribuicao } from './../distribuicao.model';
 import { DistribuicaoService } from './../distribuicao.service';
+import { FormControl } from '@angular/forms/src/model';
 
 @Component({
     selector: 'mt-distribuicao-form',
@@ -39,7 +40,7 @@ export class DistribuicaoFormComponent implements OnInit {
             amplitude_faixas: [null],
             qtde_faixas: [null, Validators.required],
             dt_registro: [null],
-
+            listFaixas: this.formBuilder.array([])
         });
     }
 
@@ -52,7 +53,7 @@ export class DistribuicaoFormComponent implements OnInit {
             faixas => {
                 this.faixaList = faixas;
                 faixas.forEach(fxs => {
-                    this.listFaixas.push(this.createItemFaixa(fxs));
+                    this.addItemFaixa(fxs);
                 });
             },
             response => {
@@ -155,6 +156,11 @@ export class DistribuicaoFormComponent implements OnInit {
         let Amplitude: number = (diferenca / qtdefaixas);
 
         this.formDistribuicao.get('amplitude_faixas').setValue(Amplitude.toFixed(2));
+    }
+
+    private addItemFaixa(faixas: Distribuicao): void {
+        this.listFaixas = this.formDistribuicao.get('listFaixas') as FormArray;
+        this.listFaixas.push(this.createItemFaixa(faixas));
     }
 
     private createItemFaixa(faixas: Distribuicao): FormGroup {
