@@ -218,7 +218,7 @@ export class FaixaFormComponent implements OnInit {
         });
     }
 
-    private habDesCamposPercent(): void {
+    habDesCamposPercent(): void {
 
         this.listFaixas.controls.map(function(data) {
 
