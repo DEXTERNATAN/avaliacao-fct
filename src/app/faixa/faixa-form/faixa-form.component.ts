@@ -21,7 +21,7 @@ export class FaixaFormComponent implements OnInit {
 
     formFaixa: FormGroup;
     title: string;
-    faixa: Faixa = new Faixa();
+    faixa: Faixa;
     faixaList: Faixa[] = [];
     idResource: string;
     distribuicao: Distribuicao[] = [];

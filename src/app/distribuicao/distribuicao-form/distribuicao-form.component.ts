@@ -6,7 +6,9 @@ import { LoaderService } from 'app/shared/services/loader.service';
 
 import { Distribuicao } from './../distribuicao.model';
 import { DistribuicaoService } from './../distribuicao.service';
-import { FormControl } from '@angular/forms/src/model';
+import { FaixaService } from './../../faixa/faixa.service';
+import { Faixa } from './../../faixa/faixa.model';
+
 
 @Component({
     selector: 'mt-distribuicao-form',
@@ -21,6 +23,7 @@ export class DistribuicaoFormComponent implements OnInit {
     idResource: any;
     listFaixas: FormArray;
     faixaList: Distribuicao[] = [];
+    faixa: Faixa;
 
     public maskDate = [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/];
 
@@ -29,6 +32,7 @@ export class DistribuicaoFormComponent implements OnInit {
         private router: Router,
         private route: ActivatedRoute,
         private distribuicaoService: DistribuicaoService,
+        private faixaService: FaixaService,
         private loaderService: LoaderService,
         private mensagensHandler: MensagensHandler,
     ) {
@@ -45,6 +49,8 @@ export class DistribuicaoFormComponent implements OnInit {
     }
 
     ngOnInit() {
+
+       
 
         this.loaderService.setMsgLoading('Carregando ...');
         this.mensagensHandler.handleClearMessages();
@@ -93,6 +99,9 @@ export class DistribuicaoFormComponent implements OnInit {
                         }
                         limiteSuperiorAnteriorLc = limiteSuperiorLc.value;
                     }
+
+                    this.faixa = new Faixa(limiteInferiorLc.value, limiteSuperiorLc.value, pontReferenciaLc.value, '1');
+                    this.faixaService.addFaixa(this.faixa);
 
                     console.log('# ', index, 'Limite inferior: ', limiteInferiorLc.value, 'Limite Superior: ', limiteSuperiorLc.value,
                                                                                   'Pontuação de referência: ', pontReferenciaLc.value);
