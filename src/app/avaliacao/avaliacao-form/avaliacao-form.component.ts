@@ -112,7 +112,7 @@ export class AvaliacaoFormComponent implements OnInit {
         private atributoColaboradorService: AtributoColaboradorService,
         private loginService: LoginService,
         private mensagensHandler: MensagensHandler
-        ) { }
+    ) { }
 
     ngOnInit() {
 
@@ -145,7 +145,7 @@ export class AvaliacaoFormComponent implements OnInit {
             this.avaliacaoService.getAvaliacaoId(this.idResource).subscribe(response => {
                 response = this.avaliacao = response;
                 // if (response.status === 404) {
-                    this.router.navigate(['avaliacao']);
+                this.router.navigate(['avaliacao']);
                 // }
             });
         });
@@ -171,7 +171,7 @@ export class AvaliacaoFormComponent implements OnInit {
                     this.Colaborador = colabFilter;
                 });
             }
-            );
+        );
     }
 
 
@@ -183,9 +183,8 @@ export class AvaliacaoFormComponent implements OnInit {
 
         let avaliacaoForm = this.formAvaliacao.value;
         this.somaValores('tudo');
-        console.log('Referencia FCT: ', avaliacaoForm.colaborador.referenciaFct);
+
         // Relacionar colaborador a atributo
-        // this.associaColabAtributo(avaliacaoForm);
 
         this.avaliacaoService.addAvaliacao({
             'id_resultado': 'null',
@@ -196,62 +195,54 @@ export class AvaliacaoFormComponent implements OnInit {
             'referencia_fct_gfe_pontuacao': avaliacaoForm.colaborador.referenciaFct,
             'TB_COLABORADOR_id_colaborador': avaliacaoForm.colaborador.idColaborador,
         }).subscribe(data => {
-            // console.log(data);
             this.router.navigate(['avaliacao']);
-            this.mensagensHandler.handleSuccess("Avaliação registrada com sucesso!");
-            setTimeout(()=>{    
+            this.mensagensHandler.handleSuccess('Avaliação registrada com sucesso!');
+            setTimeout(() => {
                 this.mensagensHandler.handleClearMessages();
-            },3000);
+            }, 3000);
         });
 
     }
 
     associaColabAtributo(formAvaliacao: any): any {
-        // console.log('AVALIACAO: ', formAvaliacao);
-        // this.atributoColaborador.push(
-          let teste =   { 
-            'TB_COLABORADOR_id_colaborador': 2, 
-            'TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe': 59, 
-            'TB_COLABORADOR_TB_DIVISAO_id_divisao': 3, 
-            'TB_ATRIBUTO_id_atributo': 1, 
-            'TB_ATRIBUTO_TB_ABRANGENCIA_id_abrangencia': 1, 
-            'TB_ATRIBUTO_TB_COMPLEXIDADE_id_complexidade': 1, 
-            'TB_ATRIBUTO_TB_IMPACTO_id_impacto': 1 
-        }
-        //);
+        let teste = {
+            'TB_COLABORADOR_id_colaborador': 2,
+            'TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe': 59,
+            'TB_COLABORADOR_TB_DIVISAO_id_divisao': 3,
+            'TB_ATRIBUTO_id_atributo': 1,
+            'TB_ATRIBUTO_TB_ABRANGENCIA_id_abrangencia': 1,
+            'TB_ATRIBUTO_TB_COMPLEXIDADE_id_complexidade': 1,
+            'TB_ATRIBUTO_TB_IMPACTO_id_impacto': 1
+        };
 
-this.atributoColaboradorService.addAssociacaoAtributoColaborador(teste).subscribe(data => {
-            // console.log('ATRIBUTO COLABORADOR: ', data);
+        this.atributoColaboradorService.addAssociacaoAtributoColaborador(teste).subscribe(data => {
         });
+    }
 
-}
+    getPapeis() {
+        this.papelService.getPapel().subscribe(papel => {
+            this.papel = papel;
+        });
+    }
 
+    getDivisao() {
 
-getPapeis() {
-    this.papelService.getPapel().subscribe(papel => {
-        this.papel = papel;
-    });
-}
-
-getDivisao() {
-
-    let divisaoFilter: any[];
-    let idDivisaoUser = this.user().TB_DIVISAO_id_divisao;
+        let divisaoFilter: any[];
+        let idDivisaoUser = this.user().TB_DIVISAO_id_divisao;
         // Verificar se o perfil do usuario logado é de lider = 2
         this.divisaoService.getDivisao().subscribe(divisao => {
             console.log(idDivisaoUser);
-            if ( this.user().id_perfil != '1' ) {
+            if (this.user().id_perfil !== '1') {
                 console.log('lider e colaboradora', this.user());
                 divisaoFilter = divisao.filter(function (el) {
                     return el['id_divisao'] === idDivisaoUser;
                 });
                 this.Divisao = divisaoFilter;
-            }else {
+            } else {
                 console.log('ADMINISTRADOR');
                 this.Divisao = divisao;
             }
         });
-
     }
 
     getColaborador() {
@@ -332,7 +323,6 @@ getDivisao() {
     }
 
     getItemsAtributo(formAvaliacao) {
-        // console.log(formAvaliacao.get('itemsAtributo').controls);
         return formAvaliacao.get('itemsAtributo').controls;
     }
 
@@ -366,13 +356,11 @@ getDivisao() {
     getChangeData(idAtributo) {
         this.vlrAtributo = 0;
         idAtributo.forEach(element => {
-
             this.avaliacaoService.getPapelAtributo(element).subscribe((data) => {
                 if (data !== []) {
                     data.forEach(arrayPush => {
                         let vlrRepetido = this.PapelAtributo.find(result => result.letra === arrayPush.letra) ? true : false;
                         if (!vlrRepetido) {
-
                             this.PapelAtributo.push(arrayPush);
                             this.addItemAtributo(arrayPush);
 
@@ -385,120 +373,116 @@ getDivisao() {
                                     return 0;
                                 }
                             });
-
                             this.somaValores('atributo');
                         }
                     });
                 }
             });
         });
-}
-
-getResetarAtributo(valor) {
-    this.PapelAtributo = [];
-    this.clearArray();
-    this.somaValores('atributo');
-}
-
-getSomarTecnologia(valor) {
-    this.qtdTecnologia = this.qtdTecnologia + 1;
-    this.somaValores('tecnologia');
-}
-
-getApagarTecnologia(valor) {
-    this.qtdTecnologia = this.qtdTecnologia - 1;
-    this.somaValores('tecnologia');
-}
-
-somaProjetos() {
-
-    this.vlrProjetos = 0;
-    let vlrAbrangencia, vlrComplexidade, vlrImpacto: number;
-    let projetos = this.formAvaliacao.get('items').value;
-
-    projetos.forEach(element => {
-        vlrAbrangencia = parseInt(element.Abrangencia, 10);
-        vlrComplexidade = parseInt(element.Complexidade, 10);
-        vlrImpacto = parseInt(element.Impacto, 10);
-        this.vlrProjetos = this.vlrProjetos + (vlrAbrangencia + vlrComplexidade + vlrImpacto);
-    });
-}
-
-somaAtributos() {
-
-    this.vlrAtributo = 0;
-    let qtdAtributos = 0;
-    let ajusteAtributos = 0.00;
-    let vlrAbrangencia, vlrComplexidade, vlrImpacto: number;
-    let atributos = this.formAvaliacao.get('itemsAtributo').value;
-
-    atributos.forEach(element => {
-        vlrAbrangencia = parseInt(element.Abrangencia, 10);
-        vlrComplexidade = parseInt(element.Complexidade, 10);
-        vlrImpacto = parseInt(element.Impacto, 10);
-        this.vlrAtributo = this.vlrAtributo + (vlrAbrangencia + vlrComplexidade + vlrImpacto);
-        qtdAtributos = qtdAtributos + 1;
-        ajusteAtributos = ajusteAtributos + 3;
-    });
-
-    if (ajusteAtributos > 0) {
-        ajusteAtributos = (13 / (ajusteAtributos / 3));
-        this.vlrAtributo = this.vlrAtributo * ajusteAtributos;
-    } else {
-        this.vlrAtributo = 0.00;
     }
-}
 
-somaValores(tipo: string) {
+    getResetarAtributo(valor) {
+        this.PapelAtributo = [];
+        this.clearArray();
+        this.somaValores('atributo');
+    }
 
-    this.vlrTotal = parseFloat(this.formAvaliacao.get('vlrPtTotal').value);
+    getSomarTecnologia(valor) {
+        this.qtdTecnologia = this.qtdTecnologia + 1;
+        this.somaValores('tecnologia');
+    }
 
-    switch (tipo) {
-        case 'atributo': {
-            let QtdPapeis = 0;
-            QtdPapeis = this.valuePapel.length;
-            this.somaAtributos();
-            this.Pesos.forEach(pesos => {
-                if ((pesos.tipo == 'Papel') && (parseInt(pesos.quantidade) == QtdPapeis)) {
-                    this.vlrAtributo = (this.vlrAtributo * pesos.valor);
-                }
-            });
-            break;
+    getApagarTecnologia(valor) {
+        this.qtdTecnologia = this.qtdTecnologia - 1;
+        this.somaValores('tecnologia');
+    }
+
+    somaProjetos() {
+
+        this.vlrProjetos = 0;
+        let vlrAbrangencia, vlrComplexidade, vlrImpacto: number;
+        let projetos = this.formAvaliacao.get('items').value;
+
+        projetos.forEach(element => {
+            vlrAbrangencia = parseInt(element.Abrangencia, 10);
+            vlrComplexidade = parseInt(element.Complexidade, 10);
+            vlrImpacto = parseInt(element.Impacto, 10);
+            this.vlrProjetos = this.vlrProjetos + (vlrAbrangencia + vlrComplexidade + vlrImpacto);
+        });
+    }
+
+    somaAtributos() {
+
+        this.vlrAtributo = 0;
+        let qtdAtributos = 0;
+        let ajusteAtributos = 0.00;
+        let vlrAbrangencia, vlrComplexidade, vlrImpacto: number;
+        let atributos = this.formAvaliacao.get('itemsAtributo').value;
+
+        atributos.forEach(element => {
+            vlrAbrangencia = parseInt(element.Abrangencia, 10);
+            vlrComplexidade = parseInt(element.Complexidade, 10);
+            vlrImpacto = parseInt(element.Impacto, 10);
+            this.vlrAtributo = this.vlrAtributo + (vlrAbrangencia + vlrComplexidade + vlrImpacto);
+            qtdAtributos = qtdAtributos + 1;
+            ajusteAtributos = ajusteAtributos + 3;
+        });
+
+        if (ajusteAtributos > 0) {
+            ajusteAtributos = (13 / (ajusteAtributos / 3));
+            this.vlrAtributo = this.vlrAtributo * ajusteAtributos;
+        } else {
+            this.vlrAtributo = 0.00;
         }
-        case 'tecnologia': {
-            this.vlrTecnologia = this.qtdTecnologia;
-            this.Pesos.forEach(pesos => {
-                if ((pesos.tipo == 'Tecnologia') && (parseInt(pesos.quantidade) == this.qtdTecnologia)) {
-                    this.vlrTecnologia = (this.qtdTecnologia * pesos.valor);
-                }
-            });
-            break;
-        }
-        case 'projeto': {
-            let QtdProjetos = 0;
-            QtdProjetos = this.formAvaliacao.get('qtdProjetos').value;
-            this.somaProjetos();
-            this.Pesos.forEach(pesos => {
-                if ((pesos.tipo == 'Projeto') && (parseInt(pesos.quantidade) == QtdProjetos)) {
-                    this.vlrProjetos = (this.vlrProjetos * pesos.valor);
-                }
-            });
-            break;
-        }
-        case 'ociosidade': {
-            let frmOciosidade = this.formAvaliacao.get('ociosidade').value || 0.00;
-            this.vlrOciosidade = (frmOciosidade / 100);
-            break;
-        }
-        case 'fctatual': {
+    }
+
+    somaValores(tipo: string) {
+
+        this.vlrTotal = parseFloat(this.formAvaliacao.get('vlrPtTotal').value);
+
+        switch (tipo) {
+            case 'atributo': {
+                let QtdPapeis = 0;
+                QtdPapeis = this.valuePapel.length;
+                this.somaAtributos();
+                this.Pesos.forEach(pesos => {
+                    if ((pesos.tipo === 'Papel') && (parseInt(pesos.quantidade, 0) === QtdPapeis)) {
+                        this.vlrAtributo = (this.vlrAtributo * pesos.valor);
+                    }
+                });
+                break;
+            }
+            case 'tecnologia': {
+                this.vlrTecnologia = this.qtdTecnologia;
+                this.Pesos.forEach(pesos => {
+                    if ((pesos.tipo === 'Tecnologia') && (parseInt(pesos.quantidade, 0) === this.qtdTecnologia)) {
+                        this.vlrTecnologia = (this.qtdTecnologia * pesos.valor);
+                    }
+                });
+                break;
+            }
+            case 'projeto': {
+                let QtdProjetos = 0;
+                QtdProjetos = this.formAvaliacao.get('qtdProjetos').value;
+                this.somaProjetos();
+                this.Pesos.forEach(pesos => {
+                    if ((pesos.tipo === 'Projeto') && (parseInt(pesos.quantidade, 0) === QtdProjetos)) {
+                        this.vlrProjetos = (this.vlrProjetos * pesos.valor);
+                    }
+                });
+                break;
+            }
+            case 'ociosidade': {
+                let frmOciosidade = this.formAvaliacao.get('ociosidade').value || 0.00;
+                this.vlrOciosidade = (frmOciosidade / 100);
+                break;
+            }
+            case 'fctatual': {
                 // Pontuação FCT Atual
                 let ref1 = (this.formAvaliacao.get('colaborador').value.ref_pontuacao_fct || 0);
                 let ref2 = (this.formAvaliacao.get('colaborador').value.ref_fct_atual || 0);
-                let pontReferencia = (this.formAvaliacao.get('colaborador').value.pontuacao_inicial || 0).toFixed(2); 
+                let pontReferencia = (this.formAvaliacao.get('colaborador').value.pontuacao_inicial || 0).toFixed(2);
                 let calculoReferencia = ((ref2 * pontReferencia) / ref1).toFixed(2);
-                
-                console.log("Pontuacao FCT ATUAL > ", calculoReferencia);
-                
 
                 this.formAvaliacao.get('vlrFCTatual').setValue(calculoReferencia);
 
@@ -522,25 +506,23 @@ somaValores(tipo: string) {
 
         // Percentual Ajuste
         if (this.vlrAjuste < 0) {
-            this.classeCss1 = "badge bg-red";
-            this.classeBarra1 = "progress-bar progress-bar-danger";
+            this.classeCss1 = 'badge bg-red';
+            this.classeBarra1 = 'progress-bar progress-bar-danger';
             this.percAjuste2 = this.percAjuste * (-1);
-            this.percAjusteBarra = this.percAjuste2.toFixed(2) + "%";
+            this.percAjusteBarra = this.percAjuste2.toFixed(2) + '%';
         } else {
-            this.classeCss1 = "badge bg-green";
-            this.classeBarra1 = "progress-bar progress-bar-success";
+            this.classeCss1 = 'badge bg-green';
+            this.classeBarra1 = 'progress-bar progress-bar-success';
 
-            if (this.percAjuste > 100){ 
+            if (this.percAjuste > 100) {
                 this.percAjuste = 100;
-            }else if (isNaN(this.percAjuste)){
-                this.percAjuste = 0;  
+            } else if (isNaN(this.percAjuste)) {
+                this.percAjuste = 0;
             }
 
-            this.percAjusteBarra = this.percAjuste.toFixed(2) + "%";
+            this.percAjusteBarra = this.percAjuste.toFixed(2) + '%';
         }
 
         // Referencia FCT pela Pontuação Total
     }
-
-
 }

@@ -1,13 +1,11 @@
 import { MensagensHandler } from 'app/shared/services/mensagens-handler.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, Route, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, Validators, AbstractControl } from '@angular/forms';
 import { LoaderService } from 'app/shared/services/loader.service';
 
 import { Distribuicao } from './../distribuicao.model';
 import { DistribuicaoService } from './../distribuicao.service';
-import { FuncoesGlobais } from 'app/shared/app.funcoes-globais';
-
 
 @Component({
     selector: 'mt-distribuicao-form',
@@ -15,19 +13,23 @@ import { FuncoesGlobais } from 'app/shared/app.funcoes-globais';
     styleUrls: ['./distribuicao-form.component.css']
 })
 export class DistribuicaoFormComponent implements OnInit {
+
     formDistribuicao: FormGroup;
     title: string;
     distribuicao: Distribuicao = new Distribuicao();
     idResource: any;
+    listFaixas: FormArray;
+    faixaList: Distribuicao[] = [];
+
     public maskDate = [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/];
-    
+
     constructor(
-        formBuilder: FormBuilder,
+        private formBuilder: FormBuilder,
         private router: Router,
         private route: ActivatedRoute,
         private distribuicaoService: DistribuicaoService,
         private loaderService: LoaderService,
-        private mensagensHandler: MensagensHandler
+        private mensagensHandler: MensagensHandler,
     ) {
         this.formDistribuicao = formBuilder.group({
             valor: [null, Validators.required],
@@ -36,45 +38,75 @@ export class DistribuicaoFormComponent implements OnInit {
             diferenca: [null],
             amplitude_faixas: [null],
             qtde_faixas: [null, Validators.required],
-            dt_registro: [null]
-        })
+            dt_registro: [null],
+
+        });
     }
 
     ngOnInit() {
 
-        this.loaderService.setMsgLoading("Carregando ...");
+        this.loaderService.setMsgLoading('Carregando ...');
         this.mensagensHandler.handleClearMessages();
 
-        var id_distribuicao = this.route.params.subscribe(params => {
-            this.idResource = params['id_distribuicao'];
-            this.title = this.idResource ? 'Editar Distribuição' : 'Nova Distribuição';
-
-            if (!this.idResource)
-                return;
-
-            this.distribuicaoService.getDistribuicaoId(this.idResource).subscribe(distribuicao => {
-                distribuicao = this.distribuicao = distribuicao
-                this.distribuicao.dt_registro = FuncoesGlobais.dataFormatadaView(this.distribuicao.dt_registro);
-
-                this.calcularDiferencaPontuacao();
-                this.calcularAmplitude(true);
-
-                response => {
-                    if (response.status == 404) {
-                        this.router.navigate(['distribuicao'])
-                    }
+        this.distribuicaoService.getDistribuicao().subscribe(
+            faixas => {
+                this.faixaList = faixas;
+                faixas.forEach(fxs => {
+                    this.listFaixas.push(this.createItemFaixa(fxs));
+                });
+            },
+            response => {
+                if (response.status === 404) {
+                    this.router.navigate(['faixa']);
                 }
-            })
-        });
+            },
+            () => {
+                let index = 0;
+                let tamanho: number = this.listFaixas.controls.length;
+                let limiteSuperiorAnteriorLc = 0;
+
+                this.listFaixas.controls.map(function(data) {
+
+                    index = index + 1;
+                    let pontuacaMinimaLc = this.formDistribuicao.get('pontuacao_minima').value;
+                    let amplitudeFaixasLc = this.formDistribuicao.get('amplitude_faixas').value;
+
+                    // this.formBuilder.group
+                    let limiteInferiorLc = data.get('limiteInferior');
+                    let limiteSuperiorLc = data.get('limiteSuperior');
+                    let pontReferenciaLc = data.get('pontuacaoReferencia');
+
+                    if ( index === tamanho ) {
+                        limiteInferiorLc.setValue(limiteSuperiorAnteriorLc + 0.01);
+                        limiteSuperiorLc.setValue(limiteInferiorLc.value + amplitudeFaixasLc);
+                        pontReferenciaLc.setValue(limiteInferiorLc.value);
+                    } else {
+                        if ( index > 1 ) {
+                            limiteInferiorLc.setValue(limiteSuperiorAnteriorLc + 0.01);
+                            limiteSuperiorLc.setValue(limiteInferiorLc.value + amplitudeFaixasLc);
+                            pontReferenciaLc.setValue(limiteInferiorLc.value + (amplitudeFaixasLc / 2));
+                        } else {
+                            limiteInferiorLc.setValue(pontuacaMinimaLc);
+                            limiteSuperiorLc.setValue(pontuacaMinimaLc + amplitudeFaixasLc);
+                            pontReferenciaLc.setValue(limiteSuperiorLc.value);
+                        }
+                        limiteSuperiorAnteriorLc = limiteSuperiorLc.value;
+                    }
+
+                    console.log('# ', index, 'Limite inferior: ', limiteInferiorLc.value, 'Limite Superior: ', limiteSuperiorLc.value,
+                                                                                  'Pontuação de referência: ', pontReferenciaLc.value);
+
+                });
+            }
+        );
 
         // se inscreve para verificar alterações no valor das faixas
         this.formDistribuicao.get('qtde_faixas').valueChanges.subscribe( /* <- does work */
             changes => {
-                //console.log('title has changed:', changes);
+                // console.log('title has changed:', changes);
                 this.calcularAmplitude(false);
             }
           );
-
     }
 
     save() {
@@ -88,18 +120,18 @@ export class DistribuicaoFormComponent implements OnInit {
 
         if (this.idResource) {
             atualizar = true;
-            this.loaderService.setMsgLoading("Atualizando a distribuição ...");
+            this.loaderService.setMsgLoading('Atualizando a distribuição ...');
             result = this.distribuicaoService.updateDistribuicao(this.idResource, userValue);
         } else {
             atualizar = false;
-            this.loaderService.setMsgLoading("Salvando a distribuição ...");
+            this.loaderService.setMsgLoading('Salvando a distribuição ...');
             result = this.distribuicaoService.addDistribuicao(userValue);
         }
         result.subscribe(data => {
             if (atualizar) {
-                this.mensagensHandler.handleSuccess("Distribuição atualizada com sucesso!");
+                this.mensagensHandler.handleSuccess('Distribuição atualizada com sucesso!');
             } else {
-                this.mensagensHandler.handleSuccess("Distribuição salva com sucesso!");
+                this.mensagensHandler.handleSuccess('Distribuição salva com sucesso!');
             }
             this.router.navigate(['distribuicao']);
         }
@@ -112,16 +144,25 @@ export class DistribuicaoFormComponent implements OnInit {
         let calculoDiferenca: any = (maxima - minima).toFixed(2);
 
         this.formDistribuicao.get('diferenca').setValue(calculoDiferenca);
-
     }
 
     calcularAmplitude(opcao: boolean): void {
-        
-        let diferenca: number = this.formDistribuicao.get('diferenca').value;
-        let qtdefaixas: number = (opcao? parseFloat(this.distribuicao.qtde_faixas): this.formDistribuicao.get('qtde_faixas').value);
+
+        let pontMaximaLc: number = this.formDistribuicao.get('pontuacao_maxima').value;
+        let pontMinimaLc: number = this.formDistribuicao.get('pontuacao_minima').value;
+        let diferenca: number = (pontMaximaLc - pontMinimaLc || 0);
+        let qtdefaixas: number = (opcao ? parseFloat(this.distribuicao.qtde_faixas) : this.formDistribuicao.get('qtde_faixas').value);
         let Amplitude: number = (diferenca / qtdefaixas);
 
         this.formDistribuicao.get('amplitude_faixas').setValue(Amplitude.toFixed(2));
+    }
+
+    private createItemFaixa(faixas: Distribuicao): FormGroup {
+        return this.formBuilder.group({
+            limiteInferior: '0.00',
+            limiteSuperior: '0.00',
+            pontuacaoReferencia: '0.00'
+        });
     }
 
     onCancel() {
@@ -133,10 +174,10 @@ export class DistribuicaoFormComponent implements OnInit {
     }
 
     hasErrors(): boolean {
-        var hasErrors: boolean = false;
-        for (var controlName in this.formDistribuicao.controls) {
-            var control: AbstractControl = this.formDistribuicao.controls[controlName];
-            if (!control.valid && !control.pristine) {
+        let hasErrors = false;
+        for ( let controlName in this.formDistribuicao.controls ) {
+            let control: AbstractControl = this.formDistribuicao.controls[controlName];
+            if ( !control.valid && !control.pristine ) {
                 hasErrors = true;
                 break;
             }
