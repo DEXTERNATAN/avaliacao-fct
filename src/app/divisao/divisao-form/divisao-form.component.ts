@@ -24,7 +24,7 @@ export class DivisaoFormComponent implements OnInit {
         private route: ActivatedRoute,
         private divisaoService: DivisaoService,
         private loaderService: LoaderService,
-		private mensagensHandler: MensagensHandler
+        private mensagensHandler: MensagensHandler
     ) {
         this.formDivisao = formBuilder.group({
 
@@ -33,13 +33,13 @@ export class DivisaoFormComponent implements OnInit {
             descricao: [null, Validators.required],
             uf: [null, Validators.required],
             especialidade: [null, Validators.required]
-        })
+        });
     }
 
     hasErrors(): boolean {
-        var hasErrors: boolean = false;
-        for (var controlName in this.formDivisao.controls) {
-            var control: AbstractControl = this.formDivisao.controls[controlName];
+        let hasErrors = false;
+        for (let controlName in this.formDivisao.controls) {
+            let control: AbstractControl = this.formDivisao.controls[controlName];
             if (!control.valid && !control.pristine) {
                 hasErrors = true;
                 break;
@@ -49,55 +49,51 @@ export class DivisaoFormComponent implements OnInit {
     }
 
     ngOnInit() {
-        
-        this.loaderService.setMsgLoading("Carregando ...");
-		this.mensagensHandler.handleClearMessages();
 
-        var id_divisao = this.route.params.subscribe(params => {
-            
+        this.loaderService.setMsgLoading('Carregando ...');
+        this.mensagensHandler.handleClearMessages();
+
+        let id_divisao = this.route.params.subscribe(params => {
             this.idResource = params['id_divisao'];
             this.title = this.idResource ? 'Editar Divisão' : 'Nova Divisão';
 
-            if (!this.idResource)
+            if (!this.idResource) {
                 return;
-
+            }
             this.divisaoService.getDivisaoId(this.idResource).subscribe(divisao => {
-                divisao = this.divisaos = divisao
-                //console.log(divisao.id_divisao),
+                divisao = this.divisaos = divisao;
                     response => {
                         if (response.status == 404) {
-                            this.router.navigate(['divisao'])
+                            this.router.navigate(['divisao']);
                         }
                     }
-            })
-
-        })
+            });
+        });
     }
 
     save() {
-        
+
         let result, userValue = this.formDivisao.value;
         let atualizar: boolean;
 
         if (this.idResource) {
             atualizar = true;
-            this.loaderService.setMsgLoading("Atualizando divisão ...");
+            this.loaderService.setMsgLoading('Atualizando divisão ...');
             result = this.divisaoService.updateDivisao(this.idResource, userValue);
         } else {
             atualizar = false;
-			this.loaderService.setMsgLoading("Salvando divisão ...");
+            this.loaderService.setMsgLoading('Salvando divisão ...');
             result = this.divisaoService.addDivisao(userValue);
         }
 
         result.subscribe(data => {
-			if (atualizar) {
-				this.mensagensHandler.handleSuccess("Divisão atualizada com sucesso!");
-			} else {
-				this.mensagensHandler.handleSuccess("Divisão salva com sucesso!");
-			}
-			this.router.navigate(['divisao']);
-		}
-		);
+            if (atualizar) {
+                this.mensagensHandler.handleSuccess('Divisão atualizada com sucesso!');
+            } else {
+                this.mensagensHandler.handleSuccess('Divisão salva com sucesso!');
+            }
+            this.router.navigate(['divisao']);
+        });
     }
 
     onCancel() {

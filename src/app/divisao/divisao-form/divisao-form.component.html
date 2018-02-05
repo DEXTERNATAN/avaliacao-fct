@@ -1,7 +1,6 @@
 <section class="content-header">
 	<h1>
 		Divisão do Departamento
-		<!-- <small>cadastro de novas divisões</small> -->
 	</h1>
 	<ol class="breadcrumb">
 		<li><a href="#"><i class="fa fa-home"></i> Home</a></li>
@@ -17,7 +16,6 @@
 					<h3 class="box-title">Detalhes da Divisão do Departamento</h3>
 				</div>
 				<!-- /.box-header -->
-				<!-- form start -->
 				<form role="form" [formGroup]="formDivisao" (ngSubmit)="save()">
 					<div class="box-body">
 						<div class="form-group" [ngClass]="{'has-error': (!formDivisao.controls['sigla'].valid && formDivisao.controls['sigla'].touched) }">

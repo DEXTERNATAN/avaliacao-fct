@@ -14,7 +14,6 @@ import { Faixa } from './../../faixa/faixa.model';
     templateUrl: './distribuicao-form.component.html',
     styleUrls: ['./distribuicao-form.component.css']
 })
-
 export class DistribuicaoFormComponent implements OnInit {
 
     formDistribuicao: FormGroup;

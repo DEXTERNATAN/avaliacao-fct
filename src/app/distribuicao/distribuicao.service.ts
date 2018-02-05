@@ -1,19 +1,14 @@
 import { Observable } from 'rxjs/Rx';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
-import { MEAT_API } from './../app.api';
 import { RestService } from 'app/shared/services/rest.service';
-import { LoaderService } from 'app/shared/services/loader.service';
-import { ErrorHandler } from 'app/app.error-handler';
-import { ApplicationErrorMessage } from 'app/shared/models/ApplicationErrorMessage';
-import { MensagensHandler } from 'app/shared/services/mensagens-handler.service';
 
 import { Distribuicao } from './distribuicao.model';
 
 @Injectable()
-export class DistribuicaoService extends RestService<Distribuicao>{
+export class DistribuicaoService extends RestService<Distribuicao> {
 
-    constructor(protected http: Http){
+    constructor(protected http: Http) {
         super(http);
     }
 

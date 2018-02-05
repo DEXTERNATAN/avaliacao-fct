@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ImpactoFormComponent } from './impacto-form.component';
 
 describe('ImpactoFormComponent', () => {
@@ -8,9 +7,9 @@ describe('ImpactoFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ImpactoFormComponent ]
+      declarations: [ImpactoFormComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

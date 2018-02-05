@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 import { LoginService } from 'app/security/login/login.service';
 import { User } from 'app/security/login/user';
 
@@ -8,7 +7,6 @@ import { User } from 'app/security/login/user';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-
 export class HeaderComponent implements OnInit {
 
   constructor(private loginService: LoginService) { }
@@ -25,7 +23,7 @@ export class HeaderComponent implements OnInit {
     return this.loginService.isLoggedIn();
   }
 
-  login(){
+  login() {
     return this.loginService.handleLogin();
   }
 
