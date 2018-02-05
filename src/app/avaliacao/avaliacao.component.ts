@@ -57,36 +57,35 @@ export class AvaliacaoComponent implements OnInit, AfterViewInit {
     ngAfterViewInit(): void { }
 
     deleteAvaliacao(avaliacao, avaliacaoDetalhe) {
-        
-        if (confirm('Tem certeza que quer APAGAR a Avaliação #' + avaliacao.id_resultado + ' ?')) {
-            
-            let index = avaliacaoDetalhe.indexOf(avaliacao);
-            avaliacaoDetalhe.splice(index, 1);
 
-            this._avaliacaoService.deleteAvaliacao(avaliacao.id_resultado).subscribe(
-                data => {
-                    this.mensagensHandler.handleSuccess("Avaliação removida com sucesso!");
-                    setTimeout(()=>{    
-                        this.mensagensHandler.handleClearMessages();
-                    },3000);
-                },
-                err => {
-                    alert("A avaliação não foi apagada!");
-                    avaliacaoDetalhe.splice(index, 0, avaliacao);
-                    throw err;
-                });
+    if (confirm('Tem certeza que quer APAGAR a Avaliação #' + avaliacao.id_resultado + ' ?')) {
+
+        let index = avaliacaoDetalhe.indexOf(avaliacao);
+        avaliacaoDetalhe.splice(index, 1);
+
+        this._avaliacaoService.deleteAvaliacao(avaliacao.id_resultado).subscribe(
+            data => {
+                this.mensagensHandler.handleSuccess('Avaliação removida com sucesso!');
+                setTimeout(() => {
+                    this.mensagensHandler.handleClearMessages();
+                }, 3000);
+            },
+            err => {
+                alert('A avaliação não foi apagada!');
+                avaliacaoDetalhe.splice(index, 0, avaliacao);
+                throw err;
+            });
         }
     }
 
     getAvaliacaoDetalhe(data) {
-        
+
         data.forEach(elementGroup => {
             this._avaliacaoService.getAvaliacaoId(elementGroup.TB_COLABORADOR_id_colaborador).subscribe(elementDetalhe => {
                 this.avaliacaoDetalhe.push({
                     'listGroup': elementGroup,
                     'listDetalhe': elementDetalhe
                 });
-                // console.log(this.avaliacaoDetalhe);
             });
         });
     }

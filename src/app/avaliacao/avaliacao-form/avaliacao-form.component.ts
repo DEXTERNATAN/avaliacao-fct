@@ -229,6 +229,7 @@ export class AvaliacaoFormComponent implements OnInit {
 
         let divisaoFilter: any[];
         let idDivisaoUser = this.user().TB_DIVISAO_id_divisao;
+
         // Verificar se o perfil do usuario logado é de lider = 2
         this.divisaoService.getDivisao().subscribe(divisao => {
             console.log(idDivisaoUser);

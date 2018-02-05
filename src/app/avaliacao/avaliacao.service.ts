@@ -52,6 +52,4 @@ export class AvaliacaoService  extends RestService<Avaliacao>{
     updateAvaliacao(id, avaliacao) {
         return super.atualizarPorId(avaliacao, id);
     }
-
-    
 }

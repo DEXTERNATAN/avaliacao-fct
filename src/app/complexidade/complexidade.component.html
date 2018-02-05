@@ -16,9 +16,6 @@
                         <h3 class="box-title">Complexidades Cadastradas</h3>
                         <div class="box-tools">
                             <a routerLink="/complexidade/novo" class="btn btn-sm pull-left btn-flat bg-purple margin-right-10" ><i class="fa fa-plus"></i> <b>Nova Complexidade</b></a>
-                            <!--<div class="input-group input-group-sm pull-right" style="width: 150px;">
-                                <input type="text" ng-model="searchText" name="table_search" class="form-control pull-right" placeholder="Pesquisar">
-                            </div>-->
                         </div>
                     </div>
                     <!-- /.box-header -->
@@ -37,7 +34,6 @@
                             </thead>
                             <tbody>    
                                 <tr *ngFor="let complexidade of Complexidade">
-                                    <!-- | filter:searchText -->
                                     <td>{{complexidade.id_complexidade}}</td>
                                     <td>{{complexidade.atributo}}</td>
                                     <td>{{complexidade.tipo}}</td>

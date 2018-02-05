@@ -1,5 +1,4 @@
 import { MensagensHandler } from 'app/shared/services/mensagens-handler.service';
-import { atributoRouting } from './../atributo.routes';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -13,7 +12,6 @@ import { AbrangenciaService } from './../../abrangencia/abrangencia.service';
 import { ComplexidadeService } from './../../complexidade/complexidade.service';
 import { ImpactoService } from './../../impacto/impacto.service';
 import { LoaderService } from 'app/shared/services/loader.service';
-import { FilterPipe } from 'app/shared/pipes/filter';
 
 @Component({
 	selector: 'app-atributo-form',
@@ -27,7 +25,7 @@ export class AtributoFormComponent implements OnInit {
 	atributo: Atributo = new Atributo();
 	idResource: any;
 	selectedData: any[] = [];
-	count: number = 0;
+	count = 0;
 
 	public Abrangencia: Abrangencia[] = [];
 	public Complexidade: Complexidade[] = [];
@@ -47,16 +45,15 @@ export class AtributoFormComponent implements OnInit {
 		this.formAtributo = formBuilder.group({
 			letra: [null, [Validators.required]],
 			descricao: [null, Validators.required],
-			TB_ABRANGENCIA_id_abrangencia: [{value: 'null', disabled: true}],
-			TB_COMPLEXIDADE_id_complexidade: [{value: 'null', disabled: true}],
-			TB_IMPACTO_id_impacto: [{value: 'null', disabled: true}]
+			TB_ABRANGENCIA_id_abrangencia: [{ value: 'null', disabled: true }],
+			TB_COMPLEXIDADE_id_complexidade: [{ value: 'null', disabled: true }],
+			TB_IMPACTO_id_impacto: [{ value: 'null', disabled: true }]
 		});
-
 	}
 
 	ngOnInit() {
 
-		this.loaderService.setMsgLoading("Carregando ...");
+		this.loaderService.setMsgLoading('Carregando ...');
 		this.mensagensHandler.handleClearMessages();
 		this.getAbrangencia();
 		this.getComplexidade();
@@ -66,12 +63,13 @@ export class AtributoFormComponent implements OnInit {
 			this.idResource = params['id_atributo'];
 			this.title = this.idResource ? 'Editar Atributo' : 'Novo Atributo';
 
-			if (!this.idResource)
+			if (!this.idResource) {
 				return;
+			}
 
 			this._atributoService.getAtributoId(this.idResource).subscribe(atributo => {
-				atributo = this.atributo = atributo
-				
+				atributo = this.atributo = atributo;
+
 				this.habilitaCampos();
 
 				response => {
@@ -79,9 +77,8 @@ export class AtributoFormComponent implements OnInit {
 						this.router.navigate(['atributo'])
 					}
 				}
-			})
-		})
-
+			});
+		});
 	}
 
 	save() {
@@ -91,23 +88,22 @@ export class AtributoFormComponent implements OnInit {
 
 		if (this.idResource) {
 			atualizar = true;
-			this.loaderService.setMsgLoading("Atualizando atributo ...");
+			this.loaderService.setMsgLoading('Atualizando atributo ...');
 			result = this._atributoService.updateAtributo(this.idResource, userValue);
 		} else {
 			atualizar = false;
-			this.loaderService.setMsgLoading("Salvando atributo ...");
+			this.loaderService.setMsgLoading('Salvando atributo ...');
 			result = this._atributoService.addAtributo(userValue);
 		}
 
 		result.subscribe(data => {
 			if (atualizar) {
-				this.mensagensHandler.handleSuccess("Atributo atualizado com sucesso!");
+				this.mensagensHandler.handleSuccess('Atributo atualizado com sucesso!');
 			} else {
-				this.mensagensHandler.handleSuccess("Atributo salvo com sucesso!");
+				this.mensagensHandler.handleSuccess('Atributo salvo com sucesso!');
 			}
 			this.router.navigate(['atributo']);
-		}
-		);
+		});
 	}
 
 	getAbrangencia() {
@@ -123,13 +119,13 @@ export class AtributoFormComponent implements OnInit {
 
 	getComplexidade() {
 		this._complexidadeService.getComplexidade().subscribe(complexidade => {
-			this.Complexidade = complexidade
+			this.Complexidade = complexidade;
 		})
 	}
 
 	getImpacto() {
 		this._impactoService.getImpacto().subscribe(impacto => {
-			this.Impacto = impacto
+			this.Impacto = impacto;
 		})
 	}
 
@@ -142,7 +138,7 @@ export class AtributoFormComponent implements OnInit {
 	}
 
 	hasErrors(): boolean {
-		var hasErrors: boolean = false;
+		let hasErrors = false;
 		for (var controlName in this.formAtributo.controls) {
 			var control: AbstractControl = this.formAtributo.controls[controlName];
 			if (!control.valid && !control.pristine) {
@@ -158,37 +154,33 @@ export class AtributoFormComponent implements OnInit {
 		return op1 && op2 ? op1.TB_ABRANGENCIA_id_abrangencia === op2.id_abrangencia : op1 === op2;
 	}
 
-	habilitaCampos(){
+	habilitaCampos() {
 		// Habilitando os campos de select
 		this.formAtributo.get('TB_ABRANGENCIA_id_abrangencia').enable();
 		this.formAtributo.get('TB_COMPLEXIDADE_id_complexidade').enable();
 		this.formAtributo.get('TB_IMPACTO_id_impacto').enable();
-
 	}
 
-	desabilitaCampos(){
+	desabilitaCampos() {
 		// Habilitando os campos de select
 		this.formAtributo.get('TB_ABRANGENCIA_id_abrangencia').disable();
 		this.formAtributo.get('TB_COMPLEXIDADE_id_complexidade').disable();
 		this.formAtributo.get('TB_IMPACTO_id_impacto').disable();
-		// zerar o valor dos campos
-		// this.formAtributo.get('TB_ABRANGENCIA_id_abrangencia').setValue("");
-		// this.formAtributo.get('TB_COMPLEXIDADE_id_complexidade').setValue("");
-		// this.formAtributo.get('TB_IMPACTO_id_impacto').setValue("");
 	}
 
 	setCamposDesc(letra: string) {
 		// habilitando os campos
-		if(letra){
+		if (letra) {
 			this.habilitaCampos();
-		}else{
+		} else {
 			this.desabilitaCampos();
 		}
-		
+
 		switch (letra) {
 			case 'a':
 				{
-					this.atributo.descricao = 'Analisar as demandas apresentadas pelas áreas de negócio e propor alternativas de solução técnica e estratégia de desenvolvimento';
+					this.atributo.descricao = 'Analisar as demandas apresentadas pelas áreas de negócio e propor alternativas de ' +
+					'solução técnica e estratégia de desenvolvimento';
 					break;
 				}
 			case 'b':
@@ -218,7 +210,8 @@ export class AtributoFormComponent implements OnInit {
 				}
 			case 'g':
 				{
-					this.atributo.descricao = 'Planejar, elaborar e ministrar treinamentos relativos a sistemas de informação, ferramentas de acesso e manipulação de dados';
+					this.atributo.descricao = 'Planejar, elaborar e ministrar treinamentos relativos a sistemas de informação, ' +
+					'ferramentas de acesso e manipulação de dados';
 					break;
 				}
 			case 'h':
@@ -228,7 +221,8 @@ export class AtributoFormComponent implements OnInit {
 				}
 			case 'i':
 				{
-					this.atributo.descricao = 'Prestar assessoramento técnico no que se refere a prazos, recursos e alternativas de desenvolvimento de sistemas';
+					this.atributo.descricao = 'Prestar assessoramento técnico no que se refere a prazos, recursos e alternativas ' +
+					'de desenvolvimento de sistemas';
 					break;
 				}
 			case 'j':

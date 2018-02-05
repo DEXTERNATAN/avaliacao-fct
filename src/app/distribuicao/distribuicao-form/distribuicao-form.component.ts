@@ -9,12 +9,12 @@ import { DistribuicaoService } from './../distribuicao.service';
 import { FaixaService } from './../../faixa/faixa.service';
 import { Faixa } from './../../faixa/faixa.model';
 
-
 @Component({
     selector: 'mt-distribuicao-form',
     templateUrl: './distribuicao-form.component.html',
     styleUrls: ['./distribuicao-form.component.css']
 })
+
 export class DistribuicaoFormComponent implements OnInit {
 
     formDistribuicao: FormGroup;
@@ -49,8 +49,6 @@ export class DistribuicaoFormComponent implements OnInit {
     }
 
     ngOnInit() {
-
-       
 
         this.loaderService.setMsgLoading('Carregando ...');
         this.mensagensHandler.handleClearMessages();

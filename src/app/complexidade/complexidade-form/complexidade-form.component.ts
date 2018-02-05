@@ -8,9 +8,9 @@ import { Complexidade } from './../complexidade.model';
 import { ComplexidadeService } from './../complexidade.service';
 
 @Component({
-  selector: 'mt-complexidade-form',
-  templateUrl: './complexidade-form.component.html',
-  styleUrls: ['./complexidade-form.component.css']
+    selector: 'mt-complexidade-form',
+    templateUrl: './complexidade-form.component.html',
+    styleUrls: ['./complexidade-form.component.css']
 })
 export class ComplexidadeFormComponent implements OnInit {
 
@@ -25,7 +25,7 @@ export class ComplexidadeFormComponent implements OnInit {
         private route: ActivatedRoute,
         private complexidadeService: ComplexidadeService,
         private loaderService: LoaderService,
-		private mensagensHandler: MensagensHandler
+        private mensagensHandler: MensagensHandler
     ) {
         this.formComplexidade = formBuilder.group({
 
@@ -38,7 +38,7 @@ export class ComplexidadeFormComponent implements OnInit {
     }
 
     hasErrors(): boolean {
-        var hasErrors: boolean = false;
+        let hasErrors = false;
         for (var controlName in this.formComplexidade.controls) {
             var control: AbstractControl = this.formComplexidade.controls[controlName];
             if (!control.valid && !control.pristine) {
@@ -50,28 +50,27 @@ export class ComplexidadeFormComponent implements OnInit {
     }
 
     ngOnInit() {
-        
+
         this.loaderService.setMsgLoading("Carregando ...");
-		this.mensagensHandler.handleClearMessages();
-        
-        var id_complexidade = this.route.params.subscribe(params => {
+        this.mensagensHandler.handleClearMessages();
+
+        let id_complexidade = this.route.params.subscribe(params => {
             this.idResource = params['id_complexidade'];
             this.title = this.idResource ? 'Editar Complexidade' : 'Nova Complexidade';
 
-            if (!this.idResource)
+            if (!this.idResource) {
                 return;
+            }
 
             this.complexidadeService.getComplexidadeId(this.idResource).subscribe(complexidade => {
-                complexidade = this.complexidade = complexidade
-                //console.log(complexidade.id_complexidade),
-                    response => {
-                        if (response.status == 404) {
-                            this.router.navigate(['complexidade'])
-                        }
+                complexidade = this.complexidade = complexidade;
+                response => {
+                    if (response.status == 404) {
+                        this.router.navigate(['complexidade']);
                     }
-            })
-
-        })
+                }
+            });
+        });
     }
 
     save() {
@@ -80,23 +79,22 @@ export class ComplexidadeFormComponent implements OnInit {
 
         if (this.idResource) {
             atualizar = true;
-            this.loaderService.setMsgLoading("Atualizando complexidade ...");
+            this.loaderService.setMsgLoading('Atualizando complexidade ...');
             result = this.complexidadeService.updateComplexidade(this.idResource, userValue);
         } else {
             atualizar = false;
-			this.loaderService.setMsgLoading("Salvando complexidade ...");
+            this.loaderService.setMsgLoading('Salvando complexidade ...');
             result = this.complexidadeService.addComplexidade(userValue);
         }
 
         result.subscribe(data => {
-			if (atualizar) {
-				this.mensagensHandler.handleSuccess("Complexidade atualizada com sucesso!");
-			} else {
-				this.mensagensHandler.handleSuccess("Complexidade salva com sucesso!");
-			}
-			this.router.navigate(['complexidade']);
-		}
-		);
+            if (atualizar) {
+                this.mensagensHandler.handleSuccess('Complexidade atualizada com sucesso!');
+            } else {
+                this.mensagensHandler.handleSuccess('Complexidade salva com sucesso!');
+            }
+            this.router.navigate(['complexidade']);
+        });
     }
 
     onCancel() {

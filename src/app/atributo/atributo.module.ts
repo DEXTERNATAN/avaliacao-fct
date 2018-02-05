@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
-import { TextMaskModule } from 'angular2-text-mask';
 
 import { FilterPipe } from './../shared/pipes/filter';
 import { DataTablesModule } from 'angular-datatables';
@@ -12,7 +11,6 @@ import { AtributoService } from 'app/atributo/atributo.service';
 import { AtributoFormComponent } from './atributo-form/atributo-form.component';
 import { LoaderService } from 'app/shared/services/loader.service';
 import { MensagensHandler } from 'app/shared/services/mensagens-handler.service';
-
 
 @NgModule({
     imports: [
