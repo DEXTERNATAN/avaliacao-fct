@@ -77,42 +77,44 @@ export class DistribuicaoFormComponent implements OnInit {
                 let tamanho: number = this.listFaixas.controls.length;
                 let limiteSuperiorAnteriorLc = 0;
 
-                console.log(this.formDistribuicao.get('pontuacao_minima'));
+                console.log('pontuacao_minima => ', this.formDistribuicao.get('pontuacao_minima'));
 
-                // this.listFaixas.controls.map(function(data) {
+                this.listFaixas.controls.map(function(data) {
 
-                //     index = index + 1;
-                //     let pontuacaMinimaLc = this.formDistribuicao.get('pontuacao_minima');
-                //     let amplitudeFaixasLc = this.formDistribuicao.get('amplitude_faixas').value;
+                    index = index + 1;
+                    let pontuacaMinimaLc = this.formDistribuicao.get('pontuacao_minima').value;
+                    let amplitudeFaixasLc = (this.formDistribuicao.get('pontuacao_maxima').value -
+                                            this.formDistribuicao.get('pontuacao_minima').value) /
+                                            this.formDistribuicao.get('qtde_faixas').value;
 
-                //     let limiteInferiorLc = data.get('limiteInferior');
-                //     let limiteSuperiorLc = data.get('limiteSuperior');
-                //     let pontReferenciaLc = data.get('pontuacaoReferencia');
+                    let limiteInferiorLc = data.get('limiteInferior');
+                    let limiteSuperiorLc = data.get('limiteSuperior');
+                    let pontReferenciaLc = data.get('pontuacaoReferencia');
 
-                //     if ( index === tamanho ) {
-                //         limiteInferiorLc.setValue(limiteSuperiorAnteriorLc + 0.01);
-                //         limiteSuperiorLc.setValue(limiteInferiorLc.value + amplitudeFaixasLc);
-                //         pontReferenciaLc.setValue(limiteInferiorLc.value);
-                //     } else {
-                //         if ( index > 1 ) {
-                //             limiteInferiorLc.setValue(limiteSuperiorAnteriorLc + 0.01);
-                //             limiteSuperiorLc.setValue(limiteInferiorLc.value + amplitudeFaixasLc);
-                //             pontReferenciaLc.setValue(limiteInferiorLc.value + (amplitudeFaixasLc / 2));
-                //         } else {
-                //             limiteInferiorLc.setValue(pontuacaMinimaLc);
-                //             limiteSuperiorLc.setValue(pontuacaMinimaLc + amplitudeFaixasLc);
-                //             pontReferenciaLc.setValue(limiteSuperiorLc.value);
-                //         }
-                //         limiteSuperiorAnteriorLc = limiteSuperiorLc.value;
-                //     }
+                    if ( index === tamanho ) {
+                        limiteInferiorLc.setValue(limiteSuperiorAnteriorLc + 0.01);
+                        limiteSuperiorLc.setValue(limiteInferiorLc.value + amplitudeFaixasLc);
+                        pontReferenciaLc.setValue(limiteInferiorLc.value);
+                    } else {
+                        if ( index > 1 ) {
+                            limiteInferiorLc.setValue(limiteSuperiorAnteriorLc + 0.01);
+                            limiteSuperiorLc.setValue(limiteInferiorLc.value + amplitudeFaixasLc);
+                            pontReferenciaLc.setValue(limiteInferiorLc.value + (amplitudeFaixasLc / 2));
+                        } else {
+                            limiteInferiorLc.setValue(pontuacaMinimaLc);
+                            limiteSuperiorLc.setValue(pontuacaMinimaLc + amplitudeFaixasLc);
+                            pontReferenciaLc.setValue(limiteSuperiorLc.value);
+                        }
+                        limiteSuperiorAnteriorLc = limiteSuperiorLc.value;
+                    }
 
-                //     this.faixa = new Faixa(limiteInferiorLc.value, limiteSuperiorLc.value, pontReferenciaLc.value, '1');
-                //     this.faixaService.addFaixa(this.faixa);
+                    this.faixa = new Faixa(limiteInferiorLc.value, limiteSuperiorLc.value, pontReferenciaLc.value, '1');
+                    this.faixaService.addFaixa(this.faixa);
 
-                //     console.log('# ', index, 'Limite inferior: ', limiteInferiorLc.value, 'Limite Superior: ', limiteSuperiorLc.value,
-                //                                                                   'Pontuação de referência: ', pontReferenciaLc.value);
+                    console.log('# ', index, 'Limite inferior: ', limiteInferiorLc.value, 'Limite Superior: ', limiteSuperiorLc.value,
+                                                                                  'Pontuação de referência: ', pontReferenciaLc.value);
 
-                // });
+                });
             }
         );
 
