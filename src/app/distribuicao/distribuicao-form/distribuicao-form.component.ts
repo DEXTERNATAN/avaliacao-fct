@@ -1,7 +1,7 @@
 import { MensagensHandler } from 'app/shared/services/mensagens-handler.service';
 import { Component, OnInit } from '@angular/core';
-import { Router, Route, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, FormArray, Validators, AbstractControl } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { LoaderService } from 'app/shared/services/loader.service';
 
 import { Distribuicao } from './../distribuicao.model';
@@ -79,7 +79,11 @@ export class DistribuicaoFormComponent implements OnInit {
 
                 console.log('pontuacao_minima => ', this.formDistribuicao.get('pontuacao_minima'));
 
-                this.listFaixas.controls.map(function(data) {
+                this.listFaixas.controls.forEach(data => {
+                
+                //this.listFaixas.controls.map(function(data) {
+
+                    console.log('pontuacao_minima => ', this.formDistribuicao.get('pontuacao_minima'));
 
                     index = index + 1;
                     let pontuacaMinimaLc = this.formDistribuicao.get('pontuacao_minima').value;
@@ -108,11 +112,11 @@ export class DistribuicaoFormComponent implements OnInit {
                         limiteSuperiorAnteriorLc = limiteSuperiorLc.value;
                     }
 
-                    this.faixa = new Faixa(limiteInferiorLc.value, limiteSuperiorLc.value, pontReferenciaLc.value, '1');
-                    this.faixaService.addFaixa(this.faixa);
+                    // this.faixa = new Faixa(limiteInferiorLc.value, limiteSuperiorLc.value, pontReferenciaLc.value, '1');
+                    // this.faixaService.addFaixa(this.faixa);
 
                     console.log('# ', index, 'Limite inferior: ', limiteInferiorLc.value, 'Limite Superior: ', limiteSuperiorLc.value,
-                                                                                  'Pontuação de referência: ', pontReferenciaLc.value);
+                                                                                   'Pontuação de referência: ', pontReferenciaLc.value);
 
                 });
             }
