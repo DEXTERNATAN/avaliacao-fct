@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule }  from '@angular/router';
 import { HttpModule }  from '@angular/http';
-
 import { DataTablesModule } from 'angular-datatables';
 
 import { AbrangenciaComponent } from './abrangencia.component';

@@ -4,5 +4,5 @@ export class Complexidade {
     classificacao: string;
     tipo: string;
     nome: string;
-    descricao: string
+    descricao: string;
 }

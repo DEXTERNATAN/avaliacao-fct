@@ -1,9 +1,7 @@
 import { AtributoFormComponent } from './atributo-form/atributo-form.component';
 import { Routes, RouterModule } from '@angular/router';
-
 import { AtributoComponent } from './atributo.component';
 import { LoggedInGuard } from 'app/shared/loggedin.guard';
-
 
 const atributoRoutes: Routes = [
  { path: 'atributo', component: AtributoComponent, pathMatch: 'full' , canLoad: [ LoggedInGuard]  , canActivate: [ LoggedInGuard] },

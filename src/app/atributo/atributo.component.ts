@@ -31,7 +31,7 @@ export class AtributoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.loaderService.setMsgLoading("Carregando...");
+    this.loaderService.setMsgLoading('Carregando...');
 
     // Configurações do datatable
     this.dtOptions = {
@@ -42,7 +42,7 @@ export class AtributoComponent implements OnInit {
 
     this._atributoService.getAtributo()
       .subscribe(atributo => {
-        this.Atributo = atributo
+        this.Atributo = atributo;
 
         // Calling the DT trigger to manually render the table
         this.dtTrigger.next();
@@ -51,7 +51,7 @@ export class AtributoComponent implements OnInit {
 
   deleteAtributo(atributo) {
     if (confirm('Tem certeza que quer APAGAR o Atributo #' + atributo.idAtributo + ' (' + atributo.letra + ')?')) {
-      var index = this.Atributo.indexOf(atributo);
+      let index = this.Atributo.indexOf(atributo);
       this.Atributo.splice(index, 1);
 
       this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
@@ -72,5 +72,4 @@ export class AtributoComponent implements OnInit {
         });
     }
   }
-
 }

@@ -15,10 +15,6 @@
 				<div class="box-header with-border">
 					<h3 class="box-title">Detalhes da Distribuição de Valores da FCT</h3>
 				</div>
-<!-- 				
-				<div class="alert alert-success" role="alert" *ngIf="sucesso">
-					Formulário enviado com sucesso!
-				</div> -->
 				<form role="form" [formGroup]="formDistribuicao" (ngSubmit)="save()">
 				<div class="box-body">
 						<div class="form-group" [ngClass]="{'has-error': (!formDistribuicao.controls['valor'].valid && formDistribuicao.controls['valor'].touched) }">

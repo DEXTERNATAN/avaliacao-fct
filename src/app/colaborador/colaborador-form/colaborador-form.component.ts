@@ -10,7 +10,6 @@ import { Divisao } from './../../divisao/divisao.model';
 import { ColaboradorService } from './../colaborador.service';
 import { ReferenciaService } from './../../referencia/referencia.service';
 import { DivisaoService } from './../../divisao/divisao.service';
-import { FuncoesGlobais } from 'app/shared/app.funcoes-globais';
 import { LoaderService } from 'app/shared/services/loader.service';
 
 @Component({
@@ -26,7 +25,7 @@ export class ColaboradorFormComponent implements OnInit {
     Referencia: Referencia[] = [];
     Divisao: Divisao[] = [];
     public MaskTel =  ['(', /[1-9]/, /\d/, ')', ' ', /\d/ , /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
-    
+
     constructor(
         formBuilder: FormBuilder,
         private router: Router,
@@ -35,7 +34,7 @@ export class ColaboradorFormComponent implements OnInit {
         private _referenciaService: ReferenciaService,
         private _divisaoService: DivisaoService,
         private loaderService: LoaderService,
-		private mensagensHandler: MensagensHandler
+        private mensagensHandler: MensagensHandler
     ) {
         this.formColaborador = formBuilder.group({
 
@@ -48,22 +47,23 @@ export class ColaboradorFormComponent implements OnInit {
             TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe: [null, Validators.required],
             TB_DIVISAO_id_divisao: [null, Validators.required],
             TB_ACESSO_id_acesso: [null]
-        })
+        });
     }
 
     ngOnInit() {
-        
-        this.loaderService.setMsgLoading("Carregando ...");
-		this.mensagensHandler.handleClearMessages();
-		this.getReferencia();
+
+        this.loaderService.setMsgLoading('Carregando ...');
+        this.mensagensHandler.handleClearMessages();
+        this.getReferencia();
         this.getDivisao();
 
-        var idColaborador = this.route.params.subscribe(params => {
+        let idColaborador = this.route.params.subscribe(params => {
             this.idResource = params['idColaborador'];
             this.title = this.idResource ? 'Editar Colaborador' : 'Novo Colaborador';
 
-            if (!this.idResource)
+            if (!this.idResource) {
                 return;
+            }
 
             this.colaboradorService.getColaboradorId(this.idResource).subscribe(colaborador => {
                 colaborador = this.colaborador = colaborador
@@ -72,55 +72,52 @@ export class ColaboradorFormComponent implements OnInit {
                             this.router.navigate(['colaborador'])
                         }
                     }
-            })
-        })
+            });
+        });
     }
 
     save() {
-        
-        this.formColaborador.get('telefone').setValue(this.retiraCaracteres(this.formColaborador.get('telefone').value, "telefone"));
-        //console.log(this.formColaborador.get('telefone').value);
+
+        this.formColaborador.get('telefone').setValue(this.retiraCaracteres(this.formColaborador.get('telefone').value, 'telefone'));
 
         let result, userValue = this.formColaborador.value;
         let atualizar: boolean;
-            
+
         if (this.idResource) {
             atualizar = true;
-            this.loaderService.setMsgLoading("Atualizando colaborador ...");
+            this.loaderService.setMsgLoading('Atualizando colaborador ...');
             result = this.colaboradorService.updateColaborador(this.idResource, userValue);
         } else {
             atualizar = false;
-			this.loaderService.setMsgLoading("Salvando colaborador ...");
+            this.loaderService.setMsgLoading('Salvando colaborador ...');
             result = this.colaboradorService.addColaborador(userValue);
         }
 
         result.subscribe(data => {
-			if (atualizar) {
-				this.mensagensHandler.handleSuccess("Colaborador atualizado com sucesso!");
-			} else {
-				this.mensagensHandler.handleSuccess("Colaborador salvo com sucesso!");
-			}
-			this.router.navigate(['colaborador']);
-		}
-		);
+            if (atualizar) {
+                this.mensagensHandler.handleSuccess('Colaborador atualizado com sucesso!');
+            } else {
+                this.mensagensHandler.handleSuccess('Colaborador salvo com sucesso!');
+            }
+            this.router.navigate(['colaborador']);
+        });
     }
 
-    getReferencia(){
+    getReferencia() {
         this._referenciaService.getReferencia().subscribe(referencias => {
-            this.Referencia = referencias
-        })
+            this.Referencia = referencias;
+        });
     }
 
-    getDivisao(){
+    getDivisao() {
         this._divisaoService.getDivisao().subscribe(divisoes => {
-            this.Divisao = divisoes
-        })
+            this.Divisao = divisoes;
+        });
     }
 
     retiraCaracteres(valor: string, campoForm: string): string {
         let campoFormatado: string = valor.toString().replace(/[`\\s+~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
-        //console.log(campoFormatado);
-        return campoFormatado.replace(" ", "");
+        return campoFormatado.replace('', '');
     }
 
     onCancel() {
@@ -132,8 +129,8 @@ export class ColaboradorFormComponent implements OnInit {
     }
 
     hasErrors(): boolean {
-        var hasErrors: boolean = false;
-        for (var controlName in this.formColaborador.controls) {
+        let hasErrors = false;
+        for (let controlName in this.formColaborador.controls) {
             var control: AbstractControl = this.formColaborador.controls[controlName];
             if (!control.valid && !control.pristine) {
                 hasErrors = true;

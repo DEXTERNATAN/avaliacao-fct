@@ -1,6 +1,6 @@
 import { MensagensHandler } from 'app/shared/services/mensagens-handler.service';
 import { Component, OnInit } from '@angular/core';
-import { Router, Route, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { LoaderService } from 'app/shared/services/loader.service';
 
@@ -25,7 +25,7 @@ export class AbrangenciaFormComponent implements OnInit {
         private route: ActivatedRoute,
         private abrangenciaService: AbrangenciaService,
         private loaderService: LoaderService,
-		private mensagensHandler: MensagensHandler
+        private mensagensHandler: MensagensHandler
     ) {
         this.formAbrangencia = formBuilder.group({
             atributo: [null, Validators.required],
@@ -33,11 +33,12 @@ export class AbrangenciaFormComponent implements OnInit {
             tipo: [null, Validators.required],
             nome: [null, Validators.required],
             descricao: [null, Validators.required]
-        })
+        });
     }
 
     hasErrors(): boolean {
-        var hasErrors: boolean = false;
+        let hasErrors = false;
+
         for (var controlName in this.formAbrangencia.controls) {
             var control: AbstractControl = this.formAbrangencia.controls[controlName];
             if (!control.valid && !control.pristine) {
@@ -49,28 +50,28 @@ export class AbrangenciaFormComponent implements OnInit {
     }
 
     ngOnInit() {
-        
-        this.loaderService.setMsgLoading("Carregando ...");
-		this.mensagensHandler.handleClearMessages();
-		
-        var id_abrangencia = this.route.params.subscribe(params => {
+
+        this.loaderService.setMsgLoading('Carregando ...');
+        this.mensagensHandler.handleClearMessages();
+
+        let id_abrangencia = this.route.params.subscribe(params => {
             this.idResource = params['id_abrangencia'];
             this.title = this.idResource ? 'Editar Abrangência' : 'Nova Abrangência';
 
-            if (!this.idResource)
+            if ( !this.idResource ) {
                 return;
-               
+            }
             this.abrangenciaService.getAbrangenciaId(this.idResource).subscribe(abrangencia => {
-                abrangencia = this.abrangencia = abrangencia
+                abrangencia = this.abrangencia = abrangencia;
 
                     response => {
-                        if (response.status == 404) {
-                            this.router.navigate(['abrangencia'])
+                        if ( response.status == 404 ) {
+                            this.router.navigate(['abrangencia']);
                         }
                     }
-            })
+            });
 
-        })
+        });
     }
 
     save() {
@@ -79,23 +80,22 @@ export class AbrangenciaFormComponent implements OnInit {
 
         if (this.idResource) {
             atualizar = true;
-            this.loaderService.setMsgLoading("Atualizando abrangência ...");
+            this.loaderService.setMsgLoading('Atualizando abrangência ...');
             result = this.abrangenciaService.updateAbrangencia(this.idResource, userValue);
         } else {
             atualizar = false;
-			this.loaderService.setMsgLoading("Salvando abrangência ...");
+            this.loaderService.setMsgLoading('Salvando abrangência ...');
             result = this.abrangenciaService.addAbrangencia(userValue);
         }
 
         result.subscribe(data => {
-			if (atualizar) {
-				this.mensagensHandler.handleSuccess("Abrangência atualizada com sucesso!");
-			} else {
-                this.mensagensHandler.handleSuccess("Abrangência salva com sucesso!");
-			}
-			this.router.navigate(['abrangencia']);
-		}
-		);
+            if (atualizar) {
+                this.mensagensHandler.handleSuccess('Abrangência atualizada com sucesso!');
+            } else {
+                this.mensagensHandler.handleSuccess('Abrangência salva com sucesso!');
+            }
+            this.router.navigate(['abrangencia']);
+        });
     }
 
     onCancel() {

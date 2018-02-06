@@ -1,7 +1,6 @@
 <section class="content-header">
 	<h1>
 		Colaborador
-		<!-- <small>cadastro de novas divisões</small> -->
 	</h1>
 	<ol class="breadcrumb">
 		<li><a href="#"><i class="fa fa-home"></i> Home</a></li>
@@ -17,8 +16,6 @@
 					<h3 class="box-title">Detalhes do Colaborador</h3>
 				</div>
 				<!-- /.box-header -->
-				<!-- form start -->
-				<!-- {{ formColaborador.value | json }} -->
 				<form role="form" [formGroup]="formColaborador" (ngSubmit)="save()">
 					<div class="box-body">
 						<div class="form-group" [ngClass]="{'has-error': (!formColaborador.controls['matricula'].valid && formColaborador.controls['matricula'].touched) }">

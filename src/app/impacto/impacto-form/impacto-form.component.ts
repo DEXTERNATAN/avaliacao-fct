@@ -1,6 +1,6 @@
 import { MensagensHandler } from 'app/shared/services/mensagens-handler.service';
 import { Component, OnInit } from '@angular/core';
-import { Router, Route, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { LoaderService } from 'app/shared/services/loader.service';
 
@@ -25,7 +25,7 @@ export class ImpactoFormComponent implements OnInit {
         private route: ActivatedRoute,
         private impactoService: ImpactoService,
         private loaderService: LoaderService,
-		private mensagensHandler: MensagensHandler
+        private mensagensHandler: MensagensHandler
     ) {
         this.formImpacto = formBuilder.group({
             atributo: [null, Validators.required],
@@ -33,13 +33,13 @@ export class ImpactoFormComponent implements OnInit {
             tipo: [null, Validators.required],
             nome: [null, Validators.required],
             descricao: [null, Validators.required]
-        })
+        });
     }
 
     hasErrors(): boolean {
-        var hasErrors: boolean = false;
-        for (var controlName in this.formImpacto.controls) {
-            var control: AbstractControl = this.formImpacto.controls[controlName];
+        let hasErrors = false;
+        for (let controlName in this.formImpacto.controls) {
+            let control: AbstractControl = this.formImpacto.controls[controlName];
             if (!control.valid && !control.pristine) {
                 hasErrors = true;
                 break;
@@ -49,27 +49,28 @@ export class ImpactoFormComponent implements OnInit {
     }
 
     ngOnInit() {
-        
-        this.loaderService.setMsgLoading("Carregando ...");
-		this.mensagensHandler.handleClearMessages();
-		        
-        var id_impacto = this.route.params.subscribe(params => {
+
+        this.loaderService.setMsgLoading('Carregando ...');
+        this.mensagensHandler.handleClearMessages();
+
+        let id_impacto = this.route.params.subscribe(params => {
             this.idResource = params['id_impacto'];
             this.title = this.idResource ? 'Editar o Impacto' : 'Novo Impacto';
 
-            if (!this.idResource)
+            if (!this.idResource) {
                 return;
+            }
 
             this.impactoService.getImpactoId(this.idResource).subscribe(impacto => {
-                impacto = this.impacto = impacto
-                //console.log(impacto.id_impacto),
-                    response => {
-                        if (response.status == 404) {
-                            this.router.navigate(['impacto'])
-                        }
+                impacto = this.impacto = impacto;
+                // console.log(impacto.id_impacto),
+                response => {
+                    if (response.status == 404) {
+                        this.router.navigate(['impacto'])
                     }
-            })
-        })
+                }
+            });
+        });
     }
 
     save() {
@@ -78,23 +79,23 @@ export class ImpactoFormComponent implements OnInit {
 
         if (this.idResource) {
             atualizar = true;
-            this.loaderService.setMsgLoading("Atualizando impacto ...");
+            this.loaderService.setMsgLoading('Atualizando impacto ...');
             result = this.impactoService.updateImpacto(this.idResource, userValue);
         } else {
             atualizar = false;
-			this.loaderService.setMsgLoading("Salvando impacto ...");
+            this.loaderService.setMsgLoading('Salvando impacto ...');
             result = this.impactoService.addImpacto(userValue);
         }
-        
+
         result.subscribe(data => {
-			if (atualizar) {
-				this.mensagensHandler.handleSuccess("Impacto atualizado com sucesso!");
-			} else {
-                this.mensagensHandler.handleSuccess("Impacto salvo com sucesso!");
-			}
-			this.router.navigate(['impacto']);
-		}
-		);
+            if (atualizar) {
+                this.mensagensHandler.handleSuccess('Impacto atualizado com sucesso!');
+            } else {
+                this.mensagensHandler.handleSuccess('Impacto salvo com sucesso!');
+            }
+            this.router.navigate(['impacto']);
+        }
+        );
     }
 
     onCancel() {

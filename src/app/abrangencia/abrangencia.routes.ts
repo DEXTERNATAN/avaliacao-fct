@@ -2,7 +2,6 @@
 import { AbrangenciaFormComponent } from './abrangencia-form/abrangencia-form.component';
 import { Routes, RouterModule } from '@angular/router';
 
-
 import { AbrangenciaComponent } from './abrangencia.component';
 import { LoggedInGuard } from 'app/shared/loggedin.guard';
 
