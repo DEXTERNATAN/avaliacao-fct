@@ -14,3 +14,8 @@
     background: #f4f4f4;
     z-index: 999;
 }
+
+.selectize-input .has-error{
+    border-color: #dd4b39;
+    box-shadow: none;
+}

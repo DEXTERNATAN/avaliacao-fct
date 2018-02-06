@@ -55,13 +55,9 @@
                       </div>
                     </td>
                     <td>
-                      {{ formAvaliacao.controls['papel'].value | json  }} <br />
-                      {{ formAvaliacao.controls['papel'].touched  }} <br />
-                      {{ formAvaliacao.controls['papel'].valid  }} <br />
-                      {{ (!formAvaliacao.controls['papel'].valid && formAvaliacao.controls['papel'].touched) }}
-                      <div class="form-group" [ngClass]="{'has-error': formAvaliacao.controls['papel'].touched }">
-                        <ng2-selectize [config]="configPapel" [options]="papel"  formControlName="papel"></ng2-selectize>
-                        <span *ngIf="formAvaliacao.controls['papel'].touched" class="help-block">O campo Papel é obrigatório! - {{formAvaliacao.controls['papel'].valid}}</span>
+                      <div class="form-group" [ngClass]="{'has-error': papelValidacao }">
+                        <ng2-selectize [config]="configPapel" [options]="papel" [(ngModel)]="valuePapel" formControlName="papel"></ng2-selectize>
+                        <span *ngIf="papelValidacao" class="help-block">O campo Papel é obrigatório!</span>
                       </div>
                     </td>
                   </tr>
