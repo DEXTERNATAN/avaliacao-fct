@@ -27,8 +27,6 @@ export class DistribuicaoFormComponent implements OnInit {
     diferenca: any;
     amplitudeFaixasLc: any;
 
-
-
     public maskDate = [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/];
 
     constructor(
@@ -109,11 +107,17 @@ export class DistribuicaoFormComponent implements OnInit {
             atualizar = true;
             this.loaderService.setMsgLoading('Atualizando a distribuição ...');
             result = this.distribuicaoService.updateDistribuicao(this.idResource, userValue);
+
+            for (let i = 0; i <= this.listFaixas.controls.length; i++) {
+                let result2, userValue2 = this.listFaixas.value[i];
+                this.loaderService.setMsgLoading('Atualizando a faixa ...' + [ i + 1 ]);
+                result2 = this.faixaService.updateFaixa((i + 1 ), userValue2[i]);
+            }
+
         } else {
             atualizar = false;
             this.loaderService.setMsgLoading('Salvando a distribuição ...');
             result = this.distribuicaoService.addDistribuicao(userValue);
-            
         }
         result.subscribe(data => {
             if (atualizar) {
@@ -160,21 +164,26 @@ export class DistribuicaoFormComponent implements OnInit {
 
     private calculaFaixa(): void {
 
+        let tamanhoFaixa: number = this.formDistribuicao.get('qtde_faixas').value;
         this.faixaList.forEach(fxs => {
-            let tamanho: number = this.formDistribuicao.get('qtde_faixas').value;
-
-            for (let i = 1; i <= tamanho; i++) {
+            for (let i = 1; i <= tamanhoFaixa; i++) {
                 this.addItemFaixa(fxs);
             }
         });
 
         console.log('this.listFaixas.controls.length => ', this.listFaixas.controls.length);
 
+        this.pontuacaMinimaLc = this.formDistribuicao.get('pontuacao_minima').value;
+        this.diferenca = (this.formDistribuicao.get('pontuacao_maxima').value -
+                            this.formDistribuicao.get('pontuacao_minima').value);
+
+        this.formDistribuicao.get('diferenca').setValue(this.diferenca);
+
         let index = 0;
         let tamanho: number = this.listFaixas.controls.length;
         let limiteSuperiorAnteriorLc = 0.00;
         let pontuacaMinimaLc = this.pontuacaMinimaLc;
-        let amplitudeFaixasLc = this.amplitudeFaixasLc;
+        let amplitudeFaixasLc = (parseFloat(this.diferenca) / tamanhoFaixa);
 
         this.listFaixas.controls.map(function (data) {
 
@@ -184,30 +193,25 @@ export class DistribuicaoFormComponent implements OnInit {
             let pontReferenciaLc = data.get('pontuacaoReferencia');
 
             if (index === tamanho) {
-                limiteInferiorLc.setValue(limiteSuperiorAnteriorLc + 0.01);
-                limiteSuperiorLc.setValue(limiteInferiorLc.value + parseFloat(amplitudeFaixasLc));
+                limiteInferiorLc.setValue(limiteSuperiorAnteriorLc);
+                limiteSuperiorLc.setValue(limiteInferiorLc.value + amplitudeFaixasLc);
                 pontReferenciaLc.setValue(limiteInferiorLc.value);
             } else {
                 if (index > 1) {
-                    limiteInferiorLc.setValue(limiteSuperiorAnteriorLc + 0.01);
-                    limiteSuperiorLc.setValue(limiteInferiorLc.value + parseFloat(amplitudeFaixasLc));
-                    pontReferenciaLc.setValue(limiteInferiorLc.value + (parseFloat(amplitudeFaixasLc) / 2));
+                    limiteInferiorLc.setValue(limiteSuperiorAnteriorLc);
+                    limiteSuperiorLc.setValue(limiteInferiorLc.value + amplitudeFaixasLc);
+                    pontReferenciaLc.setValue(limiteInferiorLc.value + (amplitudeFaixasLc / 2));
                 } else {
                     limiteInferiorLc.setValue(pontuacaMinimaLc);
-                    limiteSuperiorLc.setValue(pontuacaMinimaLc + parseFloat(amplitudeFaixasLc));
+                    limiteSuperiorLc.setValue(pontuacaMinimaLc + amplitudeFaixasLc);
                     pontReferenciaLc.setValue(limiteSuperiorLc.value);
                 }
                 limiteSuperiorAnteriorLc = limiteSuperiorLc.value;
             }
 
-            console.log('# ', index, 'Limite inferior: ', (limiteInferiorLc.value).toFixed(2),
-                'Limite Superior: ', (limiteSuperiorLc.value).toFixed(2),
-                'Pontuação de referência: ', (pontReferenciaLc.value).toFixed(2));
-
-            // this.faixa = new Faixa((limiteInferiorLc.value).toFixed(2), (limiteSuperiorLc.value).toFixed(2),
-            //                                                             (pontReferenciaLc.value).toFixed(2), '1');
-            // this.faixaService.updateFaixa(index, this.faixa);
-
+            console.log('# ', index, 'Limite inferior: ', limiteInferiorLc.value,
+                'Limite Superior: ', limiteSuperiorLc.value,
+                'Pontuação de referência: ', pontReferenciaLc.value);
         });
     }
 
