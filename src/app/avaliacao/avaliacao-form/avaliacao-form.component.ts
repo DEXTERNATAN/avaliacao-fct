@@ -121,7 +121,7 @@ export class AvaliacaoFormComponent implements OnInit {
         this.formAvaliacao = this.formBuilder.group({
             divisao: [null, Validators.required],
             colaborador: [null, Validators.required],
-            papel: [0],
+            papel: [null, Validators.required],
             tecnologia: [0],
             Projeto: [0],
             items: this.formBuilder.array([]),
@@ -443,6 +443,7 @@ export class AvaliacaoFormComponent implements OnInit {
         switch (tipo) {
             case 'atributo': {
                 let QtdPapeis = 0;
+                this.valuePapel = this.formAvaliacao.get('papel').value;
                 QtdPapeis = this.valuePapel.length;
                 this.somaAtributos();
                 this.Pesos.forEach(pesos => {

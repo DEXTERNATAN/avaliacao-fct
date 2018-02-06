@@ -35,22 +35,20 @@ export class DistribuicaoFormComponent implements OnInit {
         private faixaService: FaixaService,
         private loaderService: LoaderService,
         private mensagensHandler: MensagensHandler,
-    ) {
-        this.formDistribuicao = formBuilder.group({
-            valor: [null, Validators.required],
-            pontuacao_minima: [null],
-            pontuacao_maxima: [null],
+    ) {}
+
+    ngOnInit() {
+
+        this.formDistribuicao = this.formBuilder.group({
+            valor: null,
+            pontuacao_minima: null,
+            pontuacao_maxima: null,
             diferenca: [null],
             amplitude_faixas: [null],
             qtde_faixas: [null, Validators.required],
             dt_registro: [null],
             listFaixas: this.formBuilder.array([])
         });
-    }
-
-    ngOnInit() {
-
-       
 
         this.loaderService.setMsgLoading('Carregando ...');
         this.mensagensHandler.handleClearMessages();
@@ -59,6 +57,14 @@ export class DistribuicaoFormComponent implements OnInit {
             faixas => {
                 this.faixaList = faixas;
                 faixas.forEach(fxs => {
+                    console.log(fxs);
+                    this.formDistribuicao.patchValue({
+                        valor: fxs.valor,
+                        pontuacao_minima: fxs.pontuacao_minima,
+                        pontuacao_maxima: fxs.pontuacao_maxima,
+                        qtde_faixas: fxs.qtde_faixas,
+                        dt_registro: fxs.dt_registro
+                    });
                     this.addItemFaixa(fxs);
                 });
             },
@@ -72,48 +78,48 @@ export class DistribuicaoFormComponent implements OnInit {
                 let tamanho: number = this.listFaixas.controls.length;
                 let limiteSuperiorAnteriorLc = 0;
 
-                this.listFaixas.controls.map(function(data) {
+                console.log(this.formDistribuicao.get('pontuacao_minima'));
 
-                    index = index + 1;
-                    let pontuacaMinimaLc = this.formDistribuicao.get('pontuacao_minima').value;
-                    let amplitudeFaixasLc = this.formDistribuicao.get('amplitude_faixas').value;
+                // this.listFaixas.controls.map(function(data) {
 
-                    // this.formBuilder.group
-                    let limiteInferiorLc = data.get('limiteInferior');
-                    let limiteSuperiorLc = data.get('limiteSuperior');
-                    let pontReferenciaLc = data.get('pontuacaoReferencia');
+                //     index = index + 1;
+                //     let pontuacaMinimaLc = this.formDistribuicao.get('pontuacao_minima');
+                //     let amplitudeFaixasLc = this.formDistribuicao.get('amplitude_faixas').value;
 
-                    if ( index === tamanho ) {
-                        limiteInferiorLc.setValue(limiteSuperiorAnteriorLc + 0.01);
-                        limiteSuperiorLc.setValue(limiteInferiorLc.value + amplitudeFaixasLc);
-                        pontReferenciaLc.setValue(limiteInferiorLc.value);
-                    } else {
-                        if ( index > 1 ) {
-                            limiteInferiorLc.setValue(limiteSuperiorAnteriorLc + 0.01);
-                            limiteSuperiorLc.setValue(limiteInferiorLc.value + amplitudeFaixasLc);
-                            pontReferenciaLc.setValue(limiteInferiorLc.value + (amplitudeFaixasLc / 2));
-                        } else {
-                            limiteInferiorLc.setValue(pontuacaMinimaLc);
-                            limiteSuperiorLc.setValue(pontuacaMinimaLc + amplitudeFaixasLc);
-                            pontReferenciaLc.setValue(limiteSuperiorLc.value);
-                        }
-                        limiteSuperiorAnteriorLc = limiteSuperiorLc.value;
-                    }
+                //     let limiteInferiorLc = data.get('limiteInferior');
+                //     let limiteSuperiorLc = data.get('limiteSuperior');
+                //     let pontReferenciaLc = data.get('pontuacaoReferencia');
 
-                    this.faixa = new Faixa(limiteInferiorLc.value, limiteSuperiorLc.value, pontReferenciaLc.value, '1');
-                    this.faixaService.addFaixa(this.faixa);
+                //     if ( index === tamanho ) {
+                //         limiteInferiorLc.setValue(limiteSuperiorAnteriorLc + 0.01);
+                //         limiteSuperiorLc.setValue(limiteInferiorLc.value + amplitudeFaixasLc);
+                //         pontReferenciaLc.setValue(limiteInferiorLc.value);
+                //     } else {
+                //         if ( index > 1 ) {
+                //             limiteInferiorLc.setValue(limiteSuperiorAnteriorLc + 0.01);
+                //             limiteSuperiorLc.setValue(limiteInferiorLc.value + amplitudeFaixasLc);
+                //             pontReferenciaLc.setValue(limiteInferiorLc.value + (amplitudeFaixasLc / 2));
+                //         } else {
+                //             limiteInferiorLc.setValue(pontuacaMinimaLc);
+                //             limiteSuperiorLc.setValue(pontuacaMinimaLc + amplitudeFaixasLc);
+                //             pontReferenciaLc.setValue(limiteSuperiorLc.value);
+                //         }
+                //         limiteSuperiorAnteriorLc = limiteSuperiorLc.value;
+                //     }
 
-                    console.log('# ', index, 'Limite inferior: ', limiteInferiorLc.value, 'Limite Superior: ', limiteSuperiorLc.value,
-                                                                                  'Pontuação de referência: ', pontReferenciaLc.value);
+                //     this.faixa = new Faixa(limiteInferiorLc.value, limiteSuperiorLc.value, pontReferenciaLc.value, '1');
+                //     this.faixaService.addFaixa(this.faixa);
 
-                });
+                //     console.log('# ', index, 'Limite inferior: ', limiteInferiorLc.value, 'Limite Superior: ', limiteSuperiorLc.value,
+                //                                                                   'Pontuação de referência: ', pontReferenciaLc.value);
+
+                // });
             }
         );
 
-        // se inscreve para verificar alterações no valor das faixas
+
         this.formDistribuicao.get('qtde_faixas').valueChanges.subscribe( /* <- does work */
             changes => {
-                // console.log('title has changed:', changes);
                 this.calcularAmplitude(false);
             }
           );
@@ -186,17 +192,5 @@ export class DistribuicaoFormComponent implements OnInit {
 
     private navigateBack() {
         this.router.navigate(['/distribuicao']);
-    }
-
-    hasErrors(): boolean {
-        let hasErrors = false;
-        for ( let controlName in this.formDistribuicao.controls ) {
-            let control: AbstractControl = this.formDistribuicao.controls[controlName];
-            if ( !control.valid && !control.pristine ) {
-                hasErrors = true;
-                break;
-            }
-        }
-        return hasErrors;
     }
 }
