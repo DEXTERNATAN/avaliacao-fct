@@ -67,6 +67,7 @@ export class AvaliacaoFormComponent implements OnInit {
     itemsAtributo: FormArray;
     vlrTotal: any;
     vlrSucesso = false;
+    papelValidacao: boolean;
 
     public percentMask = [/\d/, /\d/, '.', /\d/, /\d/];
 
@@ -81,7 +82,8 @@ export class AvaliacaoFormComponent implements OnInit {
         dropdownDirection: 'down',
         maxItems: 3,
         onItemRemove: this.getResetarAtributo.bind(this),
-        onChange: this.getChangeData.bind(this)
+        onChange: this.getChangeData.bind(this),
+        onFocus: this.getValidacaoSelectize.bind(this)
     };
 
     /* Selectize Tecnologia */
@@ -134,6 +136,8 @@ export class AvaliacaoFormComponent implements OnInit {
             referenciaFctAtual: ''
         });
 
+        this.papelValidacao = false;
+
         this.route.params.subscribe(params => {
             this.idResource = params['id_resultado'];
             this.title = this.idResource ? 'Editar Avaliação' : 'Nova Avaliação';
@@ -174,6 +178,13 @@ export class AvaliacaoFormComponent implements OnInit {
         );
     }
 
+    getValidacaoSelectize() {
+        // let strPapel: string[] = this.formAvaliacao.get('papel').value;
+        // if ( strPapel.length === 0 ) {
+            this.papelValidacao = true;
+        // }
+        console.log('validação', this.formAvaliacao.get('papel').value);
+    }
 
     user(): User {
         return this.loginService.user;
@@ -355,6 +366,16 @@ export class AvaliacaoFormComponent implements OnInit {
     }
 
     getChangeData(idAtributo) {
+
+        let strValida: string[] = idAtributo;
+
+        if ( strValida.length === 0  ) {
+            this.papelValidacao = true;
+        }else{
+            this.papelValidacao = false;
+        }
+        console.log('idAtributo: ', idAtributo, this.papelValidacao, strValida.length);
+
         this.vlrAtributo = 0;
         idAtributo.forEach(element => {
             this.avaliacaoService.getPapelAtributo(element).subscribe((data) => {
