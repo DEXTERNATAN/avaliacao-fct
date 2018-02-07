@@ -42,6 +42,7 @@ export class DistribuicaoFormComponent implements OnInit {
     ngOnInit() {
 
         this.formDistribuicao = this.formBuilder.group({
+            idDistribuicao: null,
             valor: null,
             pontuacao_minima: null,
             pontuacao_maxima: null,
@@ -60,6 +61,7 @@ export class DistribuicaoFormComponent implements OnInit {
                 this.faixaList = faixas;
                 faixas.forEach(fxs => {
                     this.formDistribuicao.patchValue({
+                        idDistribuicao: fxs.id_distribuicao,
                         valor: fxs.valor,
                         pontuacao_minima: fxs.pontuacao_minima,
                         pontuacao_maxima: fxs.pontuacao_maxima,
@@ -101,8 +103,6 @@ export class DistribuicaoFormComponent implements OnInit {
         let valor = this.formDistribuicao.get('valor');
         valor.setValue(parseFloat(valor.value.replace('R$ ', '')));
 
-        console.log('valor : ', this.formDistribuicao.get('valor').value);
-
         // Chamanda para edicao e cadastro no banco
         let result, userValue = this.formDistribuicao.value;
         let atualizar: boolean;
@@ -112,11 +112,11 @@ export class DistribuicaoFormComponent implements OnInit {
             this.loaderService.setMsgLoading('Atualizando a distribuição ...');
             result = this.distribuicaoService.updateDistribuicao(this.idResource, userValue);
 
-            for (let i = 0; i <= this.listFaixas.controls.length; i++) {
-                let result2, userValue2 = this.listFaixas.value[i];
-                this.loaderService.setMsgLoading('Atualizando a faixa ...' + [ i + 1 ]);
-                result2 = this.faixaService.updateFaixa((i + 1 ), userValue2[i]);
-            }
+            // for (let i = 0; i <= this.listFaixas.controls.length; i++) {
+            //     let result2, userValue2 = this.listFaixas.value[i];
+            //     this.loaderService.setMsgLoading('Atualizando a faixa ...' + [ i + 1 ]);
+            //     result2 = this.faixaService.updateFaixa((i + 1 ), userValue2[i]);
+            // }
 
         } else {
             atualizar = false;
