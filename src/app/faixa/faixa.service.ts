@@ -36,6 +36,10 @@ export class FaixaService extends RestService<Faixa> {
         return super.removerPorId(id);
     }
 
+    deleteFaixaAll() {
+        return super.removerAll();
+    }
+
     updateFaixa(id, faixa) {
         return super.atualizarPorId(faixa, id);
     }

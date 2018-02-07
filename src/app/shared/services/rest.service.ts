@@ -85,6 +85,14 @@ export abstract class RestService<T> {
 
     }
 
+    removerAll(): Observable<T> {
+            return this.http.delete(`${this.getUrlBase()}/${this.getUrl()}`,
+                this.getDefaultRequestOptions())
+                .map(response => response.json())
+                // .do(data => console.log('server data:', data))  // debug
+                .catch(ErrorHandler.handleError);
+    }
+
     removerPorId(id: number): Observable<any> {
         return this.http.delete(`${this.getUrlBase()}/${this.getUrl()}` + '/' + id,
             this.getDefaultRequestOptions())

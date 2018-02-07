@@ -76,11 +76,11 @@ export class DistribuicaoFormComponent implements OnInit {
             () => {
                 this.pontuacaMinimaLc = this.formDistribuicao.get('pontuacao_minima').value;
                 this.diferenca = (this.formDistribuicao.get('pontuacao_maxima').value -
-                    this.formDistribuicao.get('pontuacao_minima').value).toFixed(2);
+                                  this.formDistribuicao.get('pontuacao_minima').value);
 
-                this.formDistribuicao.get('diferenca').setValue(this.diferenca);
+                this.formDistribuicao.get('diferenca').setValue(parseFloat(this.diferenca.toFixed(2)));
 
-                this.amplitudeFaixasLc = (parseFloat(this.diferenca) / this.formDistribuicao.get('qtde_faixas').value).toFixed(2);
+                this.amplitudeFaixasLc = (this.diferenca / this.formDistribuicao.get('qtde_faixas').value);
 
             }
         );
@@ -98,6 +98,10 @@ export class DistribuicaoFormComponent implements OnInit {
 
         // Setando a nova data para salvar no banco
         this.formDistribuicao.get('dt_registro').setValue(null);
+        let valor = this.formDistribuicao.get('valor');
+        valor.setValue(parseFloat(valor.value.replace('R$ ', '')));
+
+        console.log('valor : ', this.formDistribuicao.get('valor').value);
 
         // Chamanda para edicao e cadastro no banco
         let result, userValue = this.formDistribuicao.value;
@@ -177,13 +181,13 @@ export class DistribuicaoFormComponent implements OnInit {
         this.diferenca = (this.formDistribuicao.get('pontuacao_maxima').value -
                             this.formDistribuicao.get('pontuacao_minima').value);
 
-        this.formDistribuicao.get('diferenca').setValue(this.diferenca);
+        this.formDistribuicao.get('diferenca').setValue(parseFloat(this.diferenca.toFixed(2)));
 
         let index = 0;
         let tamanho: number = this.listFaixas.controls.length;
         let limiteSuperiorAnteriorLc = 0.00;
         let pontuacaMinimaLc = this.pontuacaMinimaLc;
-        let amplitudeFaixasLc = (parseFloat(this.diferenca) / tamanhoFaixa);
+        let amplitudeFaixasLc = (this.diferenca / tamanhoFaixa);
 
         this.listFaixas.controls.map(function (data) {
 
@@ -193,20 +197,20 @@ export class DistribuicaoFormComponent implements OnInit {
             let pontReferenciaLc = data.get('pontuacaoReferencia');
 
             if (index === tamanho) {
-                limiteInferiorLc.setValue(limiteSuperiorAnteriorLc);
-                limiteSuperiorLc.setValue(limiteInferiorLc.value + amplitudeFaixasLc);
-                pontReferenciaLc.setValue(limiteInferiorLc.value);
+                limiteInferiorLc.setValue(parseFloat(limiteSuperiorAnteriorLc.toFixed(2)));
+                limiteSuperiorLc.setValue(parseFloat((limiteInferiorLc.value + amplitudeFaixasLc).toFixed(2)));
+                pontReferenciaLc.setValue(parseFloat(limiteInferiorLc.value.toFixed(2)));
             } else {
                 if (index > 1) {
-                    limiteInferiorLc.setValue(limiteSuperiorAnteriorLc);
-                    limiteSuperiorLc.setValue(limiteInferiorLc.value + amplitudeFaixasLc);
-                    pontReferenciaLc.setValue(limiteInferiorLc.value + (amplitudeFaixasLc / 2));
+                    limiteInferiorLc.setValue(parseFloat(limiteSuperiorAnteriorLc.toFixed(2)));
+                    limiteSuperiorLc.setValue(parseFloat((limiteInferiorLc.value + amplitudeFaixasLc).toFixed(2)));
+                    pontReferenciaLc.setValue(parseFloat((limiteInferiorLc.value + (amplitudeFaixasLc / 2)).toFixed(2)));
                 } else {
-                    limiteInferiorLc.setValue(pontuacaMinimaLc);
-                    limiteSuperiorLc.setValue(pontuacaMinimaLc + amplitudeFaixasLc);
-                    pontReferenciaLc.setValue(limiteSuperiorLc.value);
+                    limiteInferiorLc.setValue(parseFloat(pontuacaMinimaLc.toFixed(2)));
+                    limiteSuperiorLc.setValue(parseFloat((pontuacaMinimaLc + amplitudeFaixasLc).toFixed(2)));
+                    pontReferenciaLc.setValue(parseFloat(limiteSuperiorLc.value.toFixed(2)));
                 }
-                limiteSuperiorAnteriorLc = limiteSuperiorLc.value;
+                limiteSuperiorAnteriorLc = parseFloat(limiteSuperiorLc.value.toFixed(2));
             }
 
             console.log('# ', index, 'Limite inferior: ', limiteInferiorLc.value,
