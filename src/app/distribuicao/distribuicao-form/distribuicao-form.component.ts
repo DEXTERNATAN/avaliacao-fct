@@ -96,6 +96,7 @@ export class DistribuicaoFormComponent implements OnInit {
 
     save() {
 
+        let idResource = this.formDistribuicao.get('idDistribuicao').value;
         this.calculaFaixa();
 
         // Setando a nova data para salvar no banco
@@ -107,16 +108,17 @@ export class DistribuicaoFormComponent implements OnInit {
         let result, userValue = this.formDistribuicao.value;
         let atualizar: boolean;
 
-        if (this.idResource) {
+        if (idResource) {
             atualizar = true;
             this.loaderService.setMsgLoading('Atualizando a distribuição ...');
-            result = this.distribuicaoService.updateDistribuicao(this.idResource, userValue);
+            result = this.distribuicaoService.updateDistribuicao(idResource, userValue);
 
-            // for (let i = 0; i <= this.listFaixas.controls.length; i++) {
-            //     let result2, userValue2 = this.listFaixas.value[i];
-            //     this.loaderService.setMsgLoading('Atualizando a faixa ...' + [ i + 1 ]);
-            //     result2 = this.faixaService.updateFaixa((i + 1 ), userValue2[i]);
-            // }
+            for (let i = 0; i < this.listFaixas.controls.length; i++) {
+                // let result2, userValue2 = this.listFaixas.value[i];
+                // this.loaderService.setMsgLoading('Atualizando a faixa ...' + [ i + 1 ]);
+                console.log('listFaixas.value = ', this.listFaixas.value[i]);
+                // result2 = this.faixaService.addFaixa(userValue2);
+            }
 
         } else {
             atualizar = false;
@@ -162,7 +164,12 @@ export class DistribuicaoFormComponent implements OnInit {
         return this.formBuilder.group({
             limiteInferior: '0.00',
             limiteSuperior: '0.00',
-            pontuacaoReferencia: '0.00'
+            pontuacaoReferencia: '0.00',
+            qtde_pessoas: 0,
+            valor_rateio_pessoa: 0,
+            percentual: 0,
+            TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe: 1,
+            TB_DISTRIBUICAO_id_distribuicao: 1
         });
     }
 
@@ -174,8 +181,6 @@ export class DistribuicaoFormComponent implements OnInit {
                 this.addItemFaixa(fxs);
             }
         });
-
-        console.log('this.listFaixas.controls.length => ', this.listFaixas.controls.length);
 
         this.pontuacaMinimaLc = this.formDistribuicao.get('pontuacao_minima').value;
         this.diferenca = (this.formDistribuicao.get('pontuacao_maxima').value -
@@ -212,10 +217,6 @@ export class DistribuicaoFormComponent implements OnInit {
                 }
                 limiteSuperiorAnteriorLc = parseFloat(limiteSuperiorLc.value.toFixed(2));
             }
-
-            console.log('# ', index, 'Limite inferior: ', limiteInferiorLc.value,
-                'Limite Superior: ', limiteSuperiorLc.value,
-                'Pontuação de referência: ', pontReferenciaLc.value);
         });
     }
 
