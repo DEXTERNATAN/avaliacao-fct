@@ -21,8 +21,9 @@ export class DistribuicaoFormComponent implements OnInit {
     distribuicao: Distribuicao = new Distribuicao();
     idResource: any;
     listFaixas: FormArray;
-    faixaList: Distribuicao[] = [];
-    faixa: Faixa;
+    faixaDist: Distribuicao[] = [];
+    faixa: Faixa [] = [];
+    faixaBoolean = false;
     pontuacaMinimaLc = 0.00;
     diferenca: any;
     amplitudeFaixasLc: any;
@@ -57,9 +58,9 @@ export class DistribuicaoFormComponent implements OnInit {
         this.mensagensHandler.handleClearMessages();
 
         this.distribuicaoService.getDistribuicao().subscribe(
-            faixas => {
-                this.faixaList = faixas;
-                faixas.forEach(fxs => {
+            distribuicao => {
+                this.faixaDist = distribuicao;
+                distribuicao.forEach(fxs => {
                     this.formDistribuicao.patchValue({
                         idDistribuicao: fxs.id_distribuicao,
                         valor: fxs.valor,
@@ -76,22 +77,26 @@ export class DistribuicaoFormComponent implements OnInit {
                 }
             },
             () => {
-                this.pontuacaMinimaLc = this.formDistribuicao.get('pontuacao_minima').value;
-                this.diferenca = (this.formDistribuicao.get('pontuacao_maxima').value -
-                                  this.formDistribuicao.get('pontuacao_minima').value);
 
-                this.formDistribuicao.get('diferenca').setValue(parseFloat(this.diferenca.toFixed(2)));
+                this.faixaBoolean = true;
+                // this.pontuacaMinimaLc = this.formDistribuicao.get('pontuacao_minima').value;
+                // this.diferenca = (this.formDistribuicao.get('pontuacao_maxima').value -
+                //                   this.formDistribuicao.get('pontuacao_minima').value);
 
-                this.amplitudeFaixasLc = (this.diferenca / this.formDistribuicao.get('qtde_faixas').value);
+                // this.formDistribuicao.get('diferenca').setValue(parseFloat(this.diferenca.toFixed(2)));
+
+                // this.amplitudeFaixasLc = (this.diferenca / this.formDistribuicao.get('qtde_faixas').value);
 
             }
         );
+
 
         this.formDistribuicao.get('qtde_faixas').valueChanges.subscribe( /* <- does work */
             changes => {
                 this.calcularAmplitude(false);
             }
           );
+
     }
 
     save() {
@@ -112,12 +117,16 @@ export class DistribuicaoFormComponent implements OnInit {
             atualizar = true;
             this.loaderService.setMsgLoading('Atualizando a distribuição ...');
             result = this.distribuicaoService.updateDistribuicao(idResource, userValue);
-            result = this.faixaService.deleteFaixaAll();
 
             for (let i = 0; i < this.listFaixas.controls.length; i++) {
+
                 userValue = this.listFaixas.value[i];
+
                 this.loaderService.setMsgLoading('Atualizando a faixa ...' + [ i + 1 ]);
-                // result = this.faixaService.addFaixa(userValue);
+                this.faixaService.addFaixa(userValue).subscribe(data => {
+                    console.log('data: ', data);
+                });
+                console.log(userValue);
             }
 
         } else {
@@ -162,9 +171,9 @@ export class DistribuicaoFormComponent implements OnInit {
 
     private createItemFaixa(faixas: Distribuicao): FormGroup {
         return this.formBuilder.group({
-            limiteInferior: '0.00',
-            limiteSuperior: '0.00',
-            pontuacaoReferencia: '0.00',
+            limite_inferior: '0.00',
+            limite_superior: '0.00',
+            pontuacao_referencia: '0.00',
             qtde_pessoas: 0,
             valor_rateio_pessoa: 0,
             percentual: 0,
@@ -175,8 +184,10 @@ export class DistribuicaoFormComponent implements OnInit {
 
     private calculaFaixa(): void {
 
+        this.buscaFaixas();
+
         let tamanhoFaixa: number = this.formDistribuicao.get('qtde_faixas').value;
-        this.faixaList.forEach(fxs => {
+        this.faixaDist.forEach(fxs => {
             for (let i = 1; i <= tamanhoFaixa; i++) {
                 this.addItemFaixa(fxs);
             }
@@ -197,9 +208,9 @@ export class DistribuicaoFormComponent implements OnInit {
         this.listFaixas.controls.map(function (data) {
 
             index = index + 1;
-            let limiteInferiorLc = data.get('limiteInferior');
-            let limiteSuperiorLc = data.get('limiteSuperior');
-            let pontReferenciaLc = data.get('pontuacaoReferencia');
+            let limiteInferiorLc = data.get('limite_inferior');
+            let limiteSuperiorLc = data.get('limite_superior');
+            let pontReferenciaLc = data.get('pontuacao_referencia');
 
             if (index === tamanho) {
                 limiteInferiorLc.setValue(parseFloat(limiteSuperiorAnteriorLc.toFixed(2)));
@@ -218,6 +229,15 @@ export class DistribuicaoFormComponent implements OnInit {
                 limiteSuperiorAnteriorLc = parseFloat(limiteSuperiorLc.value.toFixed(2));
             }
         });
+    }
+
+    buscaFaixas() {
+        this.faixaService.getFaixa().subscribe(
+            data => {
+                data.forEach(elFaixa => {
+                    this.faixaService.deleteFaixa(elFaixa.id_faixa).subscribe();
+                });
+            });
     }
 
     onCancel() {

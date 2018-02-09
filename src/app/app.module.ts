@@ -22,6 +22,8 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { CurrencyMaskConfig, CURRENCY_MASK_CONFIG } from 'ng2-currency-mask/src/currency-mask.config';
 import { ChartModule } from 'angular2-chartjs';
 
+import { AlertModule } from '@pucomex-ng2/pucx-alert';
+
 /* Modules */
 import { AbrangenciaModule } from './abrangencia/abrangencia.module';
 import { DivisaoModule } from './divisao/divisao.module';
@@ -110,6 +112,9 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
         CurrencyMaskModule,
         Ng2SelectizeModule,
         ChartModule,
+
+        AlertModule.forRoot(),
+
         DivisaoModule,
         divisaoRouting,
         AbrangenciaModule,
