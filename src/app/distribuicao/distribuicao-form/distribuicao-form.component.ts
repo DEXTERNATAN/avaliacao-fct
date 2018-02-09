@@ -112,12 +112,12 @@ export class DistribuicaoFormComponent implements OnInit {
             atualizar = true;
             this.loaderService.setMsgLoading('Atualizando a distribuição ...');
             result = this.distribuicaoService.updateDistribuicao(idResource, userValue);
+            result = this.faixaService.deleteFaixaAll();
 
             for (let i = 0; i < this.listFaixas.controls.length; i++) {
-                // let result2, userValue2 = this.listFaixas.value[i];
-                // this.loaderService.setMsgLoading('Atualizando a faixa ...' + [ i + 1 ]);
-                console.log('listFaixas.value = ', this.listFaixas.value[i]);
-                // result2 = this.faixaService.addFaixa(userValue2);
+                userValue = this.listFaixas.value[i];
+                this.loaderService.setMsgLoading('Atualizando a faixa ...' + [ i + 1 ]);
+                // result = this.faixaService.addFaixa(userValue);
             }
 
         } else {
