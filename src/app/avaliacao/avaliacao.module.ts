@@ -14,9 +14,6 @@ import { AtributoColaboradorService } from './AtributoColaborador.service';
 import { AvaliacaoFormComponent } from 'app/avaliacao/avaliacao-form/avaliacao-form.component';
 import { FilterSearchPipe } from 'app/shared/pipes/filterSearch.pipes';
 
-import { AlertModule } from '@pucomex-ng2/pucx-alert';
-// import { AlertConfig } from '@pucomex-ng2/pucx-alert/alert.config';
-
 @NgModule({
   imports: [
     CommonModule,
@@ -27,8 +24,7 @@ import { AlertModule } from '@pucomex-ng2/pucx-alert';
     DataTablesModule,
     AutoCompleteModule,
     Ng2SelectizeModule,
-    TextMaskModule,
-    AlertModule
+    TextMaskModule
  ],
   providers: [ AvaliacaoService, AtributoColaboradorService ],
   declarations: [
