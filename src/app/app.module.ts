@@ -111,9 +111,6 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
         CurrencyMaskModule,
         Ng2SelectizeModule,
         ChartModule,
-
-        AlertModule.forRoot(),
-
         DivisaoModule,
         divisaoRouting,
         AbrangenciaModule,

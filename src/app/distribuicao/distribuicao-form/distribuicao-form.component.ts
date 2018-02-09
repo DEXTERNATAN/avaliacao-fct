@@ -70,33 +70,21 @@ export class DistribuicaoFormComponent implements OnInit {
                         dt_registro: fxs.dt_registro
                     });
                 });
+                this.calcularDiferencaPontuacao();
             },
             response => {
                 if (response.status === 404) {
                     this.router.navigate(['faixa']);
                 }
             },
-            () => {
-
-                this.faixaBoolean = true;
-                // this.pontuacaMinimaLc = this.formDistribuicao.get('pontuacao_minima').value;
-                // this.diferenca = (this.formDistribuicao.get('pontuacao_maxima').value -
-                //                   this.formDistribuicao.get('pontuacao_minima').value);
-
-                // this.formDistribuicao.get('diferenca').setValue(parseFloat(this.diferenca.toFixed(2)));
-
-                // this.amplitudeFaixasLc = (this.diferenca / this.formDistribuicao.get('qtde_faixas').value);
-
-            }
+            () => {}
         );
-
 
         this.formDistribuicao.get('qtde_faixas').valueChanges.subscribe( /* <- does work */
             changes => {
                 this.calcularAmplitude(false);
             }
-          );
-
+        );
     }
 
     save() {
@@ -121,12 +109,8 @@ export class DistribuicaoFormComponent implements OnInit {
             for (let i = 0; i < this.listFaixas.controls.length; i++) {
 
                 userValue = this.listFaixas.value[i];
-
                 this.loaderService.setMsgLoading('Atualizando a faixa ...' + [ i + 1 ]);
-                this.faixaService.addFaixa(userValue).subscribe(data => {
-                    console.log('data: ', data);
-                });
-                console.log(userValue);
+                this.faixaService.addFaixa(userValue).subscribe(data => {});
             }
 
         } else {
@@ -145,15 +129,15 @@ export class DistribuicaoFormComponent implements OnInit {
         );
     }
 
-    calcularDiferencaPontuacao(): void {
-        let minima: number = parseFloat(this.distribuicao.pontuacao_minima);
-        let maxima: number = parseFloat(this.distribuicao.pontuacao_maxima);
-        let calculoDiferenca: any = (maxima - minima).toFixed(2);
+    private calcularDiferencaPontuacao(): void {
+        this.pontuacaMinimaLc = this.formDistribuicao.get('pontuacao_minima').value;
+        this.diferenca = (this.formDistribuicao.get('pontuacao_maxima').value -
+                          this.formDistribuicao.get('pontuacao_minima').value);
 
-        this.formDistribuicao.get('diferenca').setValue(calculoDiferenca);
+        this.formDistribuicao.get('diferenca').setValue(parseFloat(this.diferenca.toFixed(2)));
     }
 
-    calcularAmplitude(opcao: boolean): void {
+    private calcularAmplitude(opcao: boolean): void {
 
         let pontMaximaLc: number = this.formDistribuicao.get('pontuacao_maxima').value;
         let pontMinimaLc: number = this.formDistribuicao.get('pontuacao_minima').value;
@@ -214,7 +198,7 @@ export class DistribuicaoFormComponent implements OnInit {
 
             if (index === tamanho) {
                 limiteInferiorLc.setValue(parseFloat(limiteSuperiorAnteriorLc.toFixed(2)));
-                limiteSuperiorLc.setValue(parseFloat((limiteInferiorLc.value + amplitudeFaixasLc).toFixed(2)));
+                limiteSuperiorLc.setValue(parseFloat(((limiteInferiorLc.value + amplitudeFaixasLc) + 0.01).toFixed(2)));
                 pontReferenciaLc.setValue(parseFloat(limiteInferiorLc.value.toFixed(2)));
             } else {
                 if (index > 1) {
