@@ -68,6 +68,8 @@ export class AvaliacaoFormComponent implements OnInit {
     vlrTotal: any;
     vlrSucesso = false;
     papelValidacao: boolean;
+    tecnologiaValidacao: boolean;
+    ProjetosValidacao: boolean;
 
     public percentMask = [/\d/, /\d/, '.', /\d/, /\d/];
 
@@ -97,7 +99,8 @@ export class AvaliacaoFormComponent implements OnInit {
         dropdownDirection: 'down',
         maxItems: 6,
         onItemRemove: this.getApagarTecnologia.bind(this),
-        onItemAdd: this.getSomarTecnologia.bind(this)
+        onItemAdd: this.getSomarTecnologia.bind(this),
+        onFocus: this.getValidacaoSelectizeTec.bind(this)
     };
 
     constructor(
@@ -137,6 +140,8 @@ export class AvaliacaoFormComponent implements OnInit {
         });
 
         this.papelValidacao = false;
+        this.tecnologiaValidacao = false;
+        this.ProjetosValidacao = false;
 
         this.route.params.subscribe(params => {
             this.idResource = params['id_resultado'];
@@ -178,6 +183,16 @@ export class AvaliacaoFormComponent implements OnInit {
         );
     }
 
+    getValidacaoSelectizeTec() {
+        
+        if ( this.formAvaliacao.get('tecnologia').value.length === 0 ) {
+            this.tecnologiaValidacao = true;
+        }else{
+            this.tecnologiaValidacao = false;
+        }
+    
+    }
+
     getValidacaoSelectize() {
         // let strPapel: string[] = this.formAvaliacao.get('papel').value;
         // if ( strPapel.length === 0 ) {
@@ -191,6 +206,13 @@ export class AvaliacaoFormComponent implements OnInit {
     }
 
     registrarAvaliacao() {
+        let arrayProjetos = this.formAvaliacao.get('items') as FormArray;
+        console.log('numero de projetos: ', arrayProjetos.length);
+
+        if ( arrayProjetos.length === 0 ) {
+            console.log('Não tem projetos: ', arrayProjetos.length);
+            this.ProjetosValidacao = true;
+        }
 
         let avaliacaoForm = this.formAvaliacao.value;
         this.somaValores('tudo');
@@ -206,7 +228,7 @@ export class AvaliacaoFormComponent implements OnInit {
             'referencia_fct_gfe_pontuacao': avaliacaoForm.colaborador.referenciaFct,
             'TB_COLABORADOR_id_colaborador': avaliacaoForm.colaborador.idColaborador,
         }).subscribe(data => {
-            this.router.navigate(['avaliacao']);
+            // this.router.navigate(['avaliacao']);
             this.mensagensHandler.handleSuccess('Avaliação registrada com sucesso!');
             setTimeout(() => {
                 this.mensagensHandler.handleClearMessages();
@@ -410,11 +432,19 @@ export class AvaliacaoFormComponent implements OnInit {
     }
 
     getSomarTecnologia(valor) {
+        if ( this.formAvaliacao.get('tecnologia').value.length ) {
+            this.tecnologiaValidacao = false;
+        }
+        console.log('getSomarTecnologia: ', valor, this.tecnologiaValidacao, this.formAvaliacao.get('tecnologia').value.length);
         this.qtdTecnologia = this.qtdTecnologia + 1;
         this.somaValores('tecnologia');
     }
 
     getApagarTecnologia(valor) {
+        if ( this.formAvaliacao.get('tecnologia').value.length === 0 ) {
+            this.tecnologiaValidacao = true;
+        }
+        console.log('getApagarTecnologia: ', valor, this.tecnologiaValidacao, this.formAvaliacao.get('tecnologia').value.length);
         this.qtdTecnologia = this.qtdTecnologia - 1;
         this.somaValores('tecnologia');
     }

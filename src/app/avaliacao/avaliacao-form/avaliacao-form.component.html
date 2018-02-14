@@ -72,7 +72,10 @@
                   </tr>
                   <tr>
                     <td>
-                      <ng2-selectize [config]="configTecnologia" [options]="tecnologia" [(ngModel)]="valueTec" formControlName="tecnologia"></ng2-selectize>
+                      <div class="form-group" [ngClass]="{'has-error': tecnologiaValidacao }">
+                        <ng2-selectize [config]="configTecnologia" [options]="tecnologia" [(ngModel)]="valueTec" formControlName="tecnologia"></ng2-selectize>
+                        <span *ngIf="tecnologiaValidacao" class="help-block">O campo Tecnologia é obrigatório!</span>
+                      </div>
                     </td>
                   </tr>
                 </table>
@@ -178,6 +181,11 @@
                     </th>
                   </tr>
                   <tr>
+                    <td>
+                        <div class="form-group" [ngClass]="{'has-error': ProjetosValidacao }">
+                            <span *ngIf="ProjetosValidacao" class="help-block">O campo Projeto é obrigatório!</span>
+                        </div>
+                    </td>
                     <td>
                       <button type="button" class="btn btn-default" (click)="addProjeto()">Adicionar</button>&nbsp;
                       <button type="button" class="btn btn-default" (click)="excProjeto(10)">Limpar</button>
@@ -367,10 +375,7 @@
                     <!-- /.box -->
                   </div>
                 </div>
-
-
               </section>
-
               <div class="form-group">
                 <table class="table table-condensed">
                   <tr>
