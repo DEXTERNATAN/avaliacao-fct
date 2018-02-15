@@ -116,21 +116,23 @@
                 <table class="table table-condensed">
                   <tr>
                     <th>Valor Total da Distribuição</th>
-                    <th>Referência FCT para pontuação mínima</th>
+                    <th>Referência FCT pela pontuação mínima</th>
                     <th>&nbsp;</th>
                   </tr>
                   <tr>
                     <td>
                       <label for="">
-                        <input type="text" class="form-control" readonly formControlName="valorDistribuicao">
+                        {{this.formFaixa.get('valorDistribuicao').value}}
+                        <!-- <input type="text" class="form-control" readonly formControlName="valorDistribuicao"> -->
                       </label>
                     </td>
                     <td>
                       <label style="width: 60%">
-                        <select class="form-control" formControlName="referencia_fct">
+                        {{this.formFaixa.get('referenciaFct').value}}
+                        <!-- <select class="form-control" formControlName="referencia_fct">
                           <option *ngFor="let referencia of referencia; let i = index" [selected]="referencia.id_referencia == referencia.referencia"
                             value="{{referencia.id_referencia}}">{{referencia.num_referencia + " - " + referencia.cargo + " (" + referencia.valor_referencia + ")"}}</option>
-                        </select>
+                        </select> -->
                       </label>
                     </td>
                     <td>
@@ -172,23 +174,23 @@
                         </td>
                         <td [formGroupName]="i">
                             <label for="">
-                              <input type="text" formControlName="percentualFixo" class="form-control"  style="width: 70px;" maxlength="2">  
+                              <input type="text" formControlName="percentualFixo" class="form-control"  style="width: 50px;" maxlength="2">
                             </label>
                         </td>
                         <td [formGroupName]="i">
                           <label for="">
-                            <span class="badge bg-yellow">{{ item.value.valorTotalFixo }}</span>
+                            <span class="badge bg-yellow">R$ {{ item.value.valorTotalFixo }}</span>
                           </label>
                         </td>
                         
                         <td [formGroupName]="i">
                           <label for="">
-                              <span class="badge bg-yellow">{{ item.value.valorRateioPessoa }}</span>
+                              <span class="badge bg-yellow">R$ {{ item.value.valorRateioPessoa }}</span>
                           </label>
                         </td>
                         <td [formGroupName]="i">
                           <label for="">
-                              <span class="badge bg-aqua">{{ item.value.valorRateioSomado }}</span>
+                              <span class="badge bg-aqua">R$ {{ item.value.valorRateioSomado }}</span>
                           </label>
                         </td>
                         <td [formGroupName]="i">
@@ -198,17 +200,17 @@
                         </td>
                         <td [formGroupName]="i">
                           <label for="">
-                              <span class="badge bg-light-blue">{{ item.value.valorTotalCalculado }}</span>
+                              <span class="badge bg-light-blue">R$ {{ item.value.valorTotalCalculado }}</span>
                           </label>
                         </td>
                         <td [formGroupName]="i">
                           <label for="">
-                              <span class="badge bg-light-blue">{{ item.value.valorRateioPessoaCalculado }}</span>
+                              <span class="badge bg-light-blue">R$ {{ item.value.valorRateioPessoaCalculado }}</span>
                           </label>
                         </td>
                         <td [formGroupName]="i">
                           <label for="">
-                              <span class="badge bg-aqua">{{ item.value.valorRateioSomadoFaixa }}</span>
+                              <span class="badge bg-aqua">R$ {{ item.value.valorRateioSomadoFaixa }}</span>
                           </label>
                         </td>
                       </tr>
