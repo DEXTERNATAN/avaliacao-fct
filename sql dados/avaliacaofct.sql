@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 08/02/2018 às 21:08
+-- Tempo de geração: 15/02/2018 às 14:48
 -- Versão do servidor: 10.1.28-MariaDB
 -- Versão do PHP: 7.1.10
 
@@ -2519,7 +2519,7 @@ CREATE TABLE `TB_DISTRIBUICAO` (
 --
 
 INSERT INTO `TB_DISTRIBUICAO` (`id_distribuicao`, `valor`, `qtde_faixas`, `dt_registro`) VALUES
-(1, '25000.00', 4, '2018-02-08 19:40:26');
+(1, '25000.00', 4, '2018-02-15 12:52:56');
 
 -- --------------------------------------------------------
 
@@ -2570,10 +2570,10 @@ CREATE TABLE `TB_FAIXA` (
 --
 
 INSERT INTO `TB_FAIXA` (`id_faixa`, `limite_inferior`, `limite_superior`, `pontuacao_referencia`, `qtde_pessoas`, `valor_rateio_pessoa`, `percentual`, `TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`, `TB_DISTRIBUICAO_id_distribuicao`) VALUES
-(1, '49.58', '74.79', '74.79', 2, '253.83', '30.00', 54, 1),
-(2, '74.79', '100.00', '87.40', 1, '377.12', '40.00', 59, 1),
-(3, '100.00', '103.50', '101.75', 1, '365.85', '25.00', 62, 1),
-(4, '103.50', '115.68', '109.59', 1, '458.69', '5.00', 63, 1);
+(85, '47.70', '61.07', '61.07', 0, '0.00', '0.00', 1, 1),
+(86, '61.07', '74.44', '67.76', 0, '0.00', '0.00', 1, 1),
+(87, '74.44', '87.81', '81.13', 0, '0.00', '0.00', 1, 1),
+(88, '87.81', '101.19', '87.81', 0, '0.00', '0.00', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -2968,6 +2968,16 @@ CREATE TABLE `TB_TECNOLOGIA_has_TB_PROJETO` (
 -- --------------------------------------------------------
 
 --
+-- Estrutura para tabela `TB_VALORES`
+--
+
+CREATE TABLE `TB_VALORES` (
+  `ID_VALORES` int(9) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura stand-in para view `VW_ATRIBUTO`
 -- (Veja abaixo para a visão atual)
 --
@@ -3080,7 +3090,7 @@ CREATE TABLE `VW_DISTRIBUICAO_FAIXA` (
 ,`limite_inferior` decimal(10,2)
 ,`limite_superior` decimal(10,2)
 ,`pontuacao_referencia` decimal(5,2)
-,`qtde_pessoas` int(3)
+,`qtde_pessoas` bigint(21)
 ,`valor_rateio_pessoa` decimal(10,2)
 ,`percentual` decimal(5,2)
 ,`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe` int(9)
@@ -3180,7 +3190,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `VW_DISTRIBUICAO_FAIXA`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`tiagooliveira`@`localhost` SQL SECURITY DEFINER VIEW `VW_DISTRIBUICAO_FAIXA`  AS  select `TB_FAIXA`.`id_faixa` AS `id_faixa`,`TB_FAIXA`.`limite_inferior` AS `limite_inferior`,`TB_FAIXA`.`limite_superior` AS `limite_superior`,`TB_FAIXA`.`pontuacao_referencia` AS `pontuacao_referencia`,`TB_FAIXA`.`qtde_pessoas` AS `qtde_pessoas`,`TB_FAIXA`.`valor_rateio_pessoa` AS `valor_rateio_pessoa`,`TB_FAIXA`.`percentual` AS `percentual`,`TB_FAIXA`.`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe` AS `TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe` from `TB_FAIXA` group by `TB_FAIXA`.`limite_inferior`,`TB_FAIXA`.`limite_superior` order by `TB_FAIXA`.`limite_inferior` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `VW_DISTRIBUICAO_FAIXA`  AS  select `TB_FAIXA`.`id_faixa` AS `id_faixa`,`TB_FAIXA`.`limite_inferior` AS `limite_inferior`,`TB_FAIXA`.`limite_superior` AS `limite_superior`,`TB_FAIXA`.`pontuacao_referencia` AS `pontuacao_referencia`,(select count(`TB_RESULTADO`.`id_resultado`) from `TB_RESULTADO` where ((`TB_RESULTADO`.`pontuacao` >= `TB_FAIXA`.`limite_inferior`) and (`TB_RESULTADO`.`pontuacao` <= `TB_FAIXA`.`limite_superior`))) AS `qtde_pessoas`,`TB_FAIXA`.`valor_rateio_pessoa` AS `valor_rateio_pessoa`,`TB_FAIXA`.`percentual` AS `percentual`,`TB_FAIXA`.`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe` AS `TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe` from `TB_FAIXA` group by `TB_FAIXA`.`limite_inferior`,`TB_FAIXA`.`limite_superior` order by `TB_FAIXA`.`limite_inferior` ;
 
 -- --------------------------------------------------------
 
@@ -3366,6 +3376,12 @@ ALTER TABLE `TB_TECNOLOGIA_has_TB_PROJETO`
   ADD KEY `fk_TB_TECNOLOGIA_has_TB_PROJETO_TB_TECNOLOGIA1` (`TB_TECNOLOGIA_id_tecnologia`);
 
 --
+-- Índices de tabela `TB_VALORES`
+--
+ALTER TABLE `TB_VALORES`
+  ADD PRIMARY KEY (`ID_VALORES`);
+
+--
 -- AUTO_INCREMENT de tabelas apagadas
 --
 
@@ -3403,7 +3419,7 @@ ALTER TABLE `TB_COMPLEXIDADE`
 -- AUTO_INCREMENT de tabela `TB_DISTRIBUICAO`
 --
 ALTER TABLE `TB_DISTRIBUICAO`
-  MODIFY `id_distribuicao` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_distribuicao` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `TB_DIVISAO`
@@ -3415,7 +3431,7 @@ ALTER TABLE `TB_DIVISAO`
 -- AUTO_INCREMENT de tabela `TB_FAIXA`
 --
 ALTER TABLE `TB_FAIXA`
-  MODIFY `id_faixa` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_faixa` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 
 --
 -- AUTO_INCREMENT de tabela `TB_IMPACTO`
@@ -3464,6 +3480,12 @@ ALTER TABLE `TB_RESULTADO`
 --
 ALTER TABLE `TB_TECNOLOGIA`
   MODIFY `id_tecnologia` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT de tabela `TB_VALORES`
+--
+ALTER TABLE `TB_VALORES`
+  MODIFY `ID_VALORES` int(9) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restrições para dumps de tabelas
