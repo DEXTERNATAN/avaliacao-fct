@@ -126,14 +126,14 @@ export class AvaliacaoFormComponent implements OnInit {
         this.formAvaliacao = this.formBuilder.group({
             divisao: [null, Validators.required],
             colaborador: [null, Validators.required],
-            papel: [null, Validators.required],
+            papel: [null, Validators.compose([Validators.required])],
             tecnologia: [0],
             Projeto: [0],
-            items: this.formBuilder.array([]),
+            items: this.formBuilder.array([], Validators.required),
             itemsAtributo: this.formBuilder.array([]),
             qtdProjetos: [0],
             vlrPtTotal: 0.00,
-            ociosidade: '',
+            ociosidade: ['', Validators.required],
             vlrFCTatual: 0.00,
             ajuste: 0.00,
             referenciaFctAtual: ''
@@ -206,13 +206,13 @@ export class AvaliacaoFormComponent implements OnInit {
     }
 
     registrarAvaliacao() {
-        let arrayProjetos = this.formAvaliacao.get('items') as FormArray;
-        console.log('numero de projetos: ', arrayProjetos.length);
+        // let arrayProjetos = this.formAvaliacao.get('items') as FormArray;
+        // console.log('numero de projetos: ', arrayProjetos.length);
 
-        if ( arrayProjetos.length === 0 ) {
-            console.log('Não tem projetos: ', arrayProjetos.length);
-            this.ProjetosValidacao = true;
-        }
+        // if ( arrayProjetos.length === 0 ) {
+        //     console.log('Não tem projetos: ', arrayProjetos.length);
+        //     this.ProjetosValidacao = true;
+        // }
 
         let avaliacaoForm = this.formAvaliacao.value;
         this.somaValores('tudo');
@@ -228,7 +228,7 @@ export class AvaliacaoFormComponent implements OnInit {
             'referencia_fct_gfe_pontuacao': avaliacaoForm.colaborador.referenciaFct,
             'TB_COLABORADOR_id_colaborador': avaliacaoForm.colaborador.idColaborador,
         }).subscribe(data => {
-            // this.router.navigate(['avaliacao']);
+            this.router.navigate(['avaliacao']);
             this.mensagensHandler.handleSuccess('Avaliação registrada com sucesso!');
             setTimeout(() => {
                 this.mensagensHandler.handleClearMessages();
@@ -495,6 +495,8 @@ export class AvaliacaoFormComponent implements OnInit {
         switch (tipo) {
             case 'atributo': {
                 let QtdPapeis = 0;
+                // debugger
+                console.log('PAPEIS: ', this.formAvaliacao.get('papel'));
                 this.valuePapel = this.formAvaliacao.get('papel').value;
                 QtdPapeis = this.valuePapel.length;
                 this.somaAtributos();

@@ -1,7 +1,3 @@
-<!-- <pucx-alert type="success">
-  <strong>Well done!</strong> You successfully read this important alert message.
-</pucx-alert> -->
-
 <div data-spy="scroll" data-target="#myScrollspy">
   <section class="content-header">
     <h1>
@@ -59,10 +55,12 @@
                       </div>
                     </td>
                     <td>
-                      <div class="form-group" [ngClass]="{'has-error': papelValidacao }">
-                        <ng2-selectize [config]="configPapel" [options]="papel" [(ngModel)]="valuePapel" formControlName="papel"></ng2-selectize>
-                        <span *ngIf="papelValidacao" class="help-block">O campo Papel é obrigatório!</span>
-                      </div>
+                        <div class="form-group">
+                            <ng-selectize [errorClass]="'has-error'" [config]="configPapel" [options]="papel" [formControl]="formAvaliacao.get('papel')"></ng-selectize>
+                            <div *ngIf="formAvaliacao.get('papel').touched && formAvaliacao.get('papel').errors">
+                                <span *ngIf="formAvaliacao.get('papel').hasError('required')" class="help-block">O campo Papel é obrigatório.</span>
+				            </div>
+                        </div>
                     </td>
                   </tr>
                 </table>
@@ -305,12 +303,13 @@
                   </tr>
                   <tr>
                     <td>
-                      <label style="width: 20%">
-
-                        <input type="text" class="form-control" formControlName="ociosidade" (change)="somaValores('ociosidade')" placeholder="00.00"
+                        <div class="form-group" [ngClass]="{'has-error': (!formAvaliacao.controls['ociosidade'].valid && formAvaliacao.controls['ociosidade'].touched) }">
+                          <label style="width: 20%">
+                            <input type="text" class="form-control" formControlName="ociosidade" (change)="somaValores('ociosidade')" placeholder="00.00"
                           [textMask]="{mask: percentMask}">
-
-                      </label>
+                          </label>
+                          <span *ngIf="!formAvaliacao.controls['ociosidade'].valid && formAvaliacao.controls['ociosidade'].touched" class="help-block">O campo Ociosidade é obrigatório!</span>
+                        </div>
                     </td>
                   </tr>
                 </table>

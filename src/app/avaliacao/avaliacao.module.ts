@@ -5,6 +5,7 @@ import { RouterModule }  from '@angular/router';
 import { HttpModule }  from '@angular/http';
 import { DataTablesModule } from 'angular-datatables';
 import {Ng2SelectizeModule} from 'ng2-selectize';
+import {NgSelectizeModule} from 'ng-selectize';
 import {AutoCompleteModule} from 'primeng/components/autocomplete/autocomplete';
 import { TextMaskModule } from 'angular2-text-mask';
 
@@ -24,6 +25,7 @@ import { FilterSearchPipe } from 'app/shared/pipes/filterSearch.pipes';
     DataTablesModule,
     AutoCompleteModule,
     Ng2SelectizeModule,
+    NgSelectizeModule,
     TextMaskModule
  ],
   providers: [ AvaliacaoService, AtributoColaboradorService ],

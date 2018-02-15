@@ -15,7 +15,14 @@
     z-index: 999;
 }
 
-.selectize-input .has-error{
+.selectize-input.items.not-full.has-options {
     border-color: #dd4b39;
-    box-shadow: none;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+.help-block {
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    color: #dd4b39;
 }
