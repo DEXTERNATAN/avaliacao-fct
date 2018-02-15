@@ -119,6 +119,7 @@ export class FaixaFormComponent implements OnInit {
     private addItemFaixa(faixas: Faixa): void {
         this.listFaixas = this.formFaixa.get('listFaixas') as FormArray;
         this.listFaixas.push(this.createItemFaixa(faixas));
+        this.listFaixas.disable();
     }
 
     private createItemFaixa(faixas: Faixa): FormGroup {
@@ -219,15 +220,7 @@ export class FaixaFormComponent implements OnInit {
     }
 
     habDesCamposPercent(): void {
-
-        this.listFaixas.controls.map(function(data) {
-
-            if (data.get('percentualFixo').enabled) {
-                data.get('percentualFixo').disable;
-            } else {
-                data.get('percentualFixo').enable;
-            }
-        });
+        this.listFaixas.enabled ? this.listFaixas.disable() : this.listFaixas.enable(); 
     }
 
     onCancel() {
