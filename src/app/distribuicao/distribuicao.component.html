@@ -51,7 +51,7 @@
 								<td>{{(distribuicao.pontuacao_maxima - distribuicao.pontuacao_minima).toFixed(2)}}</td>
 								<td>{{((distribuicao.pontuacao_maxima - distribuicao.pontuacao_minima) / distribuicao.qtde_faixas).toFixed(2)}}</td>
 								<td>{{distribuicao.qtde_faixas}}</td>
-								<td>{{distribuicao.dt_registro | date:'shortDate'}}</td>
+								<td>{{distribuicao.dt_registro}}</td>
 								<td>
 									<a [routerLink]="['/distribuicao', distribuicao.id_distribuicao]" class="btn  btn-xs bg-blue btn-flat">
 									<i class="fa fa-pencil"></i>
