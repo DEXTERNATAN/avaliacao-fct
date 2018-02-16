@@ -133,7 +133,7 @@ export class AvaliacaoFormComponent implements OnInit {
             itemsAtributo: this.formBuilder.array([]),
             qtdProjetos: [0],
             vlrPtTotal: 0.00,
-            ociosidade: ['', Validators.required],
+            ociosidade: [''],
             vlrFCTatual: 0.00,
             ajuste: 0.00,
             referenciaFctAtual: ''

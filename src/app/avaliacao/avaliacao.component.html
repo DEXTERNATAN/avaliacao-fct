@@ -80,7 +80,7 @@
                             <td>
                                 <span class="badge bg-green">{{ ((items.ajuste / items.pontuacao) * 100).toFixed(2) }}%</span>
                             </td>
-                            <td>R$ {{items.valor_rateio}}</td>
+                            <td>R$ {{items.valor_rateio ||  '0.00' }}</td>
                             <!-- <td>
                               <a class="btn  btn-xs bg-blue btn-flat">
                                 <i class="fa fa-pencil"></i>

@@ -31,7 +31,6 @@
         "../node_modules/primeng/resources/themes/omega/theme.css",
         "../node_modules/ng2-spinning-preloader/dist/ng-spinning-preloader.css",
         "../node_modules/selectize/dist/css/selectize.css",
-        "../node_modules/ng-selectize/selectize/selectize.semantic.css",
         "styles.css"
       ],
       "scripts": [
