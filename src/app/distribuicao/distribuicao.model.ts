@@ -5,4 +5,5 @@ export class Distribuicao {
     pontuacao_maxima: string;
     qtde_faixas: string;
     dt_registro: string;
+    referencia_fct;
 }

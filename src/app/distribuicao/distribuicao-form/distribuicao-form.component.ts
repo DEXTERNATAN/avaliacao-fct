@@ -101,6 +101,8 @@ export class DistribuicaoFormComponent implements OnInit {
         let result, userValue = this.formDistribuicao.value;
         let atualizar: boolean;
 
+        console.log('listFaixas.controls.length > ', this.listFaixas.controls.length);
+
         if (idResource) {
             atualizar = true;
             this.loaderService.setMsgLoading('Atualizando a distribuição ...');

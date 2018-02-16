@@ -44,6 +44,7 @@ export class FaixaFormComponent implements OnInit {
             referencia_fct: [],
             percentual_fixo: [],
             valorDistribuicao: '',
+            referenciaFct: '',
             percentualFixo: [],
             assumirPercCalculado: false,
             listFaixas: this.formBuilder.array([])
@@ -78,7 +79,8 @@ export class FaixaFormComponent implements OnInit {
                         let vlrRateioPessoaCalculadoLc = data.get('valorRateioPessoaCalculado');
                         let vlrRateioSomadoFaixaLc = data.get('valorRateioSomadoFaixa');
 
-                        vlrPercentCalculadoLc.setValue(((parseFloat(vlrQtdePessoasFaixaLc.value) / vlrQtdePessoasTotalLc.value) * 100));
+                        vlrPercentCalculadoLc.setValue(((parseFloat(vlrQtdePessoasFaixaLc.value) /
+                                                         vlrQtdePessoasTotalLc.value) * 100).toFixed(2));
                         vlrTotalCalculadoLc.setValue(((parseFloat(vlrDistribuicaoLc) *
                                                                                  (vlrPercentCalculadoLc.value / 100)).toFixed(2)) || 0);
                         vlrRateioPessoaCalculadoLc.setValue((parseFloat(vlrTotalCalculadoLc.value) / qtdPessoasCalculado).toFixed(2) || 0);
@@ -156,6 +158,7 @@ export class FaixaFormComponent implements OnInit {
         this.distribuicaoService.getDistribuicao().subscribe(distribuicao => {
             distribuicao.map(distVlr => {
                 this.formFaixa.get('valorDistribuicao').setValue(distVlr.valor);
+                this.formFaixa.get('referenciaFct').setValue(distVlr.referencia_fct);
             });
             this.distribuicao = distribuicao;
         });
