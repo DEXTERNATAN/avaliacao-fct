@@ -206,6 +206,7 @@ export class AvaliacaoFormComponent implements OnInit {
     }
 
     registrarAvaliacao() {
+
         // let arrayProjetos = this.formAvaliacao.get('items') as FormArray;
         // console.log('numero de projetos: ', arrayProjetos.length);
 
