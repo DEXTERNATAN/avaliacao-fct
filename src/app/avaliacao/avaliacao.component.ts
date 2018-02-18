@@ -9,6 +9,7 @@ import { LoginService } from 'app/security/login/login.service';
 import { AvaliacaoService } from 'app/avaliacao/avaliacao.service';
 import { ColaboradorService } from 'app/colaborador/colaborador.service';
 
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'mt-avaliacao',
@@ -34,7 +35,8 @@ export class AvaliacaoComponent implements OnInit, AfterViewInit {
         private _avaliacaoService: AvaliacaoService,
         private _colaboradorService: ColaboradorService,
         private loginService: LoginService,
-        private mensagensHandler: MensagensHandler
+        private mensagensHandler: MensagensHandler,
+        private toastr: ToastrService
     ) { }
 
     ngOnInit() {
@@ -65,7 +67,14 @@ export class AvaliacaoComponent implements OnInit, AfterViewInit {
 
         this._avaliacaoService.deleteAvaliacao(avaliacao.id_resultado).subscribe(
             data => {
-                this.mensagensHandler.handleSuccess('Avaliação removida com sucesso!');
+                // this.mensagensHandler.handleSuccess('Avaliação removida com sucesso!');
+                // this.showSuccess()
+                this.toastr.success('Avaliação removida com sucesso!', 'Sucesso!', {
+                    progressBar: true,
+                    progressAnimation: 'increasing',
+                    closeButton: true,
+                    timeOut: 3000
+                });
                 setTimeout(() => {
                     this.mensagensHandler.handleClearMessages();
                 }, 3000);
@@ -89,4 +98,5 @@ export class AvaliacaoComponent implements OnInit, AfterViewInit {
             });
         });
     }
+
 }

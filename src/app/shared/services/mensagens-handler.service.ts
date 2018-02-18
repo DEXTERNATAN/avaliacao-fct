@@ -40,7 +40,10 @@ export class MensagensHandler {
     }
 
     handleSuccess(mensagem: String) {
-        this.onSuccess.emit(mensagem)
+        this.onSuccess.emit(mensagem);
+        setTimeout(() => {
+            this.handleClearMessages();
+        }, 3000);
     }
 
 

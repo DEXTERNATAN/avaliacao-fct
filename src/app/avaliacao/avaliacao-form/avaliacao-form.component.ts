@@ -21,8 +21,13 @@ import { TecnologiaService } from './../../tecnologia/tecnologia.service';
 import { ProjetoService } from './../../projeto/projeto.service';
 import { PesosService } from './../../pesos/pesos.service';
 import { LoginService } from 'app/security/login/login.service';
+
+import { ToastrService } from 'ngx-toastr';
+
 import { User } from 'app/security/login/user';
 import { AtributoColaboradorService } from './../AtributoColaborador.service';
+
+
 
 @Component({
     selector: 'mt-avaliacao-form',
@@ -116,7 +121,8 @@ export class AvaliacaoFormComponent implements OnInit {
         private pesosService: PesosService,
         private atributoColaboradorService: AtributoColaboradorService,
         private loginService: LoginService,
-        private mensagensHandler: MensagensHandler
+        private mensagensHandler: MensagensHandler,
+        private toastr: ToastrService
     ) { }
 
     ngOnInit() {
@@ -231,9 +237,7 @@ export class AvaliacaoFormComponent implements OnInit {
         }).subscribe(data => {
             this.router.navigate(['avaliacao']);
             this.mensagensHandler.handleSuccess('Avaliação registrada com sucesso!');
-            setTimeout(() => {
-                this.mensagensHandler.handleClearMessages();
-            }, 3000);
+            
         });
 
     }
