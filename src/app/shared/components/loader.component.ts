@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { LoaderState } from 'app/shared/models/loader-state';
 import { LoaderService } from 'app/shared/services/loader.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 @Component({
@@ -16,7 +17,8 @@ export class LoaderComponent implements OnInit {
     private subscription: Subscription;
 
     constructor(
-        private loaderService: LoaderService
+        private loaderService: LoaderService,
+        private spinner: NgxSpinnerService
     ){}
 
     ngOnInit() {
@@ -26,6 +28,13 @@ export class LoaderComponent implements OnInit {
         this.subscription = this.loaderService.loaderState
         .subscribe((state: LoaderState)=>{
             this.show = state.show;
+
+            this.spinner.show();
+            setTimeout(() => {
+                /** spinner ends after 5 seconds */
+                this.spinner.hide();
+            }, 5000);
+            
             this.msg = state.msg;
         })
     }

@@ -9,7 +9,8 @@ import { RequestOptions } from '@angular/http';
 import { XHRBackend } from '@angular/http';
 import { Http } from '@angular/http';
 
-import { NgSpinningPreloader } from 'ng2-spinning-preloader';
+// import { NgSpinningPreloader } from 'ng2-spinning-preloader';
+import { NgxSpinnerModule } from 'ngx-spinner';
 import { Ng2SelectizeModule } from 'ng2-selectize';
 import { LoaderService } from 'app/shared/services/loader.service';
 import { LoaderComponent } from './shared/components/loader.component';
@@ -110,6 +111,7 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
         Select2Module,
         CurrencyMaskModule,
         Ng2SelectizeModule,
+        NgxSpinnerModule,
         ChartModule,
         DivisaoModule,
         divisaoRouting,
@@ -149,7 +151,8 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
             { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig },
             { provide: Http, useFactory: httpFactory, deps: [XHRBackend, RequestOptions, LoaderService, MensagensHandler] },
             { provide: LocationStrategy, useClass: HashLocationStrategy} ,
-            NgSpinningPreloader,
+            // NgSpinningPreloader,
+            
             HttpClient,
             LoginService,
             NotificationService,
