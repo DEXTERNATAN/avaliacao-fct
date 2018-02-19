@@ -45,7 +45,7 @@
 						<tbody>	
 							<tr *ngFor="let distribuicao of Distribuicao">
 								<td>{{distribuicao.id_distribuicao}}</td>
-								<td>{{distribuicao.valor}}</td>
+								<td>R$ {{distribuicao.valor}}</td>
 								<td>{{(distribuicao.pontuacao_minima).toFixed(2)}}</td>
 								<td>{{(distribuicao.pontuacao_maxima).toFixed(2)}}</td>
 								<td>{{(distribuicao.pontuacao_maxima - distribuicao.pontuacao_minima).toFixed(2)}}</td>

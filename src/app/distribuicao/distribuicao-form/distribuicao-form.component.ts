@@ -83,6 +83,14 @@ export class DistribuicaoFormComponent implements OnInit {
         this.formDistribuicao.get('qtde_faixas').valueChanges.subscribe( /* <- does work */
             changes => {
                 this.calcularAmplitude(false);
+                // chamando metodo do serviço para deletar todas as faixas
+                this.faixaService.deleteFaixaAll().subscribe(data=> {
+
+                },
+            error=>{
+                console.log('Nenhuma faixa para deletar');
+            });
+                
             }
         );
     }
@@ -95,7 +103,8 @@ export class DistribuicaoFormComponent implements OnInit {
         // Setando a nova data para salvar no banco
         this.formDistribuicao.get('dt_registro').setValue(null);
         let valor = this.formDistribuicao.get('valor');
-        valor.setValue(parseFloat(valor.value.replace('R$ ', '')));
+        
+        // valor.setValue(parseFloat(valor.value.replace('R$ ', '')));
 
         // Chamanda para edicao e cadastro no banco
         let result, userValue = this.formDistribuicao.value;
@@ -170,8 +179,6 @@ export class DistribuicaoFormComponent implements OnInit {
 
     private calculaFaixa(): void {
 
-        this.buscaFaixas();
-
         let tamanhoFaixa: number = this.formDistribuicao.get('qtde_faixas').value;
         this.faixaDist.forEach(fxs => {
             for (let i = 1; i <= tamanhoFaixa; i++) {
@@ -215,15 +222,6 @@ export class DistribuicaoFormComponent implements OnInit {
                 limiteSuperiorAnteriorLc = parseFloat(limiteSuperiorLc.value.toFixed(2));
             }
         });
-    }
-
-    buscaFaixas() {
-        this.faixaService.getFaixa().subscribe(
-            data => {
-                data.forEach(elFaixa => {
-                    this.faixaService.deleteFaixa(elFaixa.id_faixa).subscribe();
-                });
-            });
     }
 
     onCancel() {
