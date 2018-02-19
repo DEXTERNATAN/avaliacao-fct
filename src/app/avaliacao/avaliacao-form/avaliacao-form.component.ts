@@ -236,8 +236,13 @@ export class AvaliacaoFormComponent implements OnInit {
             'TB_COLABORADOR_id_colaborador': avaliacaoForm.colaborador.idColaborador,
         }).subscribe(data => {
             this.router.navigate(['avaliacao']);
-            this.mensagensHandler.handleSuccess('Avaliação registrada com sucesso!');
-            
+            // this.mensagensHandler.handleSuccess('Avaliação registrada com sucesso!');
+            this.toastr.success('Avaliação registrada com sucesso!', 'Sucesso', {
+                progressBar: true,
+                progressAnimation: 'increasing',
+                closeButton: true,
+                timeOut: 3000
+            });
         });
 
     }
