@@ -22,7 +22,7 @@ export class DistribuicaoFormComponent implements OnInit {
     idResource: any;
     listFaixas: FormArray;
     faixaDist: Distribuicao[] = [];
-    faixa: Faixa [] = [];
+    faixa: Faixa[] = [];
     faixaBoolean = false;
     pontuacaMinimaLc = 0.00;
     diferenca: any;
@@ -38,7 +38,7 @@ export class DistribuicaoFormComponent implements OnInit {
         private faixaService: FaixaService,
         private loaderService: LoaderService,
         private mensagensHandler: MensagensHandler,
-    ) {}
+    ) { }
 
     ngOnInit() {
 
@@ -77,22 +77,16 @@ export class DistribuicaoFormComponent implements OnInit {
                     this.router.navigate(['faixa']);
                 }
             },
-            () => {}
+            () => { }
         );
+
 
         this.formDistribuicao.get('qtde_faixas').valueChanges.subscribe( /* <- does work */
             changes => {
                 this.calcularAmplitude(false);
-                // chamando metodo do serviço para deletar todas as faixas
-                this.faixaService.deleteFaixaAll().subscribe(data=> {
-
-                },
-            error=>{
-                console.log('Nenhuma faixa para deletar');
-            });
-                
             }
         );
+
     }
 
     save() {
@@ -102,9 +96,6 @@ export class DistribuicaoFormComponent implements OnInit {
 
         // Setando a nova data para salvar no banco
         this.formDistribuicao.get('dt_registro').setValue(null);
-        let valor = this.formDistribuicao.get('valor');
-        
-        // valor.setValue(parseFloat(valor.value.replace('R$ ', '')));
 
         // Chamanda para edicao e cadastro no banco
         let result, userValue = this.formDistribuicao.value;
@@ -116,14 +107,6 @@ export class DistribuicaoFormComponent implements OnInit {
             atualizar = true;
             this.loaderService.setMsgLoading('Atualizando a distribuição ...');
             result = this.distribuicaoService.updateDistribuicao(idResource, userValue);
-
-            for (let i = 0; i < this.listFaixas.controls.length; i++) {
-
-                userValue = this.listFaixas.value[i];
-                this.loaderService.setMsgLoading('Atualizando a faixa ...' + [ i + 1 ]);
-                this.faixaService.addFaixa(userValue).subscribe(data => {});
-            }
-
         } else {
             atualizar = false;
             this.loaderService.setMsgLoading('Salvando a distribuição ...');
@@ -138,12 +121,41 @@ export class DistribuicaoFormComponent implements OnInit {
             this.router.navigate(['distribuicao']);
         }
         );
+
+        this.faixaService.getFaixa().subscribe(
+            (value) => {
+                // Verificar se existem dados na tabela de faixa
+                if (value) {
+                    console.log('Requisição retornou resposta');
+                    // Deleta todas as faixas
+                    this.faixaService.deleteFaixaAll().subscribe(
+                        data => {
+                            if (data) {
+                                console.log('Faixas deletadas');
+                                for (let i = 0; i < this.listFaixas.controls.length; i++) {
+                                    userValue = this.listFaixas.value[i];
+                                    this.loaderService.setMsgLoading('Atualizando a faixa ...' + [i + 1]);
+                                    this.faixaService.addFaixa(userValue).subscribe(
+                                        (datas) => {
+                                            if (datas) {
+                                                console.log('Sucesso faixa incluida')
+                                            }
+                                        },
+                                        (error) => {
+                                            console.log('Error: ', error);
+                                        });
+                                }
+                            }
+                        });
+                }
+            });
     }
+
 
     private calcularDiferencaPontuacao(): void {
         this.pontuacaMinimaLc = this.formDistribuicao.get('pontuacao_minima').value;
         this.diferenca = (this.formDistribuicao.get('pontuacao_maxima').value -
-                          this.formDistribuicao.get('pontuacao_minima').value);
+            this.formDistribuicao.get('pontuacao_minima').value);
 
         this.formDistribuicao.get('diferenca').setValue(parseFloat(this.diferenca.toFixed(2)));
     }
@@ -188,7 +200,7 @@ export class DistribuicaoFormComponent implements OnInit {
 
         this.pontuacaMinimaLc = this.formDistribuicao.get('pontuacao_minima').value;
         this.diferenca = (this.formDistribuicao.get('pontuacao_maxima').value -
-                            this.formDistribuicao.get('pontuacao_minima').value);
+            this.formDistribuicao.get('pontuacao_minima').value);
 
         this.formDistribuicao.get('diferenca').setValue(parseFloat(this.diferenca.toFixed(2)));
 
@@ -198,7 +210,7 @@ export class DistribuicaoFormComponent implements OnInit {
         let pontuacaMinimaLc = this.pontuacaMinimaLc;
         let amplitudeFaixasLc = (this.diferenca / tamanhoFaixa);
 
-        this.listFaixas.controls.map(function (data) {
+        this.listFaixas.controls.forEach(data => {
 
             index = index + 1;
             let limiteInferiorLc = data.get('limite_inferior');
