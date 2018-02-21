@@ -2,12 +2,14 @@ import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { LocationStrategy, HashLocationStrategy, registerLocaleData } from '@angular/common';
+import localePtBR from '@angular/common/locales/pt';
 import { HttpModule } from '@angular/http';
 import { HttpClient } from '@angular/common/http';
 import { RequestOptions } from '@angular/http';
 import { XHRBackend } from '@angular/http';
 import { Http } from '@angular/http';
+import { ToastrModule } from 'ngx-toastr';
 
 // import { NgSpinningPreloader } from 'ng2-spinning-preloader';
 import { NgxSpinnerModule } from 'ngx-spinner';
@@ -22,7 +24,6 @@ import { DataTablesModule } from 'angular-datatables';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { CurrencyMaskConfig, CURRENCY_MASK_CONFIG } from 'ng2-currency-mask/src/currency-mask.config';
 import { ChartModule } from 'angular2-chartjs';
-
 
 /* Modules */
 import { AbrangenciaModule } from './abrangencia/abrangencia.module';
@@ -75,6 +76,9 @@ import { LoggedInGuard } from 'app/shared/loggedin.guard';
 import { SnackbarComponent } from './shared/messages/snackbar/snackbar.component';
 import { RelatoriosComponent } from 'app/relatorios/relatorios.component';
 
+// Setando a linguagem de portugues para o angular 5 
+registerLocaleData(localePtBR);
+
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     align: 'left',
     allowNegative: true,
@@ -108,6 +112,7 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
         ReactiveFormsModule,
         HttpModule,
         TextMaskModule,
+        ToastrModule.forRoot(), // ToastrModule added
         Select2Module,
         CurrencyMaskModule,
         Ng2SelectizeModule,
@@ -147,7 +152,7 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     ],
     providers:
         [
-            { provide: LOCALE_ID, useValue: 'pt-BR' },
+            { provide: LOCALE_ID, useValue: 'pt-PT' },
             { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig },
             { provide: Http, useFactory: httpFactory, deps: [XHRBackend, RequestOptions, LoaderService, MensagensHandler] },
             { provide: LocationStrategy, useClass: HashLocationStrategy} ,

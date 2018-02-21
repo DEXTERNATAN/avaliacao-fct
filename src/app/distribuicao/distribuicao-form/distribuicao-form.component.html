@@ -19,7 +19,7 @@
 				<div class="box-body">
 						<div class="form-group" [ngClass]="{'has-error': (!formDistribuicao.controls['valor'].valid && formDistribuicao.controls['valor'].touched) }">
 							<label for="valor">Valor</label>
-							<input type="text" class="form-control" [(ngModel)]="distribuicao.valor" formControlName="valor" id="valor" maxlength="13" placeholder="Informar o valor total a ser utilizado para distribuição da FCT no departamento" >
+							<input type="text" class="form-control" [(ngModel)]="distribuicao.valor" formControlName="valor" id="valor" maxlength="13" placeholder="Informar o valor total a ser utilizado para distribuição da FCT no departamento" currencyMask>
 							<!-- currencyMask -->
 							<span *ngIf="!formDistribuicao.controls['valor'].valid && formDistribuicao.controls['valor'].touched" class="help-block">O campo Valor é obrigatório!</span>
 						</div>

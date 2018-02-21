@@ -4,12 +4,15 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { LoaderService } from 'app/shared/services/loader.service';
 
+import { ToastrService } from 'ngx-toastr';
+
 import { Distribuicao } from './../distribuicao.model';
 import { DistribuicaoService } from './../distribuicao.service';
 import { FaixaService } from './../../faixa/faixa.service';
 import { Faixa } from './../../faixa/faixa.model';
 
 @Component({
+
     selector: 'mt-distribuicao-form',
     templateUrl: './distribuicao-form.component.html',
     styleUrls: ['./distribuicao-form.component.css']
@@ -38,6 +41,7 @@ export class DistribuicaoFormComponent implements OnInit {
         private faixaService: FaixaService,
         private loaderService: LoaderService,
         private mensagensHandler: MensagensHandler,
+        private toastr: ToastrService
     ) { }
 
     ngOnInit() {
@@ -114,9 +118,21 @@ export class DistribuicaoFormComponent implements OnInit {
         }
         result.subscribe(data => {
             if (atualizar) {
-                this.mensagensHandler.handleSuccess('Distribuição atualizada com sucesso!');
+                // this.mensagensHandler.handleSuccess('Distribuição atualizada com sucesso!');
+                this.toastr.success('Distribuição atualizada com sucesso!', 'Sucesso!', {
+                    progressBar: true,
+                    progressAnimation: 'increasing',
+                    closeButton: true,
+                    timeOut: 3000
+                });
             } else {
-                this.mensagensHandler.handleSuccess('Distribuição salva com sucesso!');
+                this.toastr.success('Distribuição salva com sucesso!!', 'Sucesso!', {
+                    progressBar: true,
+                    progressAnimation: 'increasing',
+                    closeButton: true,
+                    timeOut: 3000
+                });
+                //this.mensagensHandler.handleSuccess('Distribuição salva com sucesso!');
             }
             this.router.navigate(['distribuicao']);
         }

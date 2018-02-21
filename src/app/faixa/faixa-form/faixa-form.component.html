@@ -122,17 +122,12 @@
                   <tr>
                     <td>
                       <label for="">
-                        {{this.formFaixa.get('valorDistribuicao').value}}
-                        <!-- <input type="text" class="form-control" readonly formControlName="valorDistribuicao"> -->
+                        {{this.formFaixa.get('valorDistribuicao').value | currency:'BRL':'symbol-narrow' }}
                       </label>
                     </td>
                     <td>
                       <label style="width: 60%">
                         {{this.formFaixa.get('referenciaFct').value}}
-                        <!-- <select class="form-control" formControlName="referencia_fct">
-                          <option *ngFor="let referencia of referencia; let i = index" [selected]="referencia.id_referencia == referencia.referencia"
-                            value="{{referencia.id_referencia}}">{{referencia.num_referencia + " - " + referencia.cargo + " (" + referencia.valor_referencia + ")"}}</option>
-                        </select> -->
                       </label>
                     </td>
                     <td>
@@ -195,7 +190,7 @@
                         </td>
                         <td [formGroupName]="i">
                           <label for="">
-                              <span class="badge bg-green">{{ item.value.percentualCalculado }}%</span>
+                              <span class="badge bg-green">{{ item.value.percentualCalculado  | currency:'BRL':'symbol-narrow' }}%</span>
                           </label>
                         </td>
                         <td [formGroupName]="i">
