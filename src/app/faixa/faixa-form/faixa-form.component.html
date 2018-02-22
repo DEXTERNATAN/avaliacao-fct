@@ -23,7 +23,7 @@
           <!-- <div class="alert alert-success" role="alert" *ngIf="sucesso">
             Faixas definidas com sucesso!
           </div> -->
-          <form [formGroup]="formFaixa" role="form">
+          <form [formGroup]="formFaixa" role="form" (ngSubmit)="adicionarFaixa()" >
             <div class="box-body">
               <div class="form-group">
                 <table class="table table-condensed">

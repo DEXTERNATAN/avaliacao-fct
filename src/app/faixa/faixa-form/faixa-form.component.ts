@@ -2,13 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import 'rxjs/Rx';
-
 import { CurrencyPipe } from '@angular/common';
 
 import { Faixa } from './../faixa.model';
 import { Distribuicao } from './../../distribuicao/distribuicao.model';
 import { Referencia } from './../../referencia/referencia.model';
-
 import { FaixaService } from './../faixa.service';
 import { DistribuicaoService } from './../../distribuicao/distribuicao.service';
 import { ReferenciaService } from './../../referencia/referencia.service';
@@ -32,8 +30,6 @@ export class FaixaFormComponent implements OnInit {
     qtdePessoas = 0;
     listFaixas: FormArray;
 
-    b = 1.3495;
-    
     constructor(
         private formBuilder: FormBuilder,
         private router: Router,
@@ -44,8 +40,6 @@ export class FaixaFormComponent implements OnInit {
     ) { }
 
      ngOnInit() {
-
-        
 
         this.formFaixa = this.formBuilder.group({
             referencia_fct: [],
@@ -136,6 +130,10 @@ export class FaixaFormComponent implements OnInit {
 
     private createItemFaixa(faixas: Faixa): FormGroup {
         return this.formBuilder.group({
+            id_faixa: faixas.id_faixa,
+            limite_inferior: faixas.limite_inferior,
+            limite_superior: faixas.limite_superior,
+            pontuacao_referencia: faixas.pontuacao_referencia,
             percentualFixo: '00',
             valorTotalFixo: '0.00',
             valorRateioPessoa: '0.00',
@@ -150,17 +148,46 @@ export class FaixaFormComponent implements OnInit {
         });
     }
 
-    save() {
-        let result,
-            userValue = this.formFaixa.value;
+    
+    adicionarFaixa() {
 
-        if (this.idResource) {
-            result = this.faixaService.updateFaixa(this.idResource, userValue);
-        } else {
-            result = this.faixaService.addFaixa(userValue);
-        }
+        debugger
+        let result, faixaValue = this.formFaixa.value;
+        let arrayFaixa: any[] = this.formFaixa.get('listFaixas').value;
+        let  quantidadeDePessoas, valorRateioPessoa, percentual: string;
+        let objFaixa: Faixa;
+        
+        // Percorrendo as faixas
+        arrayFaixa.forEach(fxs => {
+            
+            if ( faixaValue.assumirPercCalculado ) {
+                quantidadeDePessoas = '0';
+                valorRateioPessoa = '0';
+                percentual ='0';
+            } else {
+                quantidadeDePessoas = '1';
+                valorRateioPessoa = '1';
+                percentual ='1';
+            }
 
-        result.subscribe(data => this.router.navigate(['faixa']));
+            objFaixa = new Faixa(
+                            fxs.limite_inferior,
+                            fxs.limite_superior, 
+                            fxs.pontuacao_referencia,
+                            quantidadeDePessoas,
+                            valorRateioPessoa,
+                            percentual,
+                            this.referencia[0].id_referencia_fct_gfe,
+                            this.distribuicao[0].id_distribuicao
+                        );
+            
+            result = this.faixaService.updateFaixa(fxs.id_faixa, objFaixa);
+            result.subscribe(data => {
+                console.log('Data: ', data);
+                this.router.navigate(['faixa']);
+            });
+        });
+        
     }
 
     getDistribuicao() {
