@@ -11,6 +11,7 @@ import { FaixaService } from './../faixa.service';
 import { DistribuicaoService } from './../../distribuicao/distribuicao.service';
 import { ReferenciaService } from './../../referencia/referencia.service';
 import { FormControl } from '@angular/forms/src/model';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -36,7 +37,8 @@ export class FaixaFormComponent implements OnInit {
         private route: ActivatedRoute,
         private faixaService: FaixaService,
         private distribuicaoService: DistribuicaoService,
-        private referenciaService: ReferenciaService
+        private referenciaService: ReferenciaService,
+        private toastr: ToastrService
     ) { }
 
      ngOnInit() {
@@ -151,7 +153,6 @@ export class FaixaFormComponent implements OnInit {
     
     adicionarFaixa() {
 
-        debugger
         let result, faixaValue = this.formFaixa.value;
         let arrayFaixa: any[] = this.formFaixa.get('listFaixas').value;
         let  quantidadeDePessoas, valorRateioPessoa, percentual: string;
@@ -161,13 +162,13 @@ export class FaixaFormComponent implements OnInit {
         arrayFaixa.forEach(fxs => {
             
             if ( faixaValue.assumirPercCalculado ) {
-                quantidadeDePessoas = '0';
-                valorRateioPessoa = '0';
-                percentual ='0';
+                quantidadeDePessoas = fxs.qtdePessoasFaixa;
+                valorRateioPessoa = fxs.valorRateioSomado;
+                percentual = fxs.percentualFixo;
             } else {
-                quantidadeDePessoas = '1';
-                valorRateioPessoa = '1';
-                percentual ='1';
+                quantidadeDePessoas = fxs.qtdePessoasFaixa;
+                valorRateioPessoa = fxs.valorRateioSomadoFaixa;
+                percentual = fxs.percentualCalculado;
             }
 
             objFaixa = new Faixa(
@@ -183,8 +184,13 @@ export class FaixaFormComponent implements OnInit {
             
             result = this.faixaService.updateFaixa(fxs.id_faixa, objFaixa);
             result.subscribe(data => {
-                console.log('Data: ', data);
-                this.router.navigate(['faixa']);
+                this.toastr.success('Faixa atualizada com sucesso!', 'Sucesso!', {
+                    progressBar: true,
+                    progressAnimation: 'increasing',
+                    closeButton: true,
+                    timeOut: 3000
+                });
+                // this.router.navigate(['faixa']);
             });
         });
         
