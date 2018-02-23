@@ -26,14 +26,22 @@
 							<select class="form-control" [(ngModel)]="papeis.tipo" formControlName="tipo" id="tipo">
                                   <option [selected]="true" value="">Selecione</option>  
                                   <option value="Desenvolvimento">Desenvolvimento</option>
-                                  <option value="Design">Design</option>
+								  <option value="Design">Design</option>
 							  </select>
 							  <span *ngIf="!formPapel.controls['tipo'].valid && formPapel.controls['tipo'].touched" class="help-block">O campo Tipo é obrigatório</span>
 						</div>
 						
-						<div class="form-group">
+						<div class="form-group" [ngClass]="{'has-error': (!formPapel.controls['nome'].valid && formPapel.controls['nome'].touched) }">
 							<label for="nome">Nome</label>
-							<input type="text" class="form-control" id="nome" [(ngModel)]="papeis.nome" formControlName="nome" placeholder="Informe o nome do Papel">
+		
+							<select class="form-control" [(ngModel)]="papeis.nome" formControlName="nome" id="nome" (change)="onChange($event.target.value)" *ngIf="!stPapel">
+								<option [selected]="true" value="">Selecione</option>  
+								<option *ngFor="let ppl of listPapel"  value="{{ppl.nome}}">{{ ppl.nome }}</option>
+								<option value="0">Criar novo papel</option>
+							</select>
+
+							<input type="text" *ngIf="stPapel" class="form-control" id="nome" [(ngModel)]="papeis.nome" formControlName="nome" placeholder="Informe o nome do Papel">							
+							
 							<span *ngIf="!formPapel.controls['nome'].valid && formPapel.controls['nome'].touched" class="help-block">O campo Nome é obrigatório</span>
 						</div>
 						<div class="form-group" [ngClass]="{'has-error': (!formPapel.controls['descricao'].valid && formPapel.controls['descricao'].touched) }">

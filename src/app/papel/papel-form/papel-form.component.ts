@@ -16,8 +16,9 @@ export class PapelFormComponent implements OnInit {
     formPapel: FormGroup;
     title: string;
     papeis: Papel = new Papel();
+    listPapel: Papel[] = [];
     idResource: any;
-
+    stPapel: boolean = false;
     constructor(
         formBuilder: FormBuilder,
         private router: Router,
@@ -49,6 +50,7 @@ export class PapelFormComponent implements OnInit {
 
         this.loaderService.setMsgLoading('Carregando ...');
         this.mensagensHandler.handleClearMessages();
+        this.papelService.getPapel().subscribe(papelList => this.listPapel = papelList );
 
         this.route.params.subscribe(params => {
             this.idResource = params['id_papel'];
@@ -91,6 +93,12 @@ export class PapelFormComponent implements OnInit {
             this.router.navigate(['papel']);
         }
         );
+    }
+
+    onChange(e){
+        debugger
+        this.stPapel = true;
+        this.formPapel.get('nome').setValue('');
     }
 
     onCancel() {
