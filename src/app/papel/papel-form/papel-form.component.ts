@@ -3,9 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { LoaderService } from 'app/shared/services/loader.service';
 import { Papel } from './../papel.model';
+import { Atributo } from './../../atributo/atributo.model';
 import { PapelService } from './../papel.service';
+import { LoaderService } from 'app/shared/services/loader.service';
+import { AtributoService } from './../../atributo/atributo.service';
+
 
 @Component({
     selector: 'app-papel-form',
@@ -13,37 +16,30 @@ import { PapelService } from './../papel.service';
     styleUrls: ['./papel-form.component.css']
 })
 export class PapelFormComponent implements OnInit {
+    
+    listAtributos: Atributo[];
     formPapel: FormGroup;
     title: string;
     papeis: Papel = new Papel();
     listPapel: Papel[] = [];
+    
     idResource: any;
     stPapel: boolean = false;
+
     constructor(
         formBuilder: FormBuilder,
         private router: Router,
         private route: ActivatedRoute,
         private papelService: PapelService,
         private loaderService: LoaderService,
-        private mensagensHandler: MensagensHandler
+        private mensagensHandler: MensagensHandler,
+        private atributoService: AtributoService
     ) {
         this.formPapel = formBuilder.group({
             tipo: [null, [Validators.required]],
-            nome: [null, Validators.required],
+            nome: ['', Validators.required],
             descricao: [null, Validators.required]
         })
-    }
-
-    hasErrors(): boolean {
-        var hasErrors: boolean = false;
-        for (var controlName in this.formPapel.controls) {
-            var control: AbstractControl = this.formPapel.controls[controlName];
-            if (!control.valid && !control.pristine) {
-                hasErrors = true;
-                break;
-            }
-        }
-        return hasErrors;
     }
 
     ngOnInit() {
@@ -51,6 +47,10 @@ export class PapelFormComponent implements OnInit {
         this.loaderService.setMsgLoading('Carregando ...');
         this.mensagensHandler.handleClearMessages();
         this.papelService.getPapel().subscribe(papelList => this.listPapel = papelList );
+        this.atributoService.getAtributo().subscribe(atribts => { 
+            this.listAtributos = atribts 
+            console.log('atribts: ', atribts);
+        });
 
         this.route.params.subscribe(params => {
             this.idResource = params['id_papel'];
@@ -96,9 +96,11 @@ export class PapelFormComponent implements OnInit {
     }
 
     onChange(e){
-        debugger
-        this.stPapel = true;
-        this.formPapel.get('nome').setValue('');
+        
+        if(e === '0'){
+            this.stPapel = true;
+            this.formPapel.get('nome').setValue('');
+        }
     }
 
     onCancel() {
