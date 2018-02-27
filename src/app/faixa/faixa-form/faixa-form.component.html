@@ -20,9 +20,6 @@
           <div class="box-header with-border">
             <h3 class="box-title">Definição</h3>
           </div>
-          <!-- <div class="alert alert-success" role="alert" *ngIf="sucesso">
-            Faixas definidas com sucesso!
-          </div> -->
           <form [formGroup]="formFaixa" role="form" (ngSubmit)="adicionarFaixa()" >
             <div class="box-body">
               <div class="form-group">
@@ -34,7 +31,6 @@
                     <th width="20%">Quantidade de Faixas</th>
                     <th width="20%">Amplitude das Faixas</th>
                   </tr>
-                  
                   <tr *ngFor="let distribuicao of distribuicao">
                     <td>
                       <label for="">
@@ -133,7 +129,7 @@
                     <td>
                       <div class="checkbox">
                         <label>
-                          <input type="checkbox" formControlName="assumirPercCalculado" (click)="habDesCamposPercent()"> Assumir o Percentual(%) Calculado
+                          <input type="checkbox" formControlName="assumirPercCalculado" (click)="habDesCamposPercent()"> Informar o Percentual(%) Fixo
                         </label>
                       </div>
                     </td>
@@ -190,7 +186,7 @@
                         </td>
                         <td [formGroupName]="i">
                           <label for="">
-                              <span class="badge bg-green">{{ item.value.percentualCalculado  | currency:'BRL':'symbol-narrow' }}%</span>
+                              <span class="badge bg-green">{{ item.value.percentualCalculado }}%</span>
                           </label>
                         </td>
                         <td [formGroupName]="i">

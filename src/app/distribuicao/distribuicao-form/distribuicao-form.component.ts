@@ -132,7 +132,7 @@ export class DistribuicaoFormComponent implements OnInit {
                     closeButton: true,
                     timeOut: 3000
                 });
-                //this.mensagensHandler.handleSuccess('Distribuição salva com sucesso!');
+                // this.mensagensHandler.handleSuccess('Distribuição salva com sucesso!');
             }
             this.router.navigate(['distribuicao']);
         }
@@ -154,7 +154,7 @@ export class DistribuicaoFormComponent implements OnInit {
                                     this.faixaService.addFaixa(userValue).subscribe(
                                         (datas) => {
                                             if (datas) {
-                                                console.log('Sucesso faixa incluida')
+                                                console.log('Sucesso faixa incluida');
                                             }
                                         },
                                         (error) => {

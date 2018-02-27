@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import 'rxjs/Rx';
-import { CurrencyPipe } from '@angular/common';
 
 import { Faixa } from './../faixa.model';
 import { Distribuicao } from './../../distribuicao/distribuicao.model';
@@ -12,7 +11,6 @@ import { DistribuicaoService } from './../../distribuicao/distribuicao.service';
 import { ReferenciaService } from './../../referencia/referencia.service';
 import { FormControl } from '@angular/forms/src/model';
 import { ToastrService } from 'ngx-toastr';
-
 
 @Component({
     selector: 'mt-faixa-form',
@@ -60,7 +58,6 @@ export class FaixaFormComponent implements OnInit {
             faixas => {
                 this.faixaList = faixas;
                 faixas.forEach(fxs => {
-                    console.log(fxs);
                     this.addItemFaixa(fxs);
                 });
 
@@ -76,19 +73,19 @@ export class FaixaFormComponent implements OnInit {
                      let qtdPessoasCalculado = (this.qtdePessoas || 0);
 
                      this.listFaixas.controls.forEach(function(data) {
-                        
+
                         let vlrPercentCalculadoLc = data.get('percentualCalculado');
                         let vlrQtdePessoasFaixaLc = data.get('qtdePessoasFaixa');
                         let vlrQtdePessoasTotalLc = data.get('qtdePessoasTotal');
                         let vlrTotalCalculadoLc = data.get('valorTotalCalculado');
                         let vlrDistribuicaoLc = data.get('valorDistribuicao');
-                        console.log('data.get(valorDistribuicao): ', data.get('valorDistribuicao').value);
-                        // .replace('R$ ', '');
                         let vlrRateioPessoaCalculadoLc = data.get('valorRateioPessoaCalculado');
                         let vlrRateioSomadoFaixaLc = data.get('valorRateioSomadoFaixa');
 
-                        vlrPercentCalculadoLc.setValue(((parseFloat(vlrQtdePessoasFaixaLc.value) /  vlrQtdePessoasTotalLc.value) * 100).toFixed(2));
-                        vlrTotalCalculadoLc.setValue(((parseFloat(vlrDistribuicaoLc.value) * (vlrPercentCalculadoLc.value / 100)).toFixed(2)) || 0);
+                        vlrPercentCalculadoLc.setValue(((parseFloat(vlrQtdePessoasFaixaLc.value) /
+                                                                    vlrQtdePessoasTotalLc.value) * 100).toFixed(2));
+                        vlrTotalCalculadoLc.setValue(((parseFloat(vlrDistribuicaoLc.value) *
+                                                                    (vlrPercentCalculadoLc.value / 100)).toFixed(2)) || 0);
                         vlrRateioPessoaCalculadoLc.setValue((parseFloat(vlrTotalCalculadoLc.value) / qtdPessoasCalculado).toFixed(2) || 0);
                         vrRateioSomadoFaixa = ((vrRateioSomadoFaixa + parseFloat(vlrRateioPessoaCalculadoLc.value)) || 0);
                         vlrRateioSomadoFaixaLc.setValue((vrRateioSomadoFaixa).toFixed(2));
@@ -98,9 +95,7 @@ export class FaixaFormComponent implements OnInit {
         );
 
         // carga dos Dados complementares
-        // this.getDistribuicao();
         this.getReferencia();
-        // this.selecionaReferencia();
 
         this.formFaixa.get('listFaixas').valueChanges
         .debounceTime(400)
@@ -150,17 +145,16 @@ export class FaixaFormComponent implements OnInit {
         });
     }
 
-    
     adicionarFaixa() {
 
         let result, faixaValue = this.formFaixa.value;
         let arrayFaixa: any[] = this.formFaixa.get('listFaixas').value;
         let  quantidadeDePessoas, valorRateioPessoa, percentual: string;
         let objFaixa: Faixa;
-        
+
         // Percorrendo as faixas
         arrayFaixa.forEach(fxs => {
-            
+
             if ( faixaValue.assumirPercCalculado ) {
                 quantidadeDePessoas = fxs.qtdePessoasFaixa;
                 valorRateioPessoa = fxs.valorRateioSomado;
@@ -180,8 +174,8 @@ export class FaixaFormComponent implements OnInit {
                             percentual,
                             this.referencia[0].id_referencia_fct_gfe,
                             this.distribuicao[0].id_distribuicao
-                        );
-            
+            );
+
             result = this.faixaService.updateFaixa(fxs.id_faixa, objFaixa);
             result.subscribe(data => {
                 this.toastr.success('Faixa atualizada com sucesso!', 'Sucesso!', {
@@ -190,10 +184,8 @@ export class FaixaFormComponent implements OnInit {
                     closeButton: true,
                     timeOut: 3000
                 });
-                // this.router.navigate(['faixa']);
             });
         });
-        
     }
 
     getDistribuicao() {
@@ -214,10 +206,6 @@ export class FaixaFormComponent implements OnInit {
         });
     }
 
-    selecionaReferencia() {
-        // for() this.referencia
-    }
-
     private calculaValores(): void {
         let vrRateioFixoFaixa = 0;
         let totalPercFixo = 0;
@@ -229,7 +217,6 @@ export class FaixaFormComponent implements OnInit {
 
             let vlrTotalFixoLc = data.get('valorTotalFixo');
             let vlrDistribuicaoLc = data.get('valorDistribuicao').value;
-            // .replace('R$ ', '');
             let vlrPercentFixoLc = data.get('percentualFixo');
             let vlrRateioPessoa = data.get('valorRateioPessoa');
             let vlrRateioSomado = data.get('valorRateioSomado');
@@ -258,8 +245,7 @@ export class FaixaFormComponent implements OnInit {
                 }
             }
 
-            vlrTotalFixoLc.setValue(((parseFloat((vlrDistribuicaoLc) || 0) *
-                                                                            (vlrPercentFixoLc.value / 100)).toFixed(2)) || 0);
+            vlrTotalFixoLc.setValue(((parseFloat((vlrDistribuicaoLc) || 0) * (vlrPercentFixoLc.value / 100)).toFixed(2)) || 0);
             vlrRateioPessoa.setValue((parseFloat(vlrTotalFixoLc.value) / qtdPessoasFixo).toFixed(2) || 0);
             vrRateioFixoFaixa = ((vrRateioFixoFaixa + parseFloat(vlrRateioPessoa.value)) || 0);
             vlrRateioSomado.setValue((vrRateioFixoFaixa).toFixed(2));
@@ -268,7 +254,7 @@ export class FaixaFormComponent implements OnInit {
     }
 
     habDesCamposPercent(): void {
-        this.listFaixas.enabled ? this.listFaixas.disable() : this.listFaixas.enable(); 
+        this.listFaixas.enabled ? this.listFaixas.disable() : this.listFaixas.enable();
     }
 
     onCancel() {

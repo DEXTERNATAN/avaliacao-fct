@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 15/02/2018 às 21:14
+-- Tempo de geração: 27/02/2018 às 21:23
 -- Versão do servidor: 10.1.28-MariaDB
 -- Versão do PHP: 7.1.10
 
@@ -2519,7 +2519,7 @@ CREATE TABLE `TB_DISTRIBUICAO` (
 --
 
 INSERT INTO `TB_DISTRIBUICAO` (`id_distribuicao`, `valor`, `qtde_faixas`, `dt_registro`) VALUES
-(1, '25000.00', 4, '2018-02-15 19:02:25');
+(1, '25000.00', 4, '2018-02-27 18:53:26');
 
 -- --------------------------------------------------------
 
@@ -2570,10 +2570,10 @@ CREATE TABLE `TB_FAIXA` (
 --
 
 INSERT INTO `TB_FAIXA` (`id_faixa`, `limite_inferior`, `limite_superior`, `pontuacao_referencia`, `qtde_pessoas`, `valor_rateio_pessoa`, `percentual`, `TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`, `TB_DISTRIBUICAO_id_distribuicao`) VALUES
-(179, '47.70', '61.07', '61.07', 0, '0.00', '0.00', 1, 1),
-(180, '61.07', '74.44', '67.76', 0, '0.00', '0.00', 1, 1),
-(181, '74.44', '87.81', '81.13', 0, '0.00', '0.00', 1, 1),
-(182, '87.81', '101.19', '87.81', 0, '0.00', '0.00', 1, 1);
+(193, '47.70', '61.07', '61.07', 1, '833.33', '10.00', 42, 1),
+(194, '61.07', '74.44', '67.76', 1, '3333.33', '20.00', 42, 1),
+(195, '74.44', '87.81', '81.13', 0, '15833.33', '50.00', 42, 1),
+(196, '87.81', '101.19', '87.81', 1, '20833.33', '20.00', 42, 1);
 
 -- --------------------------------------------------------
 
@@ -3008,6 +3008,18 @@ CREATE TABLE `VW_ATRIBUTO_COLABORADOR` (
 -- --------------------------------------------------------
 
 --
+-- Estrutura stand-in para view `VW_ATRIBUTO_PAPEL`
+-- (Veja abaixo para a visão atual)
+--
+CREATE TABLE `VW_ATRIBUTO_PAPEL` (
+`idAtributo` int(9)
+,`letra` varchar(1)
+,`descricao` text
+);
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura stand-in para view `VW_AVALIACAO`
 -- (Veja abaixo para a visão atual)
 --
@@ -3074,12 +3086,12 @@ CREATE TABLE `VW_DETALHE_ATRIBUTO` (
 --
 CREATE TABLE `VW_DISTRIBUICAO` (
 `id_distribuicao` int(9)
-,`valor` varchar(15)
+,`valor` decimal(10,2)
 ,`pontuacao_minima` decimal(6,2)
 ,`pontuacao_maxima` decimal(6,2)
 ,`qtde_faixas` int(2)
 ,`dt_registro` varchar(10)
-,`referencia_fct` varchar(40)
+,`referencia_fct` varchar(42)
 );
 
 -- --------------------------------------------------------
@@ -3153,6 +3165,15 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`tiagooliveira`@`localhost` SQL SECURITY DEFI
 -- --------------------------------------------------------
 
 --
+-- Estrutura para view `VW_ATRIBUTO_PAPEL`
+--
+DROP TABLE IF EXISTS `VW_ATRIBUTO_PAPEL`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `VW_ATRIBUTO_PAPEL`  AS  select `tb0`.`id_atributo` AS `idAtributo`,`tb0`.`letra` AS `letra`,`tb0`.`descricao` AS `descricao` from `TB_ATRIBUTO` `tb0` group by `tb0`.`letra` order by `tb0`.`letra` ;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura para view `VW_AVALIACAO`
 --
 DROP TABLE IF EXISTS `VW_AVALIACAO`;
@@ -3184,7 +3205,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`tiagooliveira`@`localhost` SQL SECURITY DEFI
 --
 DROP TABLE IF EXISTS `VW_DISTRIBUICAO`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `VW_DISTRIBUICAO`  AS  select `TB1`.`id_distribuicao` AS `id_distribuicao`,concat('R$ ',`TB1`.`valor`) AS `valor`,(select distinct min(`TB_RESULTADO`.`pontuacao`) from `TB_RESULTADO`) AS `pontuacao_minima`,(select distinct max(`TB_RESULTADO`.`pontuacao`) from `TB_RESULTADO`) AS `pontuacao_maxima`,`TB1`.`qtde_faixas` AS `qtde_faixas`,date_format(`TB1`.`dt_registro`,'%d/%m/%Y') AS `dt_registro`,(select concat(`TB_REFERENCIA_FCT_GFE`.`num_referencia`,' - ',`TB_REFERENCIA_FCT_GFE`.`cargo`,' (R$ ',`TB_REFERENCIA_FCT_GFE`.`valor_referencia`,')') AS `referencia_fct` from `TB_REFERENCIA_FCT_GFE` where (`TB_REFERENCIA_FCT_GFE`.`id_referencia_fct_gfe` = (select `tb3`.`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe` from (`TB_RESULTADO` `tb2` join `TB_COLABORADOR` `tb3`) where ((`tb2`.`TB_COLABORADOR_id_colaborador` = `tb3`.`id_colaborador`) and (`tb2`.`pontuacao` = `pontuacao_minima`))))) AS `referencia_fct` from `TB_DISTRIBUICAO` `TB1` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `VW_DISTRIBUICAO`  AS  select `TB1`.`id_distribuicao` AS `id_distribuicao`,`TB1`.`valor` AS `valor`,(select distinct min(`TB_RESULTADO`.`pontuacao`) from `TB_RESULTADO`) AS `pontuacao_minima`,(select distinct max(`TB_RESULTADO`.`pontuacao`) from `TB_RESULTADO`) AS `pontuacao_maxima`,`TB1`.`qtde_faixas` AS `qtde_faixas`,date_format(`TB1`.`dt_registro`,'%d/%m/%Y') AS `dt_registro`,(select concat(`TB_REFERENCIA_FCT_GFE`.`num_referencia`,' - ',`TB_REFERENCIA_FCT_GFE`.`cargo`,' (R$ 		',`TB_REFERENCIA_FCT_GFE`.`valor_referencia`,')') AS `referencia_fct` from `TB_REFERENCIA_FCT_GFE` where (`TB_REFERENCIA_FCT_GFE`.`id_referencia_fct_gfe` = (select `tb3`.`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe` from (`TB_RESULTADO` `tb2` join `TB_COLABORADOR` `tb3`) where ((`tb2`.`TB_COLABORADOR_id_colaborador` = `tb3`.`id_colaborador`) and (`tb2`.`pontuacao` = `pontuacao_minima`))))) AS `referencia_fct` from `TB_DISTRIBUICAO` `TB1` ;
 
 -- --------------------------------------------------------
 
@@ -3193,7 +3214,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `VW_DISTRIBUICAO_FAIXA`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `VW_DISTRIBUICAO_FAIXA`  AS  select `TB_FAIXA`.`id_faixa` AS `id_faixa`,`TB_FAIXA`.`limite_inferior` AS `limite_inferior`,`TB_FAIXA`.`limite_superior` AS `limite_superior`,`TB_FAIXA`.`pontuacao_referencia` AS `pontuacao_referencia`,(select count(`TB_RESULTADO`.`id_resultado`) from `TB_RESULTADO` where ((`TB_RESULTADO`.`pontuacao` >= `TB_FAIXA`.`limite_inferior`) and (`TB_RESULTADO`.`pontuacao` <= `TB_FAIXA`.`limite_superior`))) AS `qtde_pessoas`,`TB_FAIXA`.`valor_rateio_pessoa` AS `valor_rateio_pessoa`,`TB_FAIXA`.`percentual` AS `percentual`,`TB_FAIXA`.`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe` AS `TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe` from `TB_FAIXA` group by `TB_FAIXA`.`limite_inferior`,`TB_FAIXA`.`limite_superior` order by `TB_FAIXA`.`limite_inferior` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `VW_DISTRIBUICAO_FAIXA`  AS  select `tb1`.`id_faixa` AS `id_faixa`,`tb1`.`limite_inferior` AS `limite_inferior`,`tb1`.`limite_superior` AS `limite_superior`,`tb1`.`pontuacao_referencia` AS `pontuacao_referencia`,(select count(`tb2`.`id_resultado`) from (`TB_RESULTADO` `tb2` join `TB_COLABORADOR` `tb3`) where ((`tb2`.`TB_COLABORADOR_id_colaborador` = `tb3`.`id_colaborador`) and (`tb2`.`pontuacao` >= `tb1`.`limite_inferior`) and (`tb2`.`pontuacao` <= `tb1`.`limite_superior`) and (`tb2`.`dt_resultado` = (select max(`tb4`.`dt_resultado`) from `TB_RESULTADO` `tb4` where (`tb4`.`TB_COLABORADOR_id_colaborador` = `tb3`.`id_colaborador`))))) AS `qtde_pessoas`,`tb1`.`valor_rateio_pessoa` AS `valor_rateio_pessoa`,`tb1`.`percentual` AS `percentual`,`tb1`.`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe` AS `TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe` from `TB_FAIXA` `tb1` group by `tb1`.`limite_inferior`,`tb1`.`limite_superior` order by `tb1`.`limite_inferior` ;
 
 -- --------------------------------------------------------
 
@@ -3434,7 +3455,7 @@ ALTER TABLE `TB_DIVISAO`
 -- AUTO_INCREMENT de tabela `TB_FAIXA`
 --
 ALTER TABLE `TB_FAIXA`
-  MODIFY `id_faixa` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=183;
+  MODIFY `id_faixa` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=197;
 
 --
 -- AUTO_INCREMENT de tabela `TB_IMPACTO`
