@@ -2,10 +2,10 @@
 -- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: 27-Fev-2018 às 18:24
--- Versão do servidor: 10.1.29-MariaDB
--- PHP Version: 7.2.0
+-- Host: localhost
+-- Tempo de geração: 15/02/2018 às 21:14
+-- Versão do servidor: 10.1.28-MariaDB
+-- Versão do PHP: 7.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,16 +19,16 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `avaliacaofct`
+-- Banco de dados: `avaliacaofct`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tb_abrangencia`
+-- Estrutura para tabela `TB_ABRANGENCIA`
 --
 
-CREATE TABLE `tb_abrangencia` (
+CREATE TABLE `TB_ABRANGENCIA` (
   `id_abrangencia` int(9) NOT NULL,
   `atributo` varchar(1) NOT NULL,
   `classificacao` int(2) NOT NULL,
@@ -38,10 +38,10 @@ CREATE TABLE `tb_abrangencia` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `tb_abrangencia`
+-- Fazendo dump de dados para tabela `TB_ABRANGENCIA`
 --
 
-INSERT INTO `tb_abrangencia` (`id_abrangencia`, `atributo`, `classificacao`, `tipo`, `nome`, `descricao`) VALUES
+INSERT INTO `TB_ABRANGENCIA` (`id_abrangencia`, `atributo`, `classificacao`, `tipo`, `nome`, `descricao`) VALUES
 (1, 'a', 1, 'Desenvolvimento', 'Moderado', 'Conhece parcialmente o negócio; SDSEP\nNecessita de auxilio proposição de soluções;\nExecuta proposições com oportunidades de melhoria;'),
 (2, 'a', 2, 'Desenvolvimento', 'Significativa', 'Conhecimento do negócio;\nVelocidade;\nReferência para discutir necessidades dos projetos em que atua(Evoluções);\nParticipa na proposição de soluções técnicas;\nTransita entre diferente tecnologias/assuntos;'),
 (3, 'a', 3, 'Desenvolvimento', 'Muito', 'Reduzir custo;\nReuso;\nVelocidade (está relacionado ao conhecimento do negocio x tempo resposta);\nCenário novo;\nReferências para discutir necessidades de novos projetos;\nFacilidade de encontrar soluções;\nTransita entre diferente tecnologias/assuntos;\nHistórico de sucesso nas proposições;\nVisão sistêmica;\nDomínio do negócio;'),
@@ -84,16 +84,15 @@ INSERT INTO `tb_abrangencia` (`id_abrangencia`, `atributo`, `classificacao`, `ti
 (58, 'k', 1, 'Desenvolvimento', 'Moderado', 'Sem informação Cadastrada'),
 (59, 'k', 2, 'Desenvolvimento', 'Significativa', 'Sem informação Cadastrada'),
 (60, 'k', 3, 'Desenvolvimento', 'Muito', 'Sem informação Cadastrada'),
-(61, 'c', 1, 'Desenvolvimento', 'Moderado', 'iohkj'),
-(62, 'a', 1, 'Desenvolvimento', 'Moderado', 'Teste');
+(61, 'c', 1, 'Desenvolvimento', 'Moderado', 'iohkj');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tb_acesso`
+-- Estrutura para tabela `TB_ACESSO`
 --
 
-CREATE TABLE `tb_acesso` (
+CREATE TABLE `TB_ACESSO` (
   `id_acesso` int(9) NOT NULL,
   `login` varchar(11) NOT NULL,
   `senha` varchar(8) NOT NULL,
@@ -101,10 +100,10 @@ CREATE TABLE `tb_acesso` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `tb_acesso`
+-- Fazendo dump de dados para tabela `TB_ACESSO`
 --
 
-INSERT INTO `tb_acesso` (`id_acesso`, `login`, `senha`, `status_ativo`) VALUES
+INSERT INTO `TB_ACESSO` (`id_acesso`, `login`, `senha`, `status_ativo`) VALUES
 (1, '11111111135', '12345678', 0),
 (2, '22222222256', '01020304', 1),
 (3, '3333333000', '00000000', 0),
@@ -115,10 +114,10 @@ INSERT INTO `tb_acesso` (`id_acesso`, `login`, `senha`, `status_ativo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tb_atributo`
+-- Estrutura para tabela `TB_ATRIBUTO`
 --
 
-CREATE TABLE `tb_atributo` (
+CREATE TABLE `TB_ATRIBUTO` (
   `id_atributo` int(9) NOT NULL,
   `letra` varchar(1) NOT NULL,
   `descricao` text NOT NULL,
@@ -128,10 +127,10 @@ CREATE TABLE `tb_atributo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `tb_atributo`
+-- Fazendo dump de dados para tabela `TB_ATRIBUTO`
 --
 
-INSERT INTO `tb_atributo` (`id_atributo`, `letra`, `descricao`, `TB_ABRANGENCIA_id_abrangencia`, `TB_COMPLEXIDADE_id_complexidade`, `TB_IMPACTO_id_impacto`) VALUES
+INSERT INTO `TB_ATRIBUTO` (`id_atributo`, `letra`, `descricao`, `TB_ABRANGENCIA_id_abrangencia`, `TB_COMPLEXIDADE_id_complexidade`, `TB_IMPACTO_id_impacto`) VALUES
 (1, 'a', 'Analisar as demandas apresentadas pelas áreas de negócio e propor alternativas de solução técnica e estratégia de desenvolvimento', 1, 1, 1),
 (2, 'a', 'Analisar as demandas apresentadas pelas áreas de negócio e propor alternativas de solução técnica e estratégia de desenvolvimento', 1, 1, 2),
 (3, 'a', 'Analisar as demandas apresentadas pelas áreas de negócio e propor alternativas de solução técnica e estratégia de desenvolvimento', 1, 1, 3),
@@ -541,19 +540,19 @@ INSERT INTO `tb_atributo` (`id_atributo`, `letra`, `descricao`, `TB_ABRANGENCIA_
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tb_atributo_has_tb_papel`
+-- Estrutura para tabela `TB_ATRIBUTO_has_TB_PAPEL`
 --
 
-CREATE TABLE `tb_atributo_has_tb_papel` (
+CREATE TABLE `TB_ATRIBUTO_has_TB_PAPEL` (
   `TB_ATRIBUTO_id_atributo` int(9) NOT NULL,
   `TB_PAPEL_id_papel` int(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `tb_atributo_has_tb_papel`
+-- Fazendo dump de dados para tabela `TB_ATRIBUTO_has_TB_PAPEL`
 --
 
-INSERT INTO `tb_atributo_has_tb_papel` (`TB_ATRIBUTO_id_atributo`, `TB_PAPEL_id_papel`) VALUES
+INSERT INTO `TB_ATRIBUTO_has_TB_PAPEL` (`TB_ATRIBUTO_id_atributo`, `TB_PAPEL_id_papel`) VALUES
 (1, 2),
 (1, 4),
 (2, 2),
@@ -1755,19 +1754,19 @@ INSERT INTO `tb_atributo_has_tb_papel` (`TB_ATRIBUTO_id_atributo`, `TB_PAPEL_id_
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tb_atributo_has_tb_projeto`
+-- Estrutura para tabela `TB_ATRIBUTO_has_TB_PROJETO`
 --
 
-CREATE TABLE `tb_atributo_has_tb_projeto` (
+CREATE TABLE `TB_ATRIBUTO_has_TB_PROJETO` (
   `TB_ATRIBUTO_id_atributo` int(9) NOT NULL,
   `TB_PROJETO_id_projeto` int(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `tb_atributo_has_tb_projeto`
+-- Fazendo dump de dados para tabela `TB_ATRIBUTO_has_TB_PROJETO`
 --
 
-INSERT INTO `tb_atributo_has_tb_projeto` (`TB_ATRIBUTO_id_atributo`, `TB_PROJETO_id_projeto`) VALUES
+INSERT INTO `TB_ATRIBUTO_has_TB_PROJETO` (`TB_ATRIBUTO_id_atributo`, `TB_PROJETO_id_projeto`) VALUES
 (379, 1),
 (379, 2),
 (379, 3),
@@ -2393,10 +2392,10 @@ INSERT INTO `tb_atributo_has_tb_projeto` (`TB_ATRIBUTO_id_atributo`, `TB_PROJETO
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tb_colaborador`
+-- Estrutura para tabela `TB_COLABORADOR`
 --
 
-CREATE TABLE `tb_colaborador` (
+CREATE TABLE `TB_COLABORADOR` (
   `id_colaborador` int(9) NOT NULL,
   `nome` varchar(50) NOT NULL COMMENT 'Nome completo do colaborador.',
   `matricula` bigint(10) NOT NULL COMMENT 'Matrícula do colaborador.',
@@ -2413,10 +2412,10 @@ CREATE TABLE `tb_colaborador` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `tb_colaborador`
+-- Fazendo dump de dados para tabela `TB_COLABORADOR`
 --
 
-INSERT INTO `tb_colaborador` (`id_colaborador`, `nome`, `matricula`, `telefone`, `especialidade`, `salario`, `percentual_salario`, `dt_registro`, `TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`, `TB_DIVISAO_id_divisao`, `TB_ACESSO_id_acesso`, `TB_PERFIL_id_perfil`, `TB_FAIXA_id_faixa`) VALUES
+INSERT INTO `TB_COLABORADOR` (`id_colaborador`, `nome`, `matricula`, `telefone`, `especialidade`, `salario`, `percentual_salario`, `dt_registro`, `TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`, `TB_DIVISAO_id_divisao`, `TB_ACESSO_id_acesso`, `TB_PERFIL_id_perfil`, `TB_FAIXA_id_faixa`) VALUES
 (2, 'Francisco Jose Joaquim de Souza', 12345678, 6120219999, 'Programação de Computador', '7500.00', '8.50', '2017-11-09 12:28:52', 59, 3, 5, 1, 3),
 (3, 'Roberto da Silveira Souza Paranhos', 22225454, 6154545454, 'Comunicação Social', '9859.67', '659.65', '2017-11-09 12:26:46', 45, 16, 4, 2, 1),
 (4, 'Natanael de Souza Leite', 12345677, 6120218888, 'Desenvolvimento de Sistemas', '5333.45', '233.13', '2017-11-09 12:26:23', 51, 1, 3, 1, 2),
@@ -2426,10 +2425,10 @@ INSERT INTO `tb_colaborador` (`id_colaborador`, `nome`, `matricula`, `telefone`,
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tb_colaborador_has_tb_atributo`
+-- Estrutura para tabela `TB_COLABORADOR_has_TB_ATRIBUTO`
 --
 
-CREATE TABLE `tb_colaborador_has_tb_atributo` (
+CREATE TABLE `TB_COLABORADOR_has_TB_ATRIBUTO` (
   `TB_COLABORADOR_id_colaborador` int(9) NOT NULL,
   `TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe` int(9) NOT NULL,
   `TB_COLABORADOR_TB_DIVISAO_id_divisao` int(9) NOT NULL,
@@ -2439,20 +2438,13 @@ CREATE TABLE `tb_colaborador_has_tb_atributo` (
   `TB_ATRIBUTO_TB_IMPACTO_id_impacto` int(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Extraindo dados da tabela `tb_colaborador_has_tb_atributo`
---
-
-INSERT INTO `tb_colaborador_has_tb_atributo` (`TB_COLABORADOR_id_colaborador`, `TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`, `TB_COLABORADOR_TB_DIVISAO_id_divisao`, `TB_ATRIBUTO_id_atributo`, `TB_ATRIBUTO_TB_ABRANGENCIA_id_abrangencia`, `TB_ATRIBUTO_TB_COMPLEXIDADE_id_complexidade`, `TB_ATRIBUTO_TB_IMPACTO_id_impacto`) VALUES
-(2, 59, 3, 1, 1, 1, 1);
-
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tb_complexidade`
+-- Estrutura para tabela `TB_COMPLEXIDADE`
 --
 
-CREATE TABLE `tb_complexidade` (
+CREATE TABLE `TB_COMPLEXIDADE` (
   `id_complexidade` int(9) NOT NULL,
   `atributo` varchar(1) NOT NULL,
   `classificacao` int(2) NOT NULL,
@@ -2462,10 +2454,10 @@ CREATE TABLE `tb_complexidade` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `tb_complexidade`
+-- Fazendo dump de dados para tabela `TB_COMPLEXIDADE`
 --
 
-INSERT INTO `tb_complexidade` (`id_complexidade`, `atributo`, `classificacao`, `tipo`, `nome`, `descricao`) VALUES
+INSERT INTO `TB_COMPLEXIDADE` (`id_complexidade`, `atributo`, `classificacao`, `tipo`, `nome`, `descricao`) VALUES
 (1, 'a', 1, 'Desenvolvimento', 'Moderada', 'Depende de auxílio para tomada de decisão;\nAtua em 1 projeto/perfis diferentes;'),
 (2, 'a', 2, 'Desenvolvimento', 'Alta', 'Atua em 2 projetos em paralelo/perfis diferentes;\nComplexidade dos projetos pode influenciar;\nPrever problemas;\nProjetos grandes;'),
 (3, 'a', 3, 'Desenvolvimento', 'Altíssima', 'Prever problemas;\nVisão sistêmica;\nAtuar em paralelo em diferentes linguagens/assuntos/projetos;\nProjetos grandes x prazos curtos;\nAtuar sob pressão;\nAutonomia (independência na tomada de decisão);\nAtua em 3 ou mais projetos/perfis diferentes;'),
@@ -2512,10 +2504,10 @@ INSERT INTO `tb_complexidade` (`id_complexidade`, `atributo`, `classificacao`, `
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tb_distribuicao`
+-- Estrutura para tabela `TB_DISTRIBUICAO`
 --
 
-CREATE TABLE `tb_distribuicao` (
+CREATE TABLE `TB_DISTRIBUICAO` (
   `id_distribuicao` int(9) NOT NULL,
   `valor` decimal(10,2) NOT NULL COMMENT 'Valor total a ser distribído de FCT entre os colaboradores.',
   `qtde_faixas` int(2) NOT NULL,
@@ -2523,19 +2515,19 @@ CREATE TABLE `tb_distribuicao` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `tb_distribuicao`
+-- Fazendo dump de dados para tabela `TB_DISTRIBUICAO`
 --
 
-INSERT INTO `tb_distribuicao` (`id_distribuicao`, `valor`, `qtde_faixas`, `dt_registro`) VALUES
-(1, '5000.00', 2, '2018-02-23 15:21:32');
+INSERT INTO `TB_DISTRIBUICAO` (`id_distribuicao`, `valor`, `qtde_faixas`, `dt_registro`) VALUES
+(1, '25000.00', 4, '2018-02-15 19:02:25');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tb_divisao`
+-- Estrutura para tabela `TB_DIVISAO`
 --
 
-CREATE TABLE `tb_divisao` (
+CREATE TABLE `TB_DIVISAO` (
   `id_divisao` int(9) NOT NULL,
   `sigla` varchar(5) NOT NULL,
   `nome` varchar(100) NOT NULL,
@@ -2545,10 +2537,10 @@ CREATE TABLE `tb_divisao` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `tb_divisao`
+-- Fazendo dump de dados para tabela `TB_DIVISAO`
 --
 
-INSERT INTO `tb_divisao` (`id_divisao`, `sigla`, `nome`, `descricao`, `uf`, `especialidade`) VALUES
+INSERT INTO `TB_DIVISAO` (`id_divisao`, `sigla`, `nome`, `descricao`, `uf`, `especialidade`) VALUES
 (1, 'SDDEP', 'Experiência de Usuário e Portais', 'Divisão de Gestão de Demandas - Experiência de Usuário e Portais', 'DF', 'Desenvolvimento/Design'),
 (3, 'SDDEF', 'Soluções de Front-end e Portais', 'Divisão de Desenvolvimento - Soluções de Front-end e Portais', 'DF', 'Desenvolvimento'),
 (16, 'SDCSD', 'Soluções de Gerenciamento de Conteúdo - Salvador', 'Divisão de Desenvolvimento - Soluções de Gerenciamento de Conteúdo - Salvador', 'SD', 'Desenvolvimento'),
@@ -2558,10 +2550,10 @@ INSERT INTO `tb_divisao` (`id_divisao`, `sigla`, `nome`, `descricao`, `uf`, `esp
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tb_faixa`
+-- Estrutura para tabela `TB_FAIXA`
 --
 
-CREATE TABLE `tb_faixa` (
+CREATE TABLE `TB_FAIXA` (
   `id_faixa` int(9) NOT NULL,
   `limite_inferior` decimal(10,2) NOT NULL,
   `limite_superior` decimal(10,2) NOT NULL,
@@ -2574,20 +2566,22 @@ CREATE TABLE `tb_faixa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `tb_faixa`
+-- Fazendo dump de dados para tabela `TB_FAIXA`
 --
 
-INSERT INTO `tb_faixa` (`id_faixa`, `limite_inferior`, `limite_superior`, `pontuacao_referencia`, `qtde_pessoas`, `valor_rateio_pessoa`, `percentual`, `TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`, `TB_DISTRIBUICAO_id_distribuicao`) VALUES
-(949, '34.29', '67.74', '67.74', 0, '0.00', '0.00', 1, 1),
-(950, '67.74', '101.20', '67.74', 0, '0.00', '0.00', 1, 1);
+INSERT INTO `TB_FAIXA` (`id_faixa`, `limite_inferior`, `limite_superior`, `pontuacao_referencia`, `qtde_pessoas`, `valor_rateio_pessoa`, `percentual`, `TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`, `TB_DISTRIBUICAO_id_distribuicao`) VALUES
+(179, '47.70', '61.07', '61.07', 0, '0.00', '0.00', 1, 1),
+(180, '61.07', '74.44', '67.76', 0, '0.00', '0.00', 1, 1),
+(181, '74.44', '87.81', '81.13', 0, '0.00', '0.00', 1, 1),
+(182, '87.81', '101.19', '87.81', 0, '0.00', '0.00', 1, 1);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tb_impacto`
+-- Estrutura para tabela `TB_IMPACTO`
 --
 
-CREATE TABLE `tb_impacto` (
+CREATE TABLE `TB_IMPACTO` (
   `id_impacto` int(9) NOT NULL,
   `atributo` varchar(1) NOT NULL,
   `classificacao` int(1) NOT NULL,
@@ -2597,10 +2591,10 @@ CREATE TABLE `tb_impacto` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `tb_impacto`
+-- Fazendo dump de dados para tabela `TB_IMPACTO`
 --
 
-INSERT INTO `tb_impacto` (`id_impacto`, `atributo`, `classificacao`, `tipo`, `nome`, `descricao`) VALUES
+INSERT INTO `TB_IMPACTO` (`id_impacto`, `atributo`, `classificacao`, `tipo`, `nome`, `descricao`) VALUES
 (1, 'a', 1, 'Desenvolvimento', 'Relevante', 'A ausência gera pouco impacto (Não impacta a entrega);\nAtente somente a um tipo de contexto(tecnologia/versão);'),
 (2, 'a', 2, 'Desenvolvimento', 'Muito', 'Gera impacto no projeto quando houver sua ausência(Qualidade);\nAtende alguns tipos de projetos (não domina todos assuntos);'),
 (3, 'a', 3, 'Desenvolvimento', 'Altamente', 'Insubstituível (impacto muito alto, risco);\nBus factor (risco da substituição);\nSe não houver essa atribuição no projeto: risco de falhas, atrasos, qualidade...;\nPode atender qualquer tipo de projeto (assunto, complexidade...);\nVelocidade (entrega antes do prazo previsto);'),
@@ -2647,10 +2641,10 @@ INSERT INTO `tb_impacto` (`id_impacto`, `atributo`, `classificacao`, `tipo`, `no
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tb_papel`
+-- Estrutura para tabela `TB_PAPEL`
 --
 
-CREATE TABLE `tb_papel` (
+CREATE TABLE `TB_PAPEL` (
   `id_papel` int(9) NOT NULL,
   `tipo` varchar(50) NOT NULL COMMENT 'Papel de Dsenvolvimento ou de Design.',
   `nome` varchar(50) NOT NULL,
@@ -2658,10 +2652,10 @@ CREATE TABLE `tb_papel` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Tabela de papeis dos colaboradores.';
 
 --
--- Extraindo dados da tabela `tb_papel`
+-- Fazendo dump de dados para tabela `TB_PAPEL`
 --
 
-INSERT INTO `tb_papel` (`id_papel`, `tipo`, `nome`, `descricao`) VALUES
+INSERT INTO `TB_PAPEL` (`id_papel`, `tipo`, `nome`, `descricao`) VALUES
 (1, 'Desenvolvimento', 'Front-end (Desenvolvimento) ', 'Desenvolvimento front-end.'),
 (2, 'Desenvolvimento', 'Arquiteto', 'Arquiteto de software.'),
 (3, 'Desenvolvimento', 'Testes', 'Colaboradores que possuem conhecimento aprofundado em testes.'),
@@ -2670,17 +2664,15 @@ INSERT INTO `tb_papel` (`id_papel`, `tipo`, `nome`, `descricao`) VALUES
 (6, 'Desenvolvimento', 'Banco', 'Colaboradores que possuem conhecimento aprofundado em Banco de Dados.'),
 (7, 'Design', 'Front-end (Design)', 'Colaboradores que possuem conhecimento aprofundado em Front-end e são das equipes de Design.'),
 (8, 'Design', 'UI', 'Colaboradores que possuem conhecimento aprofundado em UI - User Interface.'),
-(9, 'Design', 'UX', 'Colaboradores que possuem conhecimento aprofundado em UX - User Experience.'),
-(10, 'Desenvolvimento', 'Teste 01', 'Teste 01'),
-(11, 'Desenvolvimento', 'Teste 02', 'Teste 02');
+(9, 'Design', 'UX', 'Colaboradores que possuem conhecimento aprofundado em UX - User Experience.');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tb_papel_has_tb_colaborador`
+-- Estrutura para tabela `TB_PAPEL_has_TB_COLABORADOR`
 --
 
-CREATE TABLE `tb_papel_has_tb_colaborador` (
+CREATE TABLE `TB_PAPEL_has_TB_COLABORADOR` (
   `TB_PAPEL_id_papel` int(9) NOT NULL,
   `TB_COLABORADOR_id_colaborador` int(9) NOT NULL,
   `TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe` int(9) NOT NULL,
@@ -2690,19 +2682,19 @@ CREATE TABLE `tb_papel_has_tb_colaborador` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tb_perfil`
+-- Estrutura para tabela `TB_PERFIL`
 --
 
-CREATE TABLE `tb_perfil` (
+CREATE TABLE `TB_PERFIL` (
   `id_perfil` int(11) NOT NULL,
   `ds_perfil` varchar(20) NOT NULL COMMENT '1 - ADMINISTRADOR 2 - LIDER 3 - COLABORADOR '
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `tb_perfil`
+-- Fazendo dump de dados para tabela `TB_PERFIL`
 --
 
-INSERT INTO `tb_perfil` (`id_perfil`, `ds_perfil`) VALUES
+INSERT INTO `TB_PERFIL` (`id_perfil`, `ds_perfil`) VALUES
 (1, 'ADMINISTRADOR'),
 (2, 'LIDER'),
 (3, 'COLABORADOR');
@@ -2710,10 +2702,10 @@ INSERT INTO `tb_perfil` (`id_perfil`, `ds_perfil`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tb_pesos`
+-- Estrutura para tabela `TB_PESOS`
 --
 
-CREATE TABLE `tb_pesos` (
+CREATE TABLE `TB_PESOS` (
   `id_pesos` int(9) NOT NULL,
   `quantidade` int(2) NOT NULL COMMENT 'Quantidade de papeis ou projetos.',
   `tipo` varchar(20) NOT NULL COMMENT 'Nomes Definidos: Quantidade de papeis, Quantidade de projetos.',
@@ -2723,10 +2715,10 @@ CREATE TABLE `tb_pesos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `tb_pesos`
+-- Fazendo dump de dados para tabela `TB_PESOS`
 --
 
-INSERT INTO `tb_pesos` (`id_pesos`, `quantidade`, `tipo`, `descricao`, `valor`, `dt_registro`) VALUES
+INSERT INTO `TB_PESOS` (`id_pesos`, `quantidade`, `tipo`, `descricao`, `valor`, `dt_registro`) VALUES
 (4, 2, 'Papel', 'Peso para o calculo quando o colaborador estiver executando em 2 papeis.', '1.300', '2017-06-06 03:00:00'),
 (5, 3, 'Papel', 'Peso para o calculo quando o colaborador estiver envolvido em 2 papeis.', '1.500', '2017-06-06 03:00:00'),
 (6, 2, 'Projeto', 'Peso para o calculo quando o colaborador estiver envolvido em 2 projetos.', '1.125', '2017-11-09 16:27:04'),
@@ -2743,10 +2735,10 @@ INSERT INTO `tb_pesos` (`id_pesos`, `quantidade`, `tipo`, `descricao`, `valor`, 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tb_projeto`
+-- Estrutura para tabela `TB_PROJETO`
 --
 
-CREATE TABLE `tb_projeto` (
+CREATE TABLE `TB_PROJETO` (
   `id_projeto` int(9) NOT NULL,
   `titulo` varchar(30) NOT NULL COMMENT 'Titulo do Projeto.',
   `cod_servico` int(5) NOT NULL COMMENT 'Código de Serviço do Projeto.',
@@ -2757,10 +2749,10 @@ CREATE TABLE `tb_projeto` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `tb_projeto`
+-- Fazendo dump de dados para tabela `TB_PROJETO`
 --
 
-INSERT INTO `tb_projeto` (`id_projeto`, `titulo`, `cod_servico`, `descricao`, `dt_inicio`, `dt_fim`, `abrangencia`) VALUES
+INSERT INTO `TB_PROJETO` (`id_projeto`, `titulo`, `cod_servico`, `descricao`, `dt_inicio`, `dt_fim`, `abrangencia`) VALUES
 (1, 'Intercâmbio de Informações', 10115, 'Intercâmbio de informações União Europeia.', '2017-08-02', '2017-11-21', 'Desenvolvimento'),
 (2, 'ECAT', 10445, 'ECAT - COMPARTILHAMENTO DE INFORMAÇÕES ENTRE ADMINISTRAÇÕES TRIBUTÁRIAS', '2017-10-03', '2017-10-27', 'Desenvolvimento'),
 (3, 'Portal Tesouro Direto', 10166, 'Tesouro Direto Web - Desenvolvimento', '2017-01-01', '2017-07-31', 'Desenvolvimento'),
@@ -2788,10 +2780,10 @@ INSERT INTO `tb_projeto` (`id_projeto`, `titulo`, `cod_servico`, `descricao`, `d
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tb_projeto_has_tb_colaborador`
+-- Estrutura para tabela `TB_PROJETO_has_TB_COLABORADOR`
 --
 
-CREATE TABLE `tb_projeto_has_tb_colaborador` (
+CREATE TABLE `TB_PROJETO_has_TB_COLABORADOR` (
   `TB_PROJETO_id_projeto` int(9) NOT NULL,
   `TB_COLABORADOR_id_colaborador` int(9) NOT NULL,
   `TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe` int(9) NOT NULL,
@@ -2801,10 +2793,10 @@ CREATE TABLE `tb_projeto_has_tb_colaborador` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tb_referencia_fct_gfe`
+-- Estrutura para tabela `TB_REFERENCIA_FCT_GFE`
 --
 
-CREATE TABLE `tb_referencia_fct_gfe` (
+CREATE TABLE `TB_REFERENCIA_FCT_GFE` (
   `id_referencia_fct_gfe` int(9) NOT NULL,
   `cargo` varchar(8) NOT NULL COMMENT 'Analista, técnico ou auxiliar.',
   `num_referencia` int(2) NOT NULL COMMENT 'Número de referência na tabela de FCT/GFE.',
@@ -2813,10 +2805,10 @@ CREATE TABLE `tb_referencia_fct_gfe` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `tb_referencia_fct_gfe`
+-- Fazendo dump de dados para tabela `TB_REFERENCIA_FCT_GFE`
 --
 
-INSERT INTO `tb_referencia_fct_gfe` (`id_referencia_fct_gfe`, `cargo`, `num_referencia`, `valor_referencia`, `dt_atualizacao`) VALUES
+INSERT INTO `TB_REFERENCIA_FCT_GFE` (`id_referencia_fct_gfe`, `cargo`, `num_referencia`, `valor_referencia`, `dt_atualizacao`) VALUES
 (1, 'Analista', 12, '800.99', '2017-11-01 11:56:16'),
 (2, 'Técnico', 1, '176.34', '2016-05-01 03:00:00'),
 (3, 'Técnico', 2, '191.16', '2016-05-01 03:00:00'),
@@ -2900,10 +2892,10 @@ INSERT INTO `tb_referencia_fct_gfe` (`id_referencia_fct_gfe`, `cargo`, `num_refe
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tb_resultado`
+-- Estrutura para tabela `TB_RESULTADO`
 --
 
-CREATE TABLE `tb_resultado` (
+CREATE TABLE `TB_RESULTADO` (
   `id_resultado` int(9) NOT NULL,
   `pontuacao` decimal(6,2) NOT NULL COMMENT 'Pontuação do Resultado da Avaliação.',
   `dt_resultado` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -2914,34 +2906,24 @@ CREATE TABLE `tb_resultado` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `tb_resultado`
+-- Fazendo dump de dados para tabela `TB_RESULTADO`
 --
 
-INSERT INTO `tb_resultado` (`id_resultado`, `pontuacao`, `dt_resultado`, `ajuste`, `ociosidade`, `referencia_fct_gfe_pontuacao`, `TB_COLABORADOR_id_colaborador`) VALUES
+INSERT INTO `TB_RESULTADO` (`id_resultado`, `pontuacao`, `dt_resultado`, `ajuste`, `ociosidade`, `referencia_fct_gfe_pontuacao`, `TB_COLABORADOR_id_colaborador`) VALUES
+(25, '47.70', '2018-01-30 16:28:46', '-33.53', '0.00', 4, 3),
 (27, '101.19', '2018-01-30 16:49:56', '5.05', '0.00', 30, 7),
+(28, '55.50', '2018-02-05 19:08:12', '11.79', '12.12', 19, 2),
+(29, '65.90', '2018-02-06 11:11:25', '-51.73', '20.00', 4, 3),
 (30, '70.61', '2018-02-15 17:50:59', '-54.71', '10.00', 4, 3),
-(31, '66.46', '2018-02-15 19:03:21', '-50.56', '0.00', 4, 3),
-(32, '68.01', '2018-02-19 13:08:04', '7.52', '1.01', 19, 2),
-(33, '34.29', '2018-02-21 14:51:31', '70.94', '50.00', 19, 2),
-(34, '88.50', '2018-02-21 14:54:22', '16.73', '0.00', 19, 2),
-(35, '49.20', '2018-02-26 11:55:28', '5.09', '0.00', 19, 2),
-(36, '60.90', '2018-02-26 12:00:16', '-6.61', '0.00', 19, 2),
-(37, '43.00', '2018-02-26 12:04:29', '11.29', '0.00', 19, 2),
-(38, '57.08', '2018-02-26 12:05:06', '-2.79', '0.00', 19, 2),
-(39, '45.55', '2018-02-26 16:09:18', '8.74', '20.20', 19, 2),
-(40, '51.31', '2018-02-26 16:10:07', '2.98', '10.10', 19, 2),
-(41, '57.08', '2018-02-26 16:11:10', '-2.79', '0.00', 19, 2),
-(42, '55.90', '2018-02-26 16:12:50', '-1.61', '0.00', 19, 2),
-(43, '42.00', '2018-02-26 16:13:50', '12.29', '0.00', 19, 2),
-(44, '45.38', '2018-02-26 16:26:24', '8.91', '0.00', 19, 2);
+(31, '66.46', '2018-02-15 19:03:21', '-50.56', '0.00', 4, 3);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tb_tecnologia`
+-- Estrutura para tabela `TB_TECNOLOGIA`
 --
 
-CREATE TABLE `tb_tecnologia` (
+CREATE TABLE `TB_TECNOLOGIA` (
   `id_tecnologia` int(9) NOT NULL,
   `tipo` varchar(50) NOT NULL,
   `nome` varchar(20) NOT NULL,
@@ -2949,10 +2931,10 @@ CREATE TABLE `tb_tecnologia` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `tb_tecnologia`
+-- Fazendo dump de dados para tabela `TB_TECNOLOGIA`
 --
 
-INSERT INTO `tb_tecnologia` (`id_tecnologia`, `tipo`, `nome`, `descricao`) VALUES
+INSERT INTO `TB_TECNOLOGIA` (`id_tecnologia`, `tipo`, `nome`, `descricao`) VALUES
 (3, 'Desenvolvimento', 'Liferay', 'Linguagem de programação Liferay.'),
 (4, 'Desenvolvimento', 'Angular', 'Linguagem de programação angular.'),
 (5, 'Desenvolvimento', 'Html/css (Desenv)', 'Linguagem de marcação de texto Html e css.'),
@@ -2964,10 +2946,10 @@ INSERT INTO `tb_tecnologia` (`id_tecnologia`, `tipo`, `nome`, `descricao`) VALUE
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tb_tecnologia_has_tb_colaborador`
+-- Estrutura para tabela `TB_TECNOLOGIA_has_TB_COLABORADOR`
 --
 
-CREATE TABLE `tb_tecnologia_has_tb_colaborador` (
+CREATE TABLE `TB_TECNOLOGIA_has_TB_COLABORADOR` (
   `TB_TECNOLOGIA_id_tecnologia` int(9) NOT NULL,
   `TB_COLABORADOR_id_colaborador` int(9) NOT NULL,
   `TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe` int(9) NOT NULL,
@@ -2977,10 +2959,10 @@ CREATE TABLE `tb_tecnologia_has_tb_colaborador` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tb_tecnologia_has_tb_projeto`
+-- Estrutura para tabela `TB_TECNOLOGIA_has_TB_PROJETO`
 --
 
-CREATE TABLE `tb_tecnologia_has_tb_projeto` (
+CREATE TABLE `TB_TECNOLOGIA_has_TB_PROJETO` (
   `TB_TECNOLOGIA_id_tecnologia` int(9) NOT NULL,
   `TB_PROJETO_id_projeto` int(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -2988,20 +2970,20 @@ CREATE TABLE `tb_tecnologia_has_tb_projeto` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tb_valores`
+-- Estrutura para tabela `TB_VALORES`
 --
 
-CREATE TABLE `tb_valores` (
+CREATE TABLE `TB_VALORES` (
   `ID_VALORES` int(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `vw_atributo`
--- (See below for the actual view)
+-- Estrutura stand-in para view `VW_ATRIBUTO`
+-- (Veja abaixo para a visão atual)
 --
-CREATE TABLE `vw_atributo` (
+CREATE TABLE `VW_ATRIBUTO` (
 `idAtributo` int(9)
 ,`letra` varchar(1)
 ,`descricao` text
@@ -3014,10 +2996,10 @@ CREATE TABLE `vw_atributo` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `vw_atributo_colaborador`
--- (See below for the actual view)
+-- Estrutura stand-in para view `VW_ATRIBUTO_COLABORADOR`
+-- (Veja abaixo para a visão atual)
 --
-CREATE TABLE `vw_atributo_colaborador` (
+CREATE TABLE `VW_ATRIBUTO_COLABORADOR` (
 `letra` varchar(1)
 ,`descricao` text
 ,`id_colaborador` int(9)
@@ -3026,10 +3008,10 @@ CREATE TABLE `vw_atributo_colaborador` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `vw_avaliacao`
--- (See below for the actual view)
+-- Estrutura stand-in para view `VW_AVALIACAO`
+-- (Veja abaixo para a visão atual)
 --
-CREATE TABLE `vw_avaliacao` (
+CREATE TABLE `VW_AVALIACAO` (
 `id_resultado` int(9)
 ,`pontuacao` decimal(6,2)
 ,`dt_resultado` varchar(10)
@@ -3046,10 +3028,10 @@ CREATE TABLE `vw_avaliacao` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `vw_colaborador`
--- (See below for the actual view)
+-- Estrutura stand-in para view `VW_COLABORADOR`
+-- (Veja abaixo para a visão atual)
 --
-CREATE TABLE `vw_colaborador` (
+CREATE TABLE `VW_COLABORADOR` (
 `idColaborador` int(9)
 ,`nome` varchar(50)
 ,`matricula` bigint(10)
@@ -3067,10 +3049,10 @@ CREATE TABLE `vw_colaborador` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `vw_detalhe_atributo`
--- (See below for the actual view)
+-- Estrutura stand-in para view `VW_DETALHE_ATRIBUTO`
+-- (Veja abaixo para a visão atual)
 --
-CREATE TABLE `vw_detalhe_atributo` (
+CREATE TABLE `VW_DETALHE_ATRIBUTO` (
 `idAtributo` int(9)
 ,`Atributo` varchar(1)
 ,`AbrangenciaClassificacao` int(2)
@@ -3087,12 +3069,12 @@ CREATE TABLE `vw_detalhe_atributo` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `vw_distribuicao`
--- (See below for the actual view)
+-- Estrutura stand-in para view `VW_DISTRIBUICAO`
+-- (Veja abaixo para a visão atual)
 --
-CREATE TABLE `vw_distribuicao` (
+CREATE TABLE `VW_DISTRIBUICAO` (
 `id_distribuicao` int(9)
-,`valor` decimal(10,2)
+,`valor` varchar(15)
 ,`pontuacao_minima` decimal(6,2)
 ,`pontuacao_maxima` decimal(6,2)
 ,`qtde_faixas` int(2)
@@ -3103,10 +3085,10 @@ CREATE TABLE `vw_distribuicao` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `vw_distribuicao_faixa`
--- (See below for the actual view)
+-- Estrutura stand-in para view `VW_DISTRIBUICAO_FAIXA`
+-- (Veja abaixo para a visão atual)
 --
-CREATE TABLE `vw_distribuicao_faixa` (
+CREATE TABLE `VW_DISTRIBUICAO_FAIXA` (
 `id_faixa` int(9)
 ,`limite_inferior` decimal(10,2)
 ,`limite_superior` decimal(10,2)
@@ -3120,10 +3102,10 @@ CREATE TABLE `vw_distribuicao_faixa` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `vw_papel_atributo`
--- (See below for the actual view)
+-- Estrutura stand-in para view `VW_PAPEL_ATRIBUTO`
+-- (Veja abaixo para a visão atual)
 --
-CREATE TABLE `vw_papel_atributo` (
+CREATE TABLE `VW_PAPEL_ATRIBUTO` (
 `TB_PAPEL_id_papel` int(9)
 ,`letra` varchar(1)
 ,`descricao` text
@@ -3141,10 +3123,10 @@ CREATE TABLE `vw_papel_atributo` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `vw_papel_colaborador`
--- (See below for the actual view)
+-- Estrutura stand-in para view `VW_PAPEL_COLABORADOR`
+-- (Veja abaixo para a visão atual)
 --
-CREATE TABLE `vw_papel_colaborador` (
+CREATE TABLE `VW_PAPEL_COLABORADOR` (
 `id_colaborador` int(9)
 ,`ID_PAPEL` int(9)
 ,`NOME` varchar(50)
@@ -3153,130 +3135,130 @@ CREATE TABLE `vw_papel_colaborador` (
 -- --------------------------------------------------------
 
 --
--- Structure for view `vw_atributo`
+-- Estrutura para view `VW_ATRIBUTO`
 --
-DROP TABLE IF EXISTS `vw_atributo`;
+DROP TABLE IF EXISTS `VW_ATRIBUTO`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`tiagooliveira`@`localhost` SQL SECURITY DEFINER VIEW `vw_atributo`  AS  select `tb0`.`id_atributo` AS `idAtributo`,`tb0`.`letra` AS `letra`,`tb0`.`descricao` AS `descricao`,`tb1`.`tipo` AS `tipo`,concat(`tb1`.`classificacao`,'-',`tb1`.`nome`) AS `abrangenciaNome`,concat(`tb2`.`classificacao`,'-',`tb2`.`nome`) AS `complexidadeNome`,concat(`tb3`.`classificacao`,'-',`tb3`.`nome`) AS `impactoNome` from (((`tb_atributo` `tb0` join `tb_abrangencia` `tb1`) join `tb_complexidade` `tb2`) join `tb_impacto` `tb3`) where ((`tb0`.`TB_ABRANGENCIA_id_abrangencia` = `tb1`.`id_abrangencia`) and (`tb0`.`TB_COMPLEXIDADE_id_complexidade` = `tb2`.`id_complexidade`) and (`tb0`.`TB_IMPACTO_id_impacto` = `tb3`.`id_impacto`)) order by `tb0`.`id_atributo` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`tiagooliveira`@`localhost` SQL SECURITY DEFINER VIEW `VW_ATRIBUTO`  AS  select `tb0`.`id_atributo` AS `idAtributo`,`tb0`.`letra` AS `letra`,`tb0`.`descricao` AS `descricao`,`tb1`.`tipo` AS `tipo`,concat(`tb1`.`classificacao`,'-',`tb1`.`nome`) AS `abrangenciaNome`,concat(`tb2`.`classificacao`,'-',`tb2`.`nome`) AS `complexidadeNome`,concat(`tb3`.`classificacao`,'-',`tb3`.`nome`) AS `impactoNome` from (((`TB_ATRIBUTO` `tb0` join `TB_ABRANGENCIA` `tb1`) join `TB_COMPLEXIDADE` `tb2`) join `TB_IMPACTO` `tb3`) where ((`tb0`.`TB_ABRANGENCIA_id_abrangencia` = `tb1`.`id_abrangencia`) and (`tb0`.`TB_COMPLEXIDADE_id_complexidade` = `tb2`.`id_complexidade`) and (`tb0`.`TB_IMPACTO_id_impacto` = `tb3`.`id_impacto`)) order by `tb0`.`id_atributo` ;
 
 -- --------------------------------------------------------
 
 --
--- Structure for view `vw_atributo_colaborador`
+-- Estrutura para view `VW_ATRIBUTO_COLABORADOR`
 --
-DROP TABLE IF EXISTS `vw_atributo_colaborador`;
+DROP TABLE IF EXISTS `VW_ATRIBUTO_COLABORADOR`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`tiagooliveira`@`localhost` SQL SECURITY DEFINER VIEW `vw_atributo_colaborador`  AS  select `tb3`.`letra` AS `letra`,`tb3`.`descricao` AS `descricao`,`tb2`.`id_colaborador` AS `id_colaborador` from ((`tb_colaborador_has_tb_atributo` `tb1` join `tb_colaborador` `tb2`) join `tb_atributo` `tb3`) where ((`tb1`.`TB_COLABORADOR_id_colaborador` = `tb2`.`id_colaborador`) and (`tb1`.`TB_ATRIBUTO_id_atributo` = `tb3`.`id_atributo`) and (`tb1`.`TB_COLABORADOR_id_colaborador` = `tb2`.`id_colaborador`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`tiagooliveira`@`localhost` SQL SECURITY DEFINER VIEW `VW_ATRIBUTO_COLABORADOR`  AS  select `tb3`.`letra` AS `letra`,`tb3`.`descricao` AS `descricao`,`tb2`.`id_colaborador` AS `id_colaborador` from ((`TB_COLABORADOR_has_TB_ATRIBUTO` `tb1` join `TB_COLABORADOR` `tb2`) join `TB_ATRIBUTO` `tb3`) where ((`tb1`.`TB_COLABORADOR_id_colaborador` = `tb2`.`id_colaborador`) and (`tb1`.`TB_ATRIBUTO_id_atributo` = `tb3`.`id_atributo`) and (`tb1`.`TB_COLABORADOR_id_colaborador` = `tb2`.`id_colaborador`)) ;
 
 -- --------------------------------------------------------
 
 --
--- Structure for view `vw_avaliacao`
+-- Estrutura para view `VW_AVALIACAO`
 --
-DROP TABLE IF EXISTS `vw_avaliacao`;
+DROP TABLE IF EXISTS `VW_AVALIACAO`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`tiagooliveira`@`localhost` SQL SECURITY DEFINER VIEW `vw_avaliacao`  AS  select distinct `tba`.`id_resultado` AS `id_resultado`,`tba`.`pontuacao` AS `pontuacao`,date_format(`tba`.`dt_resultado`,'%d/%m/%Y') AS `dt_resultado`,`tba`.`ajuste` AS `ajuste`,`tba`.`ociosidade` AS `ociosidade`,`tba`.`referencia_fct_gfe_pontuacao` AS `referencia_fct_gfe_pontuacao`,`tba`.`TB_COLABORADOR_id_colaborador` AS `TB_COLABORADOR_id_colaborador`,`clb`.`nome` AS `no_colaborador`,`clb`.`TB_FAIXA_id_faixa` AS `faixa`,(select `dv`.`sigla` from `tb_divisao` `dv` where (`dv`.`id_divisao` = `clb`.`TB_DIVISAO_id_divisao`)) AS `sigla_divisao`,(select sum(`t1`.`valor_rateio_pessoa`) from `tb_faixa` `t1` where (`t1`.`limite_superior` <= (select `tb_faixa`.`limite_superior` from `tb_faixa` where (`tb_faixa`.`id_faixa` = `clb`.`TB_FAIXA_id_faixa`)))) AS `valor_rateio` from ((`tb_resultado` `tba` join `tb_colaborador` `clb`) join `tb_faixa` `tbf`) where (`clb`.`id_colaborador` = `tba`.`TB_COLABORADOR_id_colaborador`) order by `clb`.`nome`,`tba`.`dt_resultado` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `VW_AVALIACAO`  AS  select distinct `tba`.`id_resultado` AS `id_resultado`,`tba`.`pontuacao` AS `pontuacao`,date_format(`tba`.`dt_resultado`,'%d/%m/%Y') AS `dt_resultado`,`tba`.`ajuste` AS `ajuste`,`tba`.`ociosidade` AS `ociosidade`,`tba`.`referencia_fct_gfe_pontuacao` AS `referencia_fct_gfe_pontuacao`,`tba`.`TB_COLABORADOR_id_colaborador` AS `TB_COLABORADOR_id_colaborador`,`clb`.`nome` AS `no_colaborador`,`clb`.`TB_FAIXA_id_faixa` AS `faixa`,(select `dv`.`sigla` from `TB_DIVISAO` `dv` where (`dv`.`id_divisao` = `clb`.`TB_DIVISAO_id_divisao`)) AS `sigla_divisao`,(select sum(`t1`.`valor_rateio_pessoa`) from `TB_FAIXA` `t1` where (`t1`.`limite_superior` <= (select `TB_FAIXA`.`limite_superior` from `TB_FAIXA` where (`TB_FAIXA`.`id_faixa` = `clb`.`TB_FAIXA_id_faixa`)))) AS `valor_rateio` from ((`TB_RESULTADO` `tba` join `TB_COLABORADOR` `clb`) join `TB_FAIXA` `tbf`) where (`clb`.`id_colaborador` = `tba`.`TB_COLABORADOR_id_colaborador`) order by `clb`.`nome`,`tba`.`dt_resultado` ;
 
 -- --------------------------------------------------------
 
 --
--- Structure for view `vw_colaborador`
+-- Estrutura para view `VW_COLABORADOR`
 --
-DROP TABLE IF EXISTS `vw_colaborador`;
+DROP TABLE IF EXISTS `VW_COLABORADOR`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`tiagooliveira`@`localhost` SQL SECURITY DEFINER VIEW `vw_colaborador`  AS  select `tb0`.`id_colaborador` AS `idColaborador`,`tb0`.`nome` AS `nome`,`tb0`.`matricula` AS `matricula`,`tb0`.`telefone` AS `telefone`,`tb0`.`especialidade` AS `especialidade`,concat('R$ ',`tb0`.`salario`) AS `salario`,concat('R$ ',`tb0`.`percentual_salario`) AS `percentual_salario`,concat(`tb1`.`num_referencia`,' - ',`tb1`.`cargo`,' (R$ ',`tb1`.`valor_referencia`,')') AS `referenciaFct`,`tb2`.`sigla` AS `sigla`,(select `tb1`.`num_referencia` from (`tb_referencia_fct_gfe` `tb1` join `tb_colaborador` `tb2`) where ((`tb1`.`id_referencia_fct_gfe` = `tb2`.`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`) and (`tb2`.`id_colaborador` = `tb0`.`id_colaborador`))) AS `ref_fct_atual`,(select min(`tb_faixa`.`limite_inferior`) from `tb_faixa`) AS `pontuacao_inicial`,(select `tb1`.`num_referencia` from (`tb_referencia_fct_gfe` `tb1` join `tb_faixa` `tb2`) where ((`tb1`.`id_referencia_fct_gfe` = `tb2`.`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`) and (`tb2`.`limite_inferior` = (select min(`tb_faixa`.`limite_inferior`) from `tb_faixa`)))) AS `ref_pontuacao_fct` from ((`tb_colaborador` `tb0` join `tb_referencia_fct_gfe` `tb1`) join `tb_divisao` `tb2`) where ((`tb0`.`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe` = `tb1`.`id_referencia_fct_gfe`) and (`tb0`.`TB_DIVISAO_id_divisao` = `tb2`.`id_divisao`)) order by `tb0`.`id_colaborador` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `VW_COLABORADOR`  AS  select `tb0`.`id_colaborador` AS `idColaborador`,`tb0`.`nome` AS `nome`,`tb0`.`matricula` AS `matricula`,`tb0`.`telefone` AS `telefone`,`tb0`.`especialidade` AS `especialidade`,concat('R$ ',`tb0`.`salario`) AS `salario`,concat('R$ ',`tb0`.`percentual_salario`) AS `percentual_salario`,concat(`tb1`.`num_referencia`,' - ',`tb1`.`cargo`,' (R$ ',`tb1`.`valor_referencia`,')') AS `referenciaFct`,`tb2`.`sigla` AS `sigla`,(select `tb1`.`num_referencia` from (`TB_REFERENCIA_FCT_GFE` `tb1` join `TB_COLABORADOR` `tb2`) where ((`tb1`.`id_referencia_fct_gfe` = `tb2`.`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`) and (`tb2`.`id_colaborador` = `tb0`.`id_colaborador`))) AS `ref_fct_atual`,(select min(`TB_FAIXA`.`limite_inferior`) from `TB_FAIXA`) AS `pontuacao_inicial`,(select `tb1`.`num_referencia` from (`TB_REFERENCIA_FCT_GFE` `tb1` join `TB_FAIXA` `tb2`) where ((`tb1`.`id_referencia_fct_gfe` = `tb2`.`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`) and (`tb2`.`limite_inferior` = (select min(`TB_FAIXA`.`limite_inferior`) from `TB_FAIXA`)))) AS `ref_pontuacao_fct` from ((`TB_COLABORADOR` `tb0` join `TB_REFERENCIA_FCT_GFE` `tb1`) join `TB_DIVISAO` `tb2`) where ((`tb0`.`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe` = `tb1`.`id_referencia_fct_gfe`) and (`tb0`.`TB_DIVISAO_id_divisao` = `tb2`.`id_divisao`)) order by `tb0`.`id_colaborador` ;
 
 -- --------------------------------------------------------
 
 --
--- Structure for view `vw_detalhe_atributo`
+-- Estrutura para view `VW_DETALHE_ATRIBUTO`
 --
-DROP TABLE IF EXISTS `vw_detalhe_atributo`;
+DROP TABLE IF EXISTS `VW_DETALHE_ATRIBUTO`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`tiagooliveira`@`localhost` SQL SECURITY DEFINER VIEW `vw_detalhe_atributo`  AS  select `tb0`.`TB_ATRIBUTO_id_atributo` AS `idAtributo`,`tb4`.`letra` AS `Atributo`,`tb1`.`classificacao` AS `AbrangenciaClassificacao`,`tb1`.`nome` AS `AbrangenciaNome`,`tb1`.`descricao` AS `AbrangenciaDescricao`,`tb2`.`classificacao` AS `ComplexidadeClassificacao`,`tb2`.`nome` AS `ComplexidadeNome`,`tb2`.`descricao` AS `ComplexidadeDescricao`,`tb3`.`classificacao` AS `ImpactoClassificacao`,`tb3`.`nome` AS `ImpactoNome`,`tb3`.`descricao` AS `ImpactoDescricao` from ((((`tb_colaborador_has_tb_atributo` `tb0` join `tb_abrangencia` `tb1`) join `tb_complexidade` `tb2`) join `tb_impacto` `tb3`) join `tb_atributo` `tb4`) where ((`tb0`.`TB_COLABORADOR_id_colaborador` = 1) and (`tb0`.`TB_ATRIBUTO_TB_ABRANGENCIA_id_abrangencia` = `tb1`.`id_abrangencia`) and (`tb0`.`TB_ATRIBUTO_TB_COMPLEXIDADE_id_complexidade` = `tb2`.`id_complexidade`) and (`tb0`.`TB_ATRIBUTO_TB_IMPACTO_id_impacto` = `tb3`.`id_impacto`) and (`tb0`.`TB_ATRIBUTO_id_atributo` = `tb4`.`id_atributo`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`tiagooliveira`@`localhost` SQL SECURITY DEFINER VIEW `VW_DETALHE_ATRIBUTO`  AS  select `tb0`.`TB_ATRIBUTO_id_atributo` AS `idAtributo`,`tb4`.`letra` AS `Atributo`,`tb1`.`classificacao` AS `AbrangenciaClassificacao`,`tb1`.`nome` AS `AbrangenciaNome`,`tb1`.`descricao` AS `AbrangenciaDescricao`,`tb2`.`classificacao` AS `ComplexidadeClassificacao`,`tb2`.`nome` AS `ComplexidadeNome`,`tb2`.`descricao` AS `ComplexidadeDescricao`,`tb3`.`classificacao` AS `ImpactoClassificacao`,`tb3`.`nome` AS `ImpactoNome`,`tb3`.`descricao` AS `ImpactoDescricao` from ((((`TB_COLABORADOR_has_TB_ATRIBUTO` `tb0` join `TB_ABRANGENCIA` `tb1`) join `TB_COMPLEXIDADE` `tb2`) join `TB_IMPACTO` `tb3`) join `TB_ATRIBUTO` `tb4`) where ((`tb0`.`TB_COLABORADOR_id_colaborador` = 1) and (`tb0`.`TB_ATRIBUTO_TB_ABRANGENCIA_id_abrangencia` = `tb1`.`id_abrangencia`) and (`tb0`.`TB_ATRIBUTO_TB_COMPLEXIDADE_id_complexidade` = `tb2`.`id_complexidade`) and (`tb0`.`TB_ATRIBUTO_TB_IMPACTO_id_impacto` = `tb3`.`id_impacto`) and (`tb0`.`TB_ATRIBUTO_id_atributo` = `tb4`.`id_atributo`)) ;
 
 -- --------------------------------------------------------
 
 --
--- Structure for view `vw_distribuicao`
+-- Estrutura para view `VW_DISTRIBUICAO`
 --
-DROP TABLE IF EXISTS `vw_distribuicao`;
+DROP TABLE IF EXISTS `VW_DISTRIBUICAO`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`tiagooliveira`@`localhost` SQL SECURITY DEFINER VIEW `vw_distribuicao`  AS  select `tb1`.`id_distribuicao` AS `id_distribuicao`,`tb1`.`valor` AS `valor`,(select distinct min(`tb_resultado`.`pontuacao`) from `tb_resultado`) AS `pontuacao_minima`,(select distinct max(`tb_resultado`.`pontuacao`) from `tb_resultado`) AS `pontuacao_maxima`,`tb1`.`qtde_faixas` AS `qtde_faixas`,date_format(`tb1`.`dt_registro`,'%d/%m/%Y') AS `dt_registro`,(select concat(`tb_referencia_fct_gfe`.`num_referencia`,' - ',`tb_referencia_fct_gfe`.`cargo`,' (R$ ',`tb_referencia_fct_gfe`.`valor_referencia`,')') AS `referencia_fct` from `tb_referencia_fct_gfe` where (`tb_referencia_fct_gfe`.`id_referencia_fct_gfe` = (select `tb3`.`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe` from (`tb_resultado` `tb2` join `tb_colaborador` `tb3`) where ((`tb2`.`TB_COLABORADOR_id_colaborador` = `tb3`.`id_colaborador`) and (`tb2`.`pontuacao` = `pontuacao_minima`))))) AS `referencia_fct` from `tb_distribuicao` `tb1` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `VW_DISTRIBUICAO`  AS  select `TB1`.`id_distribuicao` AS `id_distribuicao`,concat('R$ ',`TB1`.`valor`) AS `valor`,(select distinct min(`TB_RESULTADO`.`pontuacao`) from `TB_RESULTADO`) AS `pontuacao_minima`,(select distinct max(`TB_RESULTADO`.`pontuacao`) from `TB_RESULTADO`) AS `pontuacao_maxima`,`TB1`.`qtde_faixas` AS `qtde_faixas`,date_format(`TB1`.`dt_registro`,'%d/%m/%Y') AS `dt_registro`,(select concat(`TB_REFERENCIA_FCT_GFE`.`num_referencia`,' - ',`TB_REFERENCIA_FCT_GFE`.`cargo`,' (R$ ',`TB_REFERENCIA_FCT_GFE`.`valor_referencia`,')') AS `referencia_fct` from `TB_REFERENCIA_FCT_GFE` where (`TB_REFERENCIA_FCT_GFE`.`id_referencia_fct_gfe` = (select `tb3`.`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe` from (`TB_RESULTADO` `tb2` join `TB_COLABORADOR` `tb3`) where ((`tb2`.`TB_COLABORADOR_id_colaborador` = `tb3`.`id_colaborador`) and (`tb2`.`pontuacao` = `pontuacao_minima`))))) AS `referencia_fct` from `TB_DISTRIBUICAO` `TB1` ;
 
 -- --------------------------------------------------------
 
 --
--- Structure for view `vw_distribuicao_faixa`
+-- Estrutura para view `VW_DISTRIBUICAO_FAIXA`
 --
-DROP TABLE IF EXISTS `vw_distribuicao_faixa`;
+DROP TABLE IF EXISTS `VW_DISTRIBUICAO_FAIXA`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`tiagooliveira`@`localhost` SQL SECURITY DEFINER VIEW `vw_distribuicao_faixa`  AS  select `tb_faixa`.`id_faixa` AS `id_faixa`,`tb_faixa`.`limite_inferior` AS `limite_inferior`,`tb_faixa`.`limite_superior` AS `limite_superior`,`tb_faixa`.`pontuacao_referencia` AS `pontuacao_referencia`,(select count(`tb_resultado`.`id_resultado`) from `tb_resultado` where ((`tb_resultado`.`pontuacao` >= `tb_faixa`.`limite_inferior`) and (`tb_resultado`.`pontuacao` <= `tb_faixa`.`limite_superior`))) AS `qtde_pessoas`,`tb_faixa`.`valor_rateio_pessoa` AS `valor_rateio_pessoa`,`tb_faixa`.`percentual` AS `percentual`,`tb_faixa`.`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe` AS `TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe` from `tb_faixa` group by `tb_faixa`.`limite_inferior`,`tb_faixa`.`limite_superior` order by `tb_faixa`.`limite_inferior` ;
-
--- --------------------------------------------------------
-
---
--- Structure for view `vw_papel_atributo`
---
-DROP TABLE IF EXISTS `vw_papel_atributo`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`tiagooliveira`@`localhost` SQL SECURITY DEFINER VIEW `vw_papel_atributo`  AS  select `tba`.`TB_PAPEL_id_papel` AS `TB_PAPEL_id_papel`,`ta`.`letra` AS `letra`,`ta`.`descricao` AS `descricao`,`tb`.`descricao` AS `descricaoAbrangencia1`,(select `tb_abrangencia`.`descricao` from `tb_abrangencia` where ((`tb_abrangencia`.`atributo` = `ta`.`letra`) and (`tb_abrangencia`.`classificacao` = 2))) AS `descricaoAbrangencia2`,(select `tb_abrangencia`.`descricao` from `tb_abrangencia` where ((`tb_abrangencia`.`atributo` = `ta`.`letra`) and (`tb_abrangencia`.`classificacao` = 3))) AS `descricaoAbrangencia3`,`tc`.`descricao` AS `descricaoComplexidade1`,(select `tb_complexidade`.`descricao` from `tb_complexidade` where ((`tb_complexidade`.`atributo` = `ta`.`letra`) and (`tb_complexidade`.`classificacao` = 2))) AS `descricaoComplexidade2`,(select `tb_complexidade`.`descricao` from `tb_complexidade` where ((`tb_complexidade`.`atributo` = `ta`.`letra`) and (`tb_complexidade`.`classificacao` = 3))) AS `descricaoComplexidade3`,`ti`.`descricao` AS `descricaoImpacto1`,(select `tb_impacto`.`descricao` from `tb_impacto` where ((`tb_impacto`.`atributo` = `ta`.`letra`) and (`tb_impacto`.`classificacao` = 2))) AS `descricaoImpacto2`,(select `tb_impacto`.`descricao` from `tb_impacto` where ((`tb_impacto`.`atributo` = `ta`.`letra`) and (`tb_impacto`.`classificacao` = 3))) AS `descricaoImpacto3` from (((((`tb_atributo_has_tb_papel` `tba` join `tb_atributo` `ta`) join `tb_abrangencia` `tb`) join `tb_complexidade` `tc`) join `tb_impacto` `ti`) join `tb_papel` `tp`) where ((`ta`.`id_atributo` = `tba`.`TB_ATRIBUTO_id_atributo`) and (`ta`.`TB_ABRANGENCIA_id_abrangencia` = `tb`.`id_abrangencia`) and (`ta`.`TB_COMPLEXIDADE_id_complexidade` = `tc`.`id_complexidade`) and (`ta`.`TB_IMPACTO_id_impacto` = `ti`.`id_impacto`) and (`tp`.`id_papel` = `tba`.`TB_PAPEL_id_papel`)) group by `tp`.`nome`,`ta`.`letra` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `VW_DISTRIBUICAO_FAIXA`  AS  select `TB_FAIXA`.`id_faixa` AS `id_faixa`,`TB_FAIXA`.`limite_inferior` AS `limite_inferior`,`TB_FAIXA`.`limite_superior` AS `limite_superior`,`TB_FAIXA`.`pontuacao_referencia` AS `pontuacao_referencia`,(select count(`TB_RESULTADO`.`id_resultado`) from `TB_RESULTADO` where ((`TB_RESULTADO`.`pontuacao` >= `TB_FAIXA`.`limite_inferior`) and (`TB_RESULTADO`.`pontuacao` <= `TB_FAIXA`.`limite_superior`))) AS `qtde_pessoas`,`TB_FAIXA`.`valor_rateio_pessoa` AS `valor_rateio_pessoa`,`TB_FAIXA`.`percentual` AS `percentual`,`TB_FAIXA`.`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe` AS `TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe` from `TB_FAIXA` group by `TB_FAIXA`.`limite_inferior`,`TB_FAIXA`.`limite_superior` order by `TB_FAIXA`.`limite_inferior` ;
 
 -- --------------------------------------------------------
 
 --
--- Structure for view `vw_papel_colaborador`
+-- Estrutura para view `VW_PAPEL_ATRIBUTO`
 --
-DROP TABLE IF EXISTS `vw_papel_colaborador`;
+DROP TABLE IF EXISTS `VW_PAPEL_ATRIBUTO`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`tiagooliveira`@`localhost` SQL SECURITY DEFINER VIEW `vw_papel_colaborador`  AS  select `colab`.`id_colaborador` AS `id_colaborador`,`pl`.`id_papel` AS `ID_PAPEL`,`pl`.`nome` AS `NOME` from ((`tb_colaborador` `colab` join `tb_papel_has_tb_colaborador` `coba`) join `tb_papel` `pl`) where ((`colab`.`id_colaborador` = `coba`.`TB_COLABORADOR_id_colaborador`) and (`pl`.`id_papel` = `coba`.`TB_PAPEL_id_papel`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `VW_PAPEL_ATRIBUTO`  AS  select `TBA`.`TB_PAPEL_id_papel` AS `TB_PAPEL_id_papel`,`TA`.`letra` AS `letra`,`TA`.`descricao` AS `descricao`,`TB`.`descricao` AS `descricaoAbrangencia1`,(select `TB_ABRANGENCIA`.`descricao` from `TB_ABRANGENCIA` where ((`TB_ABRANGENCIA`.`atributo` = `TA`.`letra`) and (`TB_ABRANGENCIA`.`classificacao` = 2))) AS `descricaoAbrangencia2`,(select `TB_ABRANGENCIA`.`descricao` from `TB_ABRANGENCIA` where ((`TB_ABRANGENCIA`.`atributo` = `TA`.`letra`) and (`TB_ABRANGENCIA`.`classificacao` = 3))) AS `descricaoAbrangencia3`,`TC`.`descricao` AS `descricaoComplexidade1`,(select `TB_COMPLEXIDADE`.`descricao` from `TB_COMPLEXIDADE` where ((`TB_COMPLEXIDADE`.`atributo` = `TA`.`letra`) and (`TB_COMPLEXIDADE`.`classificacao` = 2))) AS `descricaoComplexidade2`,(select `TB_COMPLEXIDADE`.`descricao` from `TB_COMPLEXIDADE` where ((`TB_COMPLEXIDADE`.`atributo` = `TA`.`letra`) and (`TB_COMPLEXIDADE`.`classificacao` = 3))) AS `descricaoComplexidade3`,`TI`.`descricao` AS `descricaoImpacto1`,(select `TB_IMPACTO`.`descricao` from `TB_IMPACTO` where ((`TB_IMPACTO`.`atributo` = `TA`.`letra`) and (`TB_IMPACTO`.`classificacao` = 2))) AS `descricaoImpacto2`,(select `TB_IMPACTO`.`descricao` from `TB_IMPACTO` where ((`TB_IMPACTO`.`atributo` = `TA`.`letra`) and (`TB_IMPACTO`.`classificacao` = 3))) AS `descricaoImpacto3` from (((((`TB_ATRIBUTO_has_TB_PAPEL` `TBA` join `TB_ATRIBUTO` `TA`) join `TB_ABRANGENCIA` `TB`) join `TB_COMPLEXIDADE` `TC`) join `TB_IMPACTO` `TI`) join `TB_PAPEL` `TP`) where ((`TA`.`id_atributo` = `TBA`.`TB_ATRIBUTO_id_atributo`) and (`TA`.`TB_ABRANGENCIA_id_abrangencia` = `TB`.`id_abrangencia`) and (`TA`.`TB_COMPLEXIDADE_id_complexidade` = `TC`.`id_complexidade`) and (`TA`.`TB_IMPACTO_id_impacto` = `TI`.`id_impacto`) and (`TP`.`id_papel` = `TBA`.`TB_PAPEL_id_papel`)) group by `TP`.`nome`,`TA`.`letra` ;
 
---
--- Indexes for dumped tables
---
+-- --------------------------------------------------------
 
 --
--- Indexes for table `tb_abrangencia`
+-- Estrutura para view `VW_PAPEL_COLABORADOR`
 --
-ALTER TABLE `tb_abrangencia`
+DROP TABLE IF EXISTS `VW_PAPEL_COLABORADOR`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `VW_PAPEL_COLABORADOR`  AS  select `colab`.`id_colaborador` AS `id_colaborador`,`PL`.`id_papel` AS `ID_PAPEL`,`PL`.`nome` AS `NOME` from ((`TB_COLABORADOR` `colab` join `TB_PAPEL_has_TB_COLABORADOR` `cobA`) join `TB_PAPEL` `PL`) where ((`colab`.`id_colaborador` = `cobA`.`TB_COLABORADOR_id_colaborador`) and (`PL`.`id_papel` = `cobA`.`TB_PAPEL_id_papel`)) ;
+
+--
+-- Índices de tabelas apagadas
+--
+
+--
+-- Índices de tabela `TB_ABRANGENCIA`
+--
+ALTER TABLE `TB_ABRANGENCIA`
   ADD PRIMARY KEY (`id_abrangencia`);
 
 --
--- Indexes for table `tb_acesso`
+-- Índices de tabela `TB_ACESSO`
 --
-ALTER TABLE `tb_acesso`
+ALTER TABLE `TB_ACESSO`
   ADD PRIMARY KEY (`id_acesso`),
   ADD UNIQUE KEY `unico_cpf` (`login`);
 
 --
--- Indexes for table `tb_atributo`
+-- Índices de tabela `TB_ATRIBUTO`
 --
-ALTER TABLE `tb_atributo`
+ALTER TABLE `TB_ATRIBUTO`
   ADD PRIMARY KEY (`id_atributo`,`TB_ABRANGENCIA_id_abrangencia`,`TB_COMPLEXIDADE_id_complexidade`,`TB_IMPACTO_id_impacto`),
   ADD KEY `fk_TB_ATRIBUTO_TB_ABRANGENCIA1` (`TB_ABRANGENCIA_id_abrangencia`),
   ADD KEY `fk_TB_ATRIBUTO_TB_COMPLEXIDADE1` (`TB_COMPLEXIDADE_id_complexidade`),
   ADD KEY `fk_TB_ATRIBUTO_TB_IMPACTO1` (`TB_IMPACTO_id_impacto`);
 
 --
--- Indexes for table `tb_atributo_has_tb_papel`
+-- Índices de tabela `TB_ATRIBUTO_has_TB_PAPEL`
 --
-ALTER TABLE `tb_atributo_has_tb_papel`
+ALTER TABLE `TB_ATRIBUTO_has_TB_PAPEL`
   ADD PRIMARY KEY (`TB_ATRIBUTO_id_atributo`,`TB_PAPEL_id_papel`),
   ADD KEY `fk_TB_ATRIBUTO_has_TB_PAPEL_TB_PAPEL1` (`TB_PAPEL_id_papel`),
   ADD KEY `fk_TB_ATRIBUTO_has_TB_PAPEL_TB_ATRIBUTO1` (`TB_ATRIBUTO_id_atributo`);
 
 --
--- Indexes for table `tb_atributo_has_tb_projeto`
+-- Índices de tabela `TB_ATRIBUTO_has_TB_PROJETO`
 --
-ALTER TABLE `tb_atributo_has_tb_projeto`
+ALTER TABLE `TB_ATRIBUTO_has_TB_PROJETO`
   ADD PRIMARY KEY (`TB_ATRIBUTO_id_atributo`,`TB_PROJETO_id_projeto`),
   ADD KEY `fk_TB_ATRIBUTO_has_TB_PROJETO_TB_PROJETO1` (`TB_PROJETO_id_projeto`),
   ADD KEY `fk_TB_ATRIBUTO_has_TB_PROJETO_TB_ATRIBUTO1` (`TB_ATRIBUTO_id_atributo`);
 
 --
--- Indexes for table `tb_colaborador`
+-- Índices de tabela `TB_COLABORADOR`
 --
-ALTER TABLE `tb_colaborador`
+ALTER TABLE `TB_COLABORADOR`
   ADD PRIMARY KEY (`id_colaborador`,`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`,`TB_DIVISAO_id_divisao`,`TB_ACESSO_id_acesso`),
   ADD KEY `fk_TB_COLABORADOR_TB_REFERENCIA_FCT_GFE1` (`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`),
   ADD KEY `fk_TB_COLABORADOR_TB_DIVISAO1` (`TB_DIVISAO_id_divisao`),
@@ -3284,305 +3266,305 @@ ALTER TABLE `tb_colaborador`
   ADD KEY `fk_TB_COLABORADOR_TB_ACESSO1` (`TB_ACESSO_id_acesso`);
 
 --
--- Indexes for table `tb_colaborador_has_tb_atributo`
+-- Índices de tabela `TB_COLABORADOR_has_TB_ATRIBUTO`
 --
-ALTER TABLE `tb_colaborador_has_tb_atributo`
+ALTER TABLE `TB_COLABORADOR_has_TB_ATRIBUTO`
   ADD PRIMARY KEY (`TB_COLABORADOR_id_colaborador`,`TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`,`TB_COLABORADOR_TB_DIVISAO_id_divisao`,`TB_ATRIBUTO_id_atributo`,`TB_ATRIBUTO_TB_ABRANGENCIA_id_abrangencia`,`TB_ATRIBUTO_TB_COMPLEXIDADE_id_complexidade`,`TB_ATRIBUTO_TB_IMPACTO_id_impacto`),
   ADD KEY `fk_TB_COLABORADOR_has_TB_ATRIBUTO_TB_ATRIBUTO1` (`TB_ATRIBUTO_id_atributo`,`TB_ATRIBUTO_TB_ABRANGENCIA_id_abrangencia`,`TB_ATRIBUTO_TB_COMPLEXIDADE_id_complexidade`,`TB_ATRIBUTO_TB_IMPACTO_id_impacto`),
   ADD KEY `fk_TB_COLABORADOR_has_TB_ATRIBUTO_TB_COLABORADOR1` (`TB_COLABORADOR_id_colaborador`,`TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`,`TB_COLABORADOR_TB_DIVISAO_id_divisao`);
 
 --
--- Indexes for table `tb_complexidade`
+-- Índices de tabela `TB_COMPLEXIDADE`
 --
-ALTER TABLE `tb_complexidade`
+ALTER TABLE `TB_COMPLEXIDADE`
   ADD PRIMARY KEY (`id_complexidade`);
 
 --
--- Indexes for table `tb_distribuicao`
+-- Índices de tabela `TB_DISTRIBUICAO`
 --
-ALTER TABLE `tb_distribuicao`
+ALTER TABLE `TB_DISTRIBUICAO`
   ADD PRIMARY KEY (`id_distribuicao`);
 
 --
--- Indexes for table `tb_divisao`
+-- Índices de tabela `TB_DIVISAO`
 --
-ALTER TABLE `tb_divisao`
+ALTER TABLE `TB_DIVISAO`
   ADD PRIMARY KEY (`id_divisao`);
 
 --
--- Indexes for table `tb_faixa`
+-- Índices de tabela `TB_FAIXA`
 --
-ALTER TABLE `tb_faixa`
+ALTER TABLE `TB_FAIXA`
   ADD PRIMARY KEY (`id_faixa`,`TB_DISTRIBUICAO_id_distribuicao`),
   ADD KEY `fk_TB_FAIXA_TB_DISTRIBUICAO1` (`TB_DISTRIBUICAO_id_distribuicao`);
 
 --
--- Indexes for table `tb_impacto`
+-- Índices de tabela `TB_IMPACTO`
 --
-ALTER TABLE `tb_impacto`
+ALTER TABLE `TB_IMPACTO`
   ADD PRIMARY KEY (`id_impacto`);
 
 --
--- Indexes for table `tb_papel`
+-- Índices de tabela `TB_PAPEL`
 --
-ALTER TABLE `tb_papel`
+ALTER TABLE `TB_PAPEL`
   ADD PRIMARY KEY (`id_papel`);
 
 --
--- Indexes for table `tb_papel_has_tb_colaborador`
+-- Índices de tabela `TB_PAPEL_has_TB_COLABORADOR`
 --
-ALTER TABLE `tb_papel_has_tb_colaborador`
+ALTER TABLE `TB_PAPEL_has_TB_COLABORADOR`
   ADD PRIMARY KEY (`TB_PAPEL_id_papel`,`TB_COLABORADOR_id_colaborador`,`TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`,`TB_COLABORADOR_TB_DIVISAO_id_divisao`),
   ADD KEY `fk_TB_PAPEL_has_TB_COLABORADOR_TB_COLABORADOR1` (`TB_COLABORADOR_id_colaborador`,`TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`,`TB_COLABORADOR_TB_DIVISAO_id_divisao`),
   ADD KEY `fk_TB_PAPEL_has_TB_COLABORADOR_TB_PAPEL1` (`TB_PAPEL_id_papel`);
 
 --
--- Indexes for table `tb_perfil`
+-- Índices de tabela `TB_PERFIL`
 --
-ALTER TABLE `tb_perfil`
+ALTER TABLE `TB_PERFIL`
   ADD PRIMARY KEY (`id_perfil`);
 
 --
--- Indexes for table `tb_pesos`
+-- Índices de tabela `TB_PESOS`
 --
-ALTER TABLE `tb_pesos`
+ALTER TABLE `TB_PESOS`
   ADD PRIMARY KEY (`id_pesos`);
 
 --
--- Indexes for table `tb_projeto`
+-- Índices de tabela `TB_PROJETO`
 --
-ALTER TABLE `tb_projeto`
+ALTER TABLE `TB_PROJETO`
   ADD PRIMARY KEY (`id_projeto`);
 
 --
--- Indexes for table `tb_projeto_has_tb_colaborador`
+-- Índices de tabela `TB_PROJETO_has_TB_COLABORADOR`
 --
-ALTER TABLE `tb_projeto_has_tb_colaborador`
+ALTER TABLE `TB_PROJETO_has_TB_COLABORADOR`
   ADD PRIMARY KEY (`TB_PROJETO_id_projeto`,`TB_COLABORADOR_id_colaborador`,`TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`,`TB_COLABORADOR_TB_DIVISAO_id_divisao`),
   ADD KEY `fk_TB_PROJETO_has_TB_COLABORADOR_TB_COLABORADOR1` (`TB_COLABORADOR_id_colaborador`,`TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`,`TB_COLABORADOR_TB_DIVISAO_id_divisao`),
   ADD KEY `fk_TB_PROJETO_has_TB_COLABORADOR_TB_PROJETO1` (`TB_PROJETO_id_projeto`);
 
 --
--- Indexes for table `tb_referencia_fct_gfe`
+-- Índices de tabela `TB_REFERENCIA_FCT_GFE`
 --
-ALTER TABLE `tb_referencia_fct_gfe`
+ALTER TABLE `TB_REFERENCIA_FCT_GFE`
   ADD PRIMARY KEY (`id_referencia_fct_gfe`);
 
 --
--- Indexes for table `tb_resultado`
+-- Índices de tabela `TB_RESULTADO`
 --
-ALTER TABLE `tb_resultado`
+ALTER TABLE `TB_RESULTADO`
   ADD PRIMARY KEY (`id_resultado`);
 
 --
--- Indexes for table `tb_tecnologia`
+-- Índices de tabela `TB_TECNOLOGIA`
 --
-ALTER TABLE `tb_tecnologia`
+ALTER TABLE `TB_TECNOLOGIA`
   ADD PRIMARY KEY (`id_tecnologia`);
 
 --
--- Indexes for table `tb_tecnologia_has_tb_colaborador`
+-- Índices de tabela `TB_TECNOLOGIA_has_TB_COLABORADOR`
 --
-ALTER TABLE `tb_tecnologia_has_tb_colaborador`
+ALTER TABLE `TB_TECNOLOGIA_has_TB_COLABORADOR`
   ADD PRIMARY KEY (`TB_TECNOLOGIA_id_tecnologia`,`TB_COLABORADOR_id_colaborador`,`TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`,`TB_COLABORADOR_TB_DIVISAO_id_divisao`),
   ADD KEY `fk_TB_TECNOLOGIA_has_TB_COLABORADOR_TB_COLABORADOR1` (`TB_COLABORADOR_id_colaborador`,`TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`,`TB_COLABORADOR_TB_DIVISAO_id_divisao`),
   ADD KEY `fk_TB_TECNOLOGIA_has_TB_COLABORADOR_TB_TECNOLOGIA1` (`TB_TECNOLOGIA_id_tecnologia`);
 
 --
--- Indexes for table `tb_tecnologia_has_tb_projeto`
+-- Índices de tabela `TB_TECNOLOGIA_has_TB_PROJETO`
 --
-ALTER TABLE `tb_tecnologia_has_tb_projeto`
+ALTER TABLE `TB_TECNOLOGIA_has_TB_PROJETO`
   ADD PRIMARY KEY (`TB_TECNOLOGIA_id_tecnologia`,`TB_PROJETO_id_projeto`),
   ADD KEY `fk_TB_TECNOLOGIA_has_TB_PROJETO_TB_PROJETO1` (`TB_PROJETO_id_projeto`),
   ADD KEY `fk_TB_TECNOLOGIA_has_TB_PROJETO_TB_TECNOLOGIA1` (`TB_TECNOLOGIA_id_tecnologia`);
 
 --
--- Indexes for table `tb_valores`
+-- Índices de tabela `TB_VALORES`
 --
-ALTER TABLE `tb_valores`
+ALTER TABLE `TB_VALORES`
   ADD PRIMARY KEY (`ID_VALORES`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de tabelas apagadas
 --
 
 --
--- AUTO_INCREMENT for table `tb_abrangencia`
+-- AUTO_INCREMENT de tabela `TB_ABRANGENCIA`
 --
-ALTER TABLE `tb_abrangencia`
-  MODIFY `id_abrangencia` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+ALTER TABLE `TB_ABRANGENCIA`
+  MODIFY `id_abrangencia` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
--- AUTO_INCREMENT for table `tb_acesso`
+-- AUTO_INCREMENT de tabela `TB_ACESSO`
 --
-ALTER TABLE `tb_acesso`
+ALTER TABLE `TB_ACESSO`
   MODIFY `id_acesso` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `tb_atributo`
+-- AUTO_INCREMENT de tabela `TB_ATRIBUTO`
 --
-ALTER TABLE `tb_atributo`
+ALTER TABLE `TB_ATRIBUTO`
   MODIFY `id_atributo` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=406;
 
 --
--- AUTO_INCREMENT for table `tb_colaborador`
+-- AUTO_INCREMENT de tabela `TB_COLABORADOR`
 --
-ALTER TABLE `tb_colaborador`
+ALTER TABLE `TB_COLABORADOR`
   MODIFY `id_colaborador` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `tb_complexidade`
+-- AUTO_INCREMENT de tabela `TB_COMPLEXIDADE`
 --
-ALTER TABLE `tb_complexidade`
+ALTER TABLE `TB_COMPLEXIDADE`
   MODIFY `id_complexidade` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
--- AUTO_INCREMENT for table `tb_distribuicao`
+-- AUTO_INCREMENT de tabela `TB_DISTRIBUICAO`
 --
-ALTER TABLE `tb_distribuicao`
+ALTER TABLE `TB_DISTRIBUICAO`
   MODIFY `id_distribuicao` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `tb_divisao`
+-- AUTO_INCREMENT de tabela `TB_DIVISAO`
 --
-ALTER TABLE `tb_divisao`
+ALTER TABLE `TB_DIVISAO`
   MODIFY `id_divisao` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
--- AUTO_INCREMENT for table `tb_faixa`
+-- AUTO_INCREMENT de tabela `TB_FAIXA`
 --
-ALTER TABLE `tb_faixa`
-  MODIFY `id_faixa` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=951;
+ALTER TABLE `TB_FAIXA`
+  MODIFY `id_faixa` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=183;
 
 --
--- AUTO_INCREMENT for table `tb_impacto`
+-- AUTO_INCREMENT de tabela `TB_IMPACTO`
 --
-ALTER TABLE `tb_impacto`
+ALTER TABLE `TB_IMPACTO`
   MODIFY `id_impacto` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
--- AUTO_INCREMENT for table `tb_papel`
+-- AUTO_INCREMENT de tabela `TB_PAPEL`
 --
-ALTER TABLE `tb_papel`
-  MODIFY `id_papel` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+ALTER TABLE `TB_PAPEL`
+  MODIFY `id_papel` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT for table `tb_perfil`
+-- AUTO_INCREMENT de tabela `TB_PERFIL`
 --
-ALTER TABLE `tb_perfil`
+ALTER TABLE `TB_PERFIL`
   MODIFY `id_perfil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `tb_pesos`
+-- AUTO_INCREMENT de tabela `TB_PESOS`
 --
-ALTER TABLE `tb_pesos`
+ALTER TABLE `TB_PESOS`
   MODIFY `id_pesos` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT for table `tb_projeto`
+-- AUTO_INCREMENT de tabela `TB_PROJETO`
 --
-ALTER TABLE `tb_projeto`
+ALTER TABLE `TB_PROJETO`
   MODIFY `id_projeto` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
--- AUTO_INCREMENT for table `tb_referencia_fct_gfe`
+-- AUTO_INCREMENT de tabela `TB_REFERENCIA_FCT_GFE`
 --
-ALTER TABLE `tb_referencia_fct_gfe`
+ALTER TABLE `TB_REFERENCIA_FCT_GFE`
   MODIFY `id_referencia_fct_gfe` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 
 --
--- AUTO_INCREMENT for table `tb_resultado`
+-- AUTO_INCREMENT de tabela `TB_RESULTADO`
 --
-ALTER TABLE `tb_resultado`
-  MODIFY `id_resultado` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+ALTER TABLE `TB_RESULTADO`
+  MODIFY `id_resultado` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
--- AUTO_INCREMENT for table `tb_tecnologia`
+-- AUTO_INCREMENT de tabela `TB_TECNOLOGIA`
 --
-ALTER TABLE `tb_tecnologia`
+ALTER TABLE `TB_TECNOLOGIA`
   MODIFY `id_tecnologia` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT for table `tb_valores`
+-- AUTO_INCREMENT de tabela `TB_VALORES`
 --
-ALTER TABLE `tb_valores`
+ALTER TABLE `TB_VALORES`
   MODIFY `ID_VALORES` int(9) NOT NULL AUTO_INCREMENT;
 
 --
--- Constraints for dumped tables
+-- Restrições para dumps de tabelas
 --
 
 --
--- Limitadores para a tabela `tb_atributo`
+-- Restrições para tabelas `TB_ATRIBUTO`
 --
-ALTER TABLE `tb_atributo`
-  ADD CONSTRAINT `fk_TB_ATRIBUTO_TB_ABRANGENCIA1` FOREIGN KEY (`TB_ABRANGENCIA_id_abrangencia`) REFERENCES `tb_abrangencia` (`id_abrangencia`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_TB_ATRIBUTO_TB_COMPLEXIDADE1` FOREIGN KEY (`TB_COMPLEXIDADE_id_complexidade`) REFERENCES `tb_complexidade` (`id_complexidade`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_TB_ATRIBUTO_TB_IMPACTO1` FOREIGN KEY (`TB_IMPACTO_id_impacto`) REFERENCES `tb_impacto` (`id_impacto`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `TB_ATRIBUTO`
+  ADD CONSTRAINT `fk_TB_ATRIBUTO_TB_ABRANGENCIA1` FOREIGN KEY (`TB_ABRANGENCIA_id_abrangencia`) REFERENCES `TB_ABRANGENCIA` (`id_abrangencia`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_TB_ATRIBUTO_TB_COMPLEXIDADE1` FOREIGN KEY (`TB_COMPLEXIDADE_id_complexidade`) REFERENCES `TB_COMPLEXIDADE` (`id_complexidade`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_TB_ATRIBUTO_TB_IMPACTO1` FOREIGN KEY (`TB_IMPACTO_id_impacto`) REFERENCES `TB_IMPACTO` (`id_impacto`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Limitadores para a tabela `tb_atributo_has_tb_papel`
+-- Restrições para tabelas `TB_ATRIBUTO_has_TB_PAPEL`
 --
-ALTER TABLE `tb_atributo_has_tb_papel`
-  ADD CONSTRAINT `fk_TB_ATRIBUTO_has_TB_PAPEL_TB_ATRIBUTO1` FOREIGN KEY (`TB_ATRIBUTO_id_atributo`) REFERENCES `tb_atributo` (`id_atributo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_TB_ATRIBUTO_has_TB_PAPEL_TB_PAPEL1` FOREIGN KEY (`TB_PAPEL_id_papel`) REFERENCES `tb_papel` (`id_papel`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `TB_ATRIBUTO_has_TB_PAPEL`
+  ADD CONSTRAINT `fk_TB_ATRIBUTO_has_TB_PAPEL_TB_ATRIBUTO1` FOREIGN KEY (`TB_ATRIBUTO_id_atributo`) REFERENCES `TB_ATRIBUTO` (`id_atributo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_TB_ATRIBUTO_has_TB_PAPEL_TB_PAPEL1` FOREIGN KEY (`TB_PAPEL_id_papel`) REFERENCES `TB_PAPEL` (`id_papel`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Limitadores para a tabela `tb_atributo_has_tb_projeto`
+-- Restrições para tabelas `TB_ATRIBUTO_has_TB_PROJETO`
 --
-ALTER TABLE `tb_atributo_has_tb_projeto`
-  ADD CONSTRAINT `fk_TB_ATRIBUTO_has_TB_PROJETO_TB_ATRIBUTO1` FOREIGN KEY (`TB_ATRIBUTO_id_atributo`) REFERENCES `tb_atributo` (`id_atributo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_TB_ATRIBUTO_has_TB_PROJETO_TB_PROJETO1` FOREIGN KEY (`TB_PROJETO_id_projeto`) REFERENCES `tb_projeto` (`id_projeto`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `TB_ATRIBUTO_has_TB_PROJETO`
+  ADD CONSTRAINT `fk_TB_ATRIBUTO_has_TB_PROJETO_TB_ATRIBUTO1` FOREIGN KEY (`TB_ATRIBUTO_id_atributo`) REFERENCES `TB_ATRIBUTO` (`id_atributo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_TB_ATRIBUTO_has_TB_PROJETO_TB_PROJETO1` FOREIGN KEY (`TB_PROJETO_id_projeto`) REFERENCES `TB_PROJETO` (`id_projeto`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Limitadores para a tabela `tb_colaborador`
+-- Restrições para tabelas `TB_COLABORADOR`
 --
-ALTER TABLE `tb_colaborador`
-  ADD CONSTRAINT `TB_COLABORADOR_ibfk_1` FOREIGN KEY (`TB_PERFIL_id_perfil`) REFERENCES `tb_perfil` (`id_perfil`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_TB_COLABORADOR_TB_ACESSO1` FOREIGN KEY (`TB_ACESSO_id_acesso`) REFERENCES `tb_acesso` (`id_acesso`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_TB_COLABORADOR_TB_DIVISAO1` FOREIGN KEY (`TB_DIVISAO_id_divisao`) REFERENCES `tb_divisao` (`id_divisao`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_TB_COLABORADOR_TB_REFERENCIA_FCT_GFE1` FOREIGN KEY (`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`) REFERENCES `tb_referencia_fct_gfe` (`id_referencia_fct_gfe`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `TB_COLABORADOR`
+  ADD CONSTRAINT `TB_COLABORADOR_ibfk_1` FOREIGN KEY (`TB_PERFIL_id_perfil`) REFERENCES `TB_PERFIL` (`id_perfil`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_TB_COLABORADOR_TB_ACESSO1` FOREIGN KEY (`TB_ACESSO_id_acesso`) REFERENCES `TB_ACESSO` (`id_acesso`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_TB_COLABORADOR_TB_DIVISAO1` FOREIGN KEY (`TB_DIVISAO_id_divisao`) REFERENCES `TB_DIVISAO` (`id_divisao`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_TB_COLABORADOR_TB_REFERENCIA_FCT_GFE1` FOREIGN KEY (`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`) REFERENCES `TB_REFERENCIA_FCT_GFE` (`id_referencia_fct_gfe`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Limitadores para a tabela `tb_colaborador_has_tb_atributo`
+-- Restrições para tabelas `TB_COLABORADOR_has_TB_ATRIBUTO`
 --
-ALTER TABLE `tb_colaborador_has_tb_atributo`
-  ADD CONSTRAINT `fk_TB_COLABORADOR_has_TB_ATRIBUTO_TB_ATRIBUTO1` FOREIGN KEY (`TB_ATRIBUTO_id_atributo`,`TB_ATRIBUTO_TB_ABRANGENCIA_id_abrangencia`,`TB_ATRIBUTO_TB_COMPLEXIDADE_id_complexidade`,`TB_ATRIBUTO_TB_IMPACTO_id_impacto`) REFERENCES `tb_atributo` (`id_atributo`, `TB_ABRANGENCIA_id_abrangencia`, `TB_COMPLEXIDADE_id_complexidade`, `TB_IMPACTO_id_impacto`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_TB_COLABORADOR_has_TB_ATRIBUTO_TB_COLABORADOR1` FOREIGN KEY (`TB_COLABORADOR_id_colaborador`,`TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`,`TB_COLABORADOR_TB_DIVISAO_id_divisao`) REFERENCES `tb_colaborador` (`id_colaborador`, `TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`, `TB_DIVISAO_id_divisao`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `TB_COLABORADOR_has_TB_ATRIBUTO`
+  ADD CONSTRAINT `fk_TB_COLABORADOR_has_TB_ATRIBUTO_TB_ATRIBUTO1` FOREIGN KEY (`TB_ATRIBUTO_id_atributo`,`TB_ATRIBUTO_TB_ABRANGENCIA_id_abrangencia`,`TB_ATRIBUTO_TB_COMPLEXIDADE_id_complexidade`,`TB_ATRIBUTO_TB_IMPACTO_id_impacto`) REFERENCES `TB_ATRIBUTO` (`id_atributo`, `TB_ABRANGENCIA_id_abrangencia`, `TB_COMPLEXIDADE_id_complexidade`, `TB_IMPACTO_id_impacto`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_TB_COLABORADOR_has_TB_ATRIBUTO_TB_COLABORADOR1` FOREIGN KEY (`TB_COLABORADOR_id_colaborador`,`TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`,`TB_COLABORADOR_TB_DIVISAO_id_divisao`) REFERENCES `TB_COLABORADOR` (`id_colaborador`, `TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`, `TB_DIVISAO_id_divisao`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Limitadores para a tabela `tb_faixa`
+-- Restrições para tabelas `TB_FAIXA`
 --
-ALTER TABLE `tb_faixa`
-  ADD CONSTRAINT `fk_TB_FAIXA_TB_DISTRIBUICAO1` FOREIGN KEY (`TB_DISTRIBUICAO_id_distribuicao`) REFERENCES `tb_distribuicao` (`id_distribuicao`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `TB_FAIXA`
+  ADD CONSTRAINT `fk_TB_FAIXA_TB_DISTRIBUICAO1` FOREIGN KEY (`TB_DISTRIBUICAO_id_distribuicao`) REFERENCES `TB_DISTRIBUICAO` (`id_distribuicao`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Limitadores para a tabela `tb_papel_has_tb_colaborador`
+-- Restrições para tabelas `TB_PAPEL_has_TB_COLABORADOR`
 --
-ALTER TABLE `tb_papel_has_tb_colaborador`
-  ADD CONSTRAINT `fk_TB_PAPEL_has_TB_COLABORADOR_TB_COLABORADOR1` FOREIGN KEY (`TB_COLABORADOR_id_colaborador`,`TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`,`TB_COLABORADOR_TB_DIVISAO_id_divisao`) REFERENCES `tb_colaborador` (`id_colaborador`, `TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`, `TB_DIVISAO_id_divisao`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_TB_PAPEL_has_TB_COLABORADOR_TB_PAPEL1` FOREIGN KEY (`TB_PAPEL_id_papel`) REFERENCES `tb_papel` (`id_papel`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `TB_PAPEL_has_TB_COLABORADOR`
+  ADD CONSTRAINT `fk_TB_PAPEL_has_TB_COLABORADOR_TB_COLABORADOR1` FOREIGN KEY (`TB_COLABORADOR_id_colaborador`,`TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`,`TB_COLABORADOR_TB_DIVISAO_id_divisao`) REFERENCES `TB_COLABORADOR` (`id_colaborador`, `TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`, `TB_DIVISAO_id_divisao`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_TB_PAPEL_has_TB_COLABORADOR_TB_PAPEL1` FOREIGN KEY (`TB_PAPEL_id_papel`) REFERENCES `TB_PAPEL` (`id_papel`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Limitadores para a tabela `tb_projeto_has_tb_colaborador`
+-- Restrições para tabelas `TB_PROJETO_has_TB_COLABORADOR`
 --
-ALTER TABLE `tb_projeto_has_tb_colaborador`
-  ADD CONSTRAINT `fk_TB_PROJETO_has_TB_COLABORADOR_TB_COLABORADOR1` FOREIGN KEY (`TB_COLABORADOR_id_colaborador`,`TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`,`TB_COLABORADOR_TB_DIVISAO_id_divisao`) REFERENCES `tb_colaborador` (`id_colaborador`, `TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`, `TB_DIVISAO_id_divisao`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_TB_PROJETO_has_TB_COLABORADOR_TB_PROJETO1` FOREIGN KEY (`TB_PROJETO_id_projeto`) REFERENCES `tb_projeto` (`id_projeto`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `TB_PROJETO_has_TB_COLABORADOR`
+  ADD CONSTRAINT `fk_TB_PROJETO_has_TB_COLABORADOR_TB_COLABORADOR1` FOREIGN KEY (`TB_COLABORADOR_id_colaborador`,`TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`,`TB_COLABORADOR_TB_DIVISAO_id_divisao`) REFERENCES `TB_COLABORADOR` (`id_colaborador`, `TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`, `TB_DIVISAO_id_divisao`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_TB_PROJETO_has_TB_COLABORADOR_TB_PROJETO1` FOREIGN KEY (`TB_PROJETO_id_projeto`) REFERENCES `TB_PROJETO` (`id_projeto`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Limitadores para a tabela `tb_tecnologia_has_tb_colaborador`
+-- Restrições para tabelas `TB_TECNOLOGIA_has_TB_COLABORADOR`
 --
-ALTER TABLE `tb_tecnologia_has_tb_colaborador`
-  ADD CONSTRAINT `fk_TB_TECNOLOGIA_has_TB_COLABORADOR_TB_COLABORADOR1` FOREIGN KEY (`TB_COLABORADOR_id_colaborador`,`TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`,`TB_COLABORADOR_TB_DIVISAO_id_divisao`) REFERENCES `tb_colaborador` (`id_colaborador`, `TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`, `TB_DIVISAO_id_divisao`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_TB_TECNOLOGIA_has_TB_COLABORADOR_TB_TECNOLOGIA1` FOREIGN KEY (`TB_TECNOLOGIA_id_tecnologia`) REFERENCES `tb_tecnologia` (`id_tecnologia`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `TB_TECNOLOGIA_has_TB_COLABORADOR`
+  ADD CONSTRAINT `fk_TB_TECNOLOGIA_has_TB_COLABORADOR_TB_COLABORADOR1` FOREIGN KEY (`TB_COLABORADOR_id_colaborador`,`TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`,`TB_COLABORADOR_TB_DIVISAO_id_divisao`) REFERENCES `TB_COLABORADOR` (`id_colaborador`, `TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`, `TB_DIVISAO_id_divisao`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_TB_TECNOLOGIA_has_TB_COLABORADOR_TB_TECNOLOGIA1` FOREIGN KEY (`TB_TECNOLOGIA_id_tecnologia`) REFERENCES `TB_TECNOLOGIA` (`id_tecnologia`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Limitadores para a tabela `tb_tecnologia_has_tb_projeto`
+-- Restrições para tabelas `TB_TECNOLOGIA_has_TB_PROJETO`
 --
-ALTER TABLE `tb_tecnologia_has_tb_projeto`
-  ADD CONSTRAINT `fk_TB_TECNOLOGIA_has_TB_PROJETO_TB_PROJETO1` FOREIGN KEY (`TB_PROJETO_id_projeto`) REFERENCES `tb_projeto` (`id_projeto`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_TB_TECNOLOGIA_has_TB_PROJETO_TB_TECNOLOGIA1` FOREIGN KEY (`TB_TECNOLOGIA_id_tecnologia`) REFERENCES `tb_tecnologia` (`id_tecnologia`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `TB_TECNOLOGIA_has_TB_PROJETO`
+  ADD CONSTRAINT `fk_TB_TECNOLOGIA_has_TB_PROJETO_TB_PROJETO1` FOREIGN KEY (`TB_PROJETO_id_projeto`) REFERENCES `TB_PROJETO` (`id_projeto`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_TB_TECNOLOGIA_has_TB_PROJETO_TB_TECNOLOGIA1` FOREIGN KEY (`TB_TECNOLOGIA_id_tecnologia`) REFERENCES `TB_TECNOLOGIA` (`id_tecnologia`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
