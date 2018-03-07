@@ -1,9 +1,15 @@
+import { MEAT_API } from './../app.api';
 import { Observable } from 'rxjs/Rx';
 import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { RestService } from 'app/shared/services/rest.service';
 
 import { Papel } from './papel.model';
+
+export class AtributoPapel {
+    TB_ATRIBUTO_id_atributo: number;
+    TB_PAPEL_id_papel: number;
+}
 
 @Injectable()
 export class PapelService extends RestService<Papel>{
@@ -28,10 +34,6 @@ export class PapelService extends RestService<Papel>{
         return super.obterPorId(id);
     }
 
-    getAtributoPapel(): Observable<Papel[]> {
-        return super.obterTodos();
-    }
-
     addPapel(papel: Papel) {
         return super.adicionar(papel);
     }
@@ -43,4 +45,22 @@ export class PapelService extends RestService<Papel>{
     updatePapel(id, papel) {
         return super.atualizarPorId(papel, id);
     }
+
+    getMaxId(){
+        return this.http.get(`${MEAT_API}/papel/1/1`)
+        .do(response => console.log('resultado: ', response.json()))
+        .map(response => response.json());
+    }
+
+    getAtributoPapel(): Observable<Papel[]> {
+        return this.http.get(`${MEAT_API}/AtributoPapel/`)
+        .do(response => console.log('resultado: ', response.json()))
+        .map(response => response.json());
+    }
+
+    addAtributoPapel(atributoPapel: AtributoPapel): Observable<string> {
+        return this.http.post(`${MEAT_API}/AtributoPapel/`, atributoPapel, this.getDefaultRequestOptions())
+            .map(response => response.text())
+    }
+
 }

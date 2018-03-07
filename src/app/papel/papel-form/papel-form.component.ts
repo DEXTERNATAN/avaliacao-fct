@@ -1,6 +1,7 @@
+import { ToastrService } from 'ngx-toastr';
 import { MensagensHandler } from 'app/shared/services/mensagens-handler.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { Papel } from './../papel.model';
@@ -22,19 +23,23 @@ export class PapelFormComponent implements OnInit {
     listPapel: Papel[] = [];
     idResource: any;
     stPapel = false;
+    isOpen: boolean = false;
+    atributo: FormArray;
 
     constructor(
-        formBuilder: FormBuilder,
+        private formBuilder: FormBuilder,
         private router: Router,
         private route: ActivatedRoute,
         private papelService: PapelService,
         private loaderService: LoaderService,
         private mensagensHandler: MensagensHandler,
-        private atributoService: AtributoService
+        private atributoService: AtributoService,
+        private toastr: ToastrService
     ) {
         this.formPapel = formBuilder.group({
             tipo: [null, [Validators.required]],
-            nome: ['', Validators.required],
+            nome: [null, [Validators.required]],
+            atributo: this.formBuilder.array([], Validators.required),
             descricao: [null, Validators.required]
         })
     }
@@ -43,16 +48,18 @@ export class PapelFormComponent implements OnInit {
 
         this.loaderService.setMsgLoading('Carregando ...');
         this.mensagensHandler.handleClearMessages();
-        this.papelService.getPapel().subscribe(papelList => this.listPapel = papelList );
+        this.papelService.getPapel().subscribe(papelList => this.listPapel = papelList);
         this.papelService.getAtributoPapel().subscribe(atribts => {
-            this.listAtributos = atribts;
+            atribts.forEach(element => {
+                this.addIPapelList(element);
+            });
         });
 
         this.route.params.subscribe(params => {
             this.idResource = params['id_papel'];
             this.title = this.idResource ? 'Editar Papel' : 'Novo Papel';
 
-            if ( !this.idResource ) {
+            if (!this.idResource) {
                 return;
             };
 
@@ -65,9 +72,40 @@ export class PapelFormComponent implements OnInit {
                 }
             });
         });
+
+        // filtrar o papel 
+        this.formPapel.get('tipo').valueChanges.subscribe(value => {
+            let listaNomePapel: any[];
+            this.papelService.getPapel().subscribe(papelList => {
+                listaNomePapel = papelList.filter(function (data) {
+                    return data['tipo'] === value;
+                });
+                this.listPapel = listaNomePapel;
+            });
+        });
+
+    }
+
+    getPapelList(formPapel) {
+        return formPapel.get('atributo').controls;
+    }
+
+    addIPapelList(papel): void {
+        this.atributo = this.formPapel.get('atributo') as FormArray;
+        this.atributo.push(this.createPapelList(papel));
+    }
+
+    createPapelList(papel): FormGroup {
+        return this.formBuilder.group({
+            idAtributo: papel.idAtributo,
+            descricao: papel.descricao,
+            letra: papel.letra,
+            ativado: false
+        });
     }
 
     save() {
+
         let result, userValue = this.formPapel.value;
         let atualizar: boolean;
 
@@ -80,15 +118,49 @@ export class PapelFormComponent implements OnInit {
             this.loaderService.setMsgLoading('Salvando papel ...');
             result = this.papelService.addPapel(userValue);
         }
-        result.subscribe(data => {
-            if (atualizar) {
-                this.mensagensHandler.handleSuccess('Papel atualizado com sucesso!');
-            } else {
-                this.mensagensHandler.handleSuccess('Papel salvo com sucesso!');
-            }
-            this.router.navigate(['papel']);
-        }
-        );
+
+        result.subscribe(
+            data => {
+                console.log('ULTIMO ID: ', data);
+                if (atualizar) {
+                    // this.mensagensHandler.handleSuccess('Papel atualizado com sucesso!');
+                    this.toastr.success('Papel atualizado com sucesso!', 'Sucesso', {
+                        progressBar: true,
+                        progressAnimation: 'increasing',
+                        closeButton: true,
+                        timeOut: 3000
+                    });
+                } else {
+                    this.papelService.getMaxId().subscribe(value => {
+                        console.log('Resultado: ', value[0].maxid);
+
+                        // Associar papel a atributo
+                        this.atributo.controls.forEach(element => {
+                            if (element.value.ativado) {
+                                let associacaoAtributoPapel: any = { TB_ATRIBUTO_id_atributo: element.value.idAtributo, TB_PAPEL_id_papel: value[0].maxid }
+                                console.log('ASSOCIANDO: ', associacaoAtributoPapel);
+                                this.papelService.addAtributoPapel(associacaoAtributoPapel).subscribe(
+                                    data => {
+                                        console.log('Resposta do servidor: ', data);
+                                    }
+                                )
+                            }
+                        });
+
+                    })
+
+                    this.toastr.success('Papel salvo com sucesso!', 'Sucesso', {
+                        progressBar: true,
+                        progressAnimation: 'increasing',
+                        closeButton: true,
+                        timeOut: 3000
+                    });
+                    // this.mensagensHandler.handleSuccess('Papel salvo com sucesso!');
+
+                }
+                this.router.navigate(['papel']);
+            });
+
     }
 
     onChange(e) {
@@ -105,4 +177,5 @@ export class PapelFormComponent implements OnInit {
     private navigateBack() {
         this.router.navigate(['/papel']);
     }
+
 }

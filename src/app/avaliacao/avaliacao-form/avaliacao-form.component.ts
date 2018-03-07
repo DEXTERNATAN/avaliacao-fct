@@ -190,21 +190,15 @@ export class AvaliacaoFormComponent implements OnInit {
     }
 
     getValidacaoSelectizeTec() {
-        
         if ( this.formAvaliacao.get('tecnologia').value.length === 0 ) {
             this.tecnologiaValidacao = true;
         }else{
             this.tecnologiaValidacao = false;
         }
-    
     }
 
     getValidacaoSelectize() {
-        // let strPapel: string[] = this.formAvaliacao.get('papel').value;
-        // if ( strPapel.length === 0 ) {
-            this.papelValidacao = true;
-        // }
-        console.log('validação', this.formAvaliacao.get('papel').value);
+        this.papelValidacao = true;
     }
 
     user(): User {
@@ -213,19 +207,10 @@ export class AvaliacaoFormComponent implements OnInit {
 
     registrarAvaliacao() {
 
-        // let arrayProjetos = this.formAvaliacao.get('items') as FormArray;
-        // console.log('numero de projetos: ', arrayProjetos.length);
-
-        // if ( arrayProjetos.length === 0 ) {
-        //     console.log('Não tem projetos: ', arrayProjetos.length);
-        //     this.ProjetosValidacao = true;
-        // }
-
         let avaliacaoForm = this.formAvaliacao.value;
         this.somaValores('tudo');
 
         // Relacionar colaborador a atributo
-
         this.avaliacaoService.addAvaliacao({
             'id_resultado': 'null',
             'pontuacao': avaliacaoForm.vlrPtTotal,
