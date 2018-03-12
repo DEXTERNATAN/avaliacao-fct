@@ -196,18 +196,29 @@
 							<span>13 - Técnico (R$ 678,19)</span>
 						</div>
 						<div class="col-md-4">
-								<label for="">Referência FCT Atual:</label>
-								<span>19 - Analista (R$ 1408.71)</span>
-							</div>
-						
+							<label for="">Referência FCT Atual:</label>
+							<span>19 - Analista (R$ 1408.71)</span>
+						</div>
+
 					</div>
 
 					<div class="col-md-12 relatorio">
-							<div class="col-md-10">
-									<label for="">Referência FCT Atual:</label>
-									<span>19 - Analista (R$ 1408.71)</span>
-							</div>
+						<div class="col-md-10">
+							<label for="">Data da Avaliação:</label>
+							<span>{{ myDate }}</span>
 						</div>
+					</div>
+
+					<div class="col-xs-12 relatorio">
+						<a href="invoice-print.html" target="_blank" class="btn btn-default">
+							<i class="fa fa-print"></i> Print</a>
+						<!-- <button type="button" class="btn btn-success pull-right">
+							<i class="fa fa-credit-card"></i> Submit Payment
+						</button> -->
+						<button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
+							<i class="fa fa-download"></i> Gerar PDF
+						</button>
+					</div>
 
 				</div>
 				<!-- /.box-body -->
@@ -215,4 +226,5 @@
 			<!-- /.box -->
 		</div>
 	</div>
+
 </section>
