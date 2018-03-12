@@ -123,12 +123,9 @@
                     </td>
                     <td>
                       <label style="width: 60%">
-                        
-                        {{this.formFaixa.get('referenciaFct').value}}
                         <select name="vlrReferencia" id="vlrReferencia" class="form-control">
-                          <option *ngFor="let ref of referencia" value="ref.id_referencia_fct_gfe" [selected]="ref.valor_referencia == this.formFaixa.get('referenciaFct').value">{{ ref.num_referencia }} - {{ ref.valor_referencia }}</option>
-                        </select>
-                        
+                          <option *ngFor="let ref of referencia" value="ref.id_referencia_fct_gfe" [selected]="ref.num_referencia == this.formFaixa.get('referenciaFct').value">{{ ref.num_referencia }} - {{ ref.valor_referencia }}</option>
+                        </select>                        
                       </label>
                     </td>
                     <td>
