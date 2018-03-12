@@ -35,7 +35,7 @@
 
             <div class="form-group" [ngClass]="{'has-error': (!formPapel.controls['nome'].valid && formPapel.controls['nome'].touched) }">
               <label for="nome">Nome</label>
-              <select class="form-control" formControlName="nome" id="nome" (change)="onChange($event.target.value)" *ngIf="!stPapel">
+              <select class="form-control" [(ngModel)]="papeis.nome" formControlName="nome" id="nome" (change)="onChange($event.target.value)" *ngIf="!stPapel">
                 <option [selected]="" value="">Selecione</option>
                 <option *ngFor="let ppl of listPapel" value="{{ppl.nome}}">{{ ppl.nome }}</option>
                 <option value="0">Criar novo papel</option>

@@ -1,0 +1,15 @@
+.relatorio {
+    padding-bottom: 20px
+}
+
+.btn-lista-tec {
+    position: relative;
+    padding-left: 44px;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 34px;
+    width: 15%;
+    padding: 0;
+}

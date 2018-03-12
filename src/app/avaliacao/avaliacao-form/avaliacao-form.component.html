@@ -38,7 +38,6 @@
                       <div class="form-group" [ngClass]="{'has-error': (!formAvaliacao.controls['divisao'].valid && formAvaliacao.controls['divisao'].touched) }">
                         <select class="form-control" formControlName="divisao" ngModel>
                           <option value="" disabled>Selecione</option>
-                          <!-- <option value="" disabled>Choose a state</option> -->
                           <option *ngFor="let divisao of Divisao; let i = index" [ngValue]="divisao">{{divisao.sigla}}</option>
                         </select>
                         <span *ngIf="!formAvaliacao.controls['divisao'].valid && formAvaliacao.controls['divisao'].touched" class="help-block">O campo Divisão é obrigatório!</span>
@@ -47,7 +46,6 @@
                     <td>
                       <div class="form-group" [ngClass]="{'has-error': (!formAvaliacao.controls['colaborador'].valid && formAvaliacao.controls['colaborador'].touched) }">
                         <select class="form-control" formControlName="colaborador" (change)="somaValores('fctatual')" ngModel>
-                          <!-- <option [selected]="true" value="">Selecione</option> -->
                           <option value="" disabled>Selecione</option>
                           <option *ngFor="let colaborador of Colaborador; let i = index" [ngValue]="colaborador">{{ colaborador.nome }}</option>
                         </select>

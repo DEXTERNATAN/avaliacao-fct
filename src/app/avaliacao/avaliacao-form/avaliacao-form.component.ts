@@ -528,6 +528,7 @@ export class AvaliacaoFormComponent implements OnInit {
                 break;
             }
             case 'fctatual': {
+                debugger
                 // Pontuação FCT Atual
                 let ref1 = (this.formAvaliacao.get('colaborador').value.ref_pontuacao_fct || 0);
                 let ref2 = (this.formAvaliacao.get('colaborador').value.ref_fct_atual || 0);

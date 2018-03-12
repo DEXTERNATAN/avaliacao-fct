@@ -4,7 +4,9 @@
 	</h1>
 	<ol class="breadcrumb">
 		<li>
-			<a href="#"><i class="fa fa-home"></i> Home</a></li>
+			<a href="#">
+				<i class="fa fa-home"></i> Home</a>
+		</li>
 		<li class="active">Avaliações</li>
 	</ol>
 </section>
@@ -13,65 +15,200 @@
 		<div class="col-xs-12">
 			<div class="box">
 				<div class="box-header">
-					<h3 class="box-title">Avaliações Cadastradas</h3>
+					<h3 class="box-title">Relatorio de Avaliação</h3>
 				</div>
 				<!-- /.box-header -->
 				<div class="box-body table-responsive no-padding">
-					<table id="example" datatable [dtOptions]="dtOptions"  [dtTrigger]="dtTrigger" class="table table-hover">
-						<thead>
-							<tr>
-								<th style="width: 10px">#</th>
-								<th>Limite Inferior</th>
-								<th>Limite Superior</th>
-								<th>Pontuação de Referência</th>
-								<th>Quantidade de Pessoas</th>
-								<th>Valor do rateio por Pessoa</th>
-								<th>Percentual da Distribuição</th>
-								<th></th>
-								<th></th>
-							</tr>
-						</thead>	
-						<tbody>		
-							<!--<tr *ngFor "let consultaavaliacao of Consultaavaliacao">-->
-							<tr>	
-								<td>1</td>
-								<td>49.58</td>
-								<td>74.79</td>
-								<td>74.79</td>
-								<td>4</td>
-								<td>R$ 253,83</td>
-								<td>30.00</td>
-								<td>
-									<!--<a [routerLink]="['/faixa', faixa.id_faixa]" class="btn  btn-xs bg-blue btn-flat">-->
-									<a class="btn  btn-xs bg-blue btn-flat">
-									<i class="fa fa-pencil"></i>
-									</a>
-								</td>
-								<td>
-									<button type="button" class="btn  btn-xs bg-red btn-flat" ><i class="fa fa-remove"></i></button>
-								</td>
-							</tr>
-							
-							<tr>	
-								<td>2</td>
-								<td>74.79</td>
-								<td>100.00</td>
-								<td>87.84</td>
-								<td>22</td>
-								<td>R$ 377.12</td>
-								<td>40.00</td>
-								<td>
-									<!--<a [routerLink]="['/faixa', faixa.id_faixa]" class="btn  btn-xs bg-blue btn-flat">-->
-									<a class="btn  btn-xs bg-blue btn-flat">
-									<i class="fa fa-pencil"></i>
-									</a>
-								</td>
-								<td>
-									<button type="button" class="btn  btn-xs bg-red btn-flat" ><i class="fa fa-remove"></i></button>
-								</td>
-							</tr>
-						</tbody>
-					</table>
+
+					<!-- Dados cadastrais -->
+					<div class="col-md12 relatorio">
+						<div class="col-md-4">
+							<label for="">NOME:</label>
+							<span>Natanael de Sousa Leite</span>
+						</div>
+						<div class="col-md-4">
+							<label for="">CPF:</label>
+							<span>98287028191</span>
+						</div>
+						<div class="col-md-4">
+							<label for="">DIVISÂO:</label>
+							<span>SDDEF</span>
+						</div>
+					</div>
+
+					<!-- Atributos -->
+					<div class="col-md-12 relatorio">
+						<hr>
+						<div class="col-dm-12">
+							<label for="Papeis">Relação de atributos avaliados</label>
+							<div class="row">
+								<div class="col-xs-12 table-responsive">
+									<table class="table table-striped">
+										<thead>
+											<tr>
+												<th>Papel</th>
+												<th>Atributo</th>
+												<th>Abrangencia</th>
+												<th>Complexidade</th>
+												<th>Impacto</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>Arquiteto</td>
+												<td>a)Analisar as demandas apresentadas pelas áreas de negócio e propor alternativas de solução técnica e estratégia
+													de desenvolvimento</td>
+												<td>Moderado</td>
+												<td>Alta</td>
+												<td>Relavante</td>
+											</tr>
+											<tr>
+												<td>Teste</td>
+												<td>c)Elaborar projeto lógico e físico de dados e de sistemas</td>
+												<td>Moderado</td>
+												<td>Alta</td>
+												<td>Relavante</td>
+											</tr>
+
+										</tbody>
+									</table>
+								</div>
+								<!-- /.col -->
+							</div>
+						</div>
+					</div>
+
+					<!-- Tecnologias -->
+					<div class="col-md-12 relatorio">
+						<hr>
+						<div class="col-dm-12">
+							<label for="tecnologias">Relação de tecnologias</label>
+							<div class="row">
+								<div class="col-md-8">
+									<div class="btn .btn-lista-tec btn-bitbucket">
+										<i>Angular</i>
+									</div>
+
+									<div class="btn .btn-lista-tec btn-dropbox">
+										<i>Liferay</i>
+									</div>
+
+									<div class="btn .btn-lista-tec btn-foursquare">
+										<i>Html/Css(Desenvolvimento)</i>
+									</div>
+
+									<div class="btn .btn-lista-tec btn-flickr">
+										<i>Html/Css(Design)</i>
+									</div>
+
+									<div class="btn .btn-lista-tec btn-github">
+										<i>Plone</i>
+									</div>
+
+									<div class="btn .btn-lista-tec btn-facebook">
+										<i>Javascript</i>
+									</div>
+								</div>
+								<!-- /.col -->
+							</div>
+						</div>
+					</div>
+
+					<!-- Projetos -->
+					<div class="col-md-12 relatorio">
+						<hr>
+						<div class="col-dm-12">
+							<label for="tecnologias">Relação de Projetos</label>
+							<div class="row">
+								<div class="col-md-8">
+									<table class="table table-bordered">
+										<tbody>
+											<tr>
+												<th style="width: 10px">#</th>
+												<th>Task</th>
+												<th>Progress</th>
+												<th style="width: 40px">Label</th>
+											</tr>
+											<tr>
+												<td>1.</td>
+												<td>Update software</td>
+												<td>
+													<div class="progress progress-xs">
+														<div class="progress-bar progress-bar-danger" style="width: 55%"></div>
+													</div>
+												</td>
+												<td>
+													<span class="badge bg-red">55%</span>
+												</td>
+											</tr>
+											<tr>
+												<td>2.</td>
+												<td>Clean database</td>
+												<td>
+													<div class="progress progress-xs">
+														<div class="progress-bar progress-bar-yellow" style="width: 70%"></div>
+													</div>
+												</td>
+												<td>
+													<span class="badge bg-yellow">70%</span>
+												</td>
+											</tr>
+											<tr>
+												<td>3.</td>
+												<td>Cron job running</td>
+												<td>
+													<div class="progress progress-xs progress-striped active">
+														<div class="progress-bar progress-bar-primary" style="width: 30%"></div>
+													</div>
+												</td>
+												<td>
+													<span class="badge bg-light-blue">30%</span>
+												</td>
+											</tr>
+											<tr>
+												<td>4.</td>
+												<td>Fix and squish bugs</td>
+												<td>
+													<div class="progress progress-xs progress-striped active">
+														<div class="progress-bar progress-bar-success" style="width: 90%"></div>
+													</div>
+												</td>
+												<td>
+													<span class="badge bg-green">90%</span>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<!-- /.col -->
+							</div>
+						</div>
+					</div>
+
+					<!-- Dados calculados -->
+					<div class="col-md-12 relatorio">
+						<div class="col-md-2">
+							<label for="">% de ociosidade:</label>
+							<span>20%</span>
+						</div>
+						<div class="col-md-6">
+							<label for="">Referência FCT pela Pontuação Total:</label>
+							<span>13 - Técnico (R$ 678,19)</span>
+						</div>
+						<div class="col-md-4">
+								<label for="">Referência FCT Atual:</label>
+								<span>19 - Analista (R$ 1408.71)</span>
+							</div>
+						
+					</div>
+
+					<div class="col-md-12 relatorio">
+							<div class="col-md-10">
+									<label for="">Referência FCT Atual:</label>
+									<span>19 - Analista (R$ 1408.71)</span>
+							</div>
+						</div>
+
 				</div>
 				<!-- /.box-body -->
 			</div>
