@@ -13,3 +13,11 @@
     width: 15%;
     padding: 0;
 }
+
+@media print{
+    
+    .doNotPrint{
+        display:none !important;
+    }
+  
+  }

@@ -20,7 +20,7 @@ export class ConsultaavaliacaoComponent implements OnInit, AfterViewInit {
   @ViewChild(DataTableDirective)
   dtElement: DataTableDirective;
   myDate: any = new Date().toLocaleDateString();
-  
+
   // We use this trigger because fetching the list of persons can be quite long,
   // thus we ensure the data is fetched before rendering
   dtTrigger: Subject<Consultaavaliacao> = new Subject();
@@ -28,21 +28,25 @@ export class ConsultaavaliacaoComponent implements OnInit, AfterViewInit {
 
   constructor(private _consultaavaliacaoService: ConsultaavaliacaoService) { }
 
-   ngOnInit() {
+  ngOnInit() {
 
     this.dtOptions = {
       language: {
         url: `assets/language/datatables/${this.lang}.json`
       }
     };
-    
+
     this._consultaavaliacaoService.getConsultaavaliacao()
-     .subscribe(consultaavaliacao => {
-      this.Consultaavaliacao = consultaavaliacao
-      this.consultaavaliacaoCarregada = false;
-      // Calling the DT trigger to manually render the table
-      this.dtTrigger.next();
-    }); 
+      .subscribe(consultaavaliacao => {
+        this.Consultaavaliacao = consultaavaliacao
+        this.consultaavaliacaoCarregada = false;
+        // Calling the DT trigger to manually render the table
+        this.dtTrigger.next();
+      });
+  }
+
+  onPrint() {
+    window.print()
   }
 
   ngAfterViewInit(): void {
