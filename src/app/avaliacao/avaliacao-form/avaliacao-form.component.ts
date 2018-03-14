@@ -194,18 +194,36 @@ export class AvaliacaoFormComponent implements OnInit {
         // se inscrece para verificar alterações no valor total da pontuação
         this.formAvaliacao.get('vlrPtTotal').valueChanges.subscribe(
             dataVlrTotal => {
+                let valorAnterior = '';
+                let valorX = 0;
                 this.referenciaService.getReferencia().subscribe(
                     data => {
-                        console.log('Valor do banco: ', data);
                         data.forEach(dadosReferencia => {
-                            if (dadosReferencia.id_referencia_fct_gfe == dataVlrTotal) {
-                                let vlrValorFct: string = (dadosReferencia.id_referencia_fct_gfe + ' - ' +
-                                dadosReferencia.cargo + '( ' + dadosReferencia.valor_referencia + ' )');
-                                console.log('Combinou: ', dadosReferencia);
+
+                            let valorA: number = this.formAvaliacao.get('vlrFCTatual').value;
+                            let valorB: number = this.formAvaliacao.get('colaborador').value.valorReferenciaFct;
+                            let valorC: number = dataVlrTotal;
+                            let vlrValorFct = '';
+
+                            valorX = (valorB * valorC);
+                            valorX = (valorX / valorA);
+
+                            console.log('valorX > ', valorX);
+                            console.log('valor_referencia > ', parseFloat(dadosReferencia.valor_referencia));
+
+                            if (valorAnterior == '') {
+                                vlrValorFct = (dadosReferencia.num_referencia + ' - ' +
+                                dadosReferencia.cargo + '(' + dadosReferencia.valor_referencia + ')');
                                 this.formAvaliacao.get('FCTPontuaçãoTotal').setValue(vlrValorFct);
-                            } else {
-                                console.log('Valor não combinou: ', dadosReferencia);
+
+                                valorAnterior = vlrValorFct;
+
+                            } else if (valorX > parseFloat(dadosReferencia.valor_referencia)) {
+                                this.formAvaliacao.get('FCTPontuaçãoTotal').setValue(valorAnterior);
                             }
+
+                            valorAnterior = (dadosReferencia.num_referencia + ' - ' +
+                                             dadosReferencia.cargo + '(' + dadosReferencia.valor_referencia + ')');
                         });
                     },
                     error => (console.log('Error: ', error))
@@ -570,6 +588,7 @@ export class AvaliacaoFormComponent implements OnInit {
                 break;
             }
         }
+
 
         this.vlrTotal = (this.vlrAtributo + this.vlrTecnologia + this.vlrProjetos);
         this.vlrTotal = this.vlrTotal - (this.vlrTotal * this.vlrOciosidade);
