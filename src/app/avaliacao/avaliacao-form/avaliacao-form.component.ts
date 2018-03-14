@@ -194,7 +194,7 @@ export class AvaliacaoFormComponent implements OnInit {
         // se inscrece para verificar alterações no valor total da pontuação
         this.formAvaliacao.get('vlrPtTotal').valueChanges.subscribe(
             dataVlrTotal => {
-                let valorAnterior = '';
+                let valorAnterior = 0;
                 let valorX = 0;
                 this.referenciaService.getReferencia().subscribe(
                     data => {
@@ -208,22 +208,24 @@ export class AvaliacaoFormComponent implements OnInit {
                             valorX = (valorB * valorC);
                             valorX = (valorX / valorA);
 
-                            console.log('valorX > ', valorX);
-                            console.log('valor_referencia > ', parseFloat(dadosReferencia.valor_referencia));
+                            if (dadosReferencia.cargo == this.formAvaliacao.get('colaborador').value.cargo) {
+                                if (valorAnterior == 0) {
 
-                            if (valorAnterior == '') {
-                                vlrValorFct = (dadosReferencia.num_referencia + ' - ' +
-                                dadosReferencia.cargo + '(' + dadosReferencia.valor_referencia + ')');
-                                this.formAvaliacao.get('FCTPontuaçãoTotal').setValue(vlrValorFct);
+                                    vlrValorFct = (dadosReferencia.num_referencia + ' - ' +
+                                    dadosReferencia.cargo + ' (R$ ' + dadosReferencia.valor_referencia + ')');
+                                    this.formAvaliacao.get('FCTPontuaçãoTotal').setValue(vlrValorFct);
 
-                                valorAnterior = vlrValorFct;
+                                    valorAnterior = 1;
 
-                            } else if (valorX > parseFloat(dadosReferencia.valor_referencia)) {
-                                this.formAvaliacao.get('FCTPontuaçãoTotal').setValue(valorAnterior);
+                                } else if (valorX > parseFloat(dadosReferencia.valor_referencia)) {
+                                    vlrValorFct = (dadosReferencia.num_referencia + ' - ' +
+                                    dadosReferencia.cargo + ' (R$ ' + dadosReferencia.valor_referencia + ')');
+                                    this.formAvaliacao.get('FCTPontuaçãoTotal').setValue(vlrValorFct);
+                                }
+
+                                
                             }
 
-                            valorAnterior = (dadosReferencia.num_referencia + ' - ' +
-                                             dadosReferencia.cargo + '(' + dadosReferencia.valor_referencia + ')');
                         });
                     },
                     error => (console.log('Error: ', error))
