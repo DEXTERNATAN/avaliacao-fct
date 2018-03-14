@@ -21,6 +21,7 @@ import { TecnologiaService } from './../../tecnologia/tecnologia.service';
 import { ProjetoService } from './../../projeto/projeto.service';
 import { PesosService } from './../../pesos/pesos.service';
 import { LoginService } from 'app/security/login/login.service';
+import { ReferenciaService } from './../../referencia/referencia.service';
 
 import { ToastrService } from 'ngx-toastr';
 
@@ -121,6 +122,7 @@ export class AvaliacaoFormComponent implements OnInit {
         private pesosService: PesosService,
         private atributoColaboradorService: AtributoColaboradorService,
         private loginService: LoginService,
+        private referenciaService: ReferenciaService,
         private mensagensHandler: MensagensHandler,
         private toastr: ToastrService
     ) { }
@@ -142,7 +144,8 @@ export class AvaliacaoFormComponent implements OnInit {
             ociosidade: [''],
             vlrFCTatual: 0.00,
             ajuste: 0.00,
-            referenciaFctAtual: ''
+            referenciaFctAtual: '',
+            FCTPontuaçãoTotal: ''
         });
 
         this.papelValidacao = false;
@@ -187,12 +190,36 @@ export class AvaliacaoFormComponent implements OnInit {
                 });
             }
         );
+
+        // se inscrece para verificar alterações no valor total da pontuação
+        this.formAvaliacao.get('vlrPtTotal').valueChanges.subscribe(
+            dataVlrTotal => {
+                this.referenciaService.getReferencia().subscribe(
+                    data => {
+                        console.log('Valor do banco: ', data);
+                        data.forEach(dadosReferencia => {
+                            if (dadosReferencia.id_referencia_fct_gfe == dataVlrTotal) {
+                                let vlrValorFct: string = (dadosReferencia.id_referencia_fct_gfe + ' - ' +
+                                dadosReferencia.cargo + '( ' + dadosReferencia.valor_referencia + ' )');
+                                console.log('Combinou: ', dadosReferencia);
+                                this.formAvaliacao.get('FCTPontuaçãoTotal').setValue(vlrValorFct);
+                            } else {
+                                console.log('Valor não combinou: ', dadosReferencia);
+                            }
+                        });
+                    },
+                    error => (console.log('Error: ', error))
+                );
+
+                console.log('O valor da pontuacao total mudou ... ', dataVlrTotal);
+            }
+        );
     }
 
     getValidacaoSelectizeTec() {
-        if ( this.formAvaliacao.get('tecnologia').value.length === 0 ) {
+        if (this.formAvaliacao.get('tecnologia').value.length === 0) {
             this.tecnologiaValidacao = true;
-        }else{
+        } else {
             this.tecnologiaValidacao = false;
         }
     }
@@ -386,9 +413,9 @@ export class AvaliacaoFormComponent implements OnInit {
 
         let strValida: string[] = idAtributo;
 
-        if ( strValida.length === 0  ) {
+        if (strValida.length === 0) {
             this.papelValidacao = true;
-        }else{
+        } else {
             this.papelValidacao = false;
         }
         console.log('idAtributo: ', idAtributo, this.papelValidacao, strValida.length);
@@ -427,7 +454,7 @@ export class AvaliacaoFormComponent implements OnInit {
     }
 
     getSomarTecnologia(valor) {
-        if ( this.formAvaliacao.get('tecnologia').value.length ) {
+        if (this.formAvaliacao.get('tecnologia').value.length) {
             this.tecnologiaValidacao = false;
         }
         console.log('getSomarTecnologia: ', valor, this.tecnologiaValidacao, this.formAvaliacao.get('tecnologia').value.length);
@@ -436,7 +463,7 @@ export class AvaliacaoFormComponent implements OnInit {
     }
 
     getApagarTecnologia(valor) {
-        if ( this.formAvaliacao.get('tecnologia').value.length === 0 ) {
+        if (this.formAvaliacao.get('tecnologia').value.length === 0) {
             this.tecnologiaValidacao = true;
         }
         console.log('getApagarTecnologia: ', valor, this.tecnologiaValidacao, this.formAvaliacao.get('tecnologia').value.length);
@@ -528,7 +555,7 @@ export class AvaliacaoFormComponent implements OnInit {
                 break;
             }
             case 'fctatual': {
-                debugger
+
                 // Pontuação FCT Atual
                 let ref1 = (this.formAvaliacao.get('colaborador').value.ref_pontuacao_fct || 0);
                 let ref2 = (this.formAvaliacao.get('colaborador').value.ref_fct_atual || 0);
