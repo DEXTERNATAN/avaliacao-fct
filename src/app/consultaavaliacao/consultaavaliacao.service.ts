@@ -3,10 +3,9 @@ import { Injectable } from '@angular/core';
 import { MEAT_API } from './../app.api';
 
 import 'rxjs/add/observable/throw';
-import 'rxjs/add/operator/map'
-import 'rxjs/add/operator/do'
-import 'rxjs/add/operator/catch'
-import { ErrorHandler } from './../app.error-handler';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/catch';
 
 import { Observable } from 'rxjs/Observable';
 import { Consultaavaliacao } from './consultaavaliacao.model';
@@ -24,8 +23,8 @@ export class ConsultaavaliacaoService {
         this.options = new RequestOptions({ headers: this.headers });
     }
 
-    getConsultaavaliacao(): Observable<Consultaavaliacao[]> {
-        return this._http.get(`${MEAT_API}/avaliacao`)
-            .map(response => response.json())
+    getResultadoAvaliacao(id: number): Observable<Consultaavaliacao[]> {
+        return this._http.get(`${MEAT_API}/avaliacao/${id}/resultado`)
+            .map(response => response.json());
     }
 }

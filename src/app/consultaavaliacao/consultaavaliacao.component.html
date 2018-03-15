@@ -18,13 +18,12 @@
 					<h3 class="box-title">Resumo da Avaliação</h3>
 				</div>
 				<!-- /.box-header -->
-				<div class="box-body table-responsive no-padding">
-
+				<div class="box-body table-responsive no-padding" >
 					<!-- Dados cadastrais -->
 					<div class="col-md12 relatorio">
 						<div class="col-md-4">
 							<label for="">NOME:</label>
-							<span>Natanael de Sousa Leite</span>
+							<span>{{ avaliacao.no_colaborador  }}</span>
 						</div>
 						<div class="col-md-4">
 							<label for="">CPF:</label>
@@ -32,7 +31,7 @@
 						</div>
 						<div class="col-md-4">
 								<label for="">DIVISÃO:</label>
-								<span>SDDEF</span>
+								<span>{{avaliacao.sigla_divisao}}</span>
 						</div>
 					</div>
 					<!-- Tecnologias -->
@@ -248,7 +247,7 @@
 					<div class="col-md-12 relatorio">
 						<div class="col-md-2">
 							<label for="">% de ociosidade:</label>
-							<span>20%</span>
+							<span>{{ avaliacao.ociosidade }}</span>
 						</div>
 						<div class="col-md-6">
 							<label for="">Referência FCT pela Pontuação Total:</label>
@@ -264,7 +263,7 @@
 					<div class="col-md-12 relatorio">
 						<div class="col-md-10">
 							<label for="">Data da Avaliação:</label>
-							<span>{{ myDate }}</span>
+							<span>{{ DataAtual }}</span>
 						</div>
 					</div>
 

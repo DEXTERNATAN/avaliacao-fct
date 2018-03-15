@@ -1,8 +1,5 @@
-import { DataTableDirective } from 'angular-datatables';
-import { FormBuilder } from '@angular/forms';
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
-
-import { Subject } from 'rxjs/Rx';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { ConsultaavaliacaoService } from 'app/consultaavaliacao/consultaavaliacao.service';
 import { Consultaavaliacao } from './consultaavaliacao.model';
@@ -12,44 +9,33 @@ import { Consultaavaliacao } from './consultaavaliacao.model';
   templateUrl: './consultaavaliacao.component.html',
   styleUrls: ['./consultaavaliacao.component.css']
 })
-export class ConsultaavaliacaoComponent implements OnInit, AfterViewInit {
+export class ConsultaavaliacaoComponent implements OnInit {
 
-  private Consultaavaliacao: Consultaavaliacao[] = [];
-  private consultaavaliacaoCarregada: boolean = true;
-  dtOptions: DataTables.Settings = {};
-  @ViewChild(DataTableDirective)
-  dtElement: DataTableDirective;
-  myDate: any = new Date().toLocaleDateString();
+  idAvaliacao: number;
+  avaliacao: Consultaavaliacao[] = [];
+  DataAtual: any = new Date().toLocaleDateString();
 
-  // We use this trigger because fetching the list of persons can be quite long,
-  // thus we ensure the data is fetched before rendering
-  dtTrigger: Subject<Consultaavaliacao> = new Subject();
-  lang: string = 'Portuguese-Brasil';
-
-  constructor(private _consultaavaliacaoService: ConsultaavaliacaoService) { }
+  constructor(
+    private _consultaavaliacaoService: ConsultaavaliacaoService,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
 
-    this.dtOptions = {
-      language: {
-        url: `assets/language/datatables/${this.lang}.json`
-      }
-    };
+    this.route.params.subscribe(params => {
+      this.idAvaliacao = params['id_avaliacao'];
+      console.log('Identificador da avaliação: ', this.idAvaliacao);
+    });
 
-    this._consultaavaliacaoService.getConsultaavaliacao()
-      .subscribe(consultaavaliacao => {
-        this.Consultaavaliacao = consultaavaliacao
-        this.consultaavaliacaoCarregada = false;
-        // Calling the DT trigger to manually render the table
-        this.dtTrigger.next();
-      });
+    this._consultaavaliacaoService.getResultadoAvaliacao(this.idAvaliacao).subscribe(data => {
+      this.avaliacao = data;
+      console.log(data, typeof(data), typeof(this.avaliacao));
+    });
+
   }
 
   onPrint() {
-    window.print()
+    window.print();
   }
 
-  ngAfterViewInit(): void {
-    //this.dtTrigger.next();
-  }
 }
