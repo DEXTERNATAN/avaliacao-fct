@@ -1,14 +1,21 @@
 export class Consultaavaliacao {
     id_resultado: number;
-    nome_colaborador: string;
-    nivel_valor_atual_fct_gfe: string;
-    pontuacao: string;
-    pencentual_salario: string;
-    valor_faixa1: string;
-    valor_faixa2: string;
-    valor_faixa3: string;
-    valor_faixa4: string;
-    nivel_valor_avaliacao_fct_gfe: string;
-    pontuacao_justificativa: string;
-    ajuste_pontuacao_atual: string; 
+    pontuacao: any;
+    dt_resultado: string;
+    ajuste: number;
+    ociosidade: number;
+    referencia_fct_gfe_pontuacao: number;
+    TB_COLABORADOR_id_colaborador: number;
+    no_colaborador: string;
+    faixa: number;
+    sigla_divisao: string;
+    valor_rateio: number;
 }
+
+
+
+
+
+
+
+

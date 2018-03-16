@@ -87,6 +87,11 @@
                               </a>
                             </td> -->
                             <td>
+                              <a class="btn  btn-xs bg-blue btn-flat" [routerLink]="['/resultadoAvaliacao/', items.id_resultado]">
+                                <i class="fa fa-search"></i>
+                              </a>
+                            </td>
+                            <td>
                               <button type="button" class="btn  btn-xs bg-red btn-flat" (click)="deleteAvaliacao(items, aval.listDetalhe)">
                                 <i class="fa fa-remove"></i>
                               </button>
