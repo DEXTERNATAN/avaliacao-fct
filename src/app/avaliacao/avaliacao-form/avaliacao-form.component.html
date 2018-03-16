@@ -174,29 +174,13 @@
                 </div>
               </div>
               <div class="form-group">
-                <table class="table table-condensed">
-                  <tr>
-                    <th>
-                      <label style="width: 20%">Projetos</label>
-                    </th>
-                  </tr>
-                  <tr>
-                    <td>
-                        <div class="form-group" [ngClass]="{'has-error': ProjetosValidacao }">
-                            <span *ngIf="ProjetosValidacao" class="help-block">O campo Projeto é obrigatório!</span>
-                        </div>
-                    </td>
-                    <td>
-                      <button type="button" class="btn btn-default" (click)="addProjeto()">Adicionar</button>&nbsp;
-                      <button type="button" class="btn btn-default" (click)="excProjeto(10)">Limpar</button>
-                    </td>
-                  </tr>
-                </table>
               </div>
               <div class="form-group">
                 <div class="box">
                   <div class="box-header with-border">
-                    <h3 class="box-title">Projetos</h3>
+                    <h3 class="box-title">Projetos</h3>&nbsp;&nbsp;&nbsp;
+                    <button type="button" class="btn btn-default" (click)="addProjeto()">Adicionar</button>&nbsp;
+                    <button type="button" class="btn btn-default" (click)="excProjeto(10)">Limpar</button>
                     <div class="box-tools pull-right">
                       <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip">
                         <i class="fa fa-minus"></i>
