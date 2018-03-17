@@ -11,8 +11,8 @@
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse pull-left" id="navbar-collapse" *ngIf="isloggedIn()">
 				<ul class="nav navbar-nav">
-					<li routerLinkActive="active"><a [routerLink]="['/avaliacao/novo']">Avaliar</a></li>
-					<li class="dropdown" >
+					<li routerLinkActive="active" *ngIf="user().ds_perfil == 'ADMINISTRADOR' || user().ds_perfil == 'LIDER'"><a [routerLink]="['/avaliacao/novo']">Avaliar</a></li>
+					<li class="dropdown" *ngIf="user().ds_perfil == 'ADMINISTRADOR'">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Cadastros Base <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<li routerLinkActive="active"><a [routerLink]="['/abrangencia']">Abrangência</a></li>
@@ -38,7 +38,7 @@
 							<li routerLinkActive="active"><a [routerLink]="['/tecnologia']">Tecnologia</a></li>
 						</ul>
 					</li>
-					<li class="dropdown">
+					<li class="dropdown" *ngIf="user().ds_perfil == 'ADMINISTRADOR'">
 						<a [routerLink]="['/home']" class="dropdown-toggle" data-toggle="dropdown">Cadastro Avançado<span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<li routerLinkActive="active"><a [routerLink]="['/distribuicao']">Distribuição de Valor</a></li>
@@ -50,10 +50,8 @@
 						<a [routerLink]="['/home']" class="dropdown-toggle" data-toggle="dropdown">Consultas<span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<li routerLinkActive="active"><a [routerLink]="['/avaliacao']">Avaliações</a></li>
-							<li class="divider"></li>
-							<li routerLinkActive="active"><a [routerLink]="['/relatorios']">Relatórios</a></li>
-							<li class="divider"></li>
-							<li routerLinkActive="active"><a [routerLink]="['/resultadoAvaliacao']">Resultado Avaliação</a></li>
+							<li class="divider"*ngIf="user().ds_perfil == 'ADMINISTRADOR'"></li>
+							<li routerLinkActive="active" *ngIf="user().ds_perfil == 'ADMINISTRADOR'"><a [routerLink]="['/relatorios']">Relatórios</a></li>
 						</ul>
 					</li>
 					<li routerLinkActive="active"><a [routerLink]="['/about']">Sobre</a></li>
