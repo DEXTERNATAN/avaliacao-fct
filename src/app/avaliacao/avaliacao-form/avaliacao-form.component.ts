@@ -178,7 +178,7 @@ export class AvaliacaoFormComponent implements OnInit {
 
         this.formAvaliacao.get('vlrPtTotal').setValue('0.00');
 
-        // se inscreve para verificar alterações no valor das faixas
+        
         this.formAvaliacao.get('divisao').valueChanges.subscribe( /* <- does work */
             divisao => {
                 let colabFilter: any[];
@@ -186,15 +186,20 @@ export class AvaliacaoFormComponent implements OnInit {
                 let userAdmin = '1';
 
                 this.colaboradorService.getColaborador().subscribe(colaborador => {
+                    console.log(colaborador);
+                    debugger
                     colabFilter = colaborador.filter(function (el) {
                         return el['sigla'] === divisao.sigla;
                     });
-                });
+                
+                    
                 if (user.id_perfil == userAdmin) {
-                    this.Colaborador = divisao;
+                     this.Colaborador = divisao;
                 } else {
                     this.Colaborador = colabFilter;
                 }
+                
+                });
             }
         );
 
