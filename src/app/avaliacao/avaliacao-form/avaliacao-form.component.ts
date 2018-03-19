@@ -182,12 +182,19 @@ export class AvaliacaoFormComponent implements OnInit {
         this.formAvaliacao.get('divisao').valueChanges.subscribe( /* <- does work */
             divisao => {
                 let colabFilter: any[];
+                let user = this.user();
+                let userAdmin = '1';
+
                 this.colaboradorService.getColaborador().subscribe(colaborador => {
                     colabFilter = colaborador.filter(function (el) {
                         return el['sigla'] === divisao.sigla;
                     });
-                    this.Colaborador = colabFilter;
                 });
+                if (user.id_perfil == userAdmin) {
+                    this.Colaborador = divisao;
+                } else {
+                    this.Colaborador = colabFilter;
+                }
             }
         );
 
@@ -223,7 +230,6 @@ export class AvaliacaoFormComponent implements OnInit {
                                     this.formAvaliacao.get('FCTPontuaçãoTotal').setValue(vlrValorFct);
                                 }
 
-                                
                             }
 
                         });

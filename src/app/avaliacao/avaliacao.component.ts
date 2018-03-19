@@ -11,6 +11,8 @@ import { ColaboradorService } from 'app/colaborador/colaborador.service';
 
 import { ToastrService } from 'ngx-toastr';
 
+import { User } from 'app/security/login/user';
+
 @Component({
     selector: 'mt-avaliacao',
     templateUrl: './avaliacao.component.html',
@@ -41,6 +43,7 @@ export class AvaliacaoComponent implements OnInit, AfterViewInit {
 
     ngOnInit() {
 
+        this.user();
         this.dtOptions = {
             language: {
                 url: `assets/language/datatables/${this.lang}.json`
@@ -49,46 +52,61 @@ export class AvaliacaoComponent implements OnInit, AfterViewInit {
 
         this._avaliacaoService.getAvaliacao()
             .subscribe(avaliacao => {
-                this.Avaliacao = avaliacao;
+
+                let avalFilter: any[];
+                let user = this.user();
+                let userAdmin = '1';
+
+                avalFilter = avaliacao.filter(function (el) {
+                    return el['sigla_divisao'] === user.sigla;
+                });
+
+                this.Avaliacao = avalFilter;
                 this.avaliacaoCarregada = false;
                 this.dtTrigger.next();
-                this.getAvaliacaoDetalhe(avaliacao);
+
+                if (user.id_perfil == userAdmin) {
+                    this.getAvaliacaoDetalhe(avaliacao);
+                } else {
+                    this.getAvaliacaoDetalhe(this.Avaliacao);
+                }
             });
-        }
+    }
+
+    user(): User {
+        return this.loginService.user;
+    }
 
     ngAfterViewInit(): void { }
 
     deleteAvaliacao(avaliacao, avaliacaoDetalhe) {
 
-    if (confirm('Tem certeza que quer APAGAR a Avaliação #' + avaliacao.id_resultado + ' ?')) {
+        if (confirm('Tem certeza que quer APAGAR a Avaliação #' + avaliacao.id_resultado + ' ?')) {
 
-        let index = avaliacaoDetalhe.indexOf(avaliacao);
-        avaliacaoDetalhe.splice(index, 1);
+            let index = avaliacaoDetalhe.indexOf(avaliacao);
+            avaliacaoDetalhe.splice(index, 1);
 
-        this._avaliacaoService.deleteAvaliacao(avaliacao.id_resultado).subscribe(
-            data => {
-                // this.mensagensHandler.handleSuccess('Avaliação removida com sucesso!');
-                // this.showSuccess()
-                this.toastr.success('Avaliação removida com sucesso!', 'Sucesso!', {
-                    progressBar: true,
-                    progressAnimation: 'increasing',
-                    closeButton: true,
-                    timeOut: 3000
+            this._avaliacaoService.deleteAvaliacao(avaliacao.id_resultado).subscribe(
+                data => {
+                    this.toastr.success('Avaliação removida com sucesso!', 'Sucesso!', {
+                        progressBar: true,
+                        progressAnimation: 'increasing',
+                        closeButton: true,
+                        timeOut: 3000
+                    });
+                    setTimeout(() => {
+                        this.mensagensHandler.handleClearMessages();
+                    }, 3000);
+                },
+                err => {
+                    alert('A avaliação não foi apagada!');
+                    avaliacaoDetalhe.splice(index, 0, avaliacao);
+                    throw err;
                 });
-                setTimeout(() => {
-                    this.mensagensHandler.handleClearMessages();
-                }, 3000);
-            },
-            err => {
-                alert('A avaliação não foi apagada!');
-                avaliacaoDetalhe.splice(index, 0, avaliacao);
-                throw err;
-            });
         }
     }
 
     getAvaliacaoDetalhe(data) {
-
         data.forEach(elementGroup => {
             this._avaliacaoService.getAvaliacaoId(elementGroup.TB_COLABORADOR_id_colaborador).subscribe(elementDetalhe => {
                 this.avaliacaoDetalhe.push({
@@ -98,5 +116,4 @@ export class AvaliacaoComponent implements OnInit, AfterViewInit {
             });
         });
     }
-
 }

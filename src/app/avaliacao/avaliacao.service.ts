@@ -12,9 +12,9 @@ import 'rxjs/add/operator/catch';
 import { Avaliacao } from './avaliacao.model';
 
 @Injectable()
-export class AvaliacaoService  extends RestService<Avaliacao>{
+export class AvaliacaoService  extends RestService<Avaliacao> {
 
-    constructor(protected http: Http){
+    constructor(protected http: Http) {
         super(http);
     }
 

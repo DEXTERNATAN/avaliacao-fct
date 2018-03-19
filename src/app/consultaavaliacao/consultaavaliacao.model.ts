@@ -1,15 +1,17 @@
 export class Consultaavaliacao {
     id_resultado: number;
-    pontuacao: any;
+    pontuacao: string;
     dt_resultado: string;
-    ajuste: number;
-    ociosidade: number;
-    referencia_fct_gfe_pontuacao: number;
-    TB_COLABORADOR_id_colaborador: number;
+    ajuste: string;
+    ociosidade: string;
+    TB_COLABORADOR_id_colaborador: string;
+    referencia_fct_gfe: string;
+    referencia_fct_gfe_pontuacao: string;
     no_colaborador: string;
-    faixa: number;
+    faixa: string;
     sigla_divisao: string;
-    valor_rateio: number;
+    fct_atual: string;
+    fct_ideal: string;
 }
 
 
