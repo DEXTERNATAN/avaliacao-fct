@@ -18,7 +18,7 @@
           <div class="box-header">
             <h3 class="box-title">Avaliações Registradas</h3>
             <div class="box-tools">
-              <a routerLink="/avaliacao/novo" class="btn btn-sm pull-left btn-flat bg-purple margin-right-10">
+              <a  *ngIf="user().ds_perfil == 'ADMINISTRADOR' || user().ds_perfil == 'LIDER'" routerLink="/avaliacao/novo" class="btn btn-sm pull-left btn-flat bg-purple margin-right-10">
                 <i class="fa fa-plus"></i>
                 <b>Nova Avaliação</b>
               </a>

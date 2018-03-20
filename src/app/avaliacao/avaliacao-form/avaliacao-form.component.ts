@@ -190,12 +190,13 @@ export class AvaliacaoFormComponent implements OnInit {
                         return el['sigla'] === divisao.sigla;
                     });
 
+                    console.log(user.id_perfil == userAdmin, user.id_perfil, userAdmin);
                     if (user.id_perfil == userAdmin) {
-                        this.Colaborador = divisao;
+                        this.Colaborador = colaborador;
                     } else {
                         this.Colaborador = colabFilter;
                     }
-                    
+
                 });
             }
         );
@@ -203,6 +204,7 @@ export class AvaliacaoFormComponent implements OnInit {
         // se inscrece para verificar alterações no valor total da pontuação
         this.formAvaliacao.get('vlrPtTotal').valueChanges.subscribe(
             dataVlrTotal => {
+                debugger
                 let valorAnterior = 0;
                 let valorX = 0;
                 this.referenciaService.getReferencia().subscribe(
@@ -217,7 +219,8 @@ export class AvaliacaoFormComponent implements OnInit {
                             valorX = (valorB * valorC);
                             valorX = (valorX / valorA);
 
-                            if (dadosReferencia.cargo == this.formAvaliacao.get('colaborador').value.cargo) {
+                            // Tiago verificar o erro aqui
+                            // if (dadosReferencia.cargo == this.formAvaliacao.get('colaborador').value.cargo) {
                                 if (valorAnterior == 0) {
 
                                     vlrValorFct = (dadosReferencia.num_referencia + ' - ' +
@@ -232,7 +235,7 @@ export class AvaliacaoFormComponent implements OnInit {
                                     this.formAvaliacao.get('FCTPontuaçãoTotal').setValue(vlrValorFct);
                                 }
 
-                            }
+                            // }
 
                         });
                     },
