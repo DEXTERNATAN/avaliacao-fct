@@ -23,7 +23,7 @@ export class PapelFormComponent implements OnInit {
     listPapel: Papel[] = [];
     idResource: any;
     stPapel = false;
-    isOpen: boolean = false;
+    isOpen = false;
     atributo: FormArray;
 
     constructor(
@@ -123,7 +123,6 @@ export class PapelFormComponent implements OnInit {
             data => {
                 console.log('ULTIMO ID: ', data);
                 if (atualizar) {
-                    // this.mensagensHandler.handleSuccess('Papel atualizado com sucesso!');
                     this.toastr.success('Papel atualizado com sucesso!', 'Sucesso', {
                         progressBar: true,
                         progressAnimation: 'increasing',
@@ -155,8 +154,6 @@ export class PapelFormComponent implements OnInit {
                         closeButton: true,
                         timeOut: 3000
                     });
-                    // this.mensagensHandler.handleSuccess('Papel salvo com sucesso!');
-
                 }
                 this.router.navigate(['papel']);
             });

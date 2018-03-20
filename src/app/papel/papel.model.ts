@@ -3,4 +3,5 @@ export class Papel {
     tipo: string;
     nome: string;
     descricao: string;
+    possuiAtributo: String;
 }

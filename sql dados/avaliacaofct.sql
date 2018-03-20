@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 27/02/2018 às 21:23
+-- Tempo de geração: 20/03/2018 às 20:40
 -- Versão do servidor: 10.1.28-MariaDB
 -- Versão do PHP: 7.1.10
 
@@ -555,6 +555,8 @@ CREATE TABLE `TB_ATRIBUTO_has_TB_PAPEL` (
 INSERT INTO `TB_ATRIBUTO_has_TB_PAPEL` (`TB_ATRIBUTO_id_atributo`, `TB_PAPEL_id_papel`) VALUES
 (1, 2),
 (1, 4),
+(1, 14),
+(1, 15),
 (2, 2),
 (2, 4),
 (3, 2),
@@ -605,6 +607,7 @@ INSERT INTO `TB_ATRIBUTO_has_TB_PAPEL` (`TB_ATRIBUTO_id_atributo`, `TB_PAPEL_id_
 (25, 4),
 (26, 3),
 (26, 4),
+(26, 15),
 (27, 3),
 (27, 4),
 (28, 3),
@@ -663,6 +666,7 @@ INSERT INTO `TB_ATRIBUTO_has_TB_PAPEL` (`TB_ATRIBUTO_id_atributo`, `TB_PAPEL_id_
 (54, 4),
 (55, 2),
 (55, 6),
+(55, 15),
 (56, 2),
 (56, 6),
 (57, 2),
@@ -2416,11 +2420,11 @@ CREATE TABLE `TB_COLABORADOR` (
 --
 
 INSERT INTO `TB_COLABORADOR` (`id_colaborador`, `nome`, `matricula`, `telefone`, `especialidade`, `salario`, `percentual_salario`, `dt_registro`, `TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`, `TB_DIVISAO_id_divisao`, `TB_ACESSO_id_acesso`, `TB_PERFIL_id_perfil`, `TB_FAIXA_id_faixa`) VALUES
-(2, 'Francisco Jose Joaquim de Souza', 12345678, 6120219999, 'Programação de Computador', '7500.00', '8.50', '2017-11-09 12:28:52', 59, 3, 5, 1, 3),
-(3, 'Roberto da Silveira Souza Paranhos', 22225454, 6154545454, 'Comunicação Social', '9859.67', '659.65', '2017-11-09 12:26:46', 45, 16, 4, 2, 1),
-(4, 'Natanael de Souza Leite', 12345677, 6120218888, 'Desenvolvimento de Sistemas', '5333.45', '233.13', '2017-11-09 12:26:23', 51, 1, 3, 1, 2),
+(2, 'Francisco Jose Joaquim de Souza', 12345678, 6120219999, 'Programação de Computador', '7500.00', '8.50', '2017-11-09 12:28:52', 59, 3, 5, 2, 3),
+(3, 'Roberto da Silveira Souza Paranhos', 22225454, 6154545454, 'Comunicação Social', '9859.67', '659.65', '2017-11-09 12:26:46', 52, 16, 4, 1, 1),
+(4, 'Natanael de Souza Leite', 12345677, 6120218888, 'Desenvolvimento de Sistemas', '5333.45', '233.13', '2017-11-09 12:26:23', 51, 1, 3, 3, 2),
 (7, 'Valfrido Verdana Joaquim', 99999999, 6120210000, 'Comunicação Social', '4566.66', '325.44', '2018-01-25 18:12:19', 70, 16, 2, 3, 1),
-(8, 'Antonio Francisco Joaquim Neto Sobrinho', 44444444, 6546546546, 'Atendimento', '11111.11', '111.11', '2017-11-07 17:41:57', 58, 1, 1, 2, 4);
+(8, 'Antonio Francisco Joaquim Neto Sobrinho', 44444444, 6546546546, 'Atendimento', '11111.11', '111.11', '2017-11-07 17:41:57', 58, 1, 1, 1, 4);
 
 -- --------------------------------------------------------
 
@@ -2519,7 +2523,7 @@ CREATE TABLE `TB_DISTRIBUICAO` (
 --
 
 INSERT INTO `TB_DISTRIBUICAO` (`id_distribuicao`, `valor`, `qtde_faixas`, `dt_registro`) VALUES
-(1, '25000.00', 4, '2018-02-27 18:53:26');
+(1, '32000.00', 4, '2018-03-19 18:17:20');
 
 -- --------------------------------------------------------
 
@@ -2570,10 +2574,10 @@ CREATE TABLE `TB_FAIXA` (
 --
 
 INSERT INTO `TB_FAIXA` (`id_faixa`, `limite_inferior`, `limite_superior`, `pontuacao_referencia`, `qtde_pessoas`, `valor_rateio_pessoa`, `percentual`, `TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`, `TB_DISTRIBUICAO_id_distribuicao`) VALUES
-(193, '47.70', '61.07', '61.07', 1, '833.33', '10.00', 42, 1),
-(194, '61.07', '74.44', '67.76', 1, '3333.33', '20.00', 42, 1),
-(195, '74.44', '87.81', '81.13', 0, '15833.33', '50.00', 42, 1),
-(196, '87.81', '101.19', '87.81', 1, '20833.33', '20.00', 42, 1);
+(222, '55.50', '93.86', '93.86', 1, '3555.20', '33.33', 51, 1),
+(223, '132.22', '170.58', '151.40', 0, '8888.00', '0.00', 51, 1),
+(224, '170.58', '208.95', '170.58', 1, '19553.60', '33.33', 51, 1),
+(225, '93.86', '132.22', '113.04', 1, '8888.00', '33.33', 51, 1);
 
 -- --------------------------------------------------------
 
@@ -2664,7 +2668,12 @@ INSERT INTO `TB_PAPEL` (`id_papel`, `tipo`, `nome`, `descricao`) VALUES
 (6, 'Desenvolvimento', 'Banco', 'Colaboradores que possuem conhecimento aprofundado em Banco de Dados.'),
 (7, 'Design', 'Front-end (Design)', 'Colaboradores que possuem conhecimento aprofundado em Front-end e são das equipes de Design.'),
 (8, 'Design', 'UI', 'Colaboradores que possuem conhecimento aprofundado em UI - User Interface.'),
-(9, 'Design', 'UX', 'Colaboradores que possuem conhecimento aprofundado em UX - User Experience.');
+(9, 'Design', 'UX', 'Colaboradores que possuem conhecimento aprofundado em UX - User Experience.'),
+(10, 'Design', 'UI', 'Teste'),
+(12, 'Desenvolvimento', 'xpto', 'Teste xpto'),
+(13, 'Desenvolvimento', 'teste 021', 'Teste 021'),
+(14, 'Design', 'XPTO 01', 'XPTO 01'),
+(15, 'Design', 'XPTO 01', 'XPT0101');
 
 -- --------------------------------------------------------
 
@@ -2910,12 +2919,11 @@ CREATE TABLE `TB_RESULTADO` (
 --
 
 INSERT INTO `TB_RESULTADO` (`id_resultado`, `pontuacao`, `dt_resultado`, `ajuste`, `ociosidade`, `referencia_fct_gfe_pontuacao`, `TB_COLABORADOR_id_colaborador`) VALUES
-(25, '47.70', '2018-01-30 16:28:46', '-33.53', '0.00', 4, 3),
 (27, '101.19', '2018-01-30 16:49:56', '5.05', '0.00', 30, 7),
 (28, '55.50', '2018-02-05 19:08:12', '11.79', '12.12', 19, 2),
 (29, '65.90', '2018-02-06 11:11:25', '-51.73', '20.00', 4, 3),
 (30, '70.61', '2018-02-15 17:50:59', '-54.71', '10.00', 4, 3),
-(31, '66.46', '2018-02-15 19:03:21', '-50.56', '0.00', 4, 3);
+(33, '208.95', '2018-03-14 20:33:10', '-18.15', '0.00', 4, 3);
 
 -- --------------------------------------------------------
 
@@ -3029,12 +3037,14 @@ CREATE TABLE `VW_AVALIACAO` (
 ,`dt_resultado` varchar(10)
 ,`ajuste` decimal(5,2)
 ,`ociosidade` decimal(9,2)
-,`referencia_fct_gfe_pontuacao` int(9)
 ,`TB_COLABORADOR_id_colaborador` int(9)
+,`id_referencia_fct_gfe` int(9)
+,`referencia_fct_gfe_pontuacao` int(9)
 ,`no_colaborador` varchar(50)
 ,`faixa` int(9)
 ,`sigla_divisao` varchar(5)
-,`valor_rateio` decimal(32,2)
+,`fct_atual` varchar(40)
+,`fct_ideal` varchar(40)
 );
 
 -- --------------------------------------------------------
@@ -3052,10 +3062,13 @@ CREATE TABLE `VW_COLABORADOR` (
 ,`salario` varchar(15)
 ,`percentual_salario` varchar(15)
 ,`referenciaFct` varchar(40)
+,`valorReferenciaFct` decimal(10,2)
+,`cargo` varchar(8)
 ,`sigla` varchar(5)
 ,`ref_fct_atual` bigint(11)
 ,`pontuacao_inicial` decimal(10,2)
 ,`ref_pontuacao_fct` bigint(11)
+,`valorFctInicial` decimal(10,2)
 );
 
 -- --------------------------------------------------------
@@ -3091,7 +3104,7 @@ CREATE TABLE `VW_DISTRIBUICAO` (
 ,`pontuacao_maxima` decimal(6,2)
 ,`qtde_faixas` int(2)
 ,`dt_registro` varchar(10)
-,`referencia_fct` varchar(42)
+,`referencia_fct` bigint(11)
 );
 
 -- --------------------------------------------------------
@@ -3109,6 +3122,20 @@ CREATE TABLE `VW_DISTRIBUICAO_FAIXA` (
 ,`valor_rateio_pessoa` decimal(10,2)
 ,`percentual` decimal(5,2)
 ,`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe` int(9)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura stand-in para view `VW_PAPEL`
+-- (Veja abaixo para a visão atual)
+--
+CREATE TABLE `VW_PAPEL` (
+`id_papel` int(9)
+,`tipo` varchar(50)
+,`nome` varchar(50)
+,`descricao` text
+,`possuiAtributo` bigint(11)
 );
 
 -- --------------------------------------------------------
@@ -3178,7 +3205,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `VW_AVALIACAO`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `VW_AVALIACAO`  AS  select distinct `tba`.`id_resultado` AS `id_resultado`,`tba`.`pontuacao` AS `pontuacao`,date_format(`tba`.`dt_resultado`,'%d/%m/%Y') AS `dt_resultado`,`tba`.`ajuste` AS `ajuste`,`tba`.`ociosidade` AS `ociosidade`,`tba`.`referencia_fct_gfe_pontuacao` AS `referencia_fct_gfe_pontuacao`,`tba`.`TB_COLABORADOR_id_colaborador` AS `TB_COLABORADOR_id_colaborador`,`clb`.`nome` AS `no_colaborador`,`clb`.`TB_FAIXA_id_faixa` AS `faixa`,(select `dv`.`sigla` from `TB_DIVISAO` `dv` where (`dv`.`id_divisao` = `clb`.`TB_DIVISAO_id_divisao`)) AS `sigla_divisao`,(select sum(`t1`.`valor_rateio_pessoa`) from `TB_FAIXA` `t1` where (`t1`.`limite_superior` <= (select `TB_FAIXA`.`limite_superior` from `TB_FAIXA` where (`TB_FAIXA`.`id_faixa` = `clb`.`TB_FAIXA_id_faixa`)))) AS `valor_rateio` from ((`TB_RESULTADO` `tba` join `TB_COLABORADOR` `clb`) join `TB_FAIXA` `tbf`) where (`clb`.`id_colaborador` = `tba`.`TB_COLABORADOR_id_colaborador`) order by `clb`.`nome`,`tba`.`dt_resultado` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `VW_AVALIACAO`  AS  select distinct `tba`.`id_resultado` AS `id_resultado`,`tba`.`pontuacao` AS `pontuacao`,date_format(`tba`.`dt_resultado`,'%d/%m/%Y') AS `dt_resultado`,`tba`.`ajuste` AS `ajuste`,`tba`.`ociosidade` AS `ociosidade`,`clb`.`id_colaborador` AS `TB_COLABORADOR_id_colaborador`,`clb`.`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe` AS `id_referencia_fct_gfe`,`tba`.`referencia_fct_gfe_pontuacao` AS `referencia_fct_gfe_pontuacao`,`clb`.`nome` AS `no_colaborador`,`clb`.`TB_FAIXA_id_faixa` AS `faixa`,(select `dv`.`sigla` from `TB_DIVISAO` `dv` where (`dv`.`id_divisao` = `clb`.`TB_DIVISAO_id_divisao`)) AS `sigla_divisao`,(select concat(`TB_REFERENCIA_FCT_GFE`.`num_referencia`,' - ',`TB_REFERENCIA_FCT_GFE`.`cargo`,' (R$ ',`TB_REFERENCIA_FCT_GFE`.`valor_referencia`,')') AS `fctAtual` from `TB_REFERENCIA_FCT_GFE` where (`TB_REFERENCIA_FCT_GFE`.`id_referencia_fct_gfe` = `clb`.`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`)) AS `fct_atual`,(select concat(`TB_REFERENCIA_FCT_GFE`.`num_referencia`,' - ',`TB_REFERENCIA_FCT_GFE`.`cargo`,' (R$ ',`TB_REFERENCIA_FCT_GFE`.`valor_referencia`,')') AS `fctIdeal` from `TB_REFERENCIA_FCT_GFE` where ((`TB_REFERENCIA_FCT_GFE`.`num_referencia` = `tba`.`referencia_fct_gfe_pontuacao`) and (`TB_REFERENCIA_FCT_GFE`.`cargo` = (select `TB_REFERENCIA_FCT_GFE`.`cargo` from `TB_REFERENCIA_FCT_GFE` where (`TB_REFERENCIA_FCT_GFE`.`id_referencia_fct_gfe` = `clb`.`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`))))) AS `fct_ideal` from ((`TB_RESULTADO` `tba` join `TB_COLABORADOR` `clb`) join `TB_FAIXA` `tbf`) where (`clb`.`id_colaborador` = `tba`.`TB_COLABORADOR_id_colaborador`) order by `clb`.`nome`,`tba`.`dt_resultado` ;
 
 -- --------------------------------------------------------
 
@@ -3187,7 +3214,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `VW_COLABORADOR`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `VW_COLABORADOR`  AS  select `tb0`.`id_colaborador` AS `idColaborador`,`tb0`.`nome` AS `nome`,`tb0`.`matricula` AS `matricula`,`tb0`.`telefone` AS `telefone`,`tb0`.`especialidade` AS `especialidade`,concat('R$ ',`tb0`.`salario`) AS `salario`,concat('R$ ',`tb0`.`percentual_salario`) AS `percentual_salario`,concat(`tb1`.`num_referencia`,' - ',`tb1`.`cargo`,' (R$ ',`tb1`.`valor_referencia`,')') AS `referenciaFct`,`tb2`.`sigla` AS `sigla`,(select `tb1`.`num_referencia` from (`TB_REFERENCIA_FCT_GFE` `tb1` join `TB_COLABORADOR` `tb2`) where ((`tb1`.`id_referencia_fct_gfe` = `tb2`.`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`) and (`tb2`.`id_colaborador` = `tb0`.`id_colaborador`))) AS `ref_fct_atual`,(select min(`TB_FAIXA`.`limite_inferior`) from `TB_FAIXA`) AS `pontuacao_inicial`,(select `tb1`.`num_referencia` from (`TB_REFERENCIA_FCT_GFE` `tb1` join `TB_FAIXA` `tb2`) where ((`tb1`.`id_referencia_fct_gfe` = `tb2`.`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`) and (`tb2`.`limite_inferior` = (select min(`TB_FAIXA`.`limite_inferior`) from `TB_FAIXA`)))) AS `ref_pontuacao_fct` from ((`TB_COLABORADOR` `tb0` join `TB_REFERENCIA_FCT_GFE` `tb1`) join `TB_DIVISAO` `tb2`) where ((`tb0`.`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe` = `tb1`.`id_referencia_fct_gfe`) and (`tb0`.`TB_DIVISAO_id_divisao` = `tb2`.`id_divisao`)) order by `tb0`.`id_colaborador` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `VW_COLABORADOR`  AS  select `tb0`.`id_colaborador` AS `idColaborador`,`tb0`.`nome` AS `nome`,`tb0`.`matricula` AS `matricula`,`tb0`.`telefone` AS `telefone`,`tb0`.`especialidade` AS `especialidade`,concat('R$ ',`tb0`.`salario`) AS `salario`,concat('R$ ',`tb0`.`percentual_salario`) AS `percentual_salario`,concat(`tb1`.`num_referencia`,' - ',`tb1`.`cargo`,' (R$ ',`tb1`.`valor_referencia`,')') AS `referenciaFct`,`tb1`.`valor_referencia` AS `valorReferenciaFct`,`tb1`.`cargo` AS `cargo`,`tb2`.`sigla` AS `sigla`,(select `tb1`.`num_referencia` from (`TB_REFERENCIA_FCT_GFE` `tb1` join `TB_COLABORADOR` `tb2`) where ((`tb1`.`id_referencia_fct_gfe` = `tb2`.`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`) and (`tb2`.`id_colaborador` = `tb0`.`id_colaborador`))) AS `ref_fct_atual`,(select min(`TB_FAIXA`.`limite_inferior`) from `TB_FAIXA`) AS `pontuacao_inicial`,(select `tb1`.`num_referencia` from (`TB_REFERENCIA_FCT_GFE` `tb1` join `TB_FAIXA` `tb2`) where ((`tb1`.`id_referencia_fct_gfe` = `tb2`.`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`) and (`tb2`.`limite_inferior` = (select min(`TB_FAIXA`.`limite_inferior`) from `TB_FAIXA`)))) AS `ref_pontuacao_fct`,(select `tb1`.`valor_referencia` from (`TB_REFERENCIA_FCT_GFE` `tb1` join `TB_FAIXA` `tb2`) where ((`tb1`.`id_referencia_fct_gfe` = `tb2`.`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`) and (`tb2`.`limite_inferior` = (select min(`TB_FAIXA`.`limite_inferior`) from `TB_FAIXA`)))) AS `valorFctInicial` from ((`TB_COLABORADOR` `tb0` join `TB_REFERENCIA_FCT_GFE` `tb1`) join `TB_DIVISAO` `tb2`) where ((`tb0`.`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe` = `tb1`.`id_referencia_fct_gfe`) and (`tb0`.`TB_DIVISAO_id_divisao` = `tb2`.`id_divisao`)) order by `tb0`.`id_colaborador` ;
 
 -- --------------------------------------------------------
 
@@ -3205,7 +3232,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`tiagooliveira`@`localhost` SQL SECURITY DEFI
 --
 DROP TABLE IF EXISTS `VW_DISTRIBUICAO`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `VW_DISTRIBUICAO`  AS  select `TB1`.`id_distribuicao` AS `id_distribuicao`,`TB1`.`valor` AS `valor`,(select distinct min(`TB_RESULTADO`.`pontuacao`) from `TB_RESULTADO`) AS `pontuacao_minima`,(select distinct max(`TB_RESULTADO`.`pontuacao`) from `TB_RESULTADO`) AS `pontuacao_maxima`,`TB1`.`qtde_faixas` AS `qtde_faixas`,date_format(`TB1`.`dt_registro`,'%d/%m/%Y') AS `dt_registro`,(select concat(`TB_REFERENCIA_FCT_GFE`.`num_referencia`,' - ',`TB_REFERENCIA_FCT_GFE`.`cargo`,' (R$ 		',`TB_REFERENCIA_FCT_GFE`.`valor_referencia`,')') AS `referencia_fct` from `TB_REFERENCIA_FCT_GFE` where (`TB_REFERENCIA_FCT_GFE`.`id_referencia_fct_gfe` = (select `tb3`.`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe` from (`TB_RESULTADO` `tb2` join `TB_COLABORADOR` `tb3`) where ((`tb2`.`TB_COLABORADOR_id_colaborador` = `tb3`.`id_colaborador`) and (`tb2`.`pontuacao` = `pontuacao_minima`))))) AS `referencia_fct` from `TB_DISTRIBUICAO` `TB1` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `VW_DISTRIBUICAO`  AS  select `TB1`.`id_distribuicao` AS `id_distribuicao`,`TB1`.`valor` AS `valor`,(select distinct min(`TB_RESULTADO`.`pontuacao`) from `TB_RESULTADO`) AS `pontuacao_minima`,(select distinct max(`TB_RESULTADO`.`pontuacao`) from `TB_RESULTADO`) AS `pontuacao_maxima`,`TB1`.`qtde_faixas` AS `qtde_faixas`,date_format(`TB1`.`dt_registro`,'%d/%m/%Y') AS `dt_registro`,(select `TB_REFERENCIA_FCT_GFE`.`id_referencia_fct_gfe` AS `referencia_fct` from `TB_REFERENCIA_FCT_GFE` where (`TB_REFERENCIA_FCT_GFE`.`id_referencia_fct_gfe` = (select `tb3`.`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe` from (`TB_RESULTADO` `tb2` join `TB_COLABORADOR` `tb3`) where ((`tb2`.`TB_COLABORADOR_id_colaborador` = `tb3`.`id_colaborador`) and (`tb2`.`pontuacao` = `pontuacao_minima`))))) AS `referencia_fct` from `TB_DISTRIBUICAO` `TB1` ;
 
 -- --------------------------------------------------------
 
@@ -3215,6 +3242,15 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 DROP TABLE IF EXISTS `VW_DISTRIBUICAO_FAIXA`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `VW_DISTRIBUICAO_FAIXA`  AS  select `tb1`.`id_faixa` AS `id_faixa`,`tb1`.`limite_inferior` AS `limite_inferior`,`tb1`.`limite_superior` AS `limite_superior`,`tb1`.`pontuacao_referencia` AS `pontuacao_referencia`,(select count(`tb2`.`id_resultado`) from (`TB_RESULTADO` `tb2` join `TB_COLABORADOR` `tb3`) where ((`tb2`.`TB_COLABORADOR_id_colaborador` = `tb3`.`id_colaborador`) and (`tb2`.`pontuacao` >= `tb1`.`limite_inferior`) and (`tb2`.`pontuacao` <= `tb1`.`limite_superior`) and (`tb2`.`dt_resultado` = (select max(`tb4`.`dt_resultado`) from `TB_RESULTADO` `tb4` where (`tb4`.`TB_COLABORADOR_id_colaborador` = `tb3`.`id_colaborador`))))) AS `qtde_pessoas`,`tb1`.`valor_rateio_pessoa` AS `valor_rateio_pessoa`,`tb1`.`percentual` AS `percentual`,`tb1`.`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe` AS `TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe` from `TB_FAIXA` `tb1` group by `tb1`.`limite_inferior`,`tb1`.`limite_superior` order by `tb1`.`limite_inferior` ;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para view `VW_PAPEL`
+--
+DROP TABLE IF EXISTS `VW_PAPEL`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `VW_PAPEL`  AS  select `tb0`.`id_papel` AS `id_papel`,`tb0`.`tipo` AS `tipo`,`tb0`.`nome` AS `nome`,`tb0`.`descricao` AS `descricao`,(select `tb1`.`TB_PAPEL_id_papel` from `TB_ATRIBUTO_has_TB_PAPEL` `tb1` where (`tb1`.`TB_PAPEL_id_papel` = `tb0`.`id_papel`) group by `tb1`.`TB_PAPEL_id_papel`) AS `possuiAtributo` from `TB_PAPEL` `tb0` group by `tb0`.`id_papel` order by `tb0`.`id_papel` ;
 
 -- --------------------------------------------------------
 
@@ -3455,7 +3491,7 @@ ALTER TABLE `TB_DIVISAO`
 -- AUTO_INCREMENT de tabela `TB_FAIXA`
 --
 ALTER TABLE `TB_FAIXA`
-  MODIFY `id_faixa` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=197;
+  MODIFY `id_faixa` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=226;
 
 --
 -- AUTO_INCREMENT de tabela `TB_IMPACTO`
@@ -3467,7 +3503,7 @@ ALTER TABLE `TB_IMPACTO`
 -- AUTO_INCREMENT de tabela `TB_PAPEL`
 --
 ALTER TABLE `TB_PAPEL`
-  MODIFY `id_papel` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_papel` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de tabela `TB_PERFIL`
@@ -3497,7 +3533,7 @@ ALTER TABLE `TB_REFERENCIA_FCT_GFE`
 -- AUTO_INCREMENT de tabela `TB_RESULTADO`
 --
 ALTER TABLE `TB_RESULTADO`
-  MODIFY `id_resultado` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id_resultado` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT de tabela `TB_TECNOLOGIA`

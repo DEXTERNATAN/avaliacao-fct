@@ -14,6 +14,7 @@ export class PapelComponent implements OnInit {
 
   public Papel: Papel[];
   public papelCarregado = true;
+  public vListpAtributo: String;
   dtOptions: DataTables.Settings = {};
   @ViewChild(DataTableDirective)
   dtElement: DataTableDirective;
@@ -37,7 +38,6 @@ export class PapelComponent implements OnInit {
     .subscribe(papel => {
       this.Papel = papel;
       this.papelCarregado = false;
-      // Calling the DT trigger to manually render the table
       this.dtTrigger.next();
     });
   }

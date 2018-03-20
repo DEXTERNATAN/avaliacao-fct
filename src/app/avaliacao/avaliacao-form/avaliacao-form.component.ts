@@ -29,7 +29,6 @@ import { User } from 'app/security/login/user';
 import { AtributoColaboradorService } from './../AtributoColaborador.service';
 
 
-
 @Component({
     selector: 'mt-avaliacao-form',
     templateUrl: './avaliacao-form.component.html',
@@ -79,7 +78,7 @@ export class AvaliacaoFormComponent implements OnInit {
 
     public percentMask = [/\d/, /\d/, '.', /\d/, /\d/];
 
-    /* Selectize Papel */
+    /* Select Papel */
     configPapel = {
         create: true,
         valueField: 'id_papel',
@@ -94,7 +93,7 @@ export class AvaliacaoFormComponent implements OnInit {
         onFocus: this.getValidacaoSelectize.bind(this)
     };
 
-    /* Selectize Tecnologia */
+    /* Select Tecnologia */
     configTecnologia = {
         create: true,
         valueField: 'id_tecnologia',
@@ -162,9 +161,7 @@ export class AvaliacaoFormComponent implements OnInit {
 
             this.avaliacaoService.getAvaliacaoId(this.idResource).subscribe(response => {
                 response = this.avaliacao = response;
-                // if (response.status === 404) {
                 this.router.navigate(['avaliacao']);
-                // }
             });
         });
 
@@ -217,7 +214,6 @@ export class AvaliacaoFormComponent implements OnInit {
                             valorX = (valorB * valorC);
                             valorX = (valorX / valorA);
 
-                            // Tiago verificar o erro aqui
                             if (dadosReferencia.cargo == this.formAvaliacao.get('colaborador').value.cargo) {
                                 if (valorAnterior == 0) {
 
@@ -275,7 +271,6 @@ export class AvaliacaoFormComponent implements OnInit {
             'TB_COLABORADOR_id_colaborador': avaliacaoForm.colaborador.idColaborador,
         }).subscribe(data => {
             this.router.navigate(['avaliacao']);
-            // this.mensagensHandler.handleSuccess('Avaliação registrada com sucesso!');
             this.toastr.success('Avaliação registrada com sucesso!', 'Sucesso', {
                 progressBar: true,
                 progressAnimation: 'increasing',
@@ -312,7 +307,7 @@ export class AvaliacaoFormComponent implements OnInit {
         let divisaoFilter: any[];
         let idDivisaoUser = this.user().TB_DIVISAO_id_divisao;
 
-        // Verificar se o perfil do usuario logado é de lider = 2
+        // Verificar o perfil do usuario logado
         this.divisaoService.getDivisao().subscribe(divisao => {
             if (this.user().id_perfil !== '1') {
                 divisaoFilter = divisao.filter(function (el) {
@@ -415,7 +410,7 @@ export class AvaliacaoFormComponent implements OnInit {
     }
 
     excProjeto(index: any) {
-        if (index > 7) {
+        if (index > 6) {
             this.formAvaliacao.controls['items'] = this.formBuilder.array([]);
         } else {
             this.items = this.formAvaliacao.get('items') as FormArray;
@@ -441,7 +436,7 @@ export class AvaliacaoFormComponent implements OnInit {
         } else {
             this.papelValidacao = false;
         }
-        
+
         this.vlrAtributo = 0;
         idAtributo.forEach(element => {
             this.avaliacaoService.getPapelAtributo(element).subscribe((data) => {
@@ -507,11 +502,12 @@ export class AvaliacaoFormComponent implements OnInit {
 
     somaAtributos() {
 
-        this.vlrAtributo = 0;
         let qtdAtributos = 0;
         let ajusteAtributos = 0.00;
         let vlrAbrangencia, vlrComplexidade, vlrImpacto: number;
         let atributos = this.formAvaliacao.get('itemsAtributo').value;
+
+        this.vlrAtributo = 0;
 
         atributos.forEach(element => {
             vlrAbrangencia = parseInt(element.Abrangencia, 10);
@@ -537,6 +533,7 @@ export class AvaliacaoFormComponent implements OnInit {
         switch (tipo) {
             case 'atributo': {
                 let QtdPapeis = 0;
+
                 this.valuePapel = this.formAvaliacao.get('papel').value;
                 QtdPapeis = this.valuePapel.length;
                 this.somaAtributos();
@@ -558,6 +555,7 @@ export class AvaliacaoFormComponent implements OnInit {
             }
             case 'projeto': {
                 let QtdProjetos = 0;
+
                 QtdProjetos = this.formAvaliacao.get('qtdProjetos').value;
                 this.somaProjetos();
                 this.Pesos.forEach(pesos => {
@@ -569,6 +567,7 @@ export class AvaliacaoFormComponent implements OnInit {
             }
             case 'ociosidade': {
                 let frmOciosidade = this.formAvaliacao.get('ociosidade').value || 0.00;
+
                 this.vlrOciosidade = (frmOciosidade / 100);
                 break;
             }
@@ -579,6 +578,7 @@ export class AvaliacaoFormComponent implements OnInit {
                 let valor1 = (this.formAvaliacao.get('colaborador').value.valorFctInicial || 0).toFixed(2);
                 let valor2 = (this.formAvaliacao.get('colaborador').value.valorReferenciaFct || 0).toFixed(2);
 
+                // Cálculo Pontuação de Referência
                 let calculoReferencia = ((pontuacao1 * valor2) / valor1).toFixed(2);
 
                 this.formAvaliacao.get('vlrFCTatual').setValue(calculoReferencia);
@@ -589,7 +589,6 @@ export class AvaliacaoFormComponent implements OnInit {
                 break;
             }
         }
-
 
         this.vlrTotal = (this.vlrAtributo + this.vlrTecnologia + this.vlrProjetos);
         this.vlrTotal = this.vlrTotal - (this.vlrTotal * this.vlrOciosidade);
@@ -620,7 +619,5 @@ export class AvaliacaoFormComponent implements OnInit {
 
             this.percAjusteBarra = this.percAjuste.toFixed(2) + '%';
         }
-
-        // Referencia FCT pela Pontuação Total
     }
 }
