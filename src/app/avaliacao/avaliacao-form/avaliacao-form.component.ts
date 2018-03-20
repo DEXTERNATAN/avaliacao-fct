@@ -190,7 +190,6 @@ export class AvaliacaoFormComponent implements OnInit {
                         return el['sigla'] === divisao.sigla;
                     });
 
-                    console.log(user.id_perfil == userAdmin, user.id_perfil, userAdmin);
                     if (user.id_perfil == userAdmin) {
                         this.Colaborador = colaborador;
                     } else {
@@ -204,7 +203,6 @@ export class AvaliacaoFormComponent implements OnInit {
         // se inscrece para verificar alterações no valor total da pontuação
         this.formAvaliacao.get('vlrPtTotal').valueChanges.subscribe(
             dataVlrTotal => {
-                debugger
                 let valorAnterior = 0;
                 let valorX = 0;
                 this.referenciaService.getReferencia().subscribe(
@@ -220,7 +218,7 @@ export class AvaliacaoFormComponent implements OnInit {
                             valorX = (valorX / valorA);
 
                             // Tiago verificar o erro aqui
-                            // if (dadosReferencia.cargo == this.formAvaliacao.get('colaborador').value.cargo) {
+                            if (dadosReferencia.cargo == this.formAvaliacao.get('colaborador').value.cargo) {
                                 if (valorAnterior == 0) {
 
                                     vlrValorFct = (dadosReferencia.num_referencia + ' - ' +
@@ -235,14 +233,12 @@ export class AvaliacaoFormComponent implements OnInit {
                                     this.formAvaliacao.get('FCTPontuaçãoTotal').setValue(vlrValorFct);
                                 }
 
-                            // }
+                            }
 
                         });
                     },
                     error => (console.log('Error: ', error))
                 );
-
-                console.log('O valor da pontuacao total mudou ... ', dataVlrTotal);
             }
         );
     }
@@ -318,15 +314,12 @@ export class AvaliacaoFormComponent implements OnInit {
 
         // Verificar se o perfil do usuario logado é de lider = 2
         this.divisaoService.getDivisao().subscribe(divisao => {
-            console.log(idDivisaoUser);
             if (this.user().id_perfil !== '1') {
-                console.log('lider e colaboradora', this.user());
                 divisaoFilter = divisao.filter(function (el) {
                     return el['id_divisao'] === idDivisaoUser;
                 });
                 this.Divisao = divisaoFilter;
             } else {
-                console.log('ADMINISTRADOR');
                 this.Divisao = divisao;
             }
         });
@@ -335,7 +328,6 @@ export class AvaliacaoFormComponent implements OnInit {
     getColaborador() {
         this.colaboradorService.getColaborador().subscribe(colaborador => {
             this.Colaborador = colaborador;
-            console.log(colaborador);
         });
     }
 
@@ -449,8 +441,7 @@ export class AvaliacaoFormComponent implements OnInit {
         } else {
             this.papelValidacao = false;
         }
-        console.log('idAtributo: ', idAtributo, this.papelValidacao, strValida.length);
-
+        
         this.vlrAtributo = 0;
         idAtributo.forEach(element => {
             this.avaliacaoService.getPapelAtributo(element).subscribe((data) => {
@@ -488,7 +479,6 @@ export class AvaliacaoFormComponent implements OnInit {
         if (this.formAvaliacao.get('tecnologia').value.length) {
             this.tecnologiaValidacao = false;
         }
-        console.log('getSomarTecnologia: ', valor, this.tecnologiaValidacao, this.formAvaliacao.get('tecnologia').value.length);
         this.qtdTecnologia = this.qtdTecnologia + 1;
         this.somaValores('tecnologia');
     }
@@ -497,7 +487,6 @@ export class AvaliacaoFormComponent implements OnInit {
         if (this.formAvaliacao.get('tecnologia').value.length === 0) {
             this.tecnologiaValidacao = true;
         }
-        console.log('getApagarTecnologia: ', valor, this.tecnologiaValidacao, this.formAvaliacao.get('tecnologia').value.length);
         this.qtdTecnologia = this.qtdTecnologia - 1;
         this.somaValores('tecnologia');
     }
@@ -548,8 +537,6 @@ export class AvaliacaoFormComponent implements OnInit {
         switch (tipo) {
             case 'atributo': {
                 let QtdPapeis = 0;
-                // debugger
-                console.log('PAPEIS: ', this.formAvaliacao.get('papel'));
                 this.valuePapel = this.formAvaliacao.get('papel').value;
                 QtdPapeis = this.valuePapel.length;
                 this.somaAtributos();
@@ -588,10 +575,11 @@ export class AvaliacaoFormComponent implements OnInit {
             case 'fctatual': {
 
                 // Pontuação FCT Atual
-                let ref1 = (this.formAvaliacao.get('colaborador').value.ref_pontuacao_fct || 0);
-                let ref2 = (this.formAvaliacao.get('colaborador').value.ref_fct_atual || 0);
-                let pontReferencia = (this.formAvaliacao.get('colaborador').value.pontuacao_inicial || 0).toFixed(2);
-                let calculoReferencia = ((ref2 * pontReferencia) / ref1).toFixed(2);
+                let pontuacao1 = (this.formAvaliacao.get('colaborador').value.pontuacao_inicial || 0).toFixed(2);
+                let valor1 = (this.formAvaliacao.get('colaborador').value.valorFctInicial || 0).toFixed(2);
+                let valor2 = (this.formAvaliacao.get('colaborador').value.valorReferenciaFct || 0).toFixed(2);
+
+                let calculoReferencia = ((pontuacao1 * valor2) / valor1).toFixed(2);
 
                 this.formAvaliacao.get('vlrFCTatual').setValue(calculoReferencia);
 
