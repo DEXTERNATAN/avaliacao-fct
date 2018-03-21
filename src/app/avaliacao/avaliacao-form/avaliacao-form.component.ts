@@ -76,7 +76,7 @@ export class AvaliacaoFormComponent implements OnInit {
     tecnologiaValidacao: boolean;
     ProjetosValidacao: boolean;
 
-    public percentMask = [/\d/, /\d/, '.', /\d/, /\d/];
+public percentMask = [ /[0-9]*/, '.', /[0-9]*/];
 
     /* Select Papel */
     configPapel = {
@@ -260,6 +260,11 @@ export class AvaliacaoFormComponent implements OnInit {
         let avaliacaoForm = this.formAvaliacao.value;
         this.somaValores('tudo');
 
+        // Associação colaborador atributo
+        debugger
+        console.log('cheguei aqui');
+        this.associaColabAtributo(avaliacaoForm);
+
         // Relacionar colaborador a atributo
         this.avaliacaoService.addAvaliacao({
             'id_resultado': 'null',
@@ -282,8 +287,9 @@ export class AvaliacaoFormComponent implements OnInit {
     }
 
     associaColabAtributo(formAvaliacao: any): any {
+        debugger
         let teste = {
-            'TB_COLABORADOR_id_colaborador': 2,
+            'TB_COLABORADOR_id_colaborador': formAvaliacao.colaborador.referenciaFct, // 2
             'TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe': 59,
             'TB_COLABORADOR_TB_DIVISAO_id_divisao': 3,
             'TB_ATRIBUTO_id_atributo': 1,
