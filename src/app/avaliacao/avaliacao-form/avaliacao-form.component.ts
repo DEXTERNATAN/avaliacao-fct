@@ -179,20 +179,13 @@ public percentMask = [ /[0-9]*/, '.', /[0-9]*/];
         this.formAvaliacao.get('divisao').valueChanges.subscribe( /* <- does work */
             divisao => {
                 let colabFilter: any[];
-                let user = this.user();
-                let userAdmin = '1';
 
                 this.colaboradorService.getColaborador().subscribe(colaborador => {
                     colabFilter = colaborador.filter(function (el) {
                         return el['sigla'] === divisao.sigla;
                     });
 
-                    if (user.id_perfil == userAdmin) {
-                        this.Colaborador = colaborador;
-                    } else {
-                        this.Colaborador = colabFilter;
-                    }
-
+                    this.Colaborador = colabFilter;
                 });
             }
         );
@@ -287,7 +280,6 @@ public percentMask = [ /[0-9]*/, '.', /[0-9]*/];
     }
 
     associaColabAtributo(formAvaliacao: any): any {
-        debugger
         let teste = {
             'TB_COLABORADOR_id_colaborador': formAvaliacao.colaborador.referenciaFct, // 2
             'TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe': 59,
@@ -312,10 +304,11 @@ public percentMask = [ /[0-9]*/, '.', /[0-9]*/];
 
         let divisaoFilter: any[];
         let idDivisaoUser = this.user().TB_DIVISAO_id_divisao;
+        let perfilColaborador = this.user().ds_perfil.toUpperCase();
 
         // Verificar o perfil do usuario logado
         this.divisaoService.getDivisao().subscribe(divisao => {
-            if (this.user().id_perfil !== '1') {
+            if (perfilColaborador !== 'ADMINISTRADOR') {
                 divisaoFilter = divisao.filter(function (el) {
                     return el['id_divisao'] === idDivisaoUser;
                 });
