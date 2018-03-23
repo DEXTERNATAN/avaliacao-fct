@@ -45,8 +45,8 @@ export class FaixaFormComponent implements OnInit {
             referencia_fct: [],
             percentual_fixo: [],
             valorDistribuicao: '',
-            referenciaFct: '',
             percentualFixo: [],
+            vlrReferencia: null,
             assumirPercCalculado: false,
             listFaixas: this.formBuilder.array([])
         });
@@ -96,6 +96,8 @@ export class FaixaFormComponent implements OnInit {
 
         // carga dos Dados complementares
         this.getReferencia();
+
+        
 
         this.formFaixa.get('listFaixas').valueChanges
         .debounceTime(400)
@@ -149,7 +151,8 @@ export class FaixaFormComponent implements OnInit {
 
         let result, faixaValue = this.formFaixa.value;
         let arrayFaixa: any[] = this.formFaixa.get('listFaixas').value;
-        let  quantidadeDePessoas, valorRateioPessoa, percentual: string;
+        let refFctPontuaMinima = this.formFaixa.get('vlrReferencia').value;
+        let quantidadeDePessoas, valorRateioPessoa, percentual: string;
         let objFaixa: Faixa;
 
         // Percorrendo as faixas
@@ -172,7 +175,7 @@ export class FaixaFormComponent implements OnInit {
                             quantidadeDePessoas,
                             valorRateioPessoa,
                             percentual,
-                            this.referencia[0].id_referencia_fct_gfe,
+                            refFctPontuaMinima,
                             this.distribuicao[0].id_distribuicao
             );
 
@@ -192,18 +195,15 @@ export class FaixaFormComponent implements OnInit {
 
         this.distribuicaoService.getDistribuicao().subscribe(distribuicao => {
             distribuicao.forEach(distVlr => {
-                console.log('valorDistribuicao', distVlr.valor);
                 this.formFaixa.get('valorDistribuicao').setValue(distVlr.valor);
-                this.formFaixa.get('referenciaFct').setValue(distVlr.referencia_fct);
+                this.formFaixa.get('vlrReferencia').setValue(distVlr.referencia_fct);
             });
             this.distribuicao = distribuicao;
         });
     }
 
     getReferencia() {
-        this.referenciaService.getReferencia().subscribe(referencia => {
-            this.referencia = referencia;
-        });
+        this.referenciaService.getReferencia().subscribe(referencia => this.referencia = referencia);
     }
 
     private calculaValores(): void {

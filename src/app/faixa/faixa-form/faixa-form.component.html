@@ -34,22 +34,22 @@
                   <tr *ngFor="let distribuicao of distribuicao">
                     <td>
                       <label for="">
-                        <span class="badge bg-red">{{(distribuicao.pontuacao_minima).toFixed(2)}}</span>
+                        <span class="badge bg-red">{{ ((distribuicao.pontuacao_minima).toFixed(2) || 39.00) }}</span>
                       </label>
                     </td>
                     <td>
                       <label for="">
-                        <span class="badge bg-yellow">{{(distribuicao.pontuacao_maxima).toFixed(2)}}</span>
+                        <span class="badge bg-yellow">{{ ((distribuicao.pontuacao_maxima).toFixed(2) || 39.00) }}</span>
                       </label>
                     </td>
                     <td>
                       <label for="">
-                        <span class="badge bg-light-blue">{{(distribuicao.pontuacao_maxima - distribuicao.pontuacao_minima).toFixed(2)}}</span>
+                        <span class="badge bg-light-blue">{{ ((distribuicao.pontuacao_maxima - distribuicao.pontuacao_minima).toFixed(2) || 0) }}</span>
                       </label>
                     </td>
                     <td>
                       <label for="">
-                        <span class="badge bg-aqua">{{distribuicao.qtde_faixas}}</span>
+                        <span class="badge bg-aqua">{{ ((distribuicao.qtde_faixas) || 1) }}</span>
                       </label>
                     </td>
                     <td>
@@ -85,22 +85,22 @@
                         </td>
                         <td>
                           <label for="">
-                            <span class="badge bg-red">{{(faixa.limite_inferior).toFixed(2)}}</span>
+                            <span class="badge bg-red">{{ (faixa.limite_inferior).toFixed(2) }}</span>
                           </label>
                         </td>
                         <td>
                           <label for="">
-                            <span class="badge bg-yellow">{{(faixa.limite_superior).toFixed(2)}}</span>
+                            <span class="badge bg-yellow">{{ (faixa.limite_superior).toFixed(2) }}</span>
                           </label>
                         </td>
                         <td>
                           <label for="">
-                            <span class="badge bg-light-blue">{{(faixa.pontuacao_referencia).toFixed(2)}}</span>
+                            <span class="badge bg-light-blue">{{ (faixa.pontuacao_referencia).toFixed(2) }}</span>
                           </label>
                         </td>
                         <td>
                           <label for="">
-                            <span class="badge bg-green">{{faixa.qtde_pessoas}}</span>
+                            <span class="badge bg-green">{{ faixa.qtde_pessoas }}</span>
                           </label>
                         </td>
                       </tr>
@@ -118,14 +118,14 @@
                   <tr>
                     <td>
                       <label for="">
-                        {{this.formFaixa.get('valorDistribuicao').value | currency:'BRL':'symbol-narrow' }}
+                        {{ this.formFaixa.get('valorDistribuicao').value | currency:'BRL':'symbol-narrow' }}
                       </label>
                     </td>
                     <td>
                       <label style="width: 60%">
-                        <select name="vlrReferencia" id="vlrReferencia" class="form-control">
-                          <option *ngFor="let ref of referencia" value="ref.id_referencia_fct_gfe" [selected]="ref.id_referencia_fct_gfe == this.formFaixa.get('referenciaFct').value">{{ ref.num_referencia }} - {{ ref.cargo }} ({{ref.valor_referencia }})</option>
-                        </select>                        
+                        <select formControlName="vlrReferencia" class="form-control">
+                          <option *ngFor="let ref of referencia" [value]="ref.id_referencia_fct_gfe">{{ref.num_referencia }} - {{ ref.cargo }} (R$ {{ref.valor_referencia }})</option>
+                        </select>
                       </label>
                     </td>
                     <td>

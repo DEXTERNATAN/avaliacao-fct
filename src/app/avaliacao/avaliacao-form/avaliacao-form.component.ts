@@ -296,7 +296,15 @@ public percentMask = [ /[0-9]*/, '.', /[0-9]*/];
 
     getPapeis() {
         this.papelService.getPapel().subscribe(papel => {
-            this.papel = papel;
+            let papelFilter: any[];
+            papel.forEach(element => {
+                papelFilter = papel.filter(
+                    el => {
+                        return el['possuiAtributo'] !== null;
+                    }
+                );
+            });
+            this.papel = papelFilter;
         });
     }
 
