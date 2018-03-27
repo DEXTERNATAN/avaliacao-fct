@@ -1,20 +1,20 @@
-import { Pipe, PipeTransform } from '@angular/core';
-import { CurrencyPipe } from '@angular/common';
+// import { Pipe, PipeTransform } from '@angular/core';
+// import { CurrencyPipe } from '@angular/common';
 
-@Pipe({
-  name: 'currencyformat'
-})
-export class CurrencyFormatPipe implements PipeTransform {
+// @Pipe({
+//   name: 'currencyformat'
+// })
+// export class CurrencyFormatPipe implements PipeTransform {
 
-  transform(value: number, currencyCode: string = 'BRL', symbolDisplay: boolean = true, digits?: string): string {
-    if (!value) {
-      return '';
-    }
+//   transform(value: number, currencyCode: string = 'BRL', symbolDisplay: boolean = true, digits?: string): string {
+//     if (!value) {
+//       return '';
+//     }
 
-    let currencyPipe: CurrencyPipe = new CurrencyPipe('pt-PT');
-    let newValue: string = currencyPipe.transform(value, currencyCode, symbolDisplay, digits);
+//     let currencyPipe: CurrencyPipe = new CurrencyPipe('pt-PT');
+//     let newValue: string = currencyPipe.transform(value, currencyCode, symbolDisplay, digits);
 
-    return newValue;
-  }
+//     return newValue;
+//   }
 
-}
+// }

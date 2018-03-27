@@ -1,3 +1,4 @@
+import { element } from 'protractor';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, FormArray, Validators, AbstractControl } from '@angular/forms';
@@ -76,7 +77,7 @@ export class AvaliacaoFormComponent implements OnInit {
     tecnologiaValidacao: boolean;
     ProjetosValidacao: boolean;
 
-public percentMask = [ /[0-9]*/, '.', /[0-9]*/];
+    public percentMask = [/[0-9]*/, '.', /[0-9]*/];
 
     /* Select Papel */
     configPapel = {
@@ -249,7 +250,7 @@ public percentMask = [ /[0-9]*/, '.', /[0-9]*/];
     }
 
     registrarAvaliacao() {
-
+        debugger;
         let avaliacaoForm = this.formAvaliacao.value;
         this.somaValores('tudo');
 
@@ -280,18 +281,29 @@ public percentMask = [ /[0-9]*/, '.', /[0-9]*/];
     }
 
     associaColabAtributo(formAvaliacao: any): any {
-        let teste = {
-            'TB_COLABORADOR_id_colaborador': formAvaliacao.colaborador.referenciaFct, // 2
-            'TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe': 59,
-            'TB_COLABORADOR_TB_DIVISAO_id_divisao': 3,
-            'TB_ATRIBUTO_id_atributo': 1,
-            'TB_ATRIBUTO_TB_ABRANGENCIA_id_abrangencia': 1,
-            'TB_ATRIBUTO_TB_COMPLEXIDADE_id_complexidade': 1,
-            'TB_ATRIBUTO_TB_IMPACTO_id_impacto': 1
-        };
 
-        this.atributoColaboradorService.addAssociacaoAtributoColaborador(teste).subscribe(data => {
+        console.log(formAvaliacao);
+
+        formAvaliacao.itemsAtributo.forEach(element => {
+
+            let teste = {
+                'TB_COLABORADOR_id_colaborador': formAvaliacao.colaborador.idColaborador, // 2
+                'TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe': 59, // formAvaliacao.colaborador.ref_fct_atual
+                'TB_COLABORADOR_TB_DIVISAO_id_divisao': formAvaliacao.divisao.id_divisao,
+                'TB_ATRIBUTO_id_atributo': element.idAtributo,
+                'TB_ATRIBUTO_TB_ABRANGENCIA_id_abrangencia': element.Abrangencia,
+                'TB_ATRIBUTO_TB_COMPLEXIDADE_id_complexidade': element.Complexidade,
+                'TB_ATRIBUTO_TB_IMPACTO_id_impacto': element.Impacto
+            };
+
+            this.atributoColaboradorService.addAssociacaoAtributoColaborador(teste).subscribe(data => { 
+                console.log(teste);
+            });
+
+            console.log(element.Abrangencia, element.Complexidade, element.Impacto, element.idAtributo);
         });
+
+
     }
 
     getPapeis() {
@@ -390,6 +402,7 @@ public percentMask = [ /[0-9]*/, '.', /[0-9]*/];
             Complexidade: [1, Validators.required],
             Impacto: [1, Validators.required],
             letra: atributo.letra,
+            idAtributo: atributo.id_atributo,
             descricao: atributo.descricao,
             descricaoAbrangencia1: atributo.descricaoAbrangencia1,
             descricaoAbrangencia2: atributo.descricaoAbrangencia2,

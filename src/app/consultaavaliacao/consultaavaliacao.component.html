@@ -27,7 +27,7 @@
           <div class="col-md12 relatorio">
             <div class="col-md-3">
               <label for="">NOME:</label>
-              <span>{{ avaliacao.no_colaborador }}</span>
+              <span>{{ avaliacao['no_colaborador'] }}</span>
             </div>
             <div class="col-md-3">
               <label for="">CPF:</label>
@@ -35,7 +35,7 @@
             </div>
             <div class="col-md-3">
               <label for="">DIVISÃO:</label>
-              <span>{{avaliacao.sigla_divisao}}</span>
+              <span>{{avaliacao['sigla_divisao']}}</span>
             </div>
             <div class="col-md-3">
               <label for="">DATA DA AVALIAÇÃO:</label>
@@ -359,7 +359,7 @@
             </div>
             <div class="col-md-3">
               <label for="">% de ociosidade:</label>
-              <span>{{ avaliacao.ociosidade }}</span>
+              <span>{{ avaliacao['ociosidade'] }}</span>
             </div>
           </div>
           <div class="col-md-12 relatorio">
