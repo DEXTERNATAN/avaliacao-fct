@@ -112,7 +112,7 @@
                         <td [formGroupName]="i">
                           <div class="radio" style="float: left;">
                             <label>
-                              <input type="radio" formControlName="Abrangencia" (change)="somaValores('atributo')" [value]="1" [checked]="true">
+                              <input type="radio" formControlName="Abrangencia" (change)="somaValores('atributo')" [value]="1">
                               <span data-toggle="tooltip" title="{{item.value.descricaoAbrangencia1}}" class="badge bg-yellow">1-Moderado</span>
                             </label>
                             <br>
@@ -128,9 +128,10 @@
                           </div>
                         </td>
                         <td [formGroupName]="i">
+                          
                           <div class="radio" style="float: left; position: relative;">
                             <label>
-                              <input type="radio" formControlName="Complexidade" (change)="somaValores('atributo')" [value]="1" [checked]="true">
+                              <input type="radio" formControlName="Complexidade" (change)="somaValores('atributo')" [value]="1">
                               <span data-toggle="tooltip" title="{{item.value.descricaoComplexidade1}}" class="badge bg-light-blue">1-Moderada</span>
                             </label>
                             <br>
@@ -148,9 +149,10 @@
 
                         </td>
                         <td [formGroupName]="i">
+                          
                           <div class="radio" style="float: left; position: relative;">
                             <label>
-                              <input type="radio" formControlName="Impacto" (change)="somaValores('atributo')" [value]="1" [checked]="true">
+                              <input type="radio" formControlName="Impacto" (change)="somaValores('atributo')" [value]="1">
                               <span data-toggle="tooltip" title="{{item.value.descricaoImpacto1}}" class="badge bg-green">1-Relevante</span>
                             </label>
                             <br>
