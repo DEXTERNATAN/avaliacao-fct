@@ -112,57 +112,55 @@
                         <td [formGroupName]="i">
                           <div class="radio" style="float: left;">
                             <label>
-                              <input type="radio" formControlName="Abrangencia" (change)="somaValores('atributo')" [value]="1">
+                              <input type="radio" formControlName="Abrangencia" (change)="somaValores('atributo')" [value]="item.value.idAbrangencia1" [checked]="true">
                               <span data-toggle="tooltip" title="{{item.value.descricaoAbrangencia1}}" class="badge bg-yellow">1-Moderado</span>
                             </label>
                             <br>
                             <label>
-                              <input type="radio" formControlName="Abrangencia" (change)="somaValores('atributo')" [value]="2">
+                              <input type="radio" formControlName="Abrangencia" (change)="somaValores('atributo')" [value]="item.value.idAbrangencia2">
                               <span data-toggle="tooltip" title="{{item.value.descricaoAbrangencia2}}" class="badge bg-yellow">2-Significativa</span>
                             </label>
                             <br>
                             <label>
-                              <input type="radio" formControlName="Abrangencia" (change)="somaValores('atributo')" [value]="3">
+                              <input type="radio" formControlName="Abrangencia" (change)="somaValores('atributo')" [value]="item.value.idAbrangencia3">
                               <span data-toggle="tooltip" title="{{item.value.descricaoAbrangencia3}}" class="badge bg-yellow">3-Muito</span>
                             </label>
                           </div>
                         </td>
                         <td [formGroupName]="i">
-                          
                           <div class="radio" style="float: left; position: relative;">
                             <label>
-                              <input type="radio" formControlName="Complexidade" (change)="somaValores('atributo')" [value]="1" checked>
+                              <input type="radio" formControlName="Complexidade" (change)="somaValores('atributo')" [value]="item.value.idComplexidade1" [checked]="true">
                               <span data-toggle="tooltip" title="{{item.value.descricaoComplexidade1}}" class="badge bg-light-blue">1-Moderada</span>
                             </label>
                             <br>
                             <label>
-                              <input type="radio" formControlName="Complexidade" (change)="somaValores('atributo')" [value]="2">
+                              <input type="radio" formControlName="Complexidade" (change)="somaValores('atributo')" [value]="item.value.idComplexidade2">
 
                               <span data-toggle="tooltip" title="{{item.value.descricaoComplexidade2}}" class="badge bg-light-blue">2-Alta</span>
                             </label>
                             <br>
                             <label>
-                              <input type="radio" formControlName="Complexidade" (change)="somaValores('atributo')" [value]="3">
+                              <input type="radio" formControlName="Complexidade" (change)="somaValores('atributo')" [value]="item.value.idComplexidade3">
                               <span data-toggle="tooltip" title="{{item.value.descricaoComplexidade3}}" class="badge bg-light-blue">3-Altíssima</span>
                             </label>
                           </div>
 
                         </td>
                         <td [formGroupName]="i">
-                          
                           <div class="radio" style="float: left; position: relative;">
                             <label>
-                              <input type="radio" formControlName="Impacto" (change)="somaValores('atributo')" [value]="1" checked="checked">
+                              <input type="radio" formControlName="Impacto" (change)="somaValores('atributo')" [value]="item.value.idImpacto1" [checked]="true">
                               <span data-toggle="tooltip" title="{{item.value.descricaoImpacto1}}" class="badge bg-green">1-Relevante</span>
                             </label>
                             <br>
                             <label>
-                              <input type="radio" formControlName="Impacto" (change)="somaValores('atributo')" [value]="2">
+                              <input type="radio" formControlName="Impacto" (change)="somaValores('atributo')" [value]="item.value.idImpacto2">
                               <span data-toggle="tooltip" title="{{item.value.descricaoImpacto2}}" class="badge bg-green">2-Muito</span>
                             </label>
                             <br>
                             <label>
-                              <input type="radio" formControlName="Impacto" (change)="somaValores('atributo')" [value]="3">
+                              <input type="radio" formControlName="Impacto" (change)="somaValores('atributo')" [value]="item.value.idImpacto3">
                               <span data-toggle="tooltip" title="{{item.value.descricaoImpacto3}}" class="badge bg-green">3-Altamente</span>
                             </label>
                           </div>
