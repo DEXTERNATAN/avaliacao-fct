@@ -250,13 +250,9 @@ export class AvaliacaoFormComponent implements OnInit {
     }
 
     registrarAvaliacao() {
-        debugger;
+
         let avaliacaoForm = this.formAvaliacao.value;
         this.somaValores('tudo');
-
-        // Associação colaborador atributo
-        debugger
-        console.log('cheguei aqui');
         this.associaColabAtributo(avaliacaoForm);
 
         // Relacionar colaborador a atributo
@@ -282,26 +278,31 @@ export class AvaliacaoFormComponent implements OnInit {
 
     associaColabAtributo(formAvaliacao: any): any {
 
-        console.log(formAvaliacao);
+        let AssociaAtributo: AtributoColaborador;
 
         formAvaliacao.itemsAtributo.forEach(element => {
+            this.avaliacaoService.getBuscaAtributo(element.Abrangencia, element.Complexidade, element.Impacto, element.letra).subscribe(
+                dataAtributo => {
 
-            let teste = {
-                'TB_COLABORADOR_id_colaborador': formAvaliacao.colaborador.idColaborador, // 2
-                'TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe': 59, // formAvaliacao.colaborador.ref_fct_atual
-                'TB_COLABORADOR_TB_DIVISAO_id_divisao': formAvaliacao.divisao.id_divisao,
-                'TB_ATRIBUTO_id_atributo': element.idAtributo,
-                'TB_ATRIBUTO_TB_ABRANGENCIA_id_abrangencia': element.Abrangencia,
-                'TB_ATRIBUTO_TB_COMPLEXIDADE_id_complexidade': element.Complexidade,
-                'TB_ATRIBUTO_TB_IMPACTO_id_impacto': element.Impacto
-            };
+                    if ( dataAtributo ) {
+                        AssociaAtributo = {
+                            'TB_COLABORADOR_id_colaborador': formAvaliacao.colaborador.idColaborador, // 2
+                            'TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe': 59, // formAvaliacao.colaborador.ref_fct_atual
+                            'TB_COLABORADOR_TB_DIVISAO_id_divisao': formAvaliacao.divisao.id_divisao,
+                            'TB_ATRIBUTO_id_atributo': dataAtributo.id_atributo,
+                            'TB_ATRIBUTO_TB_ABRANGENCIA_id_abrangencia': dataAtributo.id_abrangencia,
+                            'TB_ATRIBUTO_TB_COMPLEXIDADE_id_complexidade': dataAtributo.id_complexidade,
+                            'TB_ATRIBUTO_TB_IMPACTO_id_impacto': dataAtributo.id_impacto
+                        };
+                        this.atributoColaboradorService.addAssociacaoAtributoColaborador(AssociaAtributo).subscribe(data => {
+                            console.log('Resultado da inserção: ', data);
+                        });
 
-            this.atributoColaboradorService.addAssociacaoAtributoColaborador(teste).subscribe(data => { 
-                console.log(teste);
-            });
-
-            console.log(element.Abrangencia, element.Complexidade, element.Impacto, element.idAtributo);
+                    }
+                }
+            );
         });
+
 
 
     }

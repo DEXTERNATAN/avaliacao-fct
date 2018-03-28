@@ -37,6 +37,12 @@ export class AvaliacaoService  extends RestService<Avaliacao> {
         .map(response => response.json());
     }
 
+    getBuscaAtributo(id_abrangencia, id_complexidade, id_impacto, letra) {
+        return this.http.get(`${MEAT_API}/avaliacao/buscaAtributo/${id_abrangencia}/${id_complexidade}/${id_impacto}/${letra}`)
+        .do(response => console.log('resultado: ', response.json()))
+        .map(response => response.json());
+    }
+
     addAvaliacao(avaliacao: any) {
         return super.adicionar(avaliacao);
     }
