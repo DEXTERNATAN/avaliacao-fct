@@ -128,6 +128,7 @@
                           </div>
                         </td>
                         <td [formGroupName]="i">
+                          
                           <div class="radio" style="float: left; position: relative;">
                             <label>
                               <input type="radio" formControlName="Complexidade" (change)="somaValores('atributo')" [value]="1" [checked]="true">
@@ -160,7 +161,7 @@
                             </label>
                             <br>
                             <label>
-                              <input type="radio" formControlName="Impacto" (change)="somaValores('atributo')" [value]="item.value.idImpacto3">
+                              <input type="radio" formControlName="Impacto" (change)="somaValores('atributo')" [value]="3">
                               <span data-toggle="tooltip" title="{{item.value.descricaoImpacto3}}" class="badge bg-green">3-Altamente</span>
                             </label>
                           </div>

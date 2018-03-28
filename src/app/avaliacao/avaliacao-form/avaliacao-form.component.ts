@@ -1,4 +1,3 @@
-import { element } from 'protractor';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, FormArray, Validators, AbstractControl } from '@angular/forms';
@@ -283,8 +282,8 @@ export class AvaliacaoFormComponent implements OnInit {
         formAvaliacao.itemsAtributo.forEach(element => {
             this.avaliacaoService.getBuscaAtributo(element.Abrangencia, element.Complexidade, element.Impacto, element.letra).subscribe(
                 dataAtributo => {
-
                     if ( dataAtributo ) {
+
                         AssociaAtributo = {
                             'TB_COLABORADOR_id_colaborador': formAvaliacao.colaborador.idColaborador, // 2
                             'TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe': 59, // formAvaliacao.colaborador.ref_fct_atual
@@ -294,6 +293,7 @@ export class AvaliacaoFormComponent implements OnInit {
                             'TB_ATRIBUTO_TB_COMPLEXIDADE_id_complexidade': dataAtributo.id_complexidade,
                             'TB_ATRIBUTO_TB_IMPACTO_id_impacto': dataAtributo.id_impacto
                         };
+
                         this.atributoColaboradorService.addAssociacaoAtributoColaborador(AssociaAtributo).subscribe(data => {
                             console.log('Resultado da inserção: ', data);
                         });
@@ -302,8 +302,6 @@ export class AvaliacaoFormComponent implements OnInit {
                 }
             );
         });
-
-
 
     }
 
@@ -405,21 +403,12 @@ export class AvaliacaoFormComponent implements OnInit {
             letra: atributo.letra,
             idAtributo: atributo.id_atributo,
             descricao: atributo.descricao,
-            idAbrangencia1: atributo.idAbrangencia1,
-            idAbrangencia2: atributo.idAbrangencia2,
-            idAbrangencia3: atributo.idAbrangencia3,
             descricaoAbrangencia1: atributo.descricaoAbrangencia1,
             descricaoAbrangencia2: atributo.descricaoAbrangencia2,
             descricaoAbrangencia3: atributo.descricaoAbrangencia3,
-            idComplexidade1: atributo.idComplexidade1,
-            idComplexidade2: atributo.idComplexidade2,
-            idComplexidade3: atributo.idComplexidade3,
             descricaoComplexidade1: atributo.descricaoComplexidade1,
             descricaoComplexidade2: atributo.descricaoComplexidade2,
             descricaoComplexidade3: atributo.descricaoComplexidade3,
-            idImpacto1: atributo.idImpacto1,
-            idImpacto2: atributo.idImpacto2,
-            idImpacto3: atributo.idImpacto3,
             descricaoImpacto1: atributo.descricaoImpacto1,
             descricaoImpacto2: atributo.descricaoImpacto2,
             descricaoImpacto3: atributo.descricaoImpacto3
