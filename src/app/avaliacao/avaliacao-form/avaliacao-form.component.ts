@@ -295,7 +295,7 @@ export class AvaliacaoFormComponent implements OnInit {
 
                         AssociaAtributo = {
                             'TB_COLABORADOR_id_colaborador': formAvaliacao.colaborador.idColaborador, // 2
-                            'TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe': 59, // formAvaliacao.colaborador.ref_fct_atual
+                            'TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe': formAvaliacao.colaborador.id_referencia_fct_gfe,
                             'TB_COLABORADOR_TB_DIVISAO_id_divisao': formAvaliacao.divisao.id_divisao,
                             'TB_ATRIBUTO_id_atributo': dataAtributo.id_atributo,
                             'TB_ATRIBUTO_TB_ABRANGENCIA_id_abrangencia': dataAtributo.id_abrangencia,
