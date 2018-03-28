@@ -291,7 +291,8 @@ export class AvaliacaoFormComponent implements OnInit {
                             'TB_ATRIBUTO_id_atributo': dataAtributo.id_atributo,
                             'TB_ATRIBUTO_TB_ABRANGENCIA_id_abrangencia': dataAtributo.id_abrangencia,
                             'TB_ATRIBUTO_TB_COMPLEXIDADE_id_complexidade': dataAtributo.id_complexidade,
-                            'TB_ATRIBUTO_TB_IMPACTO_id_impacto': dataAtributo.id_impacto
+                            'TB_ATRIBUTO_TB_IMPACTO_id_impacto': dataAtributo.id_impacto // ,
+                            // 'TB_RESULTADO_id_resultado': 27 [Buscar o último ID da tabela TB_RESULTADO +1]
                         };
 
                         this.atributoColaboradorService.addAssociacaoAtributoColaborador(AssociaAtributo).subscribe(data => {
