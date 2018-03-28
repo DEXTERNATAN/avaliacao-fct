@@ -251,10 +251,9 @@ export class AvaliacaoFormComponent implements OnInit {
     registrarAvaliacao() {
 
         let avaliacaoForm = this.formAvaliacao.value;
-        this.somaValores('tudo');
-        this.associaColabAtributo(avaliacaoForm);
 
-        // Relacionar colaborador a atributo
+        this.somaValores('tudo');
+
         this.avaliacaoService.addAvaliacao({
             'id_resultado': 'null',
             'pontuacao': avaliacaoForm.vlrPtTotal,
@@ -272,11 +271,21 @@ export class AvaliacaoFormComponent implements OnInit {
                 timeOut: 3000
             });
         });
+        // debugger
+        // Recupera o id da ultima avaliação inserida e associa atributos ao colaborador
+        this.avaliacaoService.getMaxId().subscribe(
+            resultado => {
+                if ( resultado ) {
+                    this.associaColabAtributo(avaliacaoForm, resultado[0].idResultado);
+                    console.log(resultado[0].idResultado);
+                }
+            }
+        );
 
     }
 
-    associaColabAtributo(formAvaliacao: any): any {
-
+    associaColabAtributo(formAvaliacao: any, maxId: any): any {
+        console.log('Max id: ', maxId);
         let AssociaAtributo: AtributoColaborador;
 
         formAvaliacao.itemsAtributo.forEach(element => {
@@ -291,10 +300,10 @@ export class AvaliacaoFormComponent implements OnInit {
                             'TB_ATRIBUTO_id_atributo': dataAtributo.id_atributo,
                             'TB_ATRIBUTO_TB_ABRANGENCIA_id_abrangencia': dataAtributo.id_abrangencia,
                             'TB_ATRIBUTO_TB_COMPLEXIDADE_id_complexidade': dataAtributo.id_complexidade,
-                            'TB_ATRIBUTO_TB_IMPACTO_id_impacto': dataAtributo.id_impacto // ,
-                            // 'TB_RESULTADO_id_resultado': 27 [Buscar o último ID da tabela TB_RESULTADO +1]
+                            'TB_ATRIBUTO_TB_IMPACTO_id_impacto': dataAtributo.id_impacto,
+                            'TB_RESULTADO_id_resultado': maxId // [Buscar o último ID da tabela TB_RESULTADO +1]
                         };
-
+                        console.log(AssociaAtributo);
                         this.atributoColaboradorService.addAssociacaoAtributoColaborador(AssociaAtributo).subscribe(data => {
                             console.log('Resultado da inserção: ', data);
                         });

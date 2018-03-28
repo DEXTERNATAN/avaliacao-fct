@@ -6,4 +6,5 @@ export class AtributoColaborador {
     TB_ATRIBUTO_TB_ABRANGENCIA_id_abrangencia: number;
     TB_ATRIBUTO_TB_COMPLEXIDADE_id_complexidade: number;
     TB_ATRIBUTO_TB_IMPACTO_id_impacto: number;
+    TB_RESULTADO_id_resultado: number;
 }

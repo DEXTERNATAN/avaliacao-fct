@@ -26,6 +26,12 @@ export class AvaliacaoService  extends RestService<Avaliacao> {
         return objeto.id_resultado;
     }
 
+    getMaxId() {
+        return this.http.get(`${MEAT_API}/avaliacao/maxId`)
+        .do(response => console.log('Ultimo id inserido: ', response.json()))
+        .map(response => response.json());
+    }
+
     getAvaliacao(): Observable<Avaliacao[]> {
         return this.http.get(`${MEAT_API}/avaliacao`)
             .map(response => response.json());
