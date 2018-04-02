@@ -35,8 +35,8 @@
                 </tr>
               </thead>
               <tbody>  
-                <tr *ngFor="let tecnologia of Tecnologia">
-                  <td>{{tecnologia.id_tecnologia}}</td>
+                <tr *ngFor="let tecnologia of Tecnologia; let i = index;">
+                  <td>{{i+1}}</td>
                   <td>{{tecnologia.tipo}}</td>
                   <td>
                       <span class="pull-left badge bg-aqua">{{tecnologia.nome}}</span>

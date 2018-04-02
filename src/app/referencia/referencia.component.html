@@ -36,9 +36,9 @@
 							</tr>
 						</thead>
 						<tbody>	
-							<tr *ngFor="let referencia of Referencia">
+							<tr *ngFor="let referencia of Referencia; let i = index;">
 								<!-- | filter:searchText -->
-								<td>{{referencia.id_referencia_fct_gfe}}</td>
+								<td>{{i+1}}</td>
 								<td>{{referencia.cargo}}</td>
 								<td>{{referencia.num_referencia}}</td>
 								<td>{{referencia.valor_referencia}}</td>  

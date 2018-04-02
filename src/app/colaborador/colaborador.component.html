@@ -37,8 +37,8 @@
 							</tr>
 						</thead>
 						<tbody>	
-							<tr *ngFor="let colaborador of Colaborador">
-								<td>{{colaborador.idColaborador}}</td>
+							<tr *ngFor="let colaborador of Colaborador; let i = index;">
+								<td>{{i+1}}</td>
 								<td>{{colaborador.matricula}}</td>
 								<td>{{colaborador.nome}}</td>
 								<td>{{colaborador.telefone | telMask}}</td>

@@ -33,8 +33,8 @@
                                 </tr>
                             </thead>
                             <tbody>    
-                                <tr *ngFor="let complexidade of Complexidade">
-                                    <td>{{complexidade.id_complexidade}}</td>
+                                <tr *ngFor="let complexidade of Complexidade; let i = index;">
+                                    <td>{{i+1}}</td>
                                     <td>{{complexidade.atributo}}</td>
                                     <td>{{complexidade.tipo}}</td>
                                     <td>

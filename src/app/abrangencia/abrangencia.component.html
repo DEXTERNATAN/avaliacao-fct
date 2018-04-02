@@ -36,8 +36,8 @@
 							</tr>
 						</thead>	
 						<tbody>		
-							<tr *ngFor="let abrangencia of Abrangencia">
-								<td>{{abrangencia.id_abrangencia}}</td>
+							<tr *ngFor="let abrangencia of Abrangencia; let i = index;">
+								<td>{{i+1}}</td>
 								<td>{{abrangencia.atributo}}</td>
 								<td>{{abrangencia.tipo}}</td>
 								<td>

@@ -36,9 +36,9 @@
                             </tr>
                         </thead>
                         <tbody>    
-                            <tr *ngFor="let impacto of Impacto">
+                            <tr *ngFor="let impacto of Impacto; let i = index;">
                                 <!-- | filter:searchText -->
-                                <td>{{impacto.id_impacto}}</td>
+                                <td>{{i+1}}</td>
                                 <td>{{impacto.atributo}}</td>
                                 <td>{{impacto.tipo}}</td>
                                 <td>
