@@ -39,8 +39,8 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr *ngFor="let divisao of Divisao">
-									<td>{{divisao.id_divisao}}</td>
+								<tr *ngFor="let divisao of Divisao; let i = index;">
+									<td>{{i+1}}</td>
 									<td>{{divisao.sigla}}</td>
 									<td>{{divisao.nome}}</td>
 									<td>{{divisao.uf}}</td>

@@ -37,9 +37,9 @@
 							</tr>
 						</thead>
 						<tbody>	
-							<tr *ngFor="let pesos of Pesos">
+							<tr *ngFor="let pesos of Pesos; let i = index;">
 								<!-- | filter:searchText -->
-								<td>{{pesos.id_pesos}}</td>
+								<td>{{i+1}}</td>
 								<td>{{pesos.tipo}}</td>
 								<td>{{pesos.quantidade}}</td>
 								<td>{{pesos.descricao}}</td>

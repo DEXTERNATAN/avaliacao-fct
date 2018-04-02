@@ -42,8 +42,8 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let atributo of Atributo">
-                <td>{{atributo.idAtributo}}</td>
+              <tr *ngFor="let atributo of Atributo; let i = index;">
+                <td>{{i+1}}</td>
                 <td>{{atributo.letra}}</td>
                 <td>{{atributo.descricao}}</td>
                 <td>{{atributo.tipo}}</td>

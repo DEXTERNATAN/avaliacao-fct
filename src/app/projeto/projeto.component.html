@@ -38,9 +38,9 @@
 							</tr>
 						</thead>		
 						<tbody>
-							<tr *ngFor="let projeto of Projeto">
+							<tr *ngFor="let projeto of Projeto; let i = index;">
 								<!-- | filter:searchText -->
-								<td>{{projeto.id_projeto}}</td>
+								<td>{{i+1}}</td>
 								<td>{{projeto.cod_servico}}</td>
 								<td>{{projeto.titulo}}</td>
 								<td>{{projeto.descricao}}</td>

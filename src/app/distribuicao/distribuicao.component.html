@@ -43,8 +43,8 @@
 							</tr>
 						</thead>
 						<tbody>	
-							<tr *ngFor="let distribuicao of Distribuicao">
-								<td>{{distribuicao.id_distribuicao}}</td>
+							<tr *ngFor="let distribuicao of Distribuicao; let i = index;">
+								<td>{{i+1}}</td>
 								<td>R$ {{distribuicao.valor}}</td>
 								<td>{{(distribuicao.pontuacao_minima).toFixed(2)}}</td>
 								<td>{{(distribuicao.pontuacao_maxima).toFixed(2)}}</td>
