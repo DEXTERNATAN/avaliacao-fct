@@ -75,6 +75,7 @@ export class AvaliacaoFormComponent implements OnInit {
     papelValidacao: boolean;
     tecnologiaValidacao: boolean;
     ProjetosValidacao: boolean;
+    valorFCTPontuaçãoTotal: any;
 
     public percentMask = [/[0-9]*/, '.', /[0-9]*/];
 
@@ -214,12 +215,15 @@ export class AvaliacaoFormComponent implements OnInit {
                                         dadosReferencia.cargo + ' (R$ ' + dadosReferencia.valor_referencia + ')');
                                     this.formAvaliacao.get('FCTPontuaçãoTotal').setValue(vlrValorFct);
 
+                                    this.valorFCTPontuaçãoTotal = dadosReferencia.num_referencia; 
+
                                     valorAnterior = 1;
 
                                 } else if (valorX > parseFloat(dadosReferencia.valor_referencia)) {
                                     vlrValorFct = (dadosReferencia.num_referencia + ' - ' +
                                         dadosReferencia.cargo + ' (R$ ' + dadosReferencia.valor_referencia + ')');
                                     this.formAvaliacao.get('FCTPontuaçãoTotal').setValue(vlrValorFct);
+                                    this.valorFCTPontuaçãoTotal = dadosReferencia.num_referencia;
                                 }
 
                             }
@@ -260,7 +264,7 @@ export class AvaliacaoFormComponent implements OnInit {
             'dt_resultado': 'null',
             'ajuste': avaliacaoForm.ajuste,
             'ociosidade': avaliacaoForm.ociosidade,
-            'referencia_fct_gfe_pontuacao': avaliacaoForm.colaborador.referenciaFct,
+            'referencia_fct_gfe_pontuacao': this.valorFCTPontuaçãoTotal,
             'TB_COLABORADOR_id_colaborador': avaliacaoForm.colaborador.idColaborador,
         }).subscribe(data => {
             this.router.navigate(['avaliacao']);
