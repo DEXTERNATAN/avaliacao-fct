@@ -27,4 +27,6 @@ export class AtributoColaboradorService  extends RestService<AtributoColaborador
     addAssociacaoAtributoColaborador(associacao: any) {
         return super.adicionar(associacao);
     }
+
+
 }

@@ -10,6 +10,7 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 
 import { Avaliacao } from './avaliacao.model';
+import { TecnologiaColaborador } from 'app/avaliacao/TecnologiaColaborador.model';
 
 @Injectable()
 export class AvaliacaoService  extends RestService<Avaliacao> {
@@ -48,6 +49,14 @@ export class AvaliacaoService  extends RestService<Avaliacao> {
         .do(response => console.log('resultado: ', response.json()))
         .map(response => response.json());
     }
+
+    addAssociacaoAtributoTecnologia(tecnologiaColaborador: any): any {
+        return this.http.post(`${MEAT_API}/avaliacao/tecnologiaColaborador/`, tecnologiaColaborador, this.getDefaultRequestOptions())
+        .map(response => response.text())
+        .do(data => console.log('server data:', data));
+    }
+
+
 
     addAvaliacao(avaliacao: any) {
         return super.adicionar(avaliacao);

@@ -22,6 +22,7 @@ import { ProjetoService } from './../../projeto/projeto.service';
 import { PesosService } from './../../pesos/pesos.service';
 import { LoginService } from 'app/security/login/login.service';
 import { ReferenciaService } from './../../referencia/referencia.service';
+import { TecnologiaColaborador } from './../TecnologiaColaborador.model';
 
 import { ToastrService } from 'ngx-toastr';
 
@@ -48,6 +49,7 @@ export class AvaliacaoFormComponent implements OnInit {
     papel: Papel[] = [];
     PapelAtributo2: any[] = [];
     atributoColaborador: AtributoColaborador[];
+    tecnologiaColaborador: TecnologiaColaborador[];
     valorCopy: any[];
     PapelAtributo: any[] = [];
     projetosList: number[] = [1];
@@ -215,7 +217,7 @@ export class AvaliacaoFormComponent implements OnInit {
                                         dadosReferencia.cargo + ' (R$ ' + dadosReferencia.valor_referencia + ')');
                                     this.formAvaliacao.get('FCTPontuaçãoTotal').setValue(vlrValorFct);
 
-                                    this.valorFCTPontuaçãoTotal = dadosReferencia.num_referencia; 
+                                    this.valorFCTPontuaçãoTotal = dadosReferencia.num_referencia;
 
                                     valorAnterior = 1;
 
@@ -267,35 +269,45 @@ export class AvaliacaoFormComponent implements OnInit {
             'referencia_fct_gfe_pontuacao': this.valorFCTPontuaçãoTotal,
             'TB_COLABORADOR_id_colaborador': avaliacaoForm.colaborador.idColaborador,
         }).subscribe(data => {
-            this.router.navigate(['avaliacao']);
-            this.toastr.success('Avaliação registrada com sucesso!', 'Sucesso', {
-                progressBar: true,
-                progressAnimation: 'increasing',
-                closeButton: true,
-                timeOut: 3000
-            });
-        });
-        // debugger
-        // Recupera o id da ultima avaliação inserida e associa atributos ao colaborador
-        this.avaliacaoService.getMaxId().subscribe(
-            resultado => {
-                if ( resultado ) {
-                    this.associaColabAtributo(avaliacaoForm, resultado[0].idResultado);
-                    console.log(resultado[0].idResultado);
-                }
-            }
-        );
 
+            //if (data) {
+
+                // Recupera o id da ultima avaliação inserida e associa atributos ao colaborador
+                this.avaliacaoService.getMaxId().subscribe(
+                    resultado => {
+                        if (resultado) {
+
+                            // Associação entre colaborador e tecnologia
+                            this.associarColaboradorTecnologia(avaliacaoForm, resultado[0].idResultado);
+
+                            // Associação entre colaborador e atributo
+                            this.associarColaboradorAtributo(avaliacaoForm, resultado[0].idResultado);
+                            // console.log(resultado[0].idResultado);
+
+                            this.router.navigate(['avaliacao']);
+
+                            this.toastr.success('Avaliação registrada com sucesso!', 'Sucesso', {
+                                progressBar: true,
+                                progressAnimation: 'increasing',
+                                closeButton: true,
+                                timeOut: 3000
+                            });
+
+                        }
+                    },
+                    error => (console.log('Error: ', error))
+                );
+           // }
+        });
     }
 
-    associaColabAtributo(formAvaliacao: any, maxId: any): any {
-        console.log('Max id: ', maxId);
+    associarColaboradorAtributo(formAvaliacao: any, maxId: any): any {
         let AssociaAtributo: AtributoColaborador;
 
         formAvaliacao.itemsAtributo.forEach(element => {
             this.avaliacaoService.getBuscaAtributo(element.Abrangencia, element.Complexidade, element.Impacto, element.letra).subscribe(
                 dataAtributo => {
-                    if ( dataAtributo ) {
+                    if (dataAtributo) {
 
                         AssociaAtributo = {
                             'TB_COLABORADOR_id_colaborador': formAvaliacao.colaborador.idColaborador, // 2
@@ -307,16 +319,36 @@ export class AvaliacaoFormComponent implements OnInit {
                             'TB_ATRIBUTO_TB_IMPACTO_id_impacto': dataAtributo.id_impacto,
                             'TB_RESULTADO_id_resultado': maxId // [Buscar o último ID da tabela TB_RESULTADO +1]
                         };
-                        console.log(AssociaAtributo);
-                        this.atributoColaboradorService.addAssociacaoAtributoColaborador(AssociaAtributo).subscribe(data => {
-                            console.log('Resultado da inserção: ', data);
-                        });
+
+                        this.atributoColaboradorService.addAssociacaoAtributoColaborador(AssociaAtributo).subscribe(data => { });
 
                     }
                 }
             );
         });
 
+    }
+
+    associarColaboradorTecnologia(formAvaliacao: any, maxId: any): any {
+        let associacaoColaboradorTecnologia: any;
+
+        formAvaliacao.tecnologia.forEach(Idtecnologia => {
+
+            associacaoColaboradorTecnologia = {
+                'TB_TECNOLOGIA_id_tecnologia': parseInt(Idtecnologia, 9),
+                'TB_COLABORADOR_id_colaborador': formAvaliacao.colaborador.idColaborador,
+                'TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe': formAvaliacao.colaborador.id_referencia_fct_gfe,
+                'TB_COLABORADOR_TB_DIVISAO_id_divisao': formAvaliacao.divisao.id_divisao,
+                'TB_RESULTADO_id_resultado': maxId
+            };
+
+            console.log(associacaoColaboradorTecnologia);
+
+            this.avaliacaoService.addAssociacaoAtributoTecnologia(associacaoColaboradorTecnologia).subscribe(data => {
+                console.log('OK - Associações incluidas com sucesso', data);
+            });
+
+        });
     }
 
     getPapeis() {
