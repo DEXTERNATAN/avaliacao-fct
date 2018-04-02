@@ -1,3 +1,4 @@
+import { element } from 'protractor';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, FormArray, Validators, AbstractControl } from '@angular/forms';
@@ -257,7 +258,7 @@ export class AvaliacaoFormComponent implements OnInit {
     registrarAvaliacao() {
 
         let avaliacaoForm = this.formAvaliacao.value;
-
+        debugger
         this.somaValores('tudo');
 
         this.avaliacaoService.addAvaliacao({
@@ -272,32 +273,38 @@ export class AvaliacaoFormComponent implements OnInit {
 
             //if (data) {
 
-                // Recupera o id da ultima avaliação inserida e associa atributos ao colaborador
-                this.avaliacaoService.getMaxId().subscribe(
-                    resultado => {
-                        if (resultado) {
+            // Recupera o id da ultima avaliação inserida e associa atributos ao colaborador
+            this.avaliacaoService.getMaxId().subscribe(
+                resultado => {
+                    if (resultado) {
 
-                            // Associação entre colaborador e tecnologia
-                            this.associarColaboradorTecnologia(avaliacaoForm, resultado[0].idResultado);
+                        // Associação entre colaborador e papel
+                        this.associarColaboradorPapel(avaliacaoForm, resultado[0].idResultado);
 
-                            // Associação entre colaborador e atributo
-                            this.associarColaboradorAtributo(avaliacaoForm, resultado[0].idResultado);
-                            // console.log(resultado[0].idResultado);
+                        // Associação entre colaborador e papel
+                        this.associarColaboradorProjeto(avaliacaoForm, resultado[0].idResultado);
 
-                            this.router.navigate(['avaliacao']);
+                        // Associação entre colaborador e atributo
+                        this.associarColaboradorAtributo(avaliacaoForm, resultado[0].idResultado);
 
-                            this.toastr.success('Avaliação registrada com sucesso!', 'Sucesso', {
-                                progressBar: true,
-                                progressAnimation: 'increasing',
-                                closeButton: true,
-                                timeOut: 3000
-                            });
+                        // Associação entre colaborador e tecnologia
+                        this.associarColaboradorTecnologia(avaliacaoForm, resultado[0].idResultado);
 
-                        }
-                    },
-                    error => (console.log('Error: ', error))
-                );
-           // }
+
+                        this.router.navigate(['avaliacao']);
+
+                        this.toastr.success('Avaliação registrada com sucesso!', 'Sucesso', {
+                            progressBar: true,
+                            progressAnimation: 'increasing',
+                            closeButton: true,
+                            timeOut: 3000
+                        });
+
+                    }
+                },
+                error => (console.log('Error: ', error))
+            );
+            // }
         });
     }
 
@@ -344,12 +351,59 @@ export class AvaliacaoFormComponent implements OnInit {
 
             console.log(associacaoColaboradorTecnologia);
 
-            this.avaliacaoService.addAssociacaoAtributoTecnologia(associacaoColaboradorTecnologia).subscribe(data => {
+            this.avaliacaoService.addAssociacaoColaboradorTecnologia(associacaoColaboradorTecnologia).subscribe(data => {
                 console.log('OK - Associações incluidas com sucesso', data);
             });
 
         });
     }
+
+    associarColaboradorPapel(formAvaliacao: any, maxId: any): any {
+        let associacaoColaboradorPapel: any;
+
+        formAvaliacao.papel.forEach(Idpapel => {
+
+            associacaoColaboradorPapel = {
+                'TB_PAPEL_id_papel': parseInt(Idpapel, 9),
+                'TB_COLABORADOR_id_colaborador': formAvaliacao.colaborador.idColaborador,
+                'TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe': formAvaliacao.colaborador.id_referencia_fct_gfe,
+                'TB_COLABORADOR_TB_DIVISAO_id_divisao': formAvaliacao.divisao.id_divisao,
+                'TB_RESULTADO_id_resultado': maxId
+            };
+
+            console.log(associacaoColaboradorPapel);
+
+            this.avaliacaoService.addAssociacaoColaboradorPapel(associacaoColaboradorPapel).subscribe(data => {
+                console.log(' **** --- Associações Papel Colaborador', data);
+            });
+
+        });
+    }
+
+    associarColaboradorProjeto(formAvaliacao: any, maxId: any): any {
+        let associacaoColaboradorProjeto: any;
+
+        formAvaliacao.items.forEach(idProjeto => {
+
+            console.log('PROJETO: ', idProjeto);
+
+            associacaoColaboradorProjeto = {
+                'TB_PROJETO_id_projeto': 2, // parseInt(idProjeto.Projetos, 9)
+                'TB_COLABORADOR_id_colaborador': formAvaliacao.colaborador.idColaborador,
+                'TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe': formAvaliacao.colaborador.id_referencia_fct_gfe,
+                'TB_COLABORADOR_TB_DIVISAO_id_divisao': formAvaliacao.divisao.id_divisao,
+                'TB_RESULTADO_id_resultado': maxId
+            };
+
+            console.log(associacaoColaboradorProjeto);
+
+            this.avaliacaoService.addAssociacaoColaboradorProjeto(associacaoColaboradorProjeto).subscribe(data => {
+                console.log(' **** --- Associações Projeto Colaborador', data);
+            });
+
+        });
+    }
+
 
     getPapeis() {
         this.papelService.getPapel().subscribe(papel => {

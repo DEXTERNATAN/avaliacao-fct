@@ -50,12 +50,23 @@ export class AvaliacaoService  extends RestService<Avaliacao> {
         .map(response => response.json());
     }
 
-    addAssociacaoAtributoTecnologia(tecnologiaColaborador: any): any {
+    addAssociacaoColaboradorTecnologia(tecnologiaColaborador: any): any {
         return this.http.post(`${MEAT_API}/avaliacao/tecnologiaColaborador/`, tecnologiaColaborador, this.getDefaultRequestOptions())
         .map(response => response.text())
         .do(data => console.log('server data:', data));
     }
 
+    addAssociacaoColaboradorPapel(papelColaborador: any): any {
+        return this.http.post(`${MEAT_API}/avaliacao/papelColaborador/`, papelColaborador, this.getDefaultRequestOptions())
+        .map(response => response.text())
+        .do(data => console.log('server data:', data));
+    }
+
+    addAssociacaoColaboradorProjeto(projetoColaborador: any): any {
+        return this.http.post(`${MEAT_API}/avaliacao/projetoColaborador/`, projetoColaborador, this.getDefaultRequestOptions())
+        .map(response => response.text())
+        .do(data => console.log('server data:', data));
+    }
 
 
     addAvaliacao(avaliacao: any) {
