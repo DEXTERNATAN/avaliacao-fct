@@ -27,19 +27,19 @@
           <div class="col-md12 relatorio">
             <div class="col-md-3">
               <label for="">NOME:</label>
-              <span>{{ avaliacao['no_colaborador'] }}</span>
+              <span>{{ avaliacao['nome'] }}</span>
             </div>
             <div class="col-md-3">
-              <label for="">CPF:</label>
-              <span>98287028191</span>
+              <label for="">MATRÍCULA:</label>
+              <span>{{ avaliacao['matricula'] }}</span>
             </div>
             <div class="col-md-3">
               <label for="">DIVISÃO:</label>
-              <span>{{avaliacao['sigla_divisao']}}</span>
+              <span>{{avaliacao['sigla']}}</span>
             </div>
             <div class="col-md-3">
               <label for="">DATA DA AVALIAÇÃO:</label>
-              <span>15/03/2018</span>
+              <span>{{avaliacao['dt_avaliacao']}}</span>
             </div>
           </div>
           <!-- Papeis -->
@@ -50,7 +50,7 @@
                 <i class="fa fa-wrench"></i>&nbsp;Papeis</h3>
             </label>
             <div class="row">
-              <div class="col-md-8">
+              <div class="col-md-8" >
                 <div class="btn .btn-lista-tec btn-facebook">
                   Arquiteto
                 </div>

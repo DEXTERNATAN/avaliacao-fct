@@ -1,4 +1,4 @@
-import { Http, Headers, RequestOptions, Response } from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { MEAT_API } from './../app.api';
 
@@ -23,7 +23,7 @@ export class ConsultaavaliacaoService {
         this.options = new RequestOptions({ headers: this.headers });
     }
 
-    getResultadoAvaliacao(id: number): Observable<Consultaavaliacao[]> {
+    getBuscaDetalhesAvaliacao(id: number): Observable<Consultaavaliacao[]> {
         return this._http.get(`${MEAT_API}/avaliacao/${id}/resultado`)
             .map(response => response.json());
     }
