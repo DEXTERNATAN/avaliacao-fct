@@ -39,6 +39,7 @@ import { AtributoColaboradorService } from './../AtributoColaborador.service';
 
 export class AvaliacaoFormComponent implements OnInit {
 
+    values = '';
     formAvaliacao: FormGroup;
     avaliacao: Avaliacao = new Avaliacao();
     Divisao: Divisao[] = [];
@@ -739,4 +740,16 @@ export class AvaliacaoFormComponent implements OnInit {
             this.percAjusteBarra = this.percAjuste.toFixed(2) + '%';
         }
     }
+
+    formataOciosidade(event:any) {
+        if(event.target.value.length == 1){
+            this.values = 0 + parseFloat(event.target.value).toFixed(2);
+        }
+        
+        if(event.target.value.length == 2){
+            this.values = parseFloat(event.target.value).toFixed(2);
+        }
+        
+        this.formAvaliacao.get('ociosidade').setValue(this.values);
+      }
 }
