@@ -3,8 +3,7 @@
 -- Atributos,
 
 SELECT 
-    *
-    ,(SELECT 
+   (SELECT 
             GROUP_CONCAT(DISTINCT CONCAT((SELECT 
                                     nome
                                 FROM
