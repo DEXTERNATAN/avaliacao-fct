@@ -12,8 +12,9 @@ import { Consultaavaliacao } from './consultaavaliacao.model';
 export class ConsultaavaliacaoComponent implements OnInit {
 
   idAvaliacao: number;
-  avaliacao: Consultaavaliacao[] = [];
+  avaliacao: Consultaavaliacao[];
   DataAtual: any = new Date().toLocaleDateString();
+  tecnologias: any[] = [];
 
   constructor(
     private _consultaavaliacaoService: ConsultaavaliacaoService,
@@ -29,7 +30,9 @@ export class ConsultaavaliacaoComponent implements OnInit {
 
     this._consultaavaliacaoService.getBuscaDetalhesAvaliacao(this.idAvaliacao).subscribe(data => {
       this.avaliacao = data;
-      console.log(data, typeof(data), typeof(this.avaliacao));
+      this.tecnologias.push(data['tecnologias'].split(','));
+
+      console.log(data, typeof(data), typeof(this.avaliacao), data['tecnologias'], this.tecnologias);
     });
 
   }
