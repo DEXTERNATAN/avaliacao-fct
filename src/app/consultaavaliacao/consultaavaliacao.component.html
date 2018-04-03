@@ -50,11 +50,11 @@
                 <i class="fa fa-wrench"></i>&nbsp;Papeis</h3>
             </label>
             <div class="row">
-              <div class="col-md-8" >
-                <div class="btn .btn-lista-tec btn-facebook">
-                  Arquiteto
+              <div class="col-md-8">
+                <div class="btn .btn-lista-tec btn-facebook" *ngFor="let papeis of avaliacao; let i = index;">
+                  {{papeis['nome_papel']}}
                 </div>
-                <div class="btn .btn-lista-tec btn-facebook">
+                <!-- <div class="btn .btn-lista-tec btn-facebook">
                   Teste
                 </div>
                 <div class="btn .btn-lista-tec btn-facebook">
@@ -62,7 +62,7 @@
                 </div>
                 <div class="btn .btn-lista-tec btn-facebook">
                   Desenvolvedor
-                </div>
+                </div> -->
               </div>
               <!-- /.col -->
             </div>
