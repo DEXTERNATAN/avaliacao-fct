@@ -10,7 +10,7 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 
 import { Avaliacao } from './avaliacao.model';
-import { TecnologiaColaborador } from 'app/avaliacao/TecnologiaColaborador.model';
+// import { TecnologiaColaborador } from 'app/avaliacao/TecnologiaColaborador.model';
 
 @Injectable()
 export class AvaliacaoService  extends RestService<Avaliacao> {
@@ -29,7 +29,7 @@ export class AvaliacaoService  extends RestService<Avaliacao> {
 
     getMaxId() {
         return this.http.get(`${MEAT_API}/avaliacao/maxId`)
-        .do(response => console.log('Ultimo id inserido: ', response.json()))
+        // .do(response => console.log('Ultimo id inserido: ', response.json()))
         .map(response => response.json());
     }
 
@@ -40,7 +40,7 @@ export class AvaliacaoService  extends RestService<Avaliacao> {
 
     getPapelAtributo(id_papel) {
         return this.http.get(`${MEAT_API}/PapelAtributo/${id_papel}`)
-        .do(response => console.log('resultado: ', response.json()))
+        // .do(response => console.log('resultado: ', response.json()))
         .map(response => response.json());
     }
 
@@ -52,22 +52,27 @@ export class AvaliacaoService  extends RestService<Avaliacao> {
 
     addAssociacaoColaboradorTecnologia(tecnologiaColaborador: any): any {
         return this.http.post(`${MEAT_API}/avaliacao/tecnologiaColaborador/`, tecnologiaColaborador, this.getDefaultRequestOptions())
-        .map(response => response.text())
-        .do(data => console.log('server data:', data));
+        // .do(data => console.log('server data:', data))
+        .map(response => response.text());
     }
 
     addAssociacaoColaboradorPapel(papelColaborador: any): any {
         return this.http.post(`${MEAT_API}/avaliacao/papelColaborador/`, papelColaborador, this.getDefaultRequestOptions())
-        .map(response => response.text())
-        .do(data => console.log('server data:', data));
+        // .do(data => console.log('server data:', data))
+        .map(response => response.text());
     }
 
     addAssociacaoColaboradorProjeto(projetoColaborador: any): any {
         return this.http.post(`${MEAT_API}/avaliacao/projetoColaborador/`, projetoColaborador, this.getDefaultRequestOptions())
-        .map(response => response.text())
-        .do(data => console.log('server data:', data));
+        // .do(data => console.log('server data:', data))
+        .map(response => response.text());
     }
 
+    addAssociacaoAtributoProjeto(atributoProjeto: any): any {
+        return this.http.post(`${MEAT_API}/avaliacao/atributoProjeto/`, atributoProjeto, this.getDefaultRequestOptions())
+        .do(data => console.log('server data:', data))
+        .map(response => response.text());
+    }
 
     addAvaliacao(avaliacao: any) {
         return super.adicionar(avaliacao);
