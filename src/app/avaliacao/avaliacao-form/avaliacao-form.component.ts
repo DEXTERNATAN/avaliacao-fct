@@ -259,7 +259,7 @@ export class AvaliacaoFormComponent implements OnInit {
     registrarAvaliacao() {
 
         let avaliacaoForm = this.formAvaliacao.value;
-        debugger
+        
         this.somaValores('tudo');
 
         this.avaliacaoService.addAvaliacao({
@@ -272,40 +272,39 @@ export class AvaliacaoFormComponent implements OnInit {
             'TB_COLABORADOR_id_colaborador': avaliacaoForm.colaborador.idColaborador,
         }).subscribe(data => {
 
-            //if (data) {
+            if (data) {
+                // Recupera o id da ultima avaliação inserida e associa atributos ao colaborador
+                this.avaliacaoService.getMaxId().subscribe(
+                    resultado => {
+                        if (resultado) {
 
-            // Recupera o id da ultima avaliação inserida e associa atributos ao colaborador
-            this.avaliacaoService.getMaxId().subscribe(
-                resultado => {
-                    if (resultado) {
+                            // Associação entre colaborador e papel
+                            this.associarColaboradorPapel(avaliacaoForm, resultado[0].idResultado);
 
-                        // Associação entre colaborador e papel
-                        this.associarColaboradorPapel(avaliacaoForm, resultado[0].idResultado);
+                            // Associação entre colaborador e papel
+                            this.associarColaboradorProjeto(avaliacaoForm, resultado[0].idResultado);
 
-                        // Associação entre colaborador e papel
-                        this.associarColaboradorProjeto(avaliacaoForm, resultado[0].idResultado);
+                            // Associação entre colaborador e atributo
+                            this.associarColaboradorAtributo(avaliacaoForm, resultado[0].idResultado);
 
-                        // Associação entre colaborador e atributo
-                        this.associarColaboradorAtributo(avaliacaoForm, resultado[0].idResultado);
-
-                        // Associação entre colaborador e tecnologia
-                        this.associarColaboradorTecnologia(avaliacaoForm, resultado[0].idResultado);
+                            // Associação entre colaborador e tecnologia
+                            this.associarColaboradorTecnologia(avaliacaoForm, resultado[0].idResultado);
 
 
-                        this.router.navigate(['avaliacao']);
+                            this.router.navigate(['avaliacao']);
 
-                        this.toastr.success('Avaliação registrada com sucesso!', 'Sucesso', {
-                            progressBar: true,
-                            progressAnimation: 'increasing',
-                            closeButton: true,
-                            timeOut: 3000
-                        });
+                            this.toastr.success('Avaliação registrada com sucesso!', 'Sucesso', {
+                                progressBar: true,
+                                progressAnimation: 'increasing',
+                                closeButton: true,
+                                timeOut: 3000
+                            });
 
-                    }
-                },
-                error => (console.log('Error: ', error))
-            );
-            // }
+                        }
+                    },
+                    error => (console.log('Error: ', error))
+                );
+            }
         });
     }
 
@@ -350,7 +349,7 @@ export class AvaliacaoFormComponent implements OnInit {
                 'TB_RESULTADO_id_resultado': maxId
             };
 
-            console.log(associacaoColaboradorTecnologia);
+            // console.log(associacaoColaboradorTecnologia);
 
             this.avaliacaoService.addAssociacaoColaboradorTecnologia(associacaoColaboradorTecnologia).subscribe(data => {
                 console.log('OK - Associações incluidas com sucesso', data);
@@ -372,7 +371,7 @@ export class AvaliacaoFormComponent implements OnInit {
                 'TB_RESULTADO_id_resultado': maxId
             };
 
-            console.log(associacaoColaboradorPapel);
+            // console.log(associacaoColaboradorPapel);
 
             this.avaliacaoService.addAssociacaoColaboradorPapel(associacaoColaboradorPapel).subscribe(data => {
                 console.log(' **** --- Associações Papel Colaborador', data);
@@ -396,7 +395,7 @@ export class AvaliacaoFormComponent implements OnInit {
                 'TB_RESULTADO_id_resultado': maxId
             };
 
-            console.log(associacaoColaboradorProjeto);
+            // console.log(associacaoColaboradorProjeto);
 
             this.avaliacaoService.addAssociacaoColaboradorProjeto(associacaoColaboradorProjeto).subscribe(data => {
                 console.log(' **** --- Associações Projeto Colaborador', data);
@@ -741,15 +740,15 @@ export class AvaliacaoFormComponent implements OnInit {
         }
     }
 
-    formataOciosidade(event:any) {
-        if(event.target.value.length == 1){
+    formataOciosidade(event: any) {
+        if (event.target.value.length == 1) {
             this.values = 0 + parseFloat(event.target.value).toFixed(2);
         }
-        
-        if(event.target.value.length == 2){
+
+        if (event.target.value.length == 2) {
             this.values = parseFloat(event.target.value).toFixed(2);
         }
-        
+
         this.formAvaliacao.get('ociosidade').setValue(this.values);
-      }
+    }
 }
