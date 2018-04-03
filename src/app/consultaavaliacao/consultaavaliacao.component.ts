@@ -27,7 +27,7 @@ export class ConsultaavaliacaoComponent implements OnInit {
       console.log('Identificador da avaliação: ', this.idAvaliacao);
     });
 
-    this._consultaavaliacaoService.getResultadoAvaliacao(this.idAvaliacao).subscribe(data => {
+    this._consultaavaliacaoService.getBuscaDetalhesAvaliacao(this.idAvaliacao).subscribe(data => {
       this.avaliacao = data;
       console.log(data, typeof(data), typeof(this.avaliacao));
     });
