@@ -1,7 +1,6 @@
-import { element } from 'protractor';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, FormArray, Validators, AbstractControl } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { MensagensHandler } from 'app/shared/services/mensagens-handler.service';
 import 'rxjs/Rx';
 
@@ -180,7 +179,6 @@ export class AvaliacaoFormComponent implements OnInit {
 
         this.formAvaliacao.get('vlrPtTotal').setValue('0.00');
 
-
         this.formAvaliacao.get('divisao').valueChanges.subscribe( /* <- does work */
             divisao => {
                 let colabFilter: any[];
@@ -259,7 +257,6 @@ export class AvaliacaoFormComponent implements OnInit {
     registrarAvaliacao() {
 
         let avaliacaoForm = this.formAvaliacao.value;
-        debugger
         this.somaValores('tudo');
 
         this.avaliacaoService.addAvaliacao({
@@ -272,8 +269,6 @@ export class AvaliacaoFormComponent implements OnInit {
             'TB_COLABORADOR_id_colaborador': avaliacaoForm.colaborador.idColaborador,
         }).subscribe(data => {
 
-            //if (data) {
-
             // Recupera o id da ultima avaliação inserida e associa atributos ao colaborador
             this.avaliacaoService.getMaxId().subscribe(
                 resultado => {
@@ -282,15 +277,14 @@ export class AvaliacaoFormComponent implements OnInit {
                         // Associação entre colaborador e papel
                         this.associarColaboradorPapel(avaliacaoForm, resultado[0].idResultado);
 
-                        // Associação entre colaborador e papel
-                        this.associarColaboradorProjeto(avaliacaoForm, resultado[0].idResultado);
+                        // Associação entre colaborador e tecnologia
+                        this.associarColaboradorTecnologia(avaliacaoForm, resultado[0].idResultado);
 
                         // Associação entre colaborador e atributo
                         this.associarColaboradorAtributo(avaliacaoForm, resultado[0].idResultado);
 
-                        // Associação entre colaborador e tecnologia
-                        this.associarColaboradorTecnologia(avaliacaoForm, resultado[0].idResultado);
-
+                        // Associação entre colaborador e projeto
+                        this.associarColaboradorProjeto(avaliacaoForm, resultado[0].idResultado);
 
                         this.router.navigate(['avaliacao']);
 
@@ -305,7 +299,6 @@ export class AvaliacaoFormComponent implements OnInit {
                 },
                 error => (console.log('Error: ', error))
             );
-            // }
         });
     }
 
@@ -318,7 +311,7 @@ export class AvaliacaoFormComponent implements OnInit {
                     if (dataAtributo) {
 
                         AssociaAtributo = {
-                            'TB_COLABORADOR_id_colaborador': formAvaliacao.colaborador.idColaborador, // 2
+                            'TB_COLABORADOR_id_colaborador': formAvaliacao.colaborador.idColaborador,
                             'TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe': formAvaliacao.colaborador.id_referencia_fct_gfe,
                             'TB_COLABORADOR_TB_DIVISAO_id_divisao': formAvaliacao.divisao.id_divisao,
                             'TB_ATRIBUTO_id_atributo': dataAtributo.id_atributo,
@@ -350,8 +343,6 @@ export class AvaliacaoFormComponent implements OnInit {
                 'TB_RESULTADO_id_resultado': maxId
             };
 
-            console.log(associacaoColaboradorTecnologia);
-
             this.avaliacaoService.addAssociacaoColaboradorTecnologia(associacaoColaboradorTecnologia).subscribe(data => {
                 console.log('OK - Associações incluidas com sucesso', data);
             });
@@ -372,8 +363,6 @@ export class AvaliacaoFormComponent implements OnInit {
                 'TB_RESULTADO_id_resultado': maxId
             };
 
-            console.log(associacaoColaboradorPapel);
-
             this.avaliacaoService.addAssociacaoColaboradorPapel(associacaoColaboradorPapel).subscribe(data => {
                 console.log(' **** --- Associações Papel Colaborador', data);
             });
@@ -386,10 +375,10 @@ export class AvaliacaoFormComponent implements OnInit {
 
         formAvaliacao.items.forEach(idProjeto => {
 
-            console.log('PROJETO: ', idProjeto);
+            console.log('PROJETO > : ', parseInt(idProjeto.Projetos, 9));
 
             associacaoColaboradorProjeto = {
-                'TB_PROJETO_id_projeto': 2, // parseInt(idProjeto.Projetos, 9)
+                'TB_PROJETO_id_projeto': parseInt(idProjeto.Projetos, 9),
                 'TB_COLABORADOR_id_colaborador': formAvaliacao.colaborador.idColaborador,
                 'TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe': formAvaliacao.colaborador.id_referencia_fct_gfe,
                 'TB_COLABORADOR_TB_DIVISAO_id_divisao': formAvaliacao.divisao.id_divisao,
@@ -741,15 +730,15 @@ export class AvaliacaoFormComponent implements OnInit {
         }
     }
 
-    formataOciosidade(event:any) {
-        if(event.target.value.length == 1){
+    formataOciosidade(event: any) {
+        if(event.target.value.length == 1) {
             this.values = 0 + parseFloat(event.target.value).toFixed(2);
         }
-        
-        if(event.target.value.length == 2){
+
+        if(event.target.value.length == 2) {
             this.values = parseFloat(event.target.value).toFixed(2);
         }
-        
+
         this.formAvaliacao.get('ociosidade').setValue(this.values);
       }
 }

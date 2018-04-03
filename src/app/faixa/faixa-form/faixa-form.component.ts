@@ -64,7 +64,7 @@ export class FaixaFormComponent implements OnInit {
             },
             response => {
                 if (response.status === 404) {
-                    this.router.navigate(['faixa'])
+                    this.router.navigate(['faixa']);
                 }
             },
             () => {
@@ -96,8 +96,6 @@ export class FaixaFormComponent implements OnInit {
 
         // carga dos Dados complementares
         this.getReferencia();
-
-        
 
         this.formFaixa.get('listFaixas').valueChanges
         .debounceTime(400)
@@ -170,7 +168,7 @@ export class FaixaFormComponent implements OnInit {
 
             objFaixa = new Faixa(
                             fxs.limite_inferior,
-                            fxs.limite_superior, 
+                            fxs.limite_superior,
                             fxs.pontuacao_referencia,
                             quantidadeDePessoas,
                             valorRateioPessoa,
