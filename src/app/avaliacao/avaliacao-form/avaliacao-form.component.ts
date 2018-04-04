@@ -764,14 +764,36 @@ export class AvaliacaoFormComponent implements OnInit {
     }
 
     formataOciosidade(event: any) {
-        if (event.target.value.length == 1) {
-            this.values = 0 + parseFloat(event.target.value).toFixed(2);
-        }
-
-        if (event.target.value.length == 2) {
-            this.values = parseFloat(event.target.value).toFixed(2);
-        }
-
-        this.formAvaliacao.get('ociosidade').setValue(this.values);
+        if (event.keyCode !== 8) {
+            if (event.target.value.length === 1) {
+                event.target.value = event.target.value + "0." + "00";
+            }else if (event.target.value.length === 2) {
+                event.target.value = event.target.value + "." + "00";
+            }else if (event.target.value.length === 3) {
+                event.target.value = event.target.value + "00";
+            }else if (event.target.value.length === 4) {
+                event.target.value = event.target.value + "0";
+            }
+        }      
+        //this.formAvaliacao.get('ociosidade').setValue(event.target.value);
+        return event;
     }
+
+
+	formataData(event: any) {
+        console.log(event.target.value.length,event.keyCode);
+        
+        if (event.keyCode !== 8) {
+			if (event.target.value.length === 2) {
+                event.target.value = event.target.value + "." + "00";
+            }else if (event.target.value.length === 3) {
+                event.target.value = event.target.value + "00";
+            }else if (event.target.value.length === 4) {
+                event.target.value = event.target.value + "0";
+            }
+        }
+        
+		return event;
+    }
+    
 }
