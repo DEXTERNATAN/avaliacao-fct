@@ -399,7 +399,7 @@ export class AvaliacaoFormComponent implements OnInit {
 
     associarAtributoProjeto(formAvaliacao: any, maxId: any): any {
         let associacaoAtributoProjeto: any;
-        
+
         formAvaliacao.items.forEach(projetos => {
             console.log('PROJETO > : ', projetos, projetos.Abrangencia, projetos.Complexidade, projetos.Complexidade);
             this.avaliacaoService.getBuscaAtributo(projetos.Abrangencia, projetos.Complexidade, projetos.Impacto, 'p').subscribe(
