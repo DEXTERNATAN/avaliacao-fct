@@ -82,11 +82,11 @@ export class FaixaFormComponent implements OnInit {
                         let vlrRateioPessoaCalculadoLc = data.get('valorRateioPessoaCalculado');
                         let vlrRateioSomadoFaixaLc = data.get('valorRateioSomadoFaixa');
 
-                        vlrPercentCalculadoLc.setValue(((parseFloat(vlrQtdePessoasFaixaLc.value) /
-                                                                    vlrQtdePessoasTotalLc.value) * 100).toFixed(2));
-                        vlrTotalCalculadoLc.setValue(((parseFloat(vlrDistribuicaoLc.value) *
+                        vlrPercentCalculadoLc.setValue(parseFloat(((vlrQtdePessoasFaixaLc.value /
+                                                                    vlrQtdePessoasTotalLc.value) * 100).toFixed(2)));
+                        vlrTotalCalculadoLc.setValue(parseFloat(((vlrDistribuicaoLc.value) *
                                                                     (vlrPercentCalculadoLc.value / 100)).toFixed(2)) || 0);
-                        vlrRateioPessoaCalculadoLc.setValue((parseFloat(vlrTotalCalculadoLc.value) / qtdPessoasCalculado).toFixed(2) || 0);
+                        vlrRateioPessoaCalculadoLc.setValue(parseFloat((vlrTotalCalculadoLc.value / qtdPessoasCalculado).toFixed(2)) || 0);
                         vrRateioSomadoFaixa = ((vrRateioSomadoFaixa + parseFloat(vlrRateioPessoaCalculadoLc.value)) || 0);
                         vlrRateioSomadoFaixaLc.setValue((vrRateioSomadoFaixa).toFixed(2));
                         qtdPessoasCalculado = (qtdPessoasCalculado - parseFloat(vlrQtdePessoasFaixaLc.value));
@@ -244,8 +244,8 @@ export class FaixaFormComponent implements OnInit {
             }
 
             vlrTotalFixoLc.setValue(((parseFloat((vlrDistribuicaoLc) || 0) * (vlrPercentFixoLc.value / 100)).toFixed(2)) || 0);
-            vlrRateioPessoa.setValue((parseFloat(vlrTotalFixoLc.value) / qtdPessoasFixo).toFixed(2) || 0);
-            vrRateioFixoFaixa = ((vrRateioFixoFaixa + parseFloat(vlrRateioPessoa.value)) || 0);
+            vlrRateioPessoa.setValue(parseFloat((vlrTotalFixoLc.value / qtdPessoasFixo).toFixed(2)) || 0);
+            vrRateioFixoFaixa = (parseFloat(vrRateioFixoFaixa + vlrRateioPessoa.value) || 0);
             vlrRateioSomado.setValue((vrRateioFixoFaixa).toFixed(2));
             qtdPessoasFixo = (qtdPessoasFixo - parseFloat(qtdePessoasFaixa.value));
         });
