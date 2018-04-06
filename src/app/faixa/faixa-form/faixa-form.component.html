@@ -1,28 +1,47 @@
 <section class="content-header">
-    <h1>
-      Distribuição das Faixas
-    </h1>
-    <ol class="breadcrumb">
-      <li>
-        <a href="#">
-          <i class="fa fa-home"></i> Home</a>
-      </li>
-      <li>
-        <a href="#">Faixas</a>
-      </li>
-      <li class="active">Distribuição das Faixas</li>
-    </ol>
-  </section>
-  <section class="content">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="box box-primary">
-          <div class="box-header with-border">
-            <h3 class="box-title">Definição</h3>
-          </div>
-          <form [formGroup]="formFaixa" role="form" (ngSubmit)="adicionarFaixa()" >
-            <div class="box-body">
+  <h1>
+    Distribuição das Faixas
+  </h1>
+  <ol class="breadcrumb">
+    <li>
+      <a href="#">
+        <i class="fa fa-home"></i> Home</a>
+    </li>
+    <li>
+      <a href="#">Faixas</a>
+    </li>
+    <li class="active">Distribuição das Faixas</li>
+  </ol>
+</section>
+<section class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">Definição</h3>
+        </div>
+
+        <form [formGroup]="formFaixa" role="form" (ngSubmit)="adicionarFaixa()">
+          <div class="box-body">
+            <!-- 
+              1 - {{ distribuicao | json }} - {{ distribuicao.length }}
+              <br> 2 - {{ faixaList | json }} - {{ faixaList.length }}
+              <br> 3 - {{ referencia | json }} - {{ referencia.length }}
+              <br>
+              {{ distribuicao.length == 0 }} 
+            -->
+            <div class="col-md-8 col-sm-4 div-mensagem" *ngIf="distribuicao.length">
+              <div class="alert alert-warning alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4>
+                  <i class="icon fa fa-warning"></i> Alerta!</h4>
+                Nenhuma avaliação existente no momento.
+              </div>
+            </div>
+
+            <div *ngIf="!distribuicao.length">
               <div class="form-group">
+
                 <table class="table table-condensed">
                   <tr>
                     <th width="20%">Pontuação Mínima</th>
@@ -152,7 +171,7 @@
                     <table class="table table-striped">
                       <tr>
                         <th>Faixa</th>
-                        <th>Percentual(%) Fixo</th> 
+                        <th>Percentual(%) Fixo</th>
                         <th style="width:12%">Valor Total Fixo</th>
                         <th style="width:12%">Valor Rateio por Pessoa Fixo</th>
                         <th style="width:12%">Valor Rateio Somado por Faixa Fixo</th>
@@ -163,47 +182,47 @@
                       </tr>
                       <tr formArrayName="listFaixas" *ngFor="let item of getListaFaixas(formFaixa); let i = index;">
                         <td [formGroupName]="i">
-                            <span>{{i+1}}</span>
+                          <span>{{i+1}}</span>
                         </td>
                         <td [formGroupName]="i">
-                            <label for="">
-                              <input type="text" formControlName="percentualFixo" class="form-control"  style="width: 50px;" maxlength="2">
-                            </label>
+                          <label for="">
+                            <input type="text" formControlName="percentualFixo" class="form-control" style="width: 50px;" maxlength="2">
+                          </label>
                         </td>
                         <td [formGroupName]="i">
                           <label for="">
                             <span class="badge bg-yellow">R$ {{ item.value.valorTotalFixo }}</span>
                           </label>
                         </td>
-                        
+
                         <td [formGroupName]="i">
                           <label for="">
-                              <span class="badge bg-yellow">R$ {{ item.value.valorRateioPessoa }}</span>
+                            <span class="badge bg-yellow">R$ {{ item.value.valorRateioPessoa }}</span>
                           </label>
                         </td>
                         <td [formGroupName]="i">
                           <label for="">
-                              <span class="badge bg-aqua">R$ {{ item.value.valorRateioSomado }}</span>
+                            <span class="badge bg-aqua">R$ {{ item.value.valorRateioSomado }}</span>
                           </label>
                         </td>
                         <td [formGroupName]="i">
                           <label for="">
-                              <span class="badge bg-green">{{ item.value.percentualCalculado }}%</span>
+                            <span class="badge bg-green">{{ item.value.percentualCalculado }}%</span>
                           </label>
                         </td>
                         <td [formGroupName]="i">
                           <label for="">
-                              <span class="badge bg-light-blue">R$ {{ item.value.valorTotalCalculado }}</span>
+                            <span class="badge bg-light-blue">R$ {{ item.value.valorTotalCalculado }}</span>
                           </label>
                         </td>
                         <td [formGroupName]="i">
                           <label for="">
-                              <span class="badge bg-light-blue">R$ {{ item.value.valorRateioPessoaCalculado }}</span>
+                            <span class="badge bg-light-blue">R$ {{ item.value.valorRateioPessoaCalculado }}</span>
                           </label>
                         </td>
                         <td [formGroupName]="i">
                           <label for="">
-                              <span class="badge bg-aqua">R$ {{ item.value.valorRateioSomadoFaixa }}</span>
+                            <span class="badge bg-aqua">R$ {{ item.value.valorRateioSomadoFaixa }}</span>
                           </label>
                         </td>
                       </tr>
@@ -211,14 +230,17 @@
                   </div>
                 </div>
               </div>
+
+
             </div>
-            <div class="box-footer">
-              <button type="button" class="btn btn-default" (click)="onCancel()">Cancelar</button>
-              <button type="submit" class="btn btn-info pull-right">Cadastrar</button>
-            </div>
-          </form>
-        </div>
+
+          </div>
+          <div class="box-footer">
+            <button type="button" class="btn btn-default" (click)="onCancel()">Cancelar</button>
+            <button type="submit" class="btn btn-info pull-right">Cadastrar</button>
+          </div>
+        </form>
       </div>
     </div>
-  </section>
-  
+  </div>
+</section>

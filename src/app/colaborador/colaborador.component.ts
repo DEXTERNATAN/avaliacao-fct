@@ -12,6 +12,7 @@ import { Colaborador } from './colaborador.model';
 })
 export class ColaboradorComponent implements OnInit {
 
+  msgError: string;
   public Colaborador: Colaborador[] = [];
   public colaboradorCarregada = true;
   dtOptions: DataTables.Settings = {};
@@ -29,19 +30,32 @@ export class ColaboradorComponent implements OnInit {
 
   ngOnInit() {
 
-     this.dtOptions = {
+    this.dtOptions = {
       language: {
         url: `assets/language/datatables/${this.lang}.json`
       }
     };
 
     this._colaboradorService.getColaborador()
-    .subscribe(colaborador => { 
-      this.Colaborador = colaborador;
-      this.colaboradorCarregada = false;
-      // Calling the DT trigger to manually render the table
-      this.dtTrigger.next();
-    });
+      .subscribe(
+        colaborador => {
+          console.log(colaborador['errno']);
+          if ( colaborador['errno'] ) {
+            this.Colaborador = [];
+            this.msgError = 'Erro ao consultar informações, favor comunicar ao Administrador[Código do Erro: '
+                            +  colaborador['errno'] + '].';
+          }else {
+            this.Colaborador = colaborador;
+            this.msgError = null;
+          }
+          // Calling the DT trigger to manually render the table
+          this.dtTrigger.next();
+      },
+      error => {
+        console.log('Houve um erro contate o administrador do sistema: ', error);
+        this.Colaborador = [];
+      }
+    );
   }
 
   deleteColaborador(colaborador) {
@@ -59,10 +73,11 @@ export class ColaboradorComponent implements OnInit {
 
       this._colaboradorService.deleteColaborador(colaborador.idColaborador)
         .subscribe(null,
-        err => {
-          alert('Não foi possível apagar o Colaborador!');
-          this.Colaborador.splice(index, 0, colaborador);
-        });
+          err => {
+            alert('Não foi possível apagar o Colaborador!');
+            this.Colaborador.splice(index, 0, colaborador);
+          });
     }
   }
+
 }

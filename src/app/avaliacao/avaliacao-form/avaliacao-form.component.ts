@@ -259,7 +259,9 @@ export class AvaliacaoFormComponent implements OnInit {
         let avaliacaoForm = this.formAvaliacao.value;
         this.somaValores('tudo');
 
-        this.avaliacaoService.addAvaliacao({
+        let ObjAvaliacao: any[]=[];
+
+        ObjAvaliacao.push({
             'id_resultado': 'null',
             'pontuacao': avaliacaoForm.vlrPtTotal,
             'dt_resultado': 'null',
@@ -267,9 +269,33 @@ export class AvaliacaoFormComponent implements OnInit {
             'ociosidade': avaliacaoForm.ociosidade,
             'referencia_fct_gfe_pontuacao': this.valorFCTPontuaçãoTotal,
             'TB_COLABORADOR_id_colaborador': avaliacaoForm.colaborador.idColaborador,
-        }).subscribe(data => {
+        });
+
+        this.avaliacaoService.addAvaliacao(ObjAvaliacao).subscribe(data => {
 
             if (data) {
+
+                /*
+                ** Versão 02
+                ** Agora o serviço da api faz todo o serviço de inserção tanto na tabela de resultado quanto nas tabelas associativas **
+                */
+                // this.router.navigate(['avaliacao']);
+
+                // this.toastr.success('Avaliação registrada com sucesso!', 'Sucesso', {
+                //     progressBar: true,
+                //     progressAnimation: 'increasing',
+                //     closeButton: true,
+                //     timeOut: 3000
+                // });
+
+
+
+                /*
+                ** Versão 01
+                ** Codigo da versão 01 fazendo uso de serviços separados para inserção na tabela de resultado **
+                ** e tambem nas tabelas associativas **
+                */
+
                 // Recupera o id da ultima avaliação inserida e associa atributos ao colaborador
                 this.avaliacaoService.getMaxId().subscribe(
                     resultado => {
@@ -767,33 +793,33 @@ export class AvaliacaoFormComponent implements OnInit {
         if (event.keyCode !== 8) {
             if (event.target.value.length === 1) {
                 event.target.value = event.target.value + "0." + "00";
-            }else if (event.target.value.length === 2) {
+            } else if (event.target.value.length === 2) {
                 event.target.value = event.target.value + "." + "00";
-            }else if (event.target.value.length === 3) {
+            } else if (event.target.value.length === 3) {
                 event.target.value = event.target.value + "00";
-            }else if (event.target.value.length === 4) {
+            } else if (event.target.value.length === 4) {
                 event.target.value = event.target.value + "0";
             }
-        }      
-        //this.formAvaliacao.get('ociosidade').setValue(event.target.value);
+        }
+
         return event;
     }
 
 
-	formataData(event: any) {
-        console.log(event.target.value.length,event.keyCode);
-        
-        if (event.keyCode !== 8) {
-			if (event.target.value.length === 2) {
-                event.target.value = event.target.value + "." + "00";
-            }else if (event.target.value.length === 3) {
-                event.target.value = event.target.value + "00";
-            }else if (event.target.value.length === 4) {
-                event.target.value = event.target.value + "0";
-            }
-        }
-        
-		return event;
-    }
-    
+    // formataData(event: any) {
+    //     console.log(event.target.value.length,event.keyCode);
+
+    //     if (event.keyCode !== 8) {
+    // 		if (event.target.value.length === 2) {
+    //             event.target.value = event.target.value + "." + "00";
+    //         }else if (event.target.value.length === 3) {
+    //             event.target.value = event.target.value + "00";
+    //         }else if (event.target.value.length === 4) {
+    //             event.target.value = event.target.value + "0";
+    //         }
+    //     }
+
+    // 	return event;
+    // }
+
 }

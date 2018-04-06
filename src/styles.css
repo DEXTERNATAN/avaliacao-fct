@@ -298,3 +298,10 @@ body {
   background: #f4f4f4;
   z-index: 999;
 }
+
+
+/* Usado nas mensagens de alertas do site */
+.div-mensagem {
+  width: 100%;
+  padding: 10px 50px;
+}

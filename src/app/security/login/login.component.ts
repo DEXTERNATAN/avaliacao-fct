@@ -36,8 +36,8 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
 
     this.loginForm = this.fb.group({
-      login: this.fb.control('', []),
-      senha: this.fb.control('', [])
+      login: this.fb.control('98287028191', []),
+      senha: this.fb.control('12345678', [])
     });
     this.navigateTo = this.activatedRoute.snapshot.params['to'] || '/';
   }
