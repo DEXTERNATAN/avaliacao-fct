@@ -489,6 +489,7 @@ export class AvaliacaoFormComponent implements OnInit {
 
     getColaborador() {
         this.colaboradorService.getColaborador().subscribe(colaborador => {
+            debugger
             this.Colaborador = colaborador;
         });
     }

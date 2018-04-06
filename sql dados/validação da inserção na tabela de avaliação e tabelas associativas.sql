@@ -1,5 +1,5 @@
 SELECT * FROM avaliacaofct.TB_RESULTADO;
-SELECT * FROM avaliacaofct.TB_COLABORADOR_has_TB_ATRIBUTO where TB_RESULTADO_id_resultado = 179;
+SELECT * FROM avaliacaofct.TB_ATRIBUTO_has_TB_PROJETO where TB_RESULTADO_id_resultado = 179;
 
 SELECT count(*) FROM avaliacaofct.TB_RESULTADO;
 SELECT count(*) FROM avaliacaofct.TB_ATRIBUTO_has_TB_PROJETO; -- DANDO ERRO NA INSERÇÃO
