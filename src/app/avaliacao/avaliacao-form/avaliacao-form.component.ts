@@ -260,9 +260,7 @@ export class AvaliacaoFormComponent implements OnInit {
         let avaliacaoForm = this.formAvaliacao.value;
         this.somaValores('tudo');
         debugger
-        let ObjAvaliacao: any[]=[];
-
-        ObjAvaliacao.push({
+        this.avaliacaoService.addAvaliacao({
             'id_resultado': 'null',
             'pontuacao': (avaliacaoForm.vlrPtTotal || 39.00),
             'dt_resultado': 'null',
@@ -270,9 +268,7 @@ export class AvaliacaoFormComponent implements OnInit {
             'ociosidade': (avaliacaoForm.ociosidade || 0.00),
             'referencia_fct_gfe_pontuacao': (this.valorFCTPontuaçãoTotal || 0),
             'TB_COLABORADOR_id_colaborador': (avaliacaoForm.colaborador.idColaborador)
-        });
-
-        this.avaliacaoService.addAvaliacao(ObjAvaliacao).subscribe(data => {
+        }).subscribe(data => {
             debugger
             if (data) {
 

@@ -26,6 +26,7 @@
           </div>
           <!-- /.box-header -->
           <div class="box-body">
+            {{ avaliacaoDetalhe.length | json }}
             <div class="alert alert-warning alert-dismissible" *ngIf="avaliacaoDetalhe.length == 0">
               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
               <h4>
