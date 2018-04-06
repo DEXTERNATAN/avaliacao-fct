@@ -55,7 +55,6 @@ export class AvaliacaoFormComponent implements OnInit {
     PapelAtributo: any[] = [];
     projetosList: number[] = [1];
     valuePapel: string[];
-    // valueTec: string[] = [];
     current: any[];
     title: string;
     idResource: any;
@@ -226,6 +225,8 @@ export class AvaliacaoFormComponent implements OnInit {
                                         dadosReferencia.cargo + ' (R$ ' + dadosReferencia.valor_referencia + ')');
                                     this.formAvaliacao.get('FCTPontuaçãoTotal').setValue(vlrValorFct);
                                     this.valorFCTPontuaçãoTotal = dadosReferencia.num_referencia;
+
+
                                 }
 
                             }
@@ -258,17 +259,17 @@ export class AvaliacaoFormComponent implements OnInit {
 
         let avaliacaoForm = this.formAvaliacao.value;
         this.somaValores('tudo');
-debugger
+        debugger
         let ObjAvaliacao: any[]=[];
 
         ObjAvaliacao.push({
             'id_resultado': 'null',
-            'pontuacao': (avaliacaoForm.vlrPtTotal || 0.00),
+            'pontuacao': (avaliacaoForm.vlrPtTotal || 39.00),
             'dt_resultado': 'null',
             'ajuste': (avaliacaoForm.ajuste || 0.00),
             'ociosidade': (avaliacaoForm.ociosidade || 0.00),
-            'referencia_fct_gfe_pontuacao': (this.valorFCTPontuaçãoTotal || 0.00),
-            'TB_COLABORADOR_id_colaborador': (avaliacaoForm.colaborador.idColaborador || 0.00)
+            'referencia_fct_gfe_pontuacao': (this.valorFCTPontuaçãoTotal || 0),
+            'TB_COLABORADOR_id_colaborador': (avaliacaoForm.colaborador.idColaborador)
         });
 
         this.avaliacaoService.addAvaliacao(ObjAvaliacao).subscribe(data => {
@@ -743,9 +744,9 @@ debugger
             case 'fctatual': {
 
                 // Pontuação FCT Atual
-                let pontuacao1 = (this.formAvaliacao.get('colaborador').value.pontuacao_inicial || 0).toFixed(2);
-                let valor1 = (this.formAvaliacao.get('colaborador').value.valorFctInicial || 0).toFixed(2);
-                let valor2 = (this.formAvaliacao.get('colaborador').value.valorReferenciaFct || 0).toFixed(2);
+                let pontuacao1 = (this.formAvaliacao.get('colaborador').value.pontuacao_inicial || 1).toFixed(2);
+                let valor1 = (this.formAvaliacao.get('colaborador').value.valorFctInicial || 1).toFixed(2);
+                let valor2 = (this.formAvaliacao.get('colaborador').value.valorReferenciaFct || 1).toFixed(2);
 
                 // Cálculo Pontuação de Referência
                 let calculoReferencia = ((pontuacao1 * valor2) / valor1).toFixed(2);
