@@ -55,7 +55,7 @@ export class AvaliacaoFormComponent implements OnInit {
     PapelAtributo: any[] = [];
     projetosList: number[] = [1];
     valuePapel: string[];
-    valueTec: string[] = [];
+    // valueTec: string[] = [];
     current: any[];
     title: string;
     idResource: any;
@@ -138,9 +138,9 @@ export class AvaliacaoFormComponent implements OnInit {
             divisao: [null, Validators.required],
             colaborador: [null, Validators.required],
             papel: [null, Validators.compose([Validators.required])],
-            tecnologia: [0],
+            tecnologia: [0, Validators.compose([Validators.required])],
             Projeto: [0],
-            items: this.formBuilder.array([], Validators.required),
+            items: this.formBuilder.array([], Validators.compose([Validators.required])),
             itemsAtributo: this.formBuilder.array([]),
             qtdProjetos: [0],
             vlrPtTotal: 0.00,
@@ -258,21 +258,21 @@ export class AvaliacaoFormComponent implements OnInit {
 
         let avaliacaoForm = this.formAvaliacao.value;
         this.somaValores('tudo');
-
+debugger
         let ObjAvaliacao: any[]=[];
 
         ObjAvaliacao.push({
             'id_resultado': 'null',
-            'pontuacao': avaliacaoForm.vlrPtTotal,
+            'pontuacao': (avaliacaoForm.vlrPtTotal || 0.00),
             'dt_resultado': 'null',
-            'ajuste': avaliacaoForm.ajuste,
-            'ociosidade': avaliacaoForm.ociosidade,
-            'referencia_fct_gfe_pontuacao': this.valorFCTPontuaçãoTotal,
-            'TB_COLABORADOR_id_colaborador': avaliacaoForm.colaborador.idColaborador,
+            'ajuste': (avaliacaoForm.ajuste || 0.00),
+            'ociosidade': (avaliacaoForm.ociosidade || 0.00),
+            'referencia_fct_gfe_pontuacao': (this.valorFCTPontuaçãoTotal || 0.00),
+            'TB_COLABORADOR_id_colaborador': (avaliacaoForm.colaborador.idColaborador || 0.00)
         });
 
         this.avaliacaoService.addAvaliacao(ObjAvaliacao).subscribe(data => {
-
+            debugger
             if (data) {
 
                 /*
@@ -297,24 +297,25 @@ export class AvaliacaoFormComponent implements OnInit {
                 */
 
                 // Recupera o id da ultima avaliação inserida e associa atributos ao colaborador
-                this.avaliacaoService.getMaxId().subscribe(
-                    resultado => {
-                        if (resultado) {
+                // this.avaliacaoService.getMaxId().subscribe(
+                //     resultado => {
+                //         if (resultado) {
+                            console.log('Max id: ', data);
 
                             // Associação entre colaborador e papel
-                            this.associarColaboradorPapel(avaliacaoForm, resultado[0].idResultado);
+                            this.associarColaboradorPapel(avaliacaoForm, data);
 
                             // Associação entre colaborador e Projeto
-                            this.associarColaboradorProjeto(avaliacaoForm, resultado[0].idResultado);
+                            this.associarColaboradorProjeto(avaliacaoForm, data);
 
                             // Associação entre colaborador e atributo
-                            this.associarColaboradorAtributo(avaliacaoForm, resultado[0].idResultado);
+                            this.associarColaboradorAtributo(avaliacaoForm, data);
 
                             // Associação entre colaborador e tecnologia
-                            this.associarColaboradorTecnologia(avaliacaoForm, resultado[0].idResultado);
+                            this.associarColaboradorTecnologia(avaliacaoForm, data);
 
                             // Associacao entre atributo e projeto
-                            this.associarAtributoProjeto(avaliacaoForm, resultado[0].idResultado);
+                            this.associarAtributoProjeto(avaliacaoForm, data);
 
                             this.router.navigate(['avaliacao']);
 
@@ -326,10 +327,10 @@ export class AvaliacaoFormComponent implements OnInit {
                             });
 
                         }
-                    },
-                    error => (console.log('Error: ', error))
-                );
-            }
+            //         },
+            //         error => (console.log('Error: ', error))
+            //     );
+            // }
         });
     }
 
@@ -434,14 +435,14 @@ export class AvaliacaoFormComponent implements OnInit {
 
                         associacaoAtributoProjeto = {
                             'TB_ATRIBUTO_id_atributo': parseInt(dataAtributo.id_atributo, 9),
-                            'TB_PROJETO_id_projeto': parseInt(projetos.Projetos, 9),
+                            'TB_PROJETO_id_projeto': projetos.Projetos,
                             'TB_RESULTADO_id_resultado': maxId
                         };
 
                         console.log('RESULTADO: ', dataAtributo, associacaoAtributoProjeto, projetos);
-                        this.avaliacaoService.addAssociacaoAtributoProjeto(associacaoAtributoProjeto).subscribe(data => {
-                            console.log(' **** --- Associações Atributo com Projeto', data);
-                        });
+                        // this.avaliacaoService.addAssociacaoAtributoProjeto(associacaoAtributoProjeto).subscribe(data => {
+                        //     console.log(' **** --- Associações Atributo com Projeto', data);
+                        // });
 
                     }
                 }
@@ -489,7 +490,6 @@ export class AvaliacaoFormComponent implements OnInit {
 
     getColaborador() {
         this.colaboradorService.getColaborador().subscribe(colaborador => {
-            debugger
             this.Colaborador = colaborador;
         });
     }
@@ -532,7 +532,7 @@ export class AvaliacaoFormComponent implements OnInit {
             Abrangencia: 1,
             Complexidade: 1,
             Impacto: 1,
-            Projetos: [0]
+            Projetos: [null, [Validators.required]]
         });
     }
 

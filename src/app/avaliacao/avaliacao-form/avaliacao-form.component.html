@@ -50,12 +50,12 @@
                       </div>
                     </td>
                     <td>
-                        <div class="form-group">
-                            <ng-selectize [errorClass]="'has-error'" [config]="configPapel" [options]="papel" [formControl]="formAvaliacao.get('papel')"></ng-selectize>
-                            <div *ngIf="formAvaliacao.get('papel').touched && formAvaliacao.get('papel').errors">
-                                <span *ngIf="formAvaliacao.get('papel').hasError('required')" class="help-block">O campo Papel é obrigatório.</span>
-				            </div>
+                      <div class="form-group">
+                        <ng-selectize [errorClass]="'has-error'" [config]="configPapel" [options]="papel" [formControl]="formAvaliacao.get('papel')"></ng-selectize>
+                        <div *ngIf="formAvaliacao.get('papel').touched && formAvaliacao.get('papel').errors">
+                          <span *ngIf="formAvaliacao.get('papel').hasError('required')" class="help-block">O campo Papel é obrigatório.</span>
                         </div>
+                      </div>
                     </td>
                   </tr>
                 </table>
@@ -70,8 +70,10 @@
                   <tr>
                     <td>
                       <div class="form-group" [ngClass]="{'has-error': tecnologiaValidacao }">
-                        <ng2-selectize [config]="configTecnologia" [options]="tecnologia" [(ngModel)]="valueTec" formControlName="tecnologia"></ng2-selectize>
-                        <span *ngIf="tecnologiaValidacao" class="help-block">O campo Tecnologia é obrigatório!</span>
+                        <ng-selectize [errorClass]="'has-error'" [config]="configTecnologia" [options]="tecnologia" [formControl]="formAvaliacao.get('tecnologia')"></ng-selectize>
+                        <div *ngIf="formAvaliacao.get('tecnologia').touched && formAvaliacao.get('tecnologia').errors">
+                          <span *ngIf="formAvaliacao.get('tecnologia').hasError('required')" class="help-block">O campo Tecnologia é obrigatório.</span>
+                        </div>
                       </div>
                     </td>
                   </tr>
@@ -125,7 +127,7 @@
                           </div>
                         </td>
                         <td [formGroupName]="i">
-                          
+
                           <div class="radio" style="float: left; position: relative;">
                             <label>
                               <input type="radio" formControlName="Complexidade" (change)="somaValores('atributo')" [value]="1" [checked]="true">
@@ -282,12 +284,13 @@
                   </tr>
                   <tr>
                     <td>
-                        <div class="form-group">
-                          <label style="width: 20%">
-                            <input type="text" class="form-control" formControlName="ociosidade" (change)="somaValores('ociosidade')" (blur)="formataOciosidade($event)" placeholder="00.00" maxlength="4">
-                            <!-- (keyup)="formataData($event)" -->
-                          </label>
-                        </div>
+                      <div class="form-group">
+                        <label style="width: 20%">
+                          <input type="text" class="form-control" formControlName="ociosidade" (change)="somaValores('ociosidade')" (blur)="formataOciosidade($event)"
+                            placeholder="00.00" maxlength="4">
+                          <!-- (keyup)="formataData($event)" -->
+                        </label>
+                      </div>
                     </td>
                   </tr>
                 </table>
