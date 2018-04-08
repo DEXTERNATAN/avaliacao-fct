@@ -163,13 +163,17 @@ export class PapelFormComponent implements OnInit {
                         // Associar papel a atributo
                         this.atributo.controls.forEach(element => {
                             if (element.value.ativado) {
-                                let associacaoAtributoPapel: any = { TB_ATRIBUTO_id_atributo: element.value.idAtributo, TB_PAPEL_id_papel: value[0].maxid }
-                                console.log('ASSOCIANDO: ', associacaoAtributoPapel);
+
+                                let associacaoAtributoPapel: any = {
+                                    TB_ATRIBUTO_id_atributo: element.value.idAtributo,
+                                    TB_PAPEL_id_papel: value[0].maxid
+                                };
+
                                 this.papelService.addAtributoPapel(associacaoAtributoPapel).subscribe(
                                     data => {
                                         // console.log('Resposta do servidor: ', data);
                                     }
-                                )
+                                );
                             }
                         });
 

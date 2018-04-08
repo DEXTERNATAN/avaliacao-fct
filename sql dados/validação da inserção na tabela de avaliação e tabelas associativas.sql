@@ -1,0 +1,19 @@
+SELECT * FROM avaliacaofct.TB_RESULTADO;
+SELECT * FROM avaliacaofct.TB_ATRIBUTO_has_TB_PROJETO where TB_RESULTADO_id_resultado = 179;
+
+SELECT count(*) FROM avaliacaofct.TB_RESULTADO;
+SELECT count(*) FROM avaliacaofct.TB_ATRIBUTO_has_TB_PROJETO; -- DANDO ERRO NA INSERÇÃO
+SELECT count(*) FROM avaliacaofct.TB_COLABORADOR_has_TB_ATRIBUTO;
+SELECT count(*) FROM avaliacaofct.TB_PAPEL_has_TB_COLABORADOR;
+SELECT count(*) FROM avaliacaofct.TB_PROJETO_has_TB_COLABORADOR; -- DANDO ERRO NA INSERÇÃO
+SELECT count(*) FROM avaliacaofct.TB_TECNOLOGIA_has_TB_COLABORADOR;
+
+
+-- DELETE FROM avaliacaofct.TB_RESULTADO;
+-- DELETE FROM avaliacaofct.TB_ATRIBUTO_has_TB_PROJETO;
+-- DELETE FROM avaliacaofct.TB_COLABORADOR_has_TB_ATRIBUTO;
+-- DELETE FROM avaliacaofct.TB_PAPEL_has_TB_COLABORADOR;
+-- DELETE FROM avaliacaofct.TB_PROJETO_has_TB_COLABORADOR;
+-- DELETE FROM avaliacaofct.TB_TECNOLOGIA_has_TB_COLABORADOR;
+-- 
+

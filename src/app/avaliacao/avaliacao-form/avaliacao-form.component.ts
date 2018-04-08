@@ -57,7 +57,6 @@ export class AvaliacaoFormComponent implements OnInit {
     PapelAtributo: any[] = [];
     projetosList: number[] = [1];
     valuePapel: string[];
-    valueTec: string[] = [];
     current: any[];
     title: string;
     idResource: any;
@@ -140,9 +139,9 @@ export class AvaliacaoFormComponent implements OnInit {
             divisao: [null, Validators.required],
             colaborador: [null, Validators.required],
             papel: [null, Validators.compose([Validators.required])],
-            tecnologia: [0],
+            tecnologia: [0, Validators.compose([Validators.required])],
             Projeto: [0],
-            items: this.formBuilder.array([], Validators.required),
+            items: this.formBuilder.array([], Validators.compose([Validators.required])),
             itemsAtributo: this.formBuilder.array([]),
             qtdProjetos: [0],
             vlrPtTotal: 0.00,
@@ -228,6 +227,8 @@ export class AvaliacaoFormComponent implements OnInit {
                                         dadosReferencia.cargo + ' (R$ ' + dadosReferencia.valor_referencia + ')');
                                     this.formAvaliacao.get('FCTPontuaçãoTotal').setValue(vlrValorFct);
                                     this.valorFCTPontuaçãoTotal = dadosReferencia.num_referencia;
+
+
                                 }
 
                             }
@@ -260,37 +261,60 @@ export class AvaliacaoFormComponent implements OnInit {
 
         let avaliacaoForm = this.formAvaliacao.value;
         this.somaValores('tudo');
-
+        debugger
         this.avaliacaoService.addAvaliacao({
             'id_resultado': 'null',
-            'pontuacao': avaliacaoForm.vlrPtTotal,
+            'pontuacao': (avaliacaoForm.vlrPtTotal || 39.00),
             'dt_resultado': 'null',
-            'ajuste': avaliacaoForm.ajuste,
-            'ociosidade': avaliacaoForm.ociosidade,
-            'referencia_fct_gfe_pontuacao': this.valorFCTPontuaçãoTotal,
-            'TB_COLABORADOR_id_colaborador': avaliacaoForm.colaborador.idColaborador,
+            'ajuste': (avaliacaoForm.ajuste || 0.00),
+            'ociosidade': (avaliacaoForm.ociosidade || 0.00),
+            'referencia_fct_gfe_pontuacao': (this.valorFCTPontuaçãoTotal || 0),
+            'TB_COLABORADOR_id_colaborador': (avaliacaoForm.colaborador.idColaborador)
         }).subscribe(data => {
-
+            debugger
             if (data) {
+
+                /*
+                ** Versão 02
+                ** Agora o serviço da api faz todo o serviço de inserção tanto na tabela de resultado quanto nas tabelas associativas **
+                */
+                // this.router.navigate(['avaliacao']);
+
+                // this.toastr.success('Avaliação registrada com sucesso!', 'Sucesso', {
+                //     progressBar: true,
+                //     progressAnimation: 'increasing',
+                //     closeButton: true,
+                //     timeOut: 3000
+                // });
+
+
+
+                /*
+                ** Versão 01
+                ** Codigo da versão 01 fazendo uso de serviços separados para inserção na tabela de resultado **
+                ** e tambem nas tabelas associativas **
+                */
+
                 // Recupera o id da ultima avaliação inserida e associa atributos ao colaborador
-                this.avaliacaoService.getMaxId().subscribe(
-                    resultado => {
-                        if (resultado) {
+                // this.avaliacaoService.getMaxId().subscribe(
+                //     resultado => {
+                //         if (resultado) {
+                            console.log('Max id: ', data);
 
                             // Associação entre colaborador e papel
-                            this.associarColaboradorPapel(avaliacaoForm, resultado[0].idResultado);
+                            this.associarColaboradorPapel(avaliacaoForm, data);
 
                             // Associação entre colaborador e Projeto
-                            this.associarColaboradorProjeto(avaliacaoForm, resultado[0].idResultado);
+                            this.associarColaboradorProjeto(avaliacaoForm, data);
 
                             // Associação entre colaborador e atributo
-                            this.associarColaboradorAtributo(avaliacaoForm, resultado[0].idResultado);
+                            this.associarColaboradorAtributo(avaliacaoForm, data);
 
                             // Associação entre colaborador e tecnologia
-                            this.associarColaboradorTecnologia(avaliacaoForm, resultado[0].idResultado);
+                            this.associarColaboradorTecnologia(avaliacaoForm, data);
 
                             // Associacao entre atributo e projeto
-                            this.associarAtributoProjeto(avaliacaoForm, resultado[0].idResultado);
+                            this.associarAtributoProjeto(avaliacaoForm, data);
 
                             this.router.navigate(['avaliacao']);
 
@@ -302,10 +326,10 @@ export class AvaliacaoFormComponent implements OnInit {
                             });
 
                         }
-                    },
-                    error => (console.log('Error: ', error))
-                );
-            }
+            //         },
+            //         error => (console.log('Error: ', error))
+            //     );
+            // }
         });
     }
 
@@ -410,14 +434,14 @@ export class AvaliacaoFormComponent implements OnInit {
 
                         associacaoAtributoProjeto = {
                             'TB_ATRIBUTO_id_atributo': parseInt(dataAtributo.id_atributo, 9),
-                            'TB_PROJETO_id_projeto': parseInt(projetos.Projetos, 9),
+                            'TB_PROJETO_id_projeto': projetos.Projetos,
                             'TB_RESULTADO_id_resultado': maxId
                         };
 
                         console.log('RESULTADO: ', dataAtributo, associacaoAtributoProjeto, projetos);
-                        this.avaliacaoService.addAssociacaoAtributoProjeto(associacaoAtributoProjeto).subscribe(data => {
-                            console.log(' **** --- Associações Atributo com Projeto', data);
-                        });
+                        // this.avaliacaoService.addAssociacaoAtributoProjeto(associacaoAtributoProjeto).subscribe(data => {
+                        //     console.log(' **** --- Associações Atributo com Projeto', data);
+                        // });
 
                     }
                 }
@@ -507,7 +531,7 @@ export class AvaliacaoFormComponent implements OnInit {
             Abrangencia: 1,
             Complexidade: 1,
             Impacto: 1,
-            Projetos: [0]
+            Projetos: [null, [Validators.required]]
         });
     }
 
@@ -718,9 +742,9 @@ export class AvaliacaoFormComponent implements OnInit {
             case 'fctatual': {
 
                 // Pontuação FCT Atual
-                let pontuacao1 = (this.formAvaliacao.get('colaborador').value.pontuacao_inicial || 0).toFixed(2);
-                let valor1 = (this.formAvaliacao.get('colaborador').value.valorFctInicial || 0).toFixed(2);
-                let valor2 = (this.formAvaliacao.get('colaborador').value.valorReferenciaFct || 0).toFixed(2);
+                let pontuacao1 = (this.formAvaliacao.get('colaborador').value.pontuacao_inicial || 1).toFixed(2);
+                let valor1 = (this.formAvaliacao.get('colaborador').value.valorFctInicial || 1).toFixed(2);
+                let valor2 = (this.formAvaliacao.get('colaborador').value.valorReferenciaFct || 1).toFixed(2);
 
                 // Cálculo Pontuação de Referência
                 let calculoReferencia = ((pontuacao1 * valor2) / valor1).toFixed(2);
@@ -777,22 +801,26 @@ export class AvaliacaoFormComponent implements OnInit {
                 event.target.value = event.target.value + "0";
             }
         }
+
         return event;
     }
 
-    formatarMoeda(event: any) {
-        var valor = event.target.value;
-        if (event.keyCode !== 8) {
-            // valor = valor + '';
-            valor = parseInt(valor.replace(/[\D]+/g, ''));
-            valor = valor + '';
-            valor = valor.replace(/([0-9]{3})$/g, ".$1");
 
-            if (valor.length > 2) {
-                valor = valor.replace(/([0-9]{3}),([0-9]{2}$)/g, ".$1,$2");
+    formataData(event: any) {
+        console.log(event.target.value.length,event.keyCode);
+
+        if (event.keyCode !== 8) {
+    		if (event.target.value.length === 2) {
+                event.target.value = event.target.value + "." + "00";
+            }else if (event.target.value.length === 3) {
+                event.target.value = event.target.value + "00";
+            }else if (event.target.value.length === 4) {
+                event.target.value = event.target.value + "0";
             }
         }
-        return event.target.value = valor;
+
+    	return event;
     }
+
 
 }

@@ -21,9 +21,6 @@
           <div class="box-header with-border">
             <h3 class="box-title">Detalhes da Avaliação</h3>
           </div>
-          <div class="alert alert-success" role="alert" *ngIf="vlrSucesso">
-            Avaliação Registrada com sucesso!
-          </div>
           <form role="form" [formGroup]="formAvaliacao" (ngSubmit)="registrarAvaliacao()">
             <div class="box-body">
               <div class="form-group">
@@ -53,12 +50,12 @@
                       </div>
                     </td>
                     <td>
-                        <div class="form-group">
-                            <ng-selectize [errorClass]="'has-error'" [config]="configPapel" [options]="papel" [formControl]="formAvaliacao.get('papel')"></ng-selectize>
-                            <div *ngIf="formAvaliacao.get('papel').touched && formAvaliacao.get('papel').errors">
-                                <span *ngIf="formAvaliacao.get('papel').hasError('required')" class="help-block">O campo Papel é obrigatório.</span>
-				            </div>
+                      <div class="form-group">
+                        <ng-selectize [errorClass]="'has-error'" [config]="configPapel" [options]="papel" [formControl]="formAvaliacao.get('papel')"></ng-selectize>
+                        <div *ngIf="formAvaliacao.get('papel').touched && formAvaliacao.get('papel').errors">
+                          <span *ngIf="formAvaliacao.get('papel').hasError('required')" class="help-block">O campo Papel é obrigatório.</span>
                         </div>
+                      </div>
                     </td>
                   </tr>
                 </table>
@@ -73,8 +70,10 @@
                   <tr>
                     <td>
                       <div class="form-group" [ngClass]="{'has-error': tecnologiaValidacao }">
-                        <ng2-selectize [config]="configTecnologia" [options]="tecnologia" [(ngModel)]="valueTec" formControlName="tecnologia"></ng2-selectize>
-                        <span *ngIf="tecnologiaValidacao" class="help-block">O campo Tecnologia é obrigatório!</span>
+                        <ng-selectize [errorClass]="'has-error'" [config]="configTecnologia" [options]="tecnologia" [formControl]="formAvaliacao.get('tecnologia')"></ng-selectize>
+                        <div *ngIf="formAvaliacao.get('tecnologia').touched && formAvaliacao.get('tecnologia').errors">
+                          <span *ngIf="formAvaliacao.get('tecnologia').hasError('required')" class="help-block">O campo Tecnologia é obrigatório.</span>
+                        </div>
                       </div>
                     </td>
                   </tr>
@@ -128,7 +127,7 @@
                           </div>
                         </td>
                         <td [formGroupName]="i">
-                          
+
                           <div class="radio" style="float: left; position: relative;">
                             <label>
                               <input type="radio" formControlName="Complexidade" (change)="somaValores('atributo')" [value]="1" [checked]="true">

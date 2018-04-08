@@ -18,7 +18,7 @@
           <div class="box-header">
             <h3 class="box-title">Avaliações Registradas</h3>
             <div class="box-tools">
-              <a  *ngIf="user().ds_perfil == 'ADMINISTRADOR' || user().ds_perfil == 'LIDER'" routerLink="/avaliacao/novo" class="btn btn-sm pull-left btn-flat bg-purple margin-right-10">
+              <a *ngIf="user().ds_perfil == 'ADMINISTRADOR' || user().ds_perfil == 'LIDER'" routerLink="/avaliacao/novo" class="btn btn-sm pull-left btn-flat bg-purple margin-right-10">
                 <i class="fa fa-plus"></i>
                 <b>Nova Avaliação</b>
               </a>
@@ -26,7 +26,14 @@
           </div>
           <!-- /.box-header -->
           <div class="box-body">
-            <table class="table table-condensed">
+            {{ avaliacaoDetalhe.length | json }}
+            <div class="alert alert-warning alert-dismissible" *ngIf="avaliacaoDetalhe.length == 0">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+              <h4>
+                <i class="icon fa fa-warning"></i> Alerta!</h4>
+              Nenhuma avaliação existente no momento. Click no botão Nova Avaliação para criar uma nova.
+            </div>
+            <table class="table table-condensed" *ngIf="avaliacaoDetalhe.length > 0">
               <tr>
                 <td>
                   <div class="box-header with-border">
@@ -64,13 +71,14 @@
                             <th></th>
                           </tr>
                           <tr *ngIf="!aval.listDetalhe.length">
-                          <td colspan="10">
-                          <div class="alert alert-warning alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                            <h4><i class="icon fa fa-warning"></i> Alerta!</h4>
+                            <td colspan="10">
+                              <div class="alert alert-warning alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <h4>
+                                  <i class="icon fa fa-warning"></i> Alerta!</h4>
                                 Não existem avaliações para este usuário!
-                            </div>
-                          </td>
+                              </div>
+                            </td>
                           </tr>
                           <tr *ngFor="let items of aval.listDetalhe; let i = index">
                             <td>{{ i+1 }}</td>
@@ -79,7 +87,7 @@
                             <td>{{ items.ajuste.toFixed(2) }}</td>
                             <td>{{ ((items.pontuacao - items.ajuste) + (2 * items.ajuste)).toFixed(2) }}</td>
                             <td>
-                                <span class="badge bg-green">{{ ((items.ajuste / items.pontuacao) * 100).toFixed(2) }}%</span>
+                              <span class="badge bg-green">{{ ((items.ajuste / items.pontuacao) * 100).toFixed(2) }}%</span>
                             </td>
                             <td>{{ items.fct_atual }}</td>
                             <td>{{ items.fct_ideal }}</td>

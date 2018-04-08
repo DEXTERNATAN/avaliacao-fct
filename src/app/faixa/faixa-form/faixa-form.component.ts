@@ -39,7 +39,7 @@ export class FaixaFormComponent implements OnInit {
         private toastr: ToastrService
     ) { }
 
-     ngOnInit() {
+    ngOnInit() {
 
         this.formFaixa = this.formBuilder.group({
             referencia_fct: [],
@@ -69,10 +69,10 @@ export class FaixaFormComponent implements OnInit {
             },
             () => {
 
-                    let vrRateioSomadoFaixa = 0;
-                     let qtdPessoasCalculado = (this.qtdePessoas || 0);
-
-                     this.listFaixas.controls.forEach(function(data) {
+                let vrRateioSomadoFaixa = 0;
+                let qtdPessoasCalculado = (this.qtdePessoas || 0);
+                if (this.listFaixas) {
+                    this.listFaixas.controls.forEach(function (data) {
 
                         let vlrPercentCalculadoLc = data.get('percentualCalculado');
                         let vlrQtdePessoasFaixaLc = data.get('qtdePessoasFaixa');
@@ -82,26 +82,27 @@ export class FaixaFormComponent implements OnInit {
                         let vlrRateioPessoaCalculadoLc = data.get('valorRateioPessoaCalculado');
                         let vlrRateioSomadoFaixaLc = data.get('valorRateioSomadoFaixa');
 
-                        vlrPercentCalculadoLc.setValue(((parseFloat(vlrQtdePessoasFaixaLc.value) /
-                                                                    vlrQtdePessoasTotalLc.value) * 100).toFixed(2));
-                        vlrTotalCalculadoLc.setValue(((parseFloat(vlrDistribuicaoLc.value) *
-                                                                    (vlrPercentCalculadoLc.value / 100)).toFixed(2)) || 0);
-                        vlrRateioPessoaCalculadoLc.setValue((parseFloat(vlrTotalCalculadoLc.value) / qtdPessoasCalculado).toFixed(2) || 0);
+                        vlrPercentCalculadoLc.setValue(parseFloat(((vlrQtdePessoasFaixaLc.value /
+                            vlrQtdePessoasTotalLc.value) * 100).toFixed(2)));
+                        vlrTotalCalculadoLc.setValue(parseFloat(((vlrDistribuicaoLc.value) *
+                            (vlrPercentCalculadoLc.value / 100)).toFixed(2)) || 0);
+                        vlrRateioPessoaCalculadoLc.setValue(parseFloat((vlrTotalCalculadoLc.value / qtdPessoasCalculado).toFixed(2)) || 0);
                         vrRateioSomadoFaixa = ((vrRateioSomadoFaixa + parseFloat(vlrRateioPessoaCalculadoLc.value)) || 0);
                         vlrRateioSomadoFaixaLc.setValue((vrRateioSomadoFaixa).toFixed(2));
                         qtdPessoasCalculado = (qtdPessoasCalculado - parseFloat(vlrQtdePessoasFaixaLc.value));
                     });
                 }
+            }
         );
 
         // carga dos Dados complementares
         this.getReferencia();
 
         this.formFaixa.get('listFaixas').valueChanges
-        .debounceTime(400)
-        .subscribe(value => {
-            this.calculaValores();
-         });
+            .debounceTime(400)
+            .subscribe(value => {
+                this.calculaValores();
+            });
     }
 
     private getPessoasFaixaTotal(): void {
@@ -156,7 +157,7 @@ export class FaixaFormComponent implements OnInit {
         // Percorrendo as faixas
         arrayFaixa.forEach(fxs => {
 
-            if ( faixaValue.assumirPercCalculado ) {
+            if (faixaValue.assumirPercCalculado) {
                 quantidadeDePessoas = fxs.qtdePessoasFaixa;
                 valorRateioPessoa = fxs.valorRateioSomado;
                 percentual = fxs.percentualFixo;
@@ -167,14 +168,14 @@ export class FaixaFormComponent implements OnInit {
             }
 
             objFaixa = new Faixa(
-                            fxs.limite_inferior,
-                            fxs.limite_superior,
-                            fxs.pontuacao_referencia,
-                            quantidadeDePessoas,
-                            valorRateioPessoa,
-                            percentual,
-                            refFctPontuaMinima,
-                            this.distribuicao[0].id_distribuicao
+                fxs.limite_inferior,
+                fxs.limite_superior,
+                fxs.pontuacao_referencia,
+                quantidadeDePessoas,
+                valorRateioPessoa,
+                percentual,
+                refFctPontuaMinima,
+                this.distribuicao[0].id_distribuicao
             );
 
             result = this.faixaService.updateFaixa(fxs.id_faixa, objFaixa);
@@ -211,7 +212,7 @@ export class FaixaFormComponent implements OnInit {
         let tamanho = this.listFaixas.length;
         let index = 0;
 
-        this.listFaixas.controls.forEach(function(data) {
+        this.listFaixas.controls.forEach(function (data) {
 
             let vlrTotalFixoLc = data.get('valorTotalFixo');
             let vlrDistribuicaoLc = data.get('valorDistribuicao').value;
@@ -229,7 +230,7 @@ export class FaixaFormComponent implements OnInit {
                     totalPercFixo = (100 - totalPercFixo);
                     if (totalPercFixo < 10) {
                         vlrPercentFixoLc.setValue('0' + totalPercFixo);
-                    }else {
+                    } else {
                         vlrPercentFixoLc.setValue(totalPercFixo);
                     }
                 } else {
@@ -244,8 +245,8 @@ export class FaixaFormComponent implements OnInit {
             }
 
             vlrTotalFixoLc.setValue(((parseFloat((vlrDistribuicaoLc) || 0) * (vlrPercentFixoLc.value / 100)).toFixed(2)) || 0);
-            vlrRateioPessoa.setValue((parseFloat(vlrTotalFixoLc.value) / qtdPessoasFixo).toFixed(2) || 0);
-            vrRateioFixoFaixa = ((vrRateioFixoFaixa + parseFloat(vlrRateioPessoa.value)) || 0);
+            vlrRateioPessoa.setValue(parseFloat((vlrTotalFixoLc.value / qtdPessoasFixo).toFixed(2)) || 0);
+            vrRateioFixoFaixa = (parseFloat(vrRateioFixoFaixa + vlrRateioPessoa.value) || 0);
             vlrRateioSomado.setValue((vrRateioFixoFaixa).toFixed(2));
             qtdPessoasFixo = (qtdPessoasFixo - parseFloat(qtdePessoasFaixa.value));
         });
