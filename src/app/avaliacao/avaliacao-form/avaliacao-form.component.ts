@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { MensagensHandler } from 'app/shared/services/mensagens-handler.service';
 import 'rxjs/Rx';
 
+import * as $ from 'jquery';
+
 import { Avaliacao } from './../avaliacao.model';
 import { Colaborador } from './../../colaborador/colaborador.model';
 import { Divisao } from './../../divisao/divisao.model';
@@ -399,7 +401,7 @@ export class AvaliacaoFormComponent implements OnInit {
 
     associarAtributoProjeto(formAvaliacao: any, maxId: any): any {
         let associacaoAtributoProjeto: any;
-        
+
         formAvaliacao.items.forEach(projetos => {
             console.log('PROJETO > : ', projetos, projetos.Abrangencia, projetos.Complexidade, projetos.Complexidade);
             this.avaliacaoService.getBuscaAtributo(projetos.Abrangencia, projetos.Complexidade, projetos.Impacto, 'p').subscribe(
@@ -766,34 +768,31 @@ export class AvaliacaoFormComponent implements OnInit {
     formataOciosidade(event: any) {
         if (event.keyCode !== 8) {
             if (event.target.value.length === 1) {
-                event.target.value = event.target.value + "0." + "00";
-            }else if (event.target.value.length === 2) {
+                event.target.value = "00.0" + event.target.value;
+            } else if (event.target.value.length === 2) {
                 event.target.value = event.target.value + "." + "00";
-            }else if (event.target.value.length === 3) {
+            } else if (event.target.value.length === 3) {
                 event.target.value = event.target.value + "00";
-            }else if (event.target.value.length === 4) {
-                event.target.value = event.target.value + "0";
-            }
-        }      
-        //this.formAvaliacao.get('ociosidade').setValue(event.target.value);
-        return event;
-    }
-
-
-	formataData(event: any) {
-        console.log(event.target.value.length,event.keyCode);
-        
-        if (event.keyCode !== 8) {
-			if (event.target.value.length === 2) {
-                event.target.value = event.target.value + "." + "00";
-            }else if (event.target.value.length === 3) {
-                event.target.value = event.target.value + "00";
-            }else if (event.target.value.length === 4) {
+            } else if (event.target.value.length === 4) {
                 event.target.value = event.target.value + "0";
             }
         }
-        
-		return event;
+        return event;
     }
-    
+
+    formatarMoeda(event: any) {
+        var valor = event.target.value;
+        if (event.keyCode !== 8) {
+            // valor = valor + '';
+            valor = parseInt(valor.replace(/[\D]+/g, ''));
+            valor = valor + '';
+            valor = valor.replace(/([0-9]{3})$/g, ".$1");
+
+            if (valor.length > 2) {
+                valor = valor.replace(/([0-9]{3}),([0-9]{2}$)/g, ".$1,$2");
+            }
+        }
+        return event.target.value = valor;
+    }
+
 }

@@ -20,11 +20,13 @@
         <div class="box-header with-border">
           <h3 class="box-title">Detalhes do Papel dos Colaboradores</h3>
         </div>
+        xxx {{ papeis.atributos | json }} xxx <br />
         <!-- {{ formPapel.value | json }} -->
         <form role="form" [formGroup]="formPapel" (ngSubmit)="save()">
           <div class="box-body">
             <div class="form-group" [ngClass]="{'has-error': (!formPapel.controls['tipo'].valid && formPapel.controls['tipo'].touched) }">
-              <label for="tipo">Tipo</label>
+              <label for="tipo">Tipo = {{ papeis.tipo }} </label>
+              
               <select class="form-control" [(ngModel)]="papeis.tipo" formControlName="tipo" id="tipo">
                 <option [selected]="true" value="">Selecione</option>
                 <option value="Desenvolvimento">Desenvolvimento</option>
@@ -51,7 +53,7 @@
 
                   <div class="box-tools pull-right">
                     <button type="button" class="btn btn-box-tool" data-toggle="collapse" data-target="#collapseExample" aria-expanded="true"
-                      aria-controls="collapseExample" (click)="isOpen = !isOpen">
+                      aria-controls="collapseExample" (click)="carregaAtributos(papeis.atributos)">
                       <i class="fa " [ngClass]="{'fa-minus': isOpen === true ,'fa-plus': isOpen === false }"></i>
                     </button>
                   </div>

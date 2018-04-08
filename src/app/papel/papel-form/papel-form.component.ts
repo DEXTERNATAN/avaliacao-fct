@@ -48,7 +48,10 @@ export class PapelFormComponent implements OnInit {
 
         this.loaderService.setMsgLoading('Carregando ...');
         this.mensagensHandler.handleClearMessages();
-        this.papelService.getPapel().subscribe(papelList => this.listPapel = papelList);
+        this.papelService.getPapel().subscribe(papelList => {
+            this.listPapel = papelList;
+            // console.log(papelList);
+        });
         this.papelService.getAtributoPapel().subscribe(atribts => {
             atribts.forEach(element => {
                 this.addIPapelList(element);
@@ -63,14 +66,18 @@ export class PapelFormComponent implements OnInit {
                 return;
             };
 
-            this.papelService.getPapelId(this.idResource).subscribe(papel => {
-                papel = this.papeis = papel;
-                response => {
-                    if (response.status == 404) {
-                        this.router.navigate(['papel'])
+            this.papelService.getPapelId(this.idResource).subscribe(
+                papel => {
+
+                    this.papeis = papel;
+
+                    response => {
+                        if (response.status == 404) {
+                            this.router.navigate(['papel'])
+                        }
                     }
                 }
-            });
+            );
         });
 
         // filtrar o papel 
@@ -85,6 +92,26 @@ export class PapelFormComponent implements OnInit {
         });
 
     }
+
+
+    carregaAtributos(atributos: any) {
+        this.isOpen = !this.isOpen;
+
+        // Marca os atributos de acordo com o banco de dados para o
+        this.frmPapeis.controls.forEach(function (controles, index) {
+            if (atributos) {
+                atributos.forEach(element => {
+                    if (controles.get('idAtributo').value == element.id_atributo) {
+                        controles.get('ativado').setValue(true);
+                    }
+                });
+            }
+        })
+
+
+    }
+
+    get frmPapeis(): FormArray { return this.formPapel.get('atributo') as FormArray; }
 
     getPapelList(formPapel) {
         return formPapel.get('atributo').controls;
@@ -121,7 +148,7 @@ export class PapelFormComponent implements OnInit {
 
         result.subscribe(
             data => {
-                console.log('ULTIMO ID: ', data);
+                // console.log('ULTIMO ID: ', data);
                 if (atualizar) {
                     this.toastr.success('Papel atualizado com sucesso!', 'Sucesso', {
                         progressBar: true,
@@ -131,7 +158,7 @@ export class PapelFormComponent implements OnInit {
                     });
                 } else {
                     this.papelService.getMaxId().subscribe(value => {
-                        console.log('Resultado: ', value[0].maxid);
+                        //console.log('Resultado: ', value[0].maxid);
 
                         // Associar papel a atributo
                         this.atributo.controls.forEach(element => {
@@ -140,7 +167,7 @@ export class PapelFormComponent implements OnInit {
                                 console.log('ASSOCIANDO: ', associacaoAtributoPapel);
                                 this.papelService.addAtributoPapel(associacaoAtributoPapel).subscribe(
                                     data => {
-                                        console.log('Resposta do servidor: ', data);
+                                        // console.log('Resposta do servidor: ', data);
                                     }
                                 )
                             }

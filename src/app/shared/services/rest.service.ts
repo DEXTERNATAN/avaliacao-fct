@@ -41,7 +41,7 @@ export abstract class RestService<T> {
     obterPorId(id: string): Observable<T> {
         return this.http.get(`${this.getUrlBase()}/${this.getUrl()}/${id}`, this.getDefaultRequestOptions())
             .map(response => response.json())
-            // .do(data => console.log('server data:', data))  // debug
+            .do(data => console.log('server data:', data))  // debug
             .catch(ErrorHandler.handleError);
     }
 
