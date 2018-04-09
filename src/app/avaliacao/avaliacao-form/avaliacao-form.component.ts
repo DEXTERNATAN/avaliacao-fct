@@ -261,75 +261,62 @@ export class AvaliacaoFormComponent implements OnInit {
 
         let avaliacaoForm = this.formAvaliacao.value;
         this.somaValores('tudo');
-        debugger
+
+        // Enviar apenas um objeto para o serviço e deixar que o mesmo faça tudo
         this.avaliacaoService.addAvaliacao({
-            'id_resultado': 'null',
             'pontuacao': (avaliacaoForm.vlrPtTotal || 39.00),
-            'dt_resultado': 'null',
             'ajuste': (avaliacaoForm.ajuste || 0.00),
             'ociosidade': (avaliacaoForm.ociosidade || 0.00),
             'referencia_fct_gfe_pontuacao': (this.valorFCTPontuaçãoTotal || 0),
-            'TB_COLABORADOR_id_colaborador': (avaliacaoForm.colaborador.idColaborador)
+            'TB_COLABORADOR_id_colaborador': (avaliacaoForm.colaborador.idColaborador),
+            'TB_COLABORADOR_TB_DIVISAO_id_divisao': avaliacaoForm.divisao.id_divisao,
+            'TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe': avaliacaoForm.colaborador.id_referencia_fct_gfe,
+            'papel': avaliacaoForm.papel,
+            'projetos': avaliacaoForm.items,
+            'tecnologia': avaliacaoForm.tecnologia,
+            'atributos': avaliacaoForm.itemsAtributo
         }).subscribe(data => {
-            debugger
+
             if (data) {
 
                 /*
                 ** Versão 02
                 ** Agora o serviço da api faz todo o serviço de inserção tanto na tabela de resultado quanto nas tabelas associativas **
                 */
-                // this.router.navigate(['avaliacao']);
-
-                // this.toastr.success('Avaliação registrada com sucesso!', 'Sucesso', {
-                //     progressBar: true,
-                //     progressAnimation: 'increasing',
-                //     closeButton: true,
-                //     timeOut: 3000
-                // });
-
-
 
                 /*
                 ** Versão 01
                 ** Codigo da versão 01 fazendo uso de serviços separados para inserção na tabela de resultado **
                 ** e tambem nas tabelas associativas **
                 */
+                console.log('Max id: ', data);
 
-                // Recupera o id da ultima avaliação inserida e associa atributos ao colaborador
-                // this.avaliacaoService.getMaxId().subscribe(
-                //     resultado => {
-                //         if (resultado) {
-                            console.log('Max id: ', data);
+                // Associação entre colaborador e papel
+                // this.associarColaboradorPapel(avaliacaoForm, data);
 
-                            // Associação entre colaborador e papel
-                            this.associarColaboradorPapel(avaliacaoForm, data);
+                // Associação entre colaborador e Projeto
+                // this.associarColaboradorProjeto(avaliacaoForm, data);
 
-                            // Associação entre colaborador e Projeto
-                            this.associarColaboradorProjeto(avaliacaoForm, data);
+                // Associação entre colaborador e tecnologia
+                // this.associarColaboradorTecnologia(avaliacaoForm, data);
 
-                            // Associação entre colaborador e atributo
-                            this.associarColaboradorAtributo(avaliacaoForm, data);
+                // Associação entre colaborador e atributo
+                //this.associarColaboradorAtributo(avaliacaoForm, data);
 
-                            // Associação entre colaborador e tecnologia
-                            this.associarColaboradorTecnologia(avaliacaoForm, data);
+                // Associacao entre atributo e projeto
+                //this.associarAtributoProjeto(avaliacaoForm, data);
 
-                            // Associacao entre atributo e projeto
-                            this.associarAtributoProjeto(avaliacaoForm, data);
+                this.router.navigate(['avaliacao']);
 
-                            this.router.navigate(['avaliacao']);
+                this.toastr.success('Avaliação registrada com sucesso!', 'Sucesso', {
+                    progressBar: true,
+                    progressAnimation: 'increasing',
+                    closeButton: true,
+                    timeOut: 3000
+                });
 
-                            this.toastr.success('Avaliação registrada com sucesso!', 'Sucesso', {
-                                progressBar: true,
-                                progressAnimation: 'increasing',
-                                closeButton: true,
-                                timeOut: 3000
-                            });
+            }
 
-                        }
-            //         },
-            //         error => (console.log('Error: ', error))
-            //     );
-            // }
         });
     }
 
@@ -807,19 +794,19 @@ export class AvaliacaoFormComponent implements OnInit {
 
 
     formataData(event: any) {
-        console.log(event.target.value.length,event.keyCode);
+        console.log(event.target.value.length, event.keyCode);
 
         if (event.keyCode !== 8) {
-    		if (event.target.value.length === 2) {
+            if (event.target.value.length === 2) {
                 event.target.value = event.target.value + "." + "00";
-            }else if (event.target.value.length === 3) {
+            } else if (event.target.value.length === 3) {
                 event.target.value = event.target.value + "00";
-            }else if (event.target.value.length === 4) {
+            } else if (event.target.value.length === 4) {
                 event.target.value = event.target.value + "0";
             }
         }
 
-    	return event;
+        return event;
     }
 
 
