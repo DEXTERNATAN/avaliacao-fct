@@ -235,7 +235,7 @@ export class AvaliacaoFormComponent implements OnInit {
 
                         });
                     },
-                    error => (console.log('Error: ', error))
+                    // error => (console.log('Error: ', error))
                 );
             }
         );
@@ -289,22 +289,22 @@ export class AvaliacaoFormComponent implements OnInit {
                 ** Codigo da versão 01 fazendo uso de serviços separados para inserção na tabela de resultado **
                 ** e tambem nas tabelas associativas **
                 */
-                console.log('Max id: ', data);
+                // console.log('Max id: ', data);
 
                 // Associação entre colaborador e papel
-                // this.associarColaboradorPapel(avaliacaoForm, data);
+                this.associarColaboradorPapel(avaliacaoForm, data);
 
                 // Associação entre colaborador e Projeto
-                // this.associarColaboradorProjeto(avaliacaoForm, data);
+                this.associarColaboradorProjeto(avaliacaoForm, data);
 
                 // Associação entre colaborador e tecnologia
-                // this.associarColaboradorTecnologia(avaliacaoForm, data);
+                this.associarColaboradorTecnologia(avaliacaoForm, data);
 
                 // Associação entre colaborador e atributo
-                //this.associarColaboradorAtributo(avaliacaoForm, data);
+                this.associarColaboradorAtributo(avaliacaoForm, data);
 
                 // Associacao entre atributo e projeto
-                //this.associarAtributoProjeto(avaliacaoForm, data);
+                this.associarAtributoProjeto(avaliacaoForm, data);
 
                 this.router.navigate(['avaliacao']);
 
@@ -362,7 +362,7 @@ export class AvaliacaoFormComponent implements OnInit {
             };
 
             this.avaliacaoService.addAssociacaoColaboradorTecnologia(associacaoColaboradorTecnologia).subscribe(data => {
-                // console.log('OK - Associações incluidas com sucesso', data);
+                console.log('OK - Associações incluidas com sucesso', data);
             });
 
         });
@@ -372,7 +372,7 @@ export class AvaliacaoFormComponent implements OnInit {
         let associacaoColaboradorPapel: any;
 
         formAvaliacao.papel.forEach(Idpapel => {
-
+            // console.log('Maxid: ', maxId);
             associacaoColaboradorPapel = {
                 'TB_PAPEL_id_papel': parseInt(Idpapel, 9),
                 'TB_COLABORADOR_id_colaborador': formAvaliacao.colaborador.idColaborador,
@@ -382,7 +382,7 @@ export class AvaliacaoFormComponent implements OnInit {
             };
 
             this.avaliacaoService.addAssociacaoColaboradorPapel(associacaoColaboradorPapel).subscribe(data => {
-                // console.log(' **** --- Associações Papel Colaborador', data);
+                console.log(' **** --- Associações Papel Colaborador', data);
             });
 
         });
@@ -393,7 +393,7 @@ export class AvaliacaoFormComponent implements OnInit {
 
         formAvaliacao.items.forEach(idProjeto => {
 
-            // console.log('PROJETO > : ', parseInt(idProjeto.Projetos, 9));
+            console.log('PROJETO > : ', parseInt(idProjeto.Projetos, 9));
 
             associacaoColaboradorProjeto = {
                 'TB_PROJETO_id_projeto': parseInt(idProjeto.Projetos, 9),
@@ -404,7 +404,7 @@ export class AvaliacaoFormComponent implements OnInit {
             };
 
             this.avaliacaoService.addAssociacaoColaboradorProjeto(associacaoColaboradorProjeto).subscribe(data => {
-                // console.log(' **** --- Associações Projeto Colaborador', data);
+                console.log(' **** --- Associações Projeto Colaborador', data);
             });
 
         });
@@ -414,7 +414,9 @@ export class AvaliacaoFormComponent implements OnInit {
         let associacaoAtributoProjeto: any;
 
         formAvaliacao.items.forEach(projetos => {
-            console.log('PROJETO > : ', projetos, projetos.Abrangencia, projetos.Complexidade, projetos.Complexidade);
+            // console.log('PROJETO > : ', projetos, projetos.Abrangencia, projetos.Complexidade, projetos.Complexidade);
+            console.log('MaxID: ', maxId);
+            console.log('Projeto: ', projetos);
             this.avaliacaoService.getBuscaAtributo(projetos.Abrangencia, projetos.Complexidade, projetos.Impacto, 'p').subscribe(
                 dataAtributo => {
                     if (dataAtributo) {
@@ -424,11 +426,12 @@ export class AvaliacaoFormComponent implements OnInit {
                             'TB_PROJETO_id_projeto': projetos.Projetos,
                             'TB_RESULTADO_id_resultado': maxId
                         };
+                        console.log('associacaoAtributoProjeto: ', associacaoAtributoProjeto);
 
-                        console.log('RESULTADO: ', dataAtributo, associacaoAtributoProjeto, projetos);
-                        // this.avaliacaoService.addAssociacaoAtributoProjeto(associacaoAtributoProjeto).subscribe(data => {
-                        //     console.log(' **** --- Associações Atributo com Projeto', data);
-                        // });
+                        // console.log('RESULTADO: ', dataAtributo, associacaoAtributoProjeto, projetos);
+                        this.avaliacaoService.addAssociacaoAtributoProjeto(associacaoAtributoProjeto).subscribe(data => {
+                            console.log(' **** --- Associações Atributo com Projeto', data);
+                        });
 
                     }
                 }
@@ -809,7 +812,7 @@ export class AvaliacaoFormComponent implements OnInit {
 
 
     formataData(event: any) {
-        console.log(event.target.value.length, event.keyCode);
+        // console.log(event.target.value.length, event.keyCode);
 
         if (event.keyCode !== 8) {
             // if (event.target.value.length === 2) {
