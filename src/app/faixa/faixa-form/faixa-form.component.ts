@@ -28,6 +28,7 @@ export class FaixaFormComponent implements OnInit {
     referencia: Referencia[] = [];
     qtdePessoas = 0;
     listFaixas: FormArray;
+    mostraMensagem: boolean;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -40,6 +41,8 @@ export class FaixaFormComponent implements OnInit {
     ) { }
 
     ngOnInit() {
+
+        this.mostraMensagem = false;
 
         this.formFaixa = this.formBuilder.group({
             referencia_fct: [],
@@ -192,13 +195,19 @@ export class FaixaFormComponent implements OnInit {
 
     getDistribuicao() {
 
-        this.distribuicaoService.getDistribuicao().subscribe(distribuicao => {
-            distribuicao.forEach(distVlr => {
-                this.formFaixa.get('valorDistribuicao').setValue(distVlr.valor);
-                this.formFaixa.get('vlrReferencia').setValue(distVlr.referencia_fct);
+        this.distribuicaoService.getDistribuicao().subscribe(
+            distribuicao => {
+                distribuicao.forEach(distVlr => {
+                    this.formFaixa.get('valorDistribuicao').setValue(distVlr.valor);
+                    this.formFaixa.get('vlrReferencia').setValue(distVlr.referencia_fct);
+                });
+                this.distribuicao = distribuicao;
+            },
+            error => {
+                console.log(error);
+                this.mostraMensagem = true;
             });
-            this.distribuicao = distribuicao;
-        });
+
     }
 
     getReferencia() {

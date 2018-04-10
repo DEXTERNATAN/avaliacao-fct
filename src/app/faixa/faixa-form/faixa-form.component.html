@@ -23,23 +23,20 @@
 
         <form [formGroup]="formFaixa" role="form" (ngSubmit)="adicionarFaixa()">
           <div class="box-body">
-            <!-- 
-              1 - {{ distribuicao | json }} - {{ distribuicao.length }}
-              <br> 2 - {{ faixaList | json }} - {{ faixaList.length }}
-              <br> 3 - {{ referencia | json }} - {{ referencia.length }}
-              <br>
-              {{ distribuicao.length == 0 }} 
-            -->
-            <div class="col-md-8 col-sm-4 div-mensagem" *ngIf="distribuicao.length">
-              <div class="alert alert-warning alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                <h4>
-                  <i class="icon fa fa-warning"></i> Alerta!</h4>
-                Nenhuma avaliação existente no momento.
+
+
+            <div *ngIf="mostraMensagem">
+              <div class="col-md-8 col-sm-4 div-mensagem">
+                <div class="alert alert-warning alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                  <h4>
+                    <i class="icon fa fa-warning"></i> Alerta!</h4>
+                  Nenhuma avaliação existente no momento.
+                </div>
               </div>
             </div>
 
-            <div *ngIf="!distribuicao.length">
+            <div *ngIf="distribuicao.length">
               <div class="form-group">
 
                 <table class="table table-condensed">
