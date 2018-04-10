@@ -779,14 +779,29 @@ export class AvaliacaoFormComponent implements OnInit {
     formataOciosidade(event: any) {
         if (event.keyCode !== 8) {
             if (event.target.value.length === 1) {
-                event.target.value = "00.0" + event.target.value;
+                event.target.value = ("000.0" + event.target.value).slice(-5)
             } else if (event.target.value.length === 2) {
-                event.target.value = event.target.value + "." + "00";
+                event.target.value = ("0000." + event.target.value).slice(-5)
             } else if (event.target.value.length === 3) {
-                event.target.value = event.target.value + "00";
+                var strValue = ("00" + event.target.value).slice(-4);
+                var parte1 = strValue.substring(0,2);
+                var parte2 = strValue.substring(2,5);
+                event.target.value = parte1 + '.' + parte2;
             } else if (event.target.value.length === 4) {
-                event.target.value = event.target.value + "0";
+                var strValue1 = event.target.value;
+                var parte01 = strValue1.substring(0,2);
+                var parte02 = strValue1.substring(2,5);
+                event.target.value = parte01 + '.' + parte02;
             }
+            // if (event.target.value.length === 1) {
+            //     event.target.value = "00.0" + event.target.value;
+            // } else if (event.target.value.length === 2) {
+            //     event.target.value = event.target.value + "." + "00";
+            // } else if (event.target.value.length === 3) {
+            //     event.target.value = event.target.value + "00";
+            // } else if (event.target.value.length === 4) {
+            //     event.target.value = event.target.value + "0";
+            // }
         }
 
         return event;
@@ -797,13 +812,14 @@ export class AvaliacaoFormComponent implements OnInit {
         console.log(event.target.value.length, event.keyCode);
 
         if (event.keyCode !== 8) {
-            if (event.target.value.length === 2) {
-                event.target.value = event.target.value + "." + "00";
-            } else if (event.target.value.length === 3) {
-                event.target.value = event.target.value + "00";
-            } else if (event.target.value.length === 4) {
-                event.target.value = event.target.value + "0";
-            }
+            // if (event.target.value.length === 2) {
+            //     event.target.value = event.target.value + ".";
+            // }
+            //  else if (event.target.value.length === 3) {
+            //     event.target.value = event.target.value + "00";
+            // } else if (event.target.value.length === 4) {
+            //     event.target.value = event.target.value + "0";
+            // }
         }
 
         return event;
