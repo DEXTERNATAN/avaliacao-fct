@@ -14,28 +14,31 @@
 					<li routerLinkActive="active" *ngIf="user().ds_perfil == 'ADMINISTRADOR' || user().ds_perfil == 'LIDER'"><a [routerLink]="['/avaliacao/novo']">Avaliar</a></li>
 					<li class="dropdown" *ngIf="user().ds_perfil == 'ADMINISTRADOR' || user().ds_perfil == 'LIDER'">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Cadastros Base <span class="caret"></span></a>
-						<ul class="dropdown-menu" role="menu">
-							<li routerLinkActive="active" *ngIf="user().ds_perfil == 'ADMINISTRADOR'"><a [routerLink]="['/abrangencia']">Abrangência</a></li>
+						<ul class="dropdown-menu" role="menu" *ngIf="user().ds_perfil == 'ADMINISTRADOR'">
+							<li routerLinkActive="active"><a [routerLink]="['/abrangencia']">Abrangência</a></li>
 							<li class="divider"></li>
-							<li routerLinkActive="active" *ngIf="user().ds_perfil == 'ADMINISTRADOR'"><a [routerLink]="['/atributo']">Atributo</a></li>
+							<li routerLinkActive="active"><a [routerLink]="['/atributo']">Atributo</a></li>
 							<li class="divider"></li>
-							<li routerLinkActive="active" *ngIf="user().ds_perfil == 'ADMINISTRADOR'"><a [routerLink]="['/colaborador']">Colaborador</a></li>
+							<li routerLinkActive="active"><a [routerLink]="['/colaborador']">Colaborador</a></li>
 							<li class="divider"></li>
-							<li routerLinkActive="active" *ngIf="user().ds_perfil == 'ADMINISTRADOR'"><a [routerLink]="['/complexidade']">Complexidade</a></li>
+							<li routerLinkActive="active"><a [routerLink]="['/complexidade']">Complexidade</a></li>
 							<li class="divider"></li>
-							<li routerLinkActive="active" *ngIf="user().ds_perfil == 'ADMINISTRADOR'"><a [routerLink]="['/divisao']">Divisão</a></li>
+							<li routerLinkActive="active"><a [routerLink]="['/divisao']">Divisão</a></li>
 							<li class="divider"></li>
-							<li routerLinkActive="active" *ngIf="user().ds_perfil == 'ADMINISTRADOR'"><a [routerLink]="['/impacto']">Impacto</a></li>
+							<li routerLinkActive="active"><a [routerLink]="['/impacto']">Impacto</a></li>
 							<li class="divider"></li>
-							<li routerLinkActive="active" *ngIf="user().ds_perfil == 'ADMINISTRADOR'"><a [routerLink]="['/papel']">Papel</a></li>
+							<li routerLinkActive="active"><a [routerLink]="['/papel']">Papel</a></li>
 							<li class="divider"></li>
-							<li routerLinkActive="active" *ngIf="user().ds_perfil == 'ADMINISTRADOR'"><a [routerLink]="['/pesos']">Pesos</a></li>
+							<li routerLinkActive="active"><a [routerLink]="['/pesos']">Pesos</a></li>
 							<li class="divider"></li>
+							<li routerLinkActive="active"><a [routerLink]="['/projeto']">Projeto</a></li>
+							<li class="divider"></li>
+							<li routerLinkActive="active"><a [routerLink]="['/referencia']">Referência FCT</a></li>
+							<li class="divider"></li>
+							<li routerLinkActive="active"><a [routerLink]="['/tecnologia']">Tecnologia</a></li>
+						</ul>
+						<ul class="dropdown-menu" role="menu"  *ngIf="user().ds_perfil == 'LIDER'">
 							<li routerLinkActive="active" *ngIf="user().ds_perfil == 'ADMINISTRADOR' || user().ds_perfil == 'LIDER'"><a [routerLink]="['/projeto']">Projeto</a></li>
-							<li class="divider"></li>
-							<li routerLinkActive="active" *ngIf="user().ds_perfil == 'ADMINISTRADOR'"><a [routerLink]="['/referencia']">Referência FCT</a></li>
-							<li class="divider"></li>
-							<li routerLinkActive="active" *ngIf="user().ds_perfil == 'ADMINISTRADOR'"><a [routerLink]="['/tecnologia']">Tecnologia</a></li>
 						</ul>
 					</li>
 					<li class="dropdown" *ngIf="user().ds_perfil == 'ADMINISTRADOR'">
