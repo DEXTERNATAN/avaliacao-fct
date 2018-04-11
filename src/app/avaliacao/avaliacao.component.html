@@ -66,9 +66,9 @@
                             <th>Pontuação Ideal</th>
                             <th>Diferença</th>
                             <th>FCT Atual</th>
-                            <th>FCT Ideal</th>
+                            <th *ngIf="user().ds_perfil == 'ADMINISTRADOR' || user().ds_perfil == 'LIDER'">FCT Ideal</th>
                             <th></th>
-                            <th></th>
+                            <th *ngIf="user().ds_perfil == 'ADMINISTRADOR' || user().ds_perfil == 'LIDER'"></th>
                           </tr>
                           <tr *ngIf="!aval.listDetalhe.length">
                             <td colspan="10">
@@ -90,7 +90,7 @@
                               <span class="badge bg-green">{{ ((items.ajuste / items.pontuacao) * 100).toFixed(2) }}%</span>
                             </td>
                             <td>{{ items.fct_atual }}</td>
-                            <td>{{ items.fct_ideal }}</td>
+                            <td *ngIf="user().ds_perfil == 'ADMINISTRADOR' || user().ds_perfil == 'LIDER'">{{ items.fct_ideal }}</td>
                             <!-- <td>
                               <a class="btn  btn-xs bg-blue btn-flat">
                                 <i class="fa fa-pencil"></i>
@@ -101,7 +101,7 @@
                                 <i class="fa fa-search"></i>
                               </a>
                             </td>
-                            <td>
+                            <td *ngIf="user().ds_perfil == 'ADMINISTRADOR' || user().ds_perfil == 'LIDER'">
                               <button type="button" class="btn  btn-xs bg-red btn-flat" (click)="deleteAvaliacao(items, aval.listDetalhe)">
                                 <i class="fa fa-remove"></i>
                               </button>

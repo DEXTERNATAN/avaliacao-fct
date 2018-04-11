@@ -10,7 +10,6 @@ import { AvaliacaoService } from 'app/avaliacao/avaliacao.service';
 import { ColaboradorService } from 'app/colaborador/colaborador.service';
 
 import { ToastrService } from 'ngx-toastr';
-
 import { User } from 'app/security/login/user';
 
 @Component({
