@@ -1,90 +1,93 @@
 <section class="content-header">
 
-  <h1>
-    Avaliação Individual
-  </h1>
-  <ol class="breadcrumb">
-    <li>
-      <a href="#">
-        <i class="fa fa-home"></i> Home</a>
-    </li>
-    <li class="active">Avaliações</li>
-  </ol>
+	<h1>
+		Avaliação Individual
+	</h1>
+	<ol class="breadcrumb">
+		<li>
+			<a href="#">
+				<i class="fa fa-home"></i> Home</a>
+		</li>
+		<li class="active">Avaliações</li>
+	</ol>
 
 </section>
 <section class="content">
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="box">
-        <div class="col-dm-12">
-          <h3 class="box-title">
-            &nbsp;&nbsp;
-            <i class="fa fa-star"></i>&nbsp;Resumo da Avaliação</h3>
-        </div>
-        <!-- /.box-header -->
-        <div class="box-body table-responsive no-padding">
-          <pre>
-            <!-- {{ avaliacao | json }} -->
-          </pre>
-          <!-- Dados cadastrais -->
-          <div class="col-md12 relatorio">
-            <div class="col-md-3">
-              <label for="">NOME:</label>
-              <span>{{ avaliacao['nome'] }}</span>
-            </div>
-            <div class="col-md-3">
-              <label for="">MATRÍCULA:</label>
-              <span>{{ avaliacao['matricula'] }}</span>
-            </div>
-            <div class="col-md-3">
-              <label for="">DIVISÃO:</label>
-              <span>{{avaliacao['sigla']}}</span>
-            </div>
-            <div class="col-md-3">
-              <label for="">DATA DA AVALIAÇÃO:</label>
-              <span>{{avaliacao['dt_avaliacao']}}</span>
-            </div>
-          </div>
-          <!-- Papeis -->
-          <div class="col-md-12 relatorio">
-            <hr>
-            <label for="Papeis">
-              <h3 class="box-title">
-                <i class="fa fa-wrench"></i>&nbsp;Papeis</h3>
-            </label>
-            <div class="row">
-              <div class="col-md-8">
-                <!-- <div class="btn .btn-lista-tec btn-facebook" *ngFor="let papeis of avaliacao; let i = index;">
-                  {{papeis['nome_papel']}}
-                </div> -->
-                <!-- <div class="btn .btn-lista-tec btn-facebook">
-                  Teste
-                </div>
-                <div class="btn .btn-lista-tec btn-facebook">
-                  Banco de Dados
-                </div>
-                <div class="btn .btn-lista-tec btn-facebook">
-                  Desenvolvedor
-                </div> -->
-              </div>
-              <!-- /.col -->
-            </div>
-          </div>
+<!-- 
+	<div class="row">
+		<pre>
+          {{ avaliacao | json }}
+    </pre>
+	</div> -->
 
-          <!-- Tecnologias -->
-          <div class="col-md-12 relatorio">
-            <hr>
-            <label for="Tecnologias">
-              <h3 class="box-title">
-                <i class="fa fa-desktop"></i>&nbsp;Tecnologias</h3>
-            </label>
-            <div class="row">
-              <div class="col-md-8">
-                <div class="btn .btn-lista-tec btn-dropbox" *ngFor="let item of tecnologias[0]" >
-                  {{ item }}
-                </div>
+	<div class="row">
+		<div class="col-xs-12" *ngFor="let avalia of avaliacao; let i = index;">
+			<div class="box">
+				<div class="col-dm-12">
+					<h3 class="box-title">
+						&nbsp;&nbsp;
+						<i class="fa fa-star"></i>&nbsp;Resumo da Avaliação</h3>
+				</div>
+				<div class="box-body table-responsive no-padding">
+					<div class="col-md12 relatorio">
+						<div class="col-md-3">
+							<label for="">NOME:</label>
+							<span>
+								{{ avalia.avaliacao[0].no_colaborador }}
+							</span>
+						</div>
+						<div class="col-md-3">
+							<label for="">MATRÍCULA:</label>
+							<span>
+								{{ avalia.avaliacao[0].matricula }}
+							</span>
+						</div>
+						<div class="col-md-3">
+							<label for="">DIVISÃO:</label>
+							<span>
+								{{ avalia.avaliacao[0].sigla_divisao }}
 
-                <!-- <div class="btn .btn-lista-tec btn-dropbox">
+							</span>
+						</div>
+						<div class="col-md-3">
+							<label for="">DATA DA AVALIAÇÃO:</label>
+							<span>
+								{{ avalia.avaliacao[0].dt_resultado }}
+							</span>
+						</div>
+					</div>
+					<!-- Papeis -->
+					<div class="col-md-12 relatorio">
+						<hr>
+						<label for="Papeis">
+							<h3 class="box-title">
+								<i class="fa fa-wrench"></i>&nbsp;Papeis</h3>
+						</label>
+						<div class="row">
+							<div class="col-md-8">
+								<div>
+									<div class="btn .btn-lista-tec btn-facebook" *ngFor="let papeis of  avalia.papel; let i = index;" style="margin-right: 5px;">
+										{{ papeis.nome_papel }}
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-12 relatorio">
+						<hr>
+						<label for="Tecnologias">
+							<h3 class="box-title">
+								<i class="fa fa-desktop"></i>&nbsp;Tecnologias</h3>
+						</label>
+						<div class="row">
+							<div class="col-md-8">
+								<div class="btn .btn-lista-tec btn-dropbox" *ngFor="let tec of  avalia.tecnologias; let i = index;" style="margin-right: 5px;">
+									{{ tec.nome_tecnologia }}
+								</div>
+
+								<!-- <div class="btn .btn-lista-tec btn-dropbox">
                   Liferay
                 </div>
 
@@ -103,294 +106,296 @@
                 <div class="btn .btn-lista-tec btn-dropbox">
                   Javascript
                 </div> -->
-              </div>
-              <!-- /.col -->
-            </div>
-          </div>
+							</div>
+							<!-- /.col -->
+						</div>
+					</div>
 
-          <!-- Atributos -->
-          <div class="col-md-12 relatorio">
-            <hr>
-            <label for="Atributos">
-              <h3 class="box-title">
-                <i class="fa fa-graduation-cap"></i>&nbsp;Atributos</h3>
-            </label>
-            <div class="row">
-              <div class="col-xs-12 table-responsive">
-                <table class="table table-striped">
-                  <thead>
-                    <tr>
-                      <td style="width: 65%">
-                        <label>Descrição</label>
-                      </td>
-                      <td style="width: 10%">
-                        <span class="badge bg-yellow">Abrangência</span>
-                      </td>
-                      <td style="width: 10%">
-                        <span class="badge bg-light-blue">Complexidade</span>
-                      </td>
-                      <td style="width: 10%">
-                        <span class="badge bg-green">Impacto</span>
-                      </td>
-                      <td style="width: 5%">&nbsp;</td>
-                    </tr>
-                  </thead>
-                </table>
-                <table>
-                  <tr>
-                    <td>
-                      <div class="box-body table-responsive no-padding">
-                        <div class="box box-default collapsed-box">
-                          <table id="" class="table table-hover">
-                            <tr>
-                              <td style="width: 65%">a) Analisar as demandas apresentadas pelas áreas de negócio e propor alternativas de solução
-                                técnica e estratégia de desenvolvimento
-                              </td>
-                              <td style="width: 10%">
-                                <span class="badge bg-yellow">2-Significativa</span>
-                              </td>
-                              <td style="width: 10%">
-                                <span class="badge bg-light-blue">2-Alta</span>
-                              </td>
-                              <td style="width: 10%">
-                                <span class="badge bg-green">3-Altamente</span>
-                              </td>
-                              <td style="width: 5%">
-                                <div class="box-tools pull-right">
-                                  <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip">
-                                    <i class="fa fa-plus"></i>
-                                  </button>
-                                </div>
-                              </td>
-                            </tr>
-                          </table>
-                          <div class="box-body">
-                            <table class="table table-striped">
-                              <tr>
-                                <td style="width: 10%">
-                                  <span class="badge bg-yellow">2-Significativa</span>
-                                </td>
-                                <td>
-                                  <span class="">
-                                    Conhecimento do negócio; Velocidade; Referência para discutir necessidades dos projetos em que atua(Evoluções); Participa
-                                    na proposição de soluções técnicas; Transita entre diferente tecnologias/assuntos;
-                                  </span>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td style="width: 10%">
-                                  <span class="badge bg-light-blue">2-Alta</span>
-                                </td>
-                                <td>
-                                  <span class="">
-                                    Conhecimento do negócio; Velocidade; Referência para discutir necessidades dos projetos em que atua(Evoluções); Participa
-                                    na proposição de soluções técnicas; Transita entre diferente tecnologias/assuntos;
-                                  </span>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td style="width: 10%">
-                                  <span class="badge bg-green">3-Altamente</span>
-                                </td>
-                                <td>
-                                  <span class="">
-                                    Conhecimento do negócio; Velocidade; Referência para discutir necessidades dos projetos em que atua(Evoluções); Participa
-                                    na proposição de soluções técnicas; Transita entre diferente tecnologias/assuntos;
-                                  </span>
-                                </td>
-                              </tr>
-                            </table>
-                          </div>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="box-body table-responsive no-padding">
-                        <div class="box box-default collapsed-box">
-                          <table id="" class="table table-hover">
-                            <tr>
-                              <td style="width: 65%">c) Elaborar projeto lógico e físico de dados e de sistemas
-                              </td>
-                              <td style="width: 10%">
-                                <span class="badge bg-yellow">2-Significativa</span>
-                              </td>
-                              <td style="width: 10%">
-                                <span class="badge bg-light-blue">2-Alta</span>
-                              </td>
-                              <td style="width: 10%">
-                                <span class="badge bg-green">3-Altamente</span>
-                              </td>
-                              <td style="width: 5%">
-                                <div class="box-tools pull-right">
-                                  <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip">
-                                    <i class="fa fa-plus"></i>
-                                  </button>
-                                </div>
-                              </td>
-                            </tr>
-                          </table>
-                          <div class="box-body">
-                            <table class="table table-striped">
-                              <tr>
-                                <td style="width: 10%">
-                                  <span class="badge bg-yellow">2-Significativa</span>
-                                </td>
-                                <td>
-                                  <span class="">
-                                    Conhecimento do negócio; Velocidade; Referência para discutir necessidades dos projetos em que atua(Evoluções); Participa
-                                    na proposição de soluções técnicas; Transita entre diferente tecnologias/assuntos;
-                                  </span>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td style="width: 10%">
-                                  <span class="badge bg-light-blue">2-Alta</span>
-                                </td>
-                                <td>
-                                  <span class="">
-                                    Conhecimento do negócio; Velocidade; Referência para discutir necessidades dos projetos em que atua(Evoluções); Participa
-                                    na proposição de soluções técnicas; Transita entre diferente tecnologias/assuntos;
-                                  </span>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td style="width: 10%">
-                                  <span class="badge bg-green">3-Altamente</span>
-                                </td>
-                                <td>
-                                  <span class="">
-                                    Conhecimento do negócio; Velocidade; Referência para discutir necessidades dos projetos em que atua(Evoluções); Participa
-                                    na proposição de soluções técnicas; Transita entre diferente tecnologias/assuntos;
-                                  </span>
-                                </td>
-                              </tr>
-                            </table>
-                          </div>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                </table>
-              </div>
-              <!-- /.col -->
-            </div>
-          </div>
+					<!-- Atributos -->
+					<div class="col-md-12 relatorio">
+						<hr>
+						<label for="Atributos">
+							<h3 class="box-title">
+								<i class="fa fa-graduation-cap"></i>&nbsp;Atributos</h3>
+						</label>
+						<div class="row">
+							<div class="col-xs-12 table-responsive">
+								<table class="table table-striped">
+									<thead>
+										<tr>
+											<td style="width: 65%">
+												<label>Descrição</label>
+											</td>
+											<td style="width: 10%">
+												<span class="badge bg-yellow">Abrangência</span>
+											</td>
+											<td style="width: 10%">
+												<span class="badge bg-light-blue">Complexidade</span>
+											</td>
+											<td style="width: 10%">
+												<span class="badge bg-green">Impacto</span>
+											</td>
+											<td style="width: 5%">&nbsp;</td>
+										</tr>
+									</thead>
+								</table>
+								<table>
+									<tr>
+										<td>
+											<div class="box-body table-responsive no-padding">
+												<div class="box box-default collapsed-box">
+													<table id="" class="table table-hover">
+														<tr>
+															<td style="width: 65%">a) Analisar as demandas apresentadas pelas áreas de negócio e propor alternativas de solução técnica e estratégia
+																de desenvolvimento
+															</td>
+															<td style="width: 10%">
+																<span class="badge bg-yellow">2-Significativa</span>
+															</td>
+															<td style="width: 10%">
+																<span class="badge bg-light-blue">2-Alta</span>
+															</td>
+															<td style="width: 10%">
+																<span class="badge bg-green">3-Altamente</span>
+															</td>
+															<td style="width: 5%">
+																<div class="box-tools pull-right">
+																	<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip">
+																		<i class="fa fa-plus"></i>
+																	</button>
+																</div>
+															</td>
+														</tr>
+													</table>
+													<div class="box-body">
+														<table class="table table-striped">
+															<tr>
+																<td style="width: 10%">
+																	<span class="badge bg-yellow">2-Significativa</span>
+																</td>
+																<td>
+																	<span class="">
+																		Conhecimento do negócio; Velocidade; Referência para discutir necessidades dos projetos em que atua(Evoluções); Participa
+																		na proposição de soluções técnicas; Transita entre diferente tecnologias/assuntos;
+																	</span>
+																</td>
+															</tr>
+															<tr>
+																<td style="width: 10%">
+																	<span class="badge bg-light-blue">2-Alta</span>
+																</td>
+																<td>
+																	<span class="">
+																		Conhecimento do negócio; Velocidade; Referência para discutir necessidades dos projetos em que atua(Evoluções); Participa
+																		na proposição de soluções técnicas; Transita entre diferente tecnologias/assuntos;
+																	</span>
+																</td>
+															</tr>
+															<tr>
+																<td style="width: 10%">
+																	<span class="badge bg-green">3-Altamente</span>
+																</td>
+																<td>
+																	<span class="">
+																		Conhecimento do negócio; Velocidade; Referência para discutir necessidades dos projetos em que atua(Evoluções); Participa
+																		na proposição de soluções técnicas; Transita entre diferente tecnologias/assuntos;
+																	</span>
+																</td>
+															</tr>
+														</table>
+													</div>
+												</div>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<div class="box-body table-responsive no-padding">
+												<div class="box box-default collapsed-box">
+													<table id="" class="table table-hover">
+														<tr>
+															<td style="width: 65%">c) Elaborar projeto lógico e físico de dados e de sistemas
+															</td>
+															<td style="width: 10%">
+																<span class="badge bg-yellow">2-Significativa</span>
+															</td>
+															<td style="width: 10%">
+																<span class="badge bg-light-blue">2-Alta</span>
+															</td>
+															<td style="width: 10%">
+																<span class="badge bg-green">3-Altamente</span>
+															</td>
+															<td style="width: 5%">
+																<div class="box-tools pull-right">
+																	<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip">
+																		<i class="fa fa-plus"></i>
+																	</button>
+																</div>
+															</td>
+														</tr>
+													</table>
+													<div class="box-body">
+														<table class="table table-striped">
+															<tr>
+																<td style="width: 10%">
+																	<span class="badge bg-yellow">2-Significativa</span>
+																</td>
+																<td>
+																	<span class="">
+																		Conhecimento do negócio; Velocidade; Referência para discutir necessidades dos projetos em que atua(Evoluções); Participa
+																		na proposição de soluções técnicas; Transita entre diferente tecnologias/assuntos;
+																	</span>
+																</td>
+															</tr>
+															<tr>
+																<td style="width: 10%">
+																	<span class="badge bg-light-blue">2-Alta</span>
+																</td>
+																<td>
+																	<span class="">
+																		Conhecimento do negócio; Velocidade; Referência para discutir necessidades dos projetos em que atua(Evoluções); Participa
+																		na proposição de soluções técnicas; Transita entre diferente tecnologias/assuntos;
+																	</span>
+																</td>
+															</tr>
+															<tr>
+																<td style="width: 10%">
+																	<span class="badge bg-green">3-Altamente</span>
+																</td>
+																<td>
+																	<span class="">
+																		Conhecimento do negócio; Velocidade; Referência para discutir necessidades dos projetos em que atua(Evoluções); Participa
+																		na proposição de soluções técnicas; Transita entre diferente tecnologias/assuntos;
+																	</span>
+																</td>
+															</tr>
+														</table>
+													</div>
+												</div>
+											</div>
+										</td>
+									</tr>
+								</table>
+							</div>
+							<!-- /.col -->
+						</div>
+					</div>
 
-          <!-- Projetos -->
-          <div class="col-md-12 relatorio">
-            <hr>
-            <label for="Projetos">
-              <h3 class="box-title">
-                <i class="fa fa-rocket"></i>&nbsp;Projetos</h3>
-            </label>
-            <div class="row">
-              <div class="col-xs-12 table-responsive">
-                <table class="table table-striped">
-                  <thead>
-                    <tr>
-                      <th style="width: 5%">#</th>
-                      <th style="width: 70%">Descrição</th>
-                      <th>
-                        <span class="badge bg-yellow">Abrangência</span>
-                      </th>
-                      <th>
-                        <span class="badge bg-light-blue">Complexidade</span>
-                      </th>
-                      <th>
-                        <span class="badge bg-green">Impacto</span>
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>Tesouro Transparente</td>
-                      <td>
-                        <span class="badge bg-yellow">2-Significativa</span>
-                      </td>
-                      <td>
-                        <span class="badge bg-light-blue">2-Alta</span>
-                      </td>
-                      <td>
-                        <span class="badge bg-green">3-Altamente</span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>Pucomex</td>
-                      <td>
-                        <span class="badge bg-yellow">2-Significativa</span>
-                      </td>
-                      <td>
-                        <span class="badge bg-light-blue">2-Alta</span>
-                      </td>
-                      <td>
-                        <span class="badge bg-green">3-Altamente</span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td>Porto sem Papel</td>
-                      <td>
-                        <span class="badge bg-yellow">2-Significativa</span>
-                      </td>
-                      <td>
-                        <span class="badge bg-light-blue">2-Alta</span>
-                      </td>
-                      <td>
-                        <span class="badge bg-green">3-Altamente</span>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <!-- /.col -->
-            </div>
-          </div>
+					<!-- Projetos -->
+					<div class="col-md-12 relatorio">
+						<hr>
+						<label for="Projetos">
+							<h3 class="box-title">
+								<i class="fa fa-rocket"></i>&nbsp;Projetos</h3>
+						</label>
+						<div class="row">
+							<div class="col-xs-12 table-responsive">
+								<table class="table table-striped">
+									<thead>
+										<tr>
+											<th style="width: 5%">#</th>
+											<th style="width: 70%">Descrição</th>
+											<th>
+												<span class="badge bg-yellow">Abrangência</span>
+											</th>
+											<th>
+												<span class="badge bg-light-blue">Complexidade</span>
+											</th>
+											<th>
+												<span class="badge bg-green">Impacto</span>
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>1</td>
+											<td>Tesouro Transparente</td>
+											<td>
+												<span class="badge bg-yellow">2-Significativa</span>
+											</td>
+											<td>
+												<span class="badge bg-light-blue">2-Alta</span>
+											</td>
+											<td>
+												<span class="badge bg-green">3-Altamente</span>
+											</td>
+										</tr>
+										<tr>
+											<td>2</td>
+											<td>Pucomex</td>
+											<td>
+												<span class="badge bg-yellow">2-Significativa</span>
+											</td>
+											<td>
+												<span class="badge bg-light-blue">2-Alta</span>
+											</td>
+											<td>
+												<span class="badge bg-green">3-Altamente</span>
+											</td>
+										</tr>
+										<tr>
+											<td>3</td>
+											<td>Porto sem Papel</td>
+											<td>
+												<span class="badge bg-yellow">2-Significativa</span>
+											</td>
+											<td>
+												<span class="badge bg-light-blue">2-Alta</span>
+											</td>
+											<td>
+												<span class="badge bg-green">3-Altamente</span>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<!-- /.col -->
+						</div>
+					</div>
 
-          <!-- Dados calculados -->
-          <div class="col-md-12 relatorio">
-            <div class="col-md-3">
-              <label for="">Pontuação Ideal:</label>
-              <span>67.29</span>
-            </div>
-            <div class="col-md-3">
-              <label for="">Pontuação Total:</label>
-              <span>55.50</span>
-            </div>
-            <div class="col-md-3">
-              <label for="">% de ociosidade:</label>
-              <span>{{ avaliacao['ociosidade'] }}</span>
-            </div>
-          </div>
-          <div class="col-md-12 relatorio">
-            <div class="col-md-6">
-              <label for="">Referência FCT Atual:</label>
-              <span>19 - Analista (R$ 1408.71)</span>
-            </div>
-          </div>
-          <div class="col-md-12 relatorio">
-            <div class="col-md-10">
-              <label for="">Data:</label>
-              <span>{{ DataAtual }}</span>
-            </div>
-          </div>
-          <div class="col-xs-12 relatorio">
-            <a (click)="onPrint()" class="btn btn-default">
-              <i class="fa fa-print"></i> Imprimir</a>
-            <!-- <button type="button" class="btn btn-success pull-right">
+					<!-- Dados calculados -->
+					<div class="col-md-12 relatorio">
+						<div class="col-md-3">
+							<label for="">Pontuação Ideal:</label>
+							<span>67.29</span>
+						</div>
+						<div class="col-md-3">
+							<label for="">Pontuação Total:</label>
+							<span>55.50</span>
+						</div>
+						<div class="col-md-3">
+							<label for="">% de ociosidade:</label>
+							<span>
+								<!-- {{ avaliacao['ociosidade'] }} -->
+							</span>
+						</div>
+					</div>
+					<div class="col-md-12 relatorio">
+						<div class="col-md-6">
+							<label for="">Referência FCT Atual:</label>
+							<span>19 - Analista (R$ 1408.71)</span>
+						</div>
+					</div>
+					<div class="col-md-12 relatorio">
+						<div class="col-md-10">
+							<label for="">Data:</label>
+							<span>{{ DataAtual }}</span>
+						</div>
+					</div>
+					<div class="col-xs-12 relatorio">
+						<a (click)="onPrint()" class="btn btn-default">
+							<i class="fa fa-print"></i> Imprimir</a>
+						<!-- <button type="button" class="btn btn-success pull-right">
 							<i class="fa fa-credit-card"></i> Submit Payment
 						</button> -->
-            <button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
-              <i class="fa fa-download"></i> Gerar PDF
-            </button>
-          </div>
-        </div>
-        <!-- /.box-body -->
-      </div>
-      <!-- /.box -->
-    </div>
-  </div>
+						<button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
+							<i class="fa fa-download"></i> Gerar PDF
+						</button>
+					</div>
+				</div>
+				<!-- /.box-body -->
+			</div>
+			<!-- /.box -->
+		</div>
+	</div>
 </section>

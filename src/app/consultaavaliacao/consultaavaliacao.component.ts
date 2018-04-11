@@ -12,9 +12,10 @@ import { Consultaavaliacao } from './consultaavaliacao.model';
 export class ConsultaavaliacaoComponent implements OnInit {
 
   idAvaliacao: number;
-  avaliacao: Consultaavaliacao[];
+  avaliacao: any[] = [];
   DataAtual: any = new Date().toLocaleDateString();
   tecnologias: any[] = [];
+
 
   constructor(
     private _consultaavaliacaoService: ConsultaavaliacaoService,
@@ -22,18 +23,25 @@ export class ConsultaavaliacaoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    
+    
 
     this.route.params.subscribe(params => {
       this.idAvaliacao = params['id_avaliacao'];
       console.log('Identificador da avaliação: ', this.idAvaliacao);
     });
 
-    this._consultaavaliacaoService.getBuscaDetalhesAvaliacao(this.idAvaliacao).subscribe(data => {
-      this.avaliacao = data;
-      this.tecnologias.push(data['tecnologias'].split(','));
-
-      console.log(data, typeof(data), typeof(this.avaliacao), data['tecnologias'], this.tecnologias);
-    });
+    this._consultaavaliacaoService.getBuscaDetalhesAvaliacao(this.idAvaliacao).subscribe(
+      data => {
+        this.avaliacao.push(data);
+        // this.tecnologias.push(data['tecnologias'].split(','));
+        // console.log(data, typeof(data), typeof(this.avaliacao), data['tecnologias'], this.tecnologias);
+      },
+      error=> {
+        console.log('error: ', error);
+      }
+    
+    );
 
   }
 
