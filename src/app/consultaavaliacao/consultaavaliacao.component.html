@@ -13,12 +13,14 @@
 
 </section>
 <section class="content">
-<!-- 
+
 	<div class="row">
-		<pre>
+		<details>
+	<pre>
           {{ avaliacao | json }}
-    </pre>
-	</div> -->
+	</pre>
+</details>
+	</div>
 
 	<div class="row">
 		<div class="col-xs-12" *ngFor="let avalia of avaliacao; let i = index;">
@@ -33,7 +35,7 @@
 						<div class="col-md-3">
 							<label for="">NOME:</label>
 							<span>
-								{{ avalia.avaliacao[0].no_colaborador }}
+								{{ avalia.avaliacao[0].nome }}
 							</span>
 						</div>
 						<div class="col-md-3">
@@ -45,14 +47,14 @@
 						<div class="col-md-3">
 							<label for="">DIVISÃO:</label>
 							<span>
-								{{ avalia.avaliacao[0].sigla_divisao }}
+								{{ avalia.avaliacao[0].sigla }}
 
 							</span>
 						</div>
 						<div class="col-md-3">
 							<label for="">DATA DA AVALIAÇÃO:</label>
 							<span>
-								{{ avalia.avaliacao[0].dt_resultado }}
+								{{ avalia.avaliacao[0].dt_avaliacao }}
 							</span>
 						</div>
 					</div>
@@ -143,87 +145,18 @@
 									<tr>
 										<td>
 											<div class="box-body table-responsive no-padding">
-												<div class="box box-default collapsed-box">
+												<div class="box box-default collapsed-box" *ngFor="let atr of avalia.atributos; let i = index;">
 													<table id="" class="table table-hover">
 														<tr>
-															<td style="width: 65%">a) Analisar as demandas apresentadas pelas áreas de negócio e propor alternativas de solução técnica e estratégia
-																de desenvolvimento
+															<td style="width: 65%">{{ atr.letra_atributo }}) {{ atr.descricao_atributo }}</td>
+															<td style="width: 10%">
+																<span class="badge bg-yellow">{{ atr.class_abrangencia_atributo }}-{{ atr.nome_abrangencia_atributo }}</span>
 															</td>
 															<td style="width: 10%">
-																<span class="badge bg-yellow">2-Significativa</span>
+																<span class="badge bg-light-blue">{{ atr.class_complexidade_atributo }}-{{ atr.nome_complexidade_atributo }}</span>
 															</td>
 															<td style="width: 10%">
-																<span class="badge bg-light-blue">2-Alta</span>
-															</td>
-															<td style="width: 10%">
-																<span class="badge bg-green">3-Altamente</span>
-															</td>
-															<td style="width: 5%">
-																<div class="box-tools pull-right">
-																	<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip">
-																		<i class="fa fa-plus"></i>
-																	</button>
-																</div>
-															</td>
-														</tr>
-													</table>
-													<div class="box-body">
-														<table class="table table-striped">
-															<tr>
-																<td style="width: 10%">
-																	<span class="badge bg-yellow">2-Significativa</span>
-																</td>
-																<td>
-																	<span class="">
-																		Conhecimento do negócio; Velocidade; Referência para discutir necessidades dos projetos em que atua(Evoluções); Participa
-																		na proposição de soluções técnicas; Transita entre diferente tecnologias/assuntos;
-																	</span>
-																</td>
-															</tr>
-															<tr>
-																<td style="width: 10%">
-																	<span class="badge bg-light-blue">2-Alta</span>
-																</td>
-																<td>
-																	<span class="">
-																		Conhecimento do negócio; Velocidade; Referência para discutir necessidades dos projetos em que atua(Evoluções); Participa
-																		na proposição de soluções técnicas; Transita entre diferente tecnologias/assuntos;
-																	</span>
-																</td>
-															</tr>
-															<tr>
-																<td style="width: 10%">
-																	<span class="badge bg-green">3-Altamente</span>
-																</td>
-																<td>
-																	<span class="">
-																		Conhecimento do negócio; Velocidade; Referência para discutir necessidades dos projetos em que atua(Evoluções); Participa
-																		na proposição de soluções técnicas; Transita entre diferente tecnologias/assuntos;
-																	</span>
-																</td>
-															</tr>
-														</table>
-													</div>
-												</div>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="box-body table-responsive no-padding">
-												<div class="box box-default collapsed-box">
-													<table id="" class="table table-hover">
-														<tr>
-															<td style="width: 65%">c) Elaborar projeto lógico e físico de dados e de sistemas
-															</td>
-															<td style="width: 10%">
-																<span class="badge bg-yellow">2-Significativa</span>
-															</td>
-															<td style="width: 10%">
-																<span class="badge bg-light-blue">2-Alta</span>
-															</td>
-															<td style="width: 10%">
-																<span class="badge bg-green">3-Altamente</span>
+																<span class="badge bg-green">{{ atr.class_impacto_atributo }}-{{ atr.nome_impacto_atributo }}</span>
 															</td>
 															<td style="width: 5%">
 																<div class="box-tools pull-right">

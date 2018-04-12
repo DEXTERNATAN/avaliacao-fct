@@ -29,7 +29,7 @@ export class Consultaavaliacao {
     ajuste: string;
     ociosidade: string;
     referencia_fct_atual: string;
-    tecnologias: any[]
+    tecnologias: any[];
 }
 
 

@@ -20,8 +20,6 @@
         <div class="box-header with-border">
           <h3 class="box-title">Detalhes do Papel dos Colaboradores</h3>
         </div>
-        xxx {{ papeis.atributos | json }} xxx <br />
-        <!-- {{ formPapel.value | json }} -->
         <form role="form" [formGroup]="formPapel" (ngSubmit)="save()">
           <div class="box-body">
             <div class="form-group" [ngClass]="{'has-error': (!formPapel.controls['tipo'].valid && formPapel.controls['tipo'].touched) }">

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { ConsultaavaliacaoService } from 'app/consultaavaliacao/consultaavaliacao.service';
-import { Consultaavaliacao } from './consultaavaliacao.model';
 
 @Component({
   selector: 'mt-consultaavaliacao',
@@ -15,7 +14,8 @@ export class ConsultaavaliacaoComponent implements OnInit {
   avaliacao: any[] = [];
   DataAtual: any = new Date().toLocaleDateString();
   tecnologias: any[] = [];
-
+  atributos: any[] = [];
+  projetos: any[] = [];
 
   constructor(
     private _consultaavaliacaoService: ConsultaavaliacaoService,
@@ -23,8 +23,6 @@ export class ConsultaavaliacaoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    
-    
 
     this.route.params.subscribe(params => {
       this.idAvaliacao = params['id_avaliacao'];
@@ -34,19 +32,14 @@ export class ConsultaavaliacaoComponent implements OnInit {
     this._consultaavaliacaoService.getBuscaDetalhesAvaliacao(this.idAvaliacao).subscribe(
       data => {
         this.avaliacao.push(data);
-        // this.tecnologias.push(data['tecnologias'].split(','));
-        // console.log(data, typeof(data), typeof(this.avaliacao), data['tecnologias'], this.tecnologias);
       },
       error=> {
         console.log('error: ', error);
       }
-    
     );
-
   }
 
   onPrint() {
     window.print();
   }
-
 }
