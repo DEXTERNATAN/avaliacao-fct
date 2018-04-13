@@ -843,4 +843,13 @@ export class AvaliacaoFormComponent implements OnInit {
     }
 
 
+    somenteNumeros(event: any) {
+        var er = /[^0-9]/;
+        er.lastIndex = 0;
+        var campo = event.target;
+        if (er.test(campo.value)) {
+          campo.value = "";
+        }
+    }
+
 }
