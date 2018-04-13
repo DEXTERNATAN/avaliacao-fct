@@ -354,7 +354,7 @@ export class AvaliacaoFormComponent implements OnInit {
         formAvaliacao.tecnologia.forEach(Idtecnologia => {
 
             associacaoColaboradorTecnologia = {
-                'TB_TECNOLOGIA_id_tecnologia': parseInt(Idtecnologia, 9),
+                'TB_TECNOLOGIA_id_tecnologia': Idtecnologia,
                 'TB_COLABORADOR_id_colaborador': formAvaliacao.colaborador.idColaborador,
                 'TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe': formAvaliacao.colaborador.id_referencia_fct_gfe,
                 'TB_COLABORADOR_TB_DIVISAO_id_divisao': formAvaliacao.divisao.id_divisao,
@@ -374,7 +374,7 @@ export class AvaliacaoFormComponent implements OnInit {
         formAvaliacao.papel.forEach(Idpapel => {
             // console.log('Maxid: ', maxId);
             associacaoColaboradorPapel = {
-                'TB_PAPEL_id_papel': parseInt(Idpapel, 9),
+                'TB_PAPEL_id_papel': Idpapel,
                 'TB_COLABORADOR_id_colaborador': formAvaliacao.colaborador.idColaborador,
                 'TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe': formAvaliacao.colaborador.id_referencia_fct_gfe,
                 'TB_COLABORADOR_TB_DIVISAO_id_divisao': formAvaliacao.divisao.id_divisao,
@@ -396,7 +396,7 @@ export class AvaliacaoFormComponent implements OnInit {
             console.log('PROJETO > : ', parseInt(idProjeto.Projetos, 9));
 
             associacaoColaboradorProjeto = {
-                'TB_PROJETO_id_projeto': parseInt(idProjeto.Projetos, 9),
+                'TB_PROJETO_id_projeto': idProjeto.Projetos,
                 'TB_COLABORADOR_id_colaborador': formAvaliacao.colaborador.idColaborador,
                 'TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe': formAvaliacao.colaborador.id_referencia_fct_gfe,
                 'TB_COLABORADOR_TB_DIVISAO_id_divisao': formAvaliacao.divisao.id_divisao,
@@ -412,6 +412,7 @@ export class AvaliacaoFormComponent implements OnInit {
 
     associarAtributoProjeto(formAvaliacao: any, maxId: any): any {
         let associacaoAtributoProjeto: any;
+        let AssociaAtributo: any;
 
         formAvaliacao.items.forEach(projetos => {
             // console.log('PROJETO > : ', projetos, projetos.Abrangencia, projetos.Complexidade, projetos.Complexidade);
@@ -420,9 +421,9 @@ export class AvaliacaoFormComponent implements OnInit {
             this.avaliacaoService.getBuscaAtributo(projetos.Abrangencia, projetos.Complexidade, projetos.Impacto, 'p').subscribe(
                 dataAtributo => {
                     if (dataAtributo) {
-
+                        //debugger
                         associacaoAtributoProjeto = {
-                            'TB_ATRIBUTO_id_atributo': parseInt(dataAtributo.id_atributo, 9),
+                            'TB_ATRIBUTO_id_atributo': dataAtributo.id_atributo,
                             'TB_PROJETO_id_projeto': projetos.Projetos,
                             'TB_RESULTADO_id_resultado': maxId
                         };
@@ -432,6 +433,19 @@ export class AvaliacaoFormComponent implements OnInit {
                         this.avaliacaoService.addAssociacaoAtributoProjeto(associacaoAtributoProjeto).subscribe(data => {
                             console.log(' **** --- Associações Atributo com Projeto', data);
                         });
+
+                        AssociaAtributo = {
+                            'TB_COLABORADOR_id_colaborador': formAvaliacao.colaborador.idColaborador,
+                            'TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe': formAvaliacao.colaborador.id_referencia_fct_gfe,
+                            'TB_COLABORADOR_TB_DIVISAO_id_divisao': formAvaliacao.divisao.id_divisao,
+                            'TB_ATRIBUTO_id_atributo': dataAtributo.id_atributo,
+                            'TB_ATRIBUTO_TB_ABRANGENCIA_id_abrangencia': dataAtributo.id_abrangencia,
+                            'TB_ATRIBUTO_TB_COMPLEXIDADE_id_complexidade': dataAtributo.id_complexidade,
+                            'TB_ATRIBUTO_TB_IMPACTO_id_impacto': dataAtributo.id_impacto,
+                            'TB_RESULTADO_id_resultado': maxId // [Buscar o último ID da tabela TB_RESULTADO +1]
+                        };
+
+                        this.atributoColaboradorService.addAssociacaoAtributoColaborador(AssociaAtributo).subscribe(data => { });
 
                     }
                 }
@@ -780,32 +794,32 @@ export class AvaliacaoFormComponent implements OnInit {
     }
 
     formataOciosidade(event: any) {
-        if (event.keyCode !== 8) {
-            if (event.target.value.length === 1) {
-                event.target.value = ("000.0" + event.target.value).slice(-5)
-            } else if (event.target.value.length === 2) {
-                event.target.value = ("0000." + event.target.value).slice(-5)
-            } else if (event.target.value.length === 3) {
-                var strValue = ("00" + event.target.value).slice(-4);
-                var parte1 = strValue.substring(0,2);
-                var parte2 = strValue.substring(2,5);
-                event.target.value = parte1 + '.' + parte2;
-            } else if (event.target.value.length === 4) {
-                var strValue1 = event.target.value;
-                var parte01 = strValue1.substring(0,2);
-                var parte02 = strValue1.substring(2,5);
-                event.target.value = parte01 + '.' + parte02;
-            }
-            // if (event.target.value.length === 1) {
-            //     event.target.value = "00.0" + event.target.value;
-            // } else if (event.target.value.length === 2) {
-            //     event.target.value = event.target.value + "." + "00";
-            // } else if (event.target.value.length === 3) {
-            //     event.target.value = event.target.value + "00";
-            // } else if (event.target.value.length === 4) {
-            //     event.target.value = event.target.value + "0";
-            // }
-        }
+        // if (event.keyCode !== 8) {
+        //     if (event.target.value.length === 1) {
+        //         event.target.value = ("000.0" + event.target.value).slice(-5)
+        //     } else if (event.target.value.length === 2) {
+        //         event.target.value = ("0000." + event.target.value).slice(-5)
+        //     } else if (event.target.value.length === 3) {
+        //         var strValue = ("00" + event.target.value).slice(-4);
+        //         var parte1 = strValue.substring(0,2);
+        //         var parte2 = strValue.substring(2,5);
+        //         event.target.value = parte1 + '.' + parte2;
+        //     } else if (event.target.value.length === 4) {
+        //         var strValue1 = event.target.value;
+        //         var parte01 = strValue1.substring(0,2);
+        //         var parte02 = strValue1.substring(2,5);
+        //         event.target.value = parte01 + '.' + parte02;
+        //     }
+        //     // if (event.target.value.length === 1) {
+        //     //     event.target.value = "00.0" + event.target.value;
+        //     // } else if (event.target.value.length === 2) {
+        //     //     event.target.value = event.target.value + "." + "00";
+        //     // } else if (event.target.value.length === 3) {
+        //     //     event.target.value = event.target.value + "00";
+        //     // } else if (event.target.value.length === 4) {
+        //     //     event.target.value = event.target.value + "0";
+        //     // }
+        // }
 
         return event;
     }

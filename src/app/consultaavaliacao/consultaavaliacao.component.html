@@ -13,15 +13,6 @@
 	
 	</section>
 	<section class="content">
-	
-		<div class="row">
-			<details>
-		<pre>
-			  {{ avaliacao | json }}
-		</pre>
-	</details>
-		</div>
-	
 		<div class="row">
 			<div class="col-xs-12" *ngFor="let avalia of avaliacao; let i = index;">
 				<div class="box">
@@ -88,26 +79,6 @@
 									<div class="btn .btn-lista-tec btn-dropbox" *ngFor="let tec of  avalia.tecnologias; let i = index;" style="margin-right: 5px;">
 										{{ tec.nome_tecnologia }}
 									</div>
-	
-									<!-- <div class="btn .btn-lista-tec btn-dropbox">
-					  Liferay
-					</div>
-	
-					<div class="btn .btn-lista-tec btn-dropbox">
-					  Html/Css(Desenvolvimento)
-					</div>
-	
-					<div class="btn .btn-lista-tec btn-dropbox">
-					  Html/Css(Design)
-					</div>
-	
-					<div class="btn .btn-lista-tec btn-dropbox">
-					  Plone
-					</div>
-	
-					<div class="btn .btn-lista-tec btn-dropbox">
-					  Javascript
-					</div> -->
 								</div>
 								<!-- /.col -->
 							</div>
@@ -141,14 +112,14 @@
 											</tr>
 										</thead>
 									</table>
-									<table>
+									<table class="table">
 										<tr>
 											<td>
 												<div class="box-body table-responsive no-padding">
 													<div class="box box-default collapsed-box" *ngFor="let atr of avalia.atributos; let i = index;">
 														<table id="" class="table table-hover">
 															<tr>
-																<td style="width: 65%">{{ atr.letra_atributo }}) {{ atr.descricao_atributo }}</td>
+																<td>{{ atr.letra_atributo }}) {{ atr.descricao_atributo }}</td>
 																<td style="width: 10%">
 																	<span class="badge bg-yellow">{{ atr.class_abrangencia_atributo }}-{{ atr.nome_abrangencia_atributo }}</span>
 																</td>
@@ -171,35 +142,26 @@
 															<table class="table table-striped">
 																<tr>
 																	<td style="width: 10%">
-																		<span class="badge bg-yellow">2-Significativa</span>
+																		<span class="badge bg-yellow">{{ atr.class_abrangencia_atributo }}-{{ atr.nome_abrangencia_atributo }}</span>
 																	</td>
 																	<td>
-																		<span class="">
-																			Conhecimento do negócio; Velocidade; Referência para discutir necessidades dos projetos em que atua(Evoluções); Participa
-																			na proposição de soluções técnicas; Transita entre diferente tecnologias/assuntos;
-																		</span>
+																		<span class="">{{ atr.descricao_abrangencia_atributo }}</span>
 																	</td>
 																</tr>
 																<tr>
 																	<td style="width: 10%">
-																		<span class="badge bg-light-blue">2-Alta</span>
+																		<span class="badge bg-light-blue">{{ atr.class_complexidade_atributo }}-{{ atr.nome_complexidade_atributo }}</span>
 																	</td>
 																	<td>
-																		<span class="">
-																			Conhecimento do negócio; Velocidade; Referência para discutir necessidades dos projetos em que atua(Evoluções); Participa
-																			na proposição de soluções técnicas; Transita entre diferente tecnologias/assuntos;
-																		</span>
+																		<span class="">{{ atr.descricao_complexidade_atributo }}</span>
 																	</td>
 																</tr>
 																<tr>
 																	<td style="width: 10%">
-																		<span class="badge bg-green">3-Altamente</span>
+																		<span class="badge bg-green">{{ atr.class_impacto_atributo }}-{{ atr.nome_impacto_atributo }}</span>
 																	</td>
 																	<td>
-																		<span class="">
-																			Conhecimento do negócio; Velocidade; Referência para discutir necessidades dos projetos em que atua(Evoluções); Participa
-																			na proposição de soluções técnicas; Transita entre diferente tecnologias/assuntos;
-																		</span>
+																		<span class="">{{ atr.descricao_impacto_atributo }}</span>
 																	</td>
 																</tr>
 															</table>
@@ -240,43 +202,17 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<td>1</td>
-												<td>Tesouro Transparente</td>
+											<tr *ngFor="let pro of avalia.projetos; let i = index;">
+												<td>{{ i+1 }}</td>
+												<td>{{ pro.descricao_projeto }}</td>
 												<td>
-													<span class="badge bg-yellow">2-Significativa</span>
+													<span class="badge bg-yellow">{{ pro.class_abrangencia_projeto }}-{{ pro.nome_abrangencia_projeto }}</span>
 												</td>
 												<td>
-													<span class="badge bg-light-blue">2-Alta</span>
+													<span class="badge bg-light-blue">{{ pro.class_complexidade_projeto }}-{{ pro.nome_complexidade_projeto }}</span>
 												</td>
 												<td>
-													<span class="badge bg-green">3-Altamente</span>
-												</td>
-											</tr>
-											<tr>
-												<td>2</td>
-												<td>Pucomex</td>
-												<td>
-													<span class="badge bg-yellow">2-Significativa</span>
-												</td>
-												<td>
-													<span class="badge bg-light-blue">2-Alta</span>
-												</td>
-												<td>
-													<span class="badge bg-green">3-Altamente</span>
-												</td>
-											</tr>
-											<tr>
-												<td>3</td>
-												<td>Porto sem Papel</td>
-												<td>
-													<span class="badge bg-yellow">2-Significativa</span>
-												</td>
-												<td>
-													<span class="badge bg-light-blue">2-Alta</span>
-												</td>
-												<td>
-													<span class="badge bg-green">3-Altamente</span>
+													<span class="badge bg-green">{{ pro.class_impacto_projeto }}-{{ pro.nome_impacto_projeto }}</span>
 												</td>
 											</tr>
 										</tbody>
@@ -288,25 +224,28 @@
 	
 						<!-- Dados calculados -->
 						<div class="col-md-12 relatorio">
-							<div class="col-md-3">
-								<label for="">Pontuação Ideal:</label>
-								<span>67.29</span>
+							<hr>
+							<div class="col-md-4">
+								<label for="">Pontuação:</label>
+								<span>{{ avalia.avaliacao[0].pontuacao.toFixed(2) }}</span>
 							</div>
-							<div class="col-md-3">
-								<label for="">Pontuação Total:</label>
-								<span>55.50</span>
+							<div class="col-md-4">
+								<label for="">Pontuação Ideal pela FCT Atual:</label>
+								<span>{{ (avalia.avaliacao[0].pontuacao + avalia.avaliacao[0].ajuste).toFixed(2) }}</span>
 							</div>
-							<div class="col-md-3">
-								<label for="">% de ociosidade:</label>
-								<span>
-									<!-- {{ avaliacao['ociosidade'] }} -->
-								</span>
+							<div class="col-md-4">
+								<label for="">Ociosidade:</label>
+								<span>{{ avalia.avaliacao[0].ociosidade }}%</span>
 							</div>
 						</div>
 						<div class="col-md-12 relatorio">
-							<div class="col-md-6">
-								<label for="">Referência FCT Atual:</label>
-								<span>19 - Analista (R$ 1408.71)</span>
+							<div class="col-md-4" *ngIf="user().ds_perfil == 'ADMINISTRADOR' || user().ds_perfil == 'LIDER'">
+								<label for="">Referência FCT Pontuação:</label>
+								<span>{{ avalia.avaliacao[0].fct_ideal }}</span>
+							</div>
+							<div class="col-md-4">
+									<label for="">Referência FCT Atual:</label>
+									<span>{{ avalia.avaliacao[0].referencia_fct_atual }}</span>
 							</div>
 						</div>
 						<div class="col-md-12 relatorio">
@@ -317,10 +256,8 @@
 						</div>
 						<div class="col-xs-12 relatorio">
 							<a (click)="onPrint()" class="btn btn-default">
-								<i class="fa fa-print"></i> Imprimir</a>
-							<!-- <button type="button" class="btn btn-success pull-right">
-								<i class="fa fa-credit-card"></i> Submit Payment
-							</button> -->
+								<i class="fa fa-print"></i> Imprimir
+							</a>
 							<button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
 								<i class="fa fa-download"></i> Gerar PDF
 							</button>

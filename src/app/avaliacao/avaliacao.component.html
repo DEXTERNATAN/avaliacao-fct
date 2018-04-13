@@ -28,10 +28,9 @@
           <div class="box-body">
             <!-- {{ avaliacaoDetalhe.length | json }} -->
             <div class="alert alert-warning alert-dismissible" *ngIf="avaliacaoDetalhe.length == 0">
-              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
               <h4>
                 <i class="icon fa fa-warning"></i> Alerta!</h4>
-              Nenhuma avaliação existente no momento. Click no botão Nova Avaliação para criar uma nova.
+              Nenhuma avaliação existente no momento.
             </div>
             <table class="table table-condensed" *ngIf="avaliacaoDetalhe.length > 0">
               <tr>
@@ -66,14 +65,13 @@
                             <th>Pontuação Ideal</th>
                             <th>Diferença</th>
                             <th>FCT Atual</th>
-                            <th *ngIf="user().ds_perfil == 'ADMINISTRADOR' || user().ds_perfil == 'LIDER'">FCT Ideal</th>
+                            <th *ngIf="user().ds_perfil == 'ADMINISTRADOR' || user().ds_perfil == 'LIDER'">FCT Pela Pontuação</th>
                             <th></th>
                             <th *ngIf="user().ds_perfil == 'ADMINISTRADOR' || user().ds_perfil == 'LIDER'"></th>
                           </tr>
-                          <tr *ngIf="!aval.listDetalhe.length">
+                          <tr *ngIf="avaliacaoDetalhe.length == 0">
                             <td colspan="10">
                               <div class="alert alert-warning alert-dismissible">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                                 <h4>
                                   <i class="icon fa fa-warning"></i> Alerta!</h4>
                                 Não existem avaliações para este usuário!

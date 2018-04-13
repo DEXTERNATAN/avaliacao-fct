@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 10/04/2018 às 22:30
+-- Tempo de geração: 13/04/2018 às 22:49
 -- Versão do servidor: 10.1.28-MariaDB
 -- Versão do PHP: 7.1.10
 
@@ -1774,29 +1774,22 @@ CREATE TABLE `TB_ATRIBUTO_has_TB_PROJETO` (
 --
 
 INSERT INTO `TB_ATRIBUTO_has_TB_PROJETO` (`TB_ATRIBUTO_id_atributo`, `TB_PROJETO_id_projeto`, `dt_atualizacao`, `TB_RESULTADO_id_resultado`) VALUES
-(34, 3, '2018-04-10 18:53:35', 350),
-(34, 1, '2018-04-10 18:53:35', 350),
-(34, 7, '2018-04-10 18:57:36', 351),
-(34, 2, '2018-04-10 18:57:36', 351),
-(34, 16, '2018-04-10 18:57:36', 351),
-(34, 22, '2018-04-10 18:57:36', 351),
-(34, 4, '2018-04-10 18:57:36', 351),
-(34, 11, '2018-04-10 18:57:36', 351),
-(34, 2, '2018-04-10 18:59:00', 352),
-(34, 8, '2018-04-10 18:59:01', 352),
-(34, 1, '2018-04-10 18:59:01', 352),
-(34, 5, '2018-04-10 18:59:01', 352),
-(34, 3, '2018-04-10 19:00:37', 353),
-(34, 3, '2018-04-10 19:00:37', 353),
-(34, 3, '2018-04-10 19:00:37', 353),
-(34, 3, '2018-04-10 19:00:37', 353),
-(34, 16, '2018-04-10 19:02:04', 354),
-(34, 19, '2018-04-10 19:02:04', 354),
-(34, 2, '2018-04-10 19:02:04', 354),
-(34, 9, '2018-04-10 19:02:04', 354),
-(34, 22, '2018-04-10 19:02:04', 354),
-(34, 10, '2018-04-10 19:02:04', 354),
-(34, 16, '2018-04-10 19:35:10', 355);
+(379, 7, '2018-04-13 13:31:45', 360),
+(389, 6, '2018-04-13 14:07:24', 361),
+(385, 23, '2018-04-13 14:07:24', 361),
+(398, 4, '2018-04-13 14:07:24', 361),
+(389, 22, '2018-04-13 17:50:41', 362),
+(392, 1, '2018-04-13 17:50:41', 362),
+(379, 4, '2018-04-13 19:46:37', 363),
+(379, 3, '2018-04-13 19:48:07', 364),
+(379, 5, '2018-04-13 19:48:07', 364),
+(390, 3, '2018-04-13 19:55:59', 365),
+(396, 5, '2018-04-13 19:55:59', 365),
+(403, 19, '2018-04-13 19:55:59', 365),
+(389, 6, '2018-04-13 19:55:59', 365),
+(403, 3, '2018-04-13 20:05:06', 366),
+(403, 18, '2018-04-13 20:05:06', 366),
+(403, 21, '2018-04-13 20:05:06', 366);
 
 -- --------------------------------------------------------
 
@@ -1854,85 +1847,74 @@ CREATE TABLE `TB_COLABORADOR_has_TB_ATRIBUTO` (
 --
 
 INSERT INTO `TB_COLABORADOR_has_TB_ATRIBUTO` (`TB_COLABORADOR_id_colaborador`, `TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`, `TB_COLABORADOR_TB_DIVISAO_id_divisao`, `TB_ATRIBUTO_id_atributo`, `TB_ATRIBUTO_TB_ABRANGENCIA_id_abrangencia`, `TB_ATRIBUTO_TB_COMPLEXIDADE_id_complexidade`, `TB_ATRIBUTO_TB_IMPACTO_id_impacto`, `dt_atualizacao`, `TB_RESULTADO_id_resultado`) VALUES
-(3, 52, 16, 1, 1, 1, 1, '2018-04-10 15:59:00', 352),
-(3, 52, 16, 1, 1, 1, 1, '2018-04-10 16:00:36', 353),
-(3, 52, 16, 27, 4, 4, 5, '2018-04-10 15:59:00', 352),
-(3, 52, 16, 27, 4, 4, 5, '2018-04-10 16:00:36', 353),
-(3, 52, 16, 56, 52, 34, 38, '2018-04-10 15:59:00', 352),
-(3, 52, 16, 56, 52, 34, 38, '2018-04-10 16:00:36', 353),
-(3, 52, 16, 82, 55, 37, 40, '2018-04-10 15:59:00', 352),
-(3, 52, 16, 82, 55, 37, 40, '2018-04-10 16:00:36', 353),
-(3, 52, 16, 109, 7, 7, 7, '2018-04-10 15:59:00', 352),
-(3, 52, 16, 109, 7, 7, 7, '2018-04-10 16:00:37', 353),
-(3, 52, 16, 136, 10, 10, 10, '2018-04-10 15:59:00', 352),
-(3, 52, 16, 136, 10, 10, 10, '2018-04-10 16:00:37', 353),
-(3, 52, 16, 163, 13, 13, 13, '2018-04-10 15:59:00', 352),
-(3, 52, 16, 163, 13, 13, 13, '2018-04-10 16:00:37', 353),
-(3, 52, 16, 190, 16, 16, 16, '2018-04-10 15:59:00', 352),
-(3, 52, 16, 190, 16, 16, 16, '2018-04-10 16:00:37', 353),
-(3, 52, 16, 217, 19, 19, 19, '2018-04-10 15:59:00', 352),
-(3, 52, 16, 217, 19, 19, 19, '2018-04-10 16:00:37', 353),
-(3, 52, 16, 244, 22, 22, 22, '2018-04-10 15:59:00', 352),
-(3, 52, 16, 244, 22, 22, 22, '2018-04-10 16:00:37', 353),
-(3, 52, 16, 271, 58, 40, 43, '2018-04-10 15:59:00', 352),
-(3, 52, 16, 271, 58, 40, 43, '2018-04-10 16:00:37', 353),
-(3, 52, 16, 298, 25, 25, 25, '2018-04-10 15:59:00', 352),
-(3, 52, 16, 298, 25, 25, 25, '2018-04-10 16:00:37', 353),
-(3, 52, 16, 325, 28, 28, 28, '2018-04-10 15:59:00', 352),
-(3, 52, 16, 325, 28, 28, 28, '2018-04-10 16:00:37', 353),
-(3, 52, 16, 352, 31, 31, 31, '2018-04-10 15:59:00', 352),
-(3, 52, 16, 352, 31, 31, 31, '2018-04-10 16:00:37', 353),
-(8, 58, 1, 1, 1, 1, 1, '2018-04-10 15:53:34', 350),
-(8, 58, 1, 1, 1, 1, 1, '2018-04-10 16:02:03', 354),
-(8, 58, 1, 1, 1, 1, 1, '2018-04-10 16:35:10', 355),
-(8, 58, 1, 27, 4, 4, 5, '2018-04-10 16:02:03', 354),
-(8, 58, 1, 27, 4, 4, 5, '2018-04-10 16:35:10', 355),
-(8, 58, 1, 56, 52, 34, 38, '2018-04-10 15:53:34', 350),
-(8, 58, 1, 56, 52, 34, 38, '2018-04-10 16:02:03', 354),
-(8, 58, 1, 56, 52, 34, 38, '2018-04-10 16:35:10', 355),
-(8, 58, 1, 82, 55, 37, 40, '2018-04-10 15:53:34', 350),
-(8, 58, 1, 82, 55, 37, 40, '2018-04-10 16:02:03', 354),
-(8, 58, 1, 82, 55, 37, 40, '2018-04-10 16:35:10', 355),
-(8, 58, 1, 109, 7, 7, 7, '2018-04-10 15:53:34', 350),
-(8, 58, 1, 109, 7, 7, 7, '2018-04-10 15:57:36', 351),
-(8, 58, 1, 109, 7, 7, 7, '2018-04-10 16:02:03', 354),
-(8, 58, 1, 109, 7, 7, 7, '2018-04-10 16:35:10', 355),
-(8, 58, 1, 136, 10, 10, 10, '2018-04-10 15:53:35', 350),
-(8, 58, 1, 136, 10, 10, 10, '2018-04-10 15:57:36', 351),
-(8, 58, 1, 136, 10, 10, 10, '2018-04-10 16:02:03', 354),
-(8, 58, 1, 136, 10, 10, 10, '2018-04-10 16:35:10', 355),
-(8, 58, 1, 163, 13, 13, 13, '2018-04-10 15:53:35', 350),
-(8, 58, 1, 163, 13, 13, 13, '2018-04-10 15:57:36', 351),
-(8, 58, 1, 163, 13, 13, 13, '2018-04-10 16:02:03', 354),
-(8, 58, 1, 163, 13, 13, 13, '2018-04-10 16:35:10', 355),
-(8, 58, 1, 190, 16, 16, 16, '2018-04-10 15:53:35', 350),
-(8, 58, 1, 190, 16, 16, 16, '2018-04-10 15:57:36', 351),
-(8, 58, 1, 190, 16, 16, 16, '2018-04-10 16:02:03', 354),
-(8, 58, 1, 190, 16, 16, 16, '2018-04-10 16:35:10', 355),
-(8, 58, 1, 217, 19, 19, 19, '2018-04-10 15:53:35', 350),
-(8, 58, 1, 217, 19, 19, 19, '2018-04-10 15:57:36', 351),
-(8, 58, 1, 217, 19, 19, 19, '2018-04-10 16:02:03', 354),
-(8, 58, 1, 217, 19, 19, 19, '2018-04-10 16:35:10', 355),
-(8, 58, 1, 244, 22, 22, 22, '2018-04-10 15:53:35', 350),
-(8, 58, 1, 244, 22, 22, 22, '2018-04-10 15:57:36', 351),
-(8, 58, 1, 244, 22, 22, 22, '2018-04-10 16:02:03', 354),
-(8, 58, 1, 244, 22, 22, 22, '2018-04-10 16:35:10', 355),
-(8, 58, 1, 271, 58, 40, 43, '2018-04-10 15:53:35', 350),
-(8, 58, 1, 271, 58, 40, 43, '2018-04-10 15:57:36', 351),
-(8, 58, 1, 271, 58, 40, 43, '2018-04-10 16:02:03', 354),
-(8, 58, 1, 271, 58, 40, 43, '2018-04-10 16:35:10', 355),
-(8, 58, 1, 298, 25, 25, 25, '2018-04-10 15:53:35', 350),
-(8, 58, 1, 298, 25, 25, 25, '2018-04-10 15:57:36', 351),
-(8, 58, 1, 298, 25, 25, 25, '2018-04-10 16:02:03', 354),
-(8, 58, 1, 298, 25, 25, 25, '2018-04-10 16:35:10', 355),
-(8, 58, 1, 325, 28, 28, 28, '2018-04-10 15:53:35', 350),
-(8, 58, 1, 325, 28, 28, 28, '2018-04-10 15:57:36', 351),
-(8, 58, 1, 325, 28, 28, 28, '2018-04-10 16:02:03', 354),
-(8, 58, 1, 325, 28, 28, 28, '2018-04-10 16:35:10', 355),
-(8, 58, 1, 352, 31, 31, 31, '2018-04-10 15:53:35', 350),
-(8, 58, 1, 352, 31, 31, 31, '2018-04-10 15:57:36', 351),
-(8, 58, 1, 352, 31, 31, 31, '2018-04-10 16:02:03', 354),
-(8, 58, 1, 352, 31, 31, 31, '2018-04-10 16:35:10', 355);
+(4, 51, 1, 27, 4, 4, 5, '2018-04-13 10:31:45', 360),
+(4, 51, 1, 109, 7, 7, 7, '2018-04-13 10:31:45', 360),
+(4, 51, 1, 163, 13, 13, 13, '2018-04-13 10:31:45', 360),
+(4, 51, 1, 190, 16, 16, 16, '2018-04-13 10:31:45', 360),
+(4, 51, 1, 244, 22, 22, 22, '2018-04-13 10:31:45', 360),
+(4, 51, 1, 352, 31, 31, 31, '2018-04-13 10:31:45', 360),
+(4, 51, 1, 379, 1, 1, 1, '2018-04-13 10:31:45', 360),
+(7, 70, 16, 1, 1, 1, 1, '2018-04-13 17:05:06', 366),
+(7, 70, 16, 24, 3, 2, 3, '2018-04-13 14:50:41', 362),
+(7, 70, 16, 27, 4, 4, 5, '2018-04-13 17:05:06', 366),
+(7, 70, 16, 45, 6, 4, 5, '2018-04-13 16:55:59', 365),
+(7, 70, 16, 56, 52, 34, 38, '2018-04-13 17:05:06', 366),
+(7, 70, 16, 59, 52, 35, 38, '2018-04-13 16:55:59', 365),
+(7, 70, 16, 72, 53, 36, 39, '2018-04-13 14:50:41', 362),
+(7, 70, 16, 82, 55, 37, 40, '2018-04-13 17:05:06', 366),
+(7, 70, 16, 92, 56, 37, 41, '2018-04-13 14:50:41', 362),
+(7, 70, 16, 109, 7, 7, 7, '2018-04-13 17:05:06', 366),
+(7, 70, 16, 128, 9, 7, 8, '2018-04-13 16:55:59', 365),
+(7, 70, 16, 136, 10, 10, 10, '2018-04-13 17:05:06', 366),
+(7, 70, 16, 162, 12, 12, 12, '2018-04-13 14:50:41', 362),
+(7, 70, 16, 163, 13, 13, 13, '2018-04-13 17:05:06', 366),
+(7, 70, 16, 175, 14, 14, 13, '2018-04-13 14:50:41', 362),
+(7, 70, 16, 178, 14, 15, 13, '2018-04-13 16:55:59', 365),
+(7, 70, 16, 190, 16, 16, 16, '2018-04-13 14:50:41', 362),
+(7, 70, 16, 190, 16, 16, 16, '2018-04-13 16:55:59', 365),
+(7, 70, 16, 190, 16, 16, 16, '2018-04-13 17:05:06', 366),
+(7, 70, 16, 217, 19, 19, 19, '2018-04-13 17:05:06', 366),
+(7, 70, 16, 220, 19, 20, 19, '2018-04-13 14:50:41', 362),
+(7, 70, 16, 244, 22, 22, 22, '2018-04-13 16:55:59', 365),
+(7, 70, 16, 244, 22, 22, 22, '2018-04-13 17:05:06', 366),
+(7, 70, 16, 325, 28, 28, 28, '2018-04-13 17:05:06', 366),
+(7, 70, 16, 348, 30, 29, 30, '2018-04-13 14:50:41', 362),
+(7, 70, 16, 352, 31, 31, 31, '2018-04-13 16:55:59', 365),
+(7, 70, 16, 352, 31, 31, 31, '2018-04-13 17:05:06', 366),
+(7, 70, 16, 358, 31, 33, 31, '2018-04-13 14:50:41', 362),
+(7, 70, 16, 389, 2, 1, 2, '2018-04-13 14:50:41', 362),
+(7, 70, 16, 389, 2, 1, 2, '2018-04-13 16:55:59', 365),
+(7, 70, 16, 390, 2, 1, 3, '2018-04-13 16:55:59', 365),
+(7, 70, 16, 392, 2, 2, 2, '2018-04-13 14:50:41', 362),
+(7, 70, 16, 396, 3, 1, 2, '2018-04-13 16:55:59', 365),
+(7, 70, 16, 403, 3, 3, 3, '2018-04-13 16:55:59', 365),
+(7, 70, 16, 403, 3, 3, 3, '2018-04-13 17:05:06', 366),
+(8, 58, 1, 1, 1, 1, 1, '2018-04-13 16:48:06', 364),
+(8, 58, 1, 27, 4, 4, 5, '2018-04-13 16:46:37', 363),
+(8, 58, 1, 40, 5, 5, 6, '2018-04-13 11:07:24', 361),
+(8, 58, 1, 56, 52, 34, 38, '2018-04-13 16:48:06', 364),
+(8, 58, 1, 82, 55, 37, 40, '2018-04-13 16:48:06', 364),
+(8, 58, 1, 109, 7, 7, 7, '2018-04-13 16:46:37', 363),
+(8, 58, 1, 135, 9, 9, 9, '2018-04-13 11:07:24', 361),
+(8, 58, 1, 136, 10, 10, 10, '2018-04-13 16:48:06', 364),
+(8, 58, 1, 163, 13, 13, 13, '2018-04-13 16:46:37', 363),
+(8, 58, 1, 163, 13, 13, 13, '2018-04-13 16:48:06', 364),
+(8, 58, 1, 178, 14, 15, 13, '2018-04-13 11:07:24', 361),
+(8, 58, 1, 190, 16, 16, 16, '2018-04-13 16:46:37', 363),
+(8, 58, 1, 190, 16, 16, 16, '2018-04-13 16:48:07', 364),
+(8, 58, 1, 193, 16, 17, 16, '2018-04-13 11:07:24', 361),
+(8, 58, 1, 217, 19, 19, 19, '2018-04-13 16:48:06', 364),
+(8, 58, 1, 244, 22, 22, 22, '2018-04-13 16:46:37', 363),
+(8, 58, 1, 249, 22, 23, 24, '2018-04-13 11:07:24', 361),
+(8, 58, 1, 325, 28, 28, 28, '2018-04-13 16:48:07', 364),
+(8, 58, 1, 352, 31, 31, 31, '2018-04-13 16:46:37', 363),
+(8, 58, 1, 352, 31, 31, 31, '2018-04-13 16:48:07', 364),
+(8, 58, 1, 373, 33, 32, 31, '2018-04-13 11:07:24', 361),
+(8, 58, 1, 379, 1, 1, 1, '2018-04-13 16:46:37', 363),
+(8, 58, 1, 379, 1, 1, 1, '2018-04-13 16:48:07', 364),
+(8, 58, 1, 385, 1, 3, 1, '2018-04-13 11:07:24', 361),
+(8, 58, 1, 389, 2, 1, 2, '2018-04-13 11:07:24', 361),
+(8, 58, 1, 398, 3, 2, 1, '2018-04-13 11:07:24', 361);
 
 -- --------------------------------------------------------
 
@@ -1972,7 +1954,7 @@ INSERT INTO `TB_COMPLEXIDADE` (`id_complexidade`, `atributo`, `classificacao`, `
 (16, 'h', 1, 'Desenvolvimento', 'Moderada', 'Tecnologias de apoio que não afetam infra;'),
 (17, 'h', 2, 'Desenvolvimento', 'Alta', 'Marco de versão(semantic version);'),
 (18, 'h', 3, 'Desenvolvimento', 'Altíssima', 'Quando demanda exige muito da infra;\nNão existe tecnologia similar;'),
-(19, 'i', 1, 'Desenvolvimento', 'Moderada', ''),
+(19, 'i', 1, 'Desenvolvimento', 'Moderada', 'Sem informação Cadastrada'),
 (20, 'i', 2, 'Desenvolvimento', 'Alta', 'Integração(já foi feito);'),
 (21, 'i', 3, 'Desenvolvimento', 'Altíssima', 'Ineditismo;\nNova Integração entre sistemas;\nManipulação de dados;\nLegado(Não existe suporte, ausência de documentação, não há desenvolvimento sendo feito para a plataforma);'),
 (22, 'j', 1, 'Desenvolvimento', 'Moderada', 'Atua no projeto com um perfil de forma plena;'),
@@ -2015,7 +1997,7 @@ CREATE TABLE `TB_DISTRIBUICAO` (
 --
 
 INSERT INTO `TB_DISTRIBUICAO` (`id_distribuicao`, `valor`, `qtde_faixas`, `dt_registro`) VALUES
-(1, '32000.00', 4, '2018-04-10 19:19:38');
+(1, '32000.00', 4, '2018-04-13 17:18:43');
 
 -- --------------------------------------------------------
 
@@ -2066,10 +2048,10 @@ CREATE TABLE `TB_FAIXA` (
 --
 
 INSERT INTO `TB_FAIXA` (`id_faixa`, `limite_inferior`, `limite_superior`, `pontuacao_referencia`, `qtde_pessoas`, `valor_rateio_pessoa`, `percentual`, `TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`, `TB_DISTRIBUICAO_id_distribuicao`) VALUES
-(9, '59.65', '68.47', '68.47', 0, '0.00', '0.00', 1, 1),
-(10, '68.47', '77.30', '72.88', 0, '0.00', '0.00', 1, 1),
-(11, '77.30', '86.13', '81.71', 0, '0.00', '0.00', 1, 1),
-(12, '86.13', '94.97', '86.13', 0, '0.00', '0.00', 1, 1);
+(17, '44.20', '58.74', '58.74', 2, '7111.47', '66.67', 51, 1),
+(18, '58.74', '73.28', '66.01', 0, '7111.47', '0.00', 51, 1),
+(19, '73.28', '87.82', '80.55', 0, '7111.47', '0.00', 51, 1),
+(20, '87.82', '102.37', '87.82', 1, '17777.07', '33.33', 51, 1);
 
 -- --------------------------------------------------------
 
@@ -2162,8 +2144,6 @@ INSERT INTO `TB_PAPEL` (`id_papel`, `tipo`, `nome`, `descricao`) VALUES
 (8, 'Design', 'UI', 'Colaboradores que possuem conhecimento aprofundado em UI - User Interface.'),
 (9, 'Design', 'UX', 'Colaboradores que possuem conhecimento aprofundado em UX - User Experience.'),
 (10, 'Design', 'UI', 'Teste'),
-(12, 'Desenvolvimento', 'xpto', 'Teste xpto'),
-(13, 'Desenvolvimento', 'teste 021', 'Teste 021'),
 (14, 'Design', 'XPTO 01', 'XPTO 01'),
 (15, 'Design', 'XPTO 01', 'XPT0101');
 
@@ -2187,21 +2167,15 @@ CREATE TABLE `TB_PAPEL_has_TB_COLABORADOR` (
 --
 
 INSERT INTO `TB_PAPEL_has_TB_COLABORADOR` (`TB_PAPEL_id_papel`, `TB_COLABORADOR_id_colaborador`, `TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`, `TB_COLABORADOR_TB_DIVISAO_id_divisao`, `dt_resultado`, `TB_RESULTADO_id_resultado`) VALUES
-(1, 3, 52, 16, '2018-04-10 18:59:00', 352),
-(1, 3, 52, 16, '2018-04-10 19:00:36', 353),
-(1, 8, 58, 1, '2018-04-10 18:53:34', 350),
-(1, 8, 58, 1, '2018-04-10 18:57:36', 351),
-(1, 8, 58, 1, '2018-04-10 19:02:03', 354),
-(1, 8, 58, 1, '2018-04-10 19:35:09', 355),
-(2, 3, 52, 16, '2018-04-10 18:59:00', 352),
-(2, 3, 52, 16, '2018-04-10 19:00:36', 353),
-(2, 8, 58, 1, '2018-04-10 18:53:34', 350),
-(2, 8, 58, 1, '2018-04-10 19:02:03', 354),
-(2, 8, 58, 1, '2018-04-10 19:35:09', 355),
-(3, 3, 52, 16, '2018-04-10 18:59:00', 352),
-(3, 3, 52, 16, '2018-04-10 19:00:36', 353),
-(3, 8, 58, 1, '2018-04-10 19:02:03', 354),
-(3, 8, 58, 1, '2018-04-10 19:35:09', 355);
+(2, 7, 70, 16, '2018-04-13 17:50:40', 362),
+(2, 7, 70, 16, '2018-04-13 20:05:06', 366),
+(2, 8, 58, 1, '2018-04-13 19:48:06', 364),
+(3, 4, 51, 1, '2018-04-13 13:31:45', 360),
+(3, 7, 70, 16, '2018-04-13 19:55:58', 365),
+(3, 7, 70, 16, '2018-04-13 20:05:06', 366),
+(3, 8, 58, 1, '2018-04-13 14:07:24', 361),
+(3, 8, 58, 1, '2018-04-13 19:46:37', 363),
+(6, 7, 70, 16, '2018-04-13 19:55:58', 365);
 
 -- --------------------------------------------------------
 
@@ -2321,25 +2295,22 @@ CREATE TABLE `TB_PROJETO_has_TB_COLABORADOR` (
 --
 
 INSERT INTO `TB_PROJETO_has_TB_COLABORADOR` (`TB_PROJETO_id_projeto`, `TB_COLABORADOR_id_colaborador`, `TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`, `TB_COLABORADOR_TB_DIVISAO_id_divisao`, `dt_resultado`, `TB_RESULTADO_id_resultado`) VALUES
-(1, 3, 52, 16, '2018-04-10 18:59:00', 352),
-(1, 8, 58, 1, '2018-04-10 18:53:34', 350),
-(1, 8, 58, 1, '2018-04-10 19:02:03', 354),
-(2, 3, 52, 16, '2018-04-10 18:59:00', 352),
-(2, 8, 58, 1, '2018-04-10 18:57:36', 351),
-(2, 8, 58, 1, '2018-04-10 19:02:03', 354),
-(3, 3, 52, 16, '2018-04-10 19:00:36', 353),
-(3, 8, 58, 1, '2018-04-10 18:53:34', 350),
-(4, 8, 58, 1, '2018-04-10 18:57:36', 351),
-(5, 3, 52, 16, '2018-04-10 18:59:00', 352),
-(7, 8, 58, 1, '2018-04-10 18:57:36', 351),
-(8, 3, 52, 16, '2018-04-10 18:59:00', 352),
-(9, 8, 58, 1, '2018-04-10 19:02:03', 354),
-(10, 8, 58, 1, '2018-04-10 18:57:36', 351),
-(15, 8, 58, 1, '2018-04-10 18:57:36', 351),
-(15, 8, 58, 1, '2018-04-10 19:02:03', 354),
-(15, 8, 58, 1, '2018-04-10 19:35:10', 355),
-(20, 8, 58, 1, '2018-04-10 18:57:36', 351),
-(20, 8, 58, 1, '2018-04-10 19:02:03', 354);
+(1, 7, 70, 16, '2018-04-13 17:50:40', 362),
+(3, 7, 70, 16, '2018-04-13 19:55:58', 365),
+(3, 7, 70, 16, '2018-04-13 20:05:06', 366),
+(3, 8, 58, 1, '2018-04-13 19:48:06', 364),
+(4, 8, 58, 1, '2018-04-13 14:07:24', 361),
+(4, 8, 58, 1, '2018-04-13 19:46:37', 363),
+(5, 7, 70, 16, '2018-04-13 19:55:58', 365),
+(5, 8, 58, 1, '2018-04-13 19:48:06', 364),
+(6, 7, 70, 16, '2018-04-13 19:55:58', 365),
+(6, 8, 58, 1, '2018-04-13 14:07:24', 361),
+(7, 4, 51, 1, '2018-04-13 13:31:45', 360),
+(18, 7, 70, 16, '2018-04-13 20:05:06', 366),
+(19, 7, 70, 16, '2018-04-13 19:55:58', 365),
+(21, 7, 70, 16, '2018-04-13 20:05:06', 366),
+(22, 7, 70, 16, '2018-04-13 17:50:40', 362),
+(23, 8, 58, 1, '2018-04-13 14:07:24', 361);
 
 -- --------------------------------------------------------
 
@@ -2462,12 +2433,13 @@ CREATE TABLE `TB_RESULTADO` (
 --
 
 INSERT INTO `TB_RESULTADO` (`id_resultado`, `pontuacao`, `dt_resultado`, `ajuste`, `ociosidade`, `referencia_fct_gfe_pontuacao`, `TB_COLABORADOR_id_colaborador`) VALUES
-(350, '59.65', '2018-04-10 18:53:34', '32.96', '0.00', 12, 8),
-(351, '68.56', '2018-04-10 18:57:36', '24.05', '1.00', 14, 8),
-(352, '82.20', '2018-04-10 18:59:00', '-29.54', '0.00', 16, 3),
-(353, '82.20', '2018-04-10 19:00:36', '-29.54', '0.00', 16, 3),
-(354, '94.95', '2018-04-10 19:02:03', '-2.34', '0.00', 18, 8),
-(355, '68.70', '2018-04-10 19:35:09', '28.08', '0.00', 13, 8);
+(360, '44.20', '2018-04-13 13:31:45', '15.45', '0.00', 6, 4),
+(361, '102.37', '2018-04-13 14:07:23', '11.35', '0.00', 16, 8),
+(362, '93.75', '2018-04-13 17:50:40', '95.02', '0.00', 21, 7),
+(363, '45.38', '2018-04-13 19:46:37', '26.33', '0.00', 12, 8),
+(364, '47.95', '2018-04-13 19:48:06', '36.32', '0.00', 11, 8),
+(365, '114.05', '2018-04-13 19:55:58', '107.78', '0.00', 21, 7),
+(366, '76.23', '2018-04-13 20:05:05', '145.60', '12.03', 16, 7);
 
 -- --------------------------------------------------------
 
@@ -2516,33 +2488,25 @@ CREATE TABLE `TB_TECNOLOGIA_has_TB_COLABORADOR` (
 --
 
 INSERT INTO `TB_TECNOLOGIA_has_TB_COLABORADOR` (`TB_TECNOLOGIA_id_tecnologia`, `TB_COLABORADOR_id_colaborador`, `TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`, `TB_COLABORADOR_TB_DIVISAO_id_divisao`, `dt_resultado`, `TB_RESULTADO_id_resultado`) VALUES
-(3, 3, 52, 16, '2018-04-10 18:59:00', 352),
-(3, 3, 52, 16, '2018-04-10 19:00:36', 353),
-(3, 8, 58, 1, '2018-04-10 18:53:34', 350),
-(3, 8, 58, 1, '2018-04-10 18:57:36', 351),
-(3, 8, 58, 1, '2018-04-10 19:02:03', 354),
-(3, 8, 58, 1, '2018-04-10 19:35:10', 355),
-(4, 3, 52, 16, '2018-04-10 18:59:00', 352),
-(4, 3, 52, 16, '2018-04-10 19:00:36', 353),
-(4, 8, 58, 1, '2018-04-10 18:53:34', 350),
-(4, 8, 58, 1, '2018-04-10 19:02:03', 354),
-(4, 8, 58, 1, '2018-04-10 19:35:10', 355),
-(5, 3, 52, 16, '2018-04-10 18:59:00', 352),
-(5, 3, 52, 16, '2018-04-10 19:00:36', 353),
-(5, 8, 58, 1, '2018-04-10 19:02:03', 354),
-(5, 8, 58, 1, '2018-04-10 19:35:10', 355),
-(6, 3, 52, 16, '2018-04-10 18:59:00', 352),
-(6, 3, 52, 16, '2018-04-10 19:00:36', 353),
-(6, 8, 58, 1, '2018-04-10 19:02:03', 354),
-(6, 8, 58, 1, '2018-04-10 19:35:10', 355),
-(7, 3, 52, 16, '2018-04-10 18:59:00', 352),
-(7, 3, 52, 16, '2018-04-10 19:00:36', 353),
-(7, 8, 58, 1, '2018-04-10 19:02:03', 354),
-(7, 8, 58, 1, '2018-04-10 19:35:10', 355),
-(8, 3, 52, 16, '2018-04-10 18:59:00', 352),
-(8, 3, 52, 16, '2018-04-10 19:00:36', 353),
-(8, 8, 58, 1, '2018-04-10 19:02:03', 354),
-(8, 8, 58, 1, '2018-04-10 19:35:10', 355);
+(4, 4, 51, 1, '2018-04-13 13:31:45', 360),
+(4, 7, 70, 16, '2018-04-13 17:50:40', 362),
+(4, 7, 70, 16, '2018-04-13 19:55:58', 365),
+(4, 8, 58, 1, '2018-04-13 14:07:24', 361),
+(4, 8, 58, 1, '2018-04-13 19:46:37', 363),
+(5, 4, 51, 1, '2018-04-13 13:31:45', 360),
+(5, 7, 70, 16, '2018-04-13 17:50:41', 362),
+(5, 7, 70, 16, '2018-04-13 19:55:58', 365),
+(5, 7, 70, 16, '2018-04-13 20:05:06', 366),
+(5, 8, 58, 1, '2018-04-13 14:07:24', 361),
+(5, 8, 58, 1, '2018-04-13 19:46:37', 363),
+(5, 8, 58, 1, '2018-04-13 19:48:06', 364),
+(6, 7, 70, 16, '2018-04-13 17:50:41', 362),
+(6, 7, 70, 16, '2018-04-13 19:55:58', 365),
+(6, 7, 70, 16, '2018-04-13 20:05:06', 366),
+(6, 8, 58, 1, '2018-04-13 19:46:37', 363),
+(6, 8, 58, 1, '2018-04-13 19:48:06', 364),
+(8, 7, 70, 16, '2018-04-13 19:55:59', 365),
+(9, 7, 70, 16, '2018-04-13 19:55:58', 365);
 
 -- --------------------------------------------------------
 
@@ -2667,6 +2631,7 @@ CREATE TABLE `VW_AVALIACAO_DADOS_BASICOS` (
 ,`ajuste` decimal(5,2)
 ,`ociosidade` decimal(9,2)
 ,`referencia_fct_atual` varchar(40)
+,`fct_ideal` varchar(40)
 );
 
 -- --------------------------------------------------------
@@ -2688,12 +2653,13 @@ CREATE TABLE `VW_AVALIACAO_PAPEL` (
 --
 CREATE TABLE `VW_AVALIACAO_PROJETO` (
 `id_resultado` int(9)
+,`id_projeto` int(9)
 ,`descricao_projeto` text
-,`class_abrangencia_projeto` int(2)
+,`class_abrangencia_projeto` int(9)
 ,`nome_abrangencia_projeto` varchar(50)
-,`class_complexidade_projeto` int(2)
+,`class_complexidade_projeto` int(9)
 ,`nome_complexidade_projeto` varchar(50)
-,`class_impacto_projeto` int(1)
+,`class_impacto_projeto` int(9)
 ,`nome_impacto_projeto` varchar(50)
 );
 
@@ -2925,7 +2891,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `VW_AVALIACAO`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `VW_AVALIACAO`  AS  select distinct `tba`.`id_resultado` AS `id_resultado`,`tba`.`pontuacao` AS `pontuacao`,date_format(`tba`.`dt_resultado`,'%d/%m/%Y') AS `dt_resultado`,`tba`.`ajuste` AS `ajuste`,`tba`.`ociosidade` AS `ociosidade`,`clb`.`id_colaborador` AS `TB_COLABORADOR_id_colaborador`,`clb`.`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe` AS `id_referencia_fct_gfe`,`tba`.`referencia_fct_gfe_pontuacao` AS `referencia_fct_gfe_pontuacao`,`clb`.`nome` AS `no_colaborador`,`clb`.`TB_FAIXA_id_faixa` AS `faixa`,(select `dv`.`sigla` from `TB_DIVISAO` `dv` where (`dv`.`id_divisao` = `clb`.`TB_DIVISAO_id_divisao`)) AS `sigla_divisao`,(select concat(`TB_REFERENCIA_FCT_GFE`.`num_referencia`,' - ',`TB_REFERENCIA_FCT_GFE`.`cargo`,' (R$ ',`TB_REFERENCIA_FCT_GFE`.`valor_referencia`,')') AS `fctAtual` from `TB_REFERENCIA_FCT_GFE` where (`TB_REFERENCIA_FCT_GFE`.`id_referencia_fct_gfe` = `clb`.`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`)) AS `fct_atual`,(select concat(`TB_REFERENCIA_FCT_GFE`.`num_referencia`,' - ',`TB_REFERENCIA_FCT_GFE`.`cargo`,' (R$ ',`TB_REFERENCIA_FCT_GFE`.`valor_referencia`,')') AS `fctIdeal` from `TB_REFERENCIA_FCT_GFE` where ((`TB_REFERENCIA_FCT_GFE`.`num_referencia` = `tba`.`referencia_fct_gfe_pontuacao`) and (`TB_REFERENCIA_FCT_GFE`.`cargo` = (select `TB_REFERENCIA_FCT_GFE`.`cargo` from `TB_REFERENCIA_FCT_GFE` where (`TB_REFERENCIA_FCT_GFE`.`id_referencia_fct_gfe` = `clb`.`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`))))) AS `fct_ideal` from ((`TB_RESULTADO` `tba` join `TB_COLABORADOR` `clb`) join `TB_FAIXA` `tbf`) where (`clb`.`id_colaborador` = `tba`.`TB_COLABORADOR_id_colaborador`) order by `clb`.`nome`,`tba`.`dt_resultado` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `VW_AVALIACAO`  AS  select distinct `tba`.`id_resultado` AS `id_resultado`,`tba`.`pontuacao` AS `pontuacao`,date_format(`tba`.`dt_resultado`,'%d/%m/%Y') AS `dt_resultado`,`tba`.`ajuste` AS `ajuste`,`tba`.`ociosidade` AS `ociosidade`,`clb`.`id_colaborador` AS `TB_COLABORADOR_id_colaborador`,`clb`.`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe` AS `id_referencia_fct_gfe`,`tba`.`referencia_fct_gfe_pontuacao` AS `referencia_fct_gfe_pontuacao`,`clb`.`nome` AS `no_colaborador`,`clb`.`TB_FAIXA_id_faixa` AS `faixa`,(select `dv`.`sigla` from `TB_DIVISAO` `dv` where (`dv`.`id_divisao` = `clb`.`TB_DIVISAO_id_divisao`)) AS `sigla_divisao`,(select concat(`TB_REFERENCIA_FCT_GFE`.`num_referencia`,' - ',`TB_REFERENCIA_FCT_GFE`.`cargo`,' (R$ ',`TB_REFERENCIA_FCT_GFE`.`valor_referencia`,')') AS `fctAtual` from `TB_REFERENCIA_FCT_GFE` where (`TB_REFERENCIA_FCT_GFE`.`id_referencia_fct_gfe` = `clb`.`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`)) AS `fct_atual`,(select concat(`TB_REFERENCIA_FCT_GFE`.`num_referencia`,' - ',`TB_REFERENCIA_FCT_GFE`.`cargo`,' (R$ ',`TB_REFERENCIA_FCT_GFE`.`valor_referencia`,')') AS `fctIdeal` from `TB_REFERENCIA_FCT_GFE` where ((`TB_REFERENCIA_FCT_GFE`.`num_referencia` = `tba`.`referencia_fct_gfe_pontuacao`) and (`TB_REFERENCIA_FCT_GFE`.`cargo` = (select `TB_REFERENCIA_FCT_GFE`.`cargo` from `TB_REFERENCIA_FCT_GFE` where (`TB_REFERENCIA_FCT_GFE`.`id_referencia_fct_gfe` = `clb`.`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`))))) AS `fct_ideal` from ((`TB_RESULTADO` `tba` join `TB_COLABORADOR` `clb`) join `TB_FAIXA` `tbf`) where (`clb`.`id_colaborador` = `tba`.`TB_COLABORADOR_id_colaborador`) ;
 
 -- --------------------------------------------------------
 
@@ -2934,7 +2900,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `VW_AVALIACAO_ATRIBUTO`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `VW_AVALIACAO_ATRIBUTO`  AS  select `tbR`.`id_resultado` AS `id_resultado`,`tbA`.`letra` AS `letra_atributo`,`tbA`.`descricao` AS `descricao_atributo`,`tbAb`.`classificacao` AS `class_abrangencia_atributo`,`tbAb`.`nome` AS `nome_abrangencia_atributo`,`tbAb`.`descricao` AS `descricao_abrangencia_atributo`,`tbCo`.`classificacao` AS `class_complexidade_atributo`,`tbCo`.`nome` AS `nome_complexidade_atributo`,`tbCo`.`descricao` AS `descricao_complexidade_atributo`,`tbIm`.`classificacao` AS `class_impacto_atributo`,`tbIm`.`nome` AS `nome_impacto_atributo`,`tbIm`.`descricao` AS `descricao_impacto_atributo` from ((((((`TB_RESULTADO` `tbR` join `TB_ATRIBUTO` `tbA`) join `TB_COLABORADOR` `tbC`) join `TB_ABRANGENCIA` `tbAb`) join `TB_COMPLEXIDADE` `tbCo`) join `TB_IMPACTO` `tbIm`) join `TB_COLABORADOR_has_TB_ATRIBUTO` `tbCA`) where ((`tbR`.`id_resultado` = `tbCA`.`TB_RESULTADO_id_resultado`) and (`tbCA`.`TB_COLABORADOR_id_colaborador` = `tbC`.`id_colaborador`) and (`tbCA`.`TB_COLABORADOR_id_colaborador` = `tbA`.`id_atributo`) and (`tbR`.`TB_COLABORADOR_id_colaborador` = `tbC`.`id_colaborador`) and (`tbA`.`TB_ABRANGENCIA_id_abrangencia` = `tbAb`.`id_abrangencia`) and (`tbA`.`TB_COMPLEXIDADE_id_complexidade` = `tbCo`.`id_complexidade`) and (`tbA`.`TB_IMPACTO_id_impacto` = `tbIm`.`id_impacto`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `VW_AVALIACAO_ATRIBUTO`  AS  select `tbR`.`id_resultado` AS `id_resultado`,`tbA`.`letra` AS `letra_atributo`,`tbA`.`descricao` AS `descricao_atributo`,`tbAb`.`classificacao` AS `class_abrangencia_atributo`,`tbAb`.`nome` AS `nome_abrangencia_atributo`,`tbAb`.`descricao` AS `descricao_abrangencia_atributo`,`tbCo`.`classificacao` AS `class_complexidade_atributo`,`tbCo`.`nome` AS `nome_complexidade_atributo`,`tbCo`.`descricao` AS `descricao_complexidade_atributo`,`tbIm`.`classificacao` AS `class_impacto_atributo`,`tbIm`.`nome` AS `nome_impacto_atributo`,`tbIm`.`descricao` AS `descricao_impacto_atributo` from ((((((`TB_RESULTADO` `tbR` join `TB_ATRIBUTO` `tbA`) join `TB_COLABORADOR` `tbC`) join `TB_ABRANGENCIA` `tbAb`) join `TB_COMPLEXIDADE` `tbCo`) join `TB_IMPACTO` `tbIm`) join `TB_COLABORADOR_has_TB_ATRIBUTO` `tbCA`) where ((`tbR`.`id_resultado` = `tbCA`.`TB_RESULTADO_id_resultado`) and (`tbCA`.`TB_COLABORADOR_id_colaborador` = `tbC`.`id_colaborador`) and (`tbCA`.`TB_ATRIBUTO_id_atributo` = `tbA`.`id_atributo`) and (`tbR`.`TB_COLABORADOR_id_colaborador` = `tbC`.`id_colaborador`) and (`tbA`.`TB_ABRANGENCIA_id_abrangencia` = `tbAb`.`id_abrangencia`) and (`tbA`.`TB_COMPLEXIDADE_id_complexidade` = `tbCo`.`id_complexidade`) and (`tbA`.`TB_IMPACTO_id_impacto` = `tbIm`.`id_impacto`) and (`tbA`.`letra` <> 'p')) ;
 
 -- --------------------------------------------------------
 
@@ -2943,7 +2909,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `VW_AVALIACAO_DADOS_BASICOS`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `VW_AVALIACAO_DADOS_BASICOS`  AS  select `tbR`.`id_resultado` AS `id_resultado`,`tbC`.`id_colaborador` AS `id_colaborador`,`tbC`.`nome` AS `nome`,`tbC`.`matricula` AS `matricula`,`tbD`.`sigla` AS `sigla`,date_format((select max(`TB_RESULTADO`.`dt_resultado`) from `TB_RESULTADO` where (`TB_RESULTADO`.`TB_COLABORADOR_id_colaborador` = `tbC`.`id_colaborador`)),'%d/%m/%Y') AS `dt_avaliacao`,`tbR`.`pontuacao` AS `pontuacao`,`tbR`.`ajuste` AS `ajuste`,`tbR`.`ociosidade` AS `ociosidade`,concat(`tbF`.`num_referencia`,' - ',`tbF`.`cargo`,' (R$ ',`tbF`.`valor_referencia`,')') AS `referencia_fct_atual` from (((`TB_RESULTADO` `tbR` join `TB_COLABORADOR` `tbC`) join `TB_DIVISAO` `tbD`) join `TB_REFERENCIA_FCT_GFE` `tbF`) where ((`tbR`.`TB_COLABORADOR_id_colaborador` = `tbC`.`id_colaborador`) and (`tbF`.`id_referencia_fct_gfe` = `tbC`.`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`) and (`tbD`.`id_divisao` = `tbC`.`TB_DIVISAO_id_divisao`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `VW_AVALIACAO_DADOS_BASICOS`  AS  select `tbR`.`id_resultado` AS `id_resultado`,`tbC`.`id_colaborador` AS `id_colaborador`,`tbC`.`nome` AS `nome`,`tbC`.`matricula` AS `matricula`,`tbD`.`sigla` AS `sigla`,date_format((select max(`TB_RESULTADO`.`dt_resultado`) from `TB_RESULTADO` where (`TB_RESULTADO`.`TB_COLABORADOR_id_colaborador` = `tbC`.`id_colaborador`)),'%d/%m/%Y') AS `dt_avaliacao`,`tbR`.`pontuacao` AS `pontuacao`,`tbR`.`ajuste` AS `ajuste`,`tbR`.`ociosidade` AS `ociosidade`,concat(`tbF`.`num_referencia`,' - ',`tbF`.`cargo`,' (R$ ',`tbF`.`valor_referencia`,')') AS `referencia_fct_atual`,(select concat(`TB_REFERENCIA_FCT_GFE`.`num_referencia`,' - ',`TB_REFERENCIA_FCT_GFE`.`cargo`,' (R$ ',`TB_REFERENCIA_FCT_GFE`.`valor_referencia`,')') AS `fctIdeal` from `TB_REFERENCIA_FCT_GFE` where ((`TB_REFERENCIA_FCT_GFE`.`num_referencia` = `tbR`.`referencia_fct_gfe_pontuacao`) and (`TB_REFERENCIA_FCT_GFE`.`cargo` = (select `TB_REFERENCIA_FCT_GFE`.`cargo` from `TB_REFERENCIA_FCT_GFE` where (`TB_REFERENCIA_FCT_GFE`.`id_referencia_fct_gfe` = `tbC`.`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`))))) AS `fct_ideal` from (((`TB_RESULTADO` `tbR` join `TB_COLABORADOR` `tbC`) join `TB_DIVISAO` `tbD`) join `TB_REFERENCIA_FCT_GFE` `tbF`) where ((`tbR`.`TB_COLABORADOR_id_colaborador` = `tbC`.`id_colaborador`) and (`tbF`.`id_referencia_fct_gfe` = `tbC`.`TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe`) and (`tbD`.`id_divisao` = `tbC`.`TB_DIVISAO_id_divisao`)) ;
 
 -- --------------------------------------------------------
 
@@ -2961,7 +2927,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `VW_AVALIACAO_PROJETO`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `VW_AVALIACAO_PROJETO`  AS  select `tbR`.`id_resultado` AS `id_resultado`,`tbP`.`descricao` AS `descricao_projeto`,`tbAb`.`classificacao` AS `class_abrangencia_projeto`,`tbAb`.`nome` AS `nome_abrangencia_projeto`,`tbCo`.`classificacao` AS `class_complexidade_projeto`,`tbCo`.`nome` AS `nome_complexidade_projeto`,`tbIm`.`classificacao` AS `class_impacto_projeto`,`tbIm`.`nome` AS `nome_impacto_projeto` from (((((((((`TB_RESULTADO` `tbR` join `TB_PROJETO` `tbP`) join `TB_ABRANGENCIA` `tbAb`) join `TB_COMPLEXIDADE` `tbCo`) join `TB_IMPACTO` `tbIm`) join `TB_ATRIBUTO` `tbA`) join `TB_COLABORADOR` `tbC`) join `TB_ATRIBUTO_has_TB_PROJETO` `tbAP`) join `TB_PROJETO_has_TB_COLABORADOR` `tbPC`) join `TB_COLABORADOR_has_TB_ATRIBUTO` `tbCA`) where ((`tbR`.`id_resultado` = `tbAP`.`TB_RESULTADO_id_resultado`) and (`tbR`.`id_resultado` = `tbPC`.`TB_RESULTADO_id_resultado`) and (`tbA`.`id_atributo` = `tbAP`.`TB_ATRIBUTO_id_atributo`) and (`tbCA`.`TB_COLABORADOR_id_colaborador` = `tbC`.`id_colaborador`) and (`tbCA`.`TB_COLABORADOR_id_colaborador` = `tbA`.`id_atributo`) and (`tbR`.`TB_COLABORADOR_id_colaborador` = `tbC`.`id_colaborador`) and (`tbA`.`TB_ABRANGENCIA_id_abrangencia` = `tbAb`.`id_abrangencia`) and (`tbA`.`TB_COMPLEXIDADE_id_complexidade` = `tbCo`.`id_complexidade`) and (`tbA`.`TB_IMPACTO_id_impacto` = `tbIm`.`id_impacto`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `VW_AVALIACAO_PROJETO`  AS  select `tbR`.`id_resultado` AS `id_resultado`,`tbP`.`id_projeto` AS `id_projeto`,`tbP`.`descricao` AS `descricao_projeto`,`tbA`.`TB_ABRANGENCIA_id_abrangencia` AS `class_abrangencia_projeto`,`tbAb`.`nome` AS `nome_abrangencia_projeto`,`tbA`.`TB_COMPLEXIDADE_id_complexidade` AS `class_complexidade_projeto`,`tbCo`.`nome` AS `nome_complexidade_projeto`,`tbA`.`TB_IMPACTO_id_impacto` AS `class_impacto_projeto`,`tbIm`.`nome` AS `nome_impacto_projeto` from ((((((((`TB_RESULTADO` `tbR` join `TB_PROJETO` `tbP`) join `TB_ATRIBUTO` `tbA`) join `TB_COLABORADOR` `tbC`) join `TB_ATRIBUTO_has_TB_PROJETO` `tbAP`) join `TB_PROJETO_has_TB_COLABORADOR` `tbPC`) join `TB_ABRANGENCIA` `tbAb`) join `TB_COMPLEXIDADE` `tbCo`) join `TB_IMPACTO` `tbIm`) where ((`tbR`.`id_resultado` = `tbAP`.`TB_RESULTADO_id_resultado`) and (`tbR`.`id_resultado` = `tbPC`.`TB_RESULTADO_id_resultado`) and (`tbAP`.`TB_PROJETO_id_projeto` = `tbPC`.`TB_PROJETO_id_projeto`) and (`tbP`.`id_projeto` = `tbAP`.`TB_PROJETO_id_projeto`) and (`tbP`.`id_projeto` = `tbPC`.`TB_PROJETO_id_projeto`) and (`tbA`.`id_atributo` = `tbAP`.`TB_ATRIBUTO_id_atributo`) and (`tbR`.`id_resultado` = `tbAP`.`TB_RESULTADO_id_resultado`) and (`tbR`.`TB_COLABORADOR_id_colaborador` = `tbC`.`id_colaborador`) and (`tbAb`.`classificacao` = `tbA`.`TB_ABRANGENCIA_id_abrangencia`) and (`tbCo`.`classificacao` = `tbA`.`TB_COMPLEXIDADE_id_complexidade`) and (`tbIm`.`classificacao` = `tbA`.`TB_IMPACTO_id_impacto`) and (`tbA`.`letra` = 'p')) group by `tbP`.`id_projeto`,`tbR`.`id_resultado` ;
 
 -- --------------------------------------------------------
 
@@ -3274,7 +3240,7 @@ ALTER TABLE `TB_DIVISAO`
 -- AUTO_INCREMENT de tabela `TB_FAIXA`
 --
 ALTER TABLE `TB_FAIXA`
-  MODIFY `id_faixa` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_faixa` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de tabela `TB_IMPACTO`
@@ -3316,7 +3282,7 @@ ALTER TABLE `TB_REFERENCIA_FCT_GFE`
 -- AUTO_INCREMENT de tabela `TB_RESULTADO`
 --
 ALTER TABLE `TB_RESULTADO`
-  MODIFY `id_resultado` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=356;
+  MODIFY `id_resultado` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=367;
 
 --
 -- AUTO_INCREMENT de tabela `TB_TECNOLOGIA`

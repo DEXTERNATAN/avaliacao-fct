@@ -207,7 +207,6 @@ export class FaixaFormComponent implements OnInit {
                 console.log(error);
                 this.mostraMensagem = true;
             });
-
     }
 
     getReferencia() {

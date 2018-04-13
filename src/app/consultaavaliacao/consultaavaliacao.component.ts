@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { ConsultaavaliacaoService } from 'app/consultaavaliacao/consultaavaliacao.service';
+import { LoginService } from 'app/security/login/login.service';
+import { User } from 'app/security/login/user';
 
 @Component({
   selector: 'mt-consultaavaliacao',
@@ -19,11 +21,14 @@ export class ConsultaavaliacaoComponent implements OnInit {
 
   constructor(
     private _consultaavaliacaoService: ConsultaavaliacaoService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private loginService: LoginService
   ) { }
 
   ngOnInit() {
 
+    this.user();
+    
     this.route.params.subscribe(params => {
       this.idAvaliacao = params['id_avaliacao'];
       console.log('Identificador da avaliação: ', this.idAvaliacao);
@@ -39,6 +44,9 @@ export class ConsultaavaliacaoComponent implements OnInit {
     );
   }
 
+  user(): User {
+    return this.loginService.user;
+}
   onPrint() {
     window.print();
   }
