@@ -56,7 +56,7 @@
                         </div>
                       </div>
                       <div class="box-body">
-                          <table id="" class="table table-condensed">
+                          <table id="" class="table">
                               <tr *ngIf="avaliacaoDetalhe.length == 0">
                                   <td colspan="10">
                                     <div class="alert alert-warning alert-dismissible">
@@ -66,41 +66,32 @@
                                     </div>
                                   </td>
                               </tr>  
-                              <tr *ngFor="let items of aval.listDetalhe; let i = index; ">
+                              <tr *ngFor="let items of aval.listDetalhe; let j = index; ">
                                 <td>
-                                  <table class="table table-bordered">
+                                  <table  class="table table-striped" border="0">
                                     <tr>
+                                        <th>
+                                            <p class="text-center">
+                                                {{ i+1 }}.{{ j+1 }}
+                                            </p>  
+                                        </th>
                                       <th>Data: {{ items.dt_resultado }}</th>
-                                    </tr>
-                                    <tr>  
                                       <td>
-                                          <table id="" class="table table-condensed">
+                                          
+                                          <table id="" class="table table-striped" border="0">
                                               <tr>
-                                                <th style="width: 38%">
-                                                  <h4 class="box-title"><p class="text-center">Atual</p></h4>
-                                                </th>
-                                                <th style="width: 12%"></th>
-                                                <th>
-                                                  <h4 class="box-title"><p class="text-center">Avaliação</p></h4>
-                                                </th>
-                                                <th style="width: 6%"></th>
-                                                <th style="width: 6%"></th>
-                                              </tr>
-                                          </table>
-                                          <table id="" class="table table-striped">
-                                              <tr>
-                                                <th><p class="text-center"><span class="label label-primary">FCT</span></p></th>
-                                                <th><p class="text-center"><span class="label label-primary">Pontuação</span></p></th>
-                                                <th><p class="text-center"><span class="label label-danger">Diferença</span></p></th>
-                                                <th><p class="text-center"><span class="label label-success">Pontuação</span></p></th>
-                                                <th><p class="text-center"><span class="label label-success">FCT</span></p></th>
+                                                <th><p class="text-center"><span class="badge bg-light-blue">&nbsp;&nbsp;&nbsp;FCT Atual&nbsp;&nbsp;&nbsp;</span></p></th>
+                                                <th><p class="text-center"><span class="badge bg-light-blue">&nbsp;&nbsp;&nbsp;Pontuação Atual&nbsp;&nbsp;&nbsp;</span></p></th>
+                                                <th><p class="text-center"><span class="badge bg-red">&nbsp;&nbsp;&nbsp;Diferença&nbsp;&nbsp;&nbsp;</span></p></th>
+                                                <th><p class="text-center"><span class="badge bg-green">&nbsp;&nbsp;&nbsp;Pontuação Avaliação&nbsp;&nbsp;&nbsp;</span></p></th>
+                                                <th><p class="text-center"><span class="badge bg-green">&nbsp;&nbsp;&nbsp;FCT Avaliação&nbsp;&nbsp;&nbsp;</span></p></th>
                                                 <th></th>
                                                 <th></th>
                                               </tr>
                                               <tr>
                                                   <td><p class="text-center">{{ items.fct_atual }}</p></td>
                                                   <td><p class="text-center">{{ ((items.pontuacao - items.ajuste) + (2 * items.ajuste)).toFixed(2) }}</p></td>
-                                                  <td><p class="text-center">{{ items.ajuste.toFixed(2) }}</p></td>
+                                                  <td><p class="text-center">{{ (items.ajuste * (-1)).toFixed(2) }}</p></td>
                                                   <td><p class="text-center">{{ items.pontuacao.toFixed(2) }}</p></td>
                                                   <td><p class="text-center">{{ items.fct_ideal }}</p></td>
                                                   <!-- <td>
@@ -122,7 +113,6 @@
                                                   </td>
                                                 </tr>
                                           </table>
-                                          <hr>         
                                       </td>
                                     <tr>
                                  </table>
