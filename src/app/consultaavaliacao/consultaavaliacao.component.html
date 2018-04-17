@@ -1,271 +1,284 @@
 <section class="content-header">
 
-		<h1>
-			Avaliação Individual
-		</h1>
-		<ol class="breadcrumb">
-			<li>
-				<a href="#">
-					<i class="fa fa-home"></i> Home</a>
-			</li>
-			<li class="active">Avaliações</li>
-		</ol>
-	
-	</section>
-	<section class="content">
-		<div class="row">
-			<div class="col-xs-12" *ngFor="let avalia of avaliacao; let i = index;">
-				<div class="box">
-					<div class="col-dm-12">
-						<h3 class="box-title">
-							&nbsp;&nbsp;
-							<i class="fa fa-star"></i>&nbsp;Resumo da Avaliação</h3>
-					</div>
-					<div class="box-body table-responsive no-padding">
-						<div class="col-md12 relatorio">
-							<div class="col-md-3">
-								<label for="">NOME:</label>
-								<span>
-									{{ avalia.avaliacao[0].nome }}
-								</span>
-							</div>
-							<div class="col-md-3">
-								<label for="">MATRÍCULA:</label>
-								<span>
-									{{ avalia.avaliacao[0].matricula }}
-								</span>
-							</div>
-							<div class="col-md-3">
-								<label for="">DIVISÃO:</label>
-								<span>
-									{{ avalia.avaliacao[0].sigla }}
-	
-								</span>
-							</div>
-							<div class="col-md-3">
-								<label for="">DATA DA AVALIAÇÃO:</label>
-								<span>
-									{{ avalia.avaliacao[0].dt_avaliacao }}
-								</span>
-							</div>
-						</div>
-						<!-- Papeis -->
-						<div class="col-md-12 relatorio">
-							<hr>
-							<label for="Papeis">
-								<h3 class="box-title">
-									<i class="fa fa-wrench"></i>&nbsp;Papeis</h3>
-							</label>
-							<div class="row">
-								<div class="col-md-8">
-									<div>
-										<div class="btn .btn-lista-tec btn-facebook" *ngFor="let papeis of  avalia.papel; let i = index;" style="margin-right: 5px;">
-											{{ papeis.nome_papel }}
-										</div>
-	
-									</div>
-								</div>
-							</div>
-						</div>
-	
-						<div class="col-md-12 relatorio">
-							<hr>
-							<label for="Tecnologias">
-								<h3 class="box-title">
-									<i class="fa fa-desktop"></i>&nbsp;Tecnologias</h3>
-							</label>
-							<div class="row">
-								<div class="col-md-8">
-									<div class="btn .btn-lista-tec btn-dropbox" *ngFor="let tec of  avalia.tecnologias; let i = index;" style="margin-right: 5px;">
-										{{ tec.nome_tecnologia }}
-									</div>
-								</div>
-								<!-- /.col -->
-							</div>
-						</div>
-	
-						<!-- Atributos -->
-						<div class="col-md-12 relatorio">
-							<hr>
-							<label for="Atributos">
-								<h3 class="box-title">
-									<i class="fa fa-graduation-cap"></i>&nbsp;Atributos</h3>
-							</label>
-							<div class="row">
-								<div class="col-xs-12 table-responsive">
-									<table class="table table-striped">
-										<thead>
-											<tr>
-												<td style="width: 65%">
-													<label>Descrição</label>
-												</td>
-												<td style="width: 10%">
-													<span class="badge bg-yellow">Abrangência</span>
-												</td>
-												<td style="width: 10%">
-													<span class="badge bg-light-blue">Complexidade</span>
-												</td>
-												<td style="width: 10%">
-													<span class="badge bg-green">Impacto</span>
-												</td>
-												<td style="width: 5%">&nbsp;</td>
-											</tr>
-										</thead>
-									</table>
-									<table class="table">
-										<tr>
-											<td>
-												<div class="box-body table-responsive no-padding">
-													<div class="box box-default collapsed-box" *ngFor="let atr of avalia.atributos; let i = index;">
-														<table id="" class="table table-hover">
-															<tr>
-																<td>{{ atr.letra_atributo }}) {{ atr.descricao_atributo }}</td>
-																<td style="width: 10%">
-																	<span class="badge bg-yellow">{{ atr.class_abrangencia_atributo }}-{{ atr.nome_abrangencia_atributo }}</span>
-																</td>
-																<td style="width: 10%">
-																	<span class="badge bg-light-blue">{{ atr.class_complexidade_atributo }}-{{ atr.nome_complexidade_atributo }}</span>
-																</td>
-																<td style="width: 10%">
-																	<span class="badge bg-green">{{ atr.class_impacto_atributo }}-{{ atr.nome_impacto_atributo }}</span>
-																</td>
-																<td style="width: 5%">
-																	<div class="box-tools pull-right">
-																		<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip">
-																			<i class="fa fa-plus"></i>
-																		</button>
-																	</div>
-																</td>
-															</tr>
-														</table>
-														<div class="box-body">
-															<table class="table table-striped">
-																<tr>
-																	<td style="width: 10%">
-																		<span class="badge bg-yellow">{{ atr.class_abrangencia_atributo }}-{{ atr.nome_abrangencia_atributo }}</span>
-																	</td>
-																	<td>
-																		<span class="">{{ atr.descricao_abrangencia_atributo }}</span>
-																	</td>
-																</tr>
-																<tr>
-																	<td style="width: 10%">
-																		<span class="badge bg-light-blue">{{ atr.class_complexidade_atributo }}-{{ atr.nome_complexidade_atributo }}</span>
-																	</td>
-																	<td>
-																		<span class="">{{ atr.descricao_complexidade_atributo }}</span>
-																	</td>
-																</tr>
-																<tr>
-																	<td style="width: 10%">
-																		<span class="badge bg-green">{{ atr.class_impacto_atributo }}-{{ atr.nome_impacto_atributo }}</span>
-																	</td>
-																	<td>
-																		<span class="">{{ atr.descricao_impacto_atributo }}</span>
-																	</td>
-																</tr>
-															</table>
-														</div>
-													</div>
-												</div>
-											</td>
-										</tr>
-									</table>
-								</div>
-								<!-- /.col -->
-							</div>
-						</div>
-	
-						<!-- Projetos -->
-						<div class="col-md-12 relatorio">
-							<hr>
-							<label for="Projetos">
-								<h3 class="box-title">
-									<i class="fa fa-rocket"></i>&nbsp;Projetos</h3>
-							</label>
-							<div class="row">
-								<div class="col-xs-12 table-responsive">
-									<table class="table table-striped">
-										<thead>
-											<tr>
-												<th style="width: 5%">#</th>
-												<th style="width: 70%">Descrição</th>
-												<th>
-													<span class="badge bg-yellow">Abrangência</span>
-												</th>
-												<th>
-													<span class="badge bg-light-blue">Complexidade</span>
-												</th>
-												<th>
-													<span class="badge bg-green">Impacto</span>
-												</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr *ngFor="let pro of avalia.projetos; let i = index;">
-												<td>{{ i+1 }}</td>
-												<td>{{ pro.descricao_projeto }}</td>
-												<td>
-													<span class="badge bg-yellow">{{ pro.class_abrangencia_projeto }}-{{ pro.nome_abrangencia_projeto }}</span>
-												</td>
-												<td>
-													<span class="badge bg-light-blue">{{ pro.class_complexidade_projeto }}-{{ pro.nome_complexidade_projeto }}</span>
-												</td>
-												<td>
-													<span class="badge bg-green">{{ pro.class_impacto_projeto }}-{{ pro.nome_impacto_projeto }}</span>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-								<!-- /.col -->
-							</div>
-						</div>
-	
-						<!-- Dados calculados -->
-						<div class="col-md-12 relatorio">
-							<hr>
-							<div class="col-md-4">
-								<label for="">Pontuação:</label>
-								<span>{{ avalia.avaliacao[0].pontuacao.toFixed(2) }}</span>
-							</div>
-							<div class="col-md-4">
-								<label for="">Pontuação Ideal pela FCT Atual:</label>
-								<span>{{ (avalia.avaliacao[0].pontuacao + avalia.avaliacao[0].ajuste).toFixed(2) }}</span>
-							</div>
-							<div class="col-md-4">
-								<label for="">Ociosidade:</label>
-								<span>{{ avalia.avaliacao[0].ociosidade }}%</span>
-							</div>
-						</div>
-						<div class="col-md-12 relatorio">
-							<div class="col-md-4" *ngIf="user().ds_perfil == 'ADMINISTRADOR' || user().ds_perfil == 'LIDER'">
-								<label for="">Referência FCT Pontuação:</label>
-								<span>{{ avalia.avaliacao[0].fct_ideal }}</span>
-							</div>
-							<div class="col-md-4">
-									<label for="">Referência FCT Atual:</label>
-									<span>{{ avalia.avaliacao[0].referencia_fct_atual }}</span>
-							</div>
-						</div>
-						<div class="col-md-12 relatorio">
-							<div class="col-md-10">
-								<label for="">Data:</label>
-								<span>{{ DataAtual }}</span>
-							</div>
-						</div>
-						<div class="col-xs-12 relatorio">
-							<a (click)="onPrint()" class="btn btn-default">
-								<i class="fa fa-print"></i> Imprimir
-							</a>
-							<button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
-								<i class="fa fa-download"></i> Gerar PDF
-							</button>
-						</div>
-					</div>
-					<!-- /.box-body -->
-				</div>
-				<!-- /.box -->
-			</div>
-		</div>
-	</section>
+  <h1>
+    Avaliação Individual
+  </h1>
+  <ol class="breadcrumb">
+    <li>
+      <a href="#">
+        <i class="fa fa-home"></i> Home</a>
+    </li>
+    <li class="active">Avaliações</li>
+  </ol>
+
+</section>
+<section class="content">
+  <div class="row">
+    <div class="col-xs-12" *ngFor="let avalia of avaliacao; let i = index;">
+      <div class="box">
+        <div class="col-dm-12">
+          <h3 class="box-title">
+            &nbsp;&nbsp;
+            <i class="fa fa-star"></i>&nbsp;Resumo da Avaliação</h3>
+        </div>
+        <div class="box-body table-responsive no-padding">
+          <div class="col-md12 relatorio">
+            <div class="col-md-3">
+              <label for="">NOME:</label>
+              <span>
+                {{ avalia.avaliacao[0].nome }}
+              </span>
+            </div>
+            <div class="col-md-3">
+              <label for="">MATRÍCULA:</label>
+              <span>
+                {{ avalia.avaliacao[0].matricula }}
+              </span>
+            </div>
+            <div class="col-md-3">
+              <label for="">DIVISÃO:</label>
+              <span>
+                {{ avalia.avaliacao[0].sigla }}
+
+              </span>
+            </div>
+            <div class="col-md-3">
+              <label for="">DATA DA AVALIAÇÃO:</label>
+              <span>
+                {{ avalia.avaliacao[0].dt_avaliacao }}
+              </span>
+            </div>
+          </div>
+          <!-- Papeis -->
+          <div class="col-md-12 relatorio">
+            <hr>
+            <label for="Papeis">
+              <h3 class="box-title">
+                <i class="fa fa-wrench"></i>&nbsp;Papeis</h3>
+            </label>
+            <div class="row">
+              <div class="col-md-8">
+                <div>
+                  <div class="btn .btn-lista-tec btn-facebook" *ngFor="let papeis of  avalia.papel; let i = index;" style="margin-right: 5px;">
+                    {{ papeis.nome_papel }}
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-12 relatorio">
+            <hr>
+            <label for="Tecnologias">
+              <h3 class="box-title">
+                <i class="fa fa-desktop"></i>&nbsp;Tecnologias</h3>
+            </label>
+            <div class="row">
+              <div class="col-md-8">
+                <div class="btn .btn-lista-tec btn-dropbox" *ngFor="let tec of  avalia.tecnologias; let i = index;" style="margin-right: 5px;">
+                  {{ tec.nome_tecnologia }}
+                </div>
+              </div>
+              <!-- /.col -->
+            </div>
+          </div>
+
+          <!-- Atributos -->
+          <div class="col-md-12 relatorio">
+            <hr>
+            <label for="Atributos">
+              <h3 class="box-title">
+                <i class="fa fa-graduation-cap"></i>&nbsp;Atributos</h3>
+            </label>
+            <div class="row">
+              <div class="col-xs-12 table-responsive">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <td style="width: 65%">
+                        <label>Descrição</label>
+                      </td>
+                      <td style="width: 10%">
+                        <span class="badge bg-yellow">Abrangência</span>
+                      </td>
+                      <td style="width: 10%">
+                        <span class="badge bg-light-blue">Complexidade</span>
+                      </td>
+                      <td style="width: 10%">
+                        <span class="badge bg-green">Impacto</span>
+                      </td>
+                      <td style="width: 5%">&nbsp;</td>
+                    </tr>
+                  </thead>
+                </table>
+                <table class="table">
+                  <tr>
+                    <td>
+                      <div class="box-body table-responsive no-padding">
+                        <div class="box box-default collapsed-box" *ngFor="let atr of avalia.atributos; let i = index;">
+                          <table id="" class="table table-hover">
+                            <tr>
+                              <td>{{ atr.letra_atributo }}) {{ atr.descricao_atributo }}</td>
+                              <td style="width: 10%">
+                                <span class="badge bg-yellow">{{ atr.class_abrangencia_atributo }}-{{ atr.nome_abrangencia_atributo }}</span>
+                              </td>
+                              <td style="width: 10%">
+                                <span class="badge bg-light-blue">{{ atr.class_complexidade_atributo }}-{{ atr.nome_complexidade_atributo }}</span>
+                              </td>
+                              <td style="width: 10%">
+                                <span class="badge bg-green">{{ atr.class_impacto_atributo }}-{{ atr.nome_impacto_atributo }}</span>
+                              </td>
+                              <td style="width: 5%">
+                                <div class="box-tools pull-right">
+                                  <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip">
+                                    <i class="fa fa-plus"></i>
+                                  </button>
+                                </div>
+                              </td>
+                            </tr>
+                          </table>
+                          <div class="box-body">
+                            <table class="table table-striped" border="0">
+                              <tr>
+                                <td style="width: 10%">
+                                  <span class="badge bg-yellow">{{ atr.class_abrangencia_atributo }}-{{ atr.nome_abrangencia_atributo }}</span>
+                                </td>
+                                <td>
+                                  <span class="">{{ atr.descricao_abrangencia_atributo }}</span>
+                                </td>
+                                <td style="width: 25%">
+                                  <span class="badge bg-black">2-Significativa</span>&nbsp;Conhecimento Documentações Ágeis; Atua somente na atualização das documentações; Necessita
+										revisão; Necessidade de apoio técnico(depende de auxílio);
+                                </td>
+                                <td style="width: 25%">
+                                  <span class="badge bg-black">3-Muito</span>&nbsp;Reduzir custo; Reuso; Velocidade (está relacionado ao conhecimento do negocio x tempo resposta); Cenário novo; Referências para discutir necessidades de novos projetos; Facilidade de encontrar soluções; Transita entre diferente tecnologias/assuntos; Histórico de sucesso nas proposições; Visão sistêmica; Domínio do negócio;
+                                </td>
+                              </tr>
+                              <tr>
+                                <td style="width: 10%">
+                                  <span class="badge bg-light-blue">{{ atr.class_complexidade_atributo }}-{{ atr.nome_complexidade_atributo }}</span>
+                                </td>
+                                <td>
+                                  <span class="">{{ atr.descricao_complexidade_atributo }}</span>
+                                </td>
+                                <td style="width: 25%">
+										<span class="badge bg-black">2-Alta</span>&nbsp;Atua em 2 projetos em paralelo/perfis diferentes; Complexidade dos projetos pode influenciar; Prever problemas; Projetos grandes;
+									  </td>
+									  <td style="width: 25%">
+										<span class="badge bg-black">3-Altíssima</span>&nbsp;Prever problemas; Visão sistêmica; Atuar em paralelo em diferentes linguagens/assuntos/projetos; Projetos grandes x prazos curtos; Atuar sob pressão; Autonomia (independência na tomada de decisão); Atua em 3 ou mais projetos/perfis diferentes;
+									  </td>
+                              </tr>
+                              <tr>
+                                <td style="width: 10%">
+                                  <span class="badge bg-green">{{ atr.class_impacto_atributo }}-{{ atr.nome_impacto_atributo }}</span>
+                                </td>
+                                <td>
+                                  <span class="">{{ atr.descricao_impacto_atributo }}</span>
+                                </td>
+                                <td style="width: 25%">
+										<span class="badge bg-black">2-Muito</span>&nbsp;Gera impacto no projeto quando houver sua ausência(Qualidade); Atende alguns tipos de projetos (não domina todos assuntos);
+									  </td>
+									  <td style="width: 25%">
+										<span class="badge bg-black">3-Altamente</span>&nbsp;Insubstituível (impacto muito alto, risco); Bus factor (risco da substituição); Se não houver essa atribuição no projeto: risco de falhas, atrasos, qualidade...; Pode atender qualquer tipo de projeto (assunto, complexidade...); Velocidade (entrega antes do prazo previsto);
+									  </td>
+                              </tr>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <!-- /.col -->
+            </div>
+          </div>
+
+          <!-- Projetos -->
+          <div class="col-md-12 relatorio">
+            <hr>
+            <label for="Projetos">
+              <h3 class="box-title">
+                <i class="fa fa-rocket"></i>&nbsp;Projetos</h3>
+            </label>
+            <div class="row">
+              <div class="col-xs-12 table-responsive">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th style="width: 5%">#</th>
+                      <th style="width: 70%">Descrição</th>
+                      <th>
+                        <span class="badge bg-yellow">Abrangência</span>
+                      </th>
+                      <th>
+                        <span class="badge bg-light-blue">Complexidade</span>
+                      </th>
+                      <th>
+                        <span class="badge bg-green">Impacto</span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let pro of avalia.projetos; let i = index;">
+                      <td>{{ i+1 }}</td>
+                      <td>{{ pro.descricao_projeto }}</td>
+                      <td>
+                        <span class="badge bg-yellow">{{ pro.class_abrangencia_projeto }}-{{ pro.nome_abrangencia_projeto }}</span>
+                      </td>
+                      <td>
+                        <span class="badge bg-light-blue">{{ pro.class_complexidade_projeto }}-{{ pro.nome_complexidade_projeto }}</span>
+                      </td>
+                      <td>
+                        <span class="badge bg-green">{{ pro.class_impacto_projeto }}-{{ pro.nome_impacto_projeto }}</span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.col -->
+            </div>
+          </div>
+
+          <!-- Dados calculados -->
+          <div class="col-md-12 relatorio">
+            <hr>
+            <div class="col-md-4">
+              <label>Pontuação Avaliação:</label>&nbsp;{{ avalia.avaliacao[0].pontuacao.toFixed(2) }}
+            </div>
+            <div class="col-md-4">
+              <label>Pontuação Atual:</label>&nbsp;{{ (avalia.avaliacao[0].pontuacao + avalia.avaliacao[0].ajuste).toFixed(2) }}
+            </div>
+            <div class="col-md-4">
+              <label>Ociosidade:</label>&nbsp;{{ avalia.avaliacao[0].ociosidade }}%
+            </div>
+          </div>
+          <div class="col-md-12 relatorio">
+            <div class="col-md-4" *ngIf="user().ds_perfil == 'ADMINISTRADOR' || user().ds_perfil == 'LIDER'">
+              <label>FCT Avaliação:</label>&nbsp;{{ avalia.avaliacao[0].fct_ideal }}
+            </div>
+            <div class="col-md-4">
+              <label>FCT Atual:</label>&nbsp;{{ avalia.avaliacao[0].referencia_fct_atual }}
+            </div>
+          </div>
+          <div class="col-md-12 relatorio">
+            <div class="col-md-10">
+              <label>Hoje:</label>&nbsp;{{ DataAtual }}
+            </div>
+          </div>
+          <div class="col-xs-12 relatorio">
+            <a (click)="onPrint()" class="btn btn-default">
+              <i class="fa fa-print"></i> Imprimir
+            </a>
+            <button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
+              <i class="fa fa-download"></i> Gerar PDF
+            </button>
+          </div>
+        </div>
+        <!-- /.box-body -->
+      </div>
+      <!-- /.box -->
+    </div>
+  </div>
+</section>
