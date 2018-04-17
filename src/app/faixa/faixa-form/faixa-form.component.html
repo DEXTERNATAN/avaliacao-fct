@@ -188,18 +188,18 @@
                         </td>
                         <td [formGroupName]="i">
                           <label for="">
-                            <span class="badge bg-yellow">R$ {{ item.value.valorTotalFixo }}</span>
+                            <span class="badge bg-yellow">{{ item.value.valorTotalFixo | currency:'BRL':true }}</span>
                           </label>
                         </td>
 
                         <td [formGroupName]="i">
                           <label for="">
-                            <span class="badge bg-yellow">R$ {{ item.value.valorRateioPessoa }}</span>
+                            <span class="badge bg-yellow">{{ item.value.valorRateioPessoa | currency:'BRL':true }}</span>
                           </label>
                         </td>
                         <td [formGroupName]="i">
                           <label for="">
-                            <span class="badge bg-aqua">R$ {{ item.value.valorRateioSomado }}</span>
+                            <span class="badge bg-aqua">{{ item.value.valorRateioSomado | currency:'BRL':true}}</span>
                           </label>
                         </td>
                         <td [formGroupName]="i">
@@ -209,17 +209,17 @@
                         </td>
                         <td [formGroupName]="i">
                           <label for="">
-                            <span class="badge bg-light-blue">R$ {{ item.value.valorTotalCalculado }}</span>
+                            <span class="badge bg-light-blue">{{ item.value.valorTotalCalculado | currency:'BRL':true}}</span>
                           </label>
                         </td>
                         <td [formGroupName]="i">
                           <label for="">
-                            <span class="badge bg-light-blue">R$ {{ item.value.valorRateioPessoaCalculado }}</span>
+                            <span class="badge bg-light-blue">{{ item.value.valorRateioPessoaCalculado | currency:'BRL':true}}</span>
                           </label>
                         </td>
                         <td [formGroupName]="i">
                           <label for="">
-                            <span class="badge bg-aqua">R$ {{ item.value.valorRateioSomadoFaixa }}</span>
+                            <span class="badge bg-aqua">{{ item.value.valorRateioSomadoFaixa | currency:'BRL':true}}</span>
                           </label>
                         </td>
                       </tr>

@@ -794,7 +794,7 @@ export class AvaliacaoFormComponent implements OnInit {
     }
 
     formataOciosidade(event: any) {
-        // if (event.keyCode !== 8) {
+        if (event.keyCode !== 8) {
         //     if (event.target.value.length === 1) {
         //         event.target.value = ("000.0" + event.target.value).slice(-5)
         //     } else if (event.target.value.length === 2) {
@@ -819,7 +819,7 @@ export class AvaliacaoFormComponent implements OnInit {
         //     // } else if (event.target.value.length === 4) {
         //     //     event.target.value = event.target.value + "0";
         //     // }
-        // }
+        }
 
         return event;
     }
@@ -829,9 +829,9 @@ export class AvaliacaoFormComponent implements OnInit {
         // console.log(event.target.value.length, event.keyCode);
 
         if (event.keyCode !== 8) {
-            // if (event.target.value.length === 2) {
-            //     event.target.value = event.target.value + ".";
-            // }
+            if (event.target.value.length === 4) {
+                event.target.value = event.target.value + ".";
+            }
             //  else if (event.target.value.length === 3) {
             //     event.target.value = event.target.value + "00";
             // } else if (event.target.value.length === 4) {
