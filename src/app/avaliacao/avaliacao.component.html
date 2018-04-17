@@ -84,7 +84,7 @@
                                                 <th><p class="text-center"><span class="badge bg-light-blue">&nbsp;&nbsp;&nbsp;Pontuação Atual&nbsp;&nbsp;&nbsp;</span></p></th>
                                                 <th><p class="text-center"><span class="badge bg-red">&nbsp;&nbsp;&nbsp;Diferença&nbsp;&nbsp;&nbsp;</span></p></th>
                                                 <th><p class="text-center"><span class="badge bg-green">&nbsp;&nbsp;&nbsp;Pontuação Avaliação&nbsp;&nbsp;&nbsp;</span></p></th>
-                                                <th><p class="text-center"><span class="badge bg-green">&nbsp;&nbsp;&nbsp;FCT Avaliação&nbsp;&nbsp;&nbsp;</span></p></th>
+                                                <th *ngIf="user().ds_perfil == 'ADMINISTRADOR' || user().ds_perfil == 'LIDER'"><p class="text-center"><span class="badge bg-green">&nbsp;&nbsp;&nbsp;FCT Avaliação&nbsp;&nbsp;&nbsp;</span></p></th>
                                                 <th></th>
                                                 <th></th>
                                               </tr>
@@ -93,7 +93,7 @@
                                                   <td><p class="text-center">{{ ((items.pontuacao - items.ajuste) + (2 * items.ajuste)).toFixed(2) }}</p></td>
                                                   <td><p class="text-center">{{ (items.ajuste * (-1)).toFixed(2) }}</p></td>
                                                   <td><p class="text-center">{{ items.pontuacao.toFixed(2) }}</p></td>
-                                                  <td><p class="text-center">{{ items.fct_ideal }}</p></td>
+                                                  <td *ngIf="user().ds_perfil == 'ADMINISTRADOR' || user().ds_perfil == 'LIDER'"><p class="text-center">{{ items.fct_ideal }}</p></td>
                                                   <!-- <td>
                                                         <a class="btn  btn-xs bg-blue btn-flat">
                                                            <i class="fa fa-pencil"></i>

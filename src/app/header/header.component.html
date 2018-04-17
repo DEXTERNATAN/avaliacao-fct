@@ -54,7 +54,7 @@
 						<ul class="dropdown-menu" role="menu">
 							<li routerLinkActive="active"><a [routerLink]="['/avaliacao']">Avaliações</a></li>
 							<li class="divider"*ngIf="user().ds_perfil == 'ADMINISTRADOR'"></li>
-							<li routerLinkActive="active" *ngIf="user().ds_perfil == 'ADMINISTRADOR'"><a [routerLink]="['/relatorios']">Relatórios</a></li>
+							<!-- <li routerLinkActive="active" *ngIf="user().ds_perfil == 'ADMINISTRADOR'"><a [routerLink]="['/relatorios']">Relatórios</a></li> -->
 						</ul>
 					</li>
 					<li routerLinkActive="active"><a [routerLink]="['/about']">Sobre</a></li>
