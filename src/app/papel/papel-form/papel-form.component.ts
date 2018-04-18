@@ -150,6 +150,7 @@ export class PapelFormComponent implements OnInit {
             data => {
                 // console.log('ULTIMO ID: ', data);
                 if (atualizar) {
+                    this.associarAtributoPapel('editar', this.idResource);
                     this.toastr.success('Papel atualizado com sucesso!', 'Sucesso', {
                         progressBar: true,
                         progressAnimation: 'increasing',
@@ -157,28 +158,7 @@ export class PapelFormComponent implements OnInit {
                         timeOut: 3000
                     });
                 } else {
-                    this.papelService.getMaxId().subscribe(value => {
-                        //console.log('Resultado: ', value[0].maxid);
-
-                        // Associar papel a atributo
-                        this.atributo.controls.forEach(element => {
-                            if (element.value.ativado) {
-
-                                let associacaoAtributoPapel: any = {
-                                    TB_ATRIBUTO_id_atributo: element.value.idAtributo,
-                                    TB_PAPEL_id_papel: value[0].maxid
-                                };
-
-                                this.papelService.addAtributoPapel(associacaoAtributoPapel).subscribe(
-                                    data => {
-                                        // console.log('Resposta do servidor: ', data);
-                                    }
-                                );
-                            }
-                        });
-
-                    })
-
+                    this.associarAtributoPapel('novo', this.idResource);
                     this.toastr.success('Papel salvo com sucesso!', 'Sucesso', {
                         progressBar: true,
                         progressAnimation: 'increasing',
@@ -188,6 +168,38 @@ export class PapelFormComponent implements OnInit {
                 }
                 this.router.navigate(['papel']);
             });
+
+    }
+
+    associarAtributoPapel(metodo: string, idPapel?: number) {
+        
+        if (metodo === 'editar') {
+
+            this.atributo.controls.forEach(element => {
+                if (element.value.ativado) {
+                    let associacaoAtributoPapel: any = {
+                        TB_ATRIBUTO_id_atributo: element.value.idAtributo,
+                        TB_PAPEL_id_papel: idPapel
+                    };
+                    this.papelService.addAtributoPapel(associacaoAtributoPapel).subscribe(data => { });
+                }
+            });
+
+        } else {
+            
+            this.papelService.getMaxId().subscribe(value => {
+                this.atributo.controls.forEach(element => {
+                    if (element.value.ativado) {
+                        let associacaoAtributoPapel: any = {
+                            TB_ATRIBUTO_id_atributo: element.value.idAtributo,
+                            TB_PAPEL_id_papel: value[0].maxid
+                        };
+                        this.papelService.addAtributoPapel(associacaoAtributoPapel).subscribe(data => { });
+                    }
+                });
+            });
+
+        }
 
     }
 
