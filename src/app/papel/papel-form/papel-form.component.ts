@@ -132,7 +132,7 @@ export class PapelFormComponent implements OnInit {
     }
 
     save() {
-
+        
         let result, userValue = this.formPapel.value;
         let atualizar: boolean;
 
@@ -148,8 +148,8 @@ export class PapelFormComponent implements OnInit {
 
         result.subscribe(
             data => {
-                // console.log('ULTIMO ID: ', data);
                 if (atualizar) {
+                    
                     this.associarAtributoPapel('editar', this.idResource);
                     this.toastr.success('Papel atualizado com sucesso!', 'Sucesso', {
                         progressBar: true,

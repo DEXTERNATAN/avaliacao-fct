@@ -23,7 +23,7 @@
         <form role="form" [formGroup]="formPapel" (ngSubmit)="save()">
           <div class="box-body">
             <div class="form-group" [ngClass]="{'has-error': (!formPapel.controls['tipo'].valid && formPapel.controls['tipo'].touched) }">
-              <label for="tipo">Tipo = {{ papeis.tipo }} </label>
+              <label for="tipo">Tipo</label>
               
               <select class="form-control" [(ngModel)]="papeis.tipo" formControlName="tipo" id="tipo">
                 <option [selected]="true" value="">Selecione</option>
