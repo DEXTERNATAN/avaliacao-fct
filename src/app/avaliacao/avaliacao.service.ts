@@ -10,7 +10,7 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 
 import { Avaliacao } from './avaliacao.model';
-// import { TecnologiaColaborador } from 'app/avaliacao/TecnologiaColaborador.model';
+
 
 @Injectable()
 export class AvaliacaoService  extends RestService<Avaliacao> {
@@ -34,7 +34,7 @@ export class AvaliacaoService  extends RestService<Avaliacao> {
     }
 
     getAvaliacao(): Observable<Avaliacao[]> {
-        return this.http.get(`${MEAT_API}/avaliacao`)
+        return this.http.get(`${MEAT_API}/avaliacao`, this.getDefaultRequestOptions())
             .map(response => response.json());
     }
 

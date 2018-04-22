@@ -6,4 +6,5 @@ export interface User {
     ds_perfil: string;
     status_ativo: string;
     TB_DIVISAO_id_divisao: number;
+    token: any
 }

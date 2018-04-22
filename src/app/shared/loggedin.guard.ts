@@ -10,7 +10,11 @@ export class LoggedInGuard  implements CanLoad  {
 
     checkAuthentication(path: string): boolean {
         const loggedIn = this.loginService.isLoggedIn();
-        
+        // console.log(this.loginService.isTokenExpired());
+        // if (!this.loginService.isTokenExpired()) {
+        //     return true;
+        // }
+
         if ( !loggedIn ) {
             this.loginService.handleLogin();
         };
