@@ -26,9 +26,9 @@ export class LoginService extends RestService<User> {
     }
 
     isLoggedIn(): boolean {
-        console.log(this.isTokenExpired(this.getToken()));
+        // console.log(this.isTokenExpired(this.getToken()));
         let tokenExpirado = this.isTokenExpired(this.getToken());
-        console.log('RESULTADO DO LOGIN: ', this.user !== undefined && !tokenExpirado);
+        // console.log('RESULTADO DO LOGIN: ', this.user !== undefined && !tokenExpirado);
         return (this.user !== undefined && !tokenExpirado);
     }
 
