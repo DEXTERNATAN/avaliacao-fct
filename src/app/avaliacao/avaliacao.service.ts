@@ -39,13 +39,13 @@ export class AvaliacaoService  extends RestService<Avaliacao> {
     }
 
     getPapelAtributo(id_papel) {
-        return this.http.get(`${MEAT_API}/PapelAtributo/${id_papel}`)
+        return this.http.get(`${MEAT_API}/PapelAtributo/${id_papel}`, this.getDefaultRequestOptions())
         // .do(response => console.log('resultado: ', response.json()))
         .map(response => response.json());
     }
 
     getBuscaAtributo(id_abrangencia, id_complexidade, id_impacto, letra) {
-        return this.http.get(`${MEAT_API}/avaliacao/buscaAtributo/${id_abrangencia}/${id_complexidade}/${id_impacto}/${letra}`)
+        return this.http.get(`${MEAT_API}/avaliacao/buscaAtributo/${id_abrangencia}/${id_complexidade}/${id_impacto}/${letra}`, this.getDefaultRequestOptions())
         .do(response => console.log('resultado: ', response.json()))
         .map(response => response.json());
     }
