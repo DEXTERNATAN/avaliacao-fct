@@ -1,6 +1,6 @@
 import { LoginService } from './login.service';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 
 import { NotificationService } from 'app/shared/messages/notification.service';
@@ -36,8 +36,8 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
 
     this.loginForm = this.fb.group({
-      login: this.fb.control('98287028191', []),
-      senha: this.fb.control('12345678', [])
+      login: this.fb.control('98287028191', Validators.required),
+      senha: this.fb.control('12345678', Validators.required)
     });
     this.navigateTo = this.activatedRoute.snapshot.params['to'] || '/';
   }
@@ -53,13 +53,17 @@ export class LoginComponent implements OnInit {
       },
       response => {
         // console.log(response);
-        this.notificationService.notify('Dados invalidos. Por favor! tente novamente ...'); 
+        this.notificationService.notify('Dados invalidos. Por favor! tente novamente ...');
         // this.router.navigate([atob(this.navigateTo)]);
       }
       // ()=> {
       //   this.router.navigate([atob(this.navigateTo)]);
       // }
     );
+  }
+
+  resolved(captchaResponse: string) {
+    console.log(`Resolved captcha with response ${captchaResponse}:`);
   }
 
 }

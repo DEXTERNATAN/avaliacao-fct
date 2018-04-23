@@ -1,3 +1,4 @@
+
 <!-- INÍCIO DO CONTEÚDO -->
 <section class="content login-content" style="margin: 10% auto" [@avaliacaoState]="loginState">
   <div class="login-logo">
@@ -17,6 +18,8 @@
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="row">
+        <!-- <input type="text" formControlName="txtTexto_captcha_serpro_gov_br">
+        <div data-ui-captcha-serpro="css1; input" data-clienteid="00000000000000000000000000000000"></div> -->
         <!-- /.col -->
         <div class="col-xs-offset-8 col-xs-4">
           <button type="submit" (click)="login()" [disabled]="loginForm.invalid" class="btn btn-primary btn-block btn-flat">Entrar</button>
