@@ -305,3 +305,13 @@ body {
   width: 100%;
   padding: 10px 50px;
 }
+
+/* CSS do captcha do serpro */
+#divContainerUI_captcha_serpro_gov_br {
+  width: 220px;
+  margin: 5px 70px 20px 80px;
+  /* border: 1px solid black; */
+  padding: 8px;
+  border-radius: 0em !important;
+  /* box-shadow: black 0px 0px 8px 1px; */
+}

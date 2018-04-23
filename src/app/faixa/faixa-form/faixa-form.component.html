@@ -140,7 +140,7 @@
                     <td>
                       <label style="width: 60%">
                         <select formControlName="vlrReferencia" class="form-control">
-                          <option *ngFor="let ref of referencia" [value]="ref.id_referencia_fct_gfe">{{ref.num_referencia }} - {{ ref.cargo }} (R$ {{ref.valor_referencia }})</option>
+                          <option *ngFor="let ref of referencia" [value]="ref.id_referencia_fct_gfe">{{ref.num_referencia }} - {{ ref.cargo }} ({{ref.valor_referencia | currency:'BRL':'symbol-narrow' }})</option>
                         </select>
                       </label>
                     </td>
