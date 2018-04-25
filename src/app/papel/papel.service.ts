@@ -3,7 +3,6 @@ import { Observable } from 'rxjs/Rx';
 import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { RestService } from 'app/shared/services/rest.service';
-
 import { Papel } from './papel.model';
 
 export class AtributoPapel {
@@ -14,7 +13,9 @@ export class AtributoPapel {
 @Injectable()
 export class PapelService extends RestService<Papel>{
 
-    constructor(protected http: Http){
+    private papel: Papel;
+
+    constructor(protected http: Http) {
         super(http);
     }
 
@@ -22,7 +23,7 @@ export class PapelService extends RestService<Papel>{
         return 'papel';
     }
 
-    public mapIdentificador(objeto: Papel): number {
+    mapIdentificador(objeto: Papel): number {
         return objeto.id_papel;
     }
 
@@ -42,14 +43,8 @@ export class PapelService extends RestService<Papel>{
         return super.removerPorId(id);
     }
 
-    updatePapel(id, papel) {
+    updatePapel(papel, id) {
         return super.atualizarPorId(papel, id);
-    }
-
-    getMaxId(){
-        return this.http.get(`${MEAT_API}/papel/1/1`)
-        .do(response => console.log('resultado: ', response.json()))
-        .map(response => response.json());
     }
 
     getAtributoPapel(): Observable<Papel[]> {
@@ -60,7 +55,13 @@ export class PapelService extends RestService<Papel>{
 
     addAtributoPapel(atributoPapel: AtributoPapel): Observable<string> {
         return this.http.post(`${MEAT_API}/AtributoPapel/`, atributoPapel, this.getDefaultRequestOptions())
-            .map(response => response.text())
+            .map(response => response.text());
+    }
+
+    deleteAtributoPapel(id: number): Observable<string> {
+        return this.http.delete(`${MEAT_API}/AtributoPapel/` + id, this.getDefaultRequestOptions())
+        .do(response => console.log('resultado: ', response.json()))
+        .map(response => response.text());
     }
 
 }

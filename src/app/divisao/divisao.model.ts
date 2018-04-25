@@ -4,6 +4,6 @@ export class Divisao {
     nome: string;
     descricao: string;
     uf: string;
-    especialidade: string
+    especialidade: string;
 }
 

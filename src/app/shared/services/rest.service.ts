@@ -1,13 +1,9 @@
-import { Http, Response, RequestOptions, Headers, URLSearchParams } from '@angular/http';
+import { Http, RequestOptions, Headers, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw'
 import { MEAT_API } from 'app/app.api';
 import { ErrorHandler } from 'app/app.error-handler';
-// import { TOKEN_NAME } from 'app/security/login/login.service';
-import * as jwt_decode from 'jwt-decode';
-
-// export const TOKEN_NAME: string = 'jwt_token';
 
 const AUTH_HEADER_KEY = 'Authorization';
 const AUTH_PREFIX = 'Bearer';
@@ -15,9 +11,9 @@ const AUTH_PREFIX = 'Bearer';
 
 export abstract class RestService<T>{
 
-    private urlBase: string = `${MEAT_API}`;
+    private urlBase = `${MEAT_API}`;
     protected headers: Headers;
-    protected TOKEN_NAME: string = 'jwt_token'
+    protected TOKEN_NAME = 'jwt_token';
 
     constructor(protected http: Http) {
         this.headers = new Headers({
@@ -25,13 +21,8 @@ export abstract class RestService<T>{
         });
 
         const token = localStorage.getItem(this.TOKEN_NAME);
+        if (token) { this.headers.append(AUTH_HEADER_KEY, `${AUTH_PREFIX} ${token}`); }
 
-        if (token) {
-            this.headers.append(AUTH_HEADER_KEY, `${AUTH_PREFIX} ${token}`);
-        }
-
-        // console.log(token, this.headers);
-        
     }
 
     public getUrlBase(): string {
@@ -79,17 +70,18 @@ export abstract class RestService<T>{
     }
 
     atualizar(objeto: T): Observable<T> {
-        return this.http.put(`${this.getUrlBase()}/${this.getUrl()}` + '/' + this.mapIdentificador(objeto), objeto, this.getDefaultRequestOptions())
+        return this.http.put(`${this.getUrlBase()}/${this.getUrl()}` + '/' + this.mapIdentificador(objeto), objeto,
+                this.getDefaultRequestOptions())
             .map(response => response.json())
-            // .do(data => console.log('server data:', data))  // debug
+            .do(data => console.log('server data:', data))  // debug
             .catch(ErrorHandler.handleError);
     }
 
     atualizarPorId(objeto: T, id): Observable<T> {
-        //debugger
-        return this.http.put(`${this.getUrlBase()}/${this.getUrl()}` + '/' + id + this.mapIdentificador(objeto), objeto, this.getDefaultRequestOptions())
+      return this.http.put(`${this.getUrlBase()}/${this.getUrl()}` + '/' + id , objeto,
+      this.getDefaultRequestOptions())
             .map(response => response.json())
-            // .do(data => console.log('server data:', data))  // debug
+            .do(data => console.log('server data:', data))  // debug
             .catch(ErrorHandler.handleError);
     }
 

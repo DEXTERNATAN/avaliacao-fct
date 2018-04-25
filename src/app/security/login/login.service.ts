@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-
 import { User } from 'app/security/login/user';
 import { RestService } from 'app/shared/services/rest.service';
 import { Router } from '@angular/router';

@@ -2,7 +2,6 @@ import { Observable } from 'rxjs/Rx';
 import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { RestService } from 'app/shared/services/rest.service';
-
 import { Atributo } from './atributo.model';
 
 @Injectable()
