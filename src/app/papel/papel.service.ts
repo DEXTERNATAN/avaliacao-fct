@@ -53,7 +53,7 @@ export class PapelService extends RestService<Papel>{
     }
 
     getAtributoPapel(): Observable<Papel[]> {
-        return this.http.get(`${MEAT_API}/AtributoPapel/`)
+        return this.http.get(`${MEAT_API}/AtributoPapel/`, this.getDefaultRequestOptions())
         .do(response => console.log('resultado: ', response.json()))
         .map(response => response.json());
     }
