@@ -148,6 +148,8 @@ export class PapelFormComponent implements OnInit {
 
         result.subscribe(
             data => {
+                
+                var ultimoIdInserido = data;
                 if (atualizar) {
 
                     this.associarAtributoPapel('editar', this.idResource);
@@ -158,7 +160,7 @@ export class PapelFormComponent implements OnInit {
                         timeOut: 3000
                     });
                 } else {
-                    this.associarAtributoPapel('novo', this.idResource);
+                    this.associarAtributoPapel('novo', ultimoIdInserido);
                     this.toastr.success('Papel salvo com sucesso!', 'Sucesso', {
                         progressBar: true,
                         progressAnimation: 'increasing',
@@ -173,7 +175,11 @@ export class PapelFormComponent implements OnInit {
 
     associarAtributoPapel(metodo: string, idPapel: number) {
 
-        this.papelService.deleteAtributoPapel(idPapel).subscribe(data=> {});
+        if (idPapel) {
+            console.log('id do papel existe');
+            this.papelService.deleteAtributoPapel(idPapel).subscribe(data=> {});
+        }
+
         if (metodo === 'editar') {
 
             this.atributo.controls.forEach(element => {
@@ -189,6 +195,7 @@ export class PapelFormComponent implements OnInit {
 
         } else {
             // Inserir
+
             this.atributo.controls.forEach(element => {
                 if (element.value.ativado) {
                     let associacaoAtributoPapel: any = {
