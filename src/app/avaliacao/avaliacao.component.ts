@@ -2,13 +2,10 @@ import { DataTableDirective } from 'angular-datatables';
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs/Rx';
 import { MensagensHandler } from 'app/shared/services/mensagens-handler.service';
-
 import { Avaliacao } from './avaliacao.model';
-
 import { LoginService } from 'app/security/login/login.service';
 import { AvaliacaoService } from 'app/avaliacao/avaliacao.service';
 import { ColaboradorService } from 'app/colaborador/colaborador.service';
-
 import { ToastrService } from 'ngx-toastr';
 import { User } from 'app/security/login/user';
 
@@ -19,9 +16,9 @@ import { User } from 'app/security/login/user';
 })
 export class AvaliacaoComponent implements OnInit, AfterViewInit {
 
-    public Avaliacao: Avaliacao[] = [];
-    public avaliacaoDetalhe: any[] = [];
-    public avaliacaoCarregada = true;
+    Avaliacao: Avaliacao[] = [];
+    avaliacaoDetalhe: any[] = [];
+    avaliacaoCarregada: boolean;
 
     dtOptions: DataTables.Settings = {};
     @ViewChild(DataTableDirective)
@@ -41,7 +38,7 @@ export class AvaliacaoComponent implements OnInit, AfterViewInit {
     ) { }
 
     ngOnInit() {
-
+        this.avaliacaoCarregada = false;
         this.user();
         this.dtOptions = {
             language: {
@@ -61,7 +58,6 @@ export class AvaliacaoComponent implements OnInit, AfterViewInit {
                 });
 
                 this.Avaliacao = avalFilter;
-                this.avaliacaoCarregada = false;
                 this.dtTrigger.next();
 
                 if (user.id_perfil == userAdmin) {
@@ -69,6 +65,8 @@ export class AvaliacaoComponent implements OnInit, AfterViewInit {
                 } else {
                     this.getAvaliacaoDetalhe(this.Avaliacao);
                 }
+            }, error => {
+                console.log('Error ao carregar a avaliação');
             });
     }
 
@@ -112,6 +110,7 @@ export class AvaliacaoComponent implements OnInit, AfterViewInit {
                     'listGroup': elementGroup,
                     'listDetalhe': elementDetalhe
                 });
+                
             });
         });
     }

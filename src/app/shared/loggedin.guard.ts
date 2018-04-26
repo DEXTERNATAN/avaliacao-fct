@@ -6,12 +6,13 @@ import { LoginService } from 'app/security/login/login.service';
 @Injectable()
 export class LoggedInGuard  implements CanLoad  {
 
-    constructor(private loginService: LoginService) {}
+    constructor(private loginService: LoginService, private router: Router) {}
 
     checkAuthentication(path: string): boolean {
         const loggedIn = this.loginService.isLoggedIn();
 
         if ( !loggedIn ) {
+            this.router.navigate(['/login']);
             this.loginService.handleLogin();
         };
         return loggedIn;

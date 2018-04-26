@@ -30,7 +30,7 @@ export abstract class RestService<T>{
             this.headers.append(AUTH_HEADER_KEY, `${AUTH_PREFIX} ${token}`);
         }
 
-        console.log(token, this.headers);
+        // console.log(token, this.headers);
         
     }
 
