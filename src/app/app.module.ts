@@ -10,8 +10,6 @@ import { RequestOptions } from '@angular/http';
 import { XHRBackend } from '@angular/http';
 import { Http } from '@angular/http';
 import { ToastrModule } from 'ngx-toastr';
-
-// import { NgSpinningPreloader } from 'ng2-spinning-preloader';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { Ng2SelectizeModule } from 'ng2-selectize';
 import { LoaderService } from 'app/shared/services/loader.service';
@@ -66,10 +64,8 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { LoginComponent } from 'app/security/login/login.component';
-
 import { MensagensComponent } from 'app/shared/components/mensagens.component';
 import { ResetSenhaComponent } from './security/reset/reset.component';
-
 import { LoginService } from 'app/security/login/login.service';
 import { NotificationService } from 'app/shared/messages/notification.service';
 import { LoggedInGuard } from 'app/shared/loggedin.guard';
@@ -114,7 +110,7 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
         ReactiveFormsModule,
         HttpModule,
         TextMaskModule,
-        ToastrModule.forRoot(), // ToastrModule added
+        ToastrModule.forRoot(),
         Select2Module,
         CurrencyMaskModule,
         Ng2SelectizeModule,
@@ -158,11 +154,6 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
             { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig },
             { provide: Http, useFactory: httpFactory, deps: [XHRBackend, RequestOptions, LoaderService, MensagensHandler] },
             { provide: LocationStrategy, useClass: HashLocationStrategy} ,
-            // NgSpinningPreloader,
-            {
-                provide: ErrorHandler, 
-                useClass: AuthErrorHandler
-              },
             HttpClient,
             LoginService,
             NotificationService,
