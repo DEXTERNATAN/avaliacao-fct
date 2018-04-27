@@ -6,9 +6,9 @@ import { Abrangencia } from './abrangencia.model';
 import { LoginService } from 'app/security/login/login.service';
 
 @Injectable()
-export class AbrangenciaService extends RestService<Abrangencia>{
+export class AbrangenciaService extends RestService<Abrangencia> {
 
-    constructor(protected http: Http, private loginService: LoginService){
+    constructor(protected http: Http, private loginService: LoginService) {
         super(http);
     }
 

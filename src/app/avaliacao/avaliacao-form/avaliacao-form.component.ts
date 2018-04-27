@@ -235,7 +235,6 @@ export class AvaliacaoFormComponent implements OnInit {
 
                         });
                     },
-                    // error => (console.log('Error: ', error))
                 );
             }
         );
@@ -289,8 +288,7 @@ export class AvaliacaoFormComponent implements OnInit {
                 ** Codigo da versão 01 fazendo uso de serviços separados para inserção na tabela de resultado **
                 ** e tambem nas tabelas associativas **
                 */
-                // console.log('Max id: ', data);
-
+                
                 // Associação entre colaborador e papel
                 this.associarColaboradorPapel(avaliacaoForm, data);
 
@@ -372,7 +370,6 @@ export class AvaliacaoFormComponent implements OnInit {
         let associacaoColaboradorPapel: any;
 
         formAvaliacao.papel.forEach(Idpapel => {
-            // console.log('Maxid: ', maxId);
             associacaoColaboradorPapel = {
                 'TB_PAPEL_id_papel': Idpapel,
                 'TB_COLABORADOR_id_colaborador': formAvaliacao.colaborador.idColaborador,
@@ -392,8 +389,6 @@ export class AvaliacaoFormComponent implements OnInit {
         let associacaoColaboradorProjeto: any;
 
         formAvaliacao.items.forEach(idProjeto => {
-
-            console.log('PROJETO > : ', parseInt(idProjeto.Projetos, 9));
 
             associacaoColaboradorProjeto = {
                 'TB_PROJETO_id_projeto': idProjeto.Projetos,
@@ -415,21 +410,14 @@ export class AvaliacaoFormComponent implements OnInit {
         let AssociaAtributo: any;
 
         formAvaliacao.items.forEach(projetos => {
-            // console.log('PROJETO > : ', projetos, projetos.Abrangencia, projetos.Complexidade, projetos.Complexidade);
-            console.log('MaxID: ', maxId);
-            console.log('Projeto: ', projetos);
             this.avaliacaoService.getBuscaAtributo(projetos.Abrangencia, projetos.Complexidade, projetos.Impacto, 'p').subscribe(
                 dataAtributo => {
                     if (dataAtributo) {
-                        //debugger
                         associacaoAtributoProjeto = {
                             'TB_ATRIBUTO_id_atributo': dataAtributo.id_atributo,
                             'TB_PROJETO_id_projeto': projetos.Projetos,
                             'TB_RESULTADO_id_resultado': maxId
                         };
-                        console.log('associacaoAtributoProjeto: ', associacaoAtributoProjeto);
-
-                        // console.log('RESULTADO: ', dataAtributo, associacaoAtributoProjeto, projetos);
                         this.avaliacaoService.addAssociacaoAtributoProjeto(associacaoAtributoProjeto).subscribe(data => {
                             console.log(' **** --- Associações Atributo com Projeto', data);
                         });
@@ -446,17 +434,11 @@ export class AvaliacaoFormComponent implements OnInit {
                         };
 
                         this.atributoColaboradorService.addAssociacaoAtributoColaborador(AssociaAtributo).subscribe(data => { });
-
                     }
                 }
             );
-
-
-
         });
-
     }
-
 
     getPapeis() {
         this.papelService.getPapel().subscribe(papel => {
@@ -826,8 +808,7 @@ export class AvaliacaoFormComponent implements OnInit {
 
 
     formataData(event: any) {
-        // console.log(event.target.value.length, event.keyCode);
-
+        
         if (event.keyCode !== 8) {
             if (event.target.value.length === 4) {
                 event.target.value = event.target.value + ".";

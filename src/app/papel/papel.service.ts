@@ -47,6 +47,12 @@ export class PapelService extends RestService<Papel>{
         return super.atualizarPorId(papel, id);
     }
 
+    getMaxId(){
+        return this.http.get(`${MEAT_API}/papel/1/1`, this.getDefaultRequestOptions())
+        .do(response => console.log('resultado: ', response.json()))
+        .map(response => response.json());
+    }
+    
     getAtributoPapel(): Observable<Papel[]> {
         return this.http.get(`${MEAT_API}/AtributoPapel/`, this.getDefaultRequestOptions())
         .do(response => console.log('resultado: ', response.json()))

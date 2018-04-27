@@ -72,11 +72,7 @@ export class AtributoFormComponent implements OnInit {
 
 				this.habilitaCampos();
 
-				response => {
-					if (response.status == 404) {
-						this.router.navigate(['atributo'])
-					}
-				}
+				
 			});
 		});
 	}
@@ -114,13 +110,13 @@ export class AtributoFormComponent implements OnInit {
 			error => {
 				console.log('Error', error);
 			}
-		)
+		);
 	}
 
 	getComplexidade() {
 		this._complexidadeService.getComplexidade().subscribe(complexidade => {
 			this.Complexidade = complexidade;
-		})
+		});
 	}
 
 	getImpacto() {
@@ -180,7 +176,7 @@ export class AtributoFormComponent implements OnInit {
 			case 'a':
 				{
 					this.atributo.descricao = 'Analisar as demandas apresentadas pelas áreas de negócio e propor alternativas de ' +
-					'solução técnica e estratégia de desenvolvimento';
+						'solução técnica e estratégia de desenvolvimento';
 					break;
 				}
 			case 'b':
@@ -210,8 +206,7 @@ export class AtributoFormComponent implements OnInit {
 				}
 			case 'g':
 				{
-					this.atributo.descricao = 'Planejar, elaborar e ministrar treinamentos relativos a sistemas de informação, ' +
-					'ferramentas de acesso e manipulação de dados';
+					this.atributo.descricao = 'Planejar, elaborar e ministrar treinamentos relativos a sistemas de informação, ferramentas de acesso e manipulação de dados';
 					break;
 				}
 			case 'h':
@@ -222,12 +217,17 @@ export class AtributoFormComponent implements OnInit {
 			case 'i':
 				{
 					this.atributo.descricao = 'Prestar assessoramento técnico no que se refere a prazos, recursos e alternativas ' +
-					'de desenvolvimento de sistemas';
+						'de desenvolvimento de sistemas';
 					break;
 				}
 			case 'j':
 				{
 					this.atributo.descricao = 'Especificar a manutenção de softwares e de sistemas';
+					break;
+				}
+			case 'k':
+				{
+					this.atributo.descricao = 'Manter os sistemas em produção, avaliando seu desempenho e, quando necessário, propondo medidas de correção dos desvios';
 					break;
 				}
 			case 'l':
@@ -243,6 +243,41 @@ export class AtributoFormComponent implements OnInit {
 			case 'n':
 				{
 					this.atributo.descricao = 'Elaborar e gerenciar projetos de sistemas e software';
+					break;
+				}
+			case 'o':
+				{
+					this.atributo.descricao = 'Identificar e analisar as necessidades dos clientes em relação à informações visuais relacionadas à mídia digital e/ou impressa';
+					break;
+				}
+			case 'q':
+				{
+					this.atributo.descricao = 'Elaborar e implementar projetos de programação visual relacionados à mídia digital e/ou impressa';
+					break;
+				}
+			case 'r':
+				{
+					this.atributo.descricao = 'Elaborar e implementar leiaute para mídia digital e/ou impressa';
+					break;
+				}
+			case 's':
+				{
+					this.atributo.descricao = 'Efetuar manutenção relacionada aos elementos visuais em mídia digital e/ou impressa';
+					break;
+				}
+			case 't':
+				{
+					this.atributo.descricao = 'Efetuar prospecção, análise e implementação de soluções de usabilidade e acessibilidade';
+					break;
+				}
+			case 'u':
+				{
+					this.atributo.descricao = 'Definir linguagens, materiais e processos de produção a serem utilizados em mídia digital e/ou impressa';
+					break;
+				}
+			case 'v':
+				{
+					this.atributo.descricao = 'Elaborar especificações técnicas e documentações necessárias à execução das atividades de programação visual';
 					break;
 				}
 			default: {

@@ -39,7 +39,6 @@
               <label for="">DIVISÃO:</label>
               <span>
                 {{ avalia.avaliacao[0].sigla }}
-
               </span>
             </div>
             <div class="col-md-3">
@@ -140,72 +139,124 @@
                           </table>
                           <div class="box-body">
                             <table class="table table-striped" border="0">
-                              <tr>
-                                <td style="width: 10%">
-                                  <span class="badge bg-yellow">{{ atr.class_abrangencia_atributo }}-{{ atr.nome_abrangencia_atributo }}</span>
-                                </td>
-                                <td>
-                                  <span class="">{{ atr.descricao_abrangencia_atributo }}</span>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td></td>
-                                <td>
-                                  <span class="badge bg-black">{{ atr.class_abrangencia_atributo2 }}-{{ atr.nome_abrangencia_atributo2 }}</span>
-                                  &nbsp;{{ atr.descricao_abrangencia_atributo2 }}
-                                </td>
-                              </tr>
-                              <tr>
-                                <td></td>
-                                <td>
-                                  <span class="badge bg-black">{{ atr.class_abrangencia_atributo3 }}-{{ atr.nome_abrangencia_atributo3 }}</span>
-                                  &nbsp;{{ atr.descricao_abrangencia_atributo3 }}
-                                </td>
-                              </tr>
-                              <tr>
-                                <td style="width: 10%">
-                                  <span class="badge bg-light-blue">{{ atr.class_complexidade_atributo }}-{{ atr.nome_complexidade_atributo }}</span>
-                                </td>
-                                <td>
-                                  <span class="">{{ atr.descricao_complexidade_atributo }}</span>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td></td>
-                                <td>
-                                  <span class="badge bg-black">{{ atr.class_complexidade_atributo2 }}-{{ atr.nome_complexidade_atributo2 }}</span>
-                                  &nbsp;{{ atr.descricao_complexidade_atributo2 }}
-                                </td>
-                              </tr>
-                              <tr>
-                                <td></td>
-                                <td>
-                                  <span class="badge bg-black">{{ atr.class_complexidade_atributo3 }}-{{ atr.nome_complexidade_atributo3 }}</span>
-                                  &nbsp;{{ atr.descricao_complexidade_atributo3 }}
-                                </td>
-                              </tr>
-                              <tr>
-                                <td style="width: 10%">
-                                  <span class="badge bg-green">{{ atr.class_impacto_atributo }}-{{ atr.nome_impacto_atributo }}</span>
-                                </td>
-                                <td>
-                                  <span class="">{{ atr.descricao_impacto_atributo }}</span>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td></td>
-                                <td>
-                                  <span class="badge bg-black">{{ atr.class_impacto_atributo2 }}-{{ atr.nome_impacto_atributo2 }}</span>
-                                  &nbsp;{{ atr.descricao_impacto_atributo2 }}
-                                </td>
-                              </tr>
-                              <tr>
-                                <td></td>
-                                <td>
-                                  <span class="badge bg-black">{{ atr.class_impacto_atributo3 }}-{{ atr.nome_impacto_atributo3 }}</span>
-                                  &nbsp;{{ atr.descricao_impacto_atributo3 }}
-                                </td>
-                              </tr>
+                              <div class="box-body table-responsive no-padding">
+                                <div class="box box-default collapsed-box">
+                                  <table id="" class="table table-hover">
+                                    <tr>
+                                      <td style="width: 10%">
+                                        <span class="badge bg-yellow">{{ atr.class_abrangencia_atributo }}-{{ atr.nome_abrangencia_atributo }}</span>
+                                      </td>
+                                      <td>
+                                        <span class="">{{ atr.descricao_abrangencia_atributo }}</span>
+                                      </td>
+                                      <td style="width: 5%">
+                                        <div class="box-tools pull-right">
+                                          <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip">
+                                            Opções&nbsp;
+                                            <i class="fa fa-fw fa-toggle-down"></i>
+                                          </button>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                  <div class="box-body">
+                                    <table class="table table-striped" border="0">
+                                      <tr>
+                                        <td>
+                                          <span class="badge bg-black">{{ atr.class_abrangencia_atributo2 }}-{{ atr.nome_abrangencia_atributo2 }}</span>
+                                          &nbsp;{{ atr.descricao_abrangencia_atributo2 }}
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td>
+                                          <span class="badge bg-black">{{ atr.class_abrangencia_atributo3 }}-{{ atr.nome_abrangencia_atributo3 }}</span>
+                                          &nbsp;{{ atr.descricao_abrangencia_atributo3 }}
+                                        </td>
+                                      </tr>
+                                    </table>
+                                  </div>
+                                </div>
+                              </div>
+                            </table>
+                            <table class="table table-striped" border="0">
+                              <div class="box-body table-responsive no-padding">
+                                <div class="box box-default collapsed-box">
+                                  <table id="" class="table table-hover">
+                                    <tr>
+                                      <td style="width: 10%">
+                                        <span class="badge bg-light-blue">{{ atr.class_complexidade_atributo }}-{{ atr.nome_complexidade_atributo }}</span>
+                                      </td>
+                                      <td>
+                                        <span class="">{{ atr.descricao_complexidade_atributo }}</span>
+                                      </td>
+                                      <td style="width: 5%">
+                                        <div class="box-tools pull-right">
+                                          <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip">
+                                            Opções&nbsp;
+                                            <i class="fa fa-fw fa-toggle-down"></i>
+                                          </button>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                  <div class="box-body">
+                                    <table class="table table-striped" border="0">
+                                      <tr>
+                                        <td>
+                                          <span class="badge bg-black">{{ atr.class_complexidade_atributo2 }}-{{ atr.nome_complexidade_atributo2 }}</span>
+                                          &nbsp;{{ atr.descricao_complexidade_atributo2 }}
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td>
+                                          <span class="badge bg-black">{{ atr.class_complexidade_atributo3 }}-{{ atr.nome_complexidade_atributo3 }}</span>
+                                          &nbsp;{{ atr.descricao_complexidade_atributo3 }}
+                                        </td>
+                                      </tr>
+                                    </table>
+                                  </div>
+                                </div>
+                              </div>
+                            </table>
+                            <table class="table table-striped" border="0">
+                              <div class="box-body table-responsive no-padding">
+                                <div class="box box-default collapsed-box">
+                                  <table id="" class="table table-hover">
+                                    <tr>
+                                      <td style="width: 10%">
+                                        <span class="badge bg-green">{{ atr.class_impacto_atributo }}-{{ atr.nome_impacto_atributo }}</span>
+                                      </td>
+                                      <td>
+                                        <span class="">{{ atr.descricao_impacto_atributo }}</span>
+                                      </td>
+                                      <td style="width: 5%">
+                                        <div class="box-tools pull-right">
+                                          <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip">
+                                            Opções&nbsp;
+                                            <i class="fa fa-fw fa-toggle-down"></i>
+                                          </button>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                  <div class="box-body">
+                                    <table class="table table-striped" border="0">
+                                      <tr>
+                                        <td>
+                                          <span class="badge bg-black">{{ atr.class_impacto_atributo2 }}-{{ atr.nome_impacto_atributo2 }}</span>
+                                          &nbsp;{{ atr.descricao_impacto_atributo2 }}
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td>
+                                          <span class="badge bg-black">{{ atr.class_impacto_atributo3 }}-{{ atr.nome_impacto_atributo3 }}</span>
+                                          &nbsp;{{ atr.descricao_impacto_atributo3 }}
+                                        </td>
+                                      </tr>
+                                    </table>
+                                  </div>
+                                </div>
+                              </div>
                             </table>
                           </div>
                         </div>
@@ -286,13 +337,8 @@
             </div>
           </div>
           <div class="col-md-12 relatorio">
-              <hr>
+            <hr>
           </div>
-          <!-- <div class="col-md-12 relatorio">
-            <div class="col-md-10">
-              <label>Hoje:</label>&nbsp;{{ DataAtual }}
-            </div>
-          </div> -->
           <div class="col-xs-12 relatorio">
             <a (click)="onPrint()" class="btn btn-default">
               <i class="fa fa-print"></i> Imprimir
