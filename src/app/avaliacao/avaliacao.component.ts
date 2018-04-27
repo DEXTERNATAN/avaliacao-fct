@@ -67,7 +67,10 @@ export class AvaliacaoComponent implements OnInit, AfterViewInit {
                 }
             }, error => {
                 console.log('Error ao carregar a avaliação');
-            });
+            },
+        ()=> {
+            this.avaliacaoCarregada = true;
+        });
     }
 
     user(): User {
