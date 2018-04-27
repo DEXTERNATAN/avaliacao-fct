@@ -42,7 +42,7 @@
 						</ul>
 					</li>
 					<li class="dropdown" *ngIf="user().ds_perfil == 'ADMINISTRADOR'">
-						<a [routerLink]="['/home']" class="dropdown-toggle" data-toggle="dropdown">Cadastro Avançado<span class="caret"></span></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Cadastro Avançado<span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<li routerLinkActive="active"><a [routerLink]="['/distribuicao']">Distribuição de Valor</a></li>
 						    <li class="divider"></li>
@@ -50,7 +50,7 @@
 						</ul>
 					</li>
 					<li class="dropdown">
-						<a [routerLink]="['/home']" class="dropdown-toggle" data-toggle="dropdown">Consultas<span class="caret"></span></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Consultas<span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<li routerLinkActive="active"><a [routerLink]="['/avaliacao']">Avaliações</a></li>
 							<!-- <li class="divider"*ngIf="user().ds_perfil == 'ADMINISTRADOR'"></li> -->
