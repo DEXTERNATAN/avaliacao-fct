@@ -13,7 +13,7 @@
 				<ul class="nav navbar-nav">
 					<li routerLinkActive="active" *ngIf="user().ds_perfil == 'ADMINISTRADOR' || user().ds_perfil == 'LIDER'"><a [routerLink]="['/avaliacao/novo']">Avaliar</a></li>
 					<li class="dropdown" *ngIf="user().ds_perfil == 'ADMINISTRADOR' || user().ds_perfil == 'LIDER'">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Cadastros Base <span class="caret"></span></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Cadastro Base <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu" *ngIf="user().ds_perfil == 'ADMINISTRADOR'">
 							<li routerLinkActive="active"><a [routerLink]="['/abrangencia']">Abrangência</a></li>
 							<li class="divider"></li>
@@ -39,6 +39,8 @@
 						</ul>
 						<ul class="dropdown-menu" role="menu"  *ngIf="user().ds_perfil == 'LIDER'">
 							<li routerLinkActive="active" *ngIf="user().ds_perfil == 'ADMINISTRADOR' || user().ds_perfil == 'LIDER'"><a [routerLink]="['/projeto']">Projeto</a></li>
+							<li class="divider"></li>
+							<li routerLinkActive="active"><a [routerLink]="['/tecnologia']">Tecnologia</a></li>
 						</ul>
 					</li>
 					<li class="dropdown" *ngIf="user().ds_perfil == 'ADMINISTRADOR'">
