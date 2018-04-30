@@ -55,86 +55,7 @@
                         </div>
                       </div>
                       <div class="box-body">
-                          <table id="" class="table">
-                              <tr *ngIf="avaliacaoDetalhe.length == 0">
-                                  <td colspan="10">
-                                    <div class="alert alert-warning alert-dismissible">
-                                      <h4>
-                                        <i class="icon fa fa-warning"></i> Alerta!</h4>
-                                      Não existem avaliações para este usuário!
-                                    </div>
-                                  </td>
-                              </tr>  
-                              <tr *ngFor="let items of aval.listDetalhe; let j = index; ">
-                                <td>
-                                  <table  class="table table-striped" border="0">
-                                    <tr>
-                                        <th>
-                                            <p class="text-center">
-                                                {{ i+1 }}.{{ j+1 }}
-                                            </p>  
-                                        </th>
-                                      <td>Data: {{ items.dt_resultado }}</td>
-                                      <td>
-                                          
-                                          <table id="" class="table table-striped" border="0">
-                                              <tr>
-                                                <th><p class="text-center"><span class="badge bg-light-blue">&nbsp;&nbsp;&nbsp;FCT Atual&nbsp;&nbsp;&nbsp;</span></p></th>
-                                                <th><p class="text-center"><span class="badge bg-light-blue">&nbsp;&nbsp;&nbsp;Pontuação Atual&nbsp;&nbsp;&nbsp;</span></p></th>
-                                                <th><p class="text-center"><span class="badge bg-red">&nbsp;&nbsp;&nbsp;Diferença&nbsp;&nbsp;&nbsp;</span></p></th>
-                                                <th><p class="text-center"><span class="badge bg-green">&nbsp;&nbsp;&nbsp;Pontuação Avaliação&nbsp;&nbsp;&nbsp;</span></p></th>
-                                                <th *ngIf="user().ds_perfil == 'ADMINISTRADOR' || user().ds_perfil == 'LIDER'"><p class="text-center"><span class="badge bg-green">&nbsp;&nbsp;&nbsp;FCT Avaliação&nbsp;&nbsp;&nbsp;</span></p></th>
-                                                <th></th>
-                                                <th></th>
-                                              </tr>
-                                              <tr>
-                                                  <td><p class="text-center">{{ items.fct_atual }}</p></td>
-                                                  <td><p class="text-center">{{ ((items.pontuacao - items.ajuste) + (2 * items.ajuste)).toFixed(2) }}</p></td>
-                                                  <td><p class="text-center">{{ (items.ajuste * (-1)).toFixed(2) }}</p></td>
-                                                  <td><p class="text-center">{{ items.pontuacao.toFixed(2) }}</p></td>
-                                                  <td *ngIf="user().ds_perfil == 'ADMINISTRADOR' || user().ds_perfil == 'LIDER'"><p class="text-center">{{ items.fct_ideal }}</p></td>
-                                                  <!-- <td>
-                                                        <a class="btn  btn-xs bg-blue btn-flat">
-                                                           <i class="fa fa-pencil"></i>
-                                                        </a>
-                                                  </td> -->
-                                                  <td><p class="text-center">
-                                                    <a class="btn  btn-xs bg-blue btn-flat" [routerLink]="['/resultadoAvaliacao/', items.id_resultado]">
-                                                      <i class="fa fa-search"></i>
-                                                    </a></p>
-                                                  </td>
-                                                  <td *ngIf="user().ds_perfil == 'ADMINISTRADOR' || user().ds_perfil == 'LIDER'">
-                                                      <p class="text-center">
-                                                    <button type="button" class="btn  btn-xs bg-red btn-flat" (click)="deleteAvaliacao(items, aval.listDetalhe)">
-                                                      <i class="fa fa-remove"></i>
-                                                    </button>
-                                                  </p>
-                                                  </td>
-                                                </tr>
-                                          </table>
-                                      </td>
-                                    <tr>
-                                 </table>
-                                </td> 
-                                </tr>
-                              </table>      
-                                                              
-                                      
-
-
-                        <!-- <table id="" class="table table-striped">
-                          <tr>
-                            <th>#</th>
-                            <th>Data da Avaliação</th>
-                            <th>Pontuação</th>
-                            <th>Ajuste</th>
-                            <th>Pontuação Ideal</th>
-                            <th>Diferença</th>
-                            <th>FCT Atual</th>
-                            <th *ngIf="user().ds_perfil == 'ADMINISTRADOR' || user().ds_perfil == 'LIDER'">FCT Pela Pontuação</th>
-                            <th></th>
-                            <th *ngIf="user().ds_perfil == 'ADMINISTRADOR' || user().ds_perfil == 'LIDER'"></th>
-                          </tr>
+                        <table id="" class="table">
                           <tr *ngIf="avaliacaoDetalhe.length == 0">
                             <td colspan="10">
                               <div class="alert alert-warning alert-dismissible">
@@ -144,40 +65,95 @@
                               </div>
                             </td>
                           </tr>
-                          <tr *ngFor="let items of aval.listDetalhe; let i = index">
-                            <td>{{ i+1 }}</td>
-                            <td>{{ items.dt_resultado }}</td>
-                            <td>{{ items.pontuacao.toFixed(2) }}</td>
-                            <td>{{ items.ajuste.toFixed(2) }}</td>
-                            <td>{{ ((items.pontuacao - items.ajuste) + (2 * items.ajuste)).toFixed(2) }}</td>
+                          <tr *ngFor="let items of aval.listDetalhe; let j = index; ">
                             <td>
-                              <span class="badge bg-green">{{ ((items.ajuste / items.pontuacao) * 100).toFixed(2) }}%</span>
+                              <table class="table table-striped" border="0">
+                                <tr>
+                                  <th>
+                                    <p class="text-center">
+                                      {{ i+1 }}.{{ j+1 }}
+                                    </p>
+                                  </th>
+                                  <td>Data: {{ items.dt_resultado }}</td>
+                                  <td>
+                                    <table id="" class="table table-striped" border="0">
+                                      <tr>
+                                        <th>
+                                          <p class="text-center">
+                                            <span class="badge bg-light-blue">&nbsp;&nbsp;&nbsp;FCT Atual&nbsp;&nbsp;&nbsp;</span>
+                                          </p>
+                                        </th>
+                                        <th>
+                                          <p class="text-center">
+                                            <span class="badge bg-light-blue">&nbsp;&nbsp;&nbsp;Pontuação Atual&nbsp;&nbsp;&nbsp;</span>
+                                          </p>
+                                        </th>
+                                        <th>
+                                          <p class="text-center">
+                                            <span class="badge bg-red">&nbsp;&nbsp;&nbsp;Diferença&nbsp;&nbsp;&nbsp;</span>
+                                          </p>
+                                        </th>
+                                        <th>
+                                          <p class="text-center">
+                                            <span class="badge bg-green">&nbsp;&nbsp;&nbsp;Pontuação Avaliação&nbsp;&nbsp;&nbsp;</span>
+                                          </p>
+                                        </th>
+                                        <th *ngIf="user().ds_perfil == 'ADMINISTRADOR' || user().ds_perfil == 'LIDER'">
+                                          <p class="text-center">
+                                            <span class="badge bg-green">&nbsp;&nbsp;&nbsp;FCT Avaliação&nbsp;&nbsp;&nbsp;</span>
+                                          </p>
+                                        </th>
+                                        <th></th>
+                                        <th></th>
+                                      </tr>
+                                      <tr>
+                                        <td>
+                                          <p class="text-center">{{ items.fct_atual }}</p>
+                                        </td>
+                                        <td>
+                                          <p class="text-center">{{ ((items.pontuacao - items.ajuste) + (2 * items.ajuste)).toFixed(2) }}</p>
+                                        </td>
+                                        <td>
+                                          <p class="text-center">{{ (items.ajuste * (-1)).toFixed(2) }}</p>
+                                        </td>
+                                        <td>
+                                          <p class="text-center">{{ items.pontuacao.toFixed(2) }}</p>
+                                        </td>
+                                        <td *ngIf="user().ds_perfil == 'ADMINISTRADOR' || user().ds_perfil == 'LIDER'">
+                                          <p class="text-center">{{ items.fct_ideal }}</p>
+                                        </td>
+                                        <!-- <td>
+                                            <a class="btn  btn-xs bg-blue btn-flat">
+                                               <i class="fa fa-pencil"></i>
+                                            </a>
+                                        </td> -->
+                                        <td>
+                                          <p class="text-center">
+                                            <a class="btn  btn-xs bg-blue btn-flat" [routerLink]="['/resultadoAvaliacao/', items.id_resultado]">
+                                              <i class="fa fa-search"></i>
+                                            </a>
+                                          </p>
+                                        </td>
+                                        <td *ngIf="user().ds_perfil == 'ADMINISTRADOR' || user().ds_perfil == 'LIDER'">
+                                          <p class="text-center">
+                                            <button type="button" class="btn  btn-xs bg-red btn-flat" (click)="deleteAvaliacao(items, aval.listDetalhe)">
+                                              <i class="fa fa-remove"></i>
+                                            </button>
+                                          </p>
+                                        </td>
+                                      </tr>
+                                    </table>
+                                  </td>
+                                  <tr>
+                              </table>
                             </td>
-                            <td>{{ items.fct_atual }}</td>
-                            <td *ngIf="user().ds_perfil == 'ADMINISTRADOR' || user().ds_perfil == 'LIDER'">{{ items.fct_ideal }}</td>
-                            -->
-                            <!-- <td>
-                              <a class="btn  btn-xs bg-blue btn-flat">
-                                <i class="fa fa-pencil"></i>
-                              </a>
-                            </td> -->
-                            <!-- <td>
-                              <a class="btn  btn-xs bg-blue btn-flat" [routerLink]="['/resultadoAvaliacao/', items.id_resultado]">
-                                <i class="fa fa-search"></i>
-                              </a>
-                            </td>
-                            <td *ngIf="user().ds_perfil == 'ADMINISTRADOR' || user().ds_perfil == 'LIDER'">
-                              <button type="button" class="btn  btn-xs bg-red btn-flat" (click)="deleteAvaliacao(items, aval.listDetalhe)">
-                                <i class="fa fa-remove"></i>
-                              </button>
-                            </td>
-                          </tr>
-                        </table> -->
+                            </tr>
+                        </table>
                       </div>
                     </div>
                   </div>
                 </td>
-              </tr>
+                </tr>
             </table>
           </div>
         </div>
