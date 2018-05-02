@@ -1,8 +1,8 @@
 // Conexão de desenvolvimento
-// export const MEAT_API = 'http://localhost:3000';
+export const MEAT_API = 'http://localhost:3000';
 
 // Conexão de Produção
-export const MEAT_API = '/api';
+// export const MEAT_API = '/api';
 
 export const maskData = [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/];
 export const phoneMask = ['(', /[1-9]/, /\d/, ')', ' ', /\d/ , /\d/ , /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
