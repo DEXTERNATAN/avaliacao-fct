@@ -2,9 +2,9 @@ import { LoginService } from './login.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { trigger, state, style, transition, animate } from '@angular/animations';
-
 import { NotificationService } from 'app/shared/messages/notification.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MensagensHandler } from 'app/shared/services/mensagens-handler.service';
 
 @Component({
   selector: 'mt-login',
@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
     private loginService: LoginService,
     private notificationService: NotificationService,
     private activatedRoute: ActivatedRoute,
+    private mensagensHandler: MensagensHandler,
     private router: Router
   ) { }
 
@@ -44,21 +45,16 @@ export class LoginComponent implements OnInit {
 
   login() {
 
+    this.mensagensHandler.handleClearMessages();
+
     this.loginService.loginUser(this.loginForm.value).subscribe(
       users => {
-        // console.log(users);
         this.notificationService.notify(`Bem Vindo, ${users.login}`);
-        // console.log(users.login);
         this.router.navigate(['home']);
       },
       response => {
-        // console.log(response);
         this.notificationService.notify('Dados invalidos. Por favor! tente novamente ...');
-        // this.router.navigate([atob(this.navigateTo)]);
       }
-      // ()=> {
-      //   this.router.navigate([atob(this.navigateTo)]);
-      // }
     );
   }
 

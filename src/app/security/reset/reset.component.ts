@@ -6,6 +6,7 @@ import { User } from 'app/security/login/user';
 
 import { NotificationService } from 'app/shared/messages/notification.service';
 import { LoginService } from 'app/security/login/login.service';
+import { EqualValidator } from 'app/shared/EqualValidator';
 
 @Component({
   selector: 'mt-login',
@@ -30,14 +31,15 @@ export class ResetSenhaComponent implements OnInit {
 
     this.resetForm = this.fb.group({
       login: this.fb.control(this.user().login, []),
-      senha: this.fb.control('', []),
-      confSenha: this.fb.control('', []),
-
+      // senha: this.fb.control('', []),
+      // confSenha: this.fb.control('', []),
       senhaAtual: this.fb.control('', [ Validators.required ]),
       senhaNova: this.fb.control('', [ Validators.required ]),
       senhaNovaConfirmacao: this.fb.control('', [ Validators.required ]),
 
-    });
+    },
+    { validator: EqualValidator.equalControlValue('senhaNova', 'senhaNovaConfirmacao') }
+    );
 
     this.navigateTo = this.activatedRoute.snapshot.params['to'] || '/';
   }
@@ -49,7 +51,7 @@ export class ResetSenhaComponent implements OnInit {
   resetPassword() {
     let user: any = {
       login: this.resetForm.value.login,
-      senha: this.resetForm.value.senha,
+      senha: this.resetForm.value.senhaNova,
       status_ativo: 1
     };
     console.log(user);
@@ -67,9 +69,10 @@ export class ResetSenhaComponent implements OnInit {
   }
 
   clearForm() {
-    console.log('Limpando o formulario')
-      this.resetForm.get('senha').setValue('');
-      this.resetForm.get('confSenha').setValue('');
+    console.log('Limpando o formulario');
+      this.resetForm.get('senhaAtual').setValue('');
+      this.resetForm.get('senhaNova').setValue('');
+      this.resetForm.get('senhaNovaConfirmacao').setValue('');
   }
 
 }
