@@ -15,7 +15,7 @@
       <!-- Horizontal Form -->
       <div class="box box-info">
         <div class="box-header with-border">
-          <h3 class="box-title">Defina uma nova senha</h3>
+          <h3 class="box-title">Alterar senha</h3>
         </div>
         <!-- /.box-header -->
         <!-- form start -->
@@ -29,19 +29,25 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="inputPassword3" class="col-sm-2 control-label">Senha</label>
+              <label for="inputPassword3" class="col-sm-2 control-label">Senha atual</label>
 
               <div class="col-sm-10">
-                <input type="password" class="form-control" id="senha" maxlength="8" formControlName="senha" placeholder="Senha">
+                <input type="password" class="form-control" id="senha" maxlength="8" formControlName="senhaAtual" placeholder="Senha atual">
               </div>
             </div>
             <div class="form-group">
-              <label for="inputPassword3" class="col-sm-2 control-label">Confirmar senha</label>
-
+              <label for="inputPassword3" class="col-sm-2 control-label">Nova senha</label>
               <div class="col-sm-10">
                 <input type="password" class="form-control" id="confirmaSenha" maxlength="8" formControlName="confSenha" placeholder="Confirmar senha">
               </div>
             </div>
+            <div class="form-group">
+              <label for="inputPassword3" class="col-sm-2 control-label">Confirmar nova senha</label>
+              <div class="col-sm-10">
+                <input type="password" class="form-control" id="confirmaSenha" maxlength="8" formControlName="confSenha" placeholder="Confirmar senha">
+              </div>
+            </div>
+            
             <!-- <div class="form-group">
               <div class="col-sm-offset-2 col-sm-10">
                 <div class="checkbox">

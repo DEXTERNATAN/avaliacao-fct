@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { User } from 'app/security/login/user';
 
@@ -31,7 +31,12 @@ export class ResetSenhaComponent implements OnInit {
     this.resetForm = this.fb.group({
       login: this.fb.control(this.user().login, []),
       senha: this.fb.control('', []),
-      confSenha: this.fb.control('', [])
+      confSenha: this.fb.control('', []),
+
+      senhaAtual: this.fb.control('', [ Validators.required ]),
+      senhaNova: this.fb.control('', [ Validators.required ]),
+      senhaNovaConfirmacao: this.fb.control('', [ Validators.required ]),
+
     });
 
     this.navigateTo = this.activatedRoute.snapshot.params['to'] || '/';
