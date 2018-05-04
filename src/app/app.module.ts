@@ -71,8 +71,7 @@ import { NotificationService } from 'app/shared/messages/notification.service';
 import { LoggedInGuard } from 'app/shared/loggedin.guard';
 import { SnackbarComponent } from './shared/messages/snackbar/snackbar.component';
 import { RelatoriosComponent } from 'app/relatorios/relatorios.component';
-import { AuthErrorHandler } from 'app/shared/services/auth-error-handler';
-import { ErrorHandler } from 'app/app.error-handler';
+import { AvaliaFctAPIInterceptor } from 'app/shared/services/interceptorAvaliacaofct';
 
 // Setando a linguagem de portugues para o angular 5 
 registerLocaleData(localePtBR);
@@ -154,6 +153,7 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
             { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig },
             { provide: Http, useFactory: httpFactory, deps: [XHRBackend, RequestOptions, LoaderService, MensagensHandler] },
             { provide: LocationStrategy, useClass: HashLocationStrategy} ,
+            { provide: AvaliaFctAPIInterceptor, useClass: HashLocationStrategy} ,
             HttpClient,
             LoginService,
             NotificationService,

@@ -18,6 +18,7 @@ export class AvaliaFctAPIInterceptor implements HttpInterceptor {
 
     constructor() {
         this.token = localStorage.getItem('jwt_token');
+        console.log('AvaliaFctAPIInterceptor');
     }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {

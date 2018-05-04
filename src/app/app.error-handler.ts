@@ -5,12 +5,21 @@ export class ErrorHandler {
 
     static handleError(error: Response | any) {
         let errorMessage: string;
+        let errorMessageJson: Object;
+
         if (error instanceof Response) {
-            errorMessage = `Erro ${error.status} ao obter a URL ${error.url} - ${error.statusText}`
+            // errorMessage = `Erro ${error.status} ao obter a URL ${error.url} - ${error.statusText} - ${error._body}`;
+            errorMessageJson = {
+                status: error.status,
+                url: error.url,
+                text: error.statusText,
+                body: error._body
+            };
+
         } else {
-            errorMessage = error.toString()
+            errorMessage = error.toString();
         }
 
-        return Observable.throw(errorMessage)
+        return Observable.throw(errorMessageJson);
     }
 }

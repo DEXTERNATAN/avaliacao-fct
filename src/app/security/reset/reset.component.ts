@@ -6,73 +6,78 @@ import { User } from 'app/security/login/user';
 
 import { NotificationService } from 'app/shared/messages/notification.service';
 import { LoginService } from 'app/security/login/login.service';
-import { EqualValidator } from 'app/shared/EqualValidator';
+import { GlobalCustomValidation } from 'app/shared/GlobalCustomValidation';
+import { MensagensHandler } from 'app/shared/services/mensagens-handler.service';
 
 @Component({
-  selector: 'mt-login',
-  templateUrl: './reset.component.html',
-  styleUrls: ['./reset.component.css']
+    selector: 'mt-login',
+    templateUrl: './reset.component.html',
+    styleUrls: ['./reset.component.css']
 })
 export class ResetSenhaComponent implements OnInit {
 
-  navigateTo: any;
-  resetForm: FormGroup;
+    navigateTo: any;
+    resetForm: FormGroup;
 
-  constructor(private fb: FormBuilder,
-    private loginService: LoginService,
-    private notificationService: NotificationService,
-    private activatedRoute: ActivatedRoute,
-    private router: Router
-  ) { }
+    constructor(private fb: FormBuilder,
+        private loginService: LoginService,
+        private notificationService: NotificationService,
+        private activatedRoute: ActivatedRoute,
+        private mensageHandler: MensagensHandler,
+        private router: Router
+    ) {
 
-  ngOnInit() {
+        this.user();
 
-    this.user();
+        this.resetForm = this.fb.group({
+            login: this.fb.control(this.user().login, []),
+            senhaAtual: this.fb.control(null, [Validators.required, Validators.minLength(8) ]),
+            senhaNova: this.fb.control(null, [Validators.required, Validators.minLength(8) ]),
+            senhaNovaConfirmacao: this.fb.control(null, [Validators.required, Validators.minLength(8) ])
+        }, {
+                validator: GlobalCustomValidation.MatchPassword
+            }
+        );
 
-    this.resetForm = this.fb.group({
-      login: this.fb.control(this.user().login, []),
-      // senha: this.fb.control('', []),
-      // confSenha: this.fb.control('', []),
-      senhaAtual: this.fb.control('', [ Validators.required ]),
-      senhaNova: this.fb.control('', [ Validators.required ]),
-      senhaNovaConfirmacao: this.fb.control('', [ Validators.required ]),
+    }
 
-    },
-    { validator: EqualValidator.equalControlValue('senhaNova', 'senhaNovaConfirmacao') }
-    );
+    ngOnInit() {
 
-    this.navigateTo = this.activatedRoute.snapshot.params['to'] || '/';
-  }
+        this.navigateTo = this.activatedRoute.snapshot.params['to'] || '/';
+    }
 
-  user(): User {
-    return this.loginService.user;
-  }
+    user(): User {
+        return this.loginService.user;
+    }
 
-  resetPassword() {
-    let user: any = {
-      login: this.resetForm.value.login,
-      senha: this.resetForm.value.senhaNova,
-      status_ativo: 1
-    };
-    console.log(user);
-    this.loginService.resetUser(this.user().id_acesso, user).subscribe(
-      users => {
-        this.clearForm();
-        this.notificationService.notify(`Senha alterada com sucesso!`);
-        this.router.navigate(['recuperarSenha']);
-      },
-      response => {
-        this.notificationService.notify('Não foi possivel alterar a senha do usuário. Por favor! tente novamente ...');
-      }
-    );
+    resetPassword() {
 
-  }
+        let user: any = {
+            login: this.resetForm.value.login,
+            senhaAtual: this.resetForm.value.senhaAtual,
+            senhaNova: this.resetForm.value.senhaNova,
+            senhaNovaConfirmacao: this.resetForm.value.senhaNovaConfirmacao,
+            status_ativo: 1
+        };
 
-  clearForm() {
-    console.log('Limpando o formulario');
-      this.resetForm.get('senhaAtual').setValue('');
-      this.resetForm.get('senhaNova').setValue('');
-      this.resetForm.get('senhaNovaConfirmacao').setValue('');
-  }
+        this.loginService.resetUser(this.user().id_acesso, user).subscribe(
+            users => {
+                this.clearForm();
+                this.notificationService.notify(`Senha alterada com sucesso!`);
+                this.router.navigate(['recuperarSenha']);
+            },
+            response => {
+                this.mensageHandler.handleClearMessages();
+                console.log('Repos error: ', response);
+                this.notificationService.notify(response.body.replace('"','').replace('"',''));
+            }
+        );
+
+    }
+
+    clearForm() {
+        this.resetForm.reset();
+        this.resetForm.get('login').setValue(this.user().login);
+    }
 
 }

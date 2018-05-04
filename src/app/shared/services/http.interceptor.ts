@@ -1,23 +1,28 @@
-import {Injectable} from "@angular/core";
-import { ConnectionBackend, RequestOptions, Request, RequestOptionsArgs, Response, Http, Headers} from "@angular/http";
-import {Observable} from "rxjs/Rx";
-import { LoaderService } from "app/shared/services/loader.service";
-import { MensagensHandler } from "app/shared/services/mensagens-handler.service";
+import {Injectable} from '@angular/core';
+import { ConnectionBackend, RequestOptions, RequestOptionsArgs, Response, Http, Headers} from '@angular/http';
+import {Observable} from 'rxjs/Rx';
+import { LoaderService } from 'app/shared/services/loader.service';
+import { MensagensHandler } from 'app/shared/services/mensagens-handler.service';
 
 
 @Injectable()
 export class InterceptedHttp extends Http {
 
-    private requestsCount: number = 0;
-    private resolutionsCount: number = 0;
+    private requestsCount = 0;
+    private resolutionsCount = 0;
     private processing: boolean;
 
-    constructor(backend: ConnectionBackend, defaultOptions: RequestOptions, private loaderService: LoaderService, private mensageHandler: MensagensHandler) {
+    constructor(
+        backend: ConnectionBackend,
+        defaultOptions: RequestOptions,
+        private loaderService: LoaderService, 
+        private mensageHandler: MensagensHandler
+    ) {
         super(backend, defaultOptions);
-        console.debug('InterceptedHttp');
+        console.log('InterceptedHttp');
     }
 
-    get(url: string, options?: RequestOptionsArgs): Observable<Response> {                     
+    get(url: string, options?: RequestOptionsArgs): Observable<Response> {
         return this.watch(super.get(url, options))
         .catch(this.catchErrors());
     }
@@ -41,7 +46,7 @@ export class InterceptedHttp extends Http {
         return this.watch(super.head(url, this.getRequestOptionArgs(options)))
         .catch(this.catchErrors());
     }
-    
+
     private getRequestOptionArgs(options?: RequestOptionsArgs) : RequestOptionsArgs {
         if (options == null) {
             options = new RequestOptions();
@@ -55,24 +60,23 @@ export class InterceptedHttp extends Http {
     }
 
     private catchErrors() {
-        // console.log('ocorreu erro');
         return (res: Response) => {
             this.mensageHandler.handleHttpError(res)
             return Observable.throw(res);
         };
     }
 
-    watch(response: Observable<Response>): Observable<Response> {      
+    watch(response: Observable<Response>): Observable<Response> {
         this.loaderService.show();
         this.addRequest();
         return response.do(next => {
             this.addResolution();
         }, (errorResponse: Response) => {
-            this.addResolution();        
+            this.addResolution();
         });
     }
 
-    private addRequest(): void {       
+    private addRequest(): void {
         this.requestsCount++;
         this.updateStatus();
     };
@@ -88,7 +92,5 @@ export class InterceptedHttp extends Http {
             this.loaderService.hide();
         }
     }
-
-
 
 }

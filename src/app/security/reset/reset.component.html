@@ -21,35 +21,40 @@
         </div>
         <!-- /.box-header -->
         <!-- form start -->
-        <form [formGroup]="resetForm" class="form-horizontal" autocomplete="off">
+        
+        <form [formGroup]="resetForm" class="form-horizontal" autocomplete="off" (ngSubmit)="resetPassword()" >
           <div class="box-body">
             <div class="form-group">
               <label for="inputEmail3" class="col-sm-2 control-label">CPF</label>
-
               <div class="col-sm-10">
                 <input type="login" class="form-control" id="login" formControlName="login" placeholder="CPF" maxlength="11" readonly>
               </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" [ngClass]="{'has-error': (!resetForm.controls['senhaAtual'].valid && resetForm.controls['senhaAtual'].touched) || resetForm.controls.senhaAtual.errors?.minlength }">              
               <label for="inputPassword3" class="col-sm-2 control-label">Senha atual</label>
-
               <div class="col-sm-10">
-                <input type="password" class="form-control" id="senha" maxlength="8" formControlName="senhaAtual" placeholder="Senha atual">
-              </div>
+                <input type="password" class="form-control" id="senhaAtual" maxlength="8" formControlName="senhaAtual" [formGroup]="resetForm" placeholder="Senha atual">
+                <span class="text-center" *ngIf="!resetForm.controls['senhaAtual'].valid && resetForm.controls['senhaAtual'].touched && resetForm.controls.senhaAtual.errors?.required" class="help-block">O campo senha é obrigatório</span>
+                <span class="text-center" *ngIf="resetForm.controls.senhaAtual.errors?.minlength" class="help-block">O campo senha deve ter no minimo 8 caracteres</span>
+              </div>              
             </div>
-            <div class="form-group">
+            <div class="form-group" [ngClass]="{'has-error': (!resetForm.controls['senhaNova'].valid && resetForm.controls['senhaNova'].touched) || resetForm.controls.senhaNova.errors?.minlength }">
               <label for="inputPassword3" class="col-sm-2 control-label">Nova senha</label>
               <div class="col-sm-10">
-                <input type="password" class="form-control" id="confirmaSenha" maxlength="8" formControlName="senhaNova" placeholder="Nova senha">
+                <input type="password" class="form-control" id="senhaNova" maxlength="8" formControlName="senhaNova"  [formGroup]="resetForm"  placeholder="Nova senha">
+                <span class="text-center" *ngIf="!resetForm.controls['senhaNova'].valid && resetForm.controls['senhaNova'].touched && resetForm.controls.senhaNova.errors?.required" class="help-block">O campo Nova senha é obrigatório</span>
+                <span class="text-center" *ngIf="resetForm.controls.senhaNova.errors?.minlength" class="help-block">O campo senha deve ter no minimo 8 caracteres</span>
               </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" [ngClass]="{'has-error': (!resetForm.controls['senhaNovaConfirmacao'].valid && resetForm.controls['senhaNovaConfirmacao'].touched) || resetForm.controls.senhaNovaConfirmacao.errors?.minlength || resetForm.controls.senhaNovaConfirmacao.errors?.MatchPassword }">
               <label for="inputPassword3" class="col-sm-2 control-label">Confirmar nova senha</label>
               <div class="col-sm-10">
-                <input type="password" class="form-control" id="confirmaSenha" maxlength="8" formControlName="senhaNovaConfirmacao" placeholder="Confirmar nova senha">
-              </div>
+                <input type="password" class="form-control" id="senhaNovaConfirmacao" maxlength="8" formControlName="senhaNovaConfirmacao" [formGroup]="resetForm" placeholder="Confirmar nova senha">
+                <span class="text-center" *ngIf="!resetForm.controls['senhaNovaConfirmacao'].valid && resetForm.controls['senhaNovaConfirmacao'].touched && resetForm.controls.senhaNovaConfirmacao.errors?.required" class="help-block">O campo Confirmar senha é obrigatório</span>
+                <span class="text-center" *ngIf="resetForm.controls.senhaNovaConfirmacao.errors?.minlength" class="help-block">O campo senha deve ter no minimo 8 caracteres</span>
+                <span class="text-center" *ngIf="resetForm.controls.senhaNovaConfirmacao.errors?.MatchPassword" class="help-block">As senhas devem coincidir-se.</span>
+              </div>              
             </div>
-
             <!-- <div class="form-group">
               <div class="col-sm-offset-2 col-sm-10">
                 <div class="checkbox">
@@ -63,7 +68,7 @@
           <!-- /.box-body -->
           <div class="box-footer">
             <button type="submit" class="btn btn-default">Cancelar</button>
-            <button type="submit" class="btn btn-info pull-right" (click)="resetPassword()" [disabled]="resetForm.invalid">Enviar</button>
+            <button type="submit" class="btn btn-info pull-right" [disabled]="!resetForm.valid">Enviar</button>
           </div>
           <!-- /.box-footer -->
         </form>

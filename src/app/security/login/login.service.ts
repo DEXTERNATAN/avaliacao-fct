@@ -25,9 +25,7 @@ export class LoginService extends RestService<User> {
     }
 
     isLoggedIn(): boolean {
-        // console.log(this.isTokenExpired(this.getToken()));
         let tokenExpirado = this.isTokenExpired(this.getToken());
-        // console.log('RESULTADO DO LOGIN: ', this.user !== undefined && !tokenExpirado);
         return (this.user !== undefined && !tokenExpirado);
     }
 
@@ -69,7 +67,7 @@ export class LoginService extends RestService<User> {
     }
 
     resetUser(id_acesso: number, user: User): Observable<User> {
-        return this.atualizarPorId(user ,id_acesso);
+        return this.atualizarPorId(user , id_acesso);
         // return this.http.put(`${this.getUrlBase()}/${this.getUrl()}/` + id_acesso, user, this.getDefaultRequestOptions())
         //     .map(response => response.json())
         //     .do(users => users);
