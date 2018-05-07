@@ -45,14 +45,14 @@ export class LoginComponent implements OnInit {
 
   login() {
 
-    this.mensagensHandler.handleClearMessages();
-
     this.loginService.loginUser(this.loginForm.value).subscribe(
       users => {
+        
         this.notificationService.notify(`Bem Vindo, ${users.login}`);
         this.router.navigate(['home']);
       },
       response => {
+        this.mensagensHandler.handleClearMessages();
         this.notificationService.notify('Dados invalidos. Por favor! tente novamente ...');
       }
     );

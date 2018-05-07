@@ -69,7 +69,7 @@ export class ResetSenhaComponent implements OnInit {
             response => {
                 this.mensageHandler.handleClearMessages();
                 console.log('Repos error: ', response);
-                this.notificationService.notify(response.body);
+                this.notificationService.notify(response);
                 // .replace('"','').replace('"','')
             }
         );
