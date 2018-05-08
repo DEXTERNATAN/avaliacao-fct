@@ -48,7 +48,6 @@ export class LoginComponent implements OnInit {
             email: this.fb.control('', Validators.compose([Validators.required, Validators.email]))
         });
 
-
         // Formulario para efetuar o login do usuario
         this.loginForm = this.fb.group({
             login: this.fb.control('', Validators.required),
@@ -75,23 +74,25 @@ export class LoginComponent implements OnInit {
     }
 
     openModalEsqueceuSenha(template: TemplateRef<any>) {
+        this.senhaNova = false;
+        this.recuperarSenhaForm.reset();
         this.openModal(template);
     }
 
     resetarSenha() {
 
-        console.log('Resetar a senha', this.recuperarSenhaForm.value);
         const email = this.recuperarSenhaForm.value;
 
         this.loginService.recuperarSenha(email).subscribe(
             data => {
                 this.senhaNova = data.replace('"','').replace('"','');
                 console.log('Ok ... Sucesso', data);
-            }, error => {
-                console.log('Error: ', error);
+            }, response => {
+                this.mensagensHandler.handleClearMessages();
+                console.log('Error: ', response.body);
+                this.senhaNova = response.body;
+                
             });
-
-        // this.modalRef.hide();
 
     }
 
