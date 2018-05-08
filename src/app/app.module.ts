@@ -22,6 +22,7 @@ import { DataTablesModule } from 'angular-datatables';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { CurrencyMaskConfig, CURRENCY_MASK_CONFIG } from 'ng2-currency-mask/src/currency-mask.config';
 import { ChartModule } from 'angular2-chartjs';
+import { ModalModule } from 'ngx-bootstrap';
 
 /* Modules */
 import { AbrangenciaModule } from './abrangencia/abrangencia.module';
@@ -110,6 +111,7 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
         HttpModule,
         TextMaskModule,
         ToastrModule.forRoot(),
+        ModalModule.forRoot(),
         Select2Module,
         CurrencyMaskModule,
         Ng2SelectizeModule,

@@ -6,6 +6,7 @@ import { RestService } from 'app/shared/services/rest.service';
 import { Router } from '@angular/router';
 
 import * as jwt_decode from 'jwt-decode';
+import { ErrorHandler } from 'app/app.error-handler';
 
 @Injectable()
 export class LoginService extends RestService<User> {
@@ -40,7 +41,7 @@ export class LoginService extends RestService<User> {
     getTokenExpirationDate(token: string): Date {
         const decoded = jwt_decode(token);
 
-        if (decoded.exp === undefined) return null;
+        if (decoded.exp === undefined) { return null; }
 
         const date = new Date(0);
         date.setUTCSeconds(decoded.exp);
@@ -48,12 +49,15 @@ export class LoginService extends RestService<User> {
     }
 
     isTokenExpired(token?: string): boolean {
-        if (!token) token = this.getToken();
-        if (!token) return true;
+        if (!token) { token = this.getToken(); }
+        if (!token) {return true; }
 
         const date = this.getTokenExpirationDate(token);
-        if (date === undefined) return false;
+
+        if (date === undefined) { return false; }
+
         return !(date.valueOf() > new Date().valueOf());
+
     }
 
     loginUser(user: User): Observable<User> {
@@ -68,9 +72,13 @@ export class LoginService extends RestService<User> {
 
     resetUser(id_acesso: number, user: User): Observable<User> {
         return this.atualizarPorId(user , id_acesso);
-        // return this.http.put(`${this.getUrlBase()}/${this.getUrl()}/` + id_acesso, user, this.getDefaultRequestOptions())
-        //     .map(response => response.json())
-        //     .do(users => users);
+    }
+
+    recuperarSenha(email: string): Observable<any> {
+        return this.http.post(`${this.getUrlBase()}/${this.getUrl()}/send-email`, email, this.getDefaultRequestOptions())
+        .map(response => response.text())
+        .do(data => data = data.replace('"', ''))
+        .catch(ErrorHandler.handleError);
     }
 
     handleLogin() {
