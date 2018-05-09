@@ -8,7 +8,6 @@ import { ErrorHandler } from 'app/app.error-handler';
 const AUTH_HEADER_KEY = 'Authorization';
 const AUTH_PREFIX = 'Bearer';
 
-
 export abstract class RestService<T>{
 
     private urlBase = `${MEAT_API}`;

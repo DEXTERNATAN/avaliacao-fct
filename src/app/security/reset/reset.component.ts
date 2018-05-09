@@ -29,9 +29,9 @@ export class ResetSenhaComponent implements OnInit {
 
         this.resetForm = this.fb.group({
             login: this.fb.control(this.user().login, []),
-            senhaAtual: this.fb.control(null, [Validators.required, Validators.minLength(8) ]),
-            senhaNova: this.fb.control(null, [Validators.required, Validators.minLength(8) ]),
-            senhaNovaConfirmacao: this.fb.control(null, [Validators.required, Validators.minLength(8) ])
+            senhaAtual: this.fb.control(null, [Validators.required, Validators.minLength(8)]),
+            senhaNova: this.fb.control(null, [Validators.required, Validators.minLength(8)]),
+            senhaNovaConfirmacao: this.fb.control(null, [Validators.required, Validators.minLength(8)])
         }, {
                 validator: GlobalCustomValidation.MatchPassword
             }
@@ -66,8 +66,7 @@ export class ResetSenhaComponent implements OnInit {
             },
             response => {
                 this.mensageHandler.handleClearMessages();
-                console.log('Repos error: ', response);
-                this.notificationService.notify(response);
+                this.notificationService.notify(response.body);
             }
         );
 
