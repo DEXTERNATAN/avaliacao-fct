@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-
 import { User } from 'app/security/login/user';
-
 import { NotificationService } from 'app/shared/messages/notification.service';
 import { LoginService } from 'app/security/login/login.service';
 import { GlobalCustomValidation } from 'app/shared/GlobalCustomValidation';
@@ -70,7 +68,6 @@ export class ResetSenhaComponent implements OnInit {
                 this.mensageHandler.handleClearMessages();
                 console.log('Repos error: ', response);
                 this.notificationService.notify(response);
-                // .replace('"','').replace('"','')
             }
         );
 

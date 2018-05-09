@@ -9,6 +9,11 @@ import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { NotificationService } from 'app/shared/messages/notification.service';
 import { MensagensHandler } from 'app/shared/services/mensagens-handler.service';
 
+export class Results {
+    texto: string;
+    senha: string;
+}
+
 @Component({
     selector: 'mt-login',
     templateUrl: './login.component.html',
@@ -25,12 +30,18 @@ import { MensagensHandler } from 'app/shared/services/mensagens-handler.service'
 })
 export class LoginComponent implements OnInit {
 
-    senhaNova: any;
+    senhaNova: boolean;
     navigateTo: any;
     loginState = 'ready';
     modalRef: BsModalRef;
     loginForm: FormGroup;
     recuperarSenhaForm: FormGroup;
+
+    results: Results = {
+        texto: '',
+        senha: ''
+      };
+
 
     constructor(private fb: FormBuilder,
         private loginService: LoginService,
@@ -85,13 +96,14 @@ export class LoginComponent implements OnInit {
 
         this.loginService.recuperarSenha(email).subscribe(
             data => {
-                this.senhaNova = data.replace('"','').replace('"','');
-                console.log('Ok ... Sucesso', data);
+                this.senhaNova = true;
+                this.results.texto = 'Nova senha gerada: ';
+                this.results.senha =  data.replace('"', '').replace('"', '');
             }, response => {
+                this.senhaNova = true;
                 this.mensagensHandler.handleClearMessages();
-                console.log('Error: ', response.body);
-                this.senhaNova = response.body;
-                
+                this.results.texto = 'Seu e-mail não foi encontrado na base de dados. Fale com o administrador do sistema.';
+                this.results.senha =  '';
             });
 
     }
@@ -101,7 +113,7 @@ export class LoginComponent implements OnInit {
     }
 
     resolved(captchaResponse: string) {
-        console.log(`Resolved captcha with response ${captchaResponse}:`);
+        // console.log(`Resolved captcha with response ${captchaResponse}:`);
     }
 
 }

@@ -57,7 +57,7 @@
         </div>
       </form>
       <div *ngIf="senhaNova" >
-        <p style="font-size: 18px;">Nova senha gerada: <b>{{ senhaNova }}</b></p>  
+        <p style="font-size: 14px;">{{ results.texto }} <b><span style="font-size: 18px;">{{ results.senha }}</span></b> </p>  
         <button type="button" class="btn btn-primary" (click)="modalRef.hide()">Voltar</button>
       </div>
     </div>

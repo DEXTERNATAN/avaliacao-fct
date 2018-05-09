@@ -71,7 +71,12 @@ export class LoginService extends RestService<User> {
     }
 
     resetUser(id_acesso: number, user: User): Observable<User> {
-        return this.atualizarPorId(user , id_acesso);
+        // return this.atualizarPorId(user , id_acesso);
+        return this.http.put(`${this.getUrlBase()}/${this.getUrl()}` + '/' + id_acesso , user,
+      this.getDefaultRequestOptions())
+            .map(response => response.json())
+            .do(data => console.log('server data:', data))  // debug
+            .catch(ErrorHandler.handleError);
     }
 
     recuperarSenha(email: string): Observable<any> {
