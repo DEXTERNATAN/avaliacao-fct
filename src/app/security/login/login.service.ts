@@ -1,28 +1,35 @@
-import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import { Injectable, OnInit } from '@angular/core';
+import 'rxjs/add/operator/map';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from 'app/security/login/user';
-import { RestService } from 'app/shared/services/rest.service';
 import { Router } from '@angular/router';
-
 import * as jwt_decode from 'jwt-decode';
-import { ErrorHandler } from 'app/app.error-handler';
+import { MEAT_API } from '../../app.api';
+import { Observable } from 'rxjs/Rx';
+
+const httpOptions = {
+    headers: new HttpHeaders(
+        {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('jwt_token')
+        }
+    )
+};
+
 
 @Injectable()
-export class LoginService extends RestService<User> {
+export class LoginService implements OnInit {
 
     user: User;
+    protected TOKEN_NAME = 'jwt_token';
 
-    constructor(protected http: Http, private router: Router) {
-        super(http);
-    }
+    constructor(
+        private httpClient: HttpClient,
+        private router: Router
+    ) { }
 
-    public getUrl(): string {
-        return 'users';
-    }
-
-    public mapIdentificador(objeto: User): number {
-        return objeto.id_acesso;
+    ngOnInit(): void {
+        console.log('Login service start');
     }
 
     isLoggedIn(): boolean {
@@ -50,7 +57,7 @@ export class LoginService extends RestService<User> {
 
     isTokenExpired(token?: string): boolean {
         if (!token) { token = this.getToken(); }
-        if (!token) {return true; }
+        if (!token) { return true; }
 
         const date = this.getTokenExpirationDate(token);
 
@@ -60,9 +67,9 @@ export class LoginService extends RestService<User> {
 
     }
 
-    loginUser(user: User): Observable<User> {
-        return this.http.post(`${this.getUrlBase()}/${this.getUrl()}`, user, this.getDefaultRequestOptions())
-            .map(response => response.json())
+    loginUser(user: User): Observable<any> {
+        let body = JSON.stringify(user);
+        return this.httpClient.post(`${MEAT_API}/users/`, body, httpOptions)
             .do(users => {
                 localStorage.setItem('users', JSON.stringify(users));
                 this.user = JSON.parse(localStorage.getItem('users'));
@@ -70,20 +77,15 @@ export class LoginService extends RestService<User> {
             });
     }
 
-    resetUser(id_acesso: number, user: User): Observable<User> {
-        // return this.atualizarPorId(user , id_acesso);
-        return this.http.put(`${this.getUrlBase()}/${this.getUrl()}` + '/' + id_acesso , user,
-      this.getDefaultRequestOptions())
-            .map(response => response.json())
-            .do(data => console.log('server data:', data))  // debug
-            .catch(ErrorHandler.handleError);
+    resetUser(id_acesso: number, user: User) {
+
+        let body = JSON.stringify(user);
+        return this.httpClient.put(`${MEAT_API}/users/` + id_acesso, body, httpOptions);
+
     }
 
-    recuperarSenha(email: string): Observable<any> {
-        return this.http.post(`${this.getUrlBase()}/${this.getUrl()}/send-email`, email, this.getDefaultRequestOptions())
-        .map(response => response.text())
-        .do(data => data = data.replace('"', ''))
-        .catch(ErrorHandler.handleError);
+    recuperarSenha(email: string) {
+        return this.httpClient.post(`${MEAT_API}/users/` + '0', email);
     }
 
     handleLogin() {

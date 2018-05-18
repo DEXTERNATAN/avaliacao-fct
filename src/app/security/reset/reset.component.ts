@@ -62,11 +62,12 @@ export class ResetSenhaComponent implements OnInit {
             users => {
                 this.clearForm();
                 this.notificationService.notify(`Senha alterada com sucesso!`);
-                this.router.navigate(['recuperarSenha']);
+                this.router.navigate(['/home']);
             },
-            response => {
+            error => {
                 this.mensageHandler.handleClearMessages();
-                this.notificationService.notify(response.body);
+                this.notificationService.notify(error.error);
+                console.log(error);
             }
         );
 

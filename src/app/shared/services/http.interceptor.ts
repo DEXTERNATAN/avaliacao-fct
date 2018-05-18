@@ -1,13 +1,19 @@
 import {Injectable} from '@angular/core';
-import { ConnectionBackend, RequestOptions, RequestOptionsArgs, Response, Http, Headers} from '@angular/http';
+import { ConnectionBackend, RequestOptionsArgs, Response } from '@angular/http';
+import { Http, RequestOptions, Headers } from '@angular/http';
 import {Observable} from 'rxjs/Rx';
 import { LoaderService } from 'app/shared/services/loader.service';
 import { MensagensHandler } from 'app/shared/services/mensagens-handler.service';
 
+const AUTH_HEADER_KEY = 'Authorization';
+const AUTH_PREFIX = 'Bearer';
 
 @Injectable()
 export class InterceptedHttp extends Http {
 
+    token: string;
+    headers: Headers;
+    
     private requestsCount = 0;
     private resolutionsCount = 0;
     private processing: boolean;

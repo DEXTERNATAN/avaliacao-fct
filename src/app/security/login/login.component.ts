@@ -1,13 +1,14 @@
 import { LoginService } from './login.service';
 import { Component, OnInit, TemplateRef } from '@angular/core';
+import {Observable} from 'rxjs/Rx';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
-
 import { NotificationService } from 'app/shared/messages/notification.service';
 import { MensagensHandler } from 'app/shared/services/mensagens-handler.service';
+import { User } from './user';
 
 export class Results {
     texto: string;
@@ -54,15 +55,15 @@ export class LoginComponent implements OnInit {
 
     ngOnInit() {
 
-        // Formulario para recuperar a senha do usuario
-        this.recuperarSenhaForm = this.fb.group({
-            email: this.fb.control('', Validators.compose([Validators.required, Validators.email]))
-        });
-
         // Formulario para efetuar o login do usuario
         this.loginForm = this.fb.group({
             login: this.fb.control('', Validators.required),
             senha: this.fb.control('', Validators.required)
+        });
+
+        // Formulario para recuperar a senha do usuario
+        this.recuperarSenhaForm = this.fb.group({
+            email: this.fb.control('', Validators.compose([Validators.required, Validators.email]))
         });
 
         this.navigateTo = this.activatedRoute.snapshot.params['to'] || '/';
@@ -73,14 +74,14 @@ export class LoginComponent implements OnInit {
 
         this.loginService.loginUser(this.loginForm.value).subscribe(
             users => {
-
-                this.notificationService.notify(`Bem Vindo, ${users.login}`);
+                this.notificationService.notify(`Bem Vindo, ${users['login']}`);
                 this.router.navigate(['home']);
             },
-            response => {
+            error => {
                 this.mensagensHandler.handleClearMessages();
                 this.notificationService.notify('Dados invalidos. Por favor! tente novamente ...');
-            }
+            },
+            () => console.log('Requisição finalizada ...')
         );
     }
 
@@ -98,12 +99,14 @@ export class LoginComponent implements OnInit {
             data => {
                 this.senhaNova = true;
                 this.results.texto = 'Nova senha gerada: ';
-                this.results.senha =  data.replace('"', '').replace('"', '');
-            }, response => {
+                console.log('Nova senha gerada: ', data);
+                this.results.senha =  data.toString().replace('"', '').replace('"', '');
+            }, error => {
                 this.senhaNova = true;
                 this.mensagensHandler.handleClearMessages();
                 this.results.texto = 'Seu e-mail não foi encontrado na base de dados. Fale com o administrador do sistema.';
                 this.results.senha =  '';
+                return Observable.throw(error);
             });
 
     }

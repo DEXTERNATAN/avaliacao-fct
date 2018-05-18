@@ -5,7 +5,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LocationStrategy, HashLocationStrategy, registerLocaleData } from '@angular/common';
 import localePtBR from '@angular/common/locales/pt';
 import { HttpModule } from '@angular/http';
-import { HttpClient } from '@angular/common/http';
 import { RequestOptions } from '@angular/http';
 import { XHRBackend } from '@angular/http';
 import { Http } from '@angular/http';
@@ -23,6 +22,10 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { CurrencyMaskConfig, CURRENCY_MASK_CONFIG } from 'ng2-currency-mask/src/currency-mask.config';
 import { ChartModule } from 'angular2-chartjs';
 import { ModalModule } from 'ngx-bootstrap';
+
+import { HttpClientModule } from '@angular/common/http';
+// import { HTTP_INTERCEPTORS } from '@angular/common/http';
+// import { TokenInterceptor } from 'app/shared/services/token.interceptor';
 
 /* Modules */
 import { AbrangenciaModule } from './abrangencia/abrangencia.module';
@@ -74,6 +77,7 @@ import { SnackbarComponent } from './shared/messages/snackbar/snackbar.component
 import { RelatoriosComponent } from 'app/relatorios/relatorios.component';
 import { AvaliaFctAPIInterceptor } from 'app/shared/services/interceptorAvaliacaofct';
 
+
 // Setando a linguagem de portugues para o angular 5 
 registerLocaleData(localePtBR);
 
@@ -108,6 +112,7 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
         DataTablesModule,
         FormsModule,
         ReactiveFormsModule,
+        HttpClientModule,
         HttpModule,
         TextMaskModule,
         ToastrModule.forRoot(),
@@ -155,8 +160,11 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
             { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig },
             { provide: Http, useFactory: httpFactory, deps: [XHRBackend, RequestOptions, LoaderService, MensagensHandler] },
             { provide: LocationStrategy, useClass: HashLocationStrategy} ,
-            { provide: AvaliaFctAPIInterceptor, useClass: HashLocationStrategy} ,
-            HttpClient,
+            // {
+            //     provide: HTTP_INTERCEPTORS,
+            //     useClass: TokenInterceptor,
+            //     multi: true
+            // },
             LoginService,
             NotificationService,
             LoggedInGuard
