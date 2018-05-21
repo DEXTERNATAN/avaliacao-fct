@@ -1,6 +1,6 @@
 import { MEAT_API } from './../app.api';
 import { Observable } from 'rxjs/Rx';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { RestService } from 'app/shared/services/rest.service';
 import { Papel } from './papel.model';
@@ -15,7 +15,7 @@ export class PapelService extends RestService<Papel>{
 
     private papel: Papel;
 
-    constructor(protected http: Http) {
+    constructor(protected http: HttpClient) {
         super(http);
     }
 
@@ -48,26 +48,19 @@ export class PapelService extends RestService<Papel>{
     }
 
     getMaxId(){
-        return this.http.get(`${MEAT_API}/papel/1/1`, this.getDefaultRequestOptions())
-        .do(response => console.log('resultado: ', response.json()))
-        .map(response => response.json());
+        return this.http.get(`${MEAT_API}/papel/1/1`, this.getDefaultRequestOptions());
     }
-    
+
     getAtributoPapel(): Observable<Papel[]> {
-        return this.http.get(`${MEAT_API}/AtributoPapel/`, this.getDefaultRequestOptions())
-        .do(response => console.log('resultado: ', response.json()))
-        .map(response => response.json());
+        return this.http.get<Papel[]>(`${MEAT_API}/AtributoPapel/`, this.getDefaultRequestOptions());
     }
 
     addAtributoPapel(atributoPapel: AtributoPapel): Observable<string> {
-        return this.http.post(`${MEAT_API}/AtributoPapel/`, atributoPapel, this.getDefaultRequestOptions())
-            .map(response => response.text());
+        return this.http.post<string>(`${MEAT_API}/AtributoPapel/`, atributoPapel, this.getDefaultRequestOptions());
     }
 
     deleteAtributoPapel(id: number): Observable<string> {
-        return this.http.delete(`${MEAT_API}/AtributoPapel/` + id, this.getDefaultRequestOptions())
-        .do(response => console.log('resultado: ', response.json()))
-        .map(response => response.text());
+        return this.http.delete<string>(`${MEAT_API}/AtributoPapel/` + id, this.getDefaultRequestOptions());
     }
 
 }

@@ -1,14 +1,15 @@
 import { Observable } from 'rxjs/Rx';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { RestService } from 'app/shared/services/rest.service';
 
 import { Distribuicao } from './distribuicao.model';
 
+
 @Injectable()
 export class DistribuicaoService extends RestService<Distribuicao> {
 
-    constructor(protected http: Http) {
+    constructor(protected http: HttpClient) {
         super(http);
     }
 

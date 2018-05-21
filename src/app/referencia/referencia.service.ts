@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs/Rx';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { RestService } from 'app/shared/services/rest.service';
 
@@ -9,7 +9,7 @@ import { Referencia } from './referencia.model';
 @Injectable()
 export class ReferenciaService extends RestService<Referencia> {
 
-    constructor(protected http: Http){
+    constructor(protected http: HttpClient){
         super(http);
     }
 

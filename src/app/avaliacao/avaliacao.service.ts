@@ -1,4 +1,4 @@
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MEAT_API } from './../app.api';
 import { Observable } from 'rxjs/Observable';
@@ -12,10 +12,12 @@ import 'rxjs/add/operator/catch';
 import { Avaliacao } from './avaliacao.model';
 
 
+
+
 @Injectable()
 export class AvaliacaoService  extends RestService<Avaliacao> {
 
-    constructor(protected http: Http) {
+    constructor(protected http: HttpClient) {
         super(http);
     }
 
@@ -29,49 +31,38 @@ export class AvaliacaoService  extends RestService<Avaliacao> {
 
     getMaxId() {
         return this.http.get(`${MEAT_API}/avaliacao/maxId`)
-        // .do(response => console.log('Ultimo id inserido: ', response.json()))
-        .map(response => response.json());
     }
 
     getAvaliacao(): Observable<Avaliacao[]> {
-        return this.http.get(`${MEAT_API}/avaliacao`, this.getDefaultRequestOptions())
-            .map(response => response.json());
+        return this.http.get<Avaliacao[]>(`${MEAT_API}/avaliacao`, this.getDefaultRequestOptions());
     }
 
-    getPapelAtributo(id_papel) {
-        return this.http.get(`${MEAT_API}/PapelAtributo/${id_papel}`, this.getDefaultRequestOptions())
-        // .do(response => console.log('resultado: ', response.json()))
-        .map(response => response.json());
+    getPapelAtributo(id_papel): Observable<Avaliacao[]>{
+        return this.http.get<Avaliacao[]>(`${MEAT_API}/PapelAtributo/${id_papel}`, this.getDefaultRequestOptions());
     }
 
-    getBuscaAtributo(id_abrangencia, id_complexidade, id_impacto, letra) {
-        return this.http.get(`${MEAT_API}/avaliacao/buscaAtributo/${id_abrangencia}/${id_complexidade}/${id_impacto}/${letra}`, this.getDefaultRequestOptions())
-        .do(response => console.log('resultado: ', response.json()))
-        .map(response => response.json());
+    getBuscaAtributo(id_abrangencia, id_complexidade, id_impacto, letra): Observable<Avaliacao[]> {
+        return this.http.get<Avaliacao[]>(`${MEAT_API}/avaliacao/buscaAtributo/${id_abrangencia}/${id_complexidade}/${id_impacto}/${letra}`, 
+        this.getDefaultRequestOptions());
     }
 
     addAssociacaoColaboradorTecnologia(tecnologiaColaborador: any): any {
-        return this.http.post(`${MEAT_API}/avaliacao/tecnologiaColaborador/`, tecnologiaColaborador, this.getDefaultRequestOptions())
-        // .do(data => console.log('server data:', data))
-        .map(response => response.text());
+        return this.http.post(`${MEAT_API}/avaliacao/tecnologiaColaborador/`, tecnologiaColaborador, this.getDefaultRequestOptions());
     }
 
     addAssociacaoColaboradorPapel(papelColaborador: any): any {
         return this.http.post(`${MEAT_API}/avaliacao/papelColaborador/`, papelColaborador, this.getDefaultRequestOptions())
-        // .do(data => console.log('server data:', data))
-        .map(response => response.text());
+        .do(data => console.log('server data:', data));
     }
 
     addAssociacaoColaboradorProjeto(projetoColaborador: any): any {
         return this.http.post(`${MEAT_API}/avaliacao/projetoColaborador/`, projetoColaborador, this.getDefaultRequestOptions())
-        // .do(data => console.log('server data:', data))
-        .map(response => response.text());
+        .do(data => console.log('server data:', data));
     }
 
     addAssociacaoAtributoProjeto(atributoProjeto: any): any {
         return this.http.post(`${MEAT_API}/avaliacao/atributoProjeto/`, atributoProjeto, this.getDefaultRequestOptions())
-        .do(data => console.log('server data:', data))
-        .map(response => response.text());
+        .do(data => console.log('server data:', data));
     }
 
     addAvaliacao(avaliacao: any) {

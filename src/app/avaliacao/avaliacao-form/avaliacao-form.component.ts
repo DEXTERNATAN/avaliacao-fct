@@ -325,15 +325,15 @@ export class AvaliacaoFormComponent implements OnInit {
             this.avaliacaoService.getBuscaAtributo(element.Abrangencia, element.Complexidade, element.Impacto, element.letra).subscribe(
                 dataAtributo => {
                     if (dataAtributo) {
-
+                        console.log('************ RESULTADO: ******************: ', dataAtributo);
                         AssociaAtributo = {
                             'TB_COLABORADOR_id_colaborador': formAvaliacao.colaborador.idColaborador,
                             'TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe': formAvaliacao.colaborador.id_referencia_fct_gfe,
                             'TB_COLABORADOR_TB_DIVISAO_id_divisao': formAvaliacao.divisao.id_divisao,
-                            'TB_ATRIBUTO_id_atributo': dataAtributo.id_atributo,
-                            'TB_ATRIBUTO_TB_ABRANGENCIA_id_abrangencia': dataAtributo.id_abrangencia,
-                            'TB_ATRIBUTO_TB_COMPLEXIDADE_id_complexidade': dataAtributo.id_complexidade,
-                            'TB_ATRIBUTO_TB_IMPACTO_id_impacto': dataAtributo.id_impacto,
+                            'TB_ATRIBUTO_id_atributo': dataAtributo['id_atributo'],
+                            'TB_ATRIBUTO_TB_ABRANGENCIA_id_abrangencia': dataAtributo['id_abrangencia'],
+                            'TB_ATRIBUTO_TB_COMPLEXIDADE_id_complexidade': dataAtributo['id_complexidade'],
+                            'TB_ATRIBUTO_TB_IMPACTO_id_impacto': dataAtributo['id_impacto'],
                             'TB_RESULTADO_id_resultado': maxId // [Buscar o último ID da tabela TB_RESULTADO +1]
                         };
 
@@ -414,7 +414,7 @@ export class AvaliacaoFormComponent implements OnInit {
                 dataAtributo => {
                     if (dataAtributo) {
                         associacaoAtributoProjeto = {
-                            'TB_ATRIBUTO_id_atributo': dataAtributo.id_atributo,
+                            'TB_ATRIBUTO_id_atributo': dataAtributo['id_atributo'],
                             'TB_PROJETO_id_projeto': projetos.Projetos,
                             'TB_RESULTADO_id_resultado': maxId
                         };
@@ -426,10 +426,10 @@ export class AvaliacaoFormComponent implements OnInit {
                             'TB_COLABORADOR_id_colaborador': formAvaliacao.colaborador.idColaborador,
                             'TB_COLABORADOR_TB_REFERENCIA_FCT_GFE_id_referencia_fct_gfe': formAvaliacao.colaborador.id_referencia_fct_gfe,
                             'TB_COLABORADOR_TB_DIVISAO_id_divisao': formAvaliacao.divisao.id_divisao,
-                            'TB_ATRIBUTO_id_atributo': dataAtributo.id_atributo,
-                            'TB_ATRIBUTO_TB_ABRANGENCIA_id_abrangencia': dataAtributo.id_abrangencia,
-                            'TB_ATRIBUTO_TB_COMPLEXIDADE_id_complexidade': dataAtributo.id_complexidade,
-                            'TB_ATRIBUTO_TB_IMPACTO_id_impacto': dataAtributo.id_impacto,
+                            'TB_ATRIBUTO_id_atributo': dataAtributo['id_atributo'],
+                            'TB_ATRIBUTO_TB_ABRANGENCIA_id_abrangencia': dataAtributo['id_abrangencia'],
+                            'TB_ATRIBUTO_TB_COMPLEXIDADE_id_complexidade': dataAtributo['id_complexidade'],
+                            'TB_ATRIBUTO_TB_IMPACTO_id_impacto': dataAtributo['id_impacto'],
                             'TB_RESULTADO_id_resultado': maxId // [Buscar o último ID da tabela TB_RESULTADO +1]
                         };
 
@@ -596,7 +596,10 @@ export class AvaliacaoFormComponent implements OnInit {
             this.avaliacaoService.getPapelAtributo(element).subscribe((data) => {
                 if (data !== []) {
                     data.forEach(arrayPush => {
-                        let vlrRepetido = this.PapelAtributo.find(result => result.letra === arrayPush.letra) ? true : false;
+
+                        const letra = arrayPush['letra'];
+
+                        let vlrRepetido = this.PapelAtributo.find(result => result.letra === letra ) ? true : false;
                         if (!vlrRepetido) {
                             this.PapelAtributo.push(arrayPush);
                             this.addItemAtributo(arrayPush);

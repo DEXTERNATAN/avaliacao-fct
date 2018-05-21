@@ -1,4 +1,4 @@
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { RestService } from 'app/shared/services/rest.service';
 
@@ -12,7 +12,7 @@ import { AtributoColaborador } from './AtributoColaborador.model';
 @Injectable()
 export class AtributoColaboradorService  extends RestService<AtributoColaborador> {
 
-    constructor(protected http: Http) {
+    constructor(protected http: HttpClient) {
         super(http);
     }
 

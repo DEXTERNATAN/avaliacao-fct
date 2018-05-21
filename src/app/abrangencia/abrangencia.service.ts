@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs/Rx';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { RestService } from 'app/shared/services/rest.service';
 import { Abrangencia } from './abrangencia.model';
@@ -8,7 +8,7 @@ import { LoginService } from 'app/security/login/login.service';
 @Injectable()
 export class AbrangenciaService extends RestService<Abrangencia> {
 
-    constructor(protected http: Http, private loginService: LoginService) {
+    constructor(protected http: HttpClient, private loginService: LoginService) {
         super(http);
     }
 

@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs/Rx';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { RestService } from 'app/shared/services/rest.service';
 import { Impacto } from './impacto.model';
@@ -7,7 +7,7 @@ import { Impacto } from './impacto.model';
 @Injectable()
 export class ImpactoService extends RestService<Impacto>{
 
-    constructor(protected http: Http){
+    constructor(protected http: HttpClient){
         super(http);
     }
 
